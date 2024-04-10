@@ -1,15 +1,20 @@
 name: feech
 description: "Flutter Extensions Collection"
-version: 0.0.1
+version: 0.0.2
 homepage: "https://www.emmacanhelp.com"
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
-  flutter: ">=1.17.0"
+  flutter: ">=3.13.6"
 
 dependencies:
   flutter:
     sdk: flutter
+  asn1lib: ^1.5.2 # https://pub.dev/packages/asn1lib
+  crypto: ^3.0.3 # https://pub.dev/packages/crypto
+  flutter_svg: ^2.0.10+1 # https://pub.dev/packages/flutter_svg
+  geocoding: ^3.0.0 # https://pub.dev/packages/geocoding
+  intl: ^0.18.1 # https://pub.dev/packages/intl
 
 dev_dependencies:
   flutter_test:
