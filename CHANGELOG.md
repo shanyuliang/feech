@@ -25,3 +25,7 @@
 ## 0.0.7
 
 * Export BuildContext extension.
+
+## 0.0.8
+
+* Add/Export Characters extension.
