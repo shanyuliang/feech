@@ -21,3 +21,7 @@
 ## 0.0.6
 
 * Add BuildContext extension.
+
+## 0.0.7
+
+* Export BuildContext extension.

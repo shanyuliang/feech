@@ -2,6 +2,7 @@ library feech;
 
 export 'extensions/base_request_extension.dart';
 export 'extensions/base_response_extension.dart';
+export 'extensions/build_context_extension.dart';
 export 'extensions/date_time_extension.dart';
 export 'extensions/double_extension.dart';
 export 'extensions/duration_extension.dart';
@@ -17,3 +18,4 @@ export 'extensions/uint8list_extension.dart';
 export 'extensions/uri_extension.dart';
 export 'extensions/void_callback_extension.dart';
 export 'extensions/x509certificate_extension.dart';
+export 'support/screen_width_mode.dart';
