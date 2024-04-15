@@ -15,4 +15,5 @@ export 'extensions/placemark_extension.dart';
 export 'extensions/string_extension.dart';
 export 'extensions/uint8list_extension.dart';
 export 'extensions/uri_extension.dart';
+export 'extensions/void_callback_extension.dart';
 export 'extensions/x509certificate_extension.dart';

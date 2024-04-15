@@ -38,8 +38,8 @@ extension StringExtension on String {
   }
 
   Color mapToHSLColor(double saturation, double lightness) {
-    double hue = (hashCode % 360).toDouble();
-    HSLColor hslColor = HSLColor.fromAHSL(1.0, hue, saturation, lightness);
+    final hue = (hashCode % 360).toDouble();
+    final hslColor = HSLColor.fromAHSL(1.0, hue, saturation, lightness);
     return hslColor.toColor();
   }
 

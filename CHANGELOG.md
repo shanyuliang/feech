@@ -9,3 +9,11 @@
 ## 0.0.3
 
 * Relax version constraint.
+
+## 0.0.4
+
+* Relax version constraint on flutter_svg.
+
+## 0.0.5
+
+* Add VoidCallback extension.
