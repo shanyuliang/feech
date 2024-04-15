@@ -8,8 +8,7 @@ extension GlobalKeyExtension on GlobalKey {
     final matrix = renderObject?.getTransformTo(null);
 
     if (matrix != null && renderObject?.paintBounds != null) {
-      final rect = MatrixUtils.transformRect(matrix, renderObject!.paintBounds);
-      return rect;
+      return MatrixUtils.transformRect(matrix, renderObject!.paintBounds);
     } else {
       return null;
     }
@@ -18,6 +17,11 @@ extension GlobalKeyExtension on GlobalKey {
   Size? get size {
     final renderObject = currentContext?.findRenderObject();
     return renderObject?.let((it) => (it as RenderBox).size);
+  }
+
+  Offset? get offset {
+    final renderObject = currentContext?.findRenderObject();
+    return renderObject?.let((it) => (it as RenderBox).localToGlobal(Offset.zero));
   }
 
   Size? get physicalSize {

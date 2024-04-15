@@ -17,3 +17,7 @@
 ## 0.0.5
 
 * Add VoidCallback extension.
+
+## 0.0.6
+
+* Add BuildContext extension.
