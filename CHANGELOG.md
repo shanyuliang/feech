@@ -37,3 +37,7 @@
 ## 0.0.9+1
 
 * Try auto publish
+
+## 0.0.9+2
+
+* Try auto publish
