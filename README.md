@@ -1,8 +1,8 @@
-Feech stands for "Flutter Extensions Emma Can Help".
+Feech stands for "Flutter Experience Emma Can Help".
 
 ## Features
 
-Use the extensions in this collection to simplify your Flutter project development.
+Use the package to simplify your Flutter project development.
 
 ## Getting started
 

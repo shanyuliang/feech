@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Compare the Market</title>
+    <style>
+        div {
+          width: 100%;
+          position: absolute;
+          top: 65%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+        img.logo {
+          width: 38.2%;
+          position: absolute;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        img.loading {
+          width: 100%;
+          position: absolute;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+<img src="ctm_logo.svg" class="logo">
+<img src="animated_loading.svg" class="loading">
+<div>
+    <p><h1>Simples Authentication</h1></p>
+</div>
+<script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

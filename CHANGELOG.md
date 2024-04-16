@@ -29,3 +29,7 @@
 ## 0.0.8
 
 * Add/Export Characters extension.
+
+## 0.0.9
+
+* Add/Export some utilities.

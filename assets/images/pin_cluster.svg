@@ -1,0 +1,13 @@
+<svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path
+            d="M92.857 44.76C92.857 71.738 54.687 100 50 100c-4.688 0-42.857-28.63-42.857-55.24C7.143 25.3 26.33 9.524 50 9.524c23.67 0 42.857 15.775 42.857 35.236"
+            fill="#23A0A0" />
+        <circle cx="50" cy="42.857" fill="#09B8B8" r="42.857" />
+        <circle cx="50" cy="42.857" fill="#FFFFFF" r="38.095" />
+    </g>
+    <g fill="none" id="count">
+        <text style="font-size:54;stroke:#FF0000;fill:#FF0000" text-anchor="middle" x="50" y="60.857">%1$s</text>
+        <!-- looks like 1/3 font-size is a good y-offset. Here y = 24 = (cy == 16) + (font-size == 24) / 3 -->
+    </g>
+</svg>

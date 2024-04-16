@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navigation Delegate Example</title>
+    <style>
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+
+    </style>
+</head>
+<body>
+<script src="three.js"></script>
+<script>
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		document.body.appendChild(renderer.domElement);
+
+		var geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+		var material = new THREE.MeshPhongMaterial({ color: 0xffffff });
+		var cube = new THREE.Mesh(geometry, material);
+		scene.add(cube);
+
+		var pointLight = new THREE.PointLight(0xffffff);
+		pointLight.position.set(0, 0, 50);
+		scene.add(pointLight);
+
+		camera.position.z = 5;
+
+		var animate = function () {
+			requestAnimationFrame(animate);
+			cube.rotation.x += 0.02;
+			cube.rotation.y += 0.02;
+			renderer.render(scene, camera);
+		};
+
+		animate();
+
+</script>
+<img alt="relative SVG" src="../images/apple.svg">
+<img alt="relative PNG" src="../images/cammy.png">
+<img alt="absolute 1 SVG" src="/app-assets/images/apple.svg">
+<img alt="absolute 1 PNG" src="/app-assets/images/cammy.png">
+<img alt="same folder SVG" src="apple.svg">
+<img alt="same folder PNG" src="cammy.png">
+CAMMY
+<p style="color:red;">
+    The navigation delegate is set to block navigation to the youtube website.
+</p>
+<ul>
+    <ul><a href="https://www.youtube.com/">https://www.youtube.com/</a></ul>
+    <ul><a href="https://www.google.com/">https://www.google.com/</a></ul>
+</ul>
+</body>
+</html>
