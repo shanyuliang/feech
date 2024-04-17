@@ -15,7 +15,7 @@ dependencies:
   crypto: '>=3.0.3 <4.0.0' # https://pub.dev/packages/crypto
   flutter_svg: '>=2.0.7 <3.0.0' # https://pub.dev/packages/flutter_svg
   geocoding: '>=3.0.0 <4.0.0' # https://pub.dev/packages/geocoding
-  google_maps_flutter: '>=2.6.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
+  google_maps_flutter: '>=2.6.1 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=0.13.6 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.1.7 <5.0.0' # https://pub.dev/packages/image
   intl: '>=0.18.1 <1.0.0' # https://pub.dev/packages/intl
