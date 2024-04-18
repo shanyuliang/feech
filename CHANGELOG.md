@@ -47,3 +47,7 @@
 ## 0.0.12
 
 * Lower google map flutter dependency version
+
+## 0.0.13
+
+* Downgrade google map flutter dependency constraint
