@@ -44,6 +44,6 @@
 * Add Lru Cache
 * Optimize google_map_util
 
-## 0.0.11+1
+## 0.0.12
 
 * Lower google map flutter dependency version
