@@ -21,6 +21,16 @@ class BitmapDescriptorCache {
   void set(String key, int width, int height, BitmapDescriptor bitmapDescriptor) {
     lruMap[Object.hash(key, width, height)] = bitmapDescriptor;
   }
+
+  Future<BitmapDescriptor> getOrSet(String key, int width, int height, Future<BitmapDescriptor> Function() creator) async {
+    final cacheKey = Object.hash(key, width, height);
+    var bitmapDescriptor = lruMap[cacheKey];
+    if (bitmapDescriptor == null) {
+      bitmapDescriptor = await creator.call();
+      lruMap[cacheKey] = bitmapDescriptor;
+    }
+    return bitmapDescriptor;
+  }
 }
 
 final bitmapDescriptorCache = BitmapDescriptorCache();

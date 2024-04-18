@@ -33,3 +33,8 @@
 ## 0.0.9
 
 * Add/Export some utilities.
+
+## 0.0.10
+
+* Add more unit test.
+* Optimize google_map_util

@@ -12,7 +12,6 @@ Future<BitmapDescriptor> getBitmapDescriptorFromSVGAsset({
   final int targetLpWidth = 0,
   final int targetSpWidth = 0,
   final int targetPxWidth = 0,
-  final bool enableCache = true,
   final bool enableDebugLog = false,
 }) {
   final bitmapDescriptorFromSvgBuilder = BitmapDescriptorFromSvgBuilder(context);
@@ -24,7 +23,6 @@ Future<BitmapDescriptor> getBitmapDescriptorFromSVGAsset({
     targetLpWidth: targetLpWidth,
     targetSpWidth: targetSpWidth,
     targetPxWidth: targetPxWidth,
-    enableCache: enableCache,
     enableDebugLog: enableDebugLog,
   );
   return bitmapDescriptorFromSvgBuilder.build();
@@ -39,7 +37,6 @@ Future<BitmapDescriptor> getBitmapDescriptorFromSVGString({
   final int targetLpWidth = 0,
   final int targetSpWidth = 0,
   final int targetPxWidth = 0,
-  final bool enableCache = true,
   final bool enableDebugLog = false,
 }) {
   final bitmapDescriptorFromSvgBuilder = BitmapDescriptorFromSvgBuilder(context);
@@ -54,7 +51,6 @@ Future<BitmapDescriptor> getBitmapDescriptorFromSVGString({
     targetLpWidth: targetLpWidth,
     targetSpWidth: targetSpWidth,
     targetPxWidth: targetPxWidth,
-    enableCache: enableCache,
     enableDebugLog: enableDebugLog,
   );
   return bitmapDescriptorFromSvgBuilder.build();
@@ -67,7 +63,6 @@ void _applyOtherParameters({
   final int targetLpWidth = 0,
   final int targetSpWidth = 0,
   final int targetPxWidth = 0,
-  final bool enableCache = true,
   final bool enableDebugLog = false,
 }) {
   if (originalSizeAsLp) {
@@ -81,9 +76,6 @@ void _applyOtherParameters({
     bitmapDescriptorFromSvgBuilder.targetSpWidth(targetSpWidth);
   } else if (targetPxWidth > 0) {
     bitmapDescriptorFromSvgBuilder.targetPxWidth(targetPxWidth);
-  }
-  if (enableCache) {
-    bitmapDescriptorFromSvgBuilder.enableCache();
   }
   if (enableDebugLog) {
     bitmapDescriptorFromSvgBuilder.enableDebugLog();

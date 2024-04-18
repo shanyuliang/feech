@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:feech/support/picture_info_cache.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -23,7 +24,6 @@ class BitmapDescriptorFromSvgBuilder {
   int _targetLpWidth = 0;
   int _targetSpWidth = 0;
   int _targetPxWidth = 0;
-  bool _useCache = false;
   bool _debugLog = false;
 
   BitmapDescriptorFromSvgBuilder(this._context);
@@ -90,11 +90,6 @@ class BitmapDescriptorFromSvgBuilder {
     return this;
   }
 
-  BitmapDescriptorFromSvgBuilder enableCache() {
-    _useCache = true;
-    return this;
-  }
-
   BitmapDescriptorFromSvgBuilder enableDebugLog() {
     _debugLog = true;
     return this;
@@ -114,7 +109,7 @@ class BitmapDescriptorFromSvgBuilder {
       svgString = svgString.interpolate(_interpolateParams!);
     }
 
-    final pictureInfo = await vg.loadPicture(SvgStringLoader(svgString), null);
+    final pictureInfo = await pictureInfoCache.getOrSet(svgString, () => vg.loadPicture(SvgStringLoader(svgString), null));
 
     int originalWidth = pictureInfo.size.width.round();
     int originalHeight = pictureInfo.size.height.round();
@@ -147,32 +142,19 @@ class BitmapDescriptorFromSvgBuilder {
         targetHeight = (originalHeight * _targetPxWidth / originalWidth).round();
       }
     }
-    BitmapDescriptor? bitmapDescriptor;
-    bool hit = false;
-    if (_useCache) {
-      bitmapDescriptor = bitmapDescriptorCache.get(svgString, targetWidth, targetHeight);
-      if (bitmapDescriptor == null) {
-        hit = false;
-        //ui.Picture picture = drawableRoot.toPicture(size: Size(width, height));
-        bitmapDescriptor = await _bitmapDescriptorFromPictureInfo(
-          pictureInfo: pictureInfo,
-          originalWidth: originalWidth,
-          originalHeight: originalHeight,
-          targetWidth: targetWidth,
-        );
-        bitmapDescriptorCache.set(svgString, targetWidth, targetHeight, bitmapDescriptor);
-      } else {
-        hit = true;
-      }
-    } else {
-      // ui.Picture picture = drawableRoot.toPicture(size: Size(width, height));
-      bitmapDescriptor = await _bitmapDescriptorFromPictureInfo(
+
+    final bitmapDescriptor = bitmapDescriptorCache.getOrSet(
+      svgString,
+      targetWidth,
+      targetHeight,
+      () => _bitmapDescriptorFromPictureInfo(
         pictureInfo: pictureInfo,
         originalWidth: originalWidth,
         originalHeight: originalHeight,
         targetWidth: targetWidth,
-      );
-    }
+      ),
+    );
+
     if (_debugLog) {
       debugPrint("$debugTag BitmapDescriptorFromSvgAssetBuilder");
       debugPrint("$debugTag devicePixelRatio ${mediaQueryData.devicePixelRatio}");
@@ -188,8 +170,8 @@ class BitmapDescriptorFromSvgBuilder {
       debugPrint("$debugTag targetPxWidth $_targetPxWidth");
       debugPrint("$debugTag output width $targetWidth");
       debugPrint("$debugTag output height $targetHeight");
-      debugPrint("$debugTag useCache $_useCache hit $hit");
     }
+
     pictureInfo.picture.dispose();
     return bitmapDescriptor;
   }

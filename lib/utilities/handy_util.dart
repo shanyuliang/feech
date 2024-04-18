@@ -1,10 +1,19 @@
 import 'package:flutter/foundation.dart';
 
-T? suppressThrowable<T>(T? Function() throwableFunction, T? defaultReturn) {
+import '../constants.dart';
+
+T? suppressThrowable<T>({
+  required final T? Function() throwable,
+  final T? Function(Object ex)? whenError,
+}) {
   try {
-    return throwableFunction.call();
+    return throwable.call();
   } catch (ex) {
-    debugPrint("[Fumech] suppress throwable $ex");
-    return defaultReturn;
+    debugPrint("$debugTag suppressed throwable $ex");
+    return suppressThrowable(
+      throwable: () {
+        return whenError?.call(ex);
+      },
+    );
   }
 }
