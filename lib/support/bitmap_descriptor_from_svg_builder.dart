@@ -1,6 +1,5 @@
 import 'dart:ui' as ui;
 
-import 'package:feech/support/picture_info_cache.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -8,9 +7,25 @@ import 'package:image/image.dart' as img;
 
 import '../constants.dart';
 import '../extensions/string_extension.dart';
-import 'bitmap_descriptor_cache.dart';
+import '../utilities/handy_util.dart';
+import 'map_cache.dart';
 
 class BitmapDescriptorFromSvgBuilder {
+  static Future<void> _onEvicted({required String key, required PictureInfo value}) async {
+    suppressThrowable(throwable: () {
+      value.picture.dispose();
+    });
+  }
+
+  static final pictureInfoCache = MapCache<String, PictureInfo>.lru(
+    maximumSize: 9999,
+    onEvicted: _onEvicted,
+  );
+
+  static final bitmapDescriptorCache = MapCache<int, BitmapDescriptor>.lru(
+    maximumSize: 9999,
+  );
+
   static const String _dummySvg = """<svg width="144" height="144">
       <circle cx="72" cy="72" fill="#0000FF" r="72" />
       <text style="font-size:108;stroke:#FFFFFF;fill:#FFFFFF" text-anchor="middle" x="72" y="108">S</text>
@@ -109,7 +124,9 @@ class BitmapDescriptorFromSvgBuilder {
       svgString = svgString.interpolate(_interpolateParams!);
     }
 
-    final pictureInfo = await pictureInfoCache.getOrSet(svgString, () => vg.loadPicture(SvgStringLoader(svgString), null));
+    // final pictureInfo = await pictureInfoCache.getOrSet(svgString, () => vg.loadPicture(SvgStringLoader(svgString), null));
+    final pictureInfo =
+        (await pictureInfoCache.get(svgString, ifAbsent: (key) => vg.loadPicture(SvgStringLoader(svgString), null)))!;
 
     int originalWidth = pictureInfo.size.width.round();
     int originalHeight = pictureInfo.size.height.round();
@@ -143,17 +160,16 @@ class BitmapDescriptorFromSvgBuilder {
       }
     }
 
-    final bitmapDescriptor = bitmapDescriptorCache.getOrSet(
-      svgString,
-      targetWidth,
-      targetHeight,
-      () => _bitmapDescriptorFromPictureInfo(
+    final bitmapDescriptorCacheKey = Object.hash(svgString, targetWidth, targetHeight);
+    final bitmapDescriptor = (await bitmapDescriptorCache.get(
+      bitmapDescriptorCacheKey,
+      ifAbsent: (key) => _bitmapDescriptorFromPictureInfo(
         pictureInfo: pictureInfo,
         originalWidth: originalWidth,
         originalHeight: originalHeight,
         targetWidth: targetWidth,
       ),
-    );
+    ))!;
 
     if (_debugLog) {
       debugPrint("$debugTag BitmapDescriptorFromSvgAssetBuilder");
@@ -172,7 +188,6 @@ class BitmapDescriptorFromSvgBuilder {
       debugPrint("$debugTag output height $targetHeight");
     }
 
-    pictureInfo.picture.dispose();
     return bitmapDescriptor;
   }
 

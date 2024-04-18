@@ -38,3 +38,8 @@
 
 * Add more unit test.
 * Optimize google_map_util
+
+## 0.0.11
+
+* Add Lru Cache
+* Optimize google_map_util

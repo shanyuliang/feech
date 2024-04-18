@@ -14,7 +14,25 @@ void main() {
           context: context,
           assetName: "assets/images/pin_drinking_fountain.svg",
           targetSpWidth: 48,
-          enableDebugLog: true,
+          enableDebugLog: false,
+        );
+        await getBitmapDescriptorFromSVGAsset(
+          context: context,
+          assetName: "assets/images/pin_drinking_fountain.svg",
+          targetSpWidth: 48,
+          enableDebugLog: false,
+        );
+        await getBitmapDescriptorFromSVGAsset(
+          context: context,
+          assetName: "assets/images/pin_drinking_fountain.svg",
+          targetSpWidth: 96,
+          enableDebugLog: false,
+        );
+        await getBitmapDescriptorFromSVGAsset(
+          context: context,
+          assetName: "assets/images/huawei.svg",
+          targetSpWidth: 96,
+          enableDebugLog: false,
         );
       },
     );
