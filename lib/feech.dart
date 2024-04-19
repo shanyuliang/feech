@@ -1,5 +1,6 @@
 library feech;
 
+export 'classes/json_converters.dart';
 export 'extensions/base_request_extension.dart';
 export 'extensions/base_response_extension.dart';
 export 'extensions/build_context_extension.dart';

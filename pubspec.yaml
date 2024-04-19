@@ -1,6 +1,6 @@
 name: feech
 description: "Flutter Experience Emma Can Help"
-version: 0.0.13
+version: 0.0.14
 homepage: "https://www.emmacanhelp.com"
 
 environment:
@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   asn1lib: '>=1.5.2 <2.0.0' # https://pub.dev/packages/asn1lib
   async: '>=2.11.0 <3.0.0' # https://pub.dev/packages/async
+  cloud_firestore: ">=4.17.0 <5.0.0" # https://pub.dev/packages/cloud_firestore
   crypto: '>=3.0.3 <4.0.0' # https://pub.dev/packages/crypto
   flutter_cache_manager: '>=3.3.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_svg: '>=2.0.7 <3.0.0' # https://pub.dev/packages/flutter_svg
@@ -20,6 +21,7 @@ dependencies:
   http: '>=0.13.6 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.1.7 <5.0.0' # https://pub.dev/packages/image
   intl: '>=0.18.1 <1.0.0' # https://pub.dev/packages/intl
+  json_annotation: '>=4.8.1 <5.0.0' # https://pub.dev/packages/json_annotation
   quiver: '>=3.2.1 <4.0.0' # https://pub.dev/packages/quiver
 
 dev_dependencies:

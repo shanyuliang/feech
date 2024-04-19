@@ -51,3 +51,7 @@
 ## 0.0.13
 
 * Downgrade google map flutter dependency constraint
+
+## 0.0.14
+
+* Add json converters
