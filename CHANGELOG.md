@@ -55,3 +55,7 @@
 ## 0.0.14
 
 * Add json converters
+
+## 0.0.15
+
+* Mark toJsonEx and fromJsonEx async
