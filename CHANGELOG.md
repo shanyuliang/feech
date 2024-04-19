@@ -63,3 +63,9 @@
 ## 0.0.16
 
 * Export json converter ex
+
+## 0.0.17
+
+* Add cancellation exception
+* Add result seal classes
+* Add state status enums

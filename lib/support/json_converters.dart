@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../extensions/date_time_extension.dart';
-import '../extensions/general_type_extension.dart';
 import '../extensions/int_extension.dart';
 import '../extensions/string_extension.dart';
-import '../support/json_converter_ex.dart';
+import 'json_converter_ex.dart';
 
 class DateTimeStringConverter extends JsonConverterEx<DateTime, String> {
   const DateTimeStringConverter();
@@ -57,7 +56,7 @@ class DateTimeTimestampConverter extends JsonConverterEx<DateTime, Timestamp> {
   DateTime fromJson(Timestamp json) => json.toDate();
 
   @override
-  Timestamp toJson(DateTime object) => Timestamp.fromDate(object);
+  Timestamp toJson(DateTime object) => object.toTimestamp();
 }
 
 class DateTimeTimestampConverterNullable extends JsonConverterEx<DateTime?, Timestamp?> {
@@ -67,7 +66,7 @@ class DateTimeTimestampConverterNullable extends JsonConverterEx<DateTime?, Time
   DateTime? fromJson(Timestamp? json) => json?.toDate();
 
   @override
-  Timestamp? toJson(DateTime? object) => object?.let((it) => Timestamp.fromDate(it));
+  Timestamp? toJson(DateTime? object) => object?.toTimestamp();
 }
 
 class BoolIntConverter extends JsonConverterEx<bool, int> {

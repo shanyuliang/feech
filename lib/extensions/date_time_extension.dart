@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
+  Timestamp toTimestamp() => Timestamp.fromDate(this);
+
   String timeZoneString({bool useZForUTC = true}) {
     if ((isUtc || timeZoneOffset == Duration.zero) && useZForUTC) {
       return 'Z';

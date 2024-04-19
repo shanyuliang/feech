@@ -1,6 +1,5 @@
 library feech;
 
-export 'classes/json_converters.dart';
 export 'extensions/base_request_extension.dart';
 export 'extensions/base_response_extension.dart';
 export 'extensions/build_context_extension.dart';
@@ -20,8 +19,17 @@ export 'extensions/uint8list_extension.dart';
 export 'extensions/uri_extension.dart';
 export 'extensions/void_callback_extension.dart';
 export 'extensions/x509certificate_extension.dart';
+export 'support/bitmap_descriptor_from_svg_builder.dart';
+export 'support/cache.dart';
+export 'support/cancellation_exception.dart';
+export 'support/debouncer.dart';
 export 'support/json_converter_ex.dart';
+export 'support/json_converters.dart';
+export 'support/lru_map.dart';
+export 'support/map_cache.dart';
+export 'support/result.dart';
 export 'support/screen_width_mode.dart';
+export 'support/state_status.dart';
 export 'utilities/geo_util.dart';
 export 'utilities/google_map_util.dart';
 export 'utilities/handy_util.dart';
