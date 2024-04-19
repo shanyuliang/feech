@@ -69,3 +69,7 @@
 * Add cancellation exception
 * Add result seal classes
 * Add state status enums
+
+## 0.0.18
+
+* Remove iterable extension

@@ -90,8 +90,8 @@ class __$$SuccessImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$SuccessImpl<T> implements _Success<T> {
-  const _$SuccessImpl({required this.data});
+class _$SuccessImpl<T> extends _Success<T> {
+  const _$SuccessImpl({required this.data}) : super._();
 
   @override
   final T data;
@@ -120,8 +120,9 @@ class _$SuccessImpl<T> implements _Success<T> {
       __$$SuccessImplCopyWithImpl<T, _$SuccessImpl<T>>(this, _$identity);
 }
 
-abstract class _Success<T> implements Success<T> {
+abstract class _Success<T> extends Success<T> {
   const factory _Success({required final T data}) = _$SuccessImpl<T>;
+  const _Success._() : super._();
 
   @override
   T get data;
@@ -132,25 +133,26 @@ abstract class _Success<T> implements Success<T> {
 }
 
 /// @nodoc
-mixin _$Failure {
+mixin _$Failure<T> {
   Object? get error => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
+  $FailureCopyWith<T, Failure<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FailureCopyWith<$Res> {
-  factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
-      _$FailureCopyWithImpl<$Res, Failure>;
+abstract class $FailureCopyWith<T, $Res> {
+  factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) then) =
+      _$FailureCopyWithImpl<T, $Res, Failure<T>>;
   @useResult
   $Res call({Object? error, String? message});
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<$Res, $Val extends Failure>
-    implements $FailureCopyWith<$Res> {
+class _$FailureCopyWithImpl<T, $Res, $Val extends Failure<T>>
+    implements $FailureCopyWith<T, $Res> {
   _$FailureCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -175,21 +177,22 @@ class _$FailureCopyWithImpl<$Res, $Val extends Failure>
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> implements $FailureCopyWith<$Res> {
+abstract class _$$FailureImplCopyWith<T, $Res>
+    implements $FailureCopyWith<T, $Res> {
   factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
+          _$FailureImpl<T> value, $Res Function(_$FailureImpl<T>) then) =
+      __$$FailureImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({Object? error, String? message});
 }
 
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
+class __$$FailureImplCopyWithImpl<T, $Res>
+    extends _$FailureCopyWithImpl<T, $Res, _$FailureImpl<T>>
+    implements _$$FailureImplCopyWith<T, $Res> {
   __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
+      _$FailureImpl<T> _value, $Res Function(_$FailureImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -198,7 +201,7 @@ class __$$FailureImplCopyWithImpl<$Res>
     Object? error = freezed,
     Object? message = freezed,
   }) {
-    return _then(_$FailureImpl(
+    return _then(_$FailureImpl<T>(
       error: freezed == error ? _value.error : error,
       message: freezed == message
           ? _value.message
@@ -210,8 +213,8 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl({this.error, this.message});
+class _$FailureImpl<T> extends _Failure<T> {
+  const _$FailureImpl({this.error, this.message}) : super._();
 
   @override
   final Object? error;
@@ -220,14 +223,14 @@ class _$FailureImpl implements _Failure {
 
   @override
   String toString() {
-    return 'Failure(error: $error, message: $message)';
+    return 'Failure<$T>(error: $error, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
+            other is _$FailureImpl<T> &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -239,13 +242,14 @@ class _$FailureImpl implements _Failure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
+  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
+      __$$FailureImplCopyWithImpl<T, _$FailureImpl<T>>(this, _$identity);
 }
 
-abstract class _Failure implements Failure {
+abstract class _Failure<T> extends Failure<T> {
   const factory _Failure({final Object? error, final String? message}) =
-      _$FailureImpl;
+      _$FailureImpl<T>;
+  const _Failure._() : super._();
 
   @override
   Object? get error;
@@ -253,31 +257,31 @@ abstract class _Failure implements Failure {
   String? get message;
   @override
   @JsonKey(ignore: true)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
+  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$Cancellation {
+mixin _$Cancellation<T> {
   String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CancellationCopyWith<Cancellation> get copyWith =>
+  $CancellationCopyWith<T, Cancellation<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CancellationCopyWith<$Res> {
+abstract class $CancellationCopyWith<T, $Res> {
   factory $CancellationCopyWith(
-          Cancellation value, $Res Function(Cancellation) then) =
-      _$CancellationCopyWithImpl<$Res, Cancellation>;
+          Cancellation<T> value, $Res Function(Cancellation<T>) then) =
+      _$CancellationCopyWithImpl<T, $Res, Cancellation<T>>;
   @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class _$CancellationCopyWithImpl<$Res, $Val extends Cancellation>
-    implements $CancellationCopyWith<$Res> {
+class _$CancellationCopyWithImpl<T, $Res, $Val extends Cancellation<T>>
+    implements $CancellationCopyWith<T, $Res> {
   _$CancellationCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -300,22 +304,22 @@ class _$CancellationCopyWithImpl<$Res, $Val extends Cancellation>
 }
 
 /// @nodoc
-abstract class _$$CancellationImplCopyWith<$Res>
-    implements $CancellationCopyWith<$Res> {
-  factory _$$CancellationImplCopyWith(
-          _$CancellationImpl value, $Res Function(_$CancellationImpl) then) =
-      __$$CancellationImplCopyWithImpl<$Res>;
+abstract class _$$CancellationImplCopyWith<T, $Res>
+    implements $CancellationCopyWith<T, $Res> {
+  factory _$$CancellationImplCopyWith(_$CancellationImpl<T> value,
+          $Res Function(_$CancellationImpl<T>) then) =
+      __$$CancellationImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class __$$CancellationImplCopyWithImpl<$Res>
-    extends _$CancellationCopyWithImpl<$Res, _$CancellationImpl>
-    implements _$$CancellationImplCopyWith<$Res> {
+class __$$CancellationImplCopyWithImpl<T, $Res>
+    extends _$CancellationCopyWithImpl<T, $Res, _$CancellationImpl<T>>
+    implements _$$CancellationImplCopyWith<T, $Res> {
   __$$CancellationImplCopyWithImpl(
-      _$CancellationImpl _value, $Res Function(_$CancellationImpl) _then)
+      _$CancellationImpl<T> _value, $Res Function(_$CancellationImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -323,7 +327,7 @@ class __$$CancellationImplCopyWithImpl<$Res>
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(_$CancellationImpl(
+    return _then(_$CancellationImpl<T>(
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -334,22 +338,22 @@ class __$$CancellationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CancellationImpl implements _Cancellation {
-  const _$CancellationImpl({this.message});
+class _$CancellationImpl<T> extends _Cancellation<T> {
+  const _$CancellationImpl({this.message}) : super._();
 
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'Cancellation(message: $message)';
+    return 'Cancellation<$T>(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CancellationImpl &&
+            other is _$CancellationImpl<T> &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -359,17 +363,19 @@ class _$CancellationImpl implements _Cancellation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CancellationImplCopyWith<_$CancellationImpl> get copyWith =>
-      __$$CancellationImplCopyWithImpl<_$CancellationImpl>(this, _$identity);
+  _$$CancellationImplCopyWith<T, _$CancellationImpl<T>> get copyWith =>
+      __$$CancellationImplCopyWithImpl<T, _$CancellationImpl<T>>(
+          this, _$identity);
 }
 
-abstract class _Cancellation implements Cancellation {
-  const factory _Cancellation({final String? message}) = _$CancellationImpl;
+abstract class _Cancellation<T> extends Cancellation<T> {
+  const factory _Cancellation({final String? message}) = _$CancellationImpl<T>;
+  const _Cancellation._() : super._();
 
   @override
   String? get message;
   @override
   @JsonKey(ignore: true)
-  _$$CancellationImplCopyWith<_$CancellationImpl> get copyWith =>
+  _$$CancellationImplCopyWith<T, _$CancellationImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
