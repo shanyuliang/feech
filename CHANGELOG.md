@@ -59,3 +59,7 @@
 ## 0.0.15
 
 * Mark toJsonEx and fromJsonEx async
+
+## 0.0.16
+
+* Export json converter ex

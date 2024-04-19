@@ -20,6 +20,7 @@ export 'extensions/uint8list_extension.dart';
 export 'extensions/uri_extension.dart';
 export 'extensions/void_callback_extension.dart';
 export 'extensions/x509certificate_extension.dart';
+export 'support/json_converter_ex.dart';
 export 'support/screen_width_mode.dart';
 export 'utilities/geo_util.dart';
 export 'utilities/google_map_util.dart';
