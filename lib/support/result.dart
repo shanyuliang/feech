@@ -1,44 +1,26 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'result.freezed.dart';
-
 sealed class Result<T> {
   T? get dataOrNull;
 }
 
-@Freezed()
-class Success<T> extends Result<T> with _$Success {
-  Success._();
+class Success<T> extends Result<T> {
+  final T data;
 
-  const factory Success({
-    required final T data,
-  }) = _Success;
+  Success({required this.data});
 
   @override
   T? get dataOrNull => data;
 }
 
-@Freezed()
-class Failure<T> extends Result<T> with _$Failure {
-  Failure._();
+class Failure<T> extends Result<T> {
+  final Object? error;
 
-  const factory Failure({
-    final Object? error,
-    final String? message,
-  }) = _Failure;
+  Failure({this.error});
 
   @override
   T? get dataOrNull => null;
 }
 
-@Freezed()
-class Cancellation<T> extends Result<T> with _$Cancellation {
-  Cancellation._();
-
-  const factory Cancellation({
-    final String? message,
-  }) = _Cancellation;
-
+class Cancellation<T> extends Result<T> {
   @override
   T? get dataOrNull => null;
 }

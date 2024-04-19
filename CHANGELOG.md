@@ -73,3 +73,7 @@
 ## 0.0.18
 
 * Remove iterable extension
+
+## 0.0.19
+
+* Fix result class error
