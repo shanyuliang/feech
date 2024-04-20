@@ -1,6 +1,6 @@
 name: feech
 description: "Flutter Experience Emma Can Help"
-version: 0.0.20
+version: 0.0.21
 homepage: "https://www.emmacanhelp.com"
 
 environment:
@@ -25,6 +25,7 @@ dependencies:
   json_annotation: '>=4.8.1 <5.0.0' # https://pub.dev/packages/json_annotation
   quiver: '>=3.2.1 <4.0.0' # https://pub.dev/packages/quiver
   riverpod_annotation: '>=2.3.5 <3.0.0' # https://pub.dev/packages/riverpod_annotation
+  sqflite: '>=2.3.3 <3.0.0' # https://pub.dev/packages/sqflite
 
 dev_dependencies:
   flutter_test:

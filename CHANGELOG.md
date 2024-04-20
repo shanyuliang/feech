@@ -81,3 +81,7 @@
 ## 0.0.20
 
 * Add errorOrNull in Result
+
+## 0.0.21
+
+* Add Sqlite helper
