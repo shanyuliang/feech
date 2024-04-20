@@ -77,3 +77,7 @@
 ## 0.0.19
 
 * Fix result class error
+
+## 0.0.20
+
+* Add errorOrNull in Result
