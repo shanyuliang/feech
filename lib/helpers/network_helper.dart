@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:feech/feech.dart';
 import 'package:http/http.dart';
 
-import 'http_method.dart';
-import 'http_status.dart';
-import 'network_result.dart';
+import '../extensions/general_type_extension.dart';
+import '../support/cancellation_exception.dart';
+import '../support/json_converter_ex.dart';
+import '../support/network/http_method.dart';
+import '../support/network/http_status.dart';
+import '../support/network/network_result.dart';
 
 class NetworkHelper {
   final Map<String, Completer> _runningCompleterMap = {};
