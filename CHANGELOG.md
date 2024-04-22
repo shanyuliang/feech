@@ -96,4 +96,8 @@
 
 ## 0.0.24
 
-* Add app lifecycle provider
+* Export app lifecycle provider
+
+## 0.0.25
+
+* Try support web
