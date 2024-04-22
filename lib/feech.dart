@@ -8,7 +8,7 @@ export 'extensions/date_time_extension.dart';
 export 'extensions/double_extension.dart';
 export 'extensions/duration_extension.dart';
 export 'extensions/dynamic_extension.dart';
-export 'extensions/file_extension.dart';
+export 'extensions/file_extension.dart' if (dart.library.html) 'internal/file_extension_stub.dart';
 export 'extensions/general_type_extension.dart';
 export 'extensions/global_key_extension.dart';
 export 'extensions/int_extension.dart';
