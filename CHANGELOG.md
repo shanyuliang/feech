@@ -93,3 +93,7 @@
 ## 0.0.23
 
 * Add app lifecycle provider
+
+## 0.0.24
+
+* Add app lifecycle provider
