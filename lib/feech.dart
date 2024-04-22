@@ -19,7 +19,7 @@ export 'extensions/uri_extension.dart';
 export 'extensions/void_callback_extension.dart';
 export 'extensions/x509certificate_extension.dart';
 export 'helpers/sqlite_helper.dart';
-export 'providers/app_lifecycle_provider.dart';
+export 'providers/app_lifecycle_provider/app_lifecycle_provider.dart';
 export 'providers/app_provider_observer.dart';
 export 'support/bitmap_descriptor_from_svg_builder.dart';
 export 'support/cache.dart';

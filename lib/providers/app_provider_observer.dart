@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../constants.dart';
+
 class AppProviderObserver extends ProviderObserver {
   @override
   void didAddProvider(
@@ -8,7 +10,7 @@ class AppProviderObserver extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
-    debugPrint('Provider $provider was initialized with $value');
+    debugPrint('$debugTag Provider $provider was initialized with $value');
   }
 
   @override
@@ -16,7 +18,7 @@ class AppProviderObserver extends ProviderObserver {
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) {
-    debugPrint('Provider $provider was disposed');
+    debugPrint('$debugTag Provider $provider was disposed');
   }
 
   @override
@@ -26,7 +28,7 @@ class AppProviderObserver extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    debugPrint('Provider $provider updated from $previousValue to $newValue');
+    debugPrint('$debugTag Provider $provider updated from $previousValue to $newValue');
   }
 
   @override
@@ -36,6 +38,6 @@ class AppProviderObserver extends ProviderObserver {
     StackTrace stackTrace,
     ProviderContainer container,
   ) {
-    debugPrint('Provider $provider threw $error at $stackTrace');
+    debugPrint('$debugTag Provider $provider threw $error at $stackTrace');
   }
 }

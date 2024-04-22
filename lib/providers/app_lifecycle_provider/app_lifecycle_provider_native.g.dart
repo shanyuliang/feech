@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_lifecycle_provider.dart';
+part of 'app_lifecycle_provider_native.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appLifecycleHash() => r'b6b08cffb7bfccdb8468a19007094fedc61d36e0';
+String _$appLifecycleHash() => r'cbc80054c00d4f2fd0286053d2a58f9509652b5c';
 
 /// See also [AppLifecycle].
 @ProviderFor(AppLifecycle)
