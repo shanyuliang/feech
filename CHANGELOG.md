@@ -117,3 +117,11 @@
 ## 0.0.29
 
 * Add/Export network helper
+
+## 0.0.30
+
+* Export app client
+
+## 0.0.31
+
+* Export spki pin checker
