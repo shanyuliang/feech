@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 
 import '../constants.dart';
 
-T? suppressThrowable<T>({
-  required final T? Function() throwable,
-  final T? Function(Object ex)? whenError,
+FutureOr<T>? suppressThrowable<T>({
+  required final FutureOr<T>? Function() throwable,
+  final FutureOr<T>? Function(Object ex)? whenError,
 }) {
   try {
     return throwable.call();
