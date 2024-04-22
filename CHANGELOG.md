@@ -89,3 +89,7 @@
 ## 0.0.22
 
 * Add all curves constant
+
+## 0.0.23
+
+* Add app lifecycle provider
