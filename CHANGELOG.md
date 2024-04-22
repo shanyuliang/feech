@@ -125,3 +125,8 @@
 ## 0.0.31
 
 * Export spki pin checker
+
+## 0.0.32
+
+* Add/Export app cache manager
+* Add/Export content type extension
