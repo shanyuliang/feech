@@ -34,4 +34,25 @@ class UserLocation extends _$UserLocation {
     state = state.copyWith(lastKnownLocation: lastKnowLocation, error: positionResult.errorOrNull, stateStatus: stateStatus);
     return lastKnowLocation;
   }
+
+  Future<UserLatLng?> getCurrentLocation() async {
+    state = state.copyWith(stateStatus: StateStatus.updating);
+    final positionResult = await suppressThrowable<Result<Position>>(
+      throwable: () async {
+        return Success(data: await Geolocator.getCurrentPosition());
+      },
+      whenError: (ex) {
+        return Failure(error: ex);
+      },
+    )!;
+    final currentLocation = positionResult.dataOrNull?.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
+    final stateStatus = switch (positionResult) { Success() => StateStatus.updated, _ => StateStatus.errorUpdating };
+    state = state.copyWith(
+      lastKnownLocation: currentLocation,
+      currentLocation: currentLocation,
+      error: positionResult.errorOrNull,
+      stateStatus: stateStatus,
+    );
+    return currentLocation;
+  }
 }

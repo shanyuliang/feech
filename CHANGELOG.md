@@ -130,3 +130,7 @@
 
 * Add/Export app cache manager
 * Add/Export content type extension
+
+## 0.0.33
+
+* Add/Export user location provider
