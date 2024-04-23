@@ -23,6 +23,8 @@ export 'helpers/network_helper.dart';
 export 'helpers/sqlite_helper.dart';
 export 'providers/app_lifecycle_provider/app_lifecycle_provider.dart';
 export 'providers/app_provider_observer.dart';
+export 'providers/user_location_provider/user_location_provider.dart';
+export 'providers/user_location_provider/user_location_state.dart';
 export 'support/app_cache_manager.dart';
 export 'support/bitmap_descriptor_from_svg_builder.dart';
 export 'support/cache.dart';

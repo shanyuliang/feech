@@ -22,6 +22,7 @@ UserLocationState _$UserLocationStateFromJson(Map<String, dynamic> json) {
 mixin _$UserLocationState {
   UserLatLng? get lastKnownLocation => throw _privateConstructorUsedError;
   UserLatLng? get currentLocation => throw _privateConstructorUsedError;
+  Object? get error => throw _privateConstructorUsedError;
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,6 +40,7 @@ abstract class $UserLocationStateCopyWith<$Res> {
   $Res call(
       {UserLatLng? lastKnownLocation,
       UserLatLng? currentLocation,
+      Object? error,
       StateStatus stateStatus});
 
   $UserLatLngCopyWith<$Res>? get lastKnownLocation;
@@ -60,6 +62,7 @@ class _$UserLocationStateCopyWithImpl<$Res, $Val extends UserLocationState>
   $Res call({
     Object? lastKnownLocation = freezed,
     Object? currentLocation = freezed,
+    Object? error = freezed,
     Object? stateStatus = null,
   }) {
     return _then(_value.copyWith(
@@ -71,6 +74,7 @@ class _$UserLocationStateCopyWithImpl<$Res, $Val extends UserLocationState>
           ? _value.currentLocation
           : currentLocation // ignore: cast_nullable_to_non_nullable
               as UserLatLng?,
+      error: freezed == error ? _value.error : error,
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
@@ -114,6 +118,7 @@ abstract class _$$UserLocationStateImplCopyWith<$Res>
   $Res call(
       {UserLatLng? lastKnownLocation,
       UserLatLng? currentLocation,
+      Object? error,
       StateStatus stateStatus});
 
   @override
@@ -135,6 +140,7 @@ class __$$UserLocationStateImplCopyWithImpl<$Res>
   $Res call({
     Object? lastKnownLocation = freezed,
     Object? currentLocation = freezed,
+    Object? error = freezed,
     Object? stateStatus = null,
   }) {
     return _then(_$UserLocationStateImpl(
@@ -146,6 +152,7 @@ class __$$UserLocationStateImplCopyWithImpl<$Res>
           ? _value.currentLocation
           : currentLocation // ignore: cast_nullable_to_non_nullable
               as UserLatLng?,
+      error: freezed == error ? _value.error : error,
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
@@ -160,6 +167,7 @@ class _$UserLocationStateImpl extends _UserLocationState {
   const _$UserLocationStateImpl(
       {this.lastKnownLocation,
       this.currentLocation,
+      this.error,
       this.stateStatus = StateStatus.initial})
       : super._();
 
@@ -171,12 +179,14 @@ class _$UserLocationStateImpl extends _UserLocationState {
   @override
   final UserLatLng? currentLocation;
   @override
+  final Object? error;
+  @override
   @JsonKey()
   final StateStatus stateStatus;
 
   @override
   String toString() {
-    return 'UserLocationState(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, stateStatus: $stateStatus)';
+    return 'UserLocationState(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, error: $error, stateStatus: $stateStatus)';
   }
 
   @override
@@ -188,14 +198,15 @@ class _$UserLocationStateImpl extends _UserLocationState {
                 other.lastKnownLocation == lastKnownLocation) &&
             (identical(other.currentLocation, currentLocation) ||
                 other.currentLocation == currentLocation) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, lastKnownLocation, currentLocation, stateStatus);
+  int get hashCode => Object.hash(runtimeType, lastKnownLocation,
+      currentLocation, const DeepCollectionEquality().hash(error), stateStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -216,6 +227,7 @@ abstract class _UserLocationState extends UserLocationState {
   const factory _UserLocationState(
       {final UserLatLng? lastKnownLocation,
       final UserLatLng? currentLocation,
+      final Object? error,
       final StateStatus stateStatus}) = _$UserLocationStateImpl;
   const _UserLocationState._() : super._();
 
@@ -226,6 +238,8 @@ abstract class _UserLocationState extends UserLocationState {
   UserLatLng? get lastKnownLocation;
   @override
   UserLatLng? get currentLocation;
+  @override
+  Object? get error;
   @override
   StateStatus get stateStatus;
   @override

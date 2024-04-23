@@ -17,6 +17,7 @@ _$UserLocationStateImpl _$$UserLocationStateImplFromJson(
           ? null
           : UserLatLng.fromJson(
               json['currentLocation'] as Map<String, dynamic>),
+      error: json['error'],
       stateStatus:
           $enumDecodeNullable(_$StateStatusEnumMap, json['stateStatus']) ??
               StateStatus.initial,
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$UserLocationStateImplToJson(
     <String, dynamic>{
       'lastKnownLocation': instance.lastKnownLocation,
       'currentLocation': instance.currentLocation,
+      'error': instance.error,
       'stateStatus': _$StateStatusEnumMap[instance.stateStatus]!,
     };
 

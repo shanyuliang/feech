@@ -14,6 +14,7 @@ class UserLocationState with _$UserLocationState {
   const factory UserLocationState({
     final UserLatLng? lastKnownLocation,
     final UserLatLng? currentLocation,
+    final Object? error,
     @Default(StateStatus.initial) final StateStatus stateStatus,
   }) = _UserLocationState;
 }
