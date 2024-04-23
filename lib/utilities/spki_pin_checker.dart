@@ -5,7 +5,7 @@ import '../extensions/uint8list_extension.dart';
 import 'handy_util.dart';
 
 Future<String?> checkSpkiPin(String url) async {
-  return suppressThrowable(throwable: () async {
+  return suppressThrowableAsync(throwable: () async {
     final httpClient = HttpClient();
     final request = await httpClient.headUrl(url.parseAsUri()!);
     final response = await request.close();

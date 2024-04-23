@@ -12,7 +12,7 @@ import 'map_cache.dart';
 
 class BitmapDescriptorFromSvgBuilder {
   static Future<void> _onEvicted({required String key, required PictureInfo value}) async {
-    suppressThrowable(throwable: () {
+    suppressThrowableSync(throwable: () {
       value.picture.dispose();
     });
   }

@@ -138,3 +138,7 @@
 ## 0.0.34
 
 * Update user location provider
+
+## 0.0.35
+
+* Update suppress throwable methods

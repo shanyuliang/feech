@@ -28,14 +28,14 @@ class UserLocation extends _$UserLocation {
 
   Future<UserLatLng?> _getLastKnownLocation() async {
     state = state.copyWith(stateStatus: StateStatus.updating);
-    final positionResult = await suppressThrowable<Result<Position>>(
+    final positionResult = await suppressThrowableAsyncDefault<Result<Position>>(
       throwable: () async {
         return Success(data: await Geolocator.getLastKnownPosition());
       },
-      whenError: (ex) {
+      whenError: (ex) async {
         return Failure(error: ex);
       },
-    )!;
+    );
     final lastKnowLocation = positionResult.dataOrNull?.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
     final stateStatus = switch (positionResult) { Success() => StateStatus.updated, _ => StateStatus.errorUpdating };
     state = state.copyWith(lastKnownLocation: lastKnowLocation, error: positionResult.errorOrNull, stateStatus: stateStatus);
@@ -49,14 +49,14 @@ class UserLocation extends _$UserLocation {
 
   Future<UserLatLng?> getCurrentLocation() async {
     state = state.copyWith(stateStatus: StateStatus.updating);
-    final positionResult = await suppressThrowable<Result<Position>>(
+    final positionResult = await suppressThrowableAsyncDefault<Result<Position>>(
       throwable: () async {
         return Success(data: await Geolocator.getCurrentPosition());
       },
-      whenError: (ex) {
+      whenError: (ex) async {
         return Failure(error: ex);
       },
-    )!;
+    );
     final currentLocation = positionResult.dataOrNull?.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
     final stateStatus = switch (positionResult) { Success() => StateStatus.updated, _ => StateStatus.errorUpdating };
     state = state.copyWith(
