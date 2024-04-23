@@ -142,3 +142,7 @@
 ## 0.0.35
 
 * Update suppress throwable methods
+
+## 0.0.36
+
+* Add/Export permission status provider

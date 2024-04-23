@@ -22,6 +22,8 @@ export 'extensions/x509certificate_extension.dart';
 export 'helpers/network_helper.dart';
 export 'helpers/sqlite_helper.dart';
 export 'providers/app_lifecycle_provider/app_lifecycle_provider.dart';
+export 'providers/app_permission_status_provider/app_permission_status_provider.dart';
+export 'providers/app_permission_status_provider/app_permission_status_state.dart';
 export 'providers/app_provider_observer.dart';
 export 'providers/user_location_provider/user_location_provider.dart';
 export 'providers/user_location_provider/user_location_state.dart';
