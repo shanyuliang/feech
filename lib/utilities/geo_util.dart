@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const _earthRadius = 6378137;
@@ -35,4 +36,13 @@ LatLngBounds getBoundsOfRadius(LatLng center, double radiusInMeter) {
   final northEast = _getEndPoint(center, 45, radiusInMeter);
   final southWest = _getEndPoint(center, 225, radiusInMeter);
   return LatLngBounds(southwest: southWest, northeast: northEast);
+}
+
+double getDistance({
+  required double startLatitude,
+  required double startLongitude,
+  required double endLatitude,
+  required double endLongitude,
+}) {
+  return Geolocator.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude);
 }

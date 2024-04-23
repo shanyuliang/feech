@@ -23,6 +23,7 @@ mixin _$UserLocationState {
   UserLatLng? get lastKnownLocation => throw _privateConstructorUsedError;
   UserLatLng? get currentLocation => throw _privateConstructorUsedError;
   Object? get error => throw _privateConstructorUsedError;
+  bool get isListeningLocationChange => throw _privateConstructorUsedError;
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $UserLocationStateCopyWith<$Res> {
       {UserLatLng? lastKnownLocation,
       UserLatLng? currentLocation,
       Object? error,
+      bool isListeningLocationChange,
       StateStatus stateStatus});
 
   $UserLatLngCopyWith<$Res>? get lastKnownLocation;
@@ -63,6 +65,7 @@ class _$UserLocationStateCopyWithImpl<$Res, $Val extends UserLocationState>
     Object? lastKnownLocation = freezed,
     Object? currentLocation = freezed,
     Object? error = freezed,
+    Object? isListeningLocationChange = null,
     Object? stateStatus = null,
   }) {
     return _then(_value.copyWith(
@@ -75,6 +78,10 @@ class _$UserLocationStateCopyWithImpl<$Res, $Val extends UserLocationState>
           : currentLocation // ignore: cast_nullable_to_non_nullable
               as UserLatLng?,
       error: freezed == error ? _value.error : error,
+      isListeningLocationChange: null == isListeningLocationChange
+          ? _value.isListeningLocationChange
+          : isListeningLocationChange // ignore: cast_nullable_to_non_nullable
+              as bool,
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
@@ -119,6 +126,7 @@ abstract class _$$UserLocationStateImplCopyWith<$Res>
       {UserLatLng? lastKnownLocation,
       UserLatLng? currentLocation,
       Object? error,
+      bool isListeningLocationChange,
       StateStatus stateStatus});
 
   @override
@@ -141,6 +149,7 @@ class __$$UserLocationStateImplCopyWithImpl<$Res>
     Object? lastKnownLocation = freezed,
     Object? currentLocation = freezed,
     Object? error = freezed,
+    Object? isListeningLocationChange = null,
     Object? stateStatus = null,
   }) {
     return _then(_$UserLocationStateImpl(
@@ -153,6 +162,10 @@ class __$$UserLocationStateImplCopyWithImpl<$Res>
           : currentLocation // ignore: cast_nullable_to_non_nullable
               as UserLatLng?,
       error: freezed == error ? _value.error : error,
+      isListeningLocationChange: null == isListeningLocationChange
+          ? _value.isListeningLocationChange
+          : isListeningLocationChange // ignore: cast_nullable_to_non_nullable
+              as bool,
       stateStatus: null == stateStatus
           ? _value.stateStatus
           : stateStatus // ignore: cast_nullable_to_non_nullable
@@ -168,6 +181,7 @@ class _$UserLocationStateImpl extends _UserLocationState {
       {this.lastKnownLocation,
       this.currentLocation,
       this.error,
+      this.isListeningLocationChange = false,
       this.stateStatus = StateStatus.initial})
       : super._();
 
@@ -182,11 +196,14 @@ class _$UserLocationStateImpl extends _UserLocationState {
   final Object? error;
   @override
   @JsonKey()
+  final bool isListeningLocationChange;
+  @override
+  @JsonKey()
   final StateStatus stateStatus;
 
   @override
   String toString() {
-    return 'UserLocationState(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, error: $error, stateStatus: $stateStatus)';
+    return 'UserLocationState(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, error: $error, isListeningLocationChange: $isListeningLocationChange, stateStatus: $stateStatus)';
   }
 
   @override
@@ -199,14 +216,22 @@ class _$UserLocationStateImpl extends _UserLocationState {
             (identical(other.currentLocation, currentLocation) ||
                 other.currentLocation == currentLocation) &&
             const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.isListeningLocationChange,
+                    isListeningLocationChange) ||
+                other.isListeningLocationChange == isListeningLocationChange) &&
             (identical(other.stateStatus, stateStatus) ||
                 other.stateStatus == stateStatus));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, lastKnownLocation,
-      currentLocation, const DeepCollectionEquality().hash(error), stateStatus);
+  int get hashCode => Object.hash(
+      runtimeType,
+      lastKnownLocation,
+      currentLocation,
+      const DeepCollectionEquality().hash(error),
+      isListeningLocationChange,
+      stateStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -228,6 +253,7 @@ abstract class _UserLocationState extends UserLocationState {
       {final UserLatLng? lastKnownLocation,
       final UserLatLng? currentLocation,
       final Object? error,
+      final bool isListeningLocationChange,
       final StateStatus stateStatus}) = _$UserLocationStateImpl;
   const _UserLocationState._() : super._();
 
@@ -240,6 +266,8 @@ abstract class _UserLocationState extends UserLocationState {
   UserLatLng? get currentLocation;
   @override
   Object? get error;
+  @override
+  bool get isListeningLocationChange;
   @override
   StateStatus get stateStatus;
   @override

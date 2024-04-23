@@ -134,3 +134,7 @@
 ## 0.0.33
 
 * Add/Export user location provider
+
+## 0.0.34
+
+* Update user location provider

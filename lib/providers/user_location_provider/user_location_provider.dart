@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,10 +13,15 @@ part 'user_location_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class UserLocation extends _$UserLocation {
+  StreamSubscription<Position>? _positionStreamSubscription;
+
   @override
   UserLocationState build() {
     Future(() {
       _getLastKnownLocation();
+    });
+    ref.onDispose(() {
+      _detachPositionStreamListener();
     });
     return const UserLocationState();
   }
@@ -33,6 +40,11 @@ class UserLocation extends _$UserLocation {
     final stateStatus = switch (positionResult) { Success() => StateStatus.updated, _ => StateStatus.errorUpdating };
     state = state.copyWith(lastKnownLocation: lastKnowLocation, error: positionResult.errorOrNull, stateStatus: stateStatus);
     return lastKnowLocation;
+  }
+
+  Future<void> _detachPositionStreamListener() async {
+    await _positionStreamSubscription?.cancel();
+    _positionStreamSubscription = null;
   }
 
   Future<UserLatLng?> getCurrentLocation() async {
@@ -54,5 +66,30 @@ class UserLocation extends _$UserLocation {
       stateStatus: stateStatus,
     );
     return currentLocation;
+  }
+
+  Future<void> startListeningLocationChange() async {
+    state = state.copyWith(isListeningLocationChange: true);
+    await _detachPositionStreamListener();
+
+    _positionStreamSubscription = Geolocator.getPositionStream().listen((position) {
+      final currentLocation = position.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
+      state = state.copyWith(
+        lastKnownLocation: currentLocation,
+        currentLocation: currentLocation,
+        error: null,
+        stateStatus: StateStatus.updated,
+      );
+    }, onError: (error, stackTrace) {
+      state = state.copyWith(
+        error: error,
+        stateStatus: StateStatus.errorUpdating,
+      );
+    });
+  }
+
+  Future<void> stopListeningLocationChange() async {
+    state = state.copyWith(isListeningLocationChange: false);
+    _detachPositionStreamListener();
   }
 }

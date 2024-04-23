@@ -15,6 +15,7 @@ class UserLocationState with _$UserLocationState {
     final UserLatLng? lastKnownLocation,
     final UserLatLng? currentLocation,
     final Object? error,
+    @Default(false) final bool isListeningLocationChange,
     @Default(StateStatus.initial) final StateStatus stateStatus,
   }) = _UserLocationState;
 }
