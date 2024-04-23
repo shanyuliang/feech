@@ -17,8 +17,9 @@ class UserLocation extends _$UserLocation {
 
   @override
   UserLocationState build() {
-    Future(() {
-      _getLastKnownLocation();
+    Future(() async {
+      await _getLastKnownLocation();
+      await getCurrentLocation();
     });
     ref.onDispose(() {
       _detachPositionStreamListener();

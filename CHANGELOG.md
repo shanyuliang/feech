@@ -146,3 +146,7 @@
 ## 0.0.36
 
 * Add/Export permission status provider
+
+## 0.0.37
+
+* Update user location provider

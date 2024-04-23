@@ -63,4 +63,9 @@ class AppPermissionStatus extends _$AppPermissionStatus {
     );
     return combinedStatus;
   }
+
+  Future<CombinedStatus?> gotoAppSettings() async {
+    await openAppSettings();
+    return _getStatus();
+  }
 }
