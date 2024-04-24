@@ -17,8 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AppPermissionStatusState {
   Permission get permission => throw _privateConstructorUsedError;
-  ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus})?
-      get combinedStatus => throw _privateConstructorUsedError;
+  ({
+    PermissionStatus? permissionStatus,
+    ServiceStatus? serviceStatus,
+    bool? shouldShowRequestRationale
+  })? get combinedStatus => throw _privateConstructorUsedError;
   Object? get error => throw _privateConstructorUsedError;
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
@@ -37,7 +40,8 @@ abstract class $AppPermissionStatusStateCopyWith<$Res> {
       {Permission permission,
       ({
         PermissionStatus? permissionStatus,
-        ServiceStatus? serviceStatus
+        ServiceStatus? serviceStatus,
+        bool? shouldShowRequestRationale
       })? combinedStatus,
       Object? error,
       StateStatus stateStatus});
@@ -72,7 +76,8 @@ class _$AppPermissionStatusStateCopyWithImpl<$Res,
           : combinedStatus // ignore: cast_nullable_to_non_nullable
               as ({
               PermissionStatus? permissionStatus,
-              ServiceStatus? serviceStatus
+              ServiceStatus? serviceStatus,
+              bool? shouldShowRequestRationale
             })?,
       error: freezed == error ? _value.error : error,
       stateStatus: null == stateStatus
@@ -96,7 +101,8 @@ abstract class _$$AppPermissionStatusStateImplCopyWith<$Res>
       {Permission permission,
       ({
         PermissionStatus? permissionStatus,
-        ServiceStatus? serviceStatus
+        ServiceStatus? serviceStatus,
+        bool? shouldShowRequestRationale
       })? combinedStatus,
       Object? error,
       StateStatus stateStatus});
@@ -130,7 +136,8 @@ class __$$AppPermissionStatusStateImplCopyWithImpl<$Res>
           : combinedStatus // ignore: cast_nullable_to_non_nullable
               as ({
               PermissionStatus? permissionStatus,
-              ServiceStatus? serviceStatus
+              ServiceStatus? serviceStatus,
+              bool? shouldShowRequestRationale
             })?,
       error: freezed == error ? _value.error : error,
       stateStatus: null == stateStatus
@@ -156,7 +163,8 @@ class _$AppPermissionStatusStateImpl extends _AppPermissionStatusState {
   @override
   final ({
     PermissionStatus? permissionStatus,
-    ServiceStatus? serviceStatus
+    ServiceStatus? serviceStatus,
+    bool? shouldShowRequestRationale
   })? combinedStatus;
   @override
   final Object? error;
@@ -200,7 +208,8 @@ abstract class _AppPermissionStatusState extends AppPermissionStatusState {
       {required final Permission permission,
       final ({
         PermissionStatus? permissionStatus,
-        ServiceStatus? serviceStatus
+        ServiceStatus? serviceStatus,
+        bool? shouldShowRequestRationale
       })? combinedStatus,
       final Object? error,
       final StateStatus stateStatus}) = _$AppPermissionStatusStateImpl;
@@ -209,8 +218,11 @@ abstract class _AppPermissionStatusState extends AppPermissionStatusState {
   @override
   Permission get permission;
   @override
-  ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus})?
-      get combinedStatus;
+  ({
+    PermissionStatus? permissionStatus,
+    ServiceStatus? serviceStatus,
+    bool? shouldShowRequestRationale
+  })? get combinedStatus;
   @override
   Object? get error;
   @override

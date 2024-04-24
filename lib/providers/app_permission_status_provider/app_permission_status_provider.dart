@@ -33,7 +33,12 @@ class AppPermissionStatus extends _$AppPermissionStatus {
         final permissionStatus = await state.permission.status;
         final serviceStatus =
             (state.permission is PermissionWithService) ? await (state.permission as PermissionWithService).serviceStatus : null;
-        return Success(data: (permissionStatus: permissionStatus, serviceStatus: serviceStatus));
+        final shouldShowRequestRationale = await state.permission.shouldShowRequestRationale;
+        return Success(data: (
+          permissionStatus: permissionStatus,
+          serviceStatus: serviceStatus,
+          shouldShowRequestRationale: shouldShowRequestRationale,
+        ));
       },
       whenError: (ex) async {
         return Failure(error: ex);
@@ -56,7 +61,12 @@ class AppPermissionStatus extends _$AppPermissionStatus {
         final permissionStatus = await state.permission.request();
         final serviceStatus =
             (state.permission is PermissionWithService) ? await (state.permission as PermissionWithService).serviceStatus : null;
-        return Success(data: (permissionStatus: permissionStatus, serviceStatus: serviceStatus));
+        final shouldShowRequestRationale = await state.permission.shouldShowRequestRationale;
+        return Success(data: (
+          permissionStatus: permissionStatus,
+          serviceStatus: serviceStatus,
+          shouldShowRequestRationale: shouldShowRequestRationale,
+        ));
       },
       whenError: (ex) async {
         return Failure(error: ex);

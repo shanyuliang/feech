@@ -20,4 +20,5 @@ class AppPermissionStatusState with _$AppPermissionStatusState {
 typedef CombinedStatus = ({
   PermissionStatus? permissionStatus,
   ServiceStatus? serviceStatus,
+  bool? shouldShowRequestRationale,
 });
