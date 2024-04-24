@@ -154,3 +154,7 @@
 ## 0.0.38
 
 * Update user location provider
+
+## 0.0.39
+
+* Update user location provider
