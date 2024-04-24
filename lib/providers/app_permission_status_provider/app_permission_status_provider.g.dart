@@ -7,7 +7,7 @@ part of 'app_permission_status_provider.dart';
 // **************************************************************************
 
 String _$appPermissionStatusHash() =>
-    r'd5d9a8b0dd09fed6b4006f572d58e2cba911dc38';
+    r'30ab0ed77fa67e6462d77b2bbf693c9fec99d283';
 
 /// Copied from Dart SDK
 class _SystemHash {

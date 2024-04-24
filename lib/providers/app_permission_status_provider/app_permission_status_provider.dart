@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../support/result.dart';
 import '../../support/state_status.dart';
 import '../../utilities/handy_util.dart';
+import '../app_lifecycle_provider/app_lifecycle_provider.dart';
 import 'app_permission_status_state.dart';
 
 part 'app_permission_status_provider.g.dart';
@@ -14,6 +17,11 @@ class AppPermissionStatus extends _$AppPermissionStatus {
   AppPermissionStatusState build(Permission permission) {
     Future(() {
       _getStatus();
+    });
+    ref.listen(appLifecycleProvider, (previous, next) {
+      if (next == AppLifecycleState.resumed) {
+        _getStatus();
+      }
     });
     return AppPermissionStatusState(permission: permission);
   }
