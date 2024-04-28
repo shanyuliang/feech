@@ -166,3 +166,7 @@
 ## 0.0.41
 
 * Add/Export app web view
+
+## 0.0.42
+
+* Update app web view

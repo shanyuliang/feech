@@ -58,7 +58,9 @@ class AppWebView extends _$AppWebView {
         // );
       });
     });
-    loadUrl(state.initialUrl);
+    Future(() {
+      loadUrl(state.initialUrl);
+    });
     return AppWebViewState.nothing();
   }
 
