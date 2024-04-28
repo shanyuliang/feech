@@ -1,0 +1,1 @@
+enum WebStorageType { localStorage, sessionStorage }
