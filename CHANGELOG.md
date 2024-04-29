@@ -174,3 +174,7 @@
 ## 0.0.43
 
 * Update app web view
+
+## 0.0.44
+
+* Add/Export app logging
