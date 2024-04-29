@@ -6,7 +6,7 @@ part of 'app_web_view_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appWebViewHash() => r'5851f581764092b397f83bbf535a54d2187d3284';
+String _$appWebViewHash() => r'615f953d4ae1f69592434e1ef9924a7dcd1273d0';
 
 /// Copied from Dart SDK
 class _SystemHash {

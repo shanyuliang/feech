@@ -170,3 +170,7 @@
 ## 0.0.42
 
 * Update app web view
+
+## 0.0.43
+
+* Update app web view

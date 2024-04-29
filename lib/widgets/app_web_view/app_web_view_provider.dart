@@ -10,7 +10,37 @@ part 'app_web_view_provider.g.dart';
 
 @Riverpod()
 class AppWebView extends _$AppWebView {
-  late final WebViewController webViewController;
+  late final WebViewController webViewController = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setBackgroundColor(const Color(0x00000000))
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          debugPrint('Web View is loading (progress : $progress%)');
+          _setProgress(progress);
+        },
+        onPageStarted: (String url) async {
+          debugPrint('Web View page started loading: $url');
+          _setPageStarted(url);
+        },
+        onPageFinished: (String url) async {
+          debugPrint('Web View page finished loading: $url');
+          _setPageFinished(url);
+        },
+        onUrlChange: (UrlChange change) async {
+          debugPrint('Web View page url changes: ${change.url}');
+          _setUrlChanged(change);
+        },
+        onWebResourceError: (WebResourceError error) {},
+        onNavigationRequest: (NavigationRequest request) {
+          debugPrint('Web View attend to load ${request.url}, isMainFrame: ${request.isMainFrame}');
+          final allowNavigationResult = allowNavigation?.call(request.url, request.isMainFrame) ?? true;
+          _setNavigationDecision(url: request.url, isMainFrame: request.isMainFrame, allowed: allowNavigationResult);
+          debugPrint('Web View navigation ${allowNavigationResult ? "allowed" : "denied"}');
+          return allowNavigationResult ? NavigationDecision.navigate : NavigationDecision.prevent;
+        },
+      ),
+    );
 
   @override
   AppWebViewState build({
@@ -18,37 +48,6 @@ class AppWebView extends _$AppWebView {
     Set<String>? javaScriptChannelNames,
     bool Function(String url, bool isMainFrame)? allowNavigation,
   }) {
-    webViewController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            debugPrint('Web View is loading (progress : $progress%)');
-            _setProgress(progress);
-          },
-          onPageStarted: (String url) async {
-            debugPrint('Web View page started loading: $url');
-            _setPageStarted(url);
-          },
-          onPageFinished: (String url) async {
-            debugPrint('Web View page finished loading: $url');
-            _setPageFinished(url);
-          },
-          onUrlChange: (UrlChange change) async {
-            debugPrint('Web View page url changes: ${change.url}');
-            _setUrlChanged(change);
-          },
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            debugPrint('Web View attend to load ${request.url}, isMainFrame: ${request.isMainFrame}');
-            final allowNavigationResult = allowNavigation?.call(request.url, request.isMainFrame) ?? true;
-            _setNavigationDecision(url: request.url, isMainFrame: request.isMainFrame, allowed: allowNavigationResult);
-            debugPrint('Web View navigation ${allowNavigationResult ? "allowed" : "denied"}');
-            return allowNavigationResult ? NavigationDecision.navigate : NavigationDecision.prevent;
-          },
-        ),
-      );
     javaScriptChannelNames?.forEach((element) {
       webViewController.addJavaScriptChannel(element, onMessageReceived: (JavaScriptMessage message) {
         debugPrint('Web View receive javaScript message "${message.message}" from channel $element');
@@ -61,7 +60,7 @@ class AppWebView extends _$AppWebView {
     Future(() {
       loadUrl(state.initialUrl);
     });
-    return AppWebViewState.nothing();
+    return initialState ?? AppWebViewState.nothing();
   }
 
   Future<void> loadUrl(String? url) async {
@@ -126,8 +125,3 @@ class AppWebView extends _$AppWebView {
     state = state.copyWith(title: title, canGoBack: canGoBack, canGoForward: canGoForward);
   }
 }
-
-// final appWebViewProvider =
-//     StateNotifierProvider.autoDispose.family<AppWebViewNotifier, AppWebViewState, AppWebViewState?>((ref, initialState) {
-//   return AppWebViewNotifier(initialState: initialState);
-// });
