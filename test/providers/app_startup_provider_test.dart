@@ -1,6 +1,7 @@
 import 'package:feech/feech.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /// A testing utility which creates a [ProviderContainer] and automatically
 /// disposes it at the end of the test.
@@ -25,8 +26,8 @@ ProviderContainer createContainer({
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('appLoggingProvider', () async {
-    final container = createContainer();
+  test('appStartupProvider', () async {
+    final container = createContainer(observers: [AppProviderObserver()]);
     final testLoggingProvider = appLoggingProvider(
         actionLoggingList: () => [
               ConsoleLogging(),
@@ -38,7 +39,16 @@ void main() {
               ),
             ]);
 
-    final appLogging = await container.read(testLoggingProvider.future);
+    final testAppStartupProvider = appStartupProvider(waitList: [
+      appLifecycleProvider.notifier,
+      appPermissionStatusProvider(Permission.location).notifier,
+      appPermissionStatusProvider(Permission.notification).notifier,
+      testLoggingProvider.future,
+      userLocationProvider.notifier,
+    ]);
+    await container.read(testAppStartupProvider.future);
+
+    final appLogging = container.read(testLoggingProvider).requireValue;
 
     appLogging.logger.info("info message");
     appLogging.logger.severe("severe message", Exception("severe error"));

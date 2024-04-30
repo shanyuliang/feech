@@ -26,6 +26,7 @@ export 'providers/app_logging_provider/app_logging_provider.dart';
 export 'providers/app_permission_status_provider/app_permission_status_provider.dart';
 export 'providers/app_permission_status_provider/app_permission_status_state.dart';
 export 'providers/app_provider_observer.dart';
+export 'providers/app_startup_provider/app_startup_provider.dart';
 export 'providers/user_location_provider/user_location_provider.dart';
 export 'providers/user_location_provider/user_location_state.dart';
 export 'support/app_cache_manager.dart';

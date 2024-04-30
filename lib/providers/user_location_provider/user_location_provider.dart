@@ -18,7 +18,7 @@ class UserLocation extends _$UserLocation {
   @override
   UserLocationState build() {
     Future(() async {
-      await _getLastKnownLocation();
+      await getLastKnownLocation();
       await getCurrentLocation();
     });
     ref.onDispose(() {
@@ -27,7 +27,7 @@ class UserLocation extends _$UserLocation {
     return const UserLocationState();
   }
 
-  Future<UserLatLng?> _getLastKnownLocation() async {
+  Future<UserLatLng?> getLastKnownLocation() async {
     state = state.copyWith(stateStatus: StateStatus.updating);
     final positionResult = await suppressThrowableAsyncDefault<Result<Position>>(
       throwable: () async {
