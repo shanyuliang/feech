@@ -62,7 +62,7 @@ class ConsolidatedLogging extends Logging {
   @override
   Future<void> initialise() async {
     for (final internalLogging in _internalLoggingList) {
-      suppressThrowableAsync(
+      await suppressThrowableAsync(
         throwable: () async {
           await internalLogging.initialise();
         },

@@ -182,3 +182,7 @@
 ## 0.0.45
 
 * Update app logging
+
+## 0.0.46
+
+* Update app logging
