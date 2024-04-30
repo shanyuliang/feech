@@ -6,7 +6,7 @@ part of 'user_location_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userLocationHash() => r'e69f0ac558d8d4c76cad4341535d64a439c9c21f';
+String _$userLocationHash() => r'2d21da5514b2b5ec6d65fb887186f95c067849a4';
 
 /// See also [UserLocation].
 @ProviderFor(UserLocation)

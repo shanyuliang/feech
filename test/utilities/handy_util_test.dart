@@ -7,7 +7,7 @@ void main() {
       throwable: () {
         return 88 ~/ 1;
       },
-      whenError: (ex) {
+      whenError: (error, stackTrace) {
         return 77;
       },
     );
@@ -19,7 +19,7 @@ void main() {
       throwable: () {
         return 88 ~/ 0;
       },
-      whenError: (ex) {
+      whenError: (error, stackTrace) {
         return 77;
       },
     );
@@ -31,7 +31,7 @@ void main() {
       throwable: () {
         return 88 ~/ 0;
       },
-      whenError: (ex) {
+      whenError: (error, stackTrace) {
         throw Exception("Yet another exception");
       },
     );

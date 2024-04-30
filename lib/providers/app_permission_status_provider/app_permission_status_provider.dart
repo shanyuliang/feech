@@ -40,8 +40,8 @@ class AppPermissionStatus extends _$AppPermissionStatus {
           shouldShowRequestRationale: shouldShowRequestRationale,
         ));
       },
-      whenError: (ex) async {
-        return Failure(error: ex);
+      whenError: (error, stackTrace) async {
+        return Failure(error: error);
       },
     );
     final combinedStatus = combinedStatusResult.dataOrNull;
@@ -68,8 +68,8 @@ class AppPermissionStatus extends _$AppPermissionStatus {
           shouldShowRequestRationale: shouldShowRequestRationale,
         ));
       },
-      whenError: (ex) async {
-        return Failure(error: ex);
+      whenError: (error, stackTrace) async {
+        return Failure(error: error);
       },
     );
     final combinedStatus = combinedStatusResult.dataOrNull;

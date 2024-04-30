@@ -33,8 +33,8 @@ class UserLocation extends _$UserLocation {
       throwable: () async {
         return Success(data: await Geolocator.getLastKnownPosition());
       },
-      whenError: (ex) async {
-        return Failure(error: ex);
+      whenError: (error, stackTrace) async {
+        return Failure(error: error);
       },
     );
     final lastKnowLocation = positionResult.dataOrNull?.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
@@ -54,8 +54,8 @@ class UserLocation extends _$UserLocation {
       throwable: () async {
         return Success(data: await Geolocator.getCurrentPosition());
       },
-      whenError: (ex) async {
-        return Failure(error: ex);
+      whenError: (error, stackTrace) async {
+        return Failure(error: error);
       },
     );
     final currentLocation = positionResult.dataOrNull?.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));

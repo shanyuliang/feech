@@ -11,8 +11,8 @@ extension FileExtension on File {
     return suppressThrowableAsyncDefault(throwable: () async {
       (await vg.loadPicture(SvgFileLoader(this), null)).picture.dispose();
       return true;
-    }, whenError: (ex) async {
-      debugPrint("$debugTag isSvgFile $ex");
+    }, whenError: (error, stackTrace) async {
+      debugPrint("$debugTag isSvgFile $error");
       return false;
     });
   }
