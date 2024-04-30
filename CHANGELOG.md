@@ -178,3 +178,7 @@
 ## 0.0.44
 
 * Add/Export app logging
+
+## 0.0.45
+
+* Update app logging

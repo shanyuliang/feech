@@ -27,7 +27,7 @@ void main() {
 
   test('appLoggingProvider', () async {
     final container = createContainer();
-    final initialState = container.read(appLoggingProvider(
+    final testLoggingProvider = appLoggingProvider(
         actionLoggingList: () => [
               ConsoleLogging(),
               CrashlyticsLogging(),
@@ -36,8 +36,16 @@ void main() {
                 eventType: 'Flutter Base',
                 maxEventBufferTimeInSeconds: 60,
               ),
-            ]));
-    await initialState.initialise();
-    initialState.logger.severe("severe message", Exception("severe error"));
+            ]);
+
+    container.read(testLoggingProvider);
+
+    await Future.delayed(const Duration(seconds: 1));
+
+    final followingState = container.read(testLoggingProvider);
+
+    followingState.logging.logger.info("info message");
+    followingState.logging.logger.severe("severe message", Exception("severe error"));
+    followingState.logging.logger.shout("fatal message", Exception("fatal error"));
   });
 }

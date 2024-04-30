@@ -54,7 +54,7 @@ class NewRelicLogging extends Logging {
 
   @override
   Future<void> initialise() async {
-    final config = Config(accessToken: accessToken);
+    final config = Config(accessToken: accessToken, printStatementAsEventsEnabled: false);
     await NewrelicMobile.instance.startAgent(config);
     await NewrelicMobile.instance.setMaxEventBufferTime(maxEventBufferTimeInSeconds);
   }

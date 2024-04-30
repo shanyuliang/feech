@@ -6,7 +6,7 @@ part of 'app_logging_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appLoggingHash() => r'0d5d23e9bb84f0aa3ed74113b9e9cbe378f7e689';
+String _$appLoggingHash() => r'48263eec14b76a5853eb6a10799b71903e75ca9b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,10 +29,10 @@ class _SystemHash {
   }
 }
 
-abstract class _$AppLogging extends BuildlessNotifier<Logging> {
+abstract class _$AppLogging extends BuildlessNotifier<AppLoggingState> {
   late final List<Logging> Function() actionLoggingList;
 
-  Logging build({
+  AppLoggingState build({
     required List<Logging> Function() actionLoggingList,
   });
 }
@@ -42,7 +42,7 @@ abstract class _$AppLogging extends BuildlessNotifier<Logging> {
 const appLoggingProvider = AppLoggingFamily();
 
 /// See also [AppLogging].
-class AppLoggingFamily extends Family<Logging> {
+class AppLoggingFamily extends Family<AppLoggingState> {
   /// See also [AppLogging].
   const AppLoggingFamily();
 
@@ -80,7 +80,8 @@ class AppLoggingFamily extends Family<Logging> {
 }
 
 /// See also [AppLogging].
-class AppLoggingProvider extends NotifierProviderImpl<AppLogging, Logging> {
+class AppLoggingProvider
+    extends NotifierProviderImpl<AppLogging, AppLoggingState> {
   /// See also [AppLogging].
   AppLoggingProvider({
     required List<Logging> Function() actionLoggingList,
@@ -111,7 +112,7 @@ class AppLoggingProvider extends NotifierProviderImpl<AppLogging, Logging> {
   final List<Logging> Function() actionLoggingList;
 
   @override
-  Logging runNotifierBuild(
+  AppLoggingState runNotifierBuild(
     covariant AppLogging notifier,
   ) {
     return notifier.build(
@@ -136,7 +137,7 @@ class AppLoggingProvider extends NotifierProviderImpl<AppLogging, Logging> {
   }
 
   @override
-  NotifierProviderElement<AppLogging, Logging> createElement() {
+  NotifierProviderElement<AppLogging, AppLoggingState> createElement() {
     return _AppLoggingProviderElement(this);
   }
 
@@ -155,13 +156,14 @@ class AppLoggingProvider extends NotifierProviderImpl<AppLogging, Logging> {
   }
 }
 
-mixin AppLoggingRef on NotifierProviderRef<Logging> {
+mixin AppLoggingRef on NotifierProviderRef<AppLoggingState> {
   /// The parameter `actionLoggingList` of this provider.
   List<Logging> Function() get actionLoggingList;
 }
 
 class _AppLoggingProviderElement
-    extends NotifierProviderElement<AppLogging, Logging> with AppLoggingRef {
+    extends NotifierProviderElement<AppLogging, AppLoggingState>
+    with AppLoggingRef {
   _AppLoggingProviderElement(super.provider);
 
   @override
