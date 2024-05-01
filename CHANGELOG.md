@@ -200,3 +200,7 @@
 * Add/Export shared preferences provider
 * Add/Export network helper provider
 * Refactor riverpod provider code generation
+
+## 0.0.50
+
+* Add/Export base widget
