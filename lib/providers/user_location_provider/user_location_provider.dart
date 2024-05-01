@@ -7,16 +7,16 @@ import '../../extensions/general_type_extension.dart';
 import '../../support/result.dart';
 import '../../support/state_status.dart';
 import '../../utilities/handy_util.dart';
-import 'user_location_state.dart';
+import 'user_location.dart';
 
 part 'user_location_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class UserLocation extends _$UserLocation {
+class UserLocationProvider extends _$UserLocationProvider {
   StreamSubscription<Position>? _positionStreamSubscription;
 
   @override
-  UserLocationState build() {
+  UserLocation build() {
     Future(() async {
       await getLastKnownLocation();
       await getCurrentLocation();
@@ -24,7 +24,7 @@ class UserLocation extends _$UserLocation {
     ref.onDispose(() {
       _detachPositionStreamListener();
     });
-    return const UserLocationState();
+    return const UserLocation();
   }
 
   Future<UserLatLng?> getLastKnownLocation() async {

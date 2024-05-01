@@ -194,3 +194,9 @@
 ## 0.0.48
 
 * Add/Export app startup provider and widget
+
+## 0.0.49
+
+* Add/Export shared preferences provider
+* Add/Export network helper provider
+* Refactor riverpod provider code generation

@@ -30,7 +30,7 @@ void main() {
     final container = createContainer();
 
     final initialState = container.read(userLocationProvider);
-    expect(initialState, equals(const UserLocationState()));
+    expect(initialState, equals(const UserLocation()));
 
     await Future.delayed(const Duration(seconds: 1));
 

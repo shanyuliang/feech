@@ -6,24 +6,24 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../support/result.dart';
 import '../../support/state_status.dart';
 import '../../utilities/handy_util.dart';
-import '../app_lifecycle_provider/app_lifecycle_provider.dart';
-import 'app_permission_status_state.dart';
+import '../app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
+import 'app_permission_status.dart';
 
 part 'app_permission_status_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppPermissionStatus extends _$AppPermissionStatus {
+class AppPermissionStatusProvider extends _$AppPermissionStatusProvider {
   @override
-  AppPermissionStatusState build(Permission permission) {
+  AppPermissionStatus build(Permission permission) {
     Future(() {
       _getStatus();
     });
-    ref.listen(appLifecycleProvider, (previous, next) {
+    ref.listen(appLifecycleStateProvider, (previous, next) {
       if (next == AppLifecycleState.resumed) {
         _getStatus();
       }
     });
-    return AppPermissionStatusState(permission: permission);
+    return AppPermissionStatus(permission: permission);
   }
 
   Future<CombinedStatus?> _getStatus() async {

@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'app_lifecycle_provider_native.g.dart';
+part 'app_lifecycle_state_provider_native.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppLifecycle extends _$AppLifecycle {
+class AppLifecycleStateProvider extends _$AppLifecycleStateProvider {
   @override
   AppLifecycleState build() {
     final appLifecycleListener = AppLifecycleListener(onStateChange: (appLifecycleState) {

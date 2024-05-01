@@ -25,7 +25,7 @@ ProviderContainer createContainer({
 }
 
 void main() {
-  final testLoggingProvider = appLoggingProvider(
+  final testLoggingProvider = loggingProvider(
       actionLoggingList: () => [
             ConsoleLogging(),
             CrashlyticsLogging(),
@@ -41,7 +41,7 @@ void main() {
       ProviderScope(
         child: AppStartupWidget(
           waitList: [
-            appLifecycleProvider.notifier,
+            appLifecycleStateProvider.notifier,
             appPermissionStatusProvider(Permission.location).notifier,
             appPermissionStatusProvider(Permission.notification).notifier,
             testLoggingProvider.future,

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'app_permission_status_state.dart';
+part of 'app_permission_status.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AppPermissionStatusState {
+mixin _$AppPermissionStatus {
   Permission get permission => throw _privateConstructorUsedError;
   ({
     PermissionStatus? permissionStatus,
@@ -26,15 +26,15 @@ mixin _$AppPermissionStatusState {
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AppPermissionStatusStateCopyWith<AppPermissionStatusState> get copyWith =>
+  $AppPermissionStatusCopyWith<AppPermissionStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AppPermissionStatusStateCopyWith<$Res> {
-  factory $AppPermissionStatusStateCopyWith(AppPermissionStatusState value,
-          $Res Function(AppPermissionStatusState) then) =
-      _$AppPermissionStatusStateCopyWithImpl<$Res, AppPermissionStatusState>;
+abstract class $AppPermissionStatusCopyWith<$Res> {
+  factory $AppPermissionStatusCopyWith(
+          AppPermissionStatus value, $Res Function(AppPermissionStatus) then) =
+      _$AppPermissionStatusCopyWithImpl<$Res, AppPermissionStatus>;
   @useResult
   $Res call(
       {Permission permission,
@@ -48,10 +48,9 @@ abstract class $AppPermissionStatusStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppPermissionStatusStateCopyWithImpl<$Res,
-        $Val extends AppPermissionStatusState>
-    implements $AppPermissionStatusStateCopyWith<$Res> {
-  _$AppPermissionStatusStateCopyWithImpl(this._value, this._then);
+class _$AppPermissionStatusCopyWithImpl<$Res, $Val extends AppPermissionStatus>
+    implements $AppPermissionStatusCopyWith<$Res> {
+  _$AppPermissionStatusCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -89,12 +88,11 @@ class _$AppPermissionStatusStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$AppPermissionStatusStateImplCopyWith<$Res>
-    implements $AppPermissionStatusStateCopyWith<$Res> {
-  factory _$$AppPermissionStatusStateImplCopyWith(
-          _$AppPermissionStatusStateImpl value,
-          $Res Function(_$AppPermissionStatusStateImpl) then) =
-      __$$AppPermissionStatusStateImplCopyWithImpl<$Res>;
+abstract class _$$AppPermissionStatusImplCopyWith<$Res>
+    implements $AppPermissionStatusCopyWith<$Res> {
+  factory _$$AppPermissionStatusImplCopyWith(_$AppPermissionStatusImpl value,
+          $Res Function(_$AppPermissionStatusImpl) then) =
+      __$$AppPermissionStatusImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -109,13 +107,11 @@ abstract class _$$AppPermissionStatusStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AppPermissionStatusStateImplCopyWithImpl<$Res>
-    extends _$AppPermissionStatusStateCopyWithImpl<$Res,
-        _$AppPermissionStatusStateImpl>
-    implements _$$AppPermissionStatusStateImplCopyWith<$Res> {
-  __$$AppPermissionStatusStateImplCopyWithImpl(
-      _$AppPermissionStatusStateImpl _value,
-      $Res Function(_$AppPermissionStatusStateImpl) _then)
+class __$$AppPermissionStatusImplCopyWithImpl<$Res>
+    extends _$AppPermissionStatusCopyWithImpl<$Res, _$AppPermissionStatusImpl>
+    implements _$$AppPermissionStatusImplCopyWith<$Res> {
+  __$$AppPermissionStatusImplCopyWithImpl(_$AppPermissionStatusImpl _value,
+      $Res Function(_$AppPermissionStatusImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +122,7 @@ class __$$AppPermissionStatusStateImplCopyWithImpl<$Res>
     Object? error = freezed,
     Object? stateStatus = null,
   }) {
-    return _then(_$AppPermissionStatusStateImpl(
+    return _then(_$AppPermissionStatusImpl(
       permission: null == permission
           ? _value.permission
           : permission // ignore: cast_nullable_to_non_nullable
@@ -150,8 +146,8 @@ class __$$AppPermissionStatusStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AppPermissionStatusStateImpl extends _AppPermissionStatusState {
-  const _$AppPermissionStatusStateImpl(
+class _$AppPermissionStatusImpl extends _AppPermissionStatus {
+  const _$AppPermissionStatusImpl(
       {required this.permission,
       this.combinedStatus,
       this.error,
@@ -174,14 +170,14 @@ class _$AppPermissionStatusStateImpl extends _AppPermissionStatusState {
 
   @override
   String toString() {
-    return 'AppPermissionStatusState(permission: $permission, combinedStatus: $combinedStatus, error: $error, stateStatus: $stateStatus)';
+    return 'AppPermissionStatus(permission: $permission, combinedStatus: $combinedStatus, error: $error, stateStatus: $stateStatus)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppPermissionStatusStateImpl &&
+            other is _$AppPermissionStatusImpl &&
             (identical(other.permission, permission) ||
                 other.permission == permission) &&
             (identical(other.combinedStatus, combinedStatus) ||
@@ -198,13 +194,13 @@ class _$AppPermissionStatusStateImpl extends _AppPermissionStatusState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppPermissionStatusStateImplCopyWith<_$AppPermissionStatusStateImpl>
-      get copyWith => __$$AppPermissionStatusStateImplCopyWithImpl<
-          _$AppPermissionStatusStateImpl>(this, _$identity);
+  _$$AppPermissionStatusImplCopyWith<_$AppPermissionStatusImpl> get copyWith =>
+      __$$AppPermissionStatusImplCopyWithImpl<_$AppPermissionStatusImpl>(
+          this, _$identity);
 }
 
-abstract class _AppPermissionStatusState extends AppPermissionStatusState {
-  const factory _AppPermissionStatusState(
+abstract class _AppPermissionStatus extends AppPermissionStatus {
+  const factory _AppPermissionStatus(
       {required final Permission permission,
       final ({
         PermissionStatus? permissionStatus,
@@ -212,8 +208,8 @@ abstract class _AppPermissionStatusState extends AppPermissionStatusState {
         bool? shouldShowRequestRationale
       })? combinedStatus,
       final Object? error,
-      final StateStatus stateStatus}) = _$AppPermissionStatusStateImpl;
-  const _AppPermissionStatusState._() : super._();
+      final StateStatus stateStatus}) = _$AppPermissionStatusImpl;
+  const _AppPermissionStatus._() : super._();
 
   @override
   Permission get permission;
@@ -229,6 +225,6 @@ abstract class _AppPermissionStatusState extends AppPermissionStatusState {
   StateStatus get stateStatus;
   @override
   @JsonKey(ignore: true)
-  _$$AppPermissionStatusStateImplCopyWith<_$AppPermissionStatusStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$AppPermissionStatusImplCopyWith<_$AppPermissionStatusImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

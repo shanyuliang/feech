@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_web_view_provider.dart';
+part of 'app_web_view_state_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appWebViewHash() => r'615f953d4ae1f69592434e1ef9924a7dcd1273d0';
+String _$appWebViewStateProviderHash() =>
+    r'67ea043901331778d11771ed2a1e360f7da1d3ab';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$AppWebView
+abstract class _$AppWebViewStateProvider
     extends BuildlessAutoDisposeNotifier<AppWebViewState> {
   late final AppWebViewState? initialState;
   late final Set<String>? javaScriptChannelNames;
@@ -42,22 +43,22 @@ abstract class _$AppWebView
   });
 }
 
-/// See also [AppWebView].
-@ProviderFor(AppWebView)
-const appWebViewProvider = AppWebViewFamily();
+/// See also [AppWebViewStateProvider].
+@ProviderFor(AppWebViewStateProvider)
+const appWebViewStateProvider = AppWebViewStateProviderFamily();
 
-/// See also [AppWebView].
-class AppWebViewFamily extends Family<AppWebViewState> {
-  /// See also [AppWebView].
-  const AppWebViewFamily();
+/// See also [AppWebViewStateProvider].
+class AppWebViewStateProviderFamily extends Family<AppWebViewState> {
+  /// See also [AppWebViewStateProvider].
+  const AppWebViewStateProviderFamily();
 
-  /// See also [AppWebView].
-  AppWebViewProvider call({
+  /// See also [AppWebViewStateProvider].
+  AppWebViewStateProviderProvider call({
     AppWebViewState? initialState,
     Set<String>? javaScriptChannelNames,
     bool Function(String, bool)? allowNavigation,
   }) {
-    return AppWebViewProvider(
+    return AppWebViewStateProviderProvider(
       initialState: initialState,
       javaScriptChannelNames: javaScriptChannelNames,
       allowNavigation: allowNavigation,
@@ -65,8 +66,8 @@ class AppWebViewFamily extends Family<AppWebViewState> {
   }
 
   @override
-  AppWebViewProvider getProviderOverride(
-    covariant AppWebViewProvider provider,
+  AppWebViewStateProviderProvider getProviderOverride(
+    covariant AppWebViewStateProviderProvider provider,
   ) {
     return call(
       initialState: provider.initialState,
@@ -87,37 +88,37 @@ class AppWebViewFamily extends Family<AppWebViewState> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'appWebViewProvider';
+  String? get name => r'appWebViewStateProvider';
 }
 
-/// See also [AppWebView].
-class AppWebViewProvider
-    extends AutoDisposeNotifierProviderImpl<AppWebView, AppWebViewState> {
-  /// See also [AppWebView].
-  AppWebViewProvider({
+/// See also [AppWebViewStateProvider].
+class AppWebViewStateProviderProvider extends AutoDisposeNotifierProviderImpl<
+    AppWebViewStateProvider, AppWebViewState> {
+  /// See also [AppWebViewStateProvider].
+  AppWebViewStateProviderProvider({
     AppWebViewState? initialState,
     Set<String>? javaScriptChannelNames,
     bool Function(String, bool)? allowNavigation,
   }) : this._internal(
-          () => AppWebView()
+          () => AppWebViewStateProvider()
             ..initialState = initialState
             ..javaScriptChannelNames = javaScriptChannelNames
             ..allowNavigation = allowNavigation,
-          from: appWebViewProvider,
-          name: r'appWebViewProvider',
+          from: appWebViewStateProvider,
+          name: r'appWebViewStateProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$appWebViewHash,
-          dependencies: AppWebViewFamily._dependencies,
+                  : _$appWebViewStateProviderHash,
+          dependencies: AppWebViewStateProviderFamily._dependencies,
           allTransitiveDependencies:
-              AppWebViewFamily._allTransitiveDependencies,
+              AppWebViewStateProviderFamily._allTransitiveDependencies,
           initialState: initialState,
           javaScriptChannelNames: javaScriptChannelNames,
           allowNavigation: allowNavigation,
         );
 
-  AppWebViewProvider._internal(
+  AppWebViewStateProviderProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -135,7 +136,7 @@ class AppWebViewProvider
 
   @override
   AppWebViewState runNotifierBuild(
-    covariant AppWebView notifier,
+    covariant AppWebViewStateProvider notifier,
   ) {
     return notifier.build(
       initialState: initialState,
@@ -145,10 +146,10 @@ class AppWebViewProvider
   }
 
   @override
-  Override overrideWith(AppWebView Function() create) {
+  Override overrideWith(AppWebViewStateProvider Function() create) {
     return ProviderOverride(
       origin: this,
-      override: AppWebViewProvider._internal(
+      override: AppWebViewStateProviderProvider._internal(
         () => create()
           ..initialState = initialState
           ..javaScriptChannelNames = javaScriptChannelNames
@@ -166,14 +167,14 @@ class AppWebViewProvider
   }
 
   @override
-  AutoDisposeNotifierProviderElement<AppWebView, AppWebViewState>
+  AutoDisposeNotifierProviderElement<AppWebViewStateProvider, AppWebViewState>
       createElement() {
-    return _AppWebViewProviderElement(this);
+    return _AppWebViewStateProviderProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is AppWebViewProvider &&
+    return other is AppWebViewStateProviderProvider &&
         other.initialState == initialState &&
         other.javaScriptChannelNames == javaScriptChannelNames &&
         other.allowNavigation == allowNavigation;
@@ -190,7 +191,8 @@ class AppWebViewProvider
   }
 }
 
-mixin AppWebViewRef on AutoDisposeNotifierProviderRef<AppWebViewState> {
+mixin AppWebViewStateProviderRef
+    on AutoDisposeNotifierProviderRef<AppWebViewState> {
   /// The parameter `initialState` of this provider.
   AppWebViewState? get initialState;
 
@@ -201,20 +203,20 @@ mixin AppWebViewRef on AutoDisposeNotifierProviderRef<AppWebViewState> {
   bool Function(String, bool)? get allowNavigation;
 }
 
-class _AppWebViewProviderElement
-    extends AutoDisposeNotifierProviderElement<AppWebView, AppWebViewState>
-    with AppWebViewRef {
-  _AppWebViewProviderElement(super.provider);
+class _AppWebViewStateProviderProviderElement
+    extends AutoDisposeNotifierProviderElement<AppWebViewStateProvider,
+        AppWebViewState> with AppWebViewStateProviderRef {
+  _AppWebViewStateProviderProviderElement(super.provider);
 
   @override
   AppWebViewState? get initialState =>
-      (origin as AppWebViewProvider).initialState;
+      (origin as AppWebViewStateProviderProvider).initialState;
   @override
   Set<String>? get javaScriptChannelNames =>
-      (origin as AppWebViewProvider).javaScriptChannelNames;
+      (origin as AppWebViewStateProviderProvider).javaScriptChannelNames;
   @override
   bool Function(String, bool)? get allowNavigation =>
-      (origin as AppWebViewProvider).allowNavigation;
+      (origin as AppWebViewStateProviderProvider).allowNavigation;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

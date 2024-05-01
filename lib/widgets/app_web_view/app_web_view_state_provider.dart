@@ -6,10 +6,10 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import 'app_web_view_state.dart';
 
-part 'app_web_view_provider.g.dart';
+part 'app_web_view_state_provider.g.dart';
 
 @Riverpod()
-class AppWebView extends _$AppWebView {
+class AppWebViewStateProvider extends _$AppWebViewStateProvider {
   late final WebViewController webViewController = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(const Color(0x00000000))

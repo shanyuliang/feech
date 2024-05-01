@@ -2,22 +2,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../support/state_status.dart';
 
-part 'user_location_state.freezed.dart';
-part 'user_location_state.g.dart';
+part 'user_location.freezed.dart';
+part 'user_location.g.dart';
 
 @Freezed()
-class UserLocationState with _$UserLocationState {
-  const UserLocationState._();
+class UserLocation with _$UserLocation {
+  const UserLocation._();
 
-  factory UserLocationState.fromJson(Map<String, dynamic> json) => _$UserLocationStateFromJson(json);
+  factory UserLocation.fromJson(Map<String, dynamic> json) => _$UserLocationFromJson(json);
 
-  const factory UserLocationState({
+  const factory UserLocation({
     final UserLatLng? lastKnownLocation,
     final UserLatLng? currentLocation,
     final Object? error,
     @Default(false) final bool isListeningLocationChange,
     @Default(StateStatus.initial) final StateStatus stateStatus,
-  }) = _UserLocationState;
+  }) = _UserLocation;
 }
 
 @Freezed()

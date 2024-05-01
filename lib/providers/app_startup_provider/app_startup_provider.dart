@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_startup_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppStartup extends _$AppStartup {
+class AppStartupProvider extends _$AppStartupProvider {
   /// [waitList] is a list of `provider.notifier` or `asyncProvider.future`
   @override
   Future<void> build({List<AlwaysAliveRefreshable> waitList = const []}) async {

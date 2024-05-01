@@ -4,16 +4,16 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import 'app_web_view_app_bar.dart';
 import 'app_web_view_progress_bar.dart';
-import 'app_web_view_provider.dart';
+import 'app_web_view_state_provider.dart';
 import 'app_web_view_state.dart';
 import 'app_web_view_title_bar.dart';
 
 class AppWebViewWidget extends ConsumerWidget {
-  final AppWebViewProvider _appWebViewProvider;
+  final AppWebViewStateProviderProvider _appWebViewProvider;
 
   AppWebViewWidget({super.key, int? id, String? initialUrl, String? title})
       : _appWebViewProvider =
-            appWebViewProvider(initialState: AppWebViewState.fromData(id: id, initialUrl: initialUrl, title: title));
+            appWebViewStateProvider(initialState: AppWebViewState.fromData(id: id, initialUrl: initialUrl, title: title));
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

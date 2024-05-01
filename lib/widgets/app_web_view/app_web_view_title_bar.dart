@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'app_web_view_provider.dart';
+import 'app_web_view_state_provider.dart';
 
 class AppWebViewTitleBar extends ConsumerWidget {
-  final AppWebViewProvider provider;
+  final AppWebViewStateProviderProvider provider;
 
   const AppWebViewTitleBar({super.key, required this.provider});
 
@@ -33,7 +33,7 @@ class AppWebViewTitleBar extends ConsumerWidget {
 }
 
 class _AppWebViewTitleBarOneLine extends ConsumerWidget {
-  final AppWebViewProvider provider;
+  final AppWebViewStateProviderProvider provider;
 
   const _AppWebViewTitleBarOneLine({required this.provider});
 
@@ -63,7 +63,7 @@ class _AppWebViewTitleBarOneLine extends ConsumerWidget {
 }
 
 class _AppWebViewTitleBarMultiLine extends ConsumerWidget {
-  final AppWebViewProvider provider;
+  final AppWebViewStateProviderProvider provider;
 
   const _AppWebViewTitleBarMultiLine({required this.provider});
 
@@ -101,7 +101,7 @@ class _AppWebViewTitleBarMultiLine extends ConsumerWidget {
 }
 
 class _AppWebViewTitleBarEditor extends ConsumerWidget {
-  final AppWebViewProvider provider;
+  final AppWebViewStateProviderProvider provider;
 
   const _AppWebViewTitleBarEditor({required this.provider});
 

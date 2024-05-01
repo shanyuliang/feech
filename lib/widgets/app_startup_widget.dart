@@ -6,7 +6,7 @@ import '../providers/app_startup_provider/app_startup_provider.dart';
 class AppStartupWidget extends ConsumerStatefulWidget {
   final Widget loadedChild;
   final Widget loadingChild;
-  final AppStartupProvider _appStartupProvider;
+  final AppStartupProviderProvider _appStartupProvider;
 
   AppStartupWidget({
     super.key,

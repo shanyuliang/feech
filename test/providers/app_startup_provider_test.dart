@@ -28,7 +28,7 @@ void main() {
 
   test('appStartupProvider', () async {
     final container = createContainer(observers: [AppProviderObserver()]);
-    final testLoggingProvider = appLoggingProvider(
+    final testLoggingProvider = loggingProvider(
         actionLoggingList: () => [
               ConsoleLogging(),
               CrashlyticsLogging(),
@@ -40,7 +40,7 @@ void main() {
             ]);
 
     final testAppStartupProvider = appStartupProvider(waitList: [
-      appLifecycleProvider.notifier,
+      appLifecycleStateProvider.notifier,
       appPermissionStatusProvider(Permission.location).notifier,
       appPermissionStatusProvider(Permission.notification).notifier,
       testLoggingProvider.future,
@@ -48,10 +48,10 @@ void main() {
     ]);
     await container.read(testAppStartupProvider.future);
 
-    final appLogging = container.read(testLoggingProvider).requireValue;
+    final logging = container.read(testLoggingProvider).requireValue;
 
-    appLogging.logger.info("info message");
-    appLogging.logger.severe("severe message", Exception("severe error"));
-    appLogging.logger.shout("fatal message", Exception("fatal error"));
+    logging.logger.info("info message");
+    logging.logger.severe("severe message", Exception("severe error"));
+    logging.logger.shout("fatal message", Exception("fatal error"));
   });
 }

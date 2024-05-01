@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'app_web_view_provider.dart';
+import 'app_web_view_state_provider.dart';
 
 class AppWebViewAppBar extends ConsumerWidget implements PreferredSizeWidget {
-  final AppWebViewProvider provider;
+  final AppWebViewStateProviderProvider provider;
 
   const AppWebViewAppBar({super.key, required this.provider});
 

@@ -27,7 +27,7 @@ void main() {
 
   test('appLoggingProvider', () async {
     final container = createContainer();
-    final testLoggingProvider = appLoggingProvider(
+    final testLoggingProvider = loggingProvider(
         actionLoggingList: () => [
               ConsoleLogging(),
               CrashlyticsLogging(),
@@ -38,10 +38,10 @@ void main() {
               ),
             ]);
 
-    final appLogging = await container.read(testLoggingProvider.future);
+    final logging = await container.read(testLoggingProvider.future);
 
-    appLogging.logger.info("info message");
-    appLogging.logger.severe("severe message", Exception("severe error"));
-    appLogging.logger.shout("fatal message", Exception("fatal error"));
+    logging.logger.info("info message");
+    logging.logger.severe("severe message", Exception("severe error"));
+    logging.logger.shout("fatal message", Exception("fatal error"));
   });
 }

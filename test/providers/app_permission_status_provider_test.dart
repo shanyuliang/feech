@@ -32,7 +32,7 @@ void main() {
     final provider = appPermissionStatusProvider(Permission.camera);
 
     final initialState = container.read(provider);
-    expect(initialState, equals(const AppPermissionStatusState(permission: Permission.camera)));
+    expect(initialState, equals(const AppPermissionStatus(permission: Permission.camera)));
 
     await Future.delayed(const Duration(seconds: 1));
 

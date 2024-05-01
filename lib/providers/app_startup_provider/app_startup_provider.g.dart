@@ -6,7 +6,8 @@ part of 'app_startup_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appStartupHash() => r'31ee52eb843e6274d2f49c70c8ddc62f04f4f1ba';
+String _$appStartupProviderHash() =>
+    r'a9011fc99994e7b070d0954640ce4f9b3a5fc30e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$AppStartup extends BuildlessAsyncNotifier<void> {
+abstract class _$AppStartupProvider extends BuildlessAsyncNotifier<void> {
   late final List<AlwaysAliveRefreshable<dynamic>> waitList;
 
   FutureOr<void> build({
@@ -37,27 +38,27 @@ abstract class _$AppStartup extends BuildlessAsyncNotifier<void> {
   });
 }
 
-/// See also [AppStartup].
-@ProviderFor(AppStartup)
-const appStartupProvider = AppStartupFamily();
+/// See also [AppStartupProvider].
+@ProviderFor(AppStartupProvider)
+const appStartupProvider = AppStartupProviderFamily();
 
-/// See also [AppStartup].
-class AppStartupFamily extends Family<AsyncValue<void>> {
-  /// See also [AppStartup].
-  const AppStartupFamily();
+/// See also [AppStartupProvider].
+class AppStartupProviderFamily extends Family<AsyncValue<void>> {
+  /// See also [AppStartupProvider].
+  const AppStartupProviderFamily();
 
-  /// See also [AppStartup].
-  AppStartupProvider call({
+  /// See also [AppStartupProvider].
+  AppStartupProviderProvider call({
     List<AlwaysAliveRefreshable<dynamic>> waitList = const [],
   }) {
-    return AppStartupProvider(
+    return AppStartupProviderProvider(
       waitList: waitList,
     );
   }
 
   @override
-  AppStartupProvider getProviderOverride(
-    covariant AppStartupProvider provider,
+  AppStartupProviderProvider getProviderOverride(
+    covariant AppStartupProviderProvider provider,
   ) {
     return call(
       waitList: provider.waitList,
@@ -79,26 +80,27 @@ class AppStartupFamily extends Family<AsyncValue<void>> {
   String? get name => r'appStartupProvider';
 }
 
-/// See also [AppStartup].
-class AppStartupProvider extends AsyncNotifierProviderImpl<AppStartup, void> {
-  /// See also [AppStartup].
-  AppStartupProvider({
+/// See also [AppStartupProvider].
+class AppStartupProviderProvider
+    extends AsyncNotifierProviderImpl<AppStartupProvider, void> {
+  /// See also [AppStartupProvider].
+  AppStartupProviderProvider({
     List<AlwaysAliveRefreshable<dynamic>> waitList = const [],
   }) : this._internal(
-          () => AppStartup()..waitList = waitList,
+          () => AppStartupProvider()..waitList = waitList,
           from: appStartupProvider,
           name: r'appStartupProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$appStartupHash,
-          dependencies: AppStartupFamily._dependencies,
+                  : _$appStartupProviderHash,
+          dependencies: AppStartupProviderFamily._dependencies,
           allTransitiveDependencies:
-              AppStartupFamily._allTransitiveDependencies,
+              AppStartupProviderFamily._allTransitiveDependencies,
           waitList: waitList,
         );
 
-  AppStartupProvider._internal(
+  AppStartupProviderProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -112,7 +114,7 @@ class AppStartupProvider extends AsyncNotifierProviderImpl<AppStartup, void> {
 
   @override
   FutureOr<void> runNotifierBuild(
-    covariant AppStartup notifier,
+    covariant AppStartupProvider notifier,
   ) {
     return notifier.build(
       waitList: waitList,
@@ -120,10 +122,10 @@ class AppStartupProvider extends AsyncNotifierProviderImpl<AppStartup, void> {
   }
 
   @override
-  Override overrideWith(AppStartup Function() create) {
+  Override overrideWith(AppStartupProvider Function() create) {
     return ProviderOverride(
       origin: this,
-      override: AppStartupProvider._internal(
+      override: AppStartupProviderProvider._internal(
         () => create()..waitList = waitList,
         from: from,
         name: null,
@@ -136,13 +138,13 @@ class AppStartupProvider extends AsyncNotifierProviderImpl<AppStartup, void> {
   }
 
   @override
-  AsyncNotifierProviderElement<AppStartup, void> createElement() {
-    return _AppStartupProviderElement(this);
+  AsyncNotifierProviderElement<AppStartupProvider, void> createElement() {
+    return _AppStartupProviderProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is AppStartupProvider && other.waitList == waitList;
+    return other is AppStartupProviderProvider && other.waitList == waitList;
   }
 
   @override
@@ -154,18 +156,19 @@ class AppStartupProvider extends AsyncNotifierProviderImpl<AppStartup, void> {
   }
 }
 
-mixin AppStartupRef on AsyncNotifierProviderRef<void> {
+mixin AppStartupProviderRef on AsyncNotifierProviderRef<void> {
   /// The parameter `waitList` of this provider.
   List<AlwaysAliveRefreshable<dynamic>> get waitList;
 }
 
-class _AppStartupProviderElement
-    extends AsyncNotifierProviderElement<AppStartup, void> with AppStartupRef {
-  _AppStartupProviderElement(super.provider);
+class _AppStartupProviderProviderElement
+    extends AsyncNotifierProviderElement<AppStartupProvider, void>
+    with AppStartupProviderRef {
+  _AppStartupProviderProviderElement(super.provider);
 
   @override
   List<AlwaysAliveRefreshable<dynamic>> get waitList =>
-      (origin as AppStartupProvider).waitList;
+      (origin as AppStartupProviderProvider).waitList;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
