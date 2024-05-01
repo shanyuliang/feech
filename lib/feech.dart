@@ -56,6 +56,7 @@ export 'utilities/google_map_util.dart';
 export 'utilities/handy_util.dart';
 export 'utilities/spki_pin_checker.dart';
 export 'utilities/string_util.dart';
+export 'widgets/app_startup_widget.dart';
 export 'widgets/app_web_view/app_web_view_provider.dart';
 export 'widgets/app_web_view/app_web_view_state.dart';
 export 'widgets/app_web_view/app_web_view_widget.dart';

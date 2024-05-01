@@ -190,3 +190,7 @@
 ## 0.0.47
 
 * Update app logging
+
+## 0.0.48
+
+* Add/Export app startup provider and widget
