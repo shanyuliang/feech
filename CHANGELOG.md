@@ -232,3 +232,7 @@
 ## 0.0.57
 
 * Add/Export Speech to Text widget
+
+## 0.0.58
+
+* Add/Export Speech to Text provider
