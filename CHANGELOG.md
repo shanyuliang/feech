@@ -212,3 +212,7 @@
 ## 0.0.52
 
 * Add/Export a few widgets
+
+## 0.0.53
+
+* Add/Export a few widgets
