@@ -216,3 +216,7 @@
 ## 0.0.53
 
 * Add/Export a few widgets
+
+## 0.0.54
+
+* Optional export cached svg picture widget
