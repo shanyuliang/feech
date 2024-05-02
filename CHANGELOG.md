@@ -224,3 +224,7 @@
 ## 0.0.55
 
 * Optional export cached svg picture widget
+
+## 0.0.56
+
+* Add/Export several page class for Go Router
