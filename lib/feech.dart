@@ -66,3 +66,5 @@ export 'widgets/app_web_view/web_storage_item.dart';
 export 'widgets/app_web_view/web_storage_type.dart';
 export 'widgets/app_web_view/web_view_controller_extension.dart';
 export 'widgets/base_widget.dart';
+export 'widgets/camera/camera_meta.dart';
+export 'widgets/camera/take_picture_screen.dart';

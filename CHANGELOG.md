@@ -204,3 +204,7 @@
 ## 0.0.50
 
 * Add/Export base widget
+
+## 0.0.51
+
+* Add/Export take picture screen
