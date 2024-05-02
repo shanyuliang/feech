@@ -208,3 +208,7 @@
 ## 0.0.51
 
 * Add/Export take picture screen
+
+## 0.0.52
+
+* Add/Export a few widgets
