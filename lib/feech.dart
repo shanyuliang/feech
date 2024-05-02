@@ -85,4 +85,6 @@ export 'widgets/shimmer.dart';
 export 'widgets/shimmer_image.dart';
 export 'widgets/shimmer_text.dart';
 export 'widgets/sliver_footer.dart';
+export 'widgets/stt_widget/app_locale.dart';
+export 'widgets/stt_widget/stt_widget.dart';
 export 'widgets/transparent_image.dart';

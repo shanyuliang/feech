@@ -228,3 +228,7 @@
 ## 0.0.56
 
 * Add/Export several page class for Go Router
+
+## 0.0.57
+
+* Add/Export Speech to Text widget

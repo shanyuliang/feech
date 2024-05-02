@@ -1,7 +1,7 @@
 import 'package:flutter/animation.dart';
 
 const debugTag = "[Feech]";
-
+const spKeyLastSttLocaleId = "last-stt-locale-id";
 const allCurves = [
   (Curves.bounceIn, "bounceIn"),
   (Curves.bounceInOut, "bounceInOut"),
