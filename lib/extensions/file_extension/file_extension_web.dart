@@ -1,0 +1,1 @@
+extension FileExtension on Object {}

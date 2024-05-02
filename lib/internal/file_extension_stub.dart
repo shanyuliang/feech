@@ -1,1 +1,0 @@
-extension FileExtensionStub on Object {}

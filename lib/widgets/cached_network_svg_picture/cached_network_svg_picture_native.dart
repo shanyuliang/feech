@@ -5,8 +5,8 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../extensions/file_extension.dart';
-import '../support/app_cache_manager.dart';
+import '../../extensions/file_extension/file_extension.dart';
+import '../../support/app_cache_manager.dart';
 
 class CachedNetworkSvgPicture extends ConsumerWidget {
   final String url;

@@ -220,3 +220,7 @@
 ## 0.0.54
 
 * Optional export cached svg picture widget
+
+## 0.0.55
+
+* Optional export cached svg picture widget
