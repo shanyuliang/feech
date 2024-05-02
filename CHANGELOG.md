@@ -236,3 +236,7 @@
 ## 0.0.58
 
 * Add/Export Speech to Text provider
+
+## 0.0.59
+
+* Lower speech_to_text dependency version 
