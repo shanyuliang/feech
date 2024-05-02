@@ -244,3 +244,7 @@
 ## 0.0.60
 
 * Add/Export Text to Speech provider
+
+## 0.0.61
+
+* Export Text to Speech provider
