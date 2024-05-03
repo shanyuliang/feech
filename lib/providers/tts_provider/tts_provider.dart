@@ -6,8 +6,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../constants.dart';
 import '../../extensions/general_type_extension.dart';
 import '../shared_preferences_provider/shared_preferences_provider.dart';
-import 'locale_voices.dart';
-import 'tts.dart';
+import '../../models/locale_voices.dart';
+import '../../models/tts.dart';
 
 part 'tts_provider.g.dart';
 

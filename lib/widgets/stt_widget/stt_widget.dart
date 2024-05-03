@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-import 'stt_provider.dart';
+import '../../providers/stt_provider/stt_provider.dart';
 
 class SttWidget extends ConsumerStatefulWidget {
   final SpeechStatusListener? onStatus;

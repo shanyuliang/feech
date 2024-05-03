@@ -4,9 +4,9 @@ import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../constants.dart';
 import '../../extensions/general_type_extension.dart';
-import '../../providers/shared_preferences_provider/shared_preferences_provider.dart';
-import 'app_locale.dart';
-import 'stt.dart';
+import '../../models/app_locale.dart';
+import '../../models/stt.dart';
+import '../shared_preferences_provider/shared_preferences_provider.dart';
 
 part 'stt_provider.g.dart';
 

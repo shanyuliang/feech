@@ -248,3 +248,7 @@
 ## 0.0.61
 
 * Export Text to Speech provider
+
+## 0.0.62
+
+* Add stt/tts setting ui
