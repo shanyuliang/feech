@@ -252,3 +252,7 @@
 ## 0.0.62
 
 * Add stt/tts setting ui
+
+## 0.0.63
+
+* Refactor file structure

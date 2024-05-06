@@ -1,7 +1,8 @@
 import 'dart:collection';
 
-import 'package:feech/extensions/general_type_extension.dart';
 import 'package:quiver/iterables.dart' show GeneratingIterable;
+
+import '../extensions/general_type_extension.dart';
 
 /// An implementation of a [Map] which has a maximum size and uses a [Least
 /// Recently Used](http://en.wikipedia.org/wiki/Cache_algorithms#LRU) algorithm
