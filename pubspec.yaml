@@ -1,7 +1,18 @@
 name: feech
-description: "Flutter Experience Emma Can Help"
 version: 0.0.63
+description: "Flutter Experience Emma Can Help"
 homepage: "https://github.com/shanyuliang/feech"
+repository: "https://github.com/shanyuliang/feech"
+issue_tracker: "https://github.com/shanyuliang/feech/issues"
+publish_to: "pub.dev"
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
