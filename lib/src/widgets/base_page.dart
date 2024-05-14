@@ -3,19 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
 
-abstract class BaseWidget extends ConsumerStatefulWidget {
-  const BaseWidget({super.key});
+abstract class BasePage extends ConsumerStatefulWidget {
+  const BasePage({super.key});
 
   Widget build(BuildContext context, WidgetRef ref);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _BaseWidgetState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _BasePageState();
 
   String? getTitle() => null;
 
-  void onUIInitialized(BuildContext context, WidgetRef ref) {}
+  void onInitialized(BuildContext context, WidgetRef ref) {}
 
-  void onUIDisposed(BuildContext context, WidgetRef ref) {}
+  void onDisposed(BuildContext context, WidgetRef ref) {}
 
   void onAppResumed(BuildContext context, WidgetRef ref) {}
 
@@ -24,11 +24,11 @@ abstract class BaseWidget extends ConsumerStatefulWidget {
   void onAppDetached(BuildContext context, WidgetRef ref) {}
 }
 
-class _BaseWidgetState extends ConsumerState<BaseWidget> {
+class _BasePageState extends ConsumerState<BasePage> {
   @override
   void initState() {
     super.initState();
-    widget.onUIInitialized(context, ref);
+    widget.onInitialized(context, ref);
   }
 
   @override
@@ -56,7 +56,7 @@ class _BaseWidgetState extends ConsumerState<BaseWidget> {
 
   @override
   void dispose() {
-    widget.onUIDisposed(context, ref);
+    widget.onDisposed(context, ref);
     super.dispose();
   }
 }
