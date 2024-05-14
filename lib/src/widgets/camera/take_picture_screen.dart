@@ -1,9 +1,11 @@
+import 'dart:developer' as developer;
 import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../constants.dart';
 import '../../support/state_status.dart';
 import 'camera_meta_provider.dart';
 
@@ -11,8 +13,9 @@ class TakePictureScreen extends ConsumerStatefulWidget {
   static const iconButtonSize = 48.0;
   final String? title;
   final bool? confirm;
+  final bool debugLogDiagnostics;
 
-  const TakePictureScreen({super.key, this.title, this.confirm});
+  const TakePictureScreen({super.key, this.title, this.confirm, this.debugLogDiagnostics = false});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _TakePictureScreenState();
@@ -25,7 +28,7 @@ class _TakePictureScreenState extends ConsumerState<TakePictureScreen> {
     if (cameraMeta.stateStatus == StateStatus.updated) {
       if (cameraMeta.imagePath != null) {
         if (widget.confirm ?? false) {
-          return _ConfirmPictureWidget(title: widget.title);
+          return _ConfirmPictureWidget(title: widget.title, debugLogDiagnostics: widget.debugLogDiagnostics);
         } else {
           Future(() {
             Navigator.pop(context, cameraMeta.imagePath);
@@ -33,7 +36,11 @@ class _TakePictureScreenState extends ConsumerState<TakePictureScreen> {
           return _CameraLoadingWidget(title: widget.title);
         }
       } else {
-        return _CameraPreviewWidget(title: widget.title, confirm: widget.confirm);
+        return _CameraPreviewWidget(
+          title: widget.title,
+          confirm: widget.confirm,
+          debugLogDiagnostics: widget.debugLogDiagnostics,
+        );
       }
     } else {
       return _CameraLoadingWidget(title: widget.title);
@@ -58,8 +65,9 @@ class _CameraLoadingWidget extends ConsumerWidget {
 class _CameraPreviewWidget extends ConsumerStatefulWidget {
   final String? title;
   final bool? confirm;
+  final bool debugLogDiagnostics;
 
-  const _CameraPreviewWidget({this.title, this.confirm});
+  const _CameraPreviewWidget({this.title, this.confirm, this.debugLogDiagnostics = false});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CameraPreviewWidgetState();
@@ -101,19 +109,24 @@ class _CameraPreviewWidgetState extends ConsumerState<_CameraPreviewWidget> {
       final cameraController = cameraMeta.selectedCameraController;
       if (cameraController != null) {
         final photoFile = await cameraController.takePicture();
-        debugPrint("path: ${photoFile.path}");
+        if (widget.debugLogDiagnostics) {
+          developer.log("TakePictureScreen path ${photoFile.path}", name: debugTag);
+        }
         ref.read(cameraMetaProvider.notifier).setImagePath(photoFile.path);
       }
     } catch (e) {
-      debugPrint(e.toString());
+      if (widget.debugLogDiagnostics) {
+        developer.log("TakePictureScreen $e", name: debugTag);
+      }
     }
   }
 }
 
 class _ConfirmPictureWidget extends ConsumerStatefulWidget {
   final String? title;
+  final bool debugLogDiagnostics;
 
-  const _ConfirmPictureWidget({this.title});
+  const _ConfirmPictureWidget({this.title, this.debugLogDiagnostics = false});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ConfirmPictureWidgetState();
@@ -165,7 +178,9 @@ class _ConfirmPictureWidgetState extends ConsumerState<_ConfirmPictureWidget> {
       final cameraMeta = ref.read(cameraMetaProvider);
       Navigator.pop(context, cameraMeta.imagePath);
     } catch (e) {
-      debugPrint(e.toString());
+      if (widget.debugLogDiagnostics) {
+        developer.log("TakePictureScreen $e", name: debugTag);
+      }
     }
   }
 
@@ -173,7 +188,9 @@ class _ConfirmPictureWidgetState extends ConsumerState<_ConfirmPictureWidget> {
     try {
       ref.read(cameraMetaProvider.notifier).clearImagePath();
     } catch (e) {
-      debugPrint(e.toString());
+      if (widget.debugLogDiagnostics) {
+        developer.log("TakePictureScreen $e", name: debugTag);
+      }
     }
   }
 }

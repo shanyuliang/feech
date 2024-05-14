@@ -1,19 +1,24 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../constants.dart';
 import '../../providers/stt_provider/stt_provider.dart';
 
 class SttWidget extends ConsumerStatefulWidget {
   final SpeechStatusListener? onStatus;
   final SpeechErrorListener? onError;
   final SpeechResultListener? onResult;
+  final bool debugLogDiagnostics;
 
   const SttWidget({
     super.key,
     this.onStatus,
     this.onError,
     this.onResult,
+    this.debugLogDiagnostics = false,
   });
 
   @override
@@ -58,7 +63,9 @@ class _SttWidgetState extends ConsumerState<SttWidget> with SingleTickerProvider
     final speech = SpeechToText();
     await speech.initialize(
       onStatus: (status) {
-        debugPrint(status);
+        if (widget.debugLogDiagnostics) {
+          developer.log("SttWidget $status", name: debugTag);
+        }
         widget.onStatus?.call(status);
         switch (status) {
           case SpeechToText.listeningStatus:
@@ -68,7 +75,9 @@ class _SttWidgetState extends ConsumerState<SttWidget> with SingleTickerProvider
         }
       },
       onError: (error) {
-        debugPrint(error.toString());
+        if (widget.debugLogDiagnostics) {
+          developer.log("SttWidget $error", name: debugTag);
+        }
         widget.onError?.call(error);
         _animationController.reset();
       },
@@ -80,7 +89,9 @@ class _SttWidgetState extends ConsumerState<SttWidget> with SingleTickerProvider
         speech.stop();
       }
     } else {
-      debugPrint("The user has denied the use of speech recognition.");
+      if (widget.debugLogDiagnostics) {
+        developer.log("SttWidget The user has denied the use of speech recognition.", name: debugTag);
+      }
     }
   }
 }

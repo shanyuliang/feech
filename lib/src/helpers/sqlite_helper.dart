@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 
-import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../constants.dart';
@@ -22,7 +22,8 @@ abstract class DatabaseResult<G> {
 
   factory DatabaseResult._badInputData(G data, Exception exception) => DatabaseResultBadInputData<G>(data, exception);
 
-  factory DatabaseResult._badOutputData(List<Map<String, dynamic>> output, Exception exception) => DatabaseResultBadOutputData<G>(output, exception);
+  factory DatabaseResult._badOutputData(List<Map<String, dynamic>> output, Exception exception) =>
+      DatabaseResultBadOutputData<G>(output, exception);
 
   factory DatabaseResult._error(Exception exception) => DatabaseResultError<G>(exception);
 }
@@ -113,34 +114,39 @@ typedef FromMap<G> = G Function(Map<String, dynamic> map);
 typedef ToMap<G> = Map<String, dynamic> Function(G data);
 
 class SqliteHelper {
-  SqliteHelper._();
+  SqliteHelper._({this.debugLogDiagnostics = false});
 
-  static final SqliteHelper _instance = SqliteHelper._();
-
-  factory SqliteHelper() => _instance;
+  factory SqliteHelper({bool debugLogDiagnostics = false}) => SqliteHelper._(debugLogDiagnostics: debugLogDiagnostics);
 
   Database? _database;
+
+  final bool debugLogDiagnostics;
 
   bool isDatabaseOpened() {
     return _database?.isOpen ?? false;
   }
 
-  Future<DatabaseResult> open(String databaseName, List<String> onCreateCommandList, List<String> onUpgradeCommandList, int version) async {
+  Future<DatabaseResult> open(
+      String databaseName, List<String> onCreateCommandList, List<String> onUpgradeCommandList, int version) async {
     DatabaseResult databaseResult;
     try {
       _database = await openDatabase(
         databaseName,
-        onCreate: (db, version) {
-          debugPrint("$debugTag $databaseName onCreate called");
-          onCreateCommandList.forEach((command) async {
+        onCreate: (db, version) async {
+          if (debugLogDiagnostics) {
+            developer.log("SqliteHelper $databaseName onCreate called", name: debugTag);
+          }
+          for (final command in onCreateCommandList) {
             await db.execute(command);
-          });
+          }
         },
-        onUpgrade: (db, oldVersion, newVersion) {
-          debugPrint("$debugTag $databaseName onUpgrade called");
-          onUpgradeCommandList.forEach((command) async {
+        onUpgrade: (db, oldVersion, newVersion) async {
+          if (debugLogDiagnostics) {
+            developer.log("SqliteHelper $databaseName onUpgrade called", name: debugTag);
+          }
+          for (final command in onUpgradeCommandList) {
             await db.execute(command);
-          });
+          }
         },
         version: version,
       );
@@ -148,7 +154,9 @@ class SqliteHelper {
     } catch (e) {
       databaseResult = DatabaseResult._error(e as Exception);
     }
-    debugPrint("$debugTag $databaseResult");
+    if (debugLogDiagnostics) {
+      developer.log("SqliteHelper $databaseResult", name: debugTag);
+    }
     return databaseResult;
   }
 
@@ -162,14 +170,18 @@ class SqliteHelper {
     } catch (e) {
       databaseResult = DatabaseResult._error(e as Exception);
     }
-    debugPrint("$debugTag $databaseResult");
+    if (debugLogDiagnostics) {
+      developer.log("SqliteHelper $databaseResult", name: debugTag);
+    }
     return databaseResult;
   }
 
-  Future<DatabaseResult<G>> query<G>(String tableName, FromMap<G> fromMap, {String? where, List<String>? whereValueList, String? orderBy}) async {
+  Future<DatabaseResult<G>> query<G>(String tableName, FromMap<G> fromMap,
+      {String? where, List<String>? whereValueList, String? orderBy}) async {
     DatabaseResult<G> databaseResult;
     try {
-      List<Map<String, dynamic>> dataList = await _database!.query(tableName, where: where, whereArgs: whereValueList, orderBy: orderBy);
+      List<Map<String, dynamic>> dataList =
+          await _database!.query(tableName, where: where, whereArgs: whereValueList, orderBy: orderBy);
       try {
         List<G> values = dataList.map((map) => fromMap(map)).toList();
         databaseResult = DatabaseResult._queryGood(values);
@@ -181,7 +193,9 @@ class SqliteHelper {
     } catch (e) {
       databaseResult = DatabaseResult._error(e as Exception);
     }
-    debugPrint("$debugTag $databaseResult");
+    if (debugLogDiagnostics) {
+      developer.log("SqliteHelper $databaseResult", name: debugTag);
+    }
     return databaseResult;
   }
 
@@ -200,7 +214,9 @@ class SqliteHelper {
     } catch (e) {
       databaseResult = DatabaseResult._error(e as Exception);
     }
-    debugPrint("$debugTag $databaseResult");
+    if (debugLogDiagnostics) {
+      developer.log("SqliteHelper $databaseResult", name: debugTag);
+    }
     return databaseResult;
   }
 
@@ -209,7 +225,8 @@ class SqliteHelper {
     try {
       Map<String, dynamic> map = toMap(data);
       try {
-        await _database!.update(tableName, map, where: where, whereArgs: whereValueList, conflictAlgorithm: ConflictAlgorithm.replace);
+        await _database!
+            .update(tableName, map, where: where, whereArgs: whereValueList, conflictAlgorithm: ConflictAlgorithm.replace);
         databaseResult = DatabaseResult._updateGood(data);
       } catch (e) {
         databaseResult = DatabaseResult._error(e as Exception);
@@ -219,7 +236,9 @@ class SqliteHelper {
     } catch (e) {
       databaseResult = DatabaseResult._error(e as Exception);
     }
-    debugPrint("$debugTag $databaseResult");
+    if (debugLogDiagnostics) {
+      developer.log("SqliteHelper $databaseResult", name: debugTag);
+    }
     return databaseResult;
   }
 
@@ -231,9 +250,11 @@ class SqliteHelper {
     } catch (e) {
       databaseResult = DatabaseResult._error(e as Exception);
     }
-    debugPrint("$debugTag $databaseResult");
+    if (debugLogDiagnostics) {
+      developer.log("SqliteHelper $databaseResult", name: debugTag);
+    }
     return databaseResult;
   }
 }
 
-SqliteHelper databaseHelper = SqliteHelper();
+SqliteHelper databaseHelper = SqliteHelper(debugLogDiagnostics: false);

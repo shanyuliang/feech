@@ -1,9 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
-
-import '../constants.dart';
-
 T? suppressThrowableSync<T>({
   required final T? Function() throwable,
   final T? Function(Object error, StackTrace stackTrace)? whenError,
@@ -11,7 +7,6 @@ T? suppressThrowableSync<T>({
   try {
     return throwable.call();
   } catch (error, stackTrace) {
-    debugPrint("$debugTag suppressed throwable $error");
     return suppressThrowableSync(
       throwable: () {
         return whenError?.call(error, stackTrace);
@@ -27,7 +22,6 @@ T suppressThrowableSyncDefault<T>({
   try {
     return throwable.call();
   } catch (error, stackTrace) {
-    debugPrint("$debugTag suppressed throwable $error");
     return whenError.call(error, stackTrace);
   }
 }
@@ -39,7 +33,6 @@ Future<T?> suppressThrowableAsync<T>({
   try {
     return await throwable.call();
   } catch (error, stackTrace) {
-    debugPrint("$debugTag suppressed throwable $error");
     return suppressThrowableAsync(
       throwable: () {
         return Future.value(whenError?.call(error, stackTrace));
@@ -55,7 +48,6 @@ Future<T> suppressThrowableAsyncDefault<T>({
   try {
     return await throwable.call();
   } catch (error, stackTrace) {
-    debugPrint("$debugTag suppressed throwable $error");
     return await whenError.call(error, stackTrace);
   }
 }

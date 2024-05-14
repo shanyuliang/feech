@@ -1,13 +1,14 @@
+import 'dart:developer' as developer;
+
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../constants.dart';
 import '../../extensions/general_type_extension.dart';
-import '../shared_preferences_provider/shared_preferences_provider.dart';
 import '../../models/locale_voices.dart';
 import '../../models/tts.dart';
+import '../shared_preferences_provider/shared_preferences_provider.dart';
 
 part 'tts_provider.g.dart';
 
@@ -50,7 +51,7 @@ class TtsProvider extends _$TtsProvider {
         selectedLocaleId = defaultVoice['locale']!;
         selectedVoiceId = defaultVoice['name']!;
       } catch (ex) {
-        debugPrint(ex.toString());
+        developer.log("TtsProvider $ex", name: debugTag);
       }
     }
 

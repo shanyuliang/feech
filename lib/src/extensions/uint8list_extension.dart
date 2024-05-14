@@ -12,7 +12,6 @@ extension Uint8ListExtension on Uint8List {
       final foundSpki = _getSpki(this);
       return foundSpki?.let((it) => _getSpkiPin(it));
     } catch (ex) {
-      debugPrint(ex.toString());
       return null;
     }
   }

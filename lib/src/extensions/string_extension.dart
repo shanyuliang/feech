@@ -78,7 +78,6 @@ extension StringExtension on String {
     try {
       return Uri.parse(this);
     } catch (ex) {
-      debugPrint(ex.toString());
       return null;
     }
   }

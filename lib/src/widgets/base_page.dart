@@ -1,10 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../extensions/general_type_extension.dart';
 import '../providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
+import '../providers/page_lifecycle_state_provider/page_lifecycle_state.dart';
+import '../providers/page_lifecycle_state_provider/page_lifecycle_state_provider.dart';
 
 abstract class BasePage extends ConsumerStatefulWidget {
-  const BasePage({super.key});
+  final String? name;
+
+  const BasePage({super.key, this.name});
 
   Widget build(BuildContext context, WidgetRef ref);
 
@@ -22,6 +27,10 @@ abstract class BasePage extends ConsumerStatefulWidget {
   void onAppPaused(BuildContext context, WidgetRef ref) {}
 
   void onAppDetached(BuildContext context, WidgetRef ref) {}
+
+  void onPageResumed(BuildContext context, WidgetRef ref) {}
+
+  void onPagePaused(BuildContext context, WidgetRef ref) {}
 }
 
 class _BasePageState extends ConsumerState<BasePage> {
@@ -49,6 +58,25 @@ class _BasePageState extends ConsumerState<BasePage> {
           default:
             break;
         }
+      },
+    );
+    widget.name?.let(
+      (it) {
+        ref.listen(
+          pageLifecycleStateProvider(it),
+          (previous, next) {
+            switch (next) {
+              case PageLifecycleState.resumed:
+                widget.onPageResumed(context, ref);
+                break;
+              case PageLifecycleState.paused:
+                widget.onPagePaused(context, ref);
+                break;
+              default:
+                break;
+            }
+          },
+        );
       },
     );
     return widget.build(context, ref);

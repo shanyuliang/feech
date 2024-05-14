@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer' as developer;
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
+import '../../constants.dart';
 import '../../extensions/base_request_extension.dart';
 import '../../extensions/base_response_extension.dart';
 import '../../extensions/uint8list_extension.dart';
@@ -31,9 +33,12 @@ final class AppClient extends BaseClient {
     final FutureOr<void> Function(Request request, Response? response, int retryCount)? onRetry,
     final Duration Function(Request request)? timeoutOfRequest,
     final List<String>? validSpkiPins,
+    final debugLogDiagnostics = false,
   })  : _updateOriginalRequest = updateOriginalRequest ?? _defaultUpdateOriginalRequest,
-        _beforeSendingRequest = beforeSendingRequest ?? _defaultBeforeSendingRequest,
-        _afterReceivingResponse = afterReceivingResponse ?? _defaultAfterReceivingResponse,
+        _beforeSendingRequest =
+            beforeSendingRequest ?? debugLogDiagnostics ? _logBeforeSendingRequest : _nothingBeforeSendingRequest,
+        _afterReceivingResponse =
+            afterReceivingResponse ?? debugLogDiagnostics ? _logAfterReceivingResponse : _nothingAfterReceivingResponse,
         _retryWhen = retryWhen ?? _defaultRetryWhen,
         _retryWhenError = retryWhenError ?? _defaultRetryWhenError,
         _onRetry = onRetry,
@@ -259,14 +264,20 @@ void _defaultUpdateOriginalRequest(Request request) {
 }
 
 /// Log request
-void _defaultBeforeSendingRequest(Request request) {
-  debugPrint("REQUEST ${request.toLoggingString()}");
+void _logBeforeSendingRequest(Request request) {
+  developer.log("AppClient REQUEST ${request.toLoggingString()}", name: debugTag);
 }
 
+/// Nothing request
+void _nothingBeforeSendingRequest(Request request) {}
+
 /// Log response
-void _defaultAfterReceivingResponse(Response response) {
-  debugPrint("RESPONSE ${response.toLoggingString()}");
+void _logAfterReceivingResponse(Response response) {
+  developer.log("AppClient RESPONSE ${response.toLoggingString()}", name: debugTag);
 }
+
+/// Nothing response
+void _nothingAfterReceivingResponse(Response response) {}
 
 /// Never retry
 bool _defaultRetryWhen(Response response, int retriedCount) => false;
