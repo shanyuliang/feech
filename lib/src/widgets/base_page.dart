@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../extensions/general_type_extension.dart';
@@ -67,6 +68,7 @@ class _BasePageState extends ConsumerState<BasePage> {
           (previous, next) {
             switch (next) {
               case PageLifecycleState.resumed:
+                _setPageTitle(title: widget.getTitle(), context: context);
                 widget.onPageResumed(context, ref);
                 break;
               case PageLifecycleState.paused:
@@ -86,5 +88,12 @@ class _BasePageState extends ConsumerState<BasePage> {
   void dispose() {
     widget.onDisposed(context, ref);
     super.dispose();
+  }
+
+  void _setPageTitle({String? title, required BuildContext context}) {
+    SystemChrome.setApplicationSwitcherDescription(ApplicationSwitcherDescription(
+      label: title,
+      primaryColor: Theme.of(context).primaryColor.value,
+    ));
   }
 }
