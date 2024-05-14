@@ -1,6 +1,6 @@
 import 'package:flutter/animation.dart';
 
-const debugTag = "[Feech]";
+const debugTag = "Feech";
 const spKeyLastSttLocaleId = "last-stt-locale-id";
 const spKeyLastTtsLocaleId = "last-tts-locale-id";
 const spKeyLastTtsVoiceId = "last-tts-voice-id";

@@ -29,7 +29,7 @@ class AppProviderObserver extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    developer.log('Provider $provider updated from\n$previousValue\nto\n$newValue', name: debugTag);
+    developer.log('Provider $provider updated\nfrom\n$previousValue\nto\n$newValue', name: debugTag);
   }
 
   @override
