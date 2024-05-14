@@ -7,9 +7,9 @@ import '../providers/page_lifecycle_state_provider/page_lifecycle_state.dart';
 import '../providers/page_lifecycle_state_provider/page_lifecycle_state_provider.dart';
 
 abstract class BasePage extends ConsumerStatefulWidget {
-  final String? name;
+  final String? routeName;
 
-  const BasePage({super.key, this.name});
+  const BasePage({super.key, this.routeName});
 
   Widget build(BuildContext context, WidgetRef ref);
 
@@ -60,7 +60,7 @@ class _BasePageState extends ConsumerState<BasePage> {
         }
       },
     );
-    widget.name?.let(
+    widget.routeName?.let(
       (it) {
         ref.listen(
           pageLifecycleStateProvider(it),
