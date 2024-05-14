@@ -7,7 +7,7 @@ part of 'page_lifecycle_state_provider.dart';
 // **************************************************************************
 
 String _$pageLifecycleStateProviderHash() =>
-    r'4505c6fe19e5fae0d4dcbb5bf7f6c1d3cbe323cd';
+    r'5a99c3cb7977dd4bf3ebc57257f54eab7d16e50a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,10 +32,10 @@ class _SystemHash {
 
 abstract class _$PageLifecycleStateProvider
     extends BuildlessAutoDisposeNotifier<PageLifecycleState> {
-  late final String routeName;
+  late final String? routeName;
 
   PageLifecycleState build(
-    String routeName,
+    String? routeName,
   );
 }
 
@@ -50,7 +50,7 @@ class PageLifecycleStateProviderFamily extends Family<PageLifecycleState> {
 
   /// See also [PageLifecycleStateProvider].
   PageLifecycleStateProviderProvider call(
-    String routeName,
+    String? routeName,
   ) {
     return PageLifecycleStateProviderProvider(
       routeName,
@@ -87,7 +87,7 @@ class PageLifecycleStateProviderProvider
         PageLifecycleState> {
   /// See also [PageLifecycleStateProvider].
   PageLifecycleStateProviderProvider(
-    String routeName,
+    String? routeName,
   ) : this._internal(
           () => PageLifecycleStateProvider()..routeName = routeName,
           from: pageLifecycleStateProvider,
@@ -112,7 +112,7 @@ class PageLifecycleStateProviderProvider
     required this.routeName,
   }) : super.internal();
 
-  final String routeName;
+  final String? routeName;
 
   @override
   PageLifecycleState runNotifierBuild(
@@ -163,7 +163,7 @@ class PageLifecycleStateProviderProvider
 mixin PageLifecycleStateProviderRef
     on AutoDisposeNotifierProviderRef<PageLifecycleState> {
   /// The parameter `routeName` of this provider.
-  String get routeName;
+  String? get routeName;
 }
 
 class _PageLifecycleStateProviderProviderElement
@@ -172,7 +172,7 @@ class _PageLifecycleStateProviderProviderElement
   _PageLifecycleStateProviderProviderElement(super.provider);
 
   @override
-  String get routeName =>
+  String? get routeName =>
       (origin as PageLifecycleStateProviderProvider).routeName;
 }
 // ignore_for_file: type=lint
