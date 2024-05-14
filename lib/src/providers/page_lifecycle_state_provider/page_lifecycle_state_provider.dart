@@ -7,7 +7,7 @@ part 'page_lifecycle_state_provider.g.dart';
 @Riverpod()
 class PageLifecycleStateProvider extends _$PageLifecycleStateProvider {
   @override
-  PageLifecycleState build(String name) {
+  PageLifecycleState build(String routeName) {
     return PageLifecycleState.resumed;
   }
 }

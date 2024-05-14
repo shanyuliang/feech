@@ -7,7 +7,7 @@ part of 'page_lifecycle_state_provider.dart';
 // **************************************************************************
 
 String _$pageLifecycleStateProviderHash() =>
-    r'bc34e81b4a95c7b20e8a24d2a72175ddc9ad15d1';
+    r'4505c6fe19e5fae0d4dcbb5bf7f6c1d3cbe323cd';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,10 +32,10 @@ class _SystemHash {
 
 abstract class _$PageLifecycleStateProvider
     extends BuildlessAutoDisposeNotifier<PageLifecycleState> {
-  late final String name;
+  late final String routeName;
 
   PageLifecycleState build(
-    String name,
+    String routeName,
   );
 }
 
@@ -50,10 +50,10 @@ class PageLifecycleStateProviderFamily extends Family<PageLifecycleState> {
 
   /// See also [PageLifecycleStateProvider].
   PageLifecycleStateProviderProvider call(
-    String name,
+    String routeName,
   ) {
     return PageLifecycleStateProviderProvider(
-      name,
+      routeName,
     );
   }
 
@@ -62,7 +62,7 @@ class PageLifecycleStateProviderFamily extends Family<PageLifecycleState> {
     covariant PageLifecycleStateProviderProvider provider,
   ) {
     return call(
-      provider.name,
+      provider.routeName,
     );
   }
 
@@ -87,9 +87,9 @@ class PageLifecycleStateProviderProvider
         PageLifecycleState> {
   /// See also [PageLifecycleStateProvider].
   PageLifecycleStateProviderProvider(
-    String name,
+    String routeName,
   ) : this._internal(
-          () => PageLifecycleStateProvider()..name = name,
+          () => PageLifecycleStateProvider()..routeName = routeName,
           from: pageLifecycleStateProvider,
           name: r'pageLifecycleStateProvider',
           debugGetCreateSourceHash:
@@ -99,7 +99,7 @@ class PageLifecycleStateProviderProvider
           dependencies: PageLifecycleStateProviderFamily._dependencies,
           allTransitiveDependencies:
               PageLifecycleStateProviderFamily._allTransitiveDependencies,
-          name: name,
+          routeName: routeName,
         );
 
   PageLifecycleStateProviderProvider._internal(
@@ -109,17 +109,17 @@ class PageLifecycleStateProviderProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.name,
+    required this.routeName,
   }) : super.internal();
 
-  final String name;
+  final String routeName;
 
   @override
   PageLifecycleState runNotifierBuild(
     covariant PageLifecycleStateProvider notifier,
   ) {
     return notifier.build(
-      name,
+      routeName,
     );
   }
 
@@ -128,13 +128,13 @@ class PageLifecycleStateProviderProvider
     return ProviderOverride(
       origin: this,
       override: PageLifecycleStateProviderProvider._internal(
-        () => create()..name = name,
+        () => create()..routeName = routeName,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        name: name,
+        routeName: routeName,
       ),
     );
   }
@@ -147,13 +147,14 @@ class PageLifecycleStateProviderProvider
 
   @override
   bool operator ==(Object other) {
-    return other is PageLifecycleStateProviderProvider && other.name == name;
+    return other is PageLifecycleStateProviderProvider &&
+        other.routeName == routeName;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, name.hashCode);
+    hash = _SystemHash.combine(hash, routeName.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -161,8 +162,8 @@ class PageLifecycleStateProviderProvider
 
 mixin PageLifecycleStateProviderRef
     on AutoDisposeNotifierProviderRef<PageLifecycleState> {
-  /// The parameter `name` of this provider.
-  String get name;
+  /// The parameter `routeName` of this provider.
+  String get routeName;
 }
 
 class _PageLifecycleStateProviderProviderElement
@@ -171,7 +172,8 @@ class _PageLifecycleStateProviderProviderElement
   _PageLifecycleStateProviderProviderElement(super.provider);
 
   @override
-  String get name => (origin as PageLifecycleStateProviderProvider).name;
+  String get routeName =>
+      (origin as PageLifecycleStateProviderProvider).routeName;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
