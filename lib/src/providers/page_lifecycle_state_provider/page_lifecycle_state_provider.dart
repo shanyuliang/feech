@@ -8,7 +8,7 @@ part 'page_lifecycle_state_provider.g.dart';
 class PageLifecycleStateProvider extends _$PageLifecycleStateProvider {
   @override
   PageLifecycleState build(String? routeName) {
-    return PageLifecycleState.resumed;
+    return PageLifecycleState.detached;
   }
 
   void setState(PageLifecycleState pageLifecycleState) {

@@ -7,7 +7,7 @@ part of 'page_lifecycle_state_provider.dart';
 // **************************************************************************
 
 String _$pageLifecycleStateProviderHash() =>
-    r'5a99c3cb7977dd4bf3ebc57257f54eab7d16e50a';
+    r'56f4fd4df9420cb133437ae6569aa3eb620cb6b6';
 
 /// Copied from Dart SDK
 class _SystemHash {
