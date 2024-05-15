@@ -83,7 +83,6 @@ flutter:
     - assets/shaders/scorpion_tail.frag
     - assets/shaders/the_clouds.frag
     - assets/shaders/water_ripple.frag
-    - assets/shaders/pixelation.frag
     - assets/shaders/wave.frag
     - assets/shaders/wave2.frag
     - assets/shaders/mandelbulb.frag
