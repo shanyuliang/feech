@@ -17,6 +17,6 @@ class AppStartupProvider extends _$AppStartupProvider {
         await ref.watch(alwaysAliveRefreshable);
       }
     });
-    Future.wait([minWaitDuration, providers]);
+    await Future.wait([minWaitDuration, providers]);
   }
 }

@@ -7,7 +7,7 @@ part of 'app_startup_provider.dart';
 // **************************************************************************
 
 String _$appStartupProviderHash() =>
-    r'3da38a0c48f2a3b466a756f62475173fda4df67d';
+    r'dffb7cf5e6fa041b6e7afafd1d263caf8f7a820c';
 
 /// Copied from Dart SDK
 class _SystemHash {
