@@ -7,7 +7,7 @@ part of 'app_startup_provider.dart';
 // **************************************************************************
 
 String _$appStartupProviderHash() =>
-    r'a9011fc99994e7b070d0954640ce4f9b3a5fc30e';
+    r'3da38a0c48f2a3b466a756f62475173fda4df67d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,9 +32,11 @@ class _SystemHash {
 
 abstract class _$AppStartupProvider extends BuildlessAsyncNotifier<void> {
   late final List<AlwaysAliveRefreshable<dynamic>> waitList;
+  late final int minWaitDurationInMilliseconds;
 
   FutureOr<void> build({
     List<AlwaysAliveRefreshable<dynamic>> waitList = const [],
+    int minWaitDurationInMilliseconds = 0,
   });
 }
 
@@ -50,9 +52,11 @@ class AppStartupProviderFamily extends Family<AsyncValue<void>> {
   /// See also [AppStartupProvider].
   AppStartupProviderProvider call({
     List<AlwaysAliveRefreshable<dynamic>> waitList = const [],
+    int minWaitDurationInMilliseconds = 0,
   }) {
     return AppStartupProviderProvider(
       waitList: waitList,
+      minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
     );
   }
 
@@ -62,6 +66,7 @@ class AppStartupProviderFamily extends Family<AsyncValue<void>> {
   ) {
     return call(
       waitList: provider.waitList,
+      minWaitDurationInMilliseconds: provider.minWaitDurationInMilliseconds,
     );
   }
 
@@ -86,8 +91,11 @@ class AppStartupProviderProvider
   /// See also [AppStartupProvider].
   AppStartupProviderProvider({
     List<AlwaysAliveRefreshable<dynamic>> waitList = const [],
+    int minWaitDurationInMilliseconds = 0,
   }) : this._internal(
-          () => AppStartupProvider()..waitList = waitList,
+          () => AppStartupProvider()
+            ..waitList = waitList
+            ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds,
           from: appStartupProvider,
           name: r'appStartupProvider',
           debugGetCreateSourceHash:
@@ -98,6 +106,7 @@ class AppStartupProviderProvider
           allTransitiveDependencies:
               AppStartupProviderFamily._allTransitiveDependencies,
           waitList: waitList,
+          minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
         );
 
   AppStartupProviderProvider._internal(
@@ -108,9 +117,11 @@ class AppStartupProviderProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.waitList,
+    required this.minWaitDurationInMilliseconds,
   }) : super.internal();
 
   final List<AlwaysAliveRefreshable<dynamic>> waitList;
+  final int minWaitDurationInMilliseconds;
 
   @override
   FutureOr<void> runNotifierBuild(
@@ -118,6 +129,7 @@ class AppStartupProviderProvider
   ) {
     return notifier.build(
       waitList: waitList,
+      minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
     );
   }
 
@@ -126,13 +138,16 @@ class AppStartupProviderProvider
     return ProviderOverride(
       origin: this,
       override: AppStartupProviderProvider._internal(
-        () => create()..waitList = waitList,
+        () => create()
+          ..waitList = waitList
+          ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         waitList: waitList,
+        minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
       ),
     );
   }
@@ -144,13 +159,16 @@ class AppStartupProviderProvider
 
   @override
   bool operator ==(Object other) {
-    return other is AppStartupProviderProvider && other.waitList == waitList;
+    return other is AppStartupProviderProvider &&
+        other.waitList == waitList &&
+        other.minWaitDurationInMilliseconds == minWaitDurationInMilliseconds;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, waitList.hashCode);
+    hash = _SystemHash.combine(hash, minWaitDurationInMilliseconds.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -159,6 +177,9 @@ class AppStartupProviderProvider
 mixin AppStartupProviderRef on AsyncNotifierProviderRef<void> {
   /// The parameter `waitList` of this provider.
   List<AlwaysAliveRefreshable<dynamic>> get waitList;
+
+  /// The parameter `minWaitDurationInMilliseconds` of this provider.
+  int get minWaitDurationInMilliseconds;
 }
 
 class _AppStartupProviderProviderElement
@@ -169,6 +190,9 @@ class _AppStartupProviderProviderElement
   @override
   List<AlwaysAliveRefreshable<dynamic>> get waitList =>
       (origin as AppStartupProviderProvider).waitList;
+  @override
+  int get minWaitDurationInMilliseconds =>
+      (origin as AppStartupProviderProvider).minWaitDurationInMilliseconds;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
