@@ -81,7 +81,11 @@ class _BasePageState extends ConsumerState<BasePage> {
         );
       },
     );
-    return widget.build(context, ref);
+    return Title(
+      title: widget.getTitle() ?? widget.routeName ?? '',
+      color: Theme.of(context).colorScheme.primary,
+      child: widget.build(context, ref),
+    );
   }
 
   @override
