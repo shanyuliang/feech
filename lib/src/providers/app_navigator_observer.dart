@@ -15,10 +15,10 @@ class AppNavigatorObserver extends NavigatorObserver {
   @override
   void didPush(Route route, Route? previousRoute) async {
     super.didPush(route, previousRoute);
-    onRouteResumed?.call(route);
     previousRoute?.let((it) {
       onRoutePaused?.call(it);
     });
+    onRouteResumed?.call(route);
     if (debugLogDiagnostics) {
       developer.log("Navigator didPush route ${route.settings} previousRoute ${previousRoute?.settings}", name: debugTag);
     }
@@ -51,11 +51,11 @@ class AppNavigatorObserver extends NavigatorObserver {
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
-    newRoute?.let((it) {
-      onRouteResumed?.call(it);
-    });
     oldRoute?.let((it) {
       onRoutePaused?.call(it);
+    });
+    newRoute?.let((it) {
+      onRouteResumed?.call(it);
     });
     if (debugLogDiagnostics) {
       developer.log("Navigator didReplace newRoute ${newRoute?.settings} oldRoute ${oldRoute?.settings}", name: debugTag);
