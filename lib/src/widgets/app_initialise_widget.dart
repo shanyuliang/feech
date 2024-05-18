@@ -5,6 +5,7 @@ import '../providers/app_initialise_provider/app_initialise_provider.dart';
 
 class AppInitialiseWidget extends ConsumerStatefulWidget {
   final List<AsyncNotifierProvider> initialiseList;
+  final int minWaitDurationInMilliseconds;
   final Widget loadedChild;
   final Widget loadingChild;
 
@@ -13,6 +14,7 @@ class AppInitialiseWidget extends ConsumerStatefulWidget {
     required this.initialiseList,
     required this.loadedChild,
     required this.loadingChild,
+    this.minWaitDurationInMilliseconds = 0,
   });
 
   @override
@@ -25,7 +27,7 @@ class _AppInitialiseWidgetState extends ConsumerState<AppInitialiseWidget> {
     return ref
         .watch(appInitialiseProvider(
           initialiseList: widget.initialiseList,
-          minWaitDurationInMilliseconds: 3000,
+          minWaitDurationInMilliseconds: widget.minWaitDurationInMilliseconds,
         ))
         .maybeWhen(
           data: (_) => widget.loadedChild,
