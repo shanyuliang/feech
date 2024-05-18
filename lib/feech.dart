@@ -73,6 +73,7 @@ export 'src/utilities/spki_pin_checker.dart';
 export 'src/utilities/string_util.dart';
 export 'src/widgets/app_circle_avatar.dart';
 export 'src/widgets/app_date_selector_field.dart';
+export 'src/widgets/app_initialise_widget.dart';
 export 'src/widgets/app_startup_widget.dart';
 export 'src/widgets/app_text_form_field.dart';
 export 'src/widgets/app_web_view/app_web_view_state.dart';
