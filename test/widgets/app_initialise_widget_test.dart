@@ -39,8 +39,8 @@ void main() {
   testWidgets('AppStartupWidget', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        child: AppStartupWidget(
-          waitList: [
+        child: AppInitialiseWidget(
+          initialiseList: [
             appLifecycleStateProvider.notifier,
             appPermissionStatusProvider(Permission.location).notifier,
             appPermissionStatusProvider(Permission.notification).notifier,

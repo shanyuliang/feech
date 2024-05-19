@@ -26,7 +26,7 @@ ProviderContainer createContainer({
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('appStartupProvider', () async {
+  test('appInitialiseProvider', () async {
     final container = createContainer(observers: [AppProviderObserver()]);
     final testLoggingProvider = loggingProvider(
         actionLoggingList: () => [
@@ -39,14 +39,16 @@ void main() {
               ),
             ]);
 
-    final testAppStartupProvider = appStartupProvider(waitList: [
-      appLifecycleStateProvider.notifier,
-      appPermissionStatusProvider(Permission.location).notifier,
-      appPermissionStatusProvider(Permission.notification).notifier,
-      testLoggingProvider.future,
-      userLocationProvider.notifier,
-    ]);
-    await container.read(testAppStartupProvider.future);
+    final testAppInitialiseProvider = appInitialiseProvider(
+      initialiseList: [
+        appLifecycleStateProvider.notifier,
+        appPermissionStatusProvider(Permission.location).notifier,
+        appPermissionStatusProvider(Permission.notification).notifier,
+        testLoggingProvider.future,
+        userLocationProvider.notifier,
+      ],
+    );
+    await container.read(testAppInitialiseProvider.future);
 
     final logging = container.read(testLoggingProvider).requireValue;
 

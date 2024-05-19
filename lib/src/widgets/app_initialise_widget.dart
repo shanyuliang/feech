@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/app_initialise_provider/app_initialise_provider.dart';
 
 class AppInitialiseWidget extends ConsumerStatefulWidget {
-  final List<AsyncNotifierProvider> initialiseList;
+  final List<AlwaysAliveRefreshable> initialiseList;
   final int minWaitDurationInMilliseconds;
   final Widget loadedChild;
   final Widget loadingChild;

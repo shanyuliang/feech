@@ -7,7 +7,7 @@ part of 'app_initialise_provider.dart';
 // **************************************************************************
 
 String _$appInitialiseProviderHash() =>
-    r'9a824fca1e89a94860bab84a62efaf239156bb59';
+    r'8cbe804fb6547d1cef720db7a464de97ff8e4279';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,13 +31,11 @@ class _SystemHash {
 }
 
 abstract class _$AppInitialiseProvider extends BuildlessAsyncNotifier<void> {
-  late final List<AsyncNotifierProviderImpl<AsyncNotifier<dynamic>, dynamic>>
-      initialiseList;
+  late final List<AlwaysAliveRefreshable<dynamic>> initialiseList;
   late final int minWaitDurationInMilliseconds;
 
   FutureOr<void> build({
-    List<AsyncNotifierProviderImpl<AsyncNotifier<dynamic>, dynamic>>
-        initialiseList = const [],
+    List<AlwaysAliveRefreshable<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
   });
 }
@@ -53,8 +51,7 @@ class AppInitialiseProviderFamily extends Family<AsyncValue<void>> {
 
   /// See also [AppInitialiseProvider].
   AppInitialiseProviderProvider call({
-    List<AsyncNotifierProviderImpl<AsyncNotifier<dynamic>, dynamic>>
-        initialiseList = const [],
+    List<AlwaysAliveRefreshable<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
   }) {
     return AppInitialiseProviderProvider(
@@ -93,8 +90,7 @@ class AppInitialiseProviderProvider
     extends AsyncNotifierProviderImpl<AppInitialiseProvider, void> {
   /// See also [AppInitialiseProvider].
   AppInitialiseProviderProvider({
-    List<AsyncNotifierProviderImpl<AsyncNotifier<dynamic>, dynamic>>
-        initialiseList = const [],
+    List<AlwaysAliveRefreshable<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
   }) : this._internal(
           () => AppInitialiseProvider()
@@ -124,8 +120,7 @@ class AppInitialiseProviderProvider
     required this.minWaitDurationInMilliseconds,
   }) : super.internal();
 
-  final List<AsyncNotifierProviderImpl<AsyncNotifier<dynamic>, dynamic>>
-      initialiseList;
+  final List<AlwaysAliveRefreshable<dynamic>> initialiseList;
   final int minWaitDurationInMilliseconds;
 
   @override
@@ -181,8 +176,7 @@ class AppInitialiseProviderProvider
 
 mixin AppInitialiseProviderRef on AsyncNotifierProviderRef<void> {
   /// The parameter `initialiseList` of this provider.
-  List<AsyncNotifierProviderImpl<AsyncNotifier<dynamic>, dynamic>>
-      get initialiseList;
+  List<AlwaysAliveRefreshable<dynamic>> get initialiseList;
 
   /// The parameter `minWaitDurationInMilliseconds` of this provider.
   int get minWaitDurationInMilliseconds;
@@ -194,9 +188,8 @@ class _AppInitialiseProviderProviderElement
   _AppInitialiseProviderProviderElement(super.provider);
 
   @override
-  List<AsyncNotifierProviderImpl<AsyncNotifier<dynamic>, dynamic>>
-      get initialiseList =>
-          (origin as AppInitialiseProviderProvider).initialiseList;
+  List<AlwaysAliveRefreshable<dynamic>> get initialiseList =>
+      (origin as AppInitialiseProviderProvider).initialiseList;
   @override
   int get minWaitDurationInMilliseconds =>
       (origin as AppInitialiseProviderProvider).minWaitDurationInMilliseconds;

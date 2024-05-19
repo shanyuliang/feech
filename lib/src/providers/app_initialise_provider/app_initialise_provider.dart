@@ -1,34 +1,44 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'dart:async';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_initialise_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppInitialiseProvider extends _$AppInitialiseProvider {
-  /// [initialiseList] is a list of `AsyncNotifierProvider`
+  /// [waitList] is a list of `provider.notifier` or `asyncProvider.future`
   @override
   Future<void> build({
-    List<Object> initialiseListNew = const [],
-    List<AsyncNotifierProvider> initialiseList = const [],
+    List<AlwaysAliveRefreshable> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
   }) async {
     final minWaitDuration = Future.delayed(Duration(milliseconds: minWaitDurationInMilliseconds));
     final initialisingProviders = Future(() async {
-      for (final asyncNotifierProvider in initialiseList) {
-        await ref.read(asyncNotifierProvider.future);
+      for (final alwaysAliveRefreshable in initialiseList) {
+        await ref.read(alwaysAliveRefreshable);
       }
     });
-    final initialisingProvidersNew = Future(() async {
-      for (final theProvider in initialiseListNew) {
-        if (theProvider is AsyncNotifierProvider) {
-          await ref.read(theProvider.future);
-        } else if (theProvider is NotifierProvider) {
-          ref.read(theProvider);
-        }
-      }
-    });
-    await Future.wait([minWaitDuration, initialisingProviders, initialisingProvidersNew]);
+    await Future.wait([minWaitDuration, initialisingProviders]);
   }
+
+// @override
+// Future<void> build({
+//   List<Object> initialiseList = const [],
+//   int minWaitDurationInMilliseconds = 0,
+// }) async {
+//   final minWaitDuration = Future.delayed(Duration(milliseconds: minWaitDurationInMilliseconds));
+//   final initialisingProviders = Future(() async {
+//     for (final theProvider in initialiseList) {
+//       debugPrint("theProvider is ${theProvider.runtimeType}");
+//       if (theProvider is NotifierProviderImpl) {
+//         ref.read(theProvider.notifier);
+//       } else if (theProvider is AsyncNotifierProviderImpl) {
+//         await ref.read(theProvider.future);
+//       }
+//     }
+//   });
+//   await Future.wait([minWaitDuration, initialisingProviders]);
+// }
 }
