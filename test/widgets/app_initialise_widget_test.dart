@@ -49,6 +49,7 @@ void main() {
           ],
           loadedChild: const MaterialApp(home: Material(child: Text("Loaded"))),
           loadingChild: const MaterialApp(home: Material(child: Text("Loading"))),
+          debugLogDiagnostics: true,
         ),
       ),
     );

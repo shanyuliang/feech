@@ -7,6 +7,7 @@ class AppInitialiseWidget extends ConsumerStatefulWidget {
   /// [initialiseList] is a list of `provider.notifier` or `asyncProvider.future`
   final List<AlwaysAliveRefreshable> initialiseList;
   final int minWaitDurationInMilliseconds;
+  final bool debugLogDiagnostics;
   final Widget loadedChild;
   final Widget loadingChild;
 
@@ -16,6 +17,7 @@ class AppInitialiseWidget extends ConsumerStatefulWidget {
     required this.loadedChild,
     required this.loadingChild,
     this.minWaitDurationInMilliseconds = 0,
+    this.debugLogDiagnostics = false,
   });
 
   @override
@@ -29,6 +31,7 @@ class _AppInitialiseWidgetState extends ConsumerState<AppInitialiseWidget> {
         .watch(appInitialiseProvider(
           initialiseList: widget.initialiseList,
           minWaitDurationInMilliseconds: widget.minWaitDurationInMilliseconds,
+          debugLogDiagnostics: widget.debugLogDiagnostics,
         ))
         .maybeWhen(
           data: (_) => widget.loadedChild,

@@ -7,7 +7,7 @@ part of 'app_initialise_provider.dart';
 // **************************************************************************
 
 String _$appInitialiseProviderHash() =>
-    r'8cbe804fb6547d1cef720db7a464de97ff8e4279';
+    r'0a720c594ca4cbb540997e41912fe9117cb2dc78';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,10 +33,12 @@ class _SystemHash {
 abstract class _$AppInitialiseProvider extends BuildlessAsyncNotifier<void> {
   late final List<AlwaysAliveRefreshable<dynamic>> initialiseList;
   late final int minWaitDurationInMilliseconds;
+  late final bool debugLogDiagnostics;
 
   FutureOr<void> build({
     List<AlwaysAliveRefreshable<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
+    bool debugLogDiagnostics = false,
   });
 }
 
@@ -53,10 +55,12 @@ class AppInitialiseProviderFamily extends Family<AsyncValue<void>> {
   AppInitialiseProviderProvider call({
     List<AlwaysAliveRefreshable<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
+    bool debugLogDiagnostics = false,
   }) {
     return AppInitialiseProviderProvider(
       initialiseList: initialiseList,
       minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
+      debugLogDiagnostics: debugLogDiagnostics,
     );
   }
 
@@ -67,6 +71,7 @@ class AppInitialiseProviderFamily extends Family<AsyncValue<void>> {
     return call(
       initialiseList: provider.initialiseList,
       minWaitDurationInMilliseconds: provider.minWaitDurationInMilliseconds,
+      debugLogDiagnostics: provider.debugLogDiagnostics,
     );
   }
 
@@ -92,10 +97,12 @@ class AppInitialiseProviderProvider
   AppInitialiseProviderProvider({
     List<AlwaysAliveRefreshable<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
+    bool debugLogDiagnostics = false,
   }) : this._internal(
           () => AppInitialiseProvider()
             ..initialiseList = initialiseList
-            ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds,
+            ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
+            ..debugLogDiagnostics = debugLogDiagnostics,
           from: appInitialiseProvider,
           name: r'appInitialiseProvider',
           debugGetCreateSourceHash:
@@ -107,6 +114,7 @@ class AppInitialiseProviderProvider
               AppInitialiseProviderFamily._allTransitiveDependencies,
           initialiseList: initialiseList,
           minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
+          debugLogDiagnostics: debugLogDiagnostics,
         );
 
   AppInitialiseProviderProvider._internal(
@@ -118,10 +126,12 @@ class AppInitialiseProviderProvider
     required super.from,
     required this.initialiseList,
     required this.minWaitDurationInMilliseconds,
+    required this.debugLogDiagnostics,
   }) : super.internal();
 
   final List<AlwaysAliveRefreshable<dynamic>> initialiseList;
   final int minWaitDurationInMilliseconds;
+  final bool debugLogDiagnostics;
 
   @override
   FutureOr<void> runNotifierBuild(
@@ -130,6 +140,7 @@ class AppInitialiseProviderProvider
     return notifier.build(
       initialiseList: initialiseList,
       minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
+      debugLogDiagnostics: debugLogDiagnostics,
     );
   }
 
@@ -140,7 +151,8 @@ class AppInitialiseProviderProvider
       override: AppInitialiseProviderProvider._internal(
         () => create()
           ..initialiseList = initialiseList
-          ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds,
+          ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
+          ..debugLogDiagnostics = debugLogDiagnostics,
         from: from,
         name: null,
         dependencies: null,
@@ -148,6 +160,7 @@ class AppInitialiseProviderProvider
         debugGetCreateSourceHash: null,
         initialiseList: initialiseList,
         minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
+        debugLogDiagnostics: debugLogDiagnostics,
       ),
     );
   }
@@ -161,7 +174,8 @@ class AppInitialiseProviderProvider
   bool operator ==(Object other) {
     return other is AppInitialiseProviderProvider &&
         other.initialiseList == initialiseList &&
-        other.minWaitDurationInMilliseconds == minWaitDurationInMilliseconds;
+        other.minWaitDurationInMilliseconds == minWaitDurationInMilliseconds &&
+        other.debugLogDiagnostics == debugLogDiagnostics;
   }
 
   @override
@@ -169,6 +183,7 @@ class AppInitialiseProviderProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, initialiseList.hashCode);
     hash = _SystemHash.combine(hash, minWaitDurationInMilliseconds.hashCode);
+    hash = _SystemHash.combine(hash, debugLogDiagnostics.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -180,6 +195,9 @@ mixin AppInitialiseProviderRef on AsyncNotifierProviderRef<void> {
 
   /// The parameter `minWaitDurationInMilliseconds` of this provider.
   int get minWaitDurationInMilliseconds;
+
+  /// The parameter `debugLogDiagnostics` of this provider.
+  bool get debugLogDiagnostics;
 }
 
 class _AppInitialiseProviderProviderElement
@@ -193,6 +211,9 @@ class _AppInitialiseProviderProviderElement
   @override
   int get minWaitDurationInMilliseconds =>
       (origin as AppInitialiseProviderProvider).minWaitDurationInMilliseconds;
+  @override
+  bool get debugLogDiagnostics =>
+      (origin as AppInitialiseProviderProvider).debugLogDiagnostics;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

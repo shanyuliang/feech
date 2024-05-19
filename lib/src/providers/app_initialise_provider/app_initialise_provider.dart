@@ -1,8 +1,11 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'dart:async';
+import 'dart:developer' as developer;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../constants.dart';
 
 part 'app_initialise_provider.g.dart';
 
@@ -13,13 +16,28 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
   Future<void> build({
     List<AlwaysAliveRefreshable> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
+    bool debugLogDiagnostics = false,
   }) async {
-    final minWaitDuration = Future.delayed(Duration(milliseconds: minWaitDurationInMilliseconds));
-    final initialisingProviders = Future(() async {
-      for (final alwaysAliveRefreshable in initialiseList) {
-        await ref.read(alwaysAliveRefreshable);
+    final minWaitDuration = Duration(milliseconds: minWaitDurationInMilliseconds);
+    if (debugLogDiagnostics) {
+      developer.log("AppInitialiseProvider minWaitDuration $minWaitDuration", name: debugTag);
+    }
+    final waitForMinWaitDuration = Future.delayed(minWaitDuration, () {
+      if (debugLogDiagnostics) {
+        developer.log("AppInitialiseProvider minWaitDuration $minWaitDuration passed", name: debugTag);
       }
     });
-    await Future.wait([minWaitDuration, initialisingProviders]);
+    final initialisingProviders = Future(() async {
+      for (final alwaysAliveRefreshable in initialiseList) {
+        if (debugLogDiagnostics) {
+          developer.log("AppInitialiseProvider initialise $alwaysAliveRefreshable started", name: debugTag);
+        }
+        await ref.read(alwaysAliveRefreshable);
+        if (debugLogDiagnostics) {
+          developer.log("AppInitialiseProvider initialise $alwaysAliveRefreshable ended", name: debugTag);
+        }
+      }
+    });
+    await Future.wait([waitForMinWaitDuration, initialisingProviders]);
   }
 }
