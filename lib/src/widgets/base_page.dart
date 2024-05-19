@@ -22,7 +22,7 @@ abstract class BasePage extends ConsumerStatefulWidget {
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _BasePageState();
 
-  String? getTitle() => null;
+  String? getTitle(WidgetRef ref) => null;
 
   void initialise(BuildContext context, WidgetRef ref) {}
 
@@ -91,7 +91,7 @@ class _BasePageState extends ConsumerState<BasePage> {
                 if (widget.debugLogDiagnostics) {
                   developer.log("${widget.routeName}[${widget.key}] page resumed", name: debugTag);
                 }
-                _setPageTitle(title: widget.getTitle(), context: context);
+                _setPageTitle(title: widget.getTitle(ref), context: context);
                 widget.onPageResumed(context, ref);
                 break;
               case PageLifecycleState.paused:
@@ -108,7 +108,7 @@ class _BasePageState extends ConsumerState<BasePage> {
       },
     );
     return Title(
-      title: widget.getTitle() ?? widget.routeName ?? '',
+      title: widget.getTitle(ref) ?? widget.routeName ?? '',
       color: Theme.of(context).colorScheme.primary,
       child: widget.build(context, ref),
     );
