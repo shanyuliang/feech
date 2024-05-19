@@ -8,7 +8,7 @@ part 'app_initialise_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppInitialiseProvider extends _$AppInitialiseProvider {
-  /// [waitList] is a list of `provider.notifier` or `asyncProvider.future`
+  /// [initialiseList] is a list of `provider.notifier` or `asyncProvider.future`
   @override
   Future<void> build({
     List<AlwaysAliveRefreshable> initialiseList = const [],
@@ -22,23 +22,4 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
     });
     await Future.wait([minWaitDuration, initialisingProviders]);
   }
-
-// @override
-// Future<void> build({
-//   List<Object> initialiseList = const [],
-//   int minWaitDurationInMilliseconds = 0,
-// }) async {
-//   final minWaitDuration = Future.delayed(Duration(milliseconds: minWaitDurationInMilliseconds));
-//   final initialisingProviders = Future(() async {
-//     for (final theProvider in initialiseList) {
-//       debugPrint("theProvider is ${theProvider.runtimeType}");
-//       if (theProvider is NotifierProviderImpl) {
-//         ref.read(theProvider.notifier);
-//       } else if (theProvider is AsyncNotifierProviderImpl) {
-//         await ref.read(theProvider.future);
-//       }
-//     }
-//   });
-//   await Future.wait([minWaitDuration, initialisingProviders]);
-// }
 }
