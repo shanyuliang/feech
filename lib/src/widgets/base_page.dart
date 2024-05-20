@@ -16,14 +16,18 @@ abstract class BasePage extends ConsumerStatefulWidget {
 
   final String? routeName;
 
-  const BasePage({super.key, this.routeName, this.debugLogDiagnostics = false});
+  final String? initialTitle;
+
+  const BasePage({super.key, this.routeName, this.initialTitle, this.debugLogDiagnostics = false});
 
   Widget build(BuildContext context, WidgetRef ref);
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _BasePageState();
 
-  String? getTitle(WidgetRef ref) => null;
+  void setTitle(WidgetRef ref, String? title) {
+    ref.read(pageTitleProvider(routeName).notifier).setTitle(title);
+  }
 
   void initialise(BuildContext context, WidgetRef ref) {}
 
@@ -47,6 +51,7 @@ class _BasePageState extends ConsumerState<BasePage> {
     if (widget.debugLogDiagnostics) {
       developer.log("${widget.routeName}[${widget.key}] page initialise", name: debugTag);
     }
+    ref.read(pageTitleProvider(widget.routeName).notifier).setTitle(widget.initialTitle);
     widget.initialise(context, ref);
   }
 
@@ -112,13 +117,13 @@ class _BasePageState extends ConsumerState<BasePage> {
             if (widget.debugLogDiagnostics) {
               developer.log("${widget.routeName}[${widget.key}] page title changed to [$next]", name: debugTag);
             }
-            _setTitle(next);
+            _refreshTitle();
           },
         );
       },
     );
     return Title(
-      title: widget.getTitle(ref) ?? widget.routeName ?? '',
+      title: ref.read(pageTitleProvider(widget.routeName)) ?? widget.routeName ?? '',
       color: Theme.of(context).colorScheme.primary,
       child: widget.build(context, ref),
     );
@@ -134,10 +139,6 @@ class _BasePageState extends ConsumerState<BasePage> {
   }
 
   void _refreshTitle() {
-    setAppSwitcherTitle(context: context, title: widget.getTitle(ref));
-  }
-
-  void _setTitle(String? title) {
-    setAppSwitcherTitle(context: context, title: title);
+    setAppSwitcherTitle(context: context, title: ref.read(pageTitleProvider(widget.routeName)));
   }
 }

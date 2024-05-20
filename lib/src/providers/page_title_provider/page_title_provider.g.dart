@@ -6,7 +6,7 @@ part of 'page_title_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pageTitleProviderHash() => r'c7c672424f834480fb2313aea3eae48a539143b3';
+String _$pageTitleProviderHash() => r'75c26b2663e03f31f7f0649e27d50628ac8b3828';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,10 +30,10 @@ class _SystemHash {
 }
 
 abstract class _$PageTitleProvider
-    extends BuildlessAutoDisposeNotifier<String> {
+    extends BuildlessAutoDisposeNotifier<String?> {
   late final String? routeName;
 
-  String build(
+  String? build(
     String? routeName,
   );
 }
@@ -43,7 +43,7 @@ abstract class _$PageTitleProvider
 const pageTitleProvider = PageTitleProviderFamily();
 
 /// See also [PageTitleProvider].
-class PageTitleProviderFamily extends Family<String> {
+class PageTitleProviderFamily extends Family<String?> {
   /// See also [PageTitleProvider].
   const PageTitleProviderFamily();
 
@@ -82,7 +82,7 @@ class PageTitleProviderFamily extends Family<String> {
 
 /// See also [PageTitleProvider].
 class PageTitleProviderProvider
-    extends AutoDisposeNotifierProviderImpl<PageTitleProvider, String> {
+    extends AutoDisposeNotifierProviderImpl<PageTitleProvider, String?> {
   /// See also [PageTitleProvider].
   PageTitleProviderProvider(
     String? routeName,
@@ -113,7 +113,7 @@ class PageTitleProviderProvider
   final String? routeName;
 
   @override
-  String runNotifierBuild(
+  String? runNotifierBuild(
     covariant PageTitleProvider notifier,
   ) {
     return notifier.build(
@@ -138,7 +138,7 @@ class PageTitleProviderProvider
   }
 
   @override
-  AutoDisposeNotifierProviderElement<PageTitleProvider, String>
+  AutoDisposeNotifierProviderElement<PageTitleProvider, String?>
       createElement() {
     return _PageTitleProviderProviderElement(this);
   }
@@ -157,13 +157,13 @@ class PageTitleProviderProvider
   }
 }
 
-mixin PageTitleProviderRef on AutoDisposeNotifierProviderRef<String> {
+mixin PageTitleProviderRef on AutoDisposeNotifierProviderRef<String?> {
   /// The parameter `routeName` of this provider.
   String? get routeName;
 }
 
 class _PageTitleProviderProviderElement
-    extends AutoDisposeNotifierProviderElement<PageTitleProvider, String>
+    extends AutoDisposeNotifierProviderElement<PageTitleProvider, String?>
     with PageTitleProviderRef {
   _PageTitleProviderProviderElement(super.provider);
 
