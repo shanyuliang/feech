@@ -55,7 +55,9 @@ class _BasePageState extends ConsumerState<BasePage> {
     if (widget.debugLogDiagnostics) {
       developer.log("${widget.routeName}[${widget.key}] page initialise", name: debugTag);
     }
-    ref.read(pageTitleProvider(widget.routeName).notifier).setTitle(widget.initialTitle);
+    Future(() {
+      ref.read(pageTitleProvider(widget.routeName).notifier).setTitle(widget.initialTitle);
+    });
     widget.initialise(context, ref);
   }
 
