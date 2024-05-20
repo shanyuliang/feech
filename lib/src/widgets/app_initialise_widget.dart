@@ -8,9 +8,9 @@ class AppInitialiseWidget extends ConsumerStatefulWidget {
   final List<AlwaysAliveRefreshable> initialiseList;
   final int minWaitDurationInMilliseconds;
   final bool debugLogDiagnostics;
-  final Widget loadedChild;
-  final Widget? loadingChild;
-  final Widget? loadErrorChild;
+  final Widget Function() loadedChild;
+  final Widget? Function()? loadingChild;
+  final Widget? Function()? loadErrorChild;
   final VoidCallback? onLoading;
   final VoidCallback? onLoadError;
   final VoidCallback? onLoaded;
@@ -44,15 +44,15 @@ class _AppInitialiseWidgetState extends ConsumerState<AppInitialiseWidget> {
         .when(
       data: (_) {
         widget.onLoaded?.call();
-        return widget.loadedChild;
+        return widget.loadedChild.call();
       },
       error: (_, __) {
         widget.onLoadError?.call();
-        return widget.loadErrorChild ?? const SizedBox.shrink();
+        return widget.loadErrorChild?.call() ?? const SizedBox.shrink();
       },
       loading: () {
         widget.onLoading?.call();
-        return widget.loadingChild ?? const SizedBox.shrink();
+        return widget.loadingChild?.call() ?? const SizedBox.shrink();
       },
     );
   }
