@@ -1,7 +1,6 @@
 import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants.dart';
@@ -10,6 +9,7 @@ import '../providers/app_lifecycle_state_provider/app_lifecycle_state_provider.d
 import '../providers/page_lifecycle_state_provider/page_lifecycle_state.dart';
 import '../providers/page_lifecycle_state_provider/page_lifecycle_state_provider.dart';
 import '../providers/page_title_provider/page_title_provider.dart';
+import '../utilities/handy_util.dart';
 
 abstract class BasePage extends ConsumerStatefulWidget {
   final bool debugLogDiagnostics;
@@ -133,18 +133,11 @@ class _BasePageState extends ConsumerState<BasePage> {
     super.dispose();
   }
 
-  void _setPageTitle({String? title, required BuildContext context}) {
-    SystemChrome.setApplicationSwitcherDescription(ApplicationSwitcherDescription(
-      label: title,
-      primaryColor: Theme.of(context).primaryColor.value,
-    ));
-  }
-
   void _refreshTitle() {
-    _setPageTitle(title: widget.getTitle(ref), context: context);
+    setAppSwitcherTitle(context: context, title: widget.getTitle(ref));
   }
 
   void _setTitle(String? title) {
-    _setPageTitle(title: title, context: context);
+    setAppSwitcherTitle(context: context, title: title);
   }
 }

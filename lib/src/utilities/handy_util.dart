@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 T? suppressThrowableSync<T>({
   required final T? Function() throwable,
   final T? Function(Object error, StackTrace stackTrace)? whenError,
@@ -50,4 +53,11 @@ Future<T> suppressThrowableAsyncDefault<T>({
   } catch (error, stackTrace) {
     return await whenError.call(error, stackTrace);
   }
+}
+
+void setAppSwitcherTitle({required BuildContext context, String? title}) {
+  SystemChrome.setApplicationSwitcherDescription(ApplicationSwitcherDescription(
+    label: title,
+    primaryColor: Theme.of(context).primaryColor.value,
+  ));
 }
