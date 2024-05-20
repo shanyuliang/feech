@@ -43,21 +43,15 @@ class _AppInitialiseWidgetState extends ConsumerState<AppInitialiseWidget> {
     ))
         .when(
       data: (_) {
-        Future(() {
-          widget.onLoaded?.call();
-        });
+        widget.onLoaded?.call();
         return widget.loadedChild;
       },
       error: (_, __) {
-        Future(() {
-          widget.onLoadError?.call();
-        });
+        widget.onLoadError?.call();
         return widget.loadErrorChild ?? const SizedBox.shrink();
       },
       loading: () {
-        Future(() {
-          widget.onLoading?.call();
-        });
+        widget.onLoading?.call();
         return widget.loadingChild ?? const SizedBox.shrink();
       },
     );
