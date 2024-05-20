@@ -16,21 +16,21 @@ abstract class BasePage extends ConsumerStatefulWidget {
 
   final String? routeName;
 
-  final String? initialTitle;
+  final String initialTitle;
 
-  const BasePage({super.key, this.routeName, this.initialTitle, this.debugLogDiagnostics = false});
+  const BasePage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false});
 
   Widget build(BuildContext context, WidgetRef ref);
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _BasePageState();
 
-  void setTitle(WidgetRef ref, String? title) {
+  void setTitle(WidgetRef ref, String title) {
     ref.read(pageTitleProvider(routeName).notifier).setTitle(title);
   }
 
-  String? getTitle(WidgetRef ref) {
-    return ref.read(pageTitleProvider(routeName));
+  String getTitle(WidgetRef ref) {
+    return ref.read(pageTitleProvider(routeName)) ?? initialTitle;
   }
 
   void initialise(BuildContext context, WidgetRef ref) {}
@@ -55,9 +55,6 @@ class _BasePageState extends ConsumerState<BasePage> {
     if (widget.debugLogDiagnostics) {
       developer.log("${widget.routeName}[${widget.key}] page initialise", name: debugTag);
     }
-    Future(() {
-      ref.read(pageTitleProvider(widget.routeName).notifier).setTitle(widget.initialTitle);
-    });
     widget.initialise(context, ref);
   }
 
@@ -129,7 +126,7 @@ class _BasePageState extends ConsumerState<BasePage> {
       },
     );
     return Title(
-      title: widget.getTitle(ref) ?? widget.routeName ?? '',
+      title: widget.getTitle(ref),
       color: Theme.of(context).colorScheme.primary,
       child: widget.build(context, ref),
     );

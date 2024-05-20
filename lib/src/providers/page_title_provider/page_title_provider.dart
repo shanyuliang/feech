@@ -9,7 +9,7 @@ class PageTitleProvider extends _$PageTitleProvider {
     return null;
   }
 
-  void setTitle(String? title) {
+  void setTitle(String title) {
     state = title;
   }
 }
