@@ -9,6 +9,7 @@ import '../extensions/general_type_extension.dart';
 import '../providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
 import '../providers/page_lifecycle_state_provider/page_lifecycle_state.dart';
 import '../providers/page_lifecycle_state_provider/page_lifecycle_state_provider.dart';
+import '../providers/page_title_provider/page_title_provider.dart';
 
 abstract class BasePage extends ConsumerStatefulWidget {
   final bool debugLogDiagnostics;
@@ -91,7 +92,7 @@ class _BasePageState extends ConsumerState<BasePage> {
                 if (widget.debugLogDiagnostics) {
                   developer.log("${widget.routeName}[${widget.key}] page resumed", name: debugTag);
                 }
-                _setPageTitle(title: widget.getTitle(ref), context: context);
+                _refreshTitle();
                 widget.onPageResumed(context, ref);
                 break;
               case PageLifecycleState.paused:
@@ -103,6 +104,15 @@ class _BasePageState extends ConsumerState<BasePage> {
               default:
                 break;
             }
+          },
+        );
+        ref.listen(
+          pageTitleProvider(it),
+          (previous, next) {
+            if (widget.debugLogDiagnostics) {
+              developer.log("${widget.routeName}[${widget.key}] page title changed to [$next]", name: debugTag);
+            }
+            _setTitle(next);
           },
         );
       },
@@ -128,5 +138,13 @@ class _BasePageState extends ConsumerState<BasePage> {
       label: title,
       primaryColor: Theme.of(context).primaryColor.value,
     ));
+  }
+
+  void _refreshTitle() {
+    _setPageTitle(title: widget.getTitle(ref), context: context);
+  }
+
+  void _setTitle(String? title) {
+    _setPageTitle(title: title, context: context);
   }
 }

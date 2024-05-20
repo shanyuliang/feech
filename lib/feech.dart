@@ -35,6 +35,7 @@ export 'src/providers/logging_provider/logging_provider.dart';
 export 'src/providers/network_helper_provider/network_helper_provider.dart';
 export 'src/providers/page_lifecycle_state_provider/page_lifecycle_state.dart';
 export 'src/providers/page_lifecycle_state_provider/page_lifecycle_state_provider.dart';
+export 'src/providers/page_title_provider/page_title_provider.dart';
 export 'src/providers/shared_preferences_provider/shared_preferences_provider.dart';
 export 'src/providers/stt_provider/stt_provider.dart';
 export 'src/providers/tts_provider/tts_provider.dart';
