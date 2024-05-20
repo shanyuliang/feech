@@ -9,14 +9,22 @@ class AppInitialiseWidget extends ConsumerStatefulWidget {
   final int minWaitDurationInMilliseconds;
   final bool debugLogDiagnostics;
   final Widget loadedChild;
-  final Widget loadingChild;
+  final Widget? loadingChild;
+  final Widget? loadErrorChild;
+  final VoidCallback? onLoading;
+  final VoidCallback? onLoadError;
+  final VoidCallback? onLoaded;
 
   const AppInitialiseWidget({
     super.key,
     required this.initialiseList,
     required this.loadedChild,
-    required this.loadingChild,
+    this.loadingChild,
+    this.loadErrorChild,
     this.minWaitDurationInMilliseconds = 0,
+    this.onLoading,
+    this.onLoadError,
+    this.onLoaded,
     this.debugLogDiagnostics = false,
   });
 
@@ -29,13 +37,23 @@ class _AppInitialiseWidgetState extends ConsumerState<AppInitialiseWidget> {
   Widget build(BuildContext context) {
     return ref
         .watch(appInitialiseProvider(
-          initialiseList: widget.initialiseList,
-          minWaitDurationInMilliseconds: widget.minWaitDurationInMilliseconds,
-          debugLogDiagnostics: widget.debugLogDiagnostics,
-        ))
-        .maybeWhen(
-          data: (_) => widget.loadedChild,
-          orElse: () => widget.loadingChild,
-        );
+      initialiseList: widget.initialiseList,
+      minWaitDurationInMilliseconds: widget.minWaitDurationInMilliseconds,
+      debugLogDiagnostics: widget.debugLogDiagnostics,
+    ))
+        .when(
+      data: (_) {
+        widget.onLoaded?.call();
+        return widget.loadedChild;
+      },
+      error: (_, __) {
+        widget.onLoadError?.call();
+        return widget.loadErrorChild ?? const SizedBox.shrink();
+      },
+      loading: () {
+        widget.onLoading?.call();
+        return widget.loadingChild ?? const SizedBox.shrink();
+      },
+    );
   }
 }
