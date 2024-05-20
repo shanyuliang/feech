@@ -29,8 +29,8 @@ abstract class BasePage extends ConsumerStatefulWidget {
     ref.read(pageTitleProvider(routeName).notifier).setTitle(title);
   }
 
-  String getTitle(WidgetRef ref) {
-     return ref.read(pageTitleProvider(routeName)) ?? initialTitle;
+  String getTitle(WidgetRef? ref) {
+    return ref?.let((it) => it.read(pageTitleProvider(routeName))) ?? initialTitle;
   }
 
   void initialise(BuildContext context, WidgetRef ref) {}
