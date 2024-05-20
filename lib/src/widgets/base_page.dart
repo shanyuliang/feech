@@ -29,6 +29,10 @@ abstract class BasePage extends ConsumerStatefulWidget {
     ref.read(pageTitleProvider(routeName).notifier).setTitle(title);
   }
 
+  String? getTitle(WidgetRef ref) {
+    return ref.read(pageTitleProvider(routeName));
+  }
+
   void initialise(BuildContext context, WidgetRef ref) {}
 
   void onDisposed(BuildContext context, WidgetRef ref) {}
@@ -123,7 +127,7 @@ class _BasePageState extends ConsumerState<BasePage> {
       },
     );
     return Title(
-      title: ref.read(pageTitleProvider(widget.routeName)) ?? widget.routeName ?? '',
+      title: widget.getTitle(ref) ?? widget.routeName ?? '',
       color: Theme.of(context).colorScheme.primary,
       child: widget.build(context, ref),
     );
@@ -139,6 +143,6 @@ class _BasePageState extends ConsumerState<BasePage> {
   }
 
   void _refreshTitle() {
-    setAppSwitcherTitle(context: context, title: ref.read(pageTitleProvider(widget.routeName)));
+    setAppSwitcherTitle(context: context, title: widget.getTitle(ref));
   }
 }
