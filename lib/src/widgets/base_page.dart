@@ -33,7 +33,9 @@ abstract class BasePage extends ConsumerStatefulWidget {
     return ref?.let((it) => it.read(pageTitleProvider(routeName))) ?? initialTitle;
   }
 
-  void initialise(BuildContext context, WidgetRef ref) {}
+  void initialise(WidgetRef ref) {}
+
+  void didChangeDependencies(BuildContext context, WidgetRef ref) {}
 
   void onDisposed(BuildContext context, WidgetRef ref) {}
 
@@ -55,7 +57,16 @@ class _BasePageState extends ConsumerState<BasePage> {
     if (widget.debugLogDiagnostics) {
       developer.log("${widget.routeName}[${widget.key}] page initialise", name: debugTag);
     }
-    widget.initialise(context, ref);
+    widget.initialise(ref);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.debugLogDiagnostics) {
+      developer.log("${widget.routeName}[${widget.key}] page didChangeDependencies", name: debugTag);
+    }
+    widget.didChangeDependencies(context, ref);
   }
 
   @override
