@@ -1,5 +1,5 @@
 name: feech
-version: 0.0.66
+version: 0.0.67
 description: "Flutter Experience Emma Can Help"
 homepage: "https://github.com/shanyuliang/feech"
 repository: "https://github.com/shanyuliang/feech"
@@ -49,7 +49,7 @@ dependencies:
   speech_to_text: '>=6.6.0 <7.0.0' # https://pub.dev/packages/speech_to_text
   sqflite: '>=2.3.3 <3.0.0' # https://pub.dev/packages/sqflite
   ulid4d: '>=2.0.0 <3.0.0' # https://pub.dev/packages/ulid4d
-  webview_flutter: '>=4.7.0 <5.0.0' # https://pub.dev/packages/webview_flutter
+  webview_flutter: '>=4.8.0 <5.0.0' # https://pub.dev/packages/webview_flutter
 
 dev_dependencies:
   flutter_test:

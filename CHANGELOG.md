@@ -1,3 +1,7 @@
+## 0.0.67
+
+* Update dependencies
+
 ## 0.0.66
 
 * Clearing change log
