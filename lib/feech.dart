@@ -13,6 +13,7 @@ export 'src/extensions/file_extension/file_extension.dart';
 export 'src/extensions/general_type_extension.dart';
 export 'src/extensions/global_key_extension.dart';
 export 'src/extensions/int_extension.dart';
+export 'src/extensions/iterable_extension.dart';
 export 'src/extensions/placemark_extension.dart';
 export 'src/extensions/string_extension.dart';
 export 'src/extensions/uint8list_extension.dart';

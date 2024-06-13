@@ -1,3 +1,7 @@
+## 0.0.70
+
+* Add iterable extension
+
 ## 0.0.69
 
 * Update dependencies
