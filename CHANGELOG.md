@@ -1,3 +1,7 @@
+## 0.0.72
+
+* Update app initialise widget
+
 ## 0.0.71
 
 * Update dependencies
