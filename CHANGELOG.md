@@ -1,3 +1,7 @@
+## 0.0.74
+
+* Update Drag Handle
+
 ## 0.0.73
 
 * Add Drag Handle
