@@ -88,6 +88,7 @@ export 'src/widgets/camera/camera_meta.dart';
 export 'src/widgets/camera/take_picture_screen.dart';
 export 'src/widgets/coupon_clipper.dart';
 export 'src/widgets/curved_path_flow_delegate.dart';
+export 'src/widgets/drag_handle.dart';
 export 'src/widgets/gradient_container.dart';
 export 'src/widgets/grey.dart';
 export 'src/widgets/processing_overlay.dart';

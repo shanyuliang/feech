@@ -1,3 +1,7 @@
+## 0.0.73
+
+* Add Drag Handle
+
 ## 0.0.72
 
 * Update app initialise widget
