@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const double _defaultScrollControlDisabledMaxHeightRatio = 9.0 / 16.0;
+
 class ModalBottomSheetPage<T> extends Page<T> {
   final WidgetBuilder builder;
   final bool isDismissible;
@@ -7,6 +9,8 @@ class ModalBottomSheetPage<T> extends Page<T> {
   final bool showDragHandle;
   final bool useSafeArea;
   final bool isScrollControlled;
+  final double scrollControlDisabledMaxHeightRatio;
+  final Clip? clipBehavior;
 
   const ModalBottomSheetPage({
     super.key,
@@ -19,6 +23,8 @@ class ModalBottomSheetPage<T> extends Page<T> {
     this.showDragHandle = true,
     this.useSafeArea = false,
     this.isScrollControlled = false,
+    this.scrollControlDisabledMaxHeightRatio = _defaultScrollControlDisabledMaxHeightRatio,
+    this.clipBehavior,
   });
 
   @override
@@ -30,5 +36,7 @@ class ModalBottomSheetPage<T> extends Page<T> {
         showDragHandle: showDragHandle,
         useSafeArea: useSafeArea,
         isScrollControlled: isScrollControlled,
+        scrollControlDisabledMaxHeightRatio: scrollControlDisabledMaxHeightRatio,
+        clipBehavior: clipBehavior,
       );
 }
