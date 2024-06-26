@@ -1,3 +1,7 @@
+## 0.0.76
+
+* Update dependencies
+
 ## 0.0.75
 
 * Update Modal Bottom Sheet Page
