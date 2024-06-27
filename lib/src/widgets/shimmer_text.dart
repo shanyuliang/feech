@@ -30,10 +30,10 @@ class ShimmerText extends StatelessWidget {
           highlightColor: highlightColor,
           child: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Text('', textScaleFactor: textScaleFactor),
+            child: Text('', textScaler: TextScaler.linear(textScaleFactor)),
           ),
         ),
       ),
