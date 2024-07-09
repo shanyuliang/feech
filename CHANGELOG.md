@@ -1,3 +1,7 @@
+## 0.0.78
+
+* Update dependencies
+
 ## 0.0.77
 
 * Update Shimmer Text

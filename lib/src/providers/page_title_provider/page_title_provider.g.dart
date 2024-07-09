@@ -6,7 +6,7 @@ part of 'page_title_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pageTitleProviderHash() => r'75c26b2663e03f31f7f0649e27d50628ac8b3828';
+String _$pageTitleProviderHash() => r'46e0da22b0e9eac7774ea3da1e81983eae98a9f5';
 
 /// Copied from Dart SDK
 class _SystemHash {

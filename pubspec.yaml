@@ -1,5 +1,5 @@
 name: feech
-version: 0.0.77
+version: 0.0.78
 description: "Flutter Experience Emma Can Help"
 homepage: "https://github.com/shanyuliang/feech"
 repository: "https://github.com/shanyuliang/feech"
@@ -31,7 +31,7 @@ dependencies:
   flutter_riverpod: '>=2.5.1 <3.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_svg: '>=2.0.7 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.0.2 <5.0.0' # https://pub.dev/packages/flutter_tts
-  freezed_annotation: '>=2.4.1 <3.0.0' # https://pub.dev/packages/freezed_annotation
+  freezed_annotation: '>=2.4.3 <3.0.0' # https://pub.dev/packages/freezed_annotation
   geocoding: '>=3.0.0 <4.0.0' # https://pub.dev/packages/geocoding
   geolocator: '>=11.0.0 <13.0.0' # https://pub.dev/packages/geolocator
   go_router: '>=14.2.0 <15.0.0' # https://pub.dev/packages/go_router
