@@ -1,3 +1,7 @@
+## 0.0.80
+
+* Update dependencies
+
 ## 0.0.79
 
 * Update dependencies
