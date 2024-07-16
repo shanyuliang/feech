@@ -1,5 +1,5 @@
 name: feech
-version: 0.0.81
+version: 0.0.82
 description: "Flutter Experience Emma Can Help"
 homepage: "https://github.com/shanyuliang/feech"
 repository: "https://github.com/shanyuliang/feech"
@@ -36,7 +36,7 @@ dependencies:
   geolocator: '>=11.0.0 <13.0.0' # https://pub.dev/packages/geolocator
   go_router: '>=14.2.1 <15.0.0' # https://pub.dev/packages/go_router
   google_maps_flutter: '>=2.7.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
-  http: '>=0.13.6 <2.0.0' # https://pub.dev/packages/http
+  http: '>=1.2.2 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.2.0 <5.0.0' # https://pub.dev/packages/image
   intl: '>=0.18.1 <1.0.0' # https://pub.dev/packages/intl
   json_annotation: '>=4.9.0 <5.0.0' # https://pub.dev/packages/json_annotation
