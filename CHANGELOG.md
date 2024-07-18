@@ -1,3 +1,7 @@
+## 0.0.83
+
+* Update Flutter to 3.22.3
+
 ## 0.0.82
 
 * Update dependencies
