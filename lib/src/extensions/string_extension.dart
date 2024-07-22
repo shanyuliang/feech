@@ -1,6 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../utilities/handy_util.dart';
 
 extension StringExtension on String {
   static final whitespacesRegExp = RegExp(r"\s+");
@@ -20,6 +21,36 @@ extension StringExtension on String {
       result[i] = x;
     }
     return result;
+  }
+
+  String asAssetGetVariantPathName(String basePathName) {
+    final variant = getVariant();
+    final originalPathNameUri = basePathName.parseAsUri()!;
+    final originalPathSegments = originalPathNameUri.pathSegments.toList();
+    final variantPathNameUri =
+        originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, variant));
+    return variantPathNameUri.path;
+  }
+
+  String asAssetGetFlavorPathName(String basePathName) {
+    if (appFlavor != null) {
+      final originalPathNameUri = basePathName.parseAsUri()!;
+      final originalPathSegments = originalPathNameUri.pathSegments.toList();
+      final flavorPathNameUri =
+          originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, appFlavor!));
+      return flavorPathNameUri.path;
+    } else {
+      return basePathName;
+    }
+  }
+
+  String asAssetGetBuildTypePathName(String basePathName) {
+    final buildType = getBuildType();
+    final originalPathNameUri = basePathName.parseAsUri()!;
+    final originalPathSegments = originalPathNameUri.pathSegments.toList();
+    final buildTypePathNameUri =
+        originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, buildType));
+    return buildTypePathNameUri.path;
   }
 
   String asNameGetInitials({int? maxResultLength}) {

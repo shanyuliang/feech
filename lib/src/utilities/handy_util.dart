@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -60,4 +61,16 @@ void setAppSwitcherTitle({required BuildContext context, String? title}) {
     label: title,
     primaryColor: Theme.of(context).primaryColor.value,
   ));
+}
+
+String getBuildType() {
+  return kReleaseMode ? "release" : (kProfileMode ? "profile" : "debug");
+}
+
+String getVariant() {
+  if (appFlavor != null) {
+    return kReleaseMode ? "${appFlavor}Release" : (kProfileMode ? "${appFlavor}Profile" : "${appFlavor}Debug");
+  } else {
+    return getBuildType();
+  }
 }

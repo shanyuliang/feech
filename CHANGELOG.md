@@ -1,3 +1,7 @@
+## 0.0.84
+
+* Add string extension to get variant asset name
+
 ## 0.0.83
 
 * Update Flutter to 3.22.3
