@@ -24,8 +24,8 @@ extension StringExtension on String {
     return result;
   }
 
-  String asAssetGetVariantPathName() {
-    if (kIsWeb) {
+  String asAssetGetVariantPathName({bool webUseBaseOnly = true}) {
+    if (kIsWeb && webUseBaseOnly) {
       return this;
     } else {
       final variant = getVariant();
@@ -37,8 +37,8 @@ extension StringExtension on String {
     }
   }
 
-  String asAssetGetFlavorPathName() {
-    if (kIsWeb) {
+  String asAssetGetFlavorPathName({bool webUseBaseOnly = true}) {
+    if (kIsWeb && webUseBaseOnly) {
       return this;
     } else {
       if (appFlavor != null) {
@@ -53,8 +53,8 @@ extension StringExtension on String {
     }
   }
 
-  String asAssetGetBuildTypePathName() {
-    if (kIsWeb) {
+  String asAssetGetBuildTypePathName({bool webUseBaseOnly = true}) {
+    if (kIsWeb && webUseBaseOnly) {
       return this;
     } else {
       final buildType = getBuildType();

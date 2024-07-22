@@ -1,3 +1,7 @@
+## 0.0.87
+
+* Update string extension to get variant asset name
+
 ## 0.0.86
 
 * Update string extension to get variant asset name
