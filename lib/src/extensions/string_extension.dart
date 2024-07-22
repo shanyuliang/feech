@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,33 +25,45 @@ extension StringExtension on String {
   }
 
   String asAssetGetVariantPathName() {
-    final variant = getVariant();
-    final originalPathNameUri = parseAsUri()!;
-    final originalPathSegments = originalPathNameUri.pathSegments.toList();
-    final variantPathNameUri =
-        originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, variant));
-    return variantPathNameUri.path;
+    if (kIsWeb) {
+      return this;
+    } else {
+      final variant = getVariant();
+      final originalPathNameUri = parseAsUri()!;
+      final originalPathSegments = originalPathNameUri.pathSegments.toList();
+      final variantPathNameUri =
+          originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, variant));
+      return variantPathNameUri.path;
+    }
   }
 
   String asAssetGetFlavorPathName() {
-    if (appFlavor != null) {
-      final originalPathNameUri = parseAsUri()!;
-      final originalPathSegments = originalPathNameUri.pathSegments.toList();
-      final flavorPathNameUri =
-          originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, appFlavor!));
-      return flavorPathNameUri.path;
-    } else {
+    if (kIsWeb) {
       return this;
+    } else {
+      if (appFlavor != null) {
+        final originalPathNameUri = parseAsUri()!;
+        final originalPathSegments = originalPathNameUri.pathSegments.toList();
+        final flavorPathNameUri =
+            originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, appFlavor!));
+        return flavorPathNameUri.path;
+      } else {
+        return this;
+      }
     }
   }
 
   String asAssetGetBuildTypePathName() {
-    final buildType = getBuildType();
-    final originalPathNameUri = parseAsUri()!;
-    final originalPathSegments = originalPathNameUri.pathSegments.toList();
-    final buildTypePathNameUri =
-        originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, buildType));
-    return buildTypePathNameUri.path;
+    if (kIsWeb) {
+      return this;
+    } else {
+      final buildType = getBuildType();
+      final originalPathNameUri = parseAsUri()!;
+      final originalPathSegments = originalPathNameUri.pathSegments.toList();
+      final buildTypePathNameUri =
+          originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, buildType));
+      return buildTypePathNameUri.path;
+    }
   }
 
   String asNameGetInitials({int? maxResultLength}) {
