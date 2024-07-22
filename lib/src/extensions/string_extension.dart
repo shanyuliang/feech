@@ -23,30 +23,30 @@ extension StringExtension on String {
     return result;
   }
 
-  String asAssetGetVariantPathName(String basePathName) {
+  String asAssetGetVariantPathName() {
     final variant = getVariant();
-    final originalPathNameUri = basePathName.parseAsUri()!;
+    final originalPathNameUri = parseAsUri()!;
     final originalPathSegments = originalPathNameUri.pathSegments.toList();
     final variantPathNameUri =
         originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, variant));
     return variantPathNameUri.path;
   }
 
-  String asAssetGetFlavorPathName(String basePathName) {
+  String asAssetGetFlavorPathName() {
     if (appFlavor != null) {
-      final originalPathNameUri = basePathName.parseAsUri()!;
+      final originalPathNameUri = parseAsUri()!;
       final originalPathSegments = originalPathNameUri.pathSegments.toList();
       final flavorPathNameUri =
           originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, appFlavor!));
       return flavorPathNameUri.path;
     } else {
-      return basePathName;
+      return this;
     }
   }
 
-  String asAssetGetBuildTypePathName(String basePathName) {
+  String asAssetGetBuildTypePathName() {
     final buildType = getBuildType();
-    final originalPathNameUri = basePathName.parseAsUri()!;
+    final originalPathNameUri = parseAsUri()!;
     final originalPathSegments = originalPathNameUri.pathSegments.toList();
     final buildTypePathNameUri =
         originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, buildType));
