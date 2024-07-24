@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../utilities/handy_util.dart';
+import 'uri_extension.dart';
 
 extension StringExtension on String {
   static final whitespacesRegExp = RegExp(r"\s+");
@@ -24,46 +24,34 @@ extension StringExtension on String {
     return result;
   }
 
-  String asAssetGetVariantPathName({bool webUseBaseOnly = true}) {
-    if (kIsWeb && webUseBaseOnly) {
-      return this;
-    } else {
-      final variant = getVariant();
-      final originalPathNameUri = parseAsUri()!;
-      final originalPathSegments = originalPathNameUri.pathSegments.toList();
-      final variantPathNameUri =
-          originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, variant));
-      return variantPathNameUri.path;
-    }
+  /// This function convert a base asset name to a variant/language aware asset name
+  /// For example:
+  /// "assets/images/volvo.png"
+  /// could be converted to
+  /// "assets/images/paidDebug/zh/volvo.png"
+  /// This function only generate the asset name. It doesn't check the existence of the asset.
+  String asAssetGetVariantPathName({final String? languageCode}) {
+    final originalPathNameUri = parseAsUri()!;
+    return originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: getVariant())
+        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .path;
   }
 
-  String asAssetGetFlavorPathName({bool webUseBaseOnly = true}) {
-    if (kIsWeb && webUseBaseOnly) {
-      return this;
-    } else {
-      if (appFlavor != null) {
-        final originalPathNameUri = parseAsUri()!;
-        final originalPathSegments = originalPathNameUri.pathSegments.toList();
-        final flavorPathNameUri =
-            originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, appFlavor!));
-        return flavorPathNameUri.path;
-      } else {
-        return this;
-      }
-    }
+  String asAssetGetFlavorPathName({final String? languageCode}) {
+    final originalPathNameUri = parseAsUri()!;
+    return originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: appFlavor)
+        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .path;
   }
 
-  String asAssetGetBuildTypePathName({bool webUseBaseOnly = true}) {
-    if (kIsWeb && webUseBaseOnly) {
-      return this;
-    } else {
-      final buildType = getBuildType();
-      final originalPathNameUri = parseAsUri()!;
-      final originalPathSegments = originalPathNameUri.pathSegments.toList();
-      final buildTypePathNameUri =
-          originalPathNameUri.replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, buildType));
-      return buildTypePathNameUri.path;
-    }
+  String asAssetGetBuildTypePathName({final String? languageCode}) {
+    final originalPathNameUri = parseAsUri()!;
+    return originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: getBuildType())
+        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .path;
   }
 
   String asNameGetInitials({int? maxResultLength}) {
