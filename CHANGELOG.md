@@ -1,3 +1,7 @@
+## 0.0.90
+
+* Update app asset manifest provider
+
 ## 0.0.89
 
 * Add app asset manifest provider

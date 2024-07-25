@@ -5,7 +5,7 @@ import '../../extensions/string_extension.dart';
 
 part 'app_asset_manifest_provider.g.dart';
 
-@Riverpod()
+@Riverpod(keepAlive: true)
 class AppAssetManifestProvider extends _$AppAssetManifestProvider {
   @override
   Future<AssetManifest> build() async {
@@ -14,10 +14,10 @@ class AppAssetManifestProvider extends _$AppAssetManifestProvider {
 
   String getActionAssetName(String baseAssetName, {String? localeName}) {
     final assetList = state.requireValue.listAssets();
-    final baseLocaleName = baseAssetName.asAssetGetPathName(localeName: localeName);
     final variantName = baseAssetName.asAssetGetVariantPathName(localeName: localeName);
     final flavorName = baseAssetName.asAssetGetFlavorPathName(localeName: localeName);
     final buildTypeName = baseAssetName.asAssetGetBuildTypePathName(localeName: localeName);
+    final baseLocaleName = baseAssetName.asAssetGetPathName(localeName: localeName);
     if (assetList.contains(variantName)) {
       return variantName;
     } else if (assetList.contains(flavorName)) {

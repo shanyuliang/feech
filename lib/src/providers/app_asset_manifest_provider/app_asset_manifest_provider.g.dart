@@ -7,12 +7,12 @@ part of 'app_asset_manifest_provider.dart';
 // **************************************************************************
 
 String _$appAssetManifestProviderHash() =>
-    r'bd22160b00b90f43c560d5409bdcba3a6f2cdbdc';
+    r'b742cb2f2b6da6167a1fda662cf18be64d7c0111';
 
 /// See also [AppAssetManifestProvider].
 @ProviderFor(AppAssetManifestProvider)
-final appAssetManifestProvider = AutoDisposeAsyncNotifierProvider<
-    AppAssetManifestProvider, AssetManifest>.internal(
+final appAssetManifestProvider =
+    AsyncNotifierProvider<AppAssetManifestProvider, AssetManifest>.internal(
   AppAssetManifestProvider.new,
   name: r'appAssetManifestProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final appAssetManifestProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$AppAssetManifestProvider = AutoDisposeAsyncNotifier<AssetManifest>;
+typedef _$AppAssetManifestProvider = AsyncNotifier<AssetManifest>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
