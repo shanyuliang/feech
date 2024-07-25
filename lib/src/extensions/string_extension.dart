@@ -30,28 +30,33 @@ extension StringExtension on String {
   /// could be converted to
   /// "assets/images/paidDebug/zh/volvo.png"
   /// This function only generate the asset name. It doesn't check the existence of the asset.
-  String asAssetGetVariantPathName({final String? languageCode}) {
+  String asAssetGetVariantPathName({final String? localeName}) {
     final originalPathNameUri = parseAsUri()!;
     return originalPathNameUri
         .insertLastPathSegment(insertedPathSegment: getVariant())
-        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .insertLastPathSegment(insertedPathSegment: localeName)
         .path;
   }
 
-  String asAssetGetFlavorPathName({final String? languageCode}) {
+  String asAssetGetFlavorPathName({final String? localeName}) {
     final originalPathNameUri = parseAsUri()!;
     return originalPathNameUri
         .insertLastPathSegment(insertedPathSegment: appFlavor)
-        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .insertLastPathSegment(insertedPathSegment: localeName)
         .path;
   }
 
-  String asAssetGetBuildTypePathName({final String? languageCode}) {
+  String asAssetGetBuildTypePathName({final String? localeName}) {
     final originalPathNameUri = parseAsUri()!;
     return originalPathNameUri
         .insertLastPathSegment(insertedPathSegment: getBuildType())
-        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .insertLastPathSegment(insertedPathSegment: localeName)
         .path;
+  }
+
+  String asAssetGetPathName({final String? localeName}) {
+    final originalPathNameUri = parseAsUri()!;
+    return originalPathNameUri.insertLastPathSegment(insertedPathSegment: localeName).path;
   }
 
   String asNameGetInitials({int? maxResultLength}) {

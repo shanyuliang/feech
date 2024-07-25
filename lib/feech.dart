@@ -26,6 +26,7 @@ export 'src/models/app_locale.dart';
 export 'src/models/locale_voices.dart';
 export 'src/models/stt.dart';
 export 'src/models/tts.dart';
+export 'src/providers/app_asset_manifest_provider/app_asset_manifest_provider.dart';
 export 'src/providers/app_initialise_provider/app_initialise_provider.dart';
 export 'src/providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
 export 'src/providers/app_navigator_observer.dart';

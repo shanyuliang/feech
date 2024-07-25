@@ -1,3 +1,7 @@
+## 0.0.89
+
+* Add app asset manifest provider
+
 ## 0.0.88
 
 * Update string extension to get language asset name
