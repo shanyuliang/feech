@@ -7,10 +7,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../constants.dart';
 import '../../extensions/string_extension.dart';
 
-part 'app_asset_manifest_provider.g.dart';
+part 'asset_manifest_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppAssetManifestProvider extends _$AppAssetManifestProvider {
+class AssetManifestProvider extends _$AssetManifestProvider {
   @override
   Future<AssetManifest> build({bool debugLogDiagnostics = false}) async {
     return AssetManifest.loadFromAssetBundle(rootBundle);

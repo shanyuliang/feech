@@ -25,11 +25,11 @@ ProviderContainer createContainer({
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('appAssetManifestProvider', () async {
+  test('assetManifestProvider', () async {
     final container = createContainer();
 
-    await container.read(appAssetManifestProvider(debugLogDiagnostics: true).future);
-    container.read(appAssetManifestProvider(debugLogDiagnostics: true).notifier).getActionAssetName("assets/data/toilets_filtered.json");
+    await container.read(assetManifestProvider(debugLogDiagnostics: true).future);
+    container.read(assetManifestProvider(debugLogDiagnostics: true).notifier).getActionAssetName("assets/data/toilets_filtered.json");
     await Future.delayed(const Duration(seconds: 1));
     //await container.read(appAssetManifestProvider.future);
     //expect(initialState, equals(const UserLocation()));

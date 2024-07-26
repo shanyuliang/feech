@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_asset_manifest_provider.dart';
+part of 'asset_manifest_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appAssetManifestProviderHash() =>
-    r'8df25de0287be2f72d34490d6d636f14aaa56037';
+String _$assetManifestProviderHash() =>
+    r'7694b89852c875d682feb821415158eae603f893';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$AppAssetManifestProvider
+abstract class _$AssetManifestProvider
     extends BuildlessAsyncNotifier<AssetManifest> {
   late final bool debugLogDiagnostics;
 
@@ -39,27 +39,27 @@ abstract class _$AppAssetManifestProvider
   });
 }
 
-/// See also [AppAssetManifestProvider].
-@ProviderFor(AppAssetManifestProvider)
-const appAssetManifestProvider = AppAssetManifestProviderFamily();
+/// See also [AssetManifestProvider].
+@ProviderFor(AssetManifestProvider)
+const assetManifestProvider = AssetManifestProviderFamily();
 
-/// See also [AppAssetManifestProvider].
-class AppAssetManifestProviderFamily extends Family<AsyncValue<AssetManifest>> {
-  /// See also [AppAssetManifestProvider].
-  const AppAssetManifestProviderFamily();
+/// See also [AssetManifestProvider].
+class AssetManifestProviderFamily extends Family<AsyncValue<AssetManifest>> {
+  /// See also [AssetManifestProvider].
+  const AssetManifestProviderFamily();
 
-  /// See also [AppAssetManifestProvider].
-  AppAssetManifestProviderProvider call({
+  /// See also [AssetManifestProvider].
+  AssetManifestProviderProvider call({
     bool debugLogDiagnostics = false,
   }) {
-    return AppAssetManifestProviderProvider(
+    return AssetManifestProviderProvider(
       debugLogDiagnostics: debugLogDiagnostics,
     );
   }
 
   @override
-  AppAssetManifestProviderProvider getProviderOverride(
-    covariant AppAssetManifestProviderProvider provider,
+  AssetManifestProviderProvider getProviderOverride(
+    covariant AssetManifestProviderProvider provider,
   ) {
     return call(
       debugLogDiagnostics: provider.debugLogDiagnostics,
@@ -78,31 +78,31 @@ class AppAssetManifestProviderFamily extends Family<AsyncValue<AssetManifest>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'appAssetManifestProvider';
+  String? get name => r'assetManifestProvider';
 }
 
-/// See also [AppAssetManifestProvider].
-class AppAssetManifestProviderProvider
-    extends AsyncNotifierProviderImpl<AppAssetManifestProvider, AssetManifest> {
-  /// See also [AppAssetManifestProvider].
-  AppAssetManifestProviderProvider({
+/// See also [AssetManifestProvider].
+class AssetManifestProviderProvider
+    extends AsyncNotifierProviderImpl<AssetManifestProvider, AssetManifest> {
+  /// See also [AssetManifestProvider].
+  AssetManifestProviderProvider({
     bool debugLogDiagnostics = false,
   }) : this._internal(
-          () => AppAssetManifestProvider()
+          () => AssetManifestProvider()
             ..debugLogDiagnostics = debugLogDiagnostics,
-          from: appAssetManifestProvider,
-          name: r'appAssetManifestProvider',
+          from: assetManifestProvider,
+          name: r'assetManifestProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$appAssetManifestProviderHash,
-          dependencies: AppAssetManifestProviderFamily._dependencies,
+                  : _$assetManifestProviderHash,
+          dependencies: AssetManifestProviderFamily._dependencies,
           allTransitiveDependencies:
-              AppAssetManifestProviderFamily._allTransitiveDependencies,
+              AssetManifestProviderFamily._allTransitiveDependencies,
           debugLogDiagnostics: debugLogDiagnostics,
         );
 
-  AppAssetManifestProviderProvider._internal(
+  AssetManifestProviderProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -116,7 +116,7 @@ class AppAssetManifestProviderProvider
 
   @override
   FutureOr<AssetManifest> runNotifierBuild(
-    covariant AppAssetManifestProvider notifier,
+    covariant AssetManifestProvider notifier,
   ) {
     return notifier.build(
       debugLogDiagnostics: debugLogDiagnostics,
@@ -124,10 +124,10 @@ class AppAssetManifestProviderProvider
   }
 
   @override
-  Override overrideWith(AppAssetManifestProvider Function() create) {
+  Override overrideWith(AssetManifestProvider Function() create) {
     return ProviderOverride(
       origin: this,
-      override: AppAssetManifestProviderProvider._internal(
+      override: AssetManifestProviderProvider._internal(
         () => create()..debugLogDiagnostics = debugLogDiagnostics,
         from: from,
         name: null,
@@ -140,14 +140,14 @@ class AppAssetManifestProviderProvider
   }
 
   @override
-  AsyncNotifierProviderElement<AppAssetManifestProvider, AssetManifest>
+  AsyncNotifierProviderElement<AssetManifestProvider, AssetManifest>
       createElement() {
-    return _AppAssetManifestProviderProviderElement(this);
+    return _AssetManifestProviderProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is AppAssetManifestProviderProvider &&
+    return other is AssetManifestProviderProvider &&
         other.debugLogDiagnostics == debugLogDiagnostics;
   }
 
@@ -160,19 +160,19 @@ class AppAssetManifestProviderProvider
   }
 }
 
-mixin AppAssetManifestProviderRef on AsyncNotifierProviderRef<AssetManifest> {
+mixin AssetManifestProviderRef on AsyncNotifierProviderRef<AssetManifest> {
   /// The parameter `debugLogDiagnostics` of this provider.
   bool get debugLogDiagnostics;
 }
 
-class _AppAssetManifestProviderProviderElement
-    extends AsyncNotifierProviderElement<AppAssetManifestProvider,
-        AssetManifest> with AppAssetManifestProviderRef {
-  _AppAssetManifestProviderProviderElement(super.provider);
+class _AssetManifestProviderProviderElement
+    extends AsyncNotifierProviderElement<AssetManifestProvider, AssetManifest>
+    with AssetManifestProviderRef {
+  _AssetManifestProviderProviderElement(super.provider);
 
   @override
   bool get debugLogDiagnostics =>
-      (origin as AppAssetManifestProviderProvider).debugLogDiagnostics;
+      (origin as AssetManifestProviderProvider).debugLogDiagnostics;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
