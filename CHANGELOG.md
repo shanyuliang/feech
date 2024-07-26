@@ -1,3 +1,7 @@
+## 0.0.91
+
+* Add locale extension
+
 ## 0.0.90
 
 * Update app asset manifest provider

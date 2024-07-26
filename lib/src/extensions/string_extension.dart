@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../utilities/handy_util.dart';
+import 'locale_extension.dart';
 import 'uri_extension.dart';
 
 extension StringExtension on String {
@@ -24,39 +27,51 @@ extension StringExtension on String {
     return result;
   }
 
-  /// This function convert a base asset name to a variant/language aware asset name
+  /// This function convert a base asset name to a candidate asset name list
   /// For example:
   /// "assets/images/volvo.png"
   /// could be converted to
-  /// "assets/images/paidDebug/zh/volvo.png"
+  /// "assets/images/paidDebug/zh_CN/volvo.png" and "assets/images/zh_CN/volvo.png"
   /// This function only generate the asset name. It doesn't check the existence of the asset.
-  String asAssetGetVariantPathName({final String? localeName}) {
+  List<String> asAssetGetCandidates() {
     final originalPathNameUri = parseAsUri()!;
-    return originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: getVariant())
+    final variant = getVariant();
+    final buildType = getBuildType();
+    final locale = PlatformDispatcher.instance.locale;
+    final localeName = locale.getLocaleName();
+    final languageCode = locale.languageCode;
+    final candidates = <String>[];
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: variant)
         .insertLastPathSegment(insertedPathSegment: localeName)
-        .path;
-  }
-
-  String asAssetGetFlavorPathName({final String? localeName}) {
-    final originalPathNameUri = parseAsUri()!;
-    return originalPathNameUri
+        .path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: variant)
+        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).path);
+    candidates.add(originalPathNameUri
         .insertLastPathSegment(insertedPathSegment: appFlavor)
         .insertLastPathSegment(insertedPathSegment: localeName)
-        .path;
-  }
-
-  String asAssetGetBuildTypePathName({final String? localeName}) {
-    final originalPathNameUri = parseAsUri()!;
-    return originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: getBuildType())
+        .path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: appFlavor)
+        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: buildType)
         .insertLastPathSegment(insertedPathSegment: localeName)
-        .path;
-  }
-
-  String asAssetGetPathName({final String? localeName}) {
-    final originalPathNameUri = parseAsUri()!;
-    return originalPathNameUri.insertLastPathSegment(insertedPathSegment: localeName).path;
+        .path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: buildType)
+        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: localeName).path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(this);
+    return candidates;
   }
 
   String asNameGetInitials({int? maxResultLength}) {
