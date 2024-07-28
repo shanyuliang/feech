@@ -2,6 +2,7 @@ library feech;
 
 export 'src/extensions/base_request_extension.dart';
 export 'src/extensions/base_response_extension.dart';
+export 'src/extensions/box_constraints_extension.dart';
 export 'src/extensions/build_context_extension.dart';
 export 'src/extensions/characters_extension.dart';
 export 'src/extensions/content_type_extension.dart';
@@ -24,6 +25,7 @@ export 'src/extensions/x509certificate_extension.dart';
 export 'src/helpers/network_helper.dart';
 export 'src/helpers/sqlite_helper.dart';
 export 'src/models/app_locale.dart';
+export 'src/models/display_width_mode.dart';
 export 'src/models/locale_voices.dart';
 export 'src/models/stt.dart';
 export 'src/models/tts.dart';

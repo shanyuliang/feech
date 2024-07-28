@@ -1,3 +1,7 @@
+## 0.0.93
+
+* Add display width mode and box constraint extension
+
 ## 0.0.92
 
 * Update app asset manifest provider
