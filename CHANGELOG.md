@@ -1,3 +1,7 @@
+## 0.0.94
+
+* Fix iterable extension error
+
 ## 0.0.93
 
 * Add display width mode and box constraint extension
