@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../extensions/color_extension.dart';
 import '../extensions/date_time_extension.dart';
 import '../extensions/int_extension.dart';
 import '../extensions/string_extension.dart';
@@ -77,4 +80,14 @@ class BoolIntConverter extends JsonConverterEx<bool, int> {
 
   @override
   int toJson(bool object) => object ? 1 : 0;
+}
+
+class ColorStringConverter extends JsonConverterEx<Color, String> {
+  const ColorStringConverter();
+
+  @override
+  Color fromJson(String json) => json.parseAsHexColor();
+
+  @override
+  String toJson(Color object) => object.toHexString();
 }

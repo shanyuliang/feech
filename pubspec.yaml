@@ -1,5 +1,5 @@
 name: feech
-version: 0.0.95
+version: 0.0.96
 description: "Flutter Experience Emma Can Help"
 homepage: "https://github.com/shanyuliang/feech"
 repository: "https://github.com/shanyuliang/feech"
@@ -27,7 +27,7 @@ dependencies:
   cloud_firestore: ">=5.2.0 <6.0.0" # https://pub.dev/packages/cloud_firestore
   crypto: '>=3.0.3 <4.0.0' # https://pub.dev/packages/crypto
   firebase_crashlytics: '>=4.0.4 <5.0.0' # https://pub.dev/packages/firebase_crashlytics
-  flutter_cache_manager: '>=3.3.3 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
+  flutter_cache_manager: '>=3.4.0 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=2.5.1 <3.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_svg: '>=2.0.7 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.0.2 <5.0.0' # https://pub.dev/packages/flutter_tts
@@ -46,7 +46,7 @@ dependencies:
   quiver: '>=3.2.1 <4.0.0' # https://pub.dev/packages/quiver
   riverpod_annotation: '>=2.3.5 <3.0.0' # https://pub.dev/packages/riverpod_annotation
   shared_preferences: '>=2.3.0 <3.0.0' # https://pub.dev/packages/shared_preferences
-  speech_to_text: '>=6.6.0 <7.0.0' # https://pub.dev/packages/speech_to_text
+  speech_to_text: '>=6.6.2 <7.0.0' # https://pub.dev/packages/speech_to_text
   sqflite: '>=2.3.3 <3.0.0' # https://pub.dev/packages/sqflite
   ulid4d: '>=2.0.0 <3.0.0' # https://pub.dev/packages/ulid4d
   webview_flutter: '>=4.8.0 <5.0.0' # https://pub.dev/packages/webview_flutter

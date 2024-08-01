@@ -84,6 +84,10 @@ extension StringExtension on String {
     }
   }
 
+  Color parseAsHexColor() {
+    return Color(int.parse(this, radix: 16));
+  }
+
   Color mapToPrimaryColor() {
     final colorIndex = hashCode % Colors.primaries.length;
     return Colors.primaries[colorIndex];

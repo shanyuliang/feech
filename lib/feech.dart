@@ -5,6 +5,7 @@ export 'src/extensions/base_response_extension.dart';
 export 'src/extensions/box_constraints_extension.dart';
 export 'src/extensions/build_context_extension.dart';
 export 'src/extensions/characters_extension.dart';
+export 'src/extensions/color_extension.dart';
 export 'src/extensions/content_type_extension.dart';
 export 'src/extensions/date_time_extension.dart';
 export 'src/extensions/double_extension.dart';
