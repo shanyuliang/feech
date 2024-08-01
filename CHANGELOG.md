@@ -1,3 +1,11 @@
+## 0.0.97
+
+* Update color extension and string extension
+
+## 0.0.96
+
+* Add color extension and json converter for color
+
 ## 0.0.95
 
 * Update dependencies

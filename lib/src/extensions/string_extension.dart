@@ -85,7 +85,7 @@ extension StringExtension on String {
   }
 
   Color parseAsHexColor() {
-    return Color(int.parse(this, radix: 16));
+    return Color(int.parse(replaceFirst("#", ""), radix: 16));
   }
 
   Color mapToPrimaryColor() {

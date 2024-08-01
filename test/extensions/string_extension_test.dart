@@ -1,4 +1,5 @@
 import 'package:feech/feech.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -20,5 +21,20 @@ void main() {
   test('asNameGetInitials 4 characters with max 3 characters limit', () {
     final initial = "Emma Tang Dou Shan".asNameGetInitials(maxResultLength: 3);
     expect(initial, "ETD");
+  });
+
+  test('parseAsHexColor black', () {
+    final c = "#FF000000".parseAsHexColor();
+    expect(c, Colors.black);
+  });
+
+  test('parseAsHexColor transparent', () {
+    final c = "#00000000".parseAsHexColor();
+    expect(c, Colors.transparent);
+  });
+
+  test('parseAsHexColor red', () {
+    final c = "#FFF44336".parseAsHexColor();
+    expect(c, Colors.red.shade500);
   });
 }
