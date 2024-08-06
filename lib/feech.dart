@@ -1,5 +1,6 @@
 library feech;
 
+export 'src/extensions/alignment_extension.dart';
 export 'src/extensions/base_request_extension.dart';
 export 'src/extensions/base_response_extension.dart';
 export 'src/extensions/box_constraints_extension.dart';

@@ -137,6 +137,21 @@ extension StringExtension on String {
       return null;
     }
   }
+
+  Alignment parseAsAlignment() {
+    return switch (toUpperCase()) {
+      "CENTERLEFT" => Alignment.centerLeft,
+      "CENTER" => Alignment.center,
+      "CENTERRIGHT" => Alignment.centerRight,
+      "TOPLEFT" => Alignment.topLeft,
+      "TOPCENTER" => Alignment.topCenter,
+      "TOPRIGHT" => Alignment.topRight,
+      "BOTTOMLEFT" => Alignment.bottomLeft,
+      "BOTTOMCENTER" => Alignment.bottomCenter,
+      "BOTTOMRIGHT" => Alignment.bottomRight,
+      _ => Alignment.center,
+    };
+  }
 }
 
 extension StringNullableExtension on String? {

@@ -1,3 +1,8 @@
+## 0.0.98
+
+* Add alignment extension and update string extension
+* Update dependencies
+
 ## 0.0.97
 
 * Update color extension and string extension

@@ -1,7 +1,7 @@
-import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 
+import '../extensions/alignment_extension.dart';
 import '../extensions/color_extension.dart';
 import '../extensions/date_time_extension.dart';
 import '../extensions/int_extension.dart';
@@ -90,4 +90,14 @@ class ColorStringConverter extends JsonConverterEx<Color, String> {
 
   @override
   String toJson(Color object) => object.toHexString();
+}
+
+class AlignmentStringConverter extends JsonConverterEx<Alignment, String> {
+  const AlignmentStringConverter();
+
+  @override
+  Alignment fromJson(String json) => json.parseAsAlignment();
+
+  @override
+  String toJson(Alignment object) => object.toShortString();
 }
