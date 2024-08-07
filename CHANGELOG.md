@@ -1,3 +1,7 @@
+## 0.0.99
+
+* Update dependencies
+
 ## 0.0.98
 
 * Add alignment extension and update string extension
