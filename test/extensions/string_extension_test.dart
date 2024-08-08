@@ -24,17 +24,17 @@ void main() {
   });
 
   test('parseAsHexColor black', () {
-    final c = "#FF000000".parseAsHexColor();
+    final c = "#FF000000".parseAsHexARGBColor();
     expect(c, Colors.black);
   });
 
   test('parseAsHexColor transparent', () {
-    final c = "#00000000".parseAsHexColor();
+    final c = "#00000000".parseAsHexARGBColor();
     expect(c, Colors.transparent);
   });
 
   test('parseAsHexColor red', () {
-    final c = "#FFF44336".parseAsHexColor();
+    final c = "#FFF44336".parseAsHexARGBColor();
     expect(c, Colors.red.shade500);
   });
 }
