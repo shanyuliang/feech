@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Update animated svg widget
+
 ## 0.1.1
 
 * Export animated svg widget

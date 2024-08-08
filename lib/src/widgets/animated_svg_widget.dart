@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../extensions/alignment_extension.dart';
+import '../extensions/color_extension.dart';
+
 const urlTemplate = '''<!DOCTYPE html>
 <html lang="">
 <head>
@@ -17,10 +20,11 @@ const urlTemplate = '''<!DOCTYPE html>
         }
 
         body {
-            background-image: url("--SSVVGG--");
-            background-position: center;
+            background-image: url("--IMAGE--");
+            background-color: --COLOR--;
+            background-position: --ALIGNMENT--;
+            background-size: --FIT--;
             background-repeat: no-repeat;
-            background-size: cover;
             height: 100%;
             margin: 0;
             padding: 0;
@@ -45,10 +49,11 @@ const assetTemplate = '''<!DOCTYPE html>
         }
 
         body {
-            background-image: url("data:image/svg+xml;base64,--SSVVGG--");
-            background-position: center;
+            background-image: url("data:image/svg+xml;base64,--IMAGE--");
+            background-color: --COLOR--;
+            background-position: --ALIGNMENT--;
+            background-size: --FIT--;
             background-repeat: no-repeat;
-            background-size: cover;
             height: 100%;
             margin: 0;
             padding: 0;
@@ -62,18 +67,27 @@ const assetTemplate = '''<!DOCTYPE html>
 
 class AnimatedSvgWidget extends StatefulWidget {
   final String svgLink;
+  final Alignment alignment;
+  final BoxFit fit;
+  final Color backgroundColor;
 
   const AnimatedSvgWidget({
     super.key,
     required this.svgLink,
-  });
+    this.alignment = Alignment.center,
+    this.fit = BoxFit.contain,
+    this.backgroundColor = Colors.transparent,
+  }) : assert(
+          fit == BoxFit.contain || fit == BoxFit.cover,
+          'fit can only be contain or cover',
+        );
 
   @override
   State<AnimatedSvgWidget> createState() => _AnimatedSvgWidgetState();
 }
 
 class _AnimatedSvgWidgetState extends State<AnimatedSvgWidget> {
-  final _webViewController = WebViewController();
+  final _webViewController = WebViewController()..setBackgroundColor(Colors.transparent);
 
   @override
   void initState() {
@@ -92,12 +106,36 @@ class _AnimatedSvgWidgetState extends State<AnimatedSvgWidget> {
 
   Future<String> _generateHtmlString() async {
     if (widget.svgLink.startsWith("http")) {
-      final htmlString = urlTemplate.replaceAll('''--SSVVGG--''', widget.svgLink);
+      final htmlString = urlTemplate.replaceFirst(
+        '''--IMAGE--''',
+        widget.svgLink,
+      ).replaceFirst(
+        '''--COLOR--''',
+        widget.backgroundColor.toHexRGBAString(),
+      ).replaceFirst(
+        '''--ALIGNMENT--''',
+        widget.alignment.toCSSPosition(),
+      ).replaceFirst(
+        '''--FIT--''',
+        widget.fit.name,
+      );
       return htmlString;
     } else {
       final svgString = await rootBundle.loadString(widget.svgLink);
       final svgBase64 = base64Encode(svgString.codeUnits);
-      final htmlString = assetTemplate.replaceAll('''--SSVVGG--''', svgBase64);
+      final htmlString = assetTemplate.replaceFirst(
+        '''--IMAGE--''',
+        svgBase64,
+      ).replaceFirst(
+        '''--COLOR--''',
+        widget.backgroundColor.toHexRGBAString(),
+      ).replaceFirst(
+        '''--ALIGNMENT--''',
+        widget.alignment.toCSSPosition(),
+      ).replaceFirst(
+        '''--FIT--''',
+        widget.fit.name,
+      );
       return htmlString;
     }
   }

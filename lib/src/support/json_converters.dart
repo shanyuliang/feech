@@ -86,10 +86,10 @@ class ColorStringConverter extends JsonConverterEx<Color, String> {
   const ColorStringConverter();
 
   @override
-  Color fromJson(String json) => json.parseAsHexColor();
+  Color fromJson(String json) => json.parseAsHexARGBColor();
 
   @override
-  String toJson(Color object) => object.toHexString();
+  String toJson(Color object) => object.toHexARGBString();
 }
 
 class AlignmentStringConverter extends JsonConverterEx<Alignment, String> {

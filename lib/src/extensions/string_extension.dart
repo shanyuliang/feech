@@ -84,8 +84,14 @@ extension StringExtension on String {
     }
   }
 
-  Color parseAsHexColor() {
+  Color parseAsHexARGBColor() {
     return Color(int.parse(replaceFirst("#", ""), radix: 16));
+  }
+
+  Color parseAsHexRGBAColor() {
+    final temp = replaceFirst("#", "");
+    final temp2 = "${temp.substring(6)}${temp.substring(0, 6)}";
+    return Color(int.parse(temp2, radix: 16));
   }
 
   Color mapToPrimaryColor() {
