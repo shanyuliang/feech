@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Export animated svg widget
+
 ## 0.1.0
 
 * Add animated svg widget
