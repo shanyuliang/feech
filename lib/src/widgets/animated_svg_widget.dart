@@ -25,6 +25,7 @@ const urlTemplate = '''<!DOCTYPE html>
             background-position: --ALIGNMENT--;
             background-size: --FIT--;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             height: 100%;
             margin: 0;
             padding: 0;
@@ -54,6 +55,7 @@ const assetTemplate = '''<!DOCTYPE html>
             background-position: --ALIGNMENT--;
             background-size: --FIT--;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             height: 100%;
             margin: 0;
             padding: 0;
