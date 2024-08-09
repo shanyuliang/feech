@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -7,67 +8,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../extensions/alignment_extension.dart';
 import '../extensions/color_extension.dart';
 
-const urlTemplate = '''<!DOCTYPE html>
-<html lang="">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        body {
-            background-image: url("--IMAGE--");
-            background-color: --COLOR--;
-            background-position: --ALIGNMENT--;
-            background-size: --FIT--;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-    <title></title>
-</head>
-<body></body>
-</html>
-''';
-
-const assetTemplate = '''<!DOCTYPE html>
-<html lang="">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        body {
-            background-image: url("data:image/svg+xml;base64,--IMAGE--");
-            background-color: --COLOR--;
-            background-position: --ALIGNMENT--;
-            background-size: --FIT--;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-    <title></title>
-</head>
-<body></body>
-</html>
-''';
-
-class AnimatedSvgWidget extends StatefulWidget {
+class AnimatedSvgWidget extends StatelessWidget {
   final String svgLink;
   final Alignment alignment;
   final BoxFit fit;
@@ -85,10 +26,132 @@ class AnimatedSvgWidget extends StatefulWidget {
         );
 
   @override
-  State<AnimatedSvgWidget> createState() => _AnimatedSvgWidgetState();
+  Widget build(BuildContext context) {
+    if (kIsWeb) {
+      return _WebAnimatedSvgWidget(
+        svgLink: svgLink,
+        alignment: alignment,
+        fit: fit,
+        backgroundColor: backgroundColor,
+      );
+    } else {
+      return _NativeAnimatedSvgWidget(
+        svgLink: svgLink,
+        alignment: alignment,
+        fit: fit,
+        backgroundColor: backgroundColor,
+      );
+    }
+  }
 }
 
-class _AnimatedSvgWidgetState extends State<AnimatedSvgWidget> {
+class _WebAnimatedSvgWidget extends StatelessWidget {
+  final String svgLink;
+  final Alignment alignment;
+  final BoxFit fit;
+  final Color backgroundColor;
+
+  const _WebAnimatedSvgWidget({
+    required this.svgLink,
+    this.alignment = Alignment.center,
+    this.fit = BoxFit.contain,
+    this.backgroundColor = Colors.transparent,
+  }) : assert(
+          fit == BoxFit.contain || fit == BoxFit.cover,
+          'fit can only be contain or cover',
+        );
+
+  @override
+  Widget build(BuildContext context) {
+    if (svgLink.startsWith("http")) {
+      return Image.network(svgLink);
+    } else {
+      return Image.asset(svgLink);
+    }
+  }
+}
+
+class _NativeAnimatedSvgWidget extends StatefulWidget {
+  final String svgLink;
+  final Alignment alignment;
+  final BoxFit fit;
+  final Color backgroundColor;
+
+  const _NativeAnimatedSvgWidget({
+    required this.svgLink,
+    this.alignment = Alignment.center,
+    this.fit = BoxFit.contain,
+    this.backgroundColor = Colors.transparent,
+  }) : assert(
+          fit == BoxFit.contain || fit == BoxFit.cover,
+          'fit can only be contain or cover',
+        );
+
+  @override
+  State<_NativeAnimatedSvgWidget> createState() => _NativeAnimatedSvgWidgetState();
+}
+
+class _NativeAnimatedSvgWidgetState extends State<_NativeAnimatedSvgWidget> {
+  static const urlTemplate = '''<!DOCTYPE html>
+      <html lang="">
+      <head>
+          <meta charset="UTF-8">
+          <style>
+              html {
+                  width: 100%;
+                  height: 100%;
+                  overflow: hidden;
+                  margin: 0;
+              }
+      
+              body {
+                  background-image: url("--IMAGE--");
+                  background-color: --COLOR--;
+                  background-position: --ALIGNMENT--;
+                  background-size: --FIT--;
+                  background-repeat: no-repeat;
+                  background-attachment: fixed;
+                  height: 100%;
+                  margin: 0;
+                  padding: 0;
+              }
+          </style>
+          <title></title>
+      </head>
+      <body></body>
+      </html>
+      ''';
+
+  static const assetTemplate = '''<!DOCTYPE html>
+      <html lang="">
+      <head>
+          <meta charset="UTF-8">
+          <style>
+              html {
+                  width: 100%;
+                  height: 100%;
+                  overflow: hidden;
+                  margin: 0;
+              }
+      
+              body {
+                  background-image: url("data:image/svg+xml;base64,--IMAGE--");
+                  background-color: --COLOR--;
+                  background-position: --ALIGNMENT--;
+                  background-size: --FIT--;
+                  background-repeat: no-repeat;
+                  background-attachment: fixed;
+                  height: 100%;
+                  margin: 0;
+                  padding: 0;
+              }
+          </style>
+          <title></title>
+      </head>
+      <body></body>
+      </html>
+      ''';
+
   final _webViewController = WebViewController()..setBackgroundColor(Colors.transparent);
 
   @override
