@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../extensions/alignment_extension.dart';
@@ -64,9 +65,9 @@ class _WebAnimatedSvgWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (svgLink.startsWith("http")) {
-      return Image.network(svgLink);
+      return SvgPicture.network(svgLink);
     } else {
-      return Image.asset(svgLink);
+      return SvgPicture.asset(svgLink);
     }
   }
 }
