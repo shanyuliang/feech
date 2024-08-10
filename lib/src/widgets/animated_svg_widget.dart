@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui_web';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class AnimatedSvgWidget extends StatelessWidget {
   }
 }
 
-class _WebAnimatedSvgWidget extends StatelessWidget {
+class _WebAnimatedSvgWidget extends StatefulWidget {
   final String svgLink;
   final Alignment alignment;
   final BoxFit fit;
@@ -63,11 +64,35 @@ class _WebAnimatedSvgWidget extends StatelessWidget {
         );
 
   @override
+  State<_WebAnimatedSvgWidget> createState() => _WebAnimatedSvgWidgetState();
+}
+
+class _WebAnimatedSvgWidgetState extends State<_WebAnimatedSvgWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    // platformViewRegistry.registerViewFactory('img-svg-${hashCode}',
+    //         (int viewId) {
+    //           final svgString = await rootBundle.loadString(widget.svgLink);
+    //           final svgBase64 = base64Encode(svgString.codeUnits);
+    //       //final String base64 = base64Encode(utf8.encode(svgString));
+    //       final base64String = 'data:image/svg+xml;base64,$base64';
+    //       final html.ImageElement element = html.ImageElement(
+    //           src: base64String, height: width.toInt(), width: width.toInt());
+    //       return element;
+    //     });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (svgLink.startsWith("http")) {
-      return SvgPicture.network(svgLink);
+    if (widget.svgLink.startsWith("http")) {
+      // return SvgPicture.network(widget.svgLink);
+      return Image.network(widget.svgLink);
     } else {
-      return SvgPicture.asset(svgLink);
+      // return SvgPicture.asset(widget.svgLink);
+      return Image.asset(widget.svgLink);
     }
   }
 }
