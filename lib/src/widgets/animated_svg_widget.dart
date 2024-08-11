@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui_web';
+import 'dart:html' as html;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -73,23 +74,25 @@ class _WebAnimatedSvgWidgetState extends State<_WebAnimatedSvgWidget> {
   void initState() {
     super.initState();
 
-    // platformViewRegistry.registerViewFactory('img-svg-${hashCode}',
-    //         (int viewId) {
-    //           final svgString = await rootBundle.loadString(widget.svgLink);
-    //           final svgBase64 = base64Encode(svgString.codeUnits);
-    //       //final String base64 = base64Encode(utf8.encode(svgString));
-    //       final base64String = 'data:image/svg+xml;base64,$base64';
-    //       final html.ImageElement element = html.ImageElement(
-    //           src: base64String, height: width.toInt(), width: width.toInt());
-    //       return element;
-    //     });
+    platformViewRegistry.registerViewFactory('img-svg-${hashCode}',
+            (int viewId) {
+              //final svgString = await rootBundle.loadString(widget.svgLink);
+              //final svgBase64 = base64Encode(svgString.codeUnits);
+          //final String base64 = base64Encode(utf8.encode(svgString));
+          //final base64String = 'data:image/svg+xml;base64,$svgBase64';
+          final html.ImageElement element = html.ImageElement(
+              src: "https://www.svgrepo.com/download/530572/accelerate.svg", height:100, width: 100);
+          return element;
+        });
   }
 
   @override
   Widget build(BuildContext context) {
+    return HtmlElementView(viewType: 'img-svg-${hashCode}');
     if (widget.svgLink.startsWith("http")) {
       // return SvgPicture.network(widget.svgLink);
-      return Image.network(widget.svgLink);
+      // return Image.network(widget.svgLink);
+      return HtmlElementView(viewType: 'openstreetmap');
     } else {
       // return SvgPicture.asset(widget.svgLink);
       return Image.asset(widget.svgLink);
