@@ -26,7 +26,9 @@ class AnimatedSvgWidget extends ConsumerStatefulWidget {
 }
 
 class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
-  final _webViewController = WebViewController()..setBackgroundColor(Colors.transparent);
+  final _webViewController = WebViewController()
+    ..setBackgroundColor(Colors.transparent)
+    ..setJavaScriptMode(JavaScriptMode.unrestricted);
 
   @override
   Widget build(final BuildContext context) {
