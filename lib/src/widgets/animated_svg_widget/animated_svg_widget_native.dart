@@ -1,3 +1,4 @@
+import 'package:feech/feech.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -63,6 +64,9 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
   @override
   void initState() {
     super.initState();
+    ref.listen(svgAssetAsHtmlStringProvider(svgLink: widget.svgLink).future, (htmlString){
+
+    });
     _generateHtmlString().then((string) {
       _webViewController.loadHtmlString(string);
     });

@@ -4,6 +4,8 @@ import 'dart:ui_web';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../extensions/alignment_extension.dart';
+import '../../extensions/color_extension.dart';
 import '../../providers/svg_asset_base64_src_provider.dart';
 
 class AnimatedSvgWidget extends ConsumerStatefulWidget {
@@ -28,11 +30,47 @@ class AnimatedSvgWidget extends ConsumerStatefulWidget {
 }
 
 class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
+  static const htmlStringTemplate = '''<!DOCTYPE html>
+      <html lang="">
+      <head>
+          <meta charset="UTF-8">
+          <style>
+              html {
+                  width: 100%;
+                  height: 100%;
+                  overflow: hidden;
+                  margin: 0;
+              }
+      
+              body {
+                  background-image: url("--IMAGE--");
+                  background-color: --COLOR--;
+                  background-position: --ALIGNMENT--;
+                  background-size: --FIT--;
+                  background-repeat: no-repeat;
+                  background-attachment: fixed;
+                  height: 100%;
+                  margin: 0;
+                  padding: 0;
+              }
+          </style>
+          <title></title>
+      </head>
+      <body></body>
+      </html>
+      ''';
+
   @override
   Widget build(BuildContext context) {
     if (widget.svgLink.startsWith("http")) {
       platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
-        final html.ImageElement element = html.ImageElement(src: widget.svgLink)
+        // final html.ImageElement element = html.ImageElement(src: widget.svgLink)
+        //   ..style.width = "100%"
+        //   ..style.height = "100%";
+        // return element;
+        final html.IFrameElement element = html.IFrameElement()
+          ..src = widget.svgLink
+          ..style.border = "none"
           ..style.width = "100%"
           ..style.height = "100%";
         return element;
@@ -55,5 +93,28 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
           return const SizedBox.shrink();
       }
     }
+  }
+
+  Future<String> _generateHtmlString() async {
+    String src;
+    if (widget.svgLink.startsWith("http")) {
+      src = widget.svgLink;
+    } else {
+      src = await ref.read(svgAssetBase64SrcProvider(svgAsset: widget.svgLink).future);
+    }
+    final htmlString = htmlStringTemplate.replaceFirst(
+      '''--IMAGE--''',
+      src,
+    ).replaceFirst(
+      '''--COLOR--''',
+      widget.backgroundColor.toHexRGBAString(),
+    ).replaceFirst(
+      '''--ALIGNMENT--''',
+      widget.alignment.toCSSPosition(),
+    ).replaceFirst(
+      '''--FIT--''',
+      widget.fit.name,
+    );
+    return htmlString;
   }
 }

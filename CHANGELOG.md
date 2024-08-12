@@ -2,6 +2,7 @@
 
 * Update animated svg widget
 * Export svg asset base64 src provider
+* Export svg asset as html string provider
 
 ## 0.1.3
 

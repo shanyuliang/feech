@@ -45,6 +45,7 @@ export 'src/providers/page_lifecycle_state_provider/page_lifecycle_state_provide
 export 'src/providers/page_title_provider/page_title_provider.dart';
 export 'src/providers/shared_preferences_provider/shared_preferences_provider.dart';
 export 'src/providers/stt_provider/stt_provider.dart';
+export 'src/providers/svg_asset_as_html_string_provider.dart';
 export 'src/providers/svg_asset_base64_src_provider.dart';
 export 'src/providers/tts_provider/tts_provider.dart';
 export 'src/providers/user_location_provider/user_location.dart';
