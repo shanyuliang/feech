@@ -30,7 +30,8 @@ class AnimatedSvgWidget extends ConsumerStatefulWidget {
 class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
   final _validator = html.NodeValidatorBuilder.common()
     ..allowElement("title")
-    ..allowElement("meta")
+    ..allowElement("style")
+    ..allowElement("meta", attributes: ["charset"], uriPolicy: _AllowUriPolicy())
     ..allowInlineStyles()
     ..allowSvg();
 
