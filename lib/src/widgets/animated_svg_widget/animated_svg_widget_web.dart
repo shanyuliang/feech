@@ -28,6 +28,11 @@ class AnimatedSvgWidget extends ConsumerStatefulWidget {
 }
 
 class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
+  final _validator = html.NodeValidatorBuilder.common()
+  ..allowSvg();
+    // ..allowElement('img', attributes: ['src'], uriPolicy: _AllowUriPolicy())
+    // ..allowElement('a', attributes: ['href'], uriPolicy: _AllowUriPolicy());
+
   @override
   Widget build(BuildContext context) {
     final htmlString = ref.watch(svgAsHtmlStringProvider(
@@ -41,7 +46,7 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
         {
           platformViewRegistry.registerViewFactory('html-$hashCode', (int viewId) {
             final element = html.HtmlHtmlElement()
-              ..setInnerHtml(value)
+              ..setInnerHtml(value, validator: _validator)
               ..style.border = "none"
               ..style.width = "100%"
               ..style.height = "100%";
@@ -52,5 +57,12 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
       default:
         return const SizedBox.shrink();
     }
+  }
+}
+
+class _AllowUriPolicy implements html.UriPolicy {
+  @override
+  bool allowsUri(String uri) {
+    return true;
   }
 }
