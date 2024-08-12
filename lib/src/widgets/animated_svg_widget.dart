@@ -75,8 +75,7 @@ class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
     super.initState();
     if (widget.svgLink.startsWith("http")) {
       platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
-        final html.ImageElement element =
-        html.ImageElement(src: widget.svgLink, height: 100, width: 100);
+        final html.ImageElement element = html.ImageElement(src: widget.svgLink, height: 100, width: 100);
         return element;
       });
     } else {
@@ -87,8 +86,8 @@ class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
   @override
   Widget build(BuildContext context) {
     if (widget.svgLink.startsWith("http")) {
-      // return HtmlElementView(viewType: 'img-svg-$hashCode');
-    }else{
+      return HtmlElementView(viewType: 'img-svg-$hashCode');
+    } else {
       final base64Src = ref.watch(svgAssetBase64SrcProvider(svgAsset: widget.svgLink));
       switch (base64Src) {
         case AsyncData(:final value):
@@ -97,10 +96,23 @@ class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
               final html.ImageElement element = html.ImageElement(src: value, height: 100, width: 100);
               return element;
             });
+            return HtmlElementView(viewType: 'img-svg-$hashCode');
           }
+        default:
+          return const SizedBox.shrink();
       }
+      // return switch (base64Src) {
+      //   AsyncData(:final value):
+      //     {
+      //       platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
+      //         final html.ImageElement element = html.ImageElement(src: value, height: 100, width: 100);
+      //         return element;
+      //       });
+      //     return HtmlElementView(viewType: 'img-svg-$hashCode');
+      //     },
+      //     _ => SizedBox.shrink(),
+      // }
     }
-    return HtmlElementView(viewType: 'img-svg-$hashCode');
   }
 }
 
