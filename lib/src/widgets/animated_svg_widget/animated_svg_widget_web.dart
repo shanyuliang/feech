@@ -51,11 +51,16 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
       case AsyncData(:final value):
         {
           platformViewRegistry.registerViewFactory('html-$hashCode', (int viewId) {
-            final element = html.HtmlHtmlElement()
-              ..setInnerHtml(value, validator: _validator)
+            final element = html.IFrameElement()
+              ..srcdoc = value
               ..style.border = "none"
               ..style.width = "100%"
               ..style.height = "100%";
+            // final element = html.HtmlHtmlElement()
+            //   ..setInnerHtml(value, validator: _validator)
+            //   ..style.border = "none"
+            //   ..style.width = "100%"
+            //   ..style.height = "100%";
             return element;
           });
           return HtmlElementView(viewType: 'html-$hashCode');
