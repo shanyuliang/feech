@@ -25,7 +25,9 @@ mixin _$CameraMeta {
   String? get imagePath => throw _privateConstructorUsedError;
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CameraMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CameraMetaCopyWith<CameraMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +56,8 @@ class _$CameraMetaCopyWithImpl<$Res, $Val extends CameraMeta>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CameraMeta
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,6 +116,8 @@ class __$$CameraMetaImplCopyWithImpl<$Res>
       _$CameraMetaImpl _value, $Res Function(_$CameraMetaImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CameraMeta
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -211,7 +217,9 @@ class _$CameraMetaImpl implements _CameraMeta {
       imagePath,
       stateStatus);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CameraMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CameraMetaImplCopyWith<_$CameraMetaImpl> get copyWith =>
@@ -236,8 +244,11 @@ abstract class _CameraMeta implements CameraMeta {
   String? get imagePath;
   @override
   StateStatus get stateStatus;
+
+  /// Create a copy of CameraMeta
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CameraMetaImplCopyWith<_$CameraMetaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

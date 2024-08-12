@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'dart:ui_web';
 import 'dart:html' as html;
+import 'dart:ui_web';
 
+import 'package:feech/src/providers/svg_asset_base64_src_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../extensions/alignment_extension.dart';
@@ -48,7 +49,7 @@ class AnimatedSvgWidget extends StatelessWidget {
   }
 }
 
-class _WebAnimatedSvgWidget extends StatefulWidget {
+class _WebAnimatedSvgWidget extends ConsumerStatefulWidget {
   final String svgLink;
   final Alignment alignment;
   final BoxFit fit;
@@ -65,38 +66,41 @@ class _WebAnimatedSvgWidget extends StatefulWidget {
         );
 
   @override
-  State<_WebAnimatedSvgWidget> createState() => _WebAnimatedSvgWidgetState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _WebAnimatedSvgWidgetState();
 }
 
-class _WebAnimatedSvgWidgetState extends State<_WebAnimatedSvgWidget> {
-
+class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
   @override
   void initState() {
     super.initState();
-
-    platformViewRegistry.registerViewFactory('img-svg-${hashCode}',
-            (int viewId) {
-              //final svgString = await rootBundle.loadString(widget.svgLink);
-              //final svgBase64 = base64Encode(svgString.codeUnits);
-          //final String base64 = base64Encode(utf8.encode(svgString));
-          //final base64String = 'data:image/svg+xml;base64,$svgBase64';
-          final html.ImageElement element = html.ImageElement(
-              src: "https://www.svgrepo.com/download/530572/accelerate.svg", height:100, width: 100);
-          return element;
-        });
+    if (widget.svgLink.startsWith("http")) {
+      platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
+        final html.ImageElement element =
+        html.ImageElement(src: widget.svgLink, height: 100, width: 100);
+        return element;
+      });
+    } else {
+      ref.read(svgAssetBase64SrcProvider(svgAsset: widget.svgLink));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return HtmlElementView(viewType: 'img-svg-${hashCode}');
     if (widget.svgLink.startsWith("http")) {
-      // return SvgPicture.network(widget.svgLink);
-      // return Image.network(widget.svgLink);
-      return HtmlElementView(viewType: 'openstreetmap');
-    } else {
-      // return SvgPicture.asset(widget.svgLink);
-      return Image.asset(widget.svgLink);
+      // return HtmlElementView(viewType: 'img-svg-$hashCode');
+    }else{
+      final base64Src = ref.watch(svgAssetBase64SrcProvider(svgAsset: widget.svgLink));
+      switch (base64Src) {
+        case AsyncData(:final value):
+          {
+            platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
+              final html.ImageElement element = html.ImageElement(src: value, height: 100, width: 100);
+              return element;
+            });
+          }
+      }
     }
+    return HtmlElementView(viewType: 'img-svg-$hashCode');
   }
 }
 
