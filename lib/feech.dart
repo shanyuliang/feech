@@ -79,7 +79,7 @@ export 'src/utilities/google_map_util.dart';
 export 'src/utilities/handy_util.dart';
 export 'src/utilities/spki_pin_checker.dart';
 export 'src/utilities/string_util.dart';
-export 'src/widgets/animated_svg_widget.dart';
+export 'src/widgets/animated_svg_widget/animated_svg_widget.dart';
 export 'src/widgets/app_circle_avatar.dart';
 export 'src/widgets/app_date_selector_field.dart';
 export 'src/widgets/app_initialise_widget.dart';
