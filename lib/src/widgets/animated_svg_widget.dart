@@ -1,11 +1,9 @@
-import 'dart:convert';
 import 'dart:html' as html;
 import 'dart:ui_web';
 
 import 'package:feech/src/providers/svg_asset_base64_src_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -100,7 +98,7 @@ class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
   }
 }
 
-class _NativeAnimatedSvgWidget extends StatefulWidget {
+class _NativeAnimatedSvgWidget extends ConsumerStatefulWidget {
   final String svgLink;
   final Alignment alignment;
   final BoxFit fit;
@@ -117,11 +115,11 @@ class _NativeAnimatedSvgWidget extends StatefulWidget {
         );
 
   @override
-  State<_NativeAnimatedSvgWidget> createState() => _NativeAnimatedSvgWidgetState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _NativeAnimatedSvgWidgetState();
 }
 
-class _NativeAnimatedSvgWidgetState extends State<_NativeAnimatedSvgWidget> {
-  static const urlTemplate = '''<!DOCTYPE html>
+class _NativeAnimatedSvgWidgetState extends ConsumerState<_NativeAnimatedSvgWidget> {
+  static const htmlStringTemplate = '''<!DOCTYPE html>
       <html lang="">
       <head>
           <meta charset="UTF-8">
@@ -135,36 +133,6 @@ class _NativeAnimatedSvgWidgetState extends State<_NativeAnimatedSvgWidget> {
       
               body {
                   background-image: url("--IMAGE--");
-                  background-color: --COLOR--;
-                  background-position: --ALIGNMENT--;
-                  background-size: --FIT--;
-                  background-repeat: no-repeat;
-                  background-attachment: fixed;
-                  height: 100%;
-                  margin: 0;
-                  padding: 0;
-              }
-          </style>
-          <title></title>
-      </head>
-      <body></body>
-      </html>
-      ''';
-
-  static const assetTemplate = '''<!DOCTYPE html>
-      <html lang="">
-      <head>
-          <meta charset="UTF-8">
-          <style>
-              html {
-                  width: 100%;
-                  height: 100%;
-                  overflow: hidden;
-                  margin: 0;
-              }
-      
-              body {
-                  background-image: url("data:image/svg+xml;base64,--IMAGE--");
                   background-color: --COLOR--;
                   background-position: --ALIGNMENT--;
                   background-size: --FIT--;
@@ -199,38 +167,25 @@ class _NativeAnimatedSvgWidgetState extends State<_NativeAnimatedSvgWidget> {
   }
 
   Future<String> _generateHtmlString() async {
+    String src;
     if (widget.svgLink.startsWith("http")) {
-      final htmlString = urlTemplate.replaceFirst(
-        '''--IMAGE--''',
-        widget.svgLink,
-      ).replaceFirst(
-        '''--COLOR--''',
-        widget.backgroundColor.toHexRGBAString(),
-      ).replaceFirst(
-        '''--ALIGNMENT--''',
-        widget.alignment.toCSSPosition(),
-      ).replaceFirst(
-        '''--FIT--''',
-        widget.fit.name,
-      );
-      return htmlString;
+      src = widget.svgLink;
     } else {
-      final svgString = await rootBundle.loadString(widget.svgLink);
-      final svgBase64 = base64Encode(svgString.codeUnits);
-      final htmlString = assetTemplate.replaceFirst(
-        '''--IMAGE--''',
-        svgBase64,
-      ).replaceFirst(
-        '''--COLOR--''',
-        widget.backgroundColor.toHexRGBAString(),
-      ).replaceFirst(
-        '''--ALIGNMENT--''',
-        widget.alignment.toCSSPosition(),
-      ).replaceFirst(
-        '''--FIT--''',
-        widget.fit.name,
-      );
-      return htmlString;
+      src = await ref.read(svgAssetBase64SrcProvider(svgAsset: widget.svgLink).future);
     }
+    final htmlString = htmlStringTemplate.replaceFirst(
+      '''--IMAGE--''',
+      src,
+    ).replaceFirst(
+      '''--COLOR--''',
+      widget.backgroundColor.toHexRGBAString(),
+    ).replaceFirst(
+      '''--ALIGNMENT--''',
+      widget.alignment.toCSSPosition(),
+    ).replaceFirst(
+      '''--FIT--''',
+      widget.fit.name,
+    );
+    return htmlString;
   }
 }
