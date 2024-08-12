@@ -1,3 +1,8 @@
+## 0.1.5
+
+* Update animated svg widget
+* Export svg asset as html string provider
+
 ## 0.1.4
 
 * Update animated svg widget
