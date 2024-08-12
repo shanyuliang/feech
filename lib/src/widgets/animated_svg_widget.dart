@@ -71,21 +71,14 @@ class _WebAnimatedSvgWidget extends ConsumerStatefulWidget {
 
 class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
   @override
-  void initState() {
-    super.initState();
-    if (widget.svgLink.startsWith("http")) {
-      platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
-        final html.ImageElement element = html.ImageElement(src: widget.svgLink, height: 100, width: 100);
-        return element;
-      });
-    } else {
-      ref.read(svgAssetBase64SrcProvider(svgAsset: widget.svgLink));
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     if (widget.svgLink.startsWith("http")) {
+      platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
+        final html.ImageElement element = html.ImageElement(src: widget.svgLink)
+          ..style.width = "100%"
+          ..style.height = "100%";
+        return element;
+      });
       return HtmlElementView(viewType: 'img-svg-$hashCode');
     } else {
       final base64Src = ref.watch(svgAssetBase64SrcProvider(svgAsset: widget.svgLink));
@@ -93,7 +86,9 @@ class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
         case AsyncData(:final value):
           {
             platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
-              final html.ImageElement element = html.ImageElement(src: value, height: 100, width: 100);
+              final html.ImageElement element = html.ImageElement(src: value)
+                ..style.width = "100%"
+                ..style.height = "100%";
               return element;
             });
             return HtmlElementView(viewType: 'img-svg-$hashCode');
@@ -101,17 +96,6 @@ class _WebAnimatedSvgWidgetState extends ConsumerState<_WebAnimatedSvgWidget> {
         default:
           return const SizedBox.shrink();
       }
-      // return switch (base64Src) {
-      //   AsyncData(:final value):
-      //     {
-      //       platformViewRegistry.registerViewFactory('img-svg-$hashCode', (int viewId) {
-      //         final html.ImageElement element = html.ImageElement(src: value, height: 100, width: 100);
-      //         return element;
-      //       });
-      //     return HtmlElementView(viewType: 'img-svg-$hashCode');
-      //     },
-      //     _ => SizedBox.shrink(),
-      // }
     }
   }
 }
