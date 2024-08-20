@@ -88,8 +88,8 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
               }
               
               object {
-                width: 100%;
-                height: 100%;
+                width: 100vw;
+                height: 100vh;
             }
           </style>
           <title></title>
@@ -106,7 +106,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     Alignment alignment = Alignment.center,
     BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
-    bool asObject = false,
+    bool asObject = true,
   }) async {
     String src;
     if (svgLink.startsWith("http")) {
