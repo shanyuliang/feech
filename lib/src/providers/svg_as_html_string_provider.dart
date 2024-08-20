@@ -75,16 +75,20 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       <head>
           <meta charset="UTF-8">
           <style>
-              html, body {
+              html {
                   width: 100%;
                   height: 100%;
                   overflow: hidden;
+                  margin: 0;
               }
       
               body {
                   background-color: --COLOR--;
                   margin: 0;
                   padding: 0;
+                  height: 100%;
+                  width: 100%;
+                  text-align: center;
               }
               
               object {
