@@ -37,6 +37,39 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       </html>
       ''';
 
+  static const htmlStringTemplateDiv = '''<!DOCTYPE html>
+      <html lang="">
+      <head>
+          <meta charset="UTF-8">
+          <style>
+              html, body {
+                  width: 100%;
+                  height: 100%;
+                  overflow: hidden;
+              }
+      
+              body {
+                  margin: 0;
+                  padding: 0;
+              }
+              
+              div {
+                  background-image: url("--IMAGE--");
+                  background-color: --COLOR--;
+                  background-position: --ALIGNMENT--;
+                  background-size: --FIT--;
+                  background-repeat: no-repeat;
+                  background-attachment: fixed;
+                  margin: 0;
+                  padding: 0;
+              }
+          </style>
+          <title></title>
+      </head>
+      <body><div></div></body>
+      </html>
+      ''';
+
   static const htmlStringTemplateObject = '''<!DOCTYPE html>
       <html lang="">
       <head>
@@ -81,7 +114,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     } else {
       src = await ref.read(svgAssetBase64SrcProvider(svgAsset: svgLink).future);
     }
-    final template = asObject ? htmlStringTemplateObject : htmlStringTemplateBody;
+    final template = asObject ? htmlStringTemplateObject : htmlStringTemplateDiv;
     final htmlString = template.replaceFirst(
       '''--IMAGE--''',
       src,
