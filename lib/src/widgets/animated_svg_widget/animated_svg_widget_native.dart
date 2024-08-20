@@ -42,12 +42,12 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
       switch (htmlString) {
         case AsyncData(:final value):
           {
-            // _webViewController.loadHtmlString(value);
-            if (widget.svgLink.toLowerCase().startsWith("http")) {
-              _webViewController.loadRequest(Uri.parse(widget.svgLink));
-            } else {
-              _webViewController.loadFlutterAsset(widget.svgLink);
-            }
+            _webViewController.loadHtmlString(value);
+            // if (widget.svgLink.toLowerCase().startsWith("http")) {
+            //   _webViewController.loadRequest(Uri.parse(widget.svgLink));
+            // } else {
+            //   _webViewController.loadFlutterAsset(widget.svgLink);
+            // }
           }
       }
     });

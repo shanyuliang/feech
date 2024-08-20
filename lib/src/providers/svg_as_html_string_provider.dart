@@ -81,7 +81,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     } else {
       src = await ref.read(svgAssetBase64SrcProvider(svgAsset: svgLink).future);
     }
-    final htmlString = htmlStringTemplateObject.replaceFirst(
+    final htmlString = htmlStringTemplateBody.replaceFirst(
       '''--IMAGE--''',
       src,
     ).replaceFirst(
