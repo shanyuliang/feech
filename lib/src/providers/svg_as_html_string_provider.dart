@@ -14,11 +14,10 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       <head>
           <meta charset="UTF-8">
           <style>
-              html {
+              html, body {
                   width: 100%;
                   height: 100%;
                   overflow: hidden;
-                  margin: 0;
               }
       
               body {
@@ -28,7 +27,6 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
                   background-size: --FIT--;
                   background-repeat: no-repeat;
                   background-attachment: fixed;
-                  height: 100%;
                   margin: 0;
                   padding: 0;
               }
@@ -44,23 +42,20 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       <head>
           <meta charset="UTF-8">
           <style>
-              html {
+              html, body {
                   width: 100%;
                   height: 100%;
                   overflow: hidden;
-                  margin: 0;
               }
       
               body {
                   background-color: --COLOR--;
-                  height: 100%;
                   margin: 0;
                   padding: 0;
-                  text-align: center;
               }
               
               object {
-                margin: 0 auto;
+                width: 100%;
                 height: 100%;
             }
           </style>
