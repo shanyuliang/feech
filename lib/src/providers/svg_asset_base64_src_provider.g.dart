@@ -7,7 +7,7 @@ part of 'svg_asset_base64_src_provider.dart';
 // **************************************************************************
 
 String _$svgAssetBase64SrcProviderHash() =>
-    r'04ffb6317e70aa12d3250b55fe47d82ab903bbd0';
+    r'8ae96956bfc12ab7c8f02d30197d162911ae453b';
 
 /// Copied from Dart SDK
 class _SystemHash {

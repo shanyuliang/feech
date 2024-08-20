@@ -21,9 +21,7 @@ mixin _$Tts {
   String? get selectedLocaleId => throw _privateConstructorUsedError;
   String? get selectedVoiceId => throw _privateConstructorUsedError;
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TtsCopyWith<Tts> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -48,8 +46,6 @@ class _$TtsCopyWithImpl<$Res, $Val extends Tts> implements $TtsCopyWith<$Res> {
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,8 +94,6 @@ class __$$TtsImplCopyWithImpl<$Res> extends _$TtsCopyWithImpl<$Res, _$TtsImpl>
   __$$TtsImplCopyWithImpl(_$TtsImpl _value, $Res Function(_$TtsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -176,9 +170,7 @@ class _$TtsImpl extends _Tts {
       selectedLocaleId,
       selectedVoiceId);
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TtsImplCopyWith<_$TtsImpl> get copyWith =>
@@ -201,11 +193,8 @@ abstract class _Tts extends Tts {
   String? get selectedLocaleId;
   @override
   String? get selectedVoiceId;
-
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TtsImplCopyWith<_$TtsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
