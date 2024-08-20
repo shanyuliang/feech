@@ -57,6 +57,14 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
                   margin: 0;
                   padding: 0;
               }
+              
+              object {
+                width:100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                position: fixed;
+            }
           </style>
           <title></title>
       </head>
