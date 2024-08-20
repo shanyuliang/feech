@@ -40,7 +40,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   static const htmlStringTemplateObject = '''<!DOCTYPE html>
       <html lang="">
       <head>
-          <meta charset="UTF-8">
+          <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <style>
               html, body {
                 height: 100%;
@@ -53,8 +53,11 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
                 padding: 0;
               }
               object {
-                width: 100vw;
-                height: 100vh;
+                height: 100%;
+                left: 0;
+                position: fixed;
+                top: 0;
+                width: 100%;
               }
           </style>
           <title></title>
