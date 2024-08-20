@@ -42,27 +42,20 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       <head>
           <meta charset="UTF-8">
           <style>
-              html {
-                  width: 100%;
-                  height: 100%;
-                  overflow: hidden;
-                  margin: 0;
-              }
-      
-              body {
-                  background-color: --COLOR--;
-                  height: 100%;
-                  margin: 0;
-                  padding: 0;
-              }
-              
-              object {
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                position: fixed;
-            }
+              html, body {
+            height: 100%;
+            overflow: hidden;
+            width: 100%;
+        }
+        body {
+            background-color: --COLOR--;
+            margin: 0;
+            padding: 0;
+        }
+        object {
+            width: 100vw;
+            height: 100vh;
+        }
           </style>
           <title></title>
       </head>
@@ -78,7 +71,6 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     Alignment alignment = Alignment.center,
     BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
-    bool asObject = true,
   }) async {
     String src;
     if (svgLink.startsWith("http")) {
@@ -86,8 +78,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     } else {
       src = await ref.read(svgAssetBase64SrcProvider(svgAsset: svgLink).future);
     }
-    final template = asObject ? htmlStringTemplateBody : htmlStringTemplateBody;
-    final htmlString = template.replaceFirst(
+    final htmlString = htmlStringTemplateObject.replaceFirst(
       '''--IMAGE--''',
       src,
     ).replaceFirst(

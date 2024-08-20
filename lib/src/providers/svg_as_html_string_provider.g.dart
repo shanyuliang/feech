@@ -7,7 +7,7 @@ part of 'svg_as_html_string_provider.dart';
 // **************************************************************************
 
 String _$svgAsHtmlStringProviderHash() =>
-    r'b5972f8aca05f078bdab1e6ed97decff3e73e130';
+    r'89d204dbe31a46d0b7de873cfd668aa1a32257b6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -36,14 +36,12 @@ abstract class _$SvgAsHtmlStringProvider
   late final Alignment alignment;
   late final BoxFit fit;
   late final Color backgroundColor;
-  late final bool asObject;
 
   FutureOr<String> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
     BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
-    bool asObject = false,
   });
 }
 
@@ -62,14 +60,12 @@ class SvgAsHtmlStringProviderFamily extends Family<AsyncValue<String>> {
     Alignment alignment = Alignment.center,
     BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
-    bool asObject = false,
   }) {
     return SvgAsHtmlStringProviderProvider(
       svgLink: svgLink,
       alignment: alignment,
       fit: fit,
       backgroundColor: backgroundColor,
-      asObject: asObject,
     );
   }
 
@@ -82,7 +78,6 @@ class SvgAsHtmlStringProviderFamily extends Family<AsyncValue<String>> {
       alignment: provider.alignment,
       fit: provider.fit,
       backgroundColor: provider.backgroundColor,
-      asObject: provider.asObject,
     );
   }
 
@@ -111,14 +106,12 @@ class SvgAsHtmlStringProviderProvider
     Alignment alignment = Alignment.center,
     BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
-    bool asObject = false,
   }) : this._internal(
           () => SvgAsHtmlStringProvider()
             ..svgLink = svgLink
             ..alignment = alignment
             ..fit = fit
-            ..backgroundColor = backgroundColor
-            ..asObject = asObject,
+            ..backgroundColor = backgroundColor,
           from: svgAsHtmlStringProvider,
           name: r'svgAsHtmlStringProvider',
           debugGetCreateSourceHash:
@@ -132,7 +125,6 @@ class SvgAsHtmlStringProviderProvider
           alignment: alignment,
           fit: fit,
           backgroundColor: backgroundColor,
-          asObject: asObject,
         );
 
   SvgAsHtmlStringProviderProvider._internal(
@@ -146,14 +138,12 @@ class SvgAsHtmlStringProviderProvider
     required this.alignment,
     required this.fit,
     required this.backgroundColor,
-    required this.asObject,
   }) : super.internal();
 
   final String svgLink;
   final Alignment alignment;
   final BoxFit fit;
   final Color backgroundColor;
-  final bool asObject;
 
   @override
   FutureOr<String> runNotifierBuild(
@@ -164,7 +154,6 @@ class SvgAsHtmlStringProviderProvider
       alignment: alignment,
       fit: fit,
       backgroundColor: backgroundColor,
-      asObject: asObject,
     );
   }
 
@@ -177,8 +166,7 @@ class SvgAsHtmlStringProviderProvider
           ..svgLink = svgLink
           ..alignment = alignment
           ..fit = fit
-          ..backgroundColor = backgroundColor
-          ..asObject = asObject,
+          ..backgroundColor = backgroundColor,
         from: from,
         name: null,
         dependencies: null,
@@ -188,7 +176,6 @@ class SvgAsHtmlStringProviderProvider
         alignment: alignment,
         fit: fit,
         backgroundColor: backgroundColor,
-        asObject: asObject,
       ),
     );
   }
@@ -205,8 +192,7 @@ class SvgAsHtmlStringProviderProvider
         other.svgLink == svgLink &&
         other.alignment == alignment &&
         other.fit == fit &&
-        other.backgroundColor == backgroundColor &&
-        other.asObject == asObject;
+        other.backgroundColor == backgroundColor;
   }
 
   @override
@@ -216,7 +202,6 @@ class SvgAsHtmlStringProviderProvider
     hash = _SystemHash.combine(hash, alignment.hashCode);
     hash = _SystemHash.combine(hash, fit.hashCode);
     hash = _SystemHash.combine(hash, backgroundColor.hashCode);
-    hash = _SystemHash.combine(hash, asObject.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -235,9 +220,6 @@ mixin SvgAsHtmlStringProviderRef
 
   /// The parameter `backgroundColor` of this provider.
   Color get backgroundColor;
-
-  /// The parameter `asObject` of this provider.
-  bool get asObject;
 }
 
 class _SvgAsHtmlStringProviderProviderElement
@@ -255,8 +237,6 @@ class _SvgAsHtmlStringProviderProviderElement
   @override
   Color get backgroundColor =>
       (origin as SvgAsHtmlStringProviderProvider).backgroundColor;
-  @override
-  bool get asObject => (origin as SvgAsHtmlStringProviderProvider).asObject;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
