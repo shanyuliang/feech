@@ -43,7 +43,7 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
         case AsyncData(:final value):
           {
             // _webViewController.loadHtmlString(value);
-            if (widget.svgLink.startsWith("http")) {
+            if (widget.svgLink.toLowerCase().startsWith("http")) {
               _webViewController.loadRequest(Uri.parse(widget.svgLink));
             } else {
               _webViewController.loadFlutterAsset(widget.svgLink);
