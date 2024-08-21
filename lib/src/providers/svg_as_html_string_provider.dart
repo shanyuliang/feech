@@ -40,24 +40,20 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   static const htmlStringTemplateObject = '''<!DOCTYPE html>
       <html lang="">
       <head>
-          <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <style>
               html, body {
                 height: 100%;
-                overflow: hidden;
                 width: 100%;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
               }
               body {
                 background-color: --COLOR--;
-                margin: 0;
-                padding: 0;
               }
               object {
-                height: 100%;
-                left: 0;
-                position: fixed;
-                top: 0;
-                width: 100%;
+                width: 100vw;
+                height: 100vh;
               }
           </style>
           <title></title>
@@ -81,7 +77,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     } else {
       src = await ref.read(svgAssetBase64SrcProvider(svgAsset: svgLink).future);
     }
-    final htmlString = htmlStringTemplateBody.replaceFirst(
+    final htmlString = htmlStringTemplateObject.replaceFirst(
       '''--IMAGE--''',
       src,
     ).replaceFirst(
