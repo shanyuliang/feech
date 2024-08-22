@@ -10,12 +10,14 @@ class AnimatedSvgWidget extends ConsumerStatefulWidget {
   final String svgLink;
   final Alignment alignment;
   final Color backgroundColor;
+  final bool fillParent;
 
   const AnimatedSvgWidget({
     super.key,
     required this.svgLink,
     this.alignment = Alignment.center,
     this.backgroundColor = Colors.transparent,
+    this.fillParent = false,
   });
 
   @override
@@ -29,6 +31,7 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
       svgLink: widget.svgLink,
       alignment: widget.alignment,
       backgroundColor: widget.backgroundColor,
+      fillParent: widget.fillParent,
     ));
     switch (htmlString) {
       case AsyncData(:final value):

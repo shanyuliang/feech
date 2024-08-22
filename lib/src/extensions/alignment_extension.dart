@@ -17,41 +17,65 @@ extension AlignmentExtension on Alignment {
       };
 
   String toCSSMargin() => switch (this) {
-    Alignment.topCenter => '''
+        Alignment.topLeft => '''
+                margin-left: 0;
+                margin-right: auto;
+                margin-top: 0;
+                margin-bottom: auto;
+    ''',
+        Alignment.topCenter => '''
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: 0;
                 margin-bottom: auto;
     ''',
-    Alignment.centerLeft => '''
+        Alignment.topRight => '''
+                margin-left: auto;
+                margin-right: 0;
+                margin-top: 0;
+                margin-bottom: auto;
+    ''',
+        Alignment.centerLeft => '''
                 margin-left: 0;
                 margin-right: auto;
                 margin-top: auto;
                 margin-bottom: auto;
     ''',
-    Alignment.center => '''
+        Alignment.center => '''
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: auto;
                 margin-bottom: auto;
     ''',
-    Alignment.centerRight => '''
+        Alignment.centerRight => '''
                 margin-left: auto;
                 margin-right: 0;
                 margin-top: auto;
                 margin-bottom: auto;
     ''',
-    Alignment.bottomCenter => '''
+        Alignment.bottomLeft => '''
+                margin-left: 0;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: 0;
+    ''',
+        Alignment.bottomCenter => '''
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: auto;
                 margin-bottom: 0;
     ''',
-    _ => '''
+        Alignment.bottomRight => '''
+                margin-left: auto;
+                margin-right: 0;
+                margin-top: auto;
+                margin-bottom: 0;
+    ''',
+        _ => '''
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: auto;
                 margin-bottom: auto;
     ''',
-  };
+      };
 }

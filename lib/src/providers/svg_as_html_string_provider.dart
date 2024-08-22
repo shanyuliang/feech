@@ -66,11 +66,39 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       </html>
       ''';
 
+  static const htmlStringTemplateObjectFill = '''<!DOCTYPE html>
+      <html lang="">
+      <head>
+          <style>
+              html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+              }
+              body {
+                background-color: --COLOR--;
+              }
+              object {
+                width: 100vw;
+                height: 100vh;
+              }
+          </style>
+          <title></title>
+      </head>
+      <body>
+      <object type="image/svg+xml" data="--IMAGE--"></object>
+      </body>
+      </html>
+      ''';
+
   @override
   Future<String> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
+    bool fillParent = false, // if true, the svg will always be center aligned with SVG's background color filling up container
   }) async {
     String src;
     if (svgLink.startsWith("http")) {
@@ -78,7 +106,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     } else {
       src = await ref.read(svgAssetBase64SrcProvider(svgAsset: svgLink).future);
     }
-    final htmlString = htmlStringTemplateObject.replaceFirst(
+    final htmlString = (fillParent ? htmlStringTemplateObjectFill : htmlStringTemplateObject).replaceFirst(
       '''--IMAGE--''',
       src,
     ).replaceFirst(
