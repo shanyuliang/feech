@@ -85,18 +85,33 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
                 height: 100vh;
               }
           </style>
+          <script>
+            function update(event) {
+        var object = document.getElementById("feech_animated_svg");
+        console.log(object);
+        var objectDoc = object.contentDocument;
+        console.log(objectDoc);
+        var svgs = objectDoc.getElementsByTagName("svg");
+        var svg = svgs[0];
+        svg.setAttribute("preserveAspectRatio", "xMinYMin meet");
+    }
+
+window.addEventListener("load", function(){
+    update();
+});
+          </script>
           <title></title>
       </head>
       <body>
-      <object type="image/svg+xml" data="--IMAGE--"></object>
+      <object id="feech_animated_svg" type="image/svg+xml" data="--IMAGE--"></object>
       </body>
       </html>
       ''';
 
   // Note: If fillParent is true:
-  // 1. The svg will always be center aligned;
-  // 2. All SVG drawing will be visible even outside of the view box;
-  // 3. The SVG's background color will fill the container;
+  // 1. The svg will occupy the whole container;
+  // 2. The alignment is decided by the preserveAspectRatio attribute;
+  // 3. preserveAspectRatio default to "xMidYMid meet";
   @override
   Future<String> build({
     required String svgLink,
