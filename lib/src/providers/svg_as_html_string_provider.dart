@@ -110,8 +110,9 @@ window.addEventListener("load", function(){
 
   // Note: If fillParent is true:
   // 1. The svg will occupy the whole container;
-  // 2. The alignment is decided by the preserveAspectRatio attribute;
-  // 3. preserveAspectRatio default to "xMidYMid meet";
+  // 2. Content outside of view box may be seen;
+  // 3. The view box alignment is decided by the preserveAspectRatio attribute;
+  // 4. preserveAspectRatio default to "xMidYMid meet";
   @override
   Future<String> build({
     required String svgLink,
