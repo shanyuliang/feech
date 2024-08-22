@@ -34,7 +34,6 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
       svgLink: widget.svgLink,
       alignment: widget.alignment,
       backgroundColor: widget.backgroundColor,
-      fit: widget.fit,
     ));
     switch (htmlString) {
       case AsyncData(:final value):

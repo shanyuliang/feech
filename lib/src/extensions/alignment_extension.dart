@@ -15,4 +15,43 @@ extension AlignmentExtension on Alignment {
         Alignment.bottomRight => "right bottom",
         _ => "center center",
       };
+
+  String toCSSMargin() => switch (this) {
+    Alignment.topCenter => '''
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 0;
+                margin-bottom: auto;
+    ''',
+    Alignment.centerLeft => '''
+                margin-left: 0;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+    ''',
+    Alignment.center => '''
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+    ''',
+    Alignment.centerRight => '''
+                margin-left: auto;
+                margin-right: 0;
+                margin-top: auto;
+                margin-bottom: auto;
+    ''',
+    Alignment.bottomCenter => '''
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: 0;
+    ''',
+    _ => '''
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+    ''',
+  };
 }

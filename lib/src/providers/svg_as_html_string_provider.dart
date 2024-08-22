@@ -17,18 +17,17 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
               html, body {
                   width: 100%;
                   height: 100%;
+                  margin: 0;
+                  padding: 0;
                   overflow: hidden;
               }
-      
               body {
                   background-image: url("--IMAGE--");
                   background-color: --COLOR--;
                   background-position: --ALIGNMENT--;
-                  background-size: --FIT--;
+                  background-size: contain;
                   background-repeat: no-repeat;
                   background-attachment: fixed;
-                  margin: 0;
-                  padding: 0;
               }
           </style>
           <title></title>
@@ -42,18 +41,21 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       <head>
           <style>
               html, body {
-                height: 100%;
                 width: 100%;
+                height: 100%;
                 margin: 0;
                 padding: 0;
                 overflow: hidden;
+                display: flex;
               }
               body {
                 background-color: --COLOR--;
               }
               object {
-                width: 100vw;
-                height: 100vh;
+                max-width: 100vw;
+                max-height: 100vh;
+                display: block;
+                --ALIGNMENT--
               }
           </style>
           <title></title>
@@ -68,7 +70,6 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   Future<String> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
-    BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
   }) async {
     String src;
@@ -85,10 +86,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       backgroundColor.toHexRGBAString(),
     ).replaceFirst(
       '''--ALIGNMENT--''',
-      alignment.toCSSPosition(),
-    ).replaceFirst(
-      '''--FIT--''',
-      fit.name,
+      alignment.toCSSMargin(),
     );
     return htmlString;
   }

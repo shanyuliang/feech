@@ -7,7 +7,7 @@ part of 'svg_as_html_string_provider.dart';
 // **************************************************************************
 
 String _$svgAsHtmlStringProviderHash() =>
-    r'89d204dbe31a46d0b7de873cfd668aa1a32257b6';
+    r'0337068c592cefdec42e79f37b4ea4f63ab19400';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,13 +34,11 @@ abstract class _$SvgAsHtmlStringProvider
     extends BuildlessAutoDisposeAsyncNotifier<String> {
   late final String svgLink;
   late final Alignment alignment;
-  late final BoxFit fit;
   late final Color backgroundColor;
 
   FutureOr<String> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
-    BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
   });
 }
@@ -58,13 +56,11 @@ class SvgAsHtmlStringProviderFamily extends Family<AsyncValue<String>> {
   SvgAsHtmlStringProviderProvider call({
     required String svgLink,
     Alignment alignment = Alignment.center,
-    BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
   }) {
     return SvgAsHtmlStringProviderProvider(
       svgLink: svgLink,
       alignment: alignment,
-      fit: fit,
       backgroundColor: backgroundColor,
     );
   }
@@ -76,7 +72,6 @@ class SvgAsHtmlStringProviderFamily extends Family<AsyncValue<String>> {
     return call(
       svgLink: provider.svgLink,
       alignment: provider.alignment,
-      fit: provider.fit,
       backgroundColor: provider.backgroundColor,
     );
   }
@@ -104,13 +99,11 @@ class SvgAsHtmlStringProviderProvider
   SvgAsHtmlStringProviderProvider({
     required String svgLink,
     Alignment alignment = Alignment.center,
-    BoxFit fit = BoxFit.contain,
     Color backgroundColor = Colors.transparent,
   }) : this._internal(
           () => SvgAsHtmlStringProvider()
             ..svgLink = svgLink
             ..alignment = alignment
-            ..fit = fit
             ..backgroundColor = backgroundColor,
           from: svgAsHtmlStringProvider,
           name: r'svgAsHtmlStringProvider',
@@ -123,7 +116,6 @@ class SvgAsHtmlStringProviderProvider
               SvgAsHtmlStringProviderFamily._allTransitiveDependencies,
           svgLink: svgLink,
           alignment: alignment,
-          fit: fit,
           backgroundColor: backgroundColor,
         );
 
@@ -136,13 +128,11 @@ class SvgAsHtmlStringProviderProvider
     required super.from,
     required this.svgLink,
     required this.alignment,
-    required this.fit,
     required this.backgroundColor,
   }) : super.internal();
 
   final String svgLink;
   final Alignment alignment;
-  final BoxFit fit;
   final Color backgroundColor;
 
   @override
@@ -152,7 +142,6 @@ class SvgAsHtmlStringProviderProvider
     return notifier.build(
       svgLink: svgLink,
       alignment: alignment,
-      fit: fit,
       backgroundColor: backgroundColor,
     );
   }
@@ -165,7 +154,6 @@ class SvgAsHtmlStringProviderProvider
         () => create()
           ..svgLink = svgLink
           ..alignment = alignment
-          ..fit = fit
           ..backgroundColor = backgroundColor,
         from: from,
         name: null,
@@ -174,7 +162,6 @@ class SvgAsHtmlStringProviderProvider
         debugGetCreateSourceHash: null,
         svgLink: svgLink,
         alignment: alignment,
-        fit: fit,
         backgroundColor: backgroundColor,
       ),
     );
@@ -191,7 +178,6 @@ class SvgAsHtmlStringProviderProvider
     return other is SvgAsHtmlStringProviderProvider &&
         other.svgLink == svgLink &&
         other.alignment == alignment &&
-        other.fit == fit &&
         other.backgroundColor == backgroundColor;
   }
 
@@ -200,7 +186,6 @@ class SvgAsHtmlStringProviderProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, svgLink.hashCode);
     hash = _SystemHash.combine(hash, alignment.hashCode);
-    hash = _SystemHash.combine(hash, fit.hashCode);
     hash = _SystemHash.combine(hash, backgroundColor.hashCode);
 
     return _SystemHash.finish(hash);
@@ -214,9 +199,6 @@ mixin SvgAsHtmlStringProviderRef
 
   /// The parameter `alignment` of this provider.
   Alignment get alignment;
-
-  /// The parameter `fit` of this provider.
-  BoxFit get fit;
 
   /// The parameter `backgroundColor` of this provider.
   Color get backgroundColor;
@@ -232,8 +214,6 @@ class _SvgAsHtmlStringProviderProviderElement
   @override
   Alignment get alignment =>
       (origin as SvgAsHtmlStringProviderProvider).alignment;
-  @override
-  BoxFit get fit => (origin as SvgAsHtmlStringProviderProvider).fit;
   @override
   Color get backgroundColor =>
       (origin as SvgAsHtmlStringProviderProvider).backgroundColor;
