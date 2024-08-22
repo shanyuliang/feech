@@ -19,7 +19,9 @@ mixin _$Stt {
   List<AppLocale> get supportedLocales => throw _privateConstructorUsedError;
   AppLocale? get selectedLocale => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Stt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SttCopyWith<Stt> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -42,6 +44,8 @@ class _$SttCopyWithImpl<$Res, $Val extends Stt> implements $SttCopyWith<$Res> {
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Stt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -60,6 +64,8 @@ class _$SttCopyWithImpl<$Res, $Val extends Stt> implements $SttCopyWith<$Res> {
     ) as $Val);
   }
 
+  /// Create a copy of Stt
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AppLocaleCopyWith<$Res>? get selectedLocale {
@@ -91,6 +97,8 @@ class __$$SttImplCopyWithImpl<$Res> extends _$SttCopyWithImpl<$Res, _$SttImpl>
   __$$SttImplCopyWithImpl(_$SttImpl _value, $Res Function(_$SttImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Stt
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,7 +159,9 @@ class _$SttImpl extends _Stt {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_supportedLocales), selectedLocale);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Stt
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SttImplCopyWith<_$SttImpl> get copyWith =>
@@ -168,8 +178,11 @@ abstract class _Stt extends Stt {
   List<AppLocale> get supportedLocales;
   @override
   AppLocale? get selectedLocale;
+
+  /// Create a copy of Stt
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SttImplCopyWith<_$SttImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

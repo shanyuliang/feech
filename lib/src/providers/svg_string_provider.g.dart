@@ -6,7 +6,7 @@ part of 'svg_string_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$svgStringProviderHash() => r'1c940043923f6cefc495c3eb3ab96ad63d20bf85';
+String _$svgStringProviderHash() => r'01c7438e8821f3ba268c3032e9a7b903d90705b1';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -1,9 +1,11 @@
+import 'package:feech/src/support/network/app_client.dart';
 import 'package:flutter/animation.dart';
 
 const debugTag = "Feech";
 const spKeyLastSttLocaleId = "last-stt-locale-id";
 const spKeyLastTtsLocaleId = "last-tts-locale-id";
 const spKeyLastTtsVoiceId = "last-tts-voice-id";
+final basicAppClient = AppClient();
 const allCurves = [
   (Curves.bounceIn, "bounceIn"),
   (Curves.bounceInOut, "bounceInOut"),

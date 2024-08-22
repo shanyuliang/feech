@@ -7,7 +7,7 @@ part of 'network_helper_provider.dart';
 // **************************************************************************
 
 String _$networkHelperProviderHash() =>
-    r'ff7f2c81ee95c54e80d3d771780573936ba89536';
+    r'a1d0f9f706fc6e3e891c7aac48a4a054a70bb050';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,11 +32,11 @@ class _SystemHash {
 
 abstract class _$NetworkHelperProvider
     extends BuildlessNotifier<NetworkHelper> {
-  late final Client client;
+  late final Client? client;
 
-  NetworkHelper build(
-    Client client,
-  );
+  NetworkHelper build({
+    Client? client,
+  });
 }
 
 /// See also [NetworkHelperProvider].
@@ -49,11 +49,11 @@ class NetworkHelperProviderFamily extends Family<NetworkHelper> {
   const NetworkHelperProviderFamily();
 
   /// See also [NetworkHelperProvider].
-  NetworkHelperProviderProvider call(
-    Client client,
-  ) {
+  NetworkHelperProviderProvider call({
+    Client? client,
+  }) {
     return NetworkHelperProviderProvider(
-      client,
+      client: client,
     );
   }
 
@@ -62,7 +62,7 @@ class NetworkHelperProviderFamily extends Family<NetworkHelper> {
     covariant NetworkHelperProviderProvider provider,
   ) {
     return call(
-      provider.client,
+      client: provider.client,
     );
   }
 
@@ -85,9 +85,9 @@ class NetworkHelperProviderFamily extends Family<NetworkHelper> {
 class NetworkHelperProviderProvider
     extends NotifierProviderImpl<NetworkHelperProvider, NetworkHelper> {
   /// See also [NetworkHelperProvider].
-  NetworkHelperProviderProvider(
-    Client client,
-  ) : this._internal(
+  NetworkHelperProviderProvider({
+    Client? client,
+  }) : this._internal(
           () => NetworkHelperProvider()..client = client,
           from: networkHelperProvider,
           name: r'networkHelperProvider',
@@ -111,14 +111,14 @@ class NetworkHelperProviderProvider
     required this.client,
   }) : super.internal();
 
-  final Client client;
+  final Client? client;
 
   @override
   NetworkHelper runNotifierBuild(
     covariant NetworkHelperProvider notifier,
   ) {
     return notifier.build(
-      client,
+      client: client,
     );
   }
 
@@ -160,7 +160,7 @@ class NetworkHelperProviderProvider
 
 mixin NetworkHelperProviderRef on NotifierProviderRef<NetworkHelper> {
   /// The parameter `client` of this provider.
-  Client get client;
+  Client? get client;
 }
 
 class _NetworkHelperProviderProviderElement
@@ -169,7 +169,7 @@ class _NetworkHelperProviderProviderElement
   _NetworkHelperProviderProviderElement(super.provider);
 
   @override
-  Client get client => (origin as NetworkHelperProviderProvider).client;
+  Client? get client => (origin as NetworkHelperProviderProvider).client;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

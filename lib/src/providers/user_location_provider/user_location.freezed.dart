@@ -26,8 +26,12 @@ mixin _$UserLocation {
   bool get isListeningLocationChange => throw _privateConstructorUsedError;
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
+  /// Serializes this UserLocation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserLocation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserLocationCopyWith<UserLocation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -59,6 +63,8 @@ class _$UserLocationCopyWithImpl<$Res, $Val extends UserLocation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserLocation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +95,8 @@ class _$UserLocationCopyWithImpl<$Res, $Val extends UserLocation>
     ) as $Val);
   }
 
+  /// Create a copy of UserLocation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserLatLngCopyWith<$Res>? get lastKnownLocation {
@@ -101,6 +109,8 @@ class _$UserLocationCopyWithImpl<$Res, $Val extends UserLocation>
     });
   }
 
+  /// Create a copy of UserLocation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserLatLngCopyWith<$Res>? get currentLocation {
@@ -143,6 +153,8 @@ class __$$UserLocationImplCopyWithImpl<$Res>
       _$UserLocationImpl _value, $Res Function(_$UserLocationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserLocation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -223,7 +235,7 @@ class _$UserLocationImpl extends _UserLocation {
                 other.stateStatus == stateStatus));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -233,7 +245,9 @@ class _$UserLocationImpl extends _UserLocation {
       isListeningLocationChange,
       stateStatus);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserLocation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserLocationImplCopyWith<_$UserLocationImpl> get copyWith =>
@@ -269,8 +283,11 @@ abstract class _UserLocation extends UserLocation {
   bool get isListeningLocationChange;
   @override
   StateStatus get stateStatus;
+
+  /// Create a copy of UserLocation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserLocationImplCopyWith<_$UserLocationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -284,8 +301,12 @@ mixin _$UserLatLng {
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
 
+  /// Serializes this UserLatLng to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserLatLng
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserLatLngCopyWith<UserLatLng> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -309,6 +330,8 @@ class _$UserLatLngCopyWithImpl<$Res, $Val extends UserLatLng>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserLatLng
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -347,6 +370,8 @@ class __$$UserLatLngImplCopyWithImpl<$Res>
       _$UserLatLngImpl _value, $Res Function(_$UserLatLngImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserLatLng
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -396,11 +421,13 @@ class _$UserLatLngImpl extends _UserLatLng {
                 other.longitude == longitude));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, latitude, longitude);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserLatLng
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserLatLngImplCopyWith<_$UserLatLngImpl> get copyWith =>
@@ -427,8 +454,11 @@ abstract class _UserLatLng extends UserLatLng {
   double get latitude;
   @override
   double get longitude;
+
+  /// Create a copy of UserLatLng
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserLatLngImplCopyWith<_$UserLatLngImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

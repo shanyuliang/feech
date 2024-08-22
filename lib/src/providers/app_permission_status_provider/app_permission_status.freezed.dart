@@ -25,7 +25,9 @@ mixin _$AppPermissionStatus {
   Object? get error => throw _privateConstructorUsedError;
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppPermissionStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppPermissionStatusCopyWith<AppPermissionStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -57,6 +59,8 @@ class _$AppPermissionStatusCopyWithImpl<$Res, $Val extends AppPermissionStatus>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppPermissionStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +118,8 @@ class __$$AppPermissionStatusImplCopyWithImpl<$Res>
       $Res Function(_$AppPermissionStatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppPermissionStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -191,7 +197,9 @@ class _$AppPermissionStatusImpl extends _AppPermissionStatus {
   int get hashCode => Object.hash(runtimeType, permission, combinedStatus,
       const DeepCollectionEquality().hash(error), stateStatus);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppPermissionStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppPermissionStatusImplCopyWith<_$AppPermissionStatusImpl> get copyWith =>
@@ -223,8 +231,11 @@ abstract class _AppPermissionStatus extends AppPermissionStatus {
   Object? get error;
   @override
   StateStatus get stateStatus;
+
+  /// Create a copy of AppPermissionStatus
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppPermissionStatusImplCopyWith<_$AppPermissionStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
