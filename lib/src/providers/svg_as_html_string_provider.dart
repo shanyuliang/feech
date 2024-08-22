@@ -93,12 +93,16 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       </html>
       ''';
 
+  // Note: If fillParent is true:
+  // 1. The svg will always be center aligned;
+  // 2. All SVG drawing will be visible even outside of the view box;
+  // 3. The SVG's background color will fill the container;
   @override
   Future<String> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
-    bool fillParent = false, // if true, the svg will always be center aligned with SVG's background color filling up container
+    bool fillParent = false,
   }) async {
     String src;
     if (svgLink.startsWith("http")) {
