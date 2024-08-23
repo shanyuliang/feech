@@ -19,9 +19,7 @@ mixin _$AppLocale {
   String get localeId => throw _privateConstructorUsedError;
   String get localeName => throw _privateConstructorUsedError;
 
-  /// Create a copy of AppLocale
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AppLocaleCopyWith<AppLocale> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,8 +42,6 @@ class _$AppLocaleCopyWithImpl<$Res, $Val extends AppLocale>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AppLocale
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,8 +80,6 @@ class __$$AppLocaleImplCopyWithImpl<$Res>
       _$AppLocaleImpl _value, $Res Function(_$AppLocaleImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AppLocale
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,9 +124,7 @@ class _$AppLocaleImpl extends _AppLocale {
   @override
   int get hashCode => Object.hash(runtimeType, localeId, localeName);
 
-  /// Create a copy of AppLocale
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AppLocaleImplCopyWith<_$AppLocaleImpl> get copyWith =>
@@ -149,11 +141,8 @@ abstract class _AppLocale extends AppLocale {
   String get localeId;
   @override
   String get localeName;
-
-  /// Create a copy of AppLocale
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AppLocaleImplCopyWith<_$AppLocaleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

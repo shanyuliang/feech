@@ -34,9 +34,7 @@ mixin _$AppWebViewState {
   bool get expandTitleBar => throw _privateConstructorUsedError;
   StateStatus get stateStatus => throw _privateConstructorUsedError;
 
-  /// Create a copy of AppWebViewState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AppWebViewStateCopyWith<AppWebViewState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,8 +72,6 @@ class _$AppWebViewStateCopyWithImpl<$Res, $Val extends AppWebViewState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AppWebViewState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -188,8 +184,6 @@ class __$$AppWebViewStateImplCopyWithImpl<$Res>
       _$AppWebViewStateImpl _value, $Res Function(_$AppWebViewStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AppWebViewState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -377,9 +371,7 @@ class _$AppWebViewStateImpl implements _AppWebViewState {
       expandTitleBar,
       stateStatus);
 
-  /// Create a copy of AppWebViewState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AppWebViewStateImplCopyWith<_$AppWebViewStateImpl> get copyWith =>
@@ -432,11 +424,8 @@ abstract class _AppWebViewState implements AppWebViewState {
   bool get expandTitleBar;
   @override
   StateStatus get stateStatus;
-
-  /// Create a copy of AppWebViewState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AppWebViewStateImplCopyWith<_$AppWebViewStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

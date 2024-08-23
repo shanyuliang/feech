@@ -19,9 +19,7 @@ mixin _$LocaleVoices {
   String get localeId => throw _privateConstructorUsedError;
   List<String> get voiceIds => throw _privateConstructorUsedError;
 
-  /// Create a copy of LocaleVoices
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LocaleVoicesCopyWith<LocaleVoices> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,8 +43,6 @@ class _$LocaleVoicesCopyWithImpl<$Res, $Val extends LocaleVoices>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LocaleVoices
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,8 +81,6 @@ class __$$LocaleVoicesImplCopyWithImpl<$Res>
       _$LocaleVoicesImpl _value, $Res Function(_$LocaleVoicesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LocaleVoices
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,9 +130,7 @@ class _$LocaleVoicesImpl extends _LocaleVoices {
   int get hashCode => Object.hash(
       runtimeType, localeId, const DeepCollectionEquality().hash(voiceIds));
 
-  /// Create a copy of LocaleVoices
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LocaleVoicesImplCopyWith<_$LocaleVoicesImpl> get copyWith =>
@@ -155,11 +147,8 @@ abstract class _LocaleVoices extends LocaleVoices {
   String get localeId;
   @override
   List<String> get voiceIds;
-
-  /// Create a copy of LocaleVoices
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LocaleVoicesImplCopyWith<_$LocaleVoicesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

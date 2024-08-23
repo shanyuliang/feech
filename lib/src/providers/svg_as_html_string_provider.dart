@@ -39,6 +39,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   static const htmlStringTemplateSvg = '''<!DOCTYPE html>
       <html lang="">
       <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <style>
               html, body {
                 width: 100%;
@@ -69,6 +70,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   static const htmlStringTemplateSvgFillContainer = '''<!DOCTYPE html>
       <html lang="">
       <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <style>
               html, body {
                 width: 100%;
