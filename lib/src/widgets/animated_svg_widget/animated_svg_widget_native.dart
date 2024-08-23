@@ -19,8 +19,10 @@ class AnimatedSvgWidget extends ConsumerStatefulWidget {
     this.fillContainer = false,
     this.fitModeWhenFillContainer = BoxFit.contain,
   }) : assert(
-          fitModeWhenFillContainer == BoxFit.contain || fitModeWhenFillContainer == BoxFit.cover,
-          'fitModeWhenFillContainer can only be contain or cover',
+          fitModeWhenFillContainer == BoxFit.contain ||
+              fitModeWhenFillContainer == BoxFit.cover ||
+              fitModeWhenFillContainer == BoxFit.fill,
+          'fitModeWhenFillContainer can only be one of [contain, cover, fill]',
         );
 
   @override

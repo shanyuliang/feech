@@ -111,13 +111,14 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     required String svgLink,
     Alignment alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
-    BoxFit fit = BoxFit.contain,
     bool fillContainer = false,
+    BoxFit fit = BoxFit.contain,
   }) async {
     String? src = await ref.read(svgStringProvider(svgLink: svgLink).future);
     if (src != null) {
-      final meetOrSlice = fit == BoxFit.cover ? "slice" : "meet";
-      final alignmentString = fillContainer ? alignment.toSvgPreserveAspectRatio(meetOrSlice) : alignment.toCSSMargin();
+      final alignmentString = fillContainer
+          ? (fit == BoxFit.fill ? "none" : alignment.toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
+          : alignment.toCSSMargin();
       final htmlString = (fillContainer ? htmlStringTemplateSvgFillContainer : htmlStringTemplateSvg).replaceFirst(
         '''--IMAGE--''',
         src,
