@@ -36,78 +36,6 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       </html>
       ''';
 
-  static const htmlStringTemplateObject = '''<!DOCTYPE html>
-      <html lang="">
-      <head>
-          <style>
-              html, body {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                display: flex;
-              }
-              body {
-                background-color: --COLOR--;
-              }
-              object {
-                max-width: 100vw;
-                max-height: 100vh;
-                display: block;
-                --ALIGNMENT--
-              }
-          </style>
-          <title></title>
-      </head>
-      <body>
-      <object type="image/svg+xml" data="--IMAGE--"></object>
-      </body>
-      </html>
-      ''';
-
-  static const htmlStringTemplateObjectFill = '''<!DOCTYPE html>
-      <html lang="">
-      <head>
-          <style>
-              html, body {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-              }
-              body {
-                background-color: --COLOR--;
-              }
-              object {
-                width: 100vw;
-                height: 100vh;
-              }
-          </style>
-          <script>
-            function update(event) {
-        var object = document.getElementById("feech_animated_svg");
-        console.log(object);
-        var objectDoc = object.contentDocument;
-        console.log(objectDoc);
-        var svgs = objectDoc.getElementsByTagName("svg");
-        var svg = svgs[0];
-        svg.setAttribute("preserveAspectRatio", "xMinYMin meet");
-    }
-
-window.addEventListener("load", function(){
-    update();
-});
-          </script>
-          <title></title>
-      </head>
-      <body>
-      <object id="feech_animated_svg" type="image/svg+xml" data="--IMAGE--"></object>
-      </body>
-      </html>
-      ''';
-
   static const htmlStringTemplateSvg = '''<!DOCTYPE html>
       <html lang="">
       <head>
@@ -138,7 +66,7 @@ window.addEventListener("load", function(){
       </html>
       ''';
 
-  static const htmlStringTemplateSvgFill = '''<!DOCTYPE html>
+  static const htmlStringTemplateSvgFillContainer = '''<!DOCTYPE html>
       <html lang="">
       <head>
           <style>
@@ -161,7 +89,7 @@ window.addEventListener("load", function(){
             function update(event) {
                 var svgs = document.getElementsByTagName("svg");
                 var svg = svgs[0];
-                svg.setAttribute("preserveAspectRatio", "xMinYMin meet");
+                svg.setAttribute("preserveAspectRatio", "--ALIGNMENT--");
             }
             window.addEventListener("load", function(){
                 update();
@@ -175,26 +103,22 @@ window.addEventListener("load", function(){
       </html>
       ''';
 
-  // Note: If fillParent is true:
+  // Note: If fillContainer is true:
   // 1. The svg will occupy the whole container;
   // 2. Content outside of view box may be seen;
-  // 3. The view box alignment is decided by the preserveAspectRatio attribute;
-  // 4. preserveAspectRatio default to "xMidYMid meet";
   @override
   Future<String> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
-    bool fillParent = false,
+    BoxFit fit = BoxFit.contain,
+    bool fillContainer = false,
   }) async {
     String? src = await ref.read(svgStringProvider(svgLink: svgLink).future);
-    // if (svgLink.startsWith("http")) {
-    //   src = svgLink;
-    // } else {
-    //   src = await ref.read(svgAssetBase64SrcProvider(svgAsset: svgLink).future);
-    // }
     if (src != null) {
-      final htmlString = (fillParent ? htmlStringTemplateSvgFill : htmlStringTemplateSvg).replaceFirst(
+      final meetOrSlice = fit == BoxFit.cover ? "slice" : "meet";
+      final alignmentString = fillContainer ? alignment.toSvgPreserveAspectRatio(meetOrSlice) : alignment.toCSSMargin();
+      final htmlString = (fillContainer ? htmlStringTemplateSvgFillContainer : htmlStringTemplateSvg).replaceFirst(
         '''--IMAGE--''',
         src,
       ).replaceFirst(
@@ -202,7 +126,7 @@ window.addEventListener("load", function(){
         backgroundColor.toHexRGBAString(),
       ).replaceFirst(
         '''--ALIGNMENT--''',
-        alignment.toCSSMargin(),
+        alignmentString,
       );
       return htmlString;
     } else {

@@ -78,4 +78,20 @@ extension AlignmentExtension on Alignment {
                 margin-bottom: auto;
     ''',
       };
+
+  String toSvgPreserveAspectRatio(String? meetOrSlice) {
+    final actionMeetOrSlice = meetOrSlice ?? "meet";
+    return switch (this) {
+      Alignment.topLeft => "xMinYMin $actionMeetOrSlice",
+      Alignment.topCenter => "xMidYMin $actionMeetOrSlice",
+      Alignment.topRight => "xMaxYMin $actionMeetOrSlice",
+      Alignment.centerLeft => "xMinYMid $actionMeetOrSlice",
+      Alignment.center => "xMidYMid $actionMeetOrSlice",
+      Alignment.centerRight => "xMaxYMid $actionMeetOrSlice",
+      Alignment.bottomLeft => "xMinYMax $actionMeetOrSlice",
+      Alignment.bottomCenter => "xMidYMax $actionMeetOrSlice",
+      Alignment.bottomRight => "xMaxYMax $actionMeetOrSlice",
+      _ => "xMidYMid $actionMeetOrSlice",
+    };
+  }
 }
