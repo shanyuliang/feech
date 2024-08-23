@@ -103,9 +103,12 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
       </html>
       ''';
 
-  // Note: If fillContainer is true:
+  // Note: If `fillContainer` is true:
   // 1. The svg will occupy the whole container;
   // 2. Content outside of view box may be seen;
+
+  // Note: `fit` only apply if `fillContainer` is true.
+
   @override
   Future<String> build({
     required String svgLink,
