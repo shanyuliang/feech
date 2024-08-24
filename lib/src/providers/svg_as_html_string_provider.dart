@@ -112,7 +112,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   // Note: `fit` only apply if `fillContainer` is true.
 
   @override
-  Future<String> build({
+  Future<(String?, Size?)> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
@@ -134,9 +134,9 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
         '''--ALIGNMENT--''',
         alignmentString,
       );
-      return htmlString;
+      return (htmlString, null);
     } else {
-      return "";
+      return (null, null);
     }
   }
 }

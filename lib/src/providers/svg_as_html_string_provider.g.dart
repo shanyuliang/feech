@@ -7,7 +7,7 @@ part of 'svg_as_html_string_provider.dart';
 // **************************************************************************
 
 String _$svgAsHtmlStringProviderHash() =>
-    r'7b3a0ad5ecc67427f7d2dcc811947a5c2072fcc8';
+    r'2b8fec3fce692bcd3ac303b3929e7a930b535175';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,14 +31,14 @@ class _SystemHash {
 }
 
 abstract class _$SvgAsHtmlStringProvider
-    extends BuildlessAutoDisposeAsyncNotifier<String> {
+    extends BuildlessAutoDisposeAsyncNotifier<(String?, Size?)> {
   late final String svgLink;
   late final Alignment alignment;
   late final Color backgroundColor;
   late final bool fillContainer;
   late final BoxFit fit;
 
-  FutureOr<String> build({
+  FutureOr<(String?, Size?)> build({
     required String svgLink,
     Alignment alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
@@ -52,7 +52,8 @@ abstract class _$SvgAsHtmlStringProvider
 const svgAsHtmlStringProvider = SvgAsHtmlStringProviderFamily();
 
 /// See also [SvgAsHtmlStringProvider].
-class SvgAsHtmlStringProviderFamily extends Family<AsyncValue<String>> {
+class SvgAsHtmlStringProviderFamily
+    extends Family<AsyncValue<(String?, Size?)>> {
   /// See also [SvgAsHtmlStringProvider].
   const SvgAsHtmlStringProviderFamily();
 
@@ -104,7 +105,7 @@ class SvgAsHtmlStringProviderFamily extends Family<AsyncValue<String>> {
 /// See also [SvgAsHtmlStringProvider].
 class SvgAsHtmlStringProviderProvider
     extends AutoDisposeAsyncNotifierProviderImpl<SvgAsHtmlStringProvider,
-        String> {
+        (String?, Size?)> {
   /// See also [SvgAsHtmlStringProvider].
   SvgAsHtmlStringProviderProvider({
     required String svgLink,
@@ -156,7 +157,7 @@ class SvgAsHtmlStringProviderProvider
   final BoxFit fit;
 
   @override
-  FutureOr<String> runNotifierBuild(
+  FutureOr<(String?, Size?)> runNotifierBuild(
     covariant SvgAsHtmlStringProvider notifier,
   ) {
     return notifier.build(
@@ -194,8 +195,8 @@ class SvgAsHtmlStringProviderProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<SvgAsHtmlStringProvider, String>
-      createElement() {
+  AutoDisposeAsyncNotifierProviderElement<SvgAsHtmlStringProvider,
+      (String?, Size?)> createElement() {
     return _SvgAsHtmlStringProviderProviderElement(this);
   }
 
@@ -223,7 +224,7 @@ class SvgAsHtmlStringProviderProvider
 }
 
 mixin SvgAsHtmlStringProviderRef
-    on AutoDisposeAsyncNotifierProviderRef<String> {
+    on AutoDisposeAsyncNotifierProviderRef<(String?, Size?)> {
   /// The parameter `svgLink` of this provider.
   String get svgLink;
 
@@ -242,7 +243,7 @@ mixin SvgAsHtmlStringProviderRef
 
 class _SvgAsHtmlStringProviderProviderElement
     extends AutoDisposeAsyncNotifierProviderElement<SvgAsHtmlStringProvider,
-        String> with SvgAsHtmlStringProviderRef {
+        (String?, Size?)> with SvgAsHtmlStringProviderRef {
   _SvgAsHtmlStringProviderProviderElement(super.provider);
 
   @override

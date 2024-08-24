@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../extensions/general_type_extension.dart';
 import '../../providers/svg_as_html_string_provider.dart';
 
 class AnimatedSvgWidget extends ConsumerStatefulWidget {
@@ -47,12 +48,9 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
       switch (htmlString) {
         case AsyncData(:final value):
           {
-            _webViewController.loadHtmlString(value);
-            // if (widget.svgLink.toLowerCase().startsWith("http")) {
-            //   _webViewController.loadRequest(Uri.parse(widget.svgLink));
-            // } else {
-            //   _webViewController.loadFlutterAsset(widget.svgLink);
-            // }
+            value.$1?.let((it) {
+              _webViewController.loadHtmlString(it);
+            });
           }
       }
     });
