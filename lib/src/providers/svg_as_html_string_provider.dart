@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -123,9 +121,9 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     bool fillContainer = false,
     BoxFit fit = BoxFit.contain,
   }) async {
-    String? src = await ref.read(svgStringProvider(svgLink: svgLink).future);
+    String? src = await ref.watch(svgStringProvider(svgLink: svgLink).future);
     if (src != null) {
-      final size = await getSizeFromSVGString(src);
+      final size = await _getSizeFromSVGString(src);
       final alignmentString = fillContainer
           ? (fit == BoxFit.fill
               ? "none"
@@ -147,19 +145,14 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     }
   }
 
-  Future<Size?> _getSizeFromSVGString({required String svgString}) async {
-    return compute(getSizeFromSVGString, svgString);
+  Future<Size?> _getSizeFromSVGString(String svgString) async {
+    return suppressThrowableAsyncDefault(throwable: () async {
+      final pictureInfo = await vg.loadPicture(SvgStringLoader(svgString), null);
+      final size = pictureInfo.size;
+      pictureInfo.picture.dispose();
+      return size;
+    }, whenError: (error, stackTrace) async {
+      return null;
+    });
   }
-}
-
-Future<Size?> getSizeFromSVGString(String svgString) async {
-  return suppressThrowableAsyncDefault(throwable: () async {
-    final pictureInfo = await vg.loadPicture(SvgStringLoader(svgString), null);
-    final size = pictureInfo.size;
-    pictureInfo.picture.dispose();
-    return size;
-  }, whenError: (error, stackTrace) async {
-    debugPrint("ERROR GETTING SVG SIZE: ${error}");
-    return null;
-  });
 }
