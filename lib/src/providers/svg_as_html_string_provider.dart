@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../extensions/alignment_extension.dart';
 import '../extensions/color_extension.dart';
+import '../utilities/handy_util.dart';
 import 'svg_string_provider.dart';
 
 part 'svg_as_html_string_provider.g.dart';
@@ -121,6 +123,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   }) async {
     String? src = await ref.read(svgStringProvider(svgLink: svgLink).future);
     if (src != null) {
+      final size = await _getSize(svgString: src);
       final alignmentString = fillContainer
           ? (fit == BoxFit.fill ? "none" : alignment.toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
           : alignment.toCSSMargin();
@@ -134,9 +137,20 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
         '''--ALIGNMENT--''',
         alignmentString,
       );
-      return (htmlString, null);
+      return (htmlString, size);
     } else {
       return (null, null);
     }
+  }
+
+  Future<Size?> _getSize({required String svgString}) {
+    return suppressThrowableAsyncDefault(throwable: () async {
+      final pictureInfo = await vg.loadPicture(SvgStringLoader(svgString), null);
+      final size = pictureInfo.size;
+      pictureInfo.picture.dispose();
+      return size;
+    }, whenError: (error, stackTrace) async {
+      return null;
+    });
   }
 }
