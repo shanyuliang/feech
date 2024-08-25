@@ -159,7 +159,7 @@ Future<Size?> getSizeFromSVGString(String svgString) async {
     pictureInfo.picture.dispose();
     return size;
   }, whenError: (error, stackTrace) async {
-    debugPrint(error.toString());
+    debugPrint("ERROR GETTING SVG SIZE: ${error}");
     return null;
   });
 }
