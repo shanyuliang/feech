@@ -152,13 +152,14 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   }
 }
 
-Future<Size?> getSizeFromSVGString(String svgString) {
+Future<Size?> getSizeFromSVGString(String svgString) async {
   return suppressThrowableAsyncDefault(throwable: () async {
     final pictureInfo = await vg.loadPicture(SvgStringLoader(svgString), null);
     final size = pictureInfo.size;
     pictureInfo.picture.dispose();
     return size;
   }, whenError: (error, stackTrace) async {
+    debugPrint(error.toString());
     return null;
   });
 }
