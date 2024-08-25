@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'network_helper_provider/network_helper_provider.dart';
 
 part 'svg_string_provider.g.dart';
 
@@ -10,9 +9,12 @@ class SvgStringProvider extends _$SvgStringProvider {
   @override
   Future<String?> build({required String svgLink}) async {
     if (svgLink.startsWith("http")) {
-      final networkHelper = ref.read(networkHelperProvider());
-      final networkResult = await networkHelper.getAsync<String, String>(url: svgLink);
-      return networkResult.getGoodValueOrNull();
+      final response = await http.get(Uri.parse(svgLink));
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        return response.body;
+      } else {
+        return null;
+      }
     } else {
       return await rootBundle.loadString(svgLink);
     }

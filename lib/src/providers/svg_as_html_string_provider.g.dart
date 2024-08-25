@@ -7,7 +7,7 @@ part of 'svg_as_html_string_provider.dart';
 // **************************************************************************
 
 String _$svgAsHtmlStringProviderHash() =>
-    r'9f1c8c03fcb3b8cbb26e894be438664f75c9f85d';
+    r'ee48d4c4bfe0e5f3ca6640b5552daf59c40904e2';
 
 /// Copied from Dart SDK
 class _SystemHash {
