@@ -4,7 +4,6 @@ import 'dart:ui_web';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../extensions/general_type_extension.dart';
 import '../../providers/svg_as_html_string_provider.dart';
 
 class AnimatedSvgWidget extends ConsumerStatefulWidget {
@@ -45,16 +44,18 @@ class _AnimatedSvgWidgetState extends ConsumerState<AnimatedSvgWidget> {
     switch (htmlString) {
       case AsyncData(:final value):
         {
-          value.$1?.let((it) {
+          if (value.$1 != null) {
             platformViewRegistry.registerViewFactory(
                 'html-$hashCode',
-                    (int viewId) => html.IFrameElement()
-                  ..srcdoc = it
+                (int viewId) => html.IFrameElement()
+                  ..srcdoc = value.$1!
                   ..style.border = "none"
                   ..style.width = "100%"
                   ..style.height = "100%");
-          });
-          return HtmlElementView(viewType: 'html-$hashCode');
+            return HtmlElementView(viewType: 'html-$hashCode');
+          } else {
+            return const SizedBox.shrink();
+          }
         }
       default:
         return const SizedBox.shrink();

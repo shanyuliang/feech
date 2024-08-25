@@ -49,18 +49,18 @@ dependencies:
   speech_to_text: '>=6.6.2 <7.0.0' # https://pub.dev/packages/speech_to_text
   sqflite: '>=2.3.3 <3.0.0' # https://pub.dev/packages/sqflite
   ulid4d: '>=2.0.0 <3.0.0' # https://pub.dev/packages/ulid4d
-  webview_flutter: '>=4.8.0 <5.0.0' # https://pub.dev/packages/webview_flutter
+  webview_flutter: '>=4.9.0 <5.0.0' # https://pub.dev/packages/webview_flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: '>=2.4.11 <3.0.0' # https://pub.dev/packages/build_runner
+  build_runner: '>=2.4.12 <3.0.0' # https://pub.dev/packages/build_runner
   flutter_lints: '>=4.0.0 <5.0.0' # https://pub.dev/packages/flutter_lints
-  freezed: '>=2.5.2 <3.0.0' # https://pub.dev/packages/freezed
+  freezed: '>=2.5.7 <3.0.0' # https://pub.dev/packages/freezed
   json_serializable: '>=6.8.0 <7.0.0' # https://pub.dev/packages/json_serializable
-  riverpod_analyzer_utils: '>=0.5.1 <1.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
-  riverpod_generator: '>=2.4.0 <3.0.0' # https://pub.dev/packages/riverpod_generator
-  riverpod_lint: '>=2.3.10 <3.0.0' # https://pub.dev/packages/riverpod_lint
+  riverpod_analyzer_utils: '>=0.5.4 <1.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
+  riverpod_generator: '>=2.4.3 <3.0.0' # https://pub.dev/packages/riverpod_generator
+  riverpod_lint: '>=2.3.13 <3.0.0' # https://pub.dev/packages/riverpod_lint
 
 flutter:
   generate: true
