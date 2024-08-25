@@ -23,8 +23,12 @@ mixin _$WebStorageItem {
   String get key => throw _privateConstructorUsedError;
   dynamic get value => throw _privateConstructorUsedError;
 
+  /// Serializes this WebStorageItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WebStorageItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WebStorageItemCopyWith<WebStorageItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$WebStorageItemCopyWithImpl<$Res, $Val extends WebStorageItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WebStorageItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$WebStorageItemImplCopyWithImpl<$Res>
       _$WebStorageItemImpl _value, $Res Function(_$WebStorageItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WebStorageItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,12 +140,14 @@ class _$WebStorageItemImpl extends _WebStorageItem {
             const DeepCollectionEquality().equals(other.value, value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, key, const DeepCollectionEquality().hash(value));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WebStorageItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WebStorageItemImplCopyWith<_$WebStorageItemImpl> get copyWith =>
@@ -164,8 +174,11 @@ abstract class _WebStorageItem extends WebStorageItem {
   String get key;
   @override
   dynamic get value;
+
+  /// Create a copy of WebStorageItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WebStorageItemImplCopyWith<_$WebStorageItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

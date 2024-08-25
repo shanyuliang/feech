@@ -7,7 +7,7 @@ part of 'svg_as_html_string_provider.dart';
 // **************************************************************************
 
 String _$svgAsHtmlStringProviderHash() =>
-    r'2b8fec3fce692bcd3ac303b3929e7a930b535175';
+    r'9f1c8c03fcb3b8cbb26e894be438664f75c9f85d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,14 +33,14 @@ class _SystemHash {
 abstract class _$SvgAsHtmlStringProvider
     extends BuildlessAutoDisposeAsyncNotifier<(String?, Size?)> {
   late final String svgLink;
-  late final Alignment alignment;
+  late final AlignmentGeometry alignment;
   late final Color backgroundColor;
   late final bool fillContainer;
   late final BoxFit fit;
 
   FutureOr<(String?, Size?)> build({
     required String svgLink,
-    Alignment alignment = Alignment.center,
+    AlignmentGeometry alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
     bool fillContainer = false,
     BoxFit fit = BoxFit.contain,
@@ -60,7 +60,7 @@ class SvgAsHtmlStringProviderFamily
   /// See also [SvgAsHtmlStringProvider].
   SvgAsHtmlStringProviderProvider call({
     required String svgLink,
-    Alignment alignment = Alignment.center,
+    AlignmentGeometry alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
     bool fillContainer = false,
     BoxFit fit = BoxFit.contain,
@@ -109,7 +109,7 @@ class SvgAsHtmlStringProviderProvider
   /// See also [SvgAsHtmlStringProvider].
   SvgAsHtmlStringProviderProvider({
     required String svgLink,
-    Alignment alignment = Alignment.center,
+    AlignmentGeometry alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
     bool fillContainer = false,
     BoxFit fit = BoxFit.contain,
@@ -151,7 +151,7 @@ class SvgAsHtmlStringProviderProvider
   }) : super.internal();
 
   final String svgLink;
-  final Alignment alignment;
+  final AlignmentGeometry alignment;
   final Color backgroundColor;
   final bool fillContainer;
   final BoxFit fit;
@@ -229,7 +229,7 @@ mixin SvgAsHtmlStringProviderRef
   String get svgLink;
 
   /// The parameter `alignment` of this provider.
-  Alignment get alignment;
+  AlignmentGeometry get alignment;
 
   /// The parameter `backgroundColor` of this provider.
   Color get backgroundColor;
@@ -249,7 +249,7 @@ class _SvgAsHtmlStringProviderProviderElement
   @override
   String get svgLink => (origin as SvgAsHtmlStringProviderProvider).svgLink;
   @override
-  Alignment get alignment =>
+  AlignmentGeometry get alignment =>
       (origin as SvgAsHtmlStringProviderProvider).alignment;
   @override
   Color get backgroundColor =>

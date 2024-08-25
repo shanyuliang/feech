@@ -1,3 +1,7 @@
+## 0.1.9
+
+* Add enhanced svg widget
+
 ## 0.1.8
 
 * Update animated svg widget

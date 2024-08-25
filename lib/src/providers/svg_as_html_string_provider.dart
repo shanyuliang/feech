@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -116,7 +117,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   @override
   Future<(String?, Size?)> build({
     required String svgLink,
-    Alignment alignment = Alignment.center,
+    AlignmentGeometry alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
     bool fillContainer = false,
     BoxFit fit = BoxFit.contain,
@@ -125,8 +126,10 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
     if (src != null) {
       final size = await _getSize(svgString: src);
       final alignmentString = fillContainer
-          ? (fit == BoxFit.fill ? "none" : alignment.toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
-          : alignment.toCSSMargin();
+          ? (fit == BoxFit.fill
+              ? "none"
+              : alignment.resolve(null).toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
+          : alignment.resolve(null).toCSSMargin();
       final htmlString = (fillContainer ? htmlStringTemplateSvgFillContainer : htmlStringTemplateSvg).replaceFirst(
         '''--IMAGE--''',
         src,
