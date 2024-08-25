@@ -125,7 +125,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
   }) async {
     String? src = await ref.read(svgStringProvider(svgLink: svgLink).future);
     if (src != null) {
-      final size = await _getSizeFromSVGString(svgString: src);
+      final size = await getSizeFromSVGString(src);
       final alignmentString = fillContainer
           ? (fit == BoxFit.fill
               ? "none"
