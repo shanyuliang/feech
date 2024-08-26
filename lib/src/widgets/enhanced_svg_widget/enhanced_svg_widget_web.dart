@@ -3,6 +3,7 @@ import 'dart:ui_web';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 import '../../providers/svg_as_html_string_provider.dart';
 
@@ -59,9 +60,18 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
                 fit: widget.fit,
                 alignment: widget.alignment,
                 clipBehavior: widget.clipBehavior,
-                child: SizedBox.fromSize(
-                  size: svgSize,
-                  child: IgnorePointer(child: HtmlElementView(viewType: 'html-$hashCode')),
+                child: Stack(
+                  children: [
+                    SizedBox.fromSize(
+                      size: svgSize,
+                      child: HtmlElementView(viewType: 'html-$hashCode'),
+                    ),
+                    PointerInterceptor(
+                      child: SizedBox.fromSize(
+                        size: svgSize,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
