@@ -67,11 +67,11 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
               ),
             );
           } else {
-            return const SizedBox.shrink();
+            return _placeholder();
           }
         }
       default:
-        return const SizedBox.shrink();
+        return _placeholder();
     }
   }
 
@@ -88,5 +88,9 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
       height = svgSize.height;
     }
     return Size(width, height);
+  }
+
+  Widget _placeholder() {
+    return Container(width: widget.width, height: widget.height, color: widget.backgroundColor);
   }
 }

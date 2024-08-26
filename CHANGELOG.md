@@ -1,3 +1,7 @@
+## 0.1.13
+
+* Update enhanced svg widget
+
 ## 0.1.12
 
 * Update enhanced svg widget
