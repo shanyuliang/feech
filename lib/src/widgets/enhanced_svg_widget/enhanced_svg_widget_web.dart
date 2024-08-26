@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
+import '../../extensions/alignment_extension.dart';
+import '../../extensions/color_extension.dart';
 import '../../providers/svg_as_html_string_provider.dart';
 
 class EnhancedSvgWidget extends ConsumerStatefulWidget {
@@ -47,8 +49,10 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
           final svgHtml = value.$1;
           final svgSize = value.$2;
           if (svgHtml != null && svgSize != null) {
+            final viewType =
+                "${widget.svgLink}-${widget.alignment.resolve(null).toShortString()}-${widget.backgroundColor.toHexRGBAString()}";
             platformViewRegistry.registerViewFactory(
-                'html-$hashCode',
+                viewType,
                 (int viewId) => html.IFrameElement()
                   ..srcdoc = svgHtml
                   ..style.border = "none"
@@ -67,7 +71,7 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
                   children: [
                     SizedBox.fromSize(
                       size: svgSize,
-                      child: HtmlElementView(viewType: 'html-$hashCode'),
+                      child: HtmlElementView(viewType: viewType),
                     ),
                     PointerInterceptor(
                       child: SizedBox.fromSize(
