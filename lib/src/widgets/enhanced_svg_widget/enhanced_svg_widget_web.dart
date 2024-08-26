@@ -61,7 +61,7 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
                 clipBehavior: widget.clipBehavior,
                 child: SizedBox.fromSize(
                   size: svgSize,
-                  child: HtmlElementView(viewType: 'html-$hashCode'),
+                  child: IgnorePointer(child: HtmlElementView(viewType: 'html-$hashCode')),
                 ),
               ),
             );
