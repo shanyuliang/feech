@@ -49,8 +49,11 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
           final svgSize = value.$2;
           if (svgHtml != null && svgSize != null) {
             _webViewController.loadHtmlString(svgHtml);
-            return SizedBox.fromSize(
-              size: _decideSize(svgSize: svgSize),
+            final containerSize = _decideSize(svgSize: svgSize);
+            return Container(
+              width: containerSize.width,
+              height: containerSize.height,
+              color: widget.backgroundColor,
               child: FittedBox(
                 fit: widget.fit,
                 alignment: widget.alignment,
