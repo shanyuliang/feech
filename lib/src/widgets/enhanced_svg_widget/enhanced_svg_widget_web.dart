@@ -72,6 +72,7 @@ class _EnhancedSvgWidgetState extends ConsumerState<EnhancedSvgWidget> {
                     PointerInterceptor(
                       child: SizedBox.fromSize(
                         size: svgSize,
+                        child: const Material(color: Colors.transparent),
                       ),
                     ),
                   ],
