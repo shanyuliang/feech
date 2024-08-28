@@ -20,9 +20,9 @@ class CachedNetworkSvgPicture extends ConsumerWidget {
   final String? semanticsLabel;
   final bool excludeFromSemantics;
   final Clip clipBehavior;
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
-  const CachedNetworkSvgPicture({
+  CachedNetworkSvgPicture({
     super.key,
     required this.url,
     this.headers,
@@ -32,13 +32,13 @@ class CachedNetworkSvgPicture extends ConsumerWidget {
     this.alignment = Alignment.center,
     this.loadingBuilder,
     this.errorBuilder,
-    this.colorFilter,
+    ColorFilter? colorFilter,
     this.allowDrawingOutsideViewBox = false,
     this.semanticsLabel,
     this.excludeFromSemantics = false,
     this.clipBehavior = Clip.antiAlias,
-    this.backgroundColor = Colors.transparent,
-  });
+    this.backgroundColor,
+  }) : colorFilter = colorFilter ?? (backgroundColor != null ? ColorFilter.mode(backgroundColor, BlendMode.dstOver) : null);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,21 +53,18 @@ class CachedNetworkSvgPicture extends ConsumerWidget {
       data: ((String, File?) urlAndFile) {
         final file = urlAndFile.$2;
         if (file != null) {
-          return Container(
-            color: backgroundColor,
-            child: SvgPicture.file(
-              file,
-              width: width,
-              height: height,
-              fit: fit,
-              alignment: alignment,
-              placeholderBuilder: loadingBuilder ?? _cachedSvgPictureDefaultPlaceholder,
-              colorFilter: colorFilter,
-              allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-              semanticsLabel: semanticsLabel,
-              excludeFromSemantics: excludeFromSemantics,
-              clipBehavior: clipBehavior,
-            ),
+          return SvgPicture.file(
+            file,
+            width: width,
+            height: height,
+            fit: fit,
+            alignment: alignment,
+            placeholderBuilder: loadingBuilder ?? _cachedSvgPictureDefaultPlaceholder,
+            colorFilter: colorFilter,
+            allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+            semanticsLabel: semanticsLabel,
+            excludeFromSemantics: excludeFromSemantics,
+            clipBehavior: clipBehavior,
           );
         } else {
           return errorBuilder?.call(context) ?? _cachedSvgPictureDefaultPlaceholder(context);
@@ -77,6 +74,6 @@ class CachedNetworkSvgPicture extends ConsumerWidget {
   }
 
   Widget _cachedSvgPictureDefaultPlaceholder(BuildContext context) {
-    return Container(color: backgroundColor);
+    return Container(width: width, height: height, color: backgroundColor);
   }
 }
