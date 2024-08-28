@@ -6,25 +6,34 @@ import 'package:http/http.dart';
 
 import '../extensions/content_type_extension.dart';
 
+final defaultAppCacheManager = AppCacheManager();
+
 class AppCacheManager extends CacheManager {
   static const key = 'AppCacheManager';
+  static const defaultStalePeriod = Duration(days: 7);
+  static const defaultAppFileAge = Duration(days: 7);
 
-  static final AppCacheManager _instance = AppCacheManager._();
-
-  factory AppCacheManager() {
-    return _instance;
-  }
-
-  AppCacheManager._() : super(Config(key, fileService: AppHttpFileService()));
+  AppCacheManager({
+    Client? httpClient,
+    Duration? stalePeriod,
+    Duration? defaultAge,
+  }) : super(
+          Config(
+            key,
+            stalePeriod: stalePeriod ?? defaultStalePeriod,
+            fileService: _AppHttpFileService(httpClient: httpClient, defaultAge: defaultAge ?? defaultAppFileAge),
+          ),
+        );
 }
 
-class AppHttpFileService extends FileService {
+class _AppHttpFileService extends FileService {
+  static const defaultFileAge = Duration(days: 7);
   final Client _httpClient;
   final Duration _defaultAge;
 
-  AppHttpFileService({Client? httpClient, Duration? defaultAge})
+  _AppHttpFileService({Client? httpClient, Duration? defaultAge})
       : _httpClient = httpClient ?? Client(),
-        _defaultAge = defaultAge ?? const Duration(hours: 1);
+        _defaultAge = defaultAge ?? defaultFileAge;
 
   @override
   Future<FileServiceResponse> get(String url, {Map<String, String>? headers}) async {
@@ -34,12 +43,12 @@ class AppHttpFileService extends FileService {
     }
     final httpResponse = await _httpClient.send(req);
 
-    return AppHttpGetResponse(httpResponse, _defaultAge);
+    return _AppHttpGetResponse(httpResponse, _defaultAge);
   }
 }
 
-class AppHttpGetResponse implements FileServiceResponse {
-  AppHttpGetResponse(this._response, this._defaultAge);
+class _AppHttpGetResponse implements FileServiceResponse {
+  _AppHttpGetResponse(this._response, this._defaultAge);
 
   final StreamedResponse _response;
 

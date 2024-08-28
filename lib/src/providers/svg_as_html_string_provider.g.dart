@@ -7,7 +7,7 @@ part of 'svg_as_html_string_provider.dart';
 // **************************************************************************
 
 String _$svgAsHtmlStringProviderHash() =>
-    r'7c4187531e670b422e7688eea0ffa65481e20647';
+    r'182c0a15407a46b916e40fa9f1bf71a710e4d9fe';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,6 +33,7 @@ class _SystemHash {
 abstract class _$SvgAsHtmlStringProvider
     extends BuildlessAutoDisposeAsyncNotifier<(String?, Size?)> {
   late final String svgLink;
+  late final Map<String, String>? headers;
   late final AlignmentGeometry alignment;
   late final Color backgroundColor;
   late final bool fillContainer;
@@ -40,6 +41,7 @@ abstract class _$SvgAsHtmlStringProvider
 
   FutureOr<(String?, Size?)> build({
     required String svgLink,
+    Map<String, String>? headers,
     AlignmentGeometry alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
     bool fillContainer = false,
@@ -60,6 +62,7 @@ class SvgAsHtmlStringProviderFamily
   /// See also [SvgAsHtmlStringProvider].
   SvgAsHtmlStringProviderProvider call({
     required String svgLink,
+    Map<String, String>? headers,
     AlignmentGeometry alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
     bool fillContainer = false,
@@ -67,6 +70,7 @@ class SvgAsHtmlStringProviderFamily
   }) {
     return SvgAsHtmlStringProviderProvider(
       svgLink: svgLink,
+      headers: headers,
       alignment: alignment,
       backgroundColor: backgroundColor,
       fillContainer: fillContainer,
@@ -80,6 +84,7 @@ class SvgAsHtmlStringProviderFamily
   ) {
     return call(
       svgLink: provider.svgLink,
+      headers: provider.headers,
       alignment: provider.alignment,
       backgroundColor: provider.backgroundColor,
       fillContainer: provider.fillContainer,
@@ -109,6 +114,7 @@ class SvgAsHtmlStringProviderProvider
   /// See also [SvgAsHtmlStringProvider].
   SvgAsHtmlStringProviderProvider({
     required String svgLink,
+    Map<String, String>? headers,
     AlignmentGeometry alignment = Alignment.center,
     Color backgroundColor = Colors.transparent,
     bool fillContainer = false,
@@ -116,6 +122,7 @@ class SvgAsHtmlStringProviderProvider
   }) : this._internal(
           () => SvgAsHtmlStringProvider()
             ..svgLink = svgLink
+            ..headers = headers
             ..alignment = alignment
             ..backgroundColor = backgroundColor
             ..fillContainer = fillContainer
@@ -130,6 +137,7 @@ class SvgAsHtmlStringProviderProvider
           allTransitiveDependencies:
               SvgAsHtmlStringProviderFamily._allTransitiveDependencies,
           svgLink: svgLink,
+          headers: headers,
           alignment: alignment,
           backgroundColor: backgroundColor,
           fillContainer: fillContainer,
@@ -144,6 +152,7 @@ class SvgAsHtmlStringProviderProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.svgLink,
+    required this.headers,
     required this.alignment,
     required this.backgroundColor,
     required this.fillContainer,
@@ -151,6 +160,7 @@ class SvgAsHtmlStringProviderProvider
   }) : super.internal();
 
   final String svgLink;
+  final Map<String, String>? headers;
   final AlignmentGeometry alignment;
   final Color backgroundColor;
   final bool fillContainer;
@@ -162,6 +172,7 @@ class SvgAsHtmlStringProviderProvider
   ) {
     return notifier.build(
       svgLink: svgLink,
+      headers: headers,
       alignment: alignment,
       backgroundColor: backgroundColor,
       fillContainer: fillContainer,
@@ -176,6 +187,7 @@ class SvgAsHtmlStringProviderProvider
       override: SvgAsHtmlStringProviderProvider._internal(
         () => create()
           ..svgLink = svgLink
+          ..headers = headers
           ..alignment = alignment
           ..backgroundColor = backgroundColor
           ..fillContainer = fillContainer
@@ -186,6 +198,7 @@ class SvgAsHtmlStringProviderProvider
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         svgLink: svgLink,
+        headers: headers,
         alignment: alignment,
         backgroundColor: backgroundColor,
         fillContainer: fillContainer,
@@ -204,6 +217,7 @@ class SvgAsHtmlStringProviderProvider
   bool operator ==(Object other) {
     return other is SvgAsHtmlStringProviderProvider &&
         other.svgLink == svgLink &&
+        other.headers == headers &&
         other.alignment == alignment &&
         other.backgroundColor == backgroundColor &&
         other.fillContainer == fillContainer &&
@@ -214,6 +228,7 @@ class SvgAsHtmlStringProviderProvider
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, svgLink.hashCode);
+    hash = _SystemHash.combine(hash, headers.hashCode);
     hash = _SystemHash.combine(hash, alignment.hashCode);
     hash = _SystemHash.combine(hash, backgroundColor.hashCode);
     hash = _SystemHash.combine(hash, fillContainer.hashCode);
@@ -227,6 +242,9 @@ mixin SvgAsHtmlStringProviderRef
     on AutoDisposeAsyncNotifierProviderRef<(String?, Size?)> {
   /// The parameter `svgLink` of this provider.
   String get svgLink;
+
+  /// The parameter `headers` of this provider.
+  Map<String, String>? get headers;
 
   /// The parameter `alignment` of this provider.
   AlignmentGeometry get alignment;
@@ -248,6 +266,9 @@ class _SvgAsHtmlStringProviderProviderElement
 
   @override
   String get svgLink => (origin as SvgAsHtmlStringProviderProvider).svgLink;
+  @override
+  Map<String, String>? get headers =>
+      (origin as SvgAsHtmlStringProviderProvider).headers;
   @override
   AlignmentGeometry get alignment =>
       (origin as SvgAsHtmlStringProviderProvider).alignment;

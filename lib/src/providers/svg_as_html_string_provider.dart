@@ -115,15 +115,16 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
 
   @override
   Future<(String?, Size?)> build({
-    required String svgLink,
-    AlignmentGeometry alignment = Alignment.center,
-    Color backgroundColor = Colors.transparent,
-    bool fillContainer = false,
-    BoxFit fit = BoxFit.contain,
+    required final String svgLink,
+    final Map<String, String>? headers,
+    final AlignmentGeometry alignment = Alignment.center,
+    final Color backgroundColor = Colors.transparent,
+    final bool fillContainer = false,
+    final BoxFit fit = BoxFit.contain,
   }) async {
-    String? src = await ref.watch(svgStringProvider(svgLink: svgLink).future);
-    if (src != null) {
-      final size = await _getSizeFromSVGString(src);
+    final svgString = await ref.watch(svgStringProvider(svgLink: svgLink, headers: headers).future);
+    if (svgString != null) {
+      final size = await _getSizeFromSVGString(svgString);
       final alignmentString = fillContainer
           ? (fit == BoxFit.fill
               ? "none"
@@ -131,7 +132,7 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
           : alignment.resolve(null).toCSSMargin();
       final htmlString = (fillContainer ? htmlStringTemplateSvgFillContainer : htmlStringTemplateSvg).replaceFirst(
         '''--IMAGE--''',
-        src,
+        svgString,
       ).replaceFirst(
         '''--COLOR--''',
         backgroundColor.toHexRGBAString(),

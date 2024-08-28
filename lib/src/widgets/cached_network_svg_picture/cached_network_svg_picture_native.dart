@@ -1,115 +1,82 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../extensions/file_extension/file_extension.dart';
-import '../../support/app_cache_manager.dart';
+import '../../providers/svg_file_provider.dart';
 
 class CachedNetworkSvgPicture extends ConsumerWidget {
   final String url;
-  final Widget? loadingPlaceholder;
-  final Widget? errorPlaceholder;
-  final ColorFilter? colorFilter;
+  final Map<String, String>? headers;
+  final double? width;
+  final double? height;
   final BoxFit fit;
+  final AlignmentGeometry alignment;
+  final WidgetBuilder? loadingBuilder;
+  final WidgetBuilder? errorBuilder;
+  final ColorFilter? colorFilter;
+  final bool allowDrawingOutsideViewBox;
+  final String? semanticsLabel;
+  final bool excludeFromSemantics;
+  final Clip clipBehavior;
+  final Color backgroundColor;
 
   const CachedNetworkSvgPicture({
     super.key,
     required this.url,
-    this.loadingPlaceholder,
-    this.errorPlaceholder,
-    this.colorFilter,
+    this.headers,
+    this.width,
+    this.height,
     this.fit = BoxFit.contain,
+    this.alignment = Alignment.center,
+    this.loadingBuilder,
+    this.errorBuilder,
+    this.colorFilter,
+    this.allowDrawingOutsideViewBox = false,
+    this.semanticsLabel,
+    this.excludeFromSemantics = false,
+    this.clipBehavior = Clip.antiAlias,
+    this.backgroundColor = Colors.transparent,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncFile = ref.watch(svgFileProvider(url));
-    return asyncFile.when(
+    final asyncUrlAndFile = ref.watch(svgFileProvider(svgLink: url, headers: headers));
+    return asyncUrlAndFile.when(
       loading: () {
-        return loadingPlaceholder ?? const DefaultPlaceholder();
+        return loadingBuilder?.call(context) ?? _cachedSvgPictureDefaultPlaceholder(context);
       },
       error: (Object error, StackTrace stackTrace) {
-        return errorPlaceholder ?? const DefaultPlaceholder();
+        return errorBuilder?.call(context) ?? _cachedSvgPictureDefaultPlaceholder(context);
       },
-      data: (File? file) {
-        return FileSvgPicture(
-          file: file,
-          loadingPlaceholder: loadingPlaceholder,
-          errorPlaceholder: errorPlaceholder,
-          colorFilter: colorFilter,
-          fit: fit,
-        );
-      },
-    );
-  }
-}
-
-class FileSvgPicture extends StatelessWidget {
-  final File? file;
-  final Widget? loadingPlaceholder;
-  final Widget? errorPlaceholder;
-  final ColorFilter? colorFilter;
-  final BoxFit fit;
-
-  const FileSvgPicture({
-    super.key,
-    required this.file,
-    this.loadingPlaceholder,
-    this.errorPlaceholder,
-    this.colorFilter,
-    required this.fit,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    if (file != null) {
-      return SvgPicture.file(
-        file!,
-        placeholderBuilder: (_) {
-          return loadingPlaceholder ?? const DefaultPlaceholder();
-        },
-        colorFilter: colorFilter,
-        fit: fit,
-      );
-    } else {
-      return errorPlaceholder ?? const DefaultPlaceholder();
-    }
-  }
-}
-
-class DefaultPlaceholder extends StatelessWidget {
-  const DefaultPlaceholder({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox.square(dimension: 1);
-  }
-}
-
-class SvgFileNotifier extends AutoDisposeFamilyStreamNotifier<File?, String> {
-  @override
-  Stream<File?> build(String arg) {
-    /// We check if the file is a valid SVG file.
-    /// If the result is false, we
-    /// 1. Remove the file from cache;
-    /// 2. Emit null in the file stream;
-    return AppCacheManager().getFileStream(arg).asyncMap(
-      (fileResponse) async {
-        final file = (fileResponse as FileInfo).file;
-        if (await file.isSvgFile()) {
-          return file;
+      data: ((String, File?) urlAndFile) {
+        final file = urlAndFile.$2;
+        if (file != null) {
+          return Container(
+            color: backgroundColor,
+            child: SvgPicture.file(
+              file,
+              width: width,
+              height: height,
+              fit: fit,
+              alignment: alignment,
+              placeholderBuilder: loadingBuilder ?? _cachedSvgPictureDefaultPlaceholder,
+              colorFilter: colorFilter,
+              allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+              semanticsLabel: semanticsLabel,
+              excludeFromSemantics: excludeFromSemantics,
+              clipBehavior: clipBehavior,
+            ),
+          );
         } else {
-          Future(() {
-            AppCacheManager().removeFile(arg);
-          });
-          return null;
+          return errorBuilder?.call(context) ?? _cachedSvgPictureDefaultPlaceholder(context);
         }
       },
     );
   }
-}
 
-final svgFileProvider = AutoDisposeStreamNotifierProviderFamily<SvgFileNotifier, File?, String>(SvgFileNotifier.new);
+  Widget _cachedSvgPictureDefaultPlaceholder(BuildContext context) {
+    return Container(color: backgroundColor);
+  }
+}
