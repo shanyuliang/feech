@@ -6,8 +6,6 @@ import 'package:http/http.dart';
 
 import '../extensions/content_type_extension.dart';
 
-final defaultAppCacheManager = AppCacheManager();
-
 class AppCacheManager extends CacheManager {
   static const key = 'AppCacheManager';
   static const defaultStalePeriod = Duration(days: 7);

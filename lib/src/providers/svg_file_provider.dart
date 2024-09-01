@@ -2,8 +2,8 @@ import 'package:flutter_cache_manager/file.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../constants.dart';
 import '../extensions/file_extension/file_extension.dart';
-import '../support/app_cache_manager.dart';
 
 part 'svg_file_provider.g.dart';
 

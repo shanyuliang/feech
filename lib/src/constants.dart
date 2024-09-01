@@ -1,11 +1,18 @@
-import 'package:feech/src/support/network/app_client.dart';
 import 'package:flutter/animation.dart';
+
+import 'helpers/network_helper.dart';
+import 'support/app_cache_manager.dart';
+import 'support/network/app_client.dart';
 
 const debugTag = "Feech";
 const spKeyLastSttLocaleId = "last-stt-locale-id";
 const spKeyLastTtsLocaleId = "last-tts-locale-id";
 const spKeyLastTtsVoiceId = "last-tts-voice-id";
-final basicAppClient = AppClient();
+final defaultAppClient = AppClient();
+final defaultJsonAppClient = AppClient(jsonAppClient: true);
+final defaultAppCacheManager = AppCacheManager(httpClient: defaultAppClient);
+final defaultNetworkHelper = NetworkHelper(defaultAppClient);
+final defaultJsonNetworkHelper = NetworkHelper(defaultJsonAppClient);
 const allCurves = [
   (Curves.bounceIn, "bounceIn"),
   (Curves.bounceInOut, "bounceInOut"),

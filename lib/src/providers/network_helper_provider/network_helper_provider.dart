@@ -10,6 +10,6 @@ part 'network_helper_provider.g.dart';
 class NetworkHelperProvider extends _$NetworkHelperProvider {
   @override
   NetworkHelper build({Client? client}) {
-    return NetworkHelper(client??basicAppClient);
+    return NetworkHelper(client??defaultAppClient);
   }
 }

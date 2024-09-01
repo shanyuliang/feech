@@ -11,6 +11,8 @@ import '../../extensions/base_request_extension.dart';
 import '../../extensions/base_response_extension.dart';
 import '../../extensions/uint8list_extension.dart';
 import '../../extensions/x509certificate_extension.dart';
+import 'http_header_key.dart';
+import 'http_header_value.dart';
 import 'http_method.dart';
 
 final class AppClient extends BaseClient {
@@ -34,7 +36,9 @@ final class AppClient extends BaseClient {
     final Duration Function(Request request)? timeoutOfRequest,
     final List<String>? validSpkiPins,
     final debugLogDiagnostics = false,
-  })  : _updateOriginalRequest = updateOriginalRequest ?? _defaultUpdateOriginalRequest,
+    final jsonAppClient = false,
+  })  : _updateOriginalRequest =
+            updateOriginalRequest ?? (jsonAppClient ? _defaultJsonUpdateOriginalRequest : _defaultUpdateOriginalRequest),
         _beforeSendingRequest =
             beforeSendingRequest ?? debugLogDiagnostics ? _logBeforeSendingRequest : _nothingBeforeSendingRequest,
         _afterReceivingResponse =
@@ -258,9 +262,13 @@ class _EnhancedClientSocketException extends ClientException implements SocketEx
 
 /// Can set common headers for json request/response
 void _defaultUpdateOriginalRequest(Request request) {
-  // request.headers[HttpHeaderKey.accessControlAllowOrigin.keyName] = "*";
-  // request.headers[HttpHeaderKey.accept.keyName] = HttpHeaderValue.contentTypeAny.value;
-  // request.headers[HttpHeaderKey.contentType.keyName] = HttpHeaderValue.contentTypeJson.value;
+  developer.log("AppClient REQUEST ${request.toLoggingString()}", name: debugTag);
+}
+
+/// Can set headers for json request/response
+void _defaultJsonUpdateOriginalRequest(Request request) {
+  request.headers[HttpHeaderKey.contentType.keyName] = HttpHeaderValue.contentTypeJson.value;
+  request.headers[HttpHeaderKey.accept.keyName] = HttpHeaderValue.acceptJson.value;
 }
 
 /// Log request
