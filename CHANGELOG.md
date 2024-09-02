@@ -1,3 +1,7 @@
+## 0.1.15
+
+* Removed screen width mode
+
 ## 0.1.14
 
 * Update enhanced svg widget
