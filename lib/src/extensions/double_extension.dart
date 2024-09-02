@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 
-import '../support/screen_width_mode.dart';
+import '../models/display_width_mode.dart';
 
 extension DoubleExtension on double {
   double asSp(BuildContext context) => MediaQuery.of(context).textScaler.scale(this);
 
-  ScreenWidthMode asWidthGetScreenWidthMode() {
-    for (final screenWidthMode in ScreenWidthMode.values.reversed) {
-      if (this >= screenWidthMode.minWidth) {
-        return screenWidthMode;
+  DisplayWidthMode asWidthToDisplayWidthMode() {
+    for (final displayWidthMode in DisplayWidthMode.values.reversed) {
+      if (this >= displayWidthMode.minWidth) {
+        return displayWidthMode;
       }
     }
-    return ScreenWidthMode.small;
+    return DisplayWidthMode.compact;
   }
 }

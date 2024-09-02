@@ -72,7 +72,6 @@ export 'src/support/network/http_status.dart';
 export 'src/support/network/network_result.dart';
 export 'src/support/network/token_issuer.dart';
 export 'src/support/result.dart';
-export 'src/support/screen_width_mode.dart';
 export 'src/support/simple_dialog_page.dart';
 export 'src/support/state_status.dart';
 export 'src/utilities/geo_util.dart';
