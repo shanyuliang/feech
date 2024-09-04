@@ -5,9 +5,6 @@ import 'support/app_cache_manager.dart';
 import 'support/network/app_client.dart';
 
 const debugTag = "Feech";
-const spKeyLastSttLocaleId = "last-stt-locale-id";
-const spKeyLastTtsLocaleId = "last-tts-locale-id";
-const spKeyLastTtsVoiceId = "last-tts-voice-id";
 final defaultAppClient = AppClient();
 final defaultJsonAppClient = AppClient(jsonAppClient: true);
 final defaultAppCacheManager = AppCacheManager(httpClient: defaultAppClient);

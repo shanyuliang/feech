@@ -6,7 +6,7 @@ part of 'stt_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sttProviderHash() => r'c561bca35f544cc1757da89159f22c9051227d54';
+String _$sttProviderHash() => r'5226bd0fedcde30586bcca897879a7722a5a99ee';
 
 /// See also [SttProvider].
 @ProviderFor(SttProvider)

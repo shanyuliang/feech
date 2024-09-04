@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../extensions/general_type_extension.dart';
-import '../../models/app_locale.dart';
+import '../../providers/stt_provider/app_locale.dart';
 import '../../providers/stt_provider/stt_provider.dart';
 
 class SttSettingsUI extends ConsumerStatefulWidget {

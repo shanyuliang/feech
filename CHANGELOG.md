@@ -1,3 +1,7 @@
+## 0.1.16
+
+* Removed some unused providers and models
+
 ## 0.1.15
 
 * Removed screen width mode
