@@ -1,3 +1,7 @@
+## 0.1.18
+
+* Add ui.Image extension method
+
 ## 0.1.17
 
 * Add global key to png bytes extension method

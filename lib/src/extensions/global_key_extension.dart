@@ -1,6 +1,5 @@
-import 'dart:ui';
+import 'dart:ui' as ui;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -41,13 +40,12 @@ extension GlobalKeyExtension on GlobalKey {
     return null;
   }
 
-  Future<Uint8List?> get getSnapshotPngBytes async {
+  /// To use this method, the target widget is suppose to be a RepaintBoundary
+  Future<ui.Image?> getSnapshotImage({double pixelRatio = 1.0}) async {
     final renderObject = currentContext?.findRenderObject();
     final renderRepaintBoundary = renderObject as RenderRepaintBoundary?;
     if (renderRepaintBoundary != null) {
-      final image = await renderRepaintBoundary.toImage();
-      final byteData = await image.toByteData(format: ImageByteFormat.png);
-      return byteData?.buffer.asUint8List();
+      return renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
     } else {
       return null;
     }
