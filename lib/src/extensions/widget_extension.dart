@@ -1,17 +1,19 @@
 import 'dart:ui' as ui;
 
-import 'package:feech/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import '../constants.dart';
 
 extension WidgetExtension on Widget {
   Future<ui.Image?> getSnapshotImage({
     BuildContext? context,
     double? pixelRatio,
-    Duration delay = const Duration(seconds: 1),
+    int timeoutInMilliSeconds = 100,
+    int minShots = 1,
   }) async {
-    int retryCounter = 3;
-    bool isDirty = false;
+    int shotsCount = 0;
+    bool isDirty = true;
 
     Widget child = this;
     if (context != null) {
@@ -59,35 +61,23 @@ extension WidgetExtension on Widget {
         child: child,
       ),
     ).attachToRenderTree(buildOwner);
-    buildOwner.buildScope(rootElement);
-    buildOwner.finalizeTree();
-
-    pipelineOwner.flushLayout();
-    pipelineOwner.flushCompositingBits();
-    pipelineOwner.flushPaint();
 
     ui.Image? image;
-
-    do {
-      isDirty = false;
-      image = await renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
-      await Future.delayed(delay);
-      debugPrint("$debugTag $isDirty");
+    final timeoutTime =
+        DateTime.now().add(Duration(milliseconds: timeoutInMilliSeconds));
+    while (shotsCount < minShots && DateTime.now().isBefore(timeoutTime)) {
       if (isDirty) {
-        buildOwner.buildScope(
-          rootElement,
-        );
+        isDirty = false;
+        shotsCount++;
+        buildOwner.buildScope(rootElement);
         buildOwner.finalizeTree();
         pipelineOwner.flushLayout();
         pipelineOwner.flushCompositingBits();
         pipelineOwner.flushPaint();
+        image = await renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
+      } else {
+        await Future.delayed(frameDelay);
       }
-      retryCounter--;
-    } while (isDirty && retryCounter >= 0);
-    try {
-      buildOwner.finalizeTree();
-    } catch (e) {
-      debugPrint("$debugTag $e");
     }
 
     return image;

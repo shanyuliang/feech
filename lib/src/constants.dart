@@ -5,6 +5,7 @@ import 'support/app_cache_manager.dart';
 import 'support/network/app_client.dart';
 
 const debugTag = "Feech";
+const frameDelay = Duration(milliseconds: 16);
 final defaultAppClient = AppClient();
 final defaultJsonAppClient = AppClient(jsonAppClient: true);
 final defaultAppCacheManager = AppCacheManager(httpClient: defaultAppClient);
