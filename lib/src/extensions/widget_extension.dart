@@ -69,6 +69,7 @@ extension WidgetExtension on Widget {
       if (isDirty) {
         isDirty = false;
         shotsCount++;
+        debugPrint("$debugTag getSnapshotImage count $shotsCount");
         buildOwner.buildScope(rootElement);
         buildOwner.finalizeTree();
         pipelineOwner.flushLayout();
