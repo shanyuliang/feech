@@ -1,4 +1,8 @@
+import 'dart:ui';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'general_type_extension.dart';
 
@@ -21,17 +25,31 @@ extension GlobalKeyExtension on GlobalKey {
 
   Offset? get offset {
     final renderObject = currentContext?.findRenderObject();
-    return renderObject?.let((it) => (it as RenderBox).localToGlobal(Offset.zero));
+    return renderObject
+        ?.let((it) => (it as RenderBox).localToGlobal(Offset.zero));
   }
 
   Size? get physicalSize {
     final logicalSize = size;
     if (logicalSize != null && currentContext != null) {
-      final devicePixelRatio = MediaQuery.maybeDevicePixelRatioOf(currentContext!);
+      final devicePixelRatio =
+          MediaQuery.maybeDevicePixelRatioOf(currentContext!);
       if (devicePixelRatio != null) {
         return logicalSize * devicePixelRatio;
       }
     }
     return null;
+  }
+
+  Future<Uint8List?> get getSnapshotPngBytes async {
+    final renderObject = currentContext?.findRenderObject();
+    final renderRepaintBoundary = renderObject as RenderRepaintBoundary?;
+    if (renderRepaintBoundary != null) {
+      final image = await renderRepaintBoundary.toImage();
+      final byteData = await image.toByteData(format: ImageByteFormat.png);
+      return byteData?.buffer.asUint8List();
+    } else {
+      return null;
+    }
   }
 }

@@ -1,3 +1,7 @@
+## 0.1.17
+
+* Add global key to png bytes extension method
+
 ## 0.1.16
 
 * Removed some unused providers and models
