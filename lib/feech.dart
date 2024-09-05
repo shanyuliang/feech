@@ -24,6 +24,7 @@ export 'src/extensions/ui_image_extension.dart';
 export 'src/extensions/uint8list_extension.dart';
 export 'src/extensions/uri_extension.dart';
 export 'src/extensions/void_callback_extension.dart';
+export 'src/extensions/widget_extension.dart';
 export 'src/extensions/x509certificate_extension.dart';
 export 'src/helpers/network_helper.dart';
 export 'src/helpers/sqlite_helper.dart';
