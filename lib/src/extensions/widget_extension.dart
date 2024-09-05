@@ -1,3 +1,4 @@
+import 'dart:developer' as developer;
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -9,10 +10,11 @@ extension WidgetExtension on Widget {
   Future<ui.Image?> getSnapshotImage({
     BuildContext? context,
     double? pixelRatio,
-    int timeoutInMilliSeconds = 100,
-    int minShots = 1,
+    int timeoutInMilliSeconds = 1000,
+    int minRenderCount = 1,
+    bool debugLogDiagnostics = false,
   }) async {
-    int shotsCount = 0;
+    int renderCount = 0;
     bool isDirty = true;
 
     Widget child = this;
@@ -65,10 +67,17 @@ extension WidgetExtension on Widget {
     ui.Image? image;
     final timeoutTime =
         DateTime.now().add(Duration(milliseconds: timeoutInMilliSeconds));
-    while (shotsCount < minShots && DateTime.now().isBefore(timeoutTime)) {
+    while (
+        renderCount < minRenderCount && DateTime.now().isBefore(timeoutTime)) {
       if (isDirty) {
         isDirty = false;
-        shotsCount++;
+        renderCount++;
+        if (debugLogDiagnostics) {
+          developer.log(
+            "WidgetExtension getSnapshotImage render count $renderCount",
+            name: debugTag,
+          );
+        }
         buildOwner.buildScope(rootElement);
         buildOwner.finalizeTree();
         pipelineOwner.flushLayout();
@@ -79,9 +88,21 @@ extension WidgetExtension on Widget {
         await Future.delayed(frameDelay);
       }
     }
-    if (shotsCount < minShots) {
-      debugPrint("$debugTag getSnapshotImage exit because timeout");
+
+    if (debugLogDiagnostics) {
+      if (renderCount < minRenderCount) {
+        developer.log(
+          "WidgetExtension getSnapshotImage returns because timeout",
+          name: debugTag,
+        );
+      } else {
+        developer.log(
+          "WidgetExtension getSnapshotImage returns because reached minRenderCount",
+          name: debugTag,
+        );
+      }
     }
+
     return image;
   }
 }
