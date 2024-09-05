@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:feech/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -9,8 +10,10 @@ extension WidgetExtension on Widget {
     double? pixelRatio,
     Duration delay = const Duration(seconds: 1),
   }) async {
-    Widget child = this;
+    int retryCounter = 3;
+    bool isDirty = false;
 
+    Widget child = this;
     if (context != null) {
       child = InheritedTheme.captureAll(
         context,
@@ -27,7 +30,9 @@ extension WidgetExtension on Widget {
     final fallBackView = WidgetsBinding.instance.platformDispatcher.views.first;
     final view =
         context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
-    pixelRatio ??= view.devicePixelRatio;
+    pixelRatio ??= context == null
+        ? view.devicePixelRatio
+        : MediaQuery.of(context).devicePixelRatio;
 
     final pipelineOwner = PipelineOwner();
     final renderView = RenderView(
@@ -41,7 +46,12 @@ extension WidgetExtension on Widget {
     pipelineOwner.rootNode = renderView;
     renderView.prepareInitialFrame();
 
-    final buildOwner = BuildOwner(focusManager: FocusManager());
+    final buildOwner = BuildOwner(
+      focusManager: FocusManager(),
+      onBuildScheduled: () {
+        isDirty = true;
+      },
+    );
     final rootElement = RenderObjectToWidgetAdapter<RenderBox>(
       container: renderRepaintBoundary,
       child: Directionality(
@@ -56,8 +66,30 @@ extension WidgetExtension on Widget {
     pipelineOwner.flushCompositingBits();
     pipelineOwner.flushPaint();
 
-    await Future.delayed(delay);
+    ui.Image? image;
 
-    return renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
+    do {
+      isDirty = false;
+      image = await renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
+      await Future.delayed(delay);
+      debugPrint("$debugTag $isDirty");
+      if (isDirty) {
+        buildOwner.buildScope(
+          rootElement,
+        );
+        buildOwner.finalizeTree();
+        pipelineOwner.flushLayout();
+        pipelineOwner.flushCompositingBits();
+        pipelineOwner.flushPaint();
+      }
+      retryCounter--;
+    } while (isDirty && retryCounter >= 0);
+    try {
+      buildOwner.finalizeTree();
+    } catch (e) {
+      debugPrint("$debugTag $e");
+    }
+
+    return image;
   }
 }
