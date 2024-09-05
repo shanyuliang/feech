@@ -69,7 +69,6 @@ extension WidgetExtension on Widget {
       if (isDirty) {
         isDirty = false;
         shotsCount++;
-        debugPrint("$debugTag getSnapshotImage count $shotsCount");
         buildOwner.buildScope(rootElement);
         buildOwner.finalizeTree();
         pipelineOwner.flushLayout();
@@ -80,7 +79,9 @@ extension WidgetExtension on Widget {
         await Future.delayed(frameDelay);
       }
     }
-
+    if (shotsCount < minShots) {
+      debugPrint("$debugTag getSnapshotImage exit because timeout");
+    }
     return image;
   }
 }
