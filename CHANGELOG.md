@@ -1,3 +1,7 @@
+## 0.1.20
+
+* Add/Export widget extension methods
+
 ## 0.1.19
 
 * Export ui.Image extension method
