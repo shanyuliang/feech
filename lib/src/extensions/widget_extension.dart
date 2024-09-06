@@ -10,8 +10,8 @@ extension WidgetExtension on Widget {
   Future<ui.Image?> getSnapshotImage({
     BuildContext? context,
     double? pixelRatio,
-    int timeoutInMilliSeconds = 1000,
-    int minRenderCount = 1,
+    int timeoutInMilliseconds = 1000,
+    int targetRenderCount = 1,
     bool debugLogDiagnostics = false,
   }) async {
     int renderCount = 0;
@@ -65,39 +65,45 @@ extension WidgetExtension on Widget {
     ).attachToRenderTree(buildOwner);
 
     ui.Image? image;
+    final startTime = DateTime.now();
     final timeoutTime =
-        DateTime.now().add(Duration(milliseconds: timeoutInMilliSeconds));
-    while (
-        renderCount < minRenderCount && DateTime.now().isBefore(timeoutTime)) {
-      if (isDirty) {
-        isDirty = false;
-        renderCount++;
-        if (debugLogDiagnostics) {
-          developer.log(
-            "WidgetExtension getSnapshotImage render count $renderCount",
-            name: debugTag,
-          );
+        startTime.add(Duration(milliseconds: timeoutInMilliseconds));
+    while (renderCount < targetRenderCount) {
+      final nowTime = DateTime.now();
+      if (nowTime.isBefore(timeoutTime)) {
+        if (isDirty) {
+          isDirty = false;
+          renderCount++;
+          buildOwner.buildScope(rootElement);
+          buildOwner.finalizeTree();
+          pipelineOwner.flushLayout();
+          pipelineOwner.flushCompositingBits();
+          pipelineOwner.flushPaint();
+          if (debugLogDiagnostics) {
+            developer.log(
+              "WidgetExtension getSnapshotImage render count $renderCount at ${nowTime.difference(startTime).inMilliseconds} milliseconds.",
+              name: debugTag,
+            );
+          }
+          image = await renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
+        } else {
+          await Future.delayed(frameDelay);
         }
-        buildOwner.buildScope(rootElement);
-        buildOwner.finalizeTree();
-        pipelineOwner.flushLayout();
-        pipelineOwner.flushCompositingBits();
-        pipelineOwner.flushPaint();
-        image = await renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
       } else {
-        await Future.delayed(frameDelay);
+        break;
       }
     }
 
     if (debugLogDiagnostics) {
-      if (renderCount < minRenderCount) {
+      if (renderCount < targetRenderCount) {
         developer.log(
-          "WidgetExtension getSnapshotImage returns because timeout",
+          "WidgetExtension getSnapshotImage returns because reached timeout $timeoutInMilliseconds milliseconds. Final render count is $renderCount.",
           name: debugTag,
         );
       } else {
+        final nowTime = DateTime.now();
         developer.log(
-          "WidgetExtension getSnapshotImage returns because reached minRenderCount",
+          "WidgetExtension getSnapshotImage returns because reached target render count $targetRenderCount. Final time usage is ${nowTime.difference(startTime).inMilliseconds} milliseconds.",
           name: debugTag,
         );
       }
