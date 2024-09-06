@@ -9,7 +9,6 @@ import '../constants.dart';
 extension WidgetExtension on Widget {
   Stream<(int, ui.Image)> snapshotStream({
     BuildContext? context,
-    Size? logicalSize,
     double? pixelRatio,
     int timeoutInMilliseconds = 1000,
     bool debugLogDiagnostics = false,
@@ -34,20 +33,14 @@ extension WidgetExtension on Widget {
     final fallBackView = ui.PlatformDispatcher.instance.views.first;
     final view =
         context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
-    logicalSize ??= view.physicalSize / view.devicePixelRatio;
-
     pixelRatio ??= context == null
         ? view.devicePixelRatio
         : MediaQuery.of(context).devicePixelRatio;
-    final viewConfiguration = ViewConfiguration(
-      logicalConstraints: BoxConstraints.tight(logicalSize),
-      devicePixelRatio: view.devicePixelRatio,
-    );
 
     final pipelineOwner = PipelineOwner();
     final renderView = RenderView(
       view: view,
-      configuration: viewConfiguration,
+      configuration: ViewConfiguration.fromView(view),
       child: RenderPositionedBox(
         alignment: Alignment.center,
         child: renderRepaintBoundary,
@@ -111,7 +104,6 @@ extension WidgetExtension on Widget {
 
   Future<ui.Image?> getSnapshotImage({
     BuildContext? context,
-    Size? logicalSize,
     double? pixelRatio,
     int timeoutInMilliseconds = 1000,
     int targetRenderCount = 1,
@@ -137,20 +129,14 @@ extension WidgetExtension on Widget {
     final fallBackView = ui.PlatformDispatcher.instance.views.first;
     final view =
         context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
-    logicalSize ??= view.physicalSize / view.devicePixelRatio;
-
     pixelRatio ??= context == null
         ? view.devicePixelRatio
         : MediaQuery.of(context).devicePixelRatio;
-    final viewConfiguration = ViewConfiguration(
-      logicalConstraints: BoxConstraints.tight(logicalSize),
-      devicePixelRatio: view.devicePixelRatio,
-    );
 
     final pipelineOwner = PipelineOwner();
     final renderView = RenderView(
       view: view,
-      configuration: viewConfiguration,
+      configuration: ViewConfiguration.fromView(view),
       child: RenderPositionedBox(
         alignment: Alignment.center,
         child: renderRepaintBoundary,

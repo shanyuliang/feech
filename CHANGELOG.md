@@ -1,3 +1,7 @@
+## 0.1.21
+
+* Update widget extension methods
+
 ## 0.1.20
 
 * Add/Export widget extension methods
