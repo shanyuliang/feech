@@ -13,7 +13,7 @@ extension WidgetExtension on Widget {
     int timeoutInMilliseconds = 1000,
     bool debugLogDiagnostics = false,
   }) async* {
-    int renderCount = -1;
+    int renderCount = 0;
     bool isDirty = true;
 
     Widget child = this;
@@ -79,7 +79,7 @@ extension WidgetExtension on Widget {
           pipelineOwner.flushPaint();
           if (debugLogDiagnostics) {
             developer.log(
-              "WidgetExtension getSnapshotImage render count $renderCount at ${nowTime.difference(startTime).inMilliseconds} milliseconds.",
+              "WidgetExtension snapshotImagesStream render count $renderCount at ${nowTime.difference(startTime).inMilliseconds} milliseconds.",
               name: debugTag,
             );
           }
@@ -97,7 +97,7 @@ extension WidgetExtension on Widget {
 
     if (debugLogDiagnostics) {
       developer.log(
-        "WidgetExtension getSnapshotImage returns because reached timeout $timeoutInMilliseconds milliseconds. Final render count is $renderCount.",
+        "WidgetExtension snapshotImagesStream returns because reached timeout $timeoutInMilliseconds milliseconds. Final render count is $renderCount.",
         name: debugTag,
       );
     }
