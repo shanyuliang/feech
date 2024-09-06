@@ -9,6 +9,7 @@ import '../constants.dart';
 extension WidgetExtension on Widget {
   Stream<(int, ui.Image)> snapshotStream({
     BuildContext? context,
+    Size? logicalSize,
     double? pixelRatio,
     int timeoutInMilliseconds = 1000,
     bool debugLogDiagnostics = false,
@@ -30,17 +31,23 @@ extension WidgetExtension on Widget {
     }
 
     final renderRepaintBoundary = RenderRepaintBoundary();
-    final fallBackView = WidgetsBinding.instance.platformDispatcher.views.first;
+    final fallBackView = ui.PlatformDispatcher.instance.views.first;
     final view =
         context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
+    logicalSize ??= view.physicalSize / view.devicePixelRatio;
+
     pixelRatio ??= context == null
         ? view.devicePixelRatio
         : MediaQuery.of(context).devicePixelRatio;
+    final viewConfiguration = ViewConfiguration(
+      logicalConstraints: BoxConstraints.tight(logicalSize),
+      devicePixelRatio: view.devicePixelRatio,
+    );
 
     final pipelineOwner = PipelineOwner();
     final renderView = RenderView(
       view: view,
-      configuration: ViewConfiguration.fromView(view),
+      configuration: viewConfiguration,
       child: RenderPositionedBox(
         alignment: Alignment.center,
         child: renderRepaintBoundary,
@@ -87,9 +94,8 @@ extension WidgetExtension on Widget {
             renderCount,
             await renderRepaintBoundary.toImage(pixelRatio: pixelRatio),
           );
-        } else {
-          await Future.delayed(frameDelay);
         }
+        await Future.delayed(frameDelay);
       } else {
         break;
       }
@@ -105,6 +111,7 @@ extension WidgetExtension on Widget {
 
   Future<ui.Image?> getSnapshotImage({
     BuildContext? context,
+    Size? logicalSize,
     double? pixelRatio,
     int timeoutInMilliseconds = 1000,
     int targetRenderCount = 1,
@@ -127,17 +134,23 @@ extension WidgetExtension on Widget {
     }
 
     final renderRepaintBoundary = RenderRepaintBoundary();
-    final fallBackView = WidgetsBinding.instance.platformDispatcher.views.first;
+    final fallBackView = ui.PlatformDispatcher.instance.views.first;
     final view =
         context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
+    logicalSize ??= view.physicalSize / view.devicePixelRatio;
+
     pixelRatio ??= context == null
         ? view.devicePixelRatio
         : MediaQuery.of(context).devicePixelRatio;
+    final viewConfiguration = ViewConfiguration(
+      logicalConstraints: BoxConstraints.tight(logicalSize),
+      devicePixelRatio: view.devicePixelRatio,
+    );
 
     final pipelineOwner = PipelineOwner();
     final renderView = RenderView(
       view: view,
-      configuration: ViewConfiguration.fromView(view),
+      configuration: viewConfiguration,
       child: RenderPositionedBox(
         alignment: Alignment.center,
         child: renderRepaintBoundary,
@@ -182,9 +195,8 @@ extension WidgetExtension on Widget {
             );
           }
           image = await renderRepaintBoundary.toImage(pixelRatio: pixelRatio);
-        } else {
-          await Future.delayed(frameDelay);
         }
+        await Future.delayed(frameDelay);
       } else {
         break;
       }
