@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 import '../constants.dart';
 
 extension WidgetExtension on Widget {
-  Stream<(int, ui.Image)> snapshotImagesStream({
+  Stream<(int, ui.Image)> snapshotStream({
     BuildContext? context,
     double? pixelRatio,
     int timeoutInMilliseconds = 1000,
@@ -79,7 +79,7 @@ extension WidgetExtension on Widget {
           pipelineOwner.flushPaint();
           if (debugLogDiagnostics) {
             developer.log(
-              "WidgetExtension snapshotImagesStream render count $renderCount at ${nowTime.difference(startTime).inMilliseconds} milliseconds.",
+              "WidgetExtension snapshotStream render count $renderCount at ${nowTime.difference(startTime).inMilliseconds} milliseconds.",
               name: debugTag,
             );
           }
@@ -97,7 +97,7 @@ extension WidgetExtension on Widget {
 
     if (debugLogDiagnostics) {
       developer.log(
-        "WidgetExtension snapshotImagesStream returns because reached timeout $timeoutInMilliseconds milliseconds. Final render count is $renderCount.",
+        "WidgetExtension snapshotStream returns because reached timeout $timeoutInMilliseconds milliseconds. Final render count is $renderCount.",
         name: debugTag,
       );
     }
