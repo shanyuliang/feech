@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 import '../constants.dart';
 
 extension WidgetExtension on Widget {
-  Stream<(int, ui.Image)?> snapshotImagesStream({
+  Stream<(int, ui.Image)> snapshotImagesStream({
     BuildContext? context,
     double? pixelRatio,
     int timeoutInMilliseconds = 1000,
