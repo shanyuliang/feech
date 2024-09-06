@@ -7,13 +7,13 @@ import 'package:flutter/rendering.dart';
 import '../constants.dart';
 
 extension WidgetExtension on Widget {
-  Stream<ui.Image?> snapshotImagesStream({
+  Stream<(int, ui.Image)?> snapshotImagesStream({
     BuildContext? context,
     double? pixelRatio,
     int timeoutInMilliseconds = 1000,
     bool debugLogDiagnostics = false,
   }) async* {
-    int renderCount = 0;
+    int renderCount = -1;
     bool isDirty = true;
 
     Widget child = this;
@@ -32,7 +32,7 @@ extension WidgetExtension on Widget {
     final renderRepaintBoundary = RenderRepaintBoundary();
     final fallBackView = WidgetsBinding.instance.platformDispatcher.views.first;
     final view =
-    context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
+        context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
     pixelRatio ??= context == null
         ? view.devicePixelRatio
         : MediaQuery.of(context).devicePixelRatio;
@@ -65,7 +65,7 @@ extension WidgetExtension on Widget {
 
     final startTime = DateTime.now();
     final timeoutTime =
-    startTime.add(Duration(milliseconds: timeoutInMilliseconds));
+        startTime.add(Duration(milliseconds: timeoutInMilliseconds));
     while (true) {
       final nowTime = DateTime.now();
       if (nowTime.isBefore(timeoutTime)) {
@@ -83,7 +83,10 @@ extension WidgetExtension on Widget {
               name: debugTag,
             );
           }
-          yield (await renderRepaintBoundary.toImage(pixelRatio: pixelRatio));
+          yield (
+            renderCount,
+            await renderRepaintBoundary.toImage(pixelRatio: pixelRatio),
+          );
         } else {
           await Future.delayed(frameDelay);
         }
