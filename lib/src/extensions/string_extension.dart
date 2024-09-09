@@ -10,6 +10,24 @@ import 'uri_extension.dart';
 extension StringExtension on String {
   static final whitespacesRegExp = RegExp(r"\s+");
   static final leftRightSingleQuoteRegExp = RegExp(r"[\u2018\u2019]");
+  static final countryInDName = RegExp(r"/C=([^/]+)");
+  static final organizationInDName = RegExp(r"/O=([^/]+)");
+  static final commonNameInDName = RegExp(r"/CN=([^/]+)");
+
+  String? get asX509DNameGetCountry {
+    final match = countryInDName.firstMatch(this);
+    return match?.group(1);
+  }
+
+  String? get asX509DNameGetOrganization {
+    final match = organizationInDName.firstMatch(this);
+    return match?.group(1);
+  }
+
+  String? get asX509DNameGetCommonName {
+    final match = commonNameInDName.firstMatch(this);
+    return match?.group(1);
+  }
 
   Uint8List asHexConvertToUint8List() {
     if (length % 2 != 0) {
@@ -49,7 +67,9 @@ extension StringExtension on String {
         .insertLastPathSegment(insertedPathSegment: variant)
         .insertLastPathSegment(insertedPathSegment: languageCode)
         .path);
-    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: variant)
+        .path);
     candidates.add(originalPathNameUri
         .insertLastPathSegment(insertedPathSegment: appFlavor)
         .insertLastPathSegment(insertedPathSegment: localeName)
@@ -58,7 +78,9 @@ extension StringExtension on String {
         .insertLastPathSegment(insertedPathSegment: appFlavor)
         .insertLastPathSegment(insertedPathSegment: languageCode)
         .path);
-    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: appFlavor)
+        .path);
     candidates.add(originalPathNameUri
         .insertLastPathSegment(insertedPathSegment: buildType)
         .insertLastPathSegment(insertedPathSegment: localeName)
@@ -67,16 +89,25 @@ extension StringExtension on String {
         .insertLastPathSegment(insertedPathSegment: buildType)
         .insertLastPathSegment(insertedPathSegment: languageCode)
         .path);
-    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).path);
-    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: localeName).path);
-    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: buildType)
+        .path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: localeName)
+        .path);
+    candidates.add(originalPathNameUri
+        .insertLastPathSegment(insertedPathSegment: languageCode)
+        .path);
     candidates.add(this);
     return candidates;
   }
 
   String asNameGetInitials({int? maxResultLength}) {
     final nameParts = trim().split(whitespacesRegExp);
-    final initials = nameParts.fold('', (previousValue, element) => '$previousValue${element.isNotEmpty ? element[0] : ''}');
+    final initials = nameParts.fold(
+        '',
+        (previousValue, element) =>
+            '$previousValue${element.isNotEmpty ? element[0] : ''}');
     if (initials.length > (maxResultLength ?? 3)) {
       return initials.substring(0, maxResultLength).toUpperCase();
     } else {

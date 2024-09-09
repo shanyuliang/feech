@@ -1,3 +1,7 @@
+## 0.1.22
+
+* Update String extension methods
+
 ## 0.1.21
 
 * Update widget extension methods
