@@ -100,7 +100,7 @@ class SvgHelper {
     }
     if (debugLogDiagnostics) {
       developer_lib.log(
-        "SvgHelper getPictureInfo [$svgLink] returned picture info with size ${pictureInfo?.size}",
+        "SvgHelper getPictureInfo [$svgLink] picture info with size ${pictureInfo?.size}",
         name: debugTag,
       );
     }
@@ -148,12 +148,6 @@ class SvgHelper {
         final byteData =
             await image.toByteData(format: ui_lib.ImageByteFormat.png);
         pngBytes = byteData?.buffer.asUint8List();
-        if (debugLogDiagnostics) {
-          developer_lib.log(
-            "SvgHelper getPngBytes [$svgLink] bytes length ${pngBytes?.lengthInBytes}",
-            name: debugTag,
-          );
-        }
         if (pngBytes != null && useCache) {
           pngBytesCache.set(pngBytesCacheKey, pngBytes);
           if (debugLogDiagnostics) {
@@ -171,6 +165,12 @@ class SvgHelper {
           name: debugTag,
         );
       }
+    }
+    if (debugLogDiagnostics) {
+      developer_lib.log(
+        "SvgHelper getPngBytes [$svgLink] png bytes length ${pngBytes?.lengthInBytes}",
+        name: debugTag,
+      );
     }
     return pngBytes;
   }
