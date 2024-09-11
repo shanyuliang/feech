@@ -74,6 +74,7 @@ class SvgHelper {
 
   static Future<Uint8List?> getPngBytes({
     required String svgLink,
+    final int sampling = 1,
     final Map<String, String>? headers,
     final List<String>? interpolateParams,
     final bool useCache = true,
@@ -91,8 +92,8 @@ class SvgHelper {
         useCache: false,
       );
       if (pictureInfo != null) {
-        final width = pictureInfo.size.width.toInt();
-        final height = pictureInfo.size.height.toInt();
+        final width = pictureInfo.size.width.toInt() * sampling;
+        final height = pictureInfo.size.height.toInt() * sampling;
         final image = await pictureInfo.picture.toImage(width, height);
         final byteData =
             await image.toByteData(format: ui_lib.ImageByteFormat.png);
@@ -107,6 +108,7 @@ class SvgHelper {
 
   static Future<BitmapDescriptor?> getBitmapDescriptor({
     required String svgLink,
+    final int sampling = 1,
     final Map<String, String>? headers,
     final List<String>? interpolateParams,
   }) async {
@@ -116,6 +118,7 @@ class SvgHelper {
     if (bitmapDescriptor == null) {
       final pngBytes = await getPngBytes(
         svgLink: svgLink,
+        sampling: sampling,
         headers: headers,
         interpolateParams: interpolateParams,
         useCache: false,
