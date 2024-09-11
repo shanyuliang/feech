@@ -229,6 +229,12 @@ class SvgHelper {
         );
       }
     }
+    if (debugLogDiagnostics) {
+      developer_lib.log(
+        "SvgHelper getBitmapDescriptor [$svgLink] bitmap descriptor ${bitmapDescriptor?.toJson()}",
+        name: debugTag,
+      );
+    }
     return bitmapDescriptor;
   }
 }
