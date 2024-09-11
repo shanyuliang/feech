@@ -1,18 +1,18 @@
 import 'dart:ui' as ui_lib;
 
-import 'package:feech/src/extensions/string_extension.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http_pkg;
 
 import '../extensions/general_type_extension.dart';
+import '../extensions/string_extension.dart';
 import '../support/map_cache.dart';
 import '../utilities/handy_util.dart';
 
 class SvgHelper {
   static Future<void> _onPictureInfoEvicted({
-    required String key,
+    required int key,
     required PictureInfo value,
   }) async {
     suppressThrowableSync(throwable: () {
@@ -20,14 +20,13 @@ class SvgHelper {
     });
   }
 
-  static final pictureInfoCache = MapCache<String, PictureInfo>.lru(
-    maximumSize: 9999,
+  static final pictureInfoCache = MapCache<int, PictureInfo>.lru(
     onEvicted: _onPictureInfoEvicted,
   );
 
-  static final bitmapDescriptorCache = MapCache<int, BitmapDescriptor>.lru(
-    maximumSize: 9999,
-  );
+  static final pngBytesCache = MapCache<int, Uint8List>.lru();
+
+  static final bitmapDescriptorCache = MapCache<int, BitmapDescriptor>.lru();
 
   static Future<String?> _getSvgString({
     required String svgLink,
@@ -45,29 +44,65 @@ class SvgHelper {
     }
   }
 
+  static Future<PictureInfo?> getPictureInfo({
+    required String svgLink,
+    final Map<String, String>? headers,
+    final List<String>? interpolateParams,
+    final bool useCache = true,
+  }) async {
+    PictureInfo? pictureInfo;
+    final pictureInfoCacheKey = Object.hash(svgLink, interpolateParams);
+    if (useCache) {
+      pictureInfo = await pictureInfoCache.get(pictureInfoCacheKey);
+    }
+    if (pictureInfo == null) {
+      final svgString = await _getSvgString(
+        svgLink: svgLink,
+        headers: headers,
+      );
+      if (svgString != null) {
+        final interpolatedSvgString = svgString.interpolate(interpolateParams);
+        pictureInfo =
+            await vg.loadPicture(SvgStringLoader(interpolatedSvgString), null);
+        if (useCache) {
+          pictureInfoCache.set(pictureInfoCacheKey, pictureInfo);
+        }
+      }
+    }
+    return pictureInfo;
+  }
+
   static Future<Uint8List?> getPngBytes({
     required String svgLink,
     final Map<String, String>? headers,
     final List<String>? interpolateParams,
+    final bool useCache = true,
   }) async {
-    final svgString = await _getSvgString(
-      svgLink: svgLink,
-      headers: headers,
-    );
-    if (svgString != null) {
-      final interpolatedSvgString = svgString.interpolate(interpolateParams);
-      final pictureInfo =
-          await vg.loadPicture(SvgStringLoader(interpolatedSvgString), null);
-      final width = pictureInfo.size.width.toInt();
-      final height = pictureInfo.size.height.toInt();
-      final image = await pictureInfo.picture.toImage(width, height);
-      pictureInfo.picture.dispose();
-      final byteData =
-          await image.toByteData(format: ui_lib.ImageByteFormat.png);
-      return byteData?.buffer.asUint8List();
-    } else {
-      return null;
+    Uint8List? pngBytes;
+    final pngBytesCacheKey = Object.hash(svgLink, interpolateParams);
+    if (useCache) {
+      pngBytes = await pngBytesCache.get(pngBytesCacheKey);
     }
+    if (pngBytes == null) {
+      final pictureInfo = await getPictureInfo(
+        svgLink: svgLink,
+        headers: headers,
+        interpolateParams: interpolateParams,
+        useCache: false,
+      );
+      if (pictureInfo != null) {
+        final width = pictureInfo.size.width.toInt();
+        final height = pictureInfo.size.height.toInt();
+        final image = await pictureInfo.picture.toImage(width, height);
+        final byteData =
+            await image.toByteData(format: ui_lib.ImageByteFormat.png);
+        pngBytes = byteData?.buffer.asUint8List();
+        if (pngBytes != null && useCache) {
+          pngBytesCache.set(pngBytesCacheKey, pngBytes);
+        }
+      }
+    }
+    return pngBytes;
   }
 
   static Future<BitmapDescriptor?> getBitmapDescriptor({
@@ -75,11 +110,21 @@ class SvgHelper {
     final Map<String, String>? headers,
     final List<String>? interpolateParams,
   }) async {
-    final pngByteData = await getPngBytes(
-      svgLink: svgLink,
-      headers: headers,
-      interpolateParams: interpolateParams,
-    );
-    return pngByteData?.let((it) => BitmapDescriptor.bytes(it));
+    final bitmapDescriptorCacheKey = Object.hash(svgLink, interpolateParams);
+    BitmapDescriptor? bitmapDescriptor =
+        await bitmapDescriptorCache.get(bitmapDescriptorCacheKey);
+    if (bitmapDescriptor == null) {
+      final pngBytes = await getPngBytes(
+        svgLink: svgLink,
+        headers: headers,
+        interpolateParams: interpolateParams,
+        useCache: false,
+      );
+      bitmapDescriptor = pngBytes?.let((it) => BitmapDescriptor.bytes(it));
+      if (bitmapDescriptor != null) {
+        bitmapDescriptorCache.set(bitmapDescriptorCacheKey, bitmapDescriptor);
+      }
+    }
+    return bitmapDescriptor;
   }
 }
