@@ -54,7 +54,8 @@ class SvgHelper {
     final bool debugLogDiagnostics = false,
   }) async {
     PictureInfo? pictureInfo;
-    final pictureInfoCacheKey = Object.hash(svgLink, interpolateParams);
+    final pictureInfoCacheKey =
+        Object.hashAll([svgLink, ...?interpolateParams]);
     if (useCache) {
       if (debugLogDiagnostics) {
         developer_lib.log(
@@ -115,7 +116,8 @@ class SvgHelper {
     final bool debugLogDiagnostics = false,
   }) async {
     Uint8List? pngBytes;
-    final pngBytesCacheKey = Object.hash(svgLink, interpolateParams);
+    final pngBytesCacheKey =
+        Object.hashAll([svgLink, scale, ...?interpolateParams]);
     if (useCache) {
       if (debugLogDiagnostics) {
         developer_lib.log(
@@ -180,7 +182,8 @@ class SvgHelper {
     final List<String>? interpolateParams,
     final bool debugLogDiagnostics = false,
   }) async {
-    final bitmapDescriptorCacheKey = Object.hash(svgLink, interpolateParams);
+    final bitmapDescriptorCacheKey =
+        Object.hashAll([svgLink, scale, ...?interpolateParams]);
     if (debugLogDiagnostics) {
       developer_lib.log(
         "SvgHelper getBitmapDescriptor [$svgLink] cache key $bitmapDescriptorCacheKey",
