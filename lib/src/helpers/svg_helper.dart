@@ -56,6 +56,12 @@ class SvgHelper {
     PictureInfo? pictureInfo;
     final pictureInfoCacheKey = Object.hash(svgLink, interpolateParams);
     if (useCache) {
+      if (debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getPictureInfo [$svgLink] cache key $pictureInfoCacheKey",
+          name: debugTag,
+        );
+      }
       pictureInfo = await pictureInfoCache.get(pictureInfoCacheKey);
     }
     if (pictureInfo == null) {
@@ -111,6 +117,12 @@ class SvgHelper {
     Uint8List? pngBytes;
     final pngBytesCacheKey = Object.hash(svgLink, interpolateParams);
     if (useCache) {
+      if (debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getPngBytes [$svgLink] cache key $pngBytesCacheKey",
+          name: debugTag,
+        );
+      }
       pngBytes = await pngBytesCache.get(pngBytesCacheKey);
     }
     if (pngBytes == null) {
@@ -134,6 +146,12 @@ class SvgHelper {
         final byteData =
             await image.toByteData(format: ui_lib.ImageByteFormat.png);
         pngBytes = byteData?.buffer.asUint8List();
+        if (debugLogDiagnostics) {
+          developer_lib.log(
+            "SvgHelper getPngBytes [$svgLink] bytes length ${pngBytes?.lengthInBytes}",
+            name: debugTag,
+          );
+        }
         if (pngBytes != null && useCache) {
           pngBytesCache.set(pngBytesCacheKey, pngBytes);
           if (debugLogDiagnostics) {
@@ -163,6 +181,12 @@ class SvgHelper {
     final bool debugLogDiagnostics = false,
   }) async {
     final bitmapDescriptorCacheKey = Object.hash(svgLink, interpolateParams);
+    if (debugLogDiagnostics) {
+      developer_lib.log(
+        "SvgHelper getBitmapDescriptor [$svgLink] cache key $bitmapDescriptorCacheKey",
+        name: debugTag,
+      );
+    }
     BitmapDescriptor? bitmapDescriptor =
         await bitmapDescriptorCache.get(bitmapDescriptorCacheKey);
     if (bitmapDescriptor == null) {
