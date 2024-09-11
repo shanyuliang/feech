@@ -144,10 +144,12 @@ extension StringExtension on String {
   /// Replace left/right single quote with strait single quote
   String normalizeSingleQuotes() => replaceAll(leftRightSingleQuoteRegExp, "'");
 
-  String interpolate(List<String> params) {
+  String interpolate(List<String>? params) {
     String result = this;
-    for (int i = 0; i < params.length; i++) {
-      result = result.replaceAll('%${i + 1}\$s', params[i]);
+    if (params != null) {
+      for (int i = 0; i < params.length; i++) {
+        result = result.replaceAll('%${i + 1}\$s', params[i]);
+      }
     }
     return result;
   }

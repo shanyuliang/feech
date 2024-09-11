@@ -1,5 +1,6 @@
 import 'dart:ui' as ui_lib;
 
+import 'package:feech/src/extensions/string_extension.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -44,17 +45,19 @@ class SvgHelper {
     }
   }
 
-  static Future<Uint8List?> getPngByteData({
+  static Future<Uint8List?> getPngBytes({
     required String svgLink,
     final Map<String, String>? headers,
+    final List<String>? interpolateParams,
   }) async {
     final svgString = await _getSvgString(
       svgLink: svgLink,
       headers: headers,
     );
     if (svgString != null) {
+      final interpolatedSvgString = svgString.interpolate(interpolateParams);
       final pictureInfo =
-          await vg.loadPicture(SvgStringLoader(svgString), null);
+          await vg.loadPicture(SvgStringLoader(interpolatedSvgString), null);
       final width = pictureInfo.size.width.toInt();
       final height = pictureInfo.size.height.toInt();
       final image = await pictureInfo.picture.toImage(width, height);
@@ -70,10 +73,12 @@ class SvgHelper {
   static Future<BitmapDescriptor?> getBitmapDescriptor({
     required String svgLink,
     final Map<String, String>? headers,
+    final List<String>? interpolateParams,
   }) async {
-    final pngByteData = await getPngByteData(
+    final pngByteData = await getPngBytes(
       svgLink: svgLink,
       headers: headers,
+      interpolateParams: interpolateParams,
     );
     return pngByteData?.let((it) => BitmapDescriptor.bytes(it));
   }
