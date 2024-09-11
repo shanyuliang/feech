@@ -1,3 +1,4 @@
+import 'dart:developer' as developer_lib;
 import 'dart:ui' as ui_lib;
 
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http_pkg;
 
+import '../constants.dart';
 import '../extensions/general_type_extension.dart';
 import '../extensions/string_extension.dart';
 import '../support/map_cache.dart';
@@ -49,6 +51,7 @@ class SvgHelper {
     final Map<String, String>? headers,
     final List<String>? interpolateParams,
     final bool useCache = true,
+    final bool debugLogDiagnostics = false,
   }) async {
     PictureInfo? pictureInfo;
     final pictureInfoCacheKey = Object.hash(svgLink, interpolateParams);
@@ -56,6 +59,12 @@ class SvgHelper {
       pictureInfo = await pictureInfoCache.get(pictureInfoCacheKey);
     }
     if (pictureInfo == null) {
+      if (useCache && debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getPictureInfo [$svgLink] missed cache",
+          name: debugTag,
+        );
+      }
       final svgString = await _getSvgString(
         svgLink: svgLink,
         headers: headers,
@@ -66,18 +75,38 @@ class SvgHelper {
             await vg.loadPicture(SvgStringLoader(interpolatedSvgString), null);
         if (useCache) {
           pictureInfoCache.set(pictureInfoCacheKey, pictureInfo);
+          if (debugLogDiagnostics) {
+            developer_lib.log(
+              "SvgHelper getPictureInfo [$svgLink] saved to cache",
+              name: debugTag,
+            );
+          }
         }
       }
+    } else {
+      if (debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getPictureInfo [$svgLink] hit cache",
+          name: debugTag,
+        );
+      }
+    }
+    if (debugLogDiagnostics) {
+      developer_lib.log(
+        "SvgHelper getPictureInfo [$svgLink] returned picture info with size ${pictureInfo?.size}",
+        name: debugTag,
+      );
     }
     return pictureInfo;
   }
 
   static Future<Uint8List?> getPngBytes({
     required String svgLink,
-    final int sampling = 1,
+    final double scale = 1.0,
     final Map<String, String>? headers,
     final List<String>? interpolateParams,
     final bool useCache = true,
+    final bool debugLogDiagnostics = false,
   }) async {
     Uint8List? pngBytes;
     final pngBytesCacheKey = Object.hash(svgLink, interpolateParams);
@@ -85,22 +114,42 @@ class SvgHelper {
       pngBytes = await pngBytesCache.get(pngBytesCacheKey);
     }
     if (pngBytes == null) {
+      if (useCache && debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getPngBytes [$svgLink] missed cache",
+          name: debugTag,
+        );
+      }
       final pictureInfo = await getPictureInfo(
         svgLink: svgLink,
         headers: headers,
         interpolateParams: interpolateParams,
         useCache: false,
+        debugLogDiagnostics: debugLogDiagnostics,
       );
       if (pictureInfo != null) {
-        final width = pictureInfo.size.width.toInt() * sampling;
-        final height = pictureInfo.size.height.toInt() * sampling;
+        final width = pictureInfo.size.width.toInt();
+        final height = pictureInfo.size.height.toInt();
         final image = await pictureInfo.picture.toImage(width, height);
         final byteData =
             await image.toByteData(format: ui_lib.ImageByteFormat.png);
         pngBytes = byteData?.buffer.asUint8List();
         if (pngBytes != null && useCache) {
           pngBytesCache.set(pngBytesCacheKey, pngBytes);
+          if (debugLogDiagnostics) {
+            developer_lib.log(
+              "SvgHelper getPngBytes [$svgLink] saved to cache",
+              name: debugTag,
+            );
+          }
         }
+      }
+    } else {
+      if (debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getPngBytes [$svgLink] hit cache",
+          name: debugTag,
+        );
       }
     }
     return pngBytes;
@@ -108,24 +157,49 @@ class SvgHelper {
 
   static Future<BitmapDescriptor?> getBitmapDescriptor({
     required String svgLink,
-    final int sampling = 1,
+    final double scale = 1.0,
     final Map<String, String>? headers,
     final List<String>? interpolateParams,
+    final bool debugLogDiagnostics = false,
   }) async {
     final bitmapDescriptorCacheKey = Object.hash(svgLink, interpolateParams);
     BitmapDescriptor? bitmapDescriptor =
         await bitmapDescriptorCache.get(bitmapDescriptorCacheKey);
     if (bitmapDescriptor == null) {
+      if (debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getBitmapDescriptor [$svgLink] missed cache",
+          name: debugTag,
+        );
+      }
       final pngBytes = await getPngBytes(
         svgLink: svgLink,
-        sampling: sampling,
+        scale: scale,
         headers: headers,
         interpolateParams: interpolateParams,
         useCache: false,
+        debugLogDiagnostics: debugLogDiagnostics,
       );
-      bitmapDescriptor = pngBytes?.let((it) => BitmapDescriptor.bytes(it));
+      final view = ui_lib.PlatformDispatcher.instance.views.first;
+      bitmapDescriptor = pngBytes?.let((it) => BitmapDescriptor.bytes(
+            it,
+            imagePixelRatio: view.devicePixelRatio,
+          ));
       if (bitmapDescriptor != null) {
         bitmapDescriptorCache.set(bitmapDescriptorCacheKey, bitmapDescriptor);
+        if (debugLogDiagnostics) {
+          developer_lib.log(
+            "SvgHelper getBitmapDescriptor [$svgLink] saved to cache",
+            name: debugTag,
+          );
+        }
+      }
+    } else {
+      if (debugLogDiagnostics) {
+        developer_lib.log(
+          "SvgHelper getBitmapDescriptor [$svgLink] hit cache",
+          name: debugTag,
+        );
       }
     }
     return bitmapDescriptor;
