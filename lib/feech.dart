@@ -28,6 +28,7 @@ export 'src/extensions/widget_extension.dart';
 export 'src/extensions/x509certificate_extension.dart';
 export 'src/helpers/network_helper.dart';
 export 'src/helpers/sqlite_helper.dart';
+export 'src/helpers/svg_helper.dart';
 export 'src/models/display_width_mode.dart';
 export 'src/providers/app_initialise_provider/app_initialise_provider.dart';
 export 'src/providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';

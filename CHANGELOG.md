@@ -1,3 +1,7 @@
+## 0.1.23
+
+* Add svg helper
+
 ## 0.1.22
 
 * Update String extension methods
