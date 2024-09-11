@@ -142,11 +142,22 @@ class SvgHelper {
         debugLogDiagnostics: debugLogDiagnostics,
       );
       if (pictureInfo != null) {
-        final width = pictureInfo.size.width.toInt();
-        final height = pictureInfo.size.height.toInt();
-        final image = await pictureInfo.picture.toImage(width, height);
+        final width = (pictureInfo.size.width * scale).toInt();
+        final height = (pictureInfo.size.height * scale).toInt();
+        ui_lib.Image image;
+        if (scale != 1.0) {
+          final recorder = ui_lib.PictureRecorder();
+          final canvas = ui_lib.Canvas(recorder);
+          canvas.scale(scale);
+          canvas.drawPicture(pictureInfo.picture);
+          image = await recorder.endRecording().toImage(width, height);
+        } else {
+          image = await pictureInfo.picture.toImage(width, height);
+        }
+        pictureInfo.picture.dispose();
         final byteData =
             await image.toByteData(format: ui_lib.ImageByteFormat.png);
+        image.dispose();
         pngBytes = byteData?.buffer.asUint8List();
         if (pngBytes != null && useCache) {
           pngBytesCache.set(pngBytesCacheKey, pngBytes);
