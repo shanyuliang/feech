@@ -33,12 +33,19 @@ class SvgHelper {
   static Future<String?> _getSvgString({
     required String svgLink,
     final Map<String, String>? headers,
+    final bool debugLogDiagnostics = false,
   }) async {
     if (svgLink.startsWith("http")) {
       final response = await http_pkg.get(Uri.parse(svgLink), headers: headers);
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         return response.body;
       } else {
+        if (debugLogDiagnostics) {
+          developer_lib.log(
+            "SvgHelper _getSvgString [$svgLink] failed with http status code ${response.statusCode}",
+            name: debugTag,
+          );
+        }
         return null;
       }
     } else {

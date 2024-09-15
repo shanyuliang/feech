@@ -8,7 +8,8 @@ import '../support/cancellation_exception.dart';
 import '../support/json_converter_ex.dart';
 import '../support/network/http_method.dart';
 import '../support/network/http_status.dart';
-import '../support/network/network_result.dart';
+import '../support/network/network_result_new.dart';
+// import '../support/network/network_result.dart';
 
 class NetworkHelper {
   final Map<String, Completer> _runningCompleterMap = {};

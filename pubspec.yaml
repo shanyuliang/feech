@@ -14,13 +14,13 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.5.2 <4.0.0'
-  flutter: ">=3.24.2"
+  sdk: '>=3.5.3 <4.0.0'
+  flutter: ">=3.24.3"
 
 dependencies:
   flutter:
     sdk: flutter
-  asn1lib: '>=1.5.2 <2.0.0' # https://pub.dev/packages/asn1lib
+  asn1lib: '>=1.5.4 <2.0.0' # https://pub.dev/packages/asn1lib
   async: '>=2.11.0 <3.0.0' # https://pub.dev/packages/async
   camera: '>=0.11.0+2 <1.0.0' # https://pub.dev/packages/camera
   cloud_firestore: ">=5.4.1 <6.0.0" # https://pub.dev/packages/cloud_firestore
