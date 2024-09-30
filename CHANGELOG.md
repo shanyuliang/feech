@@ -1,3 +1,7 @@
+## 0.1.25
+
+* Export new network result class
+
 ## 0.1.24
 
 * Updated network result class

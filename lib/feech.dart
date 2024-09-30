@@ -1,5 +1,3 @@
-library feech;
-
 export 'src/extensions/alignment_extension.dart';
 export 'src/extensions/base_request_extension.dart';
 export 'src/extensions/base_response_extension.dart';
@@ -70,7 +68,8 @@ export 'src/support/network/app_client.dart';
 export 'src/support/network/http_header_key.dart';
 export 'src/support/network/http_header_value.dart';
 export 'src/support/network/http_status.dart';
-export 'src/support/network/network_result.dart';
+// export 'src/support/network/network_result.dart';
+export 'src/support/network/network_result_new.dart';
 export 'src/support/network/token_issuer.dart';
 export 'src/support/result.dart';
 export 'src/support/simple_dialog_page.dart';
