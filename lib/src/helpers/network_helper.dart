@@ -25,31 +25,39 @@ class NetworkHelper {
     NetworkResult<G, E> networkResult;
     if (response.statusCode >= 200 && response.statusCode <= 299) {
       if (G == Uint8List) {
-        networkResult = NetworkResult.good(response.bodyBytes as G, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultGood(
+            response.bodyBytes as G, HttpStatus.fromResponse(response));
       } else if (G == String) {
-        networkResult = NetworkResult.good(response.body as G, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultGood(
+            response.body as G, HttpStatus.fromResponse(response));
       } else if (jsonProcessor != null) {
         try {
           final object = await jsonProcessor.fromJsonEx(response.body);
-          networkResult = NetworkResult.good(object, HttpStatus.fromResponse(response));
+          networkResult =
+              NetworkResultGood(object, HttpStatus.fromResponse(response));
         } catch (ex) {
           final exception = (ex is Exception) ? ex : Exception(ex.toString());
-          networkResult = NetworkResult.malformed(response.body, HttpStatus.fromResponse(response), exception);
+          networkResult = NetworkResultMalformed(
+              response.body, HttpStatus.fromResponse(response), exception);
         }
       } else {
-        networkResult = NetworkResult.good(response.body as G, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultGood(
+            response.body as G, HttpStatus.fromResponse(response));
       }
     } else {
       if (errorJsonProcessor != null) {
         try {
           final object = await errorJsonProcessor.fromJsonEx(response.body);
-          networkResult = NetworkResult.httpError(object, HttpStatus.fromResponse(response));
+          networkResult =
+              NetworkResultHttpError(object, HttpStatus.fromResponse(response));
         } catch (ex) {
           final exception = (ex is Exception) ? ex : Exception(ex.toString());
-          networkResult = NetworkResult.httpErrorMalformed(response.body, HttpStatus.fromResponse(response), exception);
+          networkResult = NetworkResultHttpErrorMalformed(
+              response.body, HttpStatus.fromResponse(response), exception);
         }
       } else {
-        networkResult = NetworkResult.httpError(response.body as E, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultHttpError(
+            response.body as E, HttpStatus.fromResponse(response));
       }
     }
     return networkResult;
@@ -97,13 +105,14 @@ class NetworkHelper {
         return null;
       });
       final response = await completer.future;
-      networkResult = await _createNetworkResultFromResponse(response, jsonProcessor, errorJsonProcessor);
+      networkResult = await _createNetworkResultFromResponse(
+          response, jsonProcessor, errorJsonProcessor);
     } on TimeoutException catch (e) {
-      networkResult = NetworkResult.timeout(e.duration);
+      networkResult = NetworkResultTimeout(e.duration);
     } on CancellationException {
-      networkResult = NetworkResult.cancelled();
+      networkResult = NetworkResultCancelled();
     } catch (e) {
-      networkResult = NetworkResult.ioError(e as Exception);
+      networkResult = NetworkResultIoError(e as Exception);
     } finally {
       _runningCompleterMap.remove(tag ?? url.toString());
     }

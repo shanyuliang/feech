@@ -1,3 +1,7 @@
+## 0.1.24
+
+* Updated network result class
+
 ## 0.1.23
 
 * Add svg helper
