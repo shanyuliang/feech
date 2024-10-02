@@ -1,3 +1,7 @@
+## 0.1.26
+
+* Update dependencies
+
 ## 0.1.25
 
 * Export new network result class
