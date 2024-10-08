@@ -42,17 +42,19 @@ class NewRelicLogging extends Logging {
     });
     if (logRecord.level >= Level.SEVERE && logErrorAsNormalEvent) {
       eventAttributes.addAll({
-        "feechError": logRecord.error ?? "NO ERROR INFO",
-        "feechStackTrace": logRecord.stackTrace ?? "NO STACKTRACE INFO",
+        "feechError": logRecord.error.toString(),
+        "feechStackTrace": logRecord.stackTrace.toString(),
         "feechIsFatal": logRecord.level >= Level.SHOUT,
       });
     }
     if (logRecord.level < Level.SEVERE || logErrorAsNormalEvent) {
+      debugPrint("NewRelicLogging recordCustomEvent $eventAttributes");
       await NewrelicMobile.instance.recordCustomEvent(
         eventType,
         eventAttributes: eventAttributes,
       );
     } else {
+      debugPrint("NewRelicLogging recordError");
       NewrelicMobile.instance.recordError(
         logRecord.error ?? Error(),
         logRecord.stackTrace,
