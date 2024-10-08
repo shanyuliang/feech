@@ -39,9 +39,6 @@ class NewRelicLogging extends Logging {
     eventAttributes.addAll({
       "feechLogTime": logRecord.time.toIso8601String(),
       "feechLogLevel": logRecord.level.name,
-      "feechError": logRecord.error,
-      "feechStackTrace": logRecord.stackTrace,
-      "feechIsFatal": logRecord.level >= Level.SHOUT,
     });
     if (logRecord.level >= Level.SEVERE && logErrorAsNormalEvent) {
       eventAttributes.addAll({
