@@ -45,8 +45,8 @@ class NewRelicLogging extends Logging {
     });
     if (logRecord.level >= Level.SEVERE && logErrorAsNormalEvent) {
       eventAttributes.addAll({
-        "feechError": logRecord.error,
-        "feechStackTrace": logRecord.stackTrace,
+        "feechError": logRecord.error ?? "NO ERROR INFO",
+        "feechStackTrace": logRecord.stackTrace ?? "NO STACKTRACE INFO",
         "feechIsFatal": logRecord.level >= Level.SHOUT,
       });
     }
