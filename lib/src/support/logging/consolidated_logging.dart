@@ -27,7 +27,7 @@ class ConsolidatedLogging extends Logging {
         throwable: () {
           logging.logger.log(
             logRecord.level,
-            logRecord.message,
+            logRecord.object ?? logRecord.message,
             logRecord.error,
             logRecord.stackTrace,
             logRecord.zone,
@@ -45,7 +45,8 @@ class ConsolidatedLogging extends Logging {
   final logger = Logger("Consolidated");
 
   @override
-  FlutterExceptionHandler? get flutterExceptionHandler => (FlutterErrorDetails details) {
+  FlutterExceptionHandler? get flutterExceptionHandler =>
+      (FlutterErrorDetails details) {
         for (final internalLogging in _internalLoggingList) {
           suppressThrowableSync(
             throwable: () {
