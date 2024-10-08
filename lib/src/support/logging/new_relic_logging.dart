@@ -18,7 +18,7 @@ class NewRelicLogging extends Logging {
     required this.accessToken,
     required this.eventType,
     required this.maxEventBufferTimeInSeconds,
-    this.logErrorAsNormalEvent = false,
+    this.logErrorAsNormalEvent = true,
     Level minLoggingLevel = Level.INFO,
     String loggerName = "New Relic",
   }) : logger = Logger(loggerName)..level = minLoggingLevel {
