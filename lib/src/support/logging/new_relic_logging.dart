@@ -30,13 +30,14 @@ class NewRelicLogging extends Logging {
   Future<void> _log(LogRecord logRecord) async {
     Map<String, dynamic> eventAttributes = {"message": logRecord.message};
     if (logRecord.object != null) {
-      debugPrint(
-          'Runtime type of logRecord.object: ${logRecord.object.runtimeType}');
+      debugPrint('logRecord.object is ${logRecord.object.runtimeType}');
       try {
         eventAttributes = logRecord.object as Map<String, dynamic>;
       } catch (ex) {
         debugPrint("LogRecord has a not-null object but it is not a Map.");
       }
+    } else {
+      debugPrint('logRecord.object is null');
     }
     eventAttributes.addAll({
       "time": logRecord.time.toIso8601String(),
