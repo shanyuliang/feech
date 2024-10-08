@@ -28,21 +28,27 @@ class NewRelicLogging extends Logging {
   }
 
   Future<void> _log(LogRecord logRecord) async {
-    final body = {
+    Map<String, String> eventAttributes;
+    if (logRecord.object is Map<String, String>) {
+      eventAttributes = logRecord.object as Map<String, String>;
+    } else {
+      eventAttributes = {"message": logRecord.message};
+    }
+    eventAttributes.addAll({
       "time": logRecord.time.toIso8601String(),
       "level": logRecord.level.name,
-      "message": logRecord.message,
-    };
+    });
     if (logRecord.level >= Level.SEVERE) {
       final isFatal = logRecord.level >= Level.SHOUT;
       NewrelicMobile.instance.recordError(
         logRecord.error ?? Error(),
         logRecord.stackTrace,
-        attributes: body,
+        attributes: eventAttributes,
         isFatal: isFatal,
       );
     } else {
-      await NewrelicMobile.instance.recordCustomEvent(eventType, eventAttributes: body);
+      await NewrelicMobile.instance
+          .recordCustomEvent(eventType, eventAttributes: eventAttributes);
     }
   }
 
@@ -50,12 +56,15 @@ class NewRelicLogging extends Logging {
   final Logger logger;
 
   @override
-  FlutterExceptionHandler? get flutterExceptionHandler => NewrelicMobile.onError;
+  FlutterExceptionHandler? get flutterExceptionHandler =>
+      NewrelicMobile.onError;
 
   @override
   Future<void> initialise() async {
-    final config = Config(accessToken: accessToken, printStatementAsEventsEnabled: false);
+    final config =
+        Config(accessToken: accessToken, printStatementAsEventsEnabled: false);
     await NewrelicMobile.instance.startAgent(config);
-    await NewrelicMobile.instance.setMaxEventBufferTime(maxEventBufferTimeInSeconds);
+    await NewrelicMobile.instance
+        .setMaxEventBufferTime(maxEventBufferTimeInSeconds);
   }
 }
