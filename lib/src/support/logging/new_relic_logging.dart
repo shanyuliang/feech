@@ -18,7 +18,7 @@ class NewRelicLogging extends Logging {
     required this.accessToken,
     required this.eventType,
     required this.maxEventBufferTimeInSeconds,
-    this.logErrorAsNormalEvent = true,
+    this.logErrorAsNormalEvent = false,
     Level minLoggingLevel = Level.INFO,
     String loggerName = "New Relic",
   }) : logger = Logger(loggerName)..level = minLoggingLevel {
@@ -39,10 +39,17 @@ class NewRelicLogging extends Logging {
     eventAttributes.addAll({
       "feechLogTime": logRecord.time.toIso8601String(),
       "feechLogLevel": logRecord.level.name,
-      "feechError": logRecord.error ?? "",
-      "feechStackTrace": logRecord.stackTrace ?? "",
+      "feechError": logRecord.error,
+      "feechStackTrace": logRecord.stackTrace,
       "feechIsFatal": logRecord.level >= Level.SHOUT,
     });
+    if (logRecord.level >= Level.SEVERE && logErrorAsNormalEvent) {
+      eventAttributes.addAll({
+        "feechError": logRecord.error,
+        "feechStackTrace": logRecord.stackTrace,
+        "feechIsFatal": logRecord.level >= Level.SHOUT,
+      });
+    }
     if (logRecord.level < Level.SEVERE || logErrorAsNormalEvent) {
       await NewrelicMobile.instance.recordCustomEvent(
         eventType,
