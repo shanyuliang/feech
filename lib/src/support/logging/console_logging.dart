@@ -8,9 +8,9 @@ class ConsoleLogging extends Logging {
   final bool debugBuildTypeOnly;
 
   ConsoleLogging({
+    this.debugBuildTypeOnly = true,
     String loggerName = "Console",
     Level minLoggingLevel = Level.ALL,
-    this.debugBuildTypeOnly = true,
   }) : logger = Logger(loggerName)..level = minLoggingLevel {
     logger.onRecord.listen((record) {
       suppressThrowableAsync(throwable: () async {
@@ -29,7 +29,8 @@ class ConsoleLogging extends Logging {
   final Logger logger;
 
   @override
-  FlutterExceptionHandler? get flutterExceptionHandler => (FlutterErrorDetails details) {
+  FlutterExceptionHandler? get flutterExceptionHandler =>
+      (FlutterErrorDetails details) {
         if (kDebugMode || !debugBuildTypeOnly) {
           debugPrint("[Flutter Error] $details");
         }

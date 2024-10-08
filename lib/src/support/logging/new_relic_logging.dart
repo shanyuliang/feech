@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:newrelic_mobile/config.dart';
 import 'package:newrelic_mobile/newrelic_mobile.dart';
 
+import '../../constants.dart';
 import '../../utilities/handy_util.dart';
 import 'logging.dart';
 
@@ -13,12 +15,14 @@ class NewRelicLogging extends Logging {
   final String eventType;
   final int maxEventBufferTimeInSeconds;
   final bool logErrorAsNormalEvent;
+  final bool debugLogDiagnostics;
 
   NewRelicLogging({
     required this.accessToken,
     required this.eventType,
-    required this.maxEventBufferTimeInSeconds,
+    this.maxEventBufferTimeInSeconds = 300,
     this.logErrorAsNormalEvent = false,
+    this.debugLogDiagnostics = false,
     Level minLoggingLevel = Level.INFO,
     String loggerName = "New Relic",
   }) : logger = Logger(loggerName)..level = minLoggingLevel {
@@ -48,13 +52,22 @@ class NewRelicLogging extends Logging {
       });
     }
     if (logRecord.level < Level.SEVERE || logErrorAsNormalEvent) {
-      debugPrint("NewRelicLogging recordCustomEvent $eventAttributes");
-      await NewrelicMobile.instance.recordCustomEvent(
+      NewrelicMobile.instance
+          .recordCustomEvent(
         eventType,
         eventAttributes: eventAttributes,
+      )
+          .then(
+        (value) {
+          if (debugLogDiagnostics) {
+            developer.log(
+              "New Relic recordCustomEvent result: $value",
+              name: debugTag,
+            );
+          }
+        },
       );
     } else {
-      debugPrint("NewRelicLogging recordError");
       NewrelicMobile.instance.recordError(
         logRecord.error ?? Error(),
         logRecord.stackTrace,
