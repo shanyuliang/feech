@@ -28,22 +28,15 @@ class NewRelicLogging extends Logging {
   }
 
   Future<void> _log(LogRecord logRecord) async {
-    Map<String, dynamic> eventAttributes = {
-      "feech_log_message": logRecord.message
-    };
-    if (logRecord.object != null) {
-      debugPrint('logRecord.object is ${logRecord.object.runtimeType}.');
-      try {
-        eventAttributes.addAll(logRecord.object as Map<String, dynamic>);
-      } catch (ex) {
-        debugPrint("logRecord has a not-null object but it is not a Map.");
-      }
+    Map<String, dynamic> eventAttributes = {};
+    if (logRecord.object is Map) {
+      eventAttributes.addAll(logRecord.object as Map<String, dynamic>);
     } else {
-      debugPrint('logRecord.object is null.');
+      eventAttributes.addAll({"feechLogMessage": logRecord.message});
     }
     eventAttributes.addAll({
-      "feech_log_time": logRecord.time.toIso8601String(),
-      "feech_log_level": logRecord.level.name,
+      "feechLogTime": logRecord.time.toIso8601String(),
+      "feechLogLevel": logRecord.level.name,
     });
     if (logRecord.level >= Level.SEVERE) {
       final isFatal = logRecord.level >= Level.SHOUT;
@@ -54,8 +47,10 @@ class NewRelicLogging extends Logging {
         isFatal: isFatal,
       );
     } else {
-      await NewrelicMobile.instance
-          .recordCustomEvent(eventType, eventAttributes: eventAttributes);
+      await NewrelicMobile.instance.recordCustomEvent(
+        eventType,
+        eventAttributes: eventAttributes,
+      );
     }
   }
 
