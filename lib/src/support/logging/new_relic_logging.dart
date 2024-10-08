@@ -12,11 +12,13 @@ class NewRelicLogging extends Logging {
   final String accessToken;
   final String eventType;
   final int maxEventBufferTimeInSeconds;
+  final bool logErrorAsNormalEvent;
 
   NewRelicLogging({
     required this.accessToken,
     required this.eventType,
     required this.maxEventBufferTimeInSeconds,
+    this.logErrorAsNormalEvent = false,
     Level minLoggingLevel = Level.INFO,
     String loggerName = "New Relic",
   }) : logger = Logger(loggerName)..level = minLoggingLevel {
@@ -37,19 +39,21 @@ class NewRelicLogging extends Logging {
     eventAttributes.addAll({
       "feechLogTime": logRecord.time.toIso8601String(),
       "feechLogLevel": logRecord.level.name,
+      "feechError": logRecord.error ?? "",
+      "feechStackTrace": logRecord.stackTrace ?? "",
+      "feechIsFatal": logRecord.level >= Level.SHOUT,
     });
-    if (logRecord.level >= Level.SEVERE) {
-      final isFatal = logRecord.level >= Level.SHOUT;
+    if (logRecord.level < Level.SEVERE || logErrorAsNormalEvent) {
+      await NewrelicMobile.instance.recordCustomEvent(
+        eventType,
+        eventAttributes: eventAttributes,
+      );
+    } else {
       NewrelicMobile.instance.recordError(
         logRecord.error ?? Error(),
         logRecord.stackTrace,
         attributes: eventAttributes,
-        isFatal: isFatal,
-      );
-    } else {
-      await NewrelicMobile.instance.recordCustomEvent(
-        eventType,
-        eventAttributes: eventAttributes,
+        isFatal: logRecord.level >= Level.SHOUT,
       );
     }
   }

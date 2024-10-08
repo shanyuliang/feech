@@ -1,3 +1,7 @@
+## 0.1.27
+
+* Update New Relic logger
+
 ## 0.1.26
 
 * Update dependencies
