@@ -191,6 +191,28 @@ extension StringExtension on String {
       _ => Alignment.center,
     };
   }
+
+  TextStyle? parseAsTextStyle(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    return switch (toUpperCase()) {
+      "DISPLAYLARGE" => textTheme.displayLarge,
+      "DISPLAYMEDIUM" => textTheme.displayMedium,
+      "DISPLAYSMALL" => textTheme.displaySmall,
+      "HEADLINELARGE" => textTheme.headlineLarge,
+      "HEADLINEMEDIUM" => textTheme.headlineMedium,
+      "HEADLINESMALL" => textTheme.headlineSmall,
+      "TITLELARGE" => textTheme.titleLarge,
+      "TITLEMEDIUM" => textTheme.titleMedium,
+      "TITLESMALL" => textTheme.titleSmall,
+      "BODYLARGE" => textTheme.bodyLarge,
+      "BODYMEDIUM" => textTheme.bodyMedium,
+      "BODYSMALL" => textTheme.bodySmall,
+      "LABELLARGE" => textTheme.labelLarge,
+      "LABELMEDIUM" => textTheme.labelMedium,
+      "LABELSMALL" => textTheme.labelSmall,
+      _ => null,
+    };
+  }
 }
 
 extension StringNullableExtension on String? {
