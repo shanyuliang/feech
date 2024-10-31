@@ -59,55 +59,30 @@ extension StringExtension on String {
     final localeName = locale.getLocaleName();
     final languageCode = locale.languageCode;
     final candidates = <String>[];
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: variant)
-        .insertLastPathSegment(insertedPathSegment: localeName)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: variant)
-        .insertLastPathSegment(insertedPathSegment: languageCode)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: variant)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: appFlavor)
-        .insertLastPathSegment(insertedPathSegment: localeName)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: appFlavor)
-        .insertLastPathSegment(insertedPathSegment: languageCode)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: appFlavor)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: buildType)
-        .insertLastPathSegment(insertedPathSegment: localeName)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: buildType)
-        .insertLastPathSegment(insertedPathSegment: languageCode)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: buildType)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: localeName)
-        .path);
-    candidates.add(originalPathNameUri
-        .insertLastPathSegment(insertedPathSegment: languageCode)
-        .path);
+    candidates
+        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).insertLastPathSegment(insertedPathSegment: localeName).path);
+    candidates
+        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).path);
+    candidates
+        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).insertLastPathSegment(insertedPathSegment: localeName).path);
+    candidates
+        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).path);
+    candidates
+        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).insertLastPathSegment(insertedPathSegment: localeName).path);
+    candidates
+        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: localeName).path);
+    candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: languageCode).path);
     candidates.add(this);
     return candidates;
   }
 
   String asNameGetInitials({int? maxResultLength}) {
     final nameParts = trim().split(whitespacesRegExp);
-    final initials = nameParts.fold(
-        '',
-        (previousValue, element) =>
-            '$previousValue${element.isNotEmpty ? element[0] : ''}');
+    final initials = nameParts.fold('', (previousValue, element) => '$previousValue${element.isNotEmpty ? element[0] : ''}');
     if (initials.length > (maxResultLength ?? 3)) {
       return initials.substring(0, maxResultLength).toUpperCase();
     } else {
@@ -170,11 +145,7 @@ extension StringExtension on String {
   }
 
   Uri? parseAsUri() {
-    try {
-      return Uri.parse(this);
-    } catch (ex) {
-      return null;
-    }
+    return Uri.tryParse(this);
   }
 
   Alignment parseAsAlignment() {
