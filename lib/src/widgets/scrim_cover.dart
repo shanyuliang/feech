@@ -22,13 +22,15 @@ class ScrimCover extends StatelessWidget {
         return LinearGradient(
           begin: begin,
           end: end,
-          stops: const [
-            0,
-            0.5,
-          ],
           colors: [
-            color.withOpacity(0.4),
+            color.withOpacity(0.66),
+            color.withOpacity(0.66),
             Colors.transparent,
+          ],
+          stops: [
+            0.0,
+            0.4,
+            0.8,
           ],
         ).createShader(bounds);
       },
