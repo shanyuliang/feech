@@ -148,6 +148,19 @@ extension StringExtension on String {
     return Uri.tryParse(this);
   }
 
+  BoxFit parseAsBoxFit() {
+    return switch (toUpperCase()) {
+      "CONTAIN" => BoxFit.contain,
+      "COVER" => BoxFit.cover,
+      "FILL" => BoxFit.fill,
+      "FITHEIGHT" => BoxFit.fitHeight,
+      "FITWIDTH" => BoxFit.fitWidth,
+      "NONE" => BoxFit.none,
+      "SCALEDOWN" => BoxFit.scaleDown,
+      _ => BoxFit.none,
+    };
+  }
+
   Alignment parseAsAlignment() {
     return switch (toUpperCase()) {
       "CENTERLEFT" => Alignment.centerLeft,

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
 import '../extensions/alignment_extension.dart';
+import '../extensions/box_fit_extension.dart';
 import '../extensions/color_extension.dart';
 import '../extensions/date_time_extension.dart';
 import '../extensions/int_extension.dart';
@@ -100,4 +101,14 @@ class AlignmentStringConverter extends JsonConverterEx<Alignment, String> {
 
   @override
   String toJson(Alignment object) => object.toShortString();
+}
+
+class BoxFitStringConverter extends JsonConverterEx<BoxFit, String> {
+  const BoxFitStringConverter();
+
+  @override
+  BoxFit fromJson(String json) => json.parseAsBoxFit();
+
+  @override
+  String toJson(BoxFit object) => object.toShortString();
 }
