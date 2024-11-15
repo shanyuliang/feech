@@ -16,6 +16,7 @@ export 'src/extensions/global_key_extension.dart';
 export 'src/extensions/int_extension.dart';
 export 'src/extensions/iterable_extension.dart';
 export 'src/extensions/locale_extension.dart';
+export 'src/extensions/palette_generator_extension.dart';
 export 'src/extensions/placemark_extension.dart';
 export 'src/extensions/string_extension.dart';
 export 'src/extensions/ui_image_extension.dart';
