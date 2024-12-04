@@ -23,10 +23,10 @@ dependencies:
   asn1lib: '>=1.5.8 <2.0.0' # https://pub.dev/packages/asn1lib
   async: '>=2.11.0 <3.0.0' # https://pub.dev/packages/async
   camera: '>=0.11.0+2 <1.0.0' # https://pub.dev/packages/camera
-  cloud_firestore: ">=5.5.0 <6.0.0" # https://pub.dev/packages/cloud_firestore
+  cloud_firestore: ">=5.5.1 <6.0.0" # https://pub.dev/packages/cloud_firestore
   collection: '>=1.18.0 <2.0.0' # https://pub.dev/packages/collection
   crypto: '>=3.0.6 <4.0.0' # https://pub.dev/packages/crypto
-  firebase_crashlytics: '>=4.1.5 <5.0.0' # https://pub.dev/packages/firebase_crashlytics
+  firebase_crashlytics: '>=4.2.0 <5.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=2.6.1 <3.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_svg: '>=2.0.16 <3.0.0' # https://pub.dev/packages/flutter_svg
