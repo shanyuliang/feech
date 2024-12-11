@@ -7,7 +7,7 @@ part of 'runtime_info_provider.dart';
 // **************************************************************************
 
 String _$runtimeInfoProviderHash() =>
-    r'2168d63154ac59c26cba3b511203624c98e7e0d0';
+    r'26b931b3964ede120819f709bd322e414fc89802';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -158,6 +158,8 @@ class RuntimeInfoProviderProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin RuntimeInfoProviderRef on NotifierProviderRef<RuntimeInfo> {
   /// The parameter `debugLogDiagnostics` of this provider.
   bool get debugLogDiagnostics;
@@ -173,4 +175,4 @@ class _RuntimeInfoProviderProviderElement
       (origin as RuntimeInfoProviderProvider).debugLogDiagnostics;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

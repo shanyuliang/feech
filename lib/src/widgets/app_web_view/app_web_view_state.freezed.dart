@@ -25,6 +25,7 @@ mixin _$AppWebViewState {
   String? get pageStarted => throw _privateConstructorUsedError;
   String? get pageFinished => throw _privateConstructorUsedError;
   String? get currentUrl => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
   ({String channel, String message})? get javaScriptMessage =>
       throw _privateConstructorUsedError;
   ({bool allowed, bool isMainFrame, String url})? get navigationDecision =>
@@ -56,6 +57,7 @@ abstract class $AppWebViewStateCopyWith<$Res> {
       String? pageStarted,
       String? pageFinished,
       String? currentUrl,
+      String? errorMessage,
       ({String channel, String message})? javaScriptMessage,
       ({bool allowed, bool isMainFrame, String url})? navigationDecision,
       bool canGoBack,
@@ -87,6 +89,7 @@ class _$AppWebViewStateCopyWithImpl<$Res, $Val extends AppWebViewState>
     Object? pageStarted = freezed,
     Object? pageFinished = freezed,
     Object? currentUrl = freezed,
+    Object? errorMessage = freezed,
     Object? javaScriptMessage = freezed,
     Object? navigationDecision = freezed,
     Object? canGoBack = null,
@@ -126,6 +129,10 @@ class _$AppWebViewStateCopyWithImpl<$Res, $Val extends AppWebViewState>
       currentUrl: freezed == currentUrl
           ? _value.currentUrl
           : currentUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       javaScriptMessage: freezed == javaScriptMessage
           ? _value.javaScriptMessage
@@ -172,6 +179,7 @@ abstract class _$$AppWebViewStateImplCopyWith<$Res>
       String? pageStarted,
       String? pageFinished,
       String? currentUrl,
+      String? errorMessage,
       ({String channel, String message})? javaScriptMessage,
       ({bool allowed, bool isMainFrame, String url})? navigationDecision,
       bool canGoBack,
@@ -201,6 +209,7 @@ class __$$AppWebViewStateImplCopyWithImpl<$Res>
     Object? pageStarted = freezed,
     Object? pageFinished = freezed,
     Object? currentUrl = freezed,
+    Object? errorMessage = freezed,
     Object? javaScriptMessage = freezed,
     Object? navigationDecision = freezed,
     Object? canGoBack = null,
@@ -240,6 +249,10 @@ class __$$AppWebViewStateImplCopyWithImpl<$Res>
       currentUrl: freezed == currentUrl
           ? _value.currentUrl
           : currentUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       javaScriptMessage: freezed == javaScriptMessage
           ? _value.javaScriptMessage
@@ -281,6 +294,7 @@ class _$AppWebViewStateImpl implements _AppWebViewState {
       this.pageStarted,
       this.pageFinished,
       this.currentUrl,
+      this.errorMessage,
       this.javaScriptMessage,
       this.navigationDecision,
       this.canGoBack = false,
@@ -305,6 +319,8 @@ class _$AppWebViewStateImpl implements _AppWebViewState {
   @override
   final String? currentUrl;
   @override
+  final String? errorMessage;
+  @override
   final ({String channel, String message})? javaScriptMessage;
   @override
   final ({bool allowed, bool isMainFrame, String url})? navigationDecision;
@@ -323,7 +339,7 @@ class _$AppWebViewStateImpl implements _AppWebViewState {
 
   @override
   String toString() {
-    return 'AppWebViewState(id: $id, urlEditorController: $urlEditorController, initialUrl: $initialUrl, title: $title, progress: $progress, pageStarted: $pageStarted, pageFinished: $pageFinished, currentUrl: $currentUrl, javaScriptMessage: $javaScriptMessage, navigationDecision: $navigationDecision, canGoBack: $canGoBack, canGoForward: $canGoForward, expandTitleBar: $expandTitleBar, stateStatus: $stateStatus)';
+    return 'AppWebViewState(id: $id, urlEditorController: $urlEditorController, initialUrl: $initialUrl, title: $title, progress: $progress, pageStarted: $pageStarted, pageFinished: $pageFinished, currentUrl: $currentUrl, errorMessage: $errorMessage, javaScriptMessage: $javaScriptMessage, navigationDecision: $navigationDecision, canGoBack: $canGoBack, canGoForward: $canGoForward, expandTitleBar: $expandTitleBar, stateStatus: $stateStatus)';
   }
 
   @override
@@ -345,6 +361,8 @@ class _$AppWebViewStateImpl implements _AppWebViewState {
                 other.pageFinished == pageFinished) &&
             (identical(other.currentUrl, currentUrl) ||
                 other.currentUrl == currentUrl) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
             (identical(other.javaScriptMessage, javaScriptMessage) ||
                 other.javaScriptMessage == javaScriptMessage) &&
             (identical(other.navigationDecision, navigationDecision) ||
@@ -370,6 +388,7 @@ class _$AppWebViewStateImpl implements _AppWebViewState {
       pageStarted,
       pageFinished,
       currentUrl,
+      errorMessage,
       javaScriptMessage,
       navigationDecision,
       canGoBack,
@@ -397,6 +416,7 @@ abstract class _AppWebViewState implements AppWebViewState {
       final String? pageStarted,
       final String? pageFinished,
       final String? currentUrl,
+      final String? errorMessage,
       final ({String channel, String message})? javaScriptMessage,
       final ({bool allowed, bool isMainFrame, String url})? navigationDecision,
       final bool canGoBack,
@@ -420,6 +440,8 @@ abstract class _AppWebViewState implements AppWebViewState {
   String? get pageFinished;
   @override
   String? get currentUrl;
+  @override
+  String? get errorMessage;
   @override
   ({String channel, String message})? get javaScriptMessage;
   @override

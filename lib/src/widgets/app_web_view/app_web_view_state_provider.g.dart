@@ -7,7 +7,7 @@ part of 'app_web_view_state_provider.dart';
 // **************************************************************************
 
 String _$appWebViewStateProviderHash() =>
-    r'67ea043901331778d11771ed2a1e360f7da1d3ab';
+    r'4cbe345328a0e2904d71a6bd3afd98d43a10ecc7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -191,6 +191,8 @@ class AppWebViewStateProviderProvider extends AutoDisposeNotifierProviderImpl<
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin AppWebViewStateProviderRef
     on AutoDisposeNotifierProviderRef<AppWebViewState> {
   /// The parameter `initialState` of this provider.
@@ -219,4 +221,4 @@ class _AppWebViewStateProviderProviderElement
       (origin as AppWebViewStateProviderProvider).allowNavigation;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

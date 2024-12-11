@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../extensions/http_response_error_extension.dart';
+import '../../extensions/web_resource_error_extension.dart';
 import 'app_web_view_state.dart';
 
 part 'app_web_view_state_provider.g.dart';
@@ -15,29 +17,39 @@ class AppWebViewStateProvider extends _$AppWebViewStateProvider {
     ..setBackgroundColor(const Color(0x00000000))
     ..setNavigationDelegate(
       NavigationDelegate(
-        onProgress: (int progress) {
-          debugPrint('Web View is loading (progress : $progress%)');
-          _setProgress(progress);
+        onHttpAuthRequest: (HttpAuthRequest request) {
+          debugPrint('Web View got http auth request: $request');
         },
-        onPageStarted: (String url) async {
-          debugPrint('Web View page started loading: $url');
-          _setPageStarted(url);
+        onHttpError: (HttpResponseError error) {
+          debugPrint('Web View got http resource error: $error');
+          _setErrorMessage(error.toReadableString());
         },
-        onPageFinished: (String url) async {
-          debugPrint('Web View page finished loading: $url');
-          _setPageFinished(url);
-        },
-        onUrlChange: (UrlChange change) async {
-          debugPrint('Web View page url changes: ${change.url}');
-          _setUrlChanged(change);
-        },
-        onWebResourceError: (WebResourceError error) {},
         onNavigationRequest: (NavigationRequest request) {
           debugPrint('Web View attend to load ${request.url}, isMainFrame: ${request.isMainFrame}');
           final allowNavigationResult = allowNavigation?.call(request.url, request.isMainFrame) ?? true;
           _setNavigationDecision(url: request.url, isMainFrame: request.isMainFrame, allowed: allowNavigationResult);
           debugPrint('Web View navigation ${allowNavigationResult ? "allowed" : "denied"}');
           return allowNavigationResult ? NavigationDecision.navigate : NavigationDecision.prevent;
+        },
+        onPageFinished: (String url) async {
+          debugPrint('Web View page finished loading: $url');
+          _setPageFinished(url);
+        },
+        onPageStarted: (String url) async {
+          debugPrint('Web View page started loading: $url');
+          _setPageStarted(url);
+        },
+        onProgress: (int progress) {
+          debugPrint('Web View is loading (progress : $progress%)');
+          _setProgress(progress);
+        },
+        onUrlChange: (UrlChange change) async {
+          debugPrint('Web View url changes: ${change.url}');
+          _setUrlChanged(change);
+        },
+        onWebResourceError: (WebResourceError error) {
+          debugPrint('Web View got web resource error: $error');
+          _setErrorMessage(error.toReadableString());
         },
       ),
     );
@@ -108,6 +120,10 @@ class AppWebViewStateProvider extends _$AppWebViewStateProvider {
   void _setUrlChanged(UrlChange change) {
     state.urlEditorController.text = change.url ?? '';
     state = state.copyWith(currentUrl: change.url);
+  }
+
+  void _setErrorMessage(String? errorMessage) {
+    state = state.copyWith(errorMessage: errorMessage);
   }
 
   void _setJavaScriptMessage(String channelName, String message) {

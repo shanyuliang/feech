@@ -16,6 +16,7 @@ class AppWebViewState with _$AppWebViewState {
     final String? pageStarted,
     final String? pageFinished,
     final String? currentUrl,
+    final String? errorMessage,
     final AppJavaScriptMessage? javaScriptMessage,
     final AppNavigationDecision? navigationDecision,
     @Default(false) final bool canGoBack,
