@@ -1,3 +1,7 @@
+## 0.1.28
+
+* Update app web view to save error info
+
 ## 0.1.27
 
 * Update New Relic logger
