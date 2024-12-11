@@ -6,6 +6,10 @@ Use the package to simplify your Flutter project development.
 
 ## Getting started
 
+## Command to update dependencies
+
+`flutter packages get`
+
 ## Usage
 
 ```dart
