@@ -8,7 +8,7 @@ Use the package to simplify your Flutter project development.
 
 ## Command to update dependencies
 
-`flutter packages get`
+Use `flutter packages get` to fetch new packages.
 
 ## Usage
 
