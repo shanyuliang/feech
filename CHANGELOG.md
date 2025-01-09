@@ -1,3 +1,7 @@
+## 0.1.29
+
+* Update dependencies
+
 ## 0.1.28
 
 * Update app web view to save error info
