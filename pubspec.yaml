@@ -14,17 +14,17 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.6.2 <4.0.0'
-  flutter: ">=3.27.4"
+  sdk: '>=3.7.0 <4.0.0'
+  flutter: ">=3.29.0"
 
 dependencies:
   flutter:
     sdk: flutter
   asn1lib: '>=1.5.8 <2.0.0' # https://pub.dev/packages/asn1lib
-  async: '>=2.11.0 <3.0.0' # https://pub.dev/packages/async
+  async: '>=2.12.0 <3.0.0' # https://pub.dev/packages/async
   camera: '>=0.11.1 <1.0.0' # https://pub.dev/packages/camera
   cloud_firestore: ">=5.6.3 <6.0.0" # https://pub.dev/packages/cloud_firestore
-  collection: '>=1.18.0 <2.0.0' # https://pub.dev/packages/collection
+  collection: '>=1.19.1 <2.0.0' # https://pub.dev/packages/collection
   crypto: '>=3.0.6 <4.0.0' # https://pub.dev/packages/crypto
   firebase_crashlytics: '>=4.3.2 <5.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
@@ -56,10 +56,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: '>=2.4.14 <3.0.0' # https://pub.dev/packages/build_runner
+  build_runner: '>=2.4.15 <3.0.0' # https://pub.dev/packages/build_runner
   flutter_lints: '>=5.0.0 <6.0.0' # https://pub.dev/packages/flutter_lints
   freezed: '>=2.5.8 <3.0.0' # https://pub.dev/packages/freezed
-  json_serializable: '>=6.9.3 <7.0.0' # https://pub.dev/packages/json_serializable
+  json_serializable: '>=6.9.4 <7.0.0' # https://pub.dev/packages/json_serializable
   riverpod_analyzer_utils: '>=0.5.9 <1.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
   riverpod_generator: '>=2.6.4 <3.0.0' # https://pub.dev/packages/riverpod_generator
   riverpod_lint: '>=2.6.4 <3.0.0' # https://pub.dev/packages/riverpod_lint
