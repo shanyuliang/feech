@@ -19,13 +19,10 @@ class DialogPage<T> extends Page<T> {
 
   @override
   Route<T> createRoute(BuildContext context) => DialogRoute<T>(
-        context: context,
-        settings: this,
-        builder: (_) => AlertDialog(
-          content: builder.call(_),
-          scrollable: scrollable,
-        ),
-        barrierDismissible: barrierDismissible,
-        useSafeArea: useSafeArea,
-      );
+    context: context,
+    settings: this,
+    builder: (buildContext) => AlertDialog(content: builder.call(buildContext), scrollable: scrollable),
+    barrierDismissible: barrierDismissible,
+    useSafeArea: useSafeArea,
+  );
 }

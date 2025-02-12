@@ -2,7 +2,7 @@ import 'http_status.dart';
 
 sealed class NetworkResult<G, E> {}
 
-class NetworkResultGood<G, _> extends NetworkResult<G, _> {
+class NetworkResultGood<G, E> extends NetworkResult<G, E> {
   final G? value;
   final HttpStatus httpStatus;
 
@@ -13,7 +13,7 @@ class NetworkResultGood<G, _> extends NetworkResult<G, _> {
       "NetworkResultGood [httpStatus=$httpStatus,value=$value]";
 }
 
-class NetworkResultMalformed<_, __> extends NetworkResult<_, __> {
+class NetworkResultMalformed<G, E> extends NetworkResult<G, E> {
   final String? stringValue;
   final HttpStatus httpStatus;
   final Object? error;
@@ -25,7 +25,7 @@ class NetworkResultMalformed<_, __> extends NetworkResult<_, __> {
       "NetworkResultMalformed [httpStatus=$httpStatus,stringValue=$stringValue,error=$error]";
 }
 
-class NetworkResultHttpError<_, E> extends NetworkResult<_, E> {
+class NetworkResultHttpError<G, E> extends NetworkResult<G, E> {
   final E? error;
   final HttpStatus httpStatus;
 
@@ -36,7 +36,7 @@ class NetworkResultHttpError<_, E> extends NetworkResult<_, E> {
       "NetworkResultHttpError [httpStatus=$httpStatus,error=$error]";
 }
 
-class NetworkResultHttpErrorMalformed<_, __> extends NetworkResult<_, __> {
+class NetworkResultHttpErrorMalformed<G, E> extends NetworkResult<G, E> {
   final String? stringValue;
   final HttpStatus httpStatus;
   final Object? error;
@@ -49,7 +49,7 @@ class NetworkResultHttpErrorMalformed<_, __> extends NetworkResult<_, __> {
       "NetworkResultHttpErrorMalformed [httpStatus=$httpStatus,stringValue=$stringValue,error=$error]";
 }
 
-class NetworkResultIoError<_, __> extends NetworkResult<_, __> {
+class NetworkResultIoError<G, E> extends NetworkResult<G, E> {
   final Object? error;
 
   NetworkResultIoError(this.error);
@@ -58,7 +58,7 @@ class NetworkResultIoError<_, __> extends NetworkResult<_, __> {
   String toString() => "NetworkResultIoError [error=$error]";
 }
 
-class NetworkResultTimeout<_, __> extends NetworkResult<_, __> {
+class NetworkResultTimeout<G, E> extends NetworkResult<G, E> {
   final Duration? timeout;
 
   NetworkResultTimeout(this.timeout);
@@ -67,7 +67,7 @@ class NetworkResultTimeout<_, __> extends NetworkResult<_, __> {
   String toString() => "NetworkResultTimeout [timeout=$timeout]";
 }
 
-class NetworkResultCancelled<_, __> extends NetworkResult<_, __> {
+class NetworkResultCancelled<G, E> extends NetworkResult<G, E> {
   NetworkResultCancelled();
 
   @override

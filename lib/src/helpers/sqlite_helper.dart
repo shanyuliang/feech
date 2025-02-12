@@ -28,7 +28,7 @@ abstract class DatabaseResult<G> {
   factory DatabaseResult._error(Exception exception) => DatabaseResultError<G>(exception);
 }
 
-class DatabaseResultOpenGood<_> extends DatabaseResult<_> {
+class DatabaseResultOpenGood<G> extends DatabaseResult<G> {
   final String databaseName;
   final Database database;
 
@@ -38,7 +38,7 @@ class DatabaseResultOpenGood<_> extends DatabaseResult<_> {
   String toString() => "{DatabaseResultOpenGood={databaseName=$databaseName,database=$database}}";
 }
 
-class DatabaseResultCloseGood<_> extends DatabaseResult<_> {
+class DatabaseResultCloseGood<G> extends DatabaseResult<G> {
   final String databaseName;
 
   DatabaseResultCloseGood(this.databaseName) : super._();
@@ -74,7 +74,7 @@ class DatabaseResultUpdateGood<G> extends DatabaseResult<G> {
   String toString() => "{DatabaseResultUpdateGood={value=$value}}";
 }
 
-class DatabaseResultDeleteGood<_> extends DatabaseResult<_> {
+class DatabaseResultDeleteGood<G> extends DatabaseResult<G> {
   DatabaseResultDeleteGood() : super._();
 
   @override
@@ -91,7 +91,7 @@ class DatabaseResultBadInputData<G> extends DatabaseResult<G> {
   String toString() => "{DatabaseResultBadInputData={exception=$exception}}";
 }
 
-class DatabaseResultBadOutputData<_> extends DatabaseResult<_> {
+class DatabaseResultBadOutputData<G> extends DatabaseResult<G> {
   final List<Map<String, dynamic>> output;
   final Exception exception;
 
@@ -101,7 +101,7 @@ class DatabaseResultBadOutputData<_> extends DatabaseResult<_> {
   String toString() => "{DatabaseResultBadOutputData={output=$output,exception=$exception}}";
 }
 
-class DatabaseResultError<_> extends DatabaseResult<_> {
+class DatabaseResultError<G> extends DatabaseResult<G> {
   final Exception exception;
 
   DatabaseResultError(this.exception) : super._();

@@ -28,7 +28,7 @@ abstract class NetworkResult<G, E> {
   factory NetworkResult.cancelled() => NetworkResultCancelled<G, E>._internal();
 }
 
-class NetworkResultGood<G, _> extends NetworkResult<G, _> {
+class NetworkResultGood<G, E> extends NetworkResult<G, E> {
   final G? value;
   final HttpStatus httpStatus;
 
@@ -41,7 +41,7 @@ class NetworkResultGood<G, _> extends NetworkResult<G, _> {
   String? getErrorMessageOrNull() => null;
 
   @override
-  _? getErrorValueOrNull() => null;
+  E? getErrorValueOrNull() => null;
 
   @override
   Exception? getExceptionOrNull() => null;
@@ -50,7 +50,7 @@ class NetworkResultGood<G, _> extends NetworkResult<G, _> {
   G? getGoodValueOrNull() => value;
 }
 
-class NetworkResultHttpError<_, E> extends NetworkResult<_, E> {
+class NetworkResultHttpError<G, E> extends NetworkResult<G, E> {
   final E? value;
   final HttpStatus httpStatus;
 
@@ -69,10 +69,10 @@ class NetworkResultHttpError<_, E> extends NetworkResult<_, E> {
   Exception? getExceptionOrNull() => null;
 
   @override
-  _? getGoodValueOrNull() => null;
+  G? getGoodValueOrNull() => null;
 }
 
-class NetworkResultMalformed<_, __> extends NetworkResult<_, __> {
+class NetworkResultMalformed<G, E> extends NetworkResult<G, E> {
   final String value;
   final HttpStatus httpStatus;
   final Exception exception;
@@ -86,16 +86,16 @@ class NetworkResultMalformed<_, __> extends NetworkResult<_, __> {
   String? getErrorMessageOrNull() => null;
 
   @override
-  __? getErrorValueOrNull() => null;
+  E? getErrorValueOrNull() => null;
 
   @override
   Exception? getExceptionOrNull() => exception;
 
   @override
-  _? getGoodValueOrNull() => null;
+  G? getGoodValueOrNull() => null;
 }
 
-class NetworkResultHttpErrorMalformed<_, __> extends NetworkResult<_, __> {
+class NetworkResultHttpErrorMalformed<G, E> extends NetworkResult<G, E> {
   final String value;
   final HttpStatus httpStatus;
   final Exception exception;
@@ -109,16 +109,16 @@ class NetworkResultHttpErrorMalformed<_, __> extends NetworkResult<_, __> {
   String? getErrorMessageOrNull() => httpStatus.message;
 
   @override
-  __? getErrorValueOrNull() => null;
+  E? getErrorValueOrNull() => null;
 
   @override
   Exception? getExceptionOrNull() => exception;
 
   @override
-  _? getGoodValueOrNull() => null;
+  G? getGoodValueOrNull() => null;
 }
 
-class NetworkResultIoError<_, __> extends NetworkResult<_, __> {
+class NetworkResultIoError<G, E> extends NetworkResult<G, E> {
   final Exception exception;
 
   NetworkResultIoError._internal(this.exception) : super._();
@@ -130,16 +130,16 @@ class NetworkResultIoError<_, __> extends NetworkResult<_, __> {
   String? getErrorMessageOrNull() => null;
 
   @override
-  __? getErrorValueOrNull() => null;
+  E? getErrorValueOrNull() => null;
 
   @override
   Exception? getExceptionOrNull() => exception;
 
   @override
-  _? getGoodValueOrNull() => null;
+  G? getGoodValueOrNull() => null;
 }
 
-class NetworkResultTimeout<_, __> extends NetworkResult<_, __> {
+class NetworkResultTimeout<G, E> extends NetworkResult<G, E> {
   final Duration? timeout;
 
   NetworkResultTimeout._internal(this.timeout) : super._();
@@ -151,16 +151,16 @@ class NetworkResultTimeout<_, __> extends NetworkResult<_, __> {
   String? getErrorMessageOrNull() => "Network operation timeout ${timeout.toString()}";
 
   @override
-  __? getErrorValueOrNull() => null;
+  E? getErrorValueOrNull() => null;
 
   @override
   Exception? getExceptionOrNull() => null;
 
   @override
-  _? getGoodValueOrNull() => null;
+  G? getGoodValueOrNull() => null;
 }
 
-class NetworkResultCancelled<_, __> extends NetworkResult<_, __> {
+class NetworkResultCancelled<G, E> extends NetworkResult<G, E> {
   NetworkResultCancelled._internal() : super._();
 
   @override
@@ -170,11 +170,11 @@ class NetworkResultCancelled<_, __> extends NetworkResult<_, __> {
   String? getErrorMessageOrNull() => "Network operation cancelled";
 
   @override
-  __? getErrorValueOrNull() => null;
+  E? getErrorValueOrNull() => null;
 
   @override
   Exception? getExceptionOrNull() => null;
 
   @override
-  _? getGoodValueOrNull() => null;
+  G? getGoodValueOrNull() => null;
 }
