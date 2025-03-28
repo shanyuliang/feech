@@ -8,9 +8,7 @@ import '../../models/display_width_mode.dart';
 part 'runtime_info.freezed.dart';
 
 @Freezed()
-class RuntimeInfo with _$RuntimeInfo {
-  const RuntimeInfo._();
-
+abstract class RuntimeInfo with _$RuntimeInfo {
   const factory RuntimeInfo({
     required final AppLifecycleState appLifecycleState,
     required final Brightness brightness,

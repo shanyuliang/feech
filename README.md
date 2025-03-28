@@ -10,9 +10,16 @@ Use the package to simplify your Flutter project development.
 
 Use `flutter packages get` to fetch new packages.
 
+## How to generate the generated classes
+
+```shell
+dart run build_runner build -d
+```
+
 ## Usage
 
 ```dart
+
 const like = 'sample';
 ```
 

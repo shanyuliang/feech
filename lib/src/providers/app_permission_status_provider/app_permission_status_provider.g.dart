@@ -34,9 +34,7 @@ abstract class _$AppPermissionStatusProvider
     extends BuildlessNotifier<AppPermissionStatus> {
   late final Permission permission;
 
-  AppPermissionStatus build(
-    Permission permission,
-  );
+  AppPermissionStatus build(Permission permission);
 }
 
 /// See also [AppPermissionStatusProvider].
@@ -49,21 +47,15 @@ class AppPermissionStatusProviderFamily extends Family<AppPermissionStatus> {
   const AppPermissionStatusProviderFamily();
 
   /// See also [AppPermissionStatusProvider].
-  AppPermissionStatusProviderProvider call(
-    Permission permission,
-  ) {
-    return AppPermissionStatusProviderProvider(
-      permission,
-    );
+  AppPermissionStatusProviderProvider call(Permission permission) {
+    return AppPermissionStatusProviderProvider(permission);
   }
 
   @override
   AppPermissionStatusProviderProvider getProviderOverride(
     covariant AppPermissionStatusProviderProvider provider,
   ) {
-    return call(
-      provider.permission,
-    );
+    return call(provider.permission);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -82,24 +74,24 @@ class AppPermissionStatusProviderFamily extends Family<AppPermissionStatus> {
 }
 
 /// See also [AppPermissionStatusProvider].
-class AppPermissionStatusProviderProvider extends NotifierProviderImpl<
-    AppPermissionStatusProvider, AppPermissionStatus> {
+class AppPermissionStatusProviderProvider
+    extends
+        NotifierProviderImpl<AppPermissionStatusProvider, AppPermissionStatus> {
   /// See also [AppPermissionStatusProvider].
-  AppPermissionStatusProviderProvider(
-    Permission permission,
-  ) : this._internal(
-          () => AppPermissionStatusProvider()..permission = permission,
-          from: appPermissionStatusProvider,
-          name: r'appPermissionStatusProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$appPermissionStatusProviderHash,
-          dependencies: AppPermissionStatusProviderFamily._dependencies,
-          allTransitiveDependencies:
-              AppPermissionStatusProviderFamily._allTransitiveDependencies,
-          permission: permission,
-        );
+  AppPermissionStatusProviderProvider(Permission permission)
+    : this._internal(
+        () => AppPermissionStatusProvider()..permission = permission,
+        from: appPermissionStatusProvider,
+        name: r'appPermissionStatusProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$appPermissionStatusProviderHash,
+        dependencies: AppPermissionStatusProviderFamily._dependencies,
+        allTransitiveDependencies:
+            AppPermissionStatusProviderFamily._allTransitiveDependencies,
+        permission: permission,
+      );
 
   AppPermissionStatusProviderProvider._internal(
     super._createNotifier, {
@@ -117,9 +109,7 @@ class AppPermissionStatusProviderProvider extends NotifierProviderImpl<
   AppPermissionStatus runNotifierBuild(
     covariant AppPermissionStatusProvider notifier,
   ) {
-    return notifier.build(
-      permission,
-    );
+    return notifier.build(permission);
   }
 
   @override
@@ -140,7 +130,7 @@ class AppPermissionStatusProviderProvider extends NotifierProviderImpl<
 
   @override
   NotifierProviderElement<AppPermissionStatusProvider, AppPermissionStatus>
-      createElement() {
+  createElement() {
     return _AppPermissionStatusProviderProviderElement(this);
   }
 
@@ -168,13 +158,18 @@ mixin AppPermissionStatusProviderRef
 }
 
 class _AppPermissionStatusProviderProviderElement
-    extends NotifierProviderElement<AppPermissionStatusProvider,
-        AppPermissionStatus> with AppPermissionStatusProviderRef {
+    extends
+        NotifierProviderElement<
+          AppPermissionStatusProvider,
+          AppPermissionStatus
+        >
+    with AppPermissionStatusProviderRef {
   _AppPermissionStatusProviderProviderElement(super.provider);
 
   @override
   Permission get permission =>
       (origin as AppPermissionStatusProviderProvider).permission;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

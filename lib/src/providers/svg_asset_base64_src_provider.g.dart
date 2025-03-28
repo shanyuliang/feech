@@ -34,9 +34,7 @@ abstract class _$SvgAssetBase64SrcProvider
     extends BuildlessAutoDisposeAsyncNotifier<String> {
   late final String svgAsset;
 
-  FutureOr<String> build({
-    required String svgAsset,
-  });
+  FutureOr<String> build({required String svgAsset});
 }
 
 /// See also [SvgAssetBase64SrcProvider].
@@ -49,21 +47,15 @@ class SvgAssetBase64SrcProviderFamily extends Family<AsyncValue<String>> {
   const SvgAssetBase64SrcProviderFamily();
 
   /// See also [SvgAssetBase64SrcProvider].
-  SvgAssetBase64SrcProviderProvider call({
-    required String svgAsset,
-  }) {
-    return SvgAssetBase64SrcProviderProvider(
-      svgAsset: svgAsset,
-    );
+  SvgAssetBase64SrcProviderProvider call({required String svgAsset}) {
+    return SvgAssetBase64SrcProviderProvider(svgAsset: svgAsset);
   }
 
   @override
   SvgAssetBase64SrcProviderProvider getProviderOverride(
     covariant SvgAssetBase64SrcProviderProvider provider,
   ) {
-    return call(
-      svgAsset: provider.svgAsset,
-    );
+    return call(svgAsset: provider.svgAsset);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -83,24 +75,26 @@ class SvgAssetBase64SrcProviderFamily extends Family<AsyncValue<String>> {
 
 /// See also [SvgAssetBase64SrcProvider].
 class SvgAssetBase64SrcProviderProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<SvgAssetBase64SrcProvider,
-        String> {
+    extends
+        AutoDisposeAsyncNotifierProviderImpl<
+          SvgAssetBase64SrcProvider,
+          String
+        > {
   /// See also [SvgAssetBase64SrcProvider].
-  SvgAssetBase64SrcProviderProvider({
-    required String svgAsset,
-  }) : this._internal(
-          () => SvgAssetBase64SrcProvider()..svgAsset = svgAsset,
-          from: svgAssetBase64SrcProvider,
-          name: r'svgAssetBase64SrcProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$svgAssetBase64SrcProviderHash,
-          dependencies: SvgAssetBase64SrcProviderFamily._dependencies,
-          allTransitiveDependencies:
-              SvgAssetBase64SrcProviderFamily._allTransitiveDependencies,
-          svgAsset: svgAsset,
-        );
+  SvgAssetBase64SrcProviderProvider({required String svgAsset})
+    : this._internal(
+        () => SvgAssetBase64SrcProvider()..svgAsset = svgAsset,
+        from: svgAssetBase64SrcProvider,
+        name: r'svgAssetBase64SrcProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$svgAssetBase64SrcProviderHash,
+        dependencies: SvgAssetBase64SrcProviderFamily._dependencies,
+        allTransitiveDependencies:
+            SvgAssetBase64SrcProviderFamily._allTransitiveDependencies,
+        svgAsset: svgAsset,
+      );
 
   SvgAssetBase64SrcProviderProvider._internal(
     super._createNotifier, {
@@ -118,9 +112,7 @@ class SvgAssetBase64SrcProviderProvider
   FutureOr<String> runNotifierBuild(
     covariant SvgAssetBase64SrcProvider notifier,
   ) {
-    return notifier.build(
-      svgAsset: svgAsset,
-    );
+    return notifier.build(svgAsset: svgAsset);
   }
 
   @override
@@ -141,7 +133,7 @@ class SvgAssetBase64SrcProviderProvider
 
   @override
   AutoDisposeAsyncNotifierProviderElement<SvgAssetBase64SrcProvider, String>
-      createElement() {
+  createElement() {
     return _SvgAssetBase64SrcProviderProviderElement(this);
   }
 
@@ -169,12 +161,17 @@ mixin SvgAssetBase64SrcProviderRef
 }
 
 class _SvgAssetBase64SrcProviderProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<SvgAssetBase64SrcProvider,
-        String> with SvgAssetBase64SrcProviderRef {
+    extends
+        AutoDisposeAsyncNotifierProviderElement<
+          SvgAssetBase64SrcProvider,
+          String
+        >
+    with SvgAssetBase64SrcProviderRef {
   _SvgAssetBase64SrcProviderProviderElement(super.provider);
 
   @override
   String get svgAsset => (origin as SvgAssetBase64SrcProviderProvider).svgAsset;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -7,7 +7,7 @@ import 'locale_voices.dart';
 part 'tts.freezed.dart';
 
 @Freezed(makeCollectionsUnmodifiable: false)
-class Tts with _$Tts {
+abstract class Tts with _$Tts {
   const factory Tts({
     required final FlutterTts flutterTts,
     required final List<LocaleVoices> allLocaleVoices,

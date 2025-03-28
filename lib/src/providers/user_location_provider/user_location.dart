@@ -6,9 +6,7 @@ part 'user_location.freezed.dart';
 part 'user_location.g.dart';
 
 @Freezed()
-class UserLocation with _$UserLocation {
-  const UserLocation._();
-
+abstract class UserLocation with _$UserLocation {
   factory UserLocation.fromJson(Map<String, dynamic> json) => _$UserLocationFromJson(json);
 
   const factory UserLocation({
@@ -21,13 +19,8 @@ class UserLocation with _$UserLocation {
 }
 
 @Freezed()
-class UserLatLng with _$UserLatLng {
-  const UserLatLng._();
-
+abstract class UserLatLng with _$UserLatLng {
   factory UserLatLng.fromJson(Map<String, dynamic> json) => _$UserLatLngFromJson(json);
 
-  const factory UserLatLng({
-    required final double latitude,
-    required final double longitude,
-  }) = _UserLatLng;
+  const factory UserLatLng({required final double latitude, required final double longitude}) = _UserLatLng;
 }

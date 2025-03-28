@@ -50,18 +50,14 @@ class LoggingProviderFamily extends Family<AsyncValue<Logging>> {
   LoggingProviderProvider call({
     required List<Logging> Function() actionLoggingList,
   }) {
-    return LoggingProviderProvider(
-      actionLoggingList: actionLoggingList,
-    );
+    return LoggingProviderProvider(actionLoggingList: actionLoggingList);
   }
 
   @override
   LoggingProviderProvider getProviderOverride(
     covariant LoggingProviderProvider provider,
   ) {
-    return call(
-      actionLoggingList: provider.actionLoggingList,
-    );
+    return call(actionLoggingList: provider.actionLoggingList);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -83,21 +79,20 @@ class LoggingProviderFamily extends Family<AsyncValue<Logging>> {
 class LoggingProviderProvider
     extends AsyncNotifierProviderImpl<LoggingProvider, Logging> {
   /// See also [LoggingProvider].
-  LoggingProviderProvider({
-    required List<Logging> Function() actionLoggingList,
-  }) : this._internal(
-          () => LoggingProvider()..actionLoggingList = actionLoggingList,
-          from: loggingProvider,
-          name: r'loggingProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$loggingProviderHash,
-          dependencies: LoggingProviderFamily._dependencies,
-          allTransitiveDependencies:
-              LoggingProviderFamily._allTransitiveDependencies,
-          actionLoggingList: actionLoggingList,
-        );
+  LoggingProviderProvider({required List<Logging> Function() actionLoggingList})
+    : this._internal(
+        () => LoggingProvider()..actionLoggingList = actionLoggingList,
+        from: loggingProvider,
+        name: r'loggingProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$loggingProviderHash,
+        dependencies: LoggingProviderFamily._dependencies,
+        allTransitiveDependencies:
+            LoggingProviderFamily._allTransitiveDependencies,
+        actionLoggingList: actionLoggingList,
+      );
 
   LoggingProviderProvider._internal(
     super._createNotifier, {
@@ -112,12 +107,8 @@ class LoggingProviderProvider
   final List<Logging> Function() actionLoggingList;
 
   @override
-  FutureOr<Logging> runNotifierBuild(
-    covariant LoggingProvider notifier,
-  ) {
-    return notifier.build(
-      actionLoggingList: actionLoggingList,
-    );
+  FutureOr<Logging> runNotifierBuild(covariant LoggingProvider notifier) {
+    return notifier.build(actionLoggingList: actionLoggingList);
   }
 
   @override
@@ -172,5 +163,6 @@ class _LoggingProviderProviderElement
   List<Logging> Function() get actionLoggingList =>
       (origin as LoggingProviderProvider).actionLoggingList;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

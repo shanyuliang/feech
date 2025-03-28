@@ -34,9 +34,7 @@ abstract class _$PageLifecycleStateProvider
     extends BuildlessAutoDisposeNotifier<PageLifecycleState> {
   late final String? routeName;
 
-  PageLifecycleState build(
-    String? routeName,
-  );
+  PageLifecycleState build(String? routeName);
 }
 
 /// See also [PageLifecycleStateProvider].
@@ -49,21 +47,15 @@ class PageLifecycleStateProviderFamily extends Family<PageLifecycleState> {
   const PageLifecycleStateProviderFamily();
 
   /// See also [PageLifecycleStateProvider].
-  PageLifecycleStateProviderProvider call(
-    String? routeName,
-  ) {
-    return PageLifecycleStateProviderProvider(
-      routeName,
-    );
+  PageLifecycleStateProviderProvider call(String? routeName) {
+    return PageLifecycleStateProviderProvider(routeName);
   }
 
   @override
   PageLifecycleStateProviderProvider getProviderOverride(
     covariant PageLifecycleStateProviderProvider provider,
   ) {
-    return call(
-      provider.routeName,
-    );
+    return call(provider.routeName);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -83,24 +75,26 @@ class PageLifecycleStateProviderFamily extends Family<PageLifecycleState> {
 
 /// See also [PageLifecycleStateProvider].
 class PageLifecycleStateProviderProvider
-    extends AutoDisposeNotifierProviderImpl<PageLifecycleStateProvider,
-        PageLifecycleState> {
+    extends
+        AutoDisposeNotifierProviderImpl<
+          PageLifecycleStateProvider,
+          PageLifecycleState
+        > {
   /// See also [PageLifecycleStateProvider].
-  PageLifecycleStateProviderProvider(
-    String? routeName,
-  ) : this._internal(
-          () => PageLifecycleStateProvider()..routeName = routeName,
-          from: pageLifecycleStateProvider,
-          name: r'pageLifecycleStateProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$pageLifecycleStateProviderHash,
-          dependencies: PageLifecycleStateProviderFamily._dependencies,
-          allTransitiveDependencies:
-              PageLifecycleStateProviderFamily._allTransitiveDependencies,
-          routeName: routeName,
-        );
+  PageLifecycleStateProviderProvider(String? routeName)
+    : this._internal(
+        () => PageLifecycleStateProvider()..routeName = routeName,
+        from: pageLifecycleStateProvider,
+        name: r'pageLifecycleStateProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$pageLifecycleStateProviderHash,
+        dependencies: PageLifecycleStateProviderFamily._dependencies,
+        allTransitiveDependencies:
+            PageLifecycleStateProviderFamily._allTransitiveDependencies,
+        routeName: routeName,
+      );
 
   PageLifecycleStateProviderProvider._internal(
     super._createNotifier, {
@@ -118,9 +112,7 @@ class PageLifecycleStateProviderProvider
   PageLifecycleState runNotifierBuild(
     covariant PageLifecycleStateProvider notifier,
   ) {
-    return notifier.build(
-      routeName,
-    );
+    return notifier.build(routeName);
   }
 
   @override
@@ -140,8 +132,11 @@ class PageLifecycleStateProviderProvider
   }
 
   @override
-  AutoDisposeNotifierProviderElement<PageLifecycleStateProvider,
-      PageLifecycleState> createElement() {
+  AutoDisposeNotifierProviderElement<
+    PageLifecycleStateProvider,
+    PageLifecycleState
+  >
+  createElement() {
     return _PageLifecycleStateProviderProviderElement(this);
   }
 
@@ -169,13 +164,18 @@ mixin PageLifecycleStateProviderRef
 }
 
 class _PageLifecycleStateProviderProviderElement
-    extends AutoDisposeNotifierProviderElement<PageLifecycleStateProvider,
-        PageLifecycleState> with PageLifecycleStateProviderRef {
+    extends
+        AutoDisposeNotifierProviderElement<
+          PageLifecycleStateProvider,
+          PageLifecycleState
+        >
+    with PageLifecycleStateProviderRef {
   _PageLifecycleStateProviderProviderElement(super.provider);
 
   @override
   String? get routeName =>
       (origin as PageLifecycleStateProviderProvider).routeName;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,176 +10,142 @@ part of 'web_storage_item.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-WebStorageItem _$WebStorageItemFromJson(Map<String, dynamic> json) {
-  return _WebStorageItem.fromJson(json);
-}
 
 /// @nodoc
 mixin _$WebStorageItem {
-  String get key => throw _privateConstructorUsedError;
-  dynamic get value => throw _privateConstructorUsedError;
+
+ String get key; dynamic get value;
+/// Create a copy of WebStorageItem
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WebStorageItemCopyWith<WebStorageItem> get copyWith => _$WebStorageItemCopyWithImpl<WebStorageItem>(this as WebStorageItem, _$identity);
 
   /// Serializes this WebStorageItem to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of WebStorageItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WebStorageItemCopyWith<WebStorageItem> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebStorageItem&&(identical(other.key, key) || other.key == key)&&const DeepCollectionEquality().equals(other.value, value));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,key,const DeepCollectionEquality().hash(value));
+
+@override
+String toString() {
+  return 'WebStorageItem(key: $key, value: $value)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $WebStorageItemCopyWith<$Res> {
-  factory $WebStorageItemCopyWith(
-          WebStorageItem value, $Res Function(WebStorageItem) then) =
-      _$WebStorageItemCopyWithImpl<$Res, WebStorageItem>;
-  @useResult
-  $Res call({String key, dynamic value});
-}
+abstract mixin class $WebStorageItemCopyWith<$Res>  {
+  factory $WebStorageItemCopyWith(WebStorageItem value, $Res Function(WebStorageItem) _then) = _$WebStorageItemCopyWithImpl;
+@useResult
+$Res call({
+ String key, dynamic value
+});
 
+
+
+
+}
 /// @nodoc
-class _$WebStorageItemCopyWithImpl<$Res, $Val extends WebStorageItem>
+class _$WebStorageItemCopyWithImpl<$Res>
     implements $WebStorageItemCopyWith<$Res> {
-  _$WebStorageItemCopyWithImpl(this._value, this._then);
+  _$WebStorageItemCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final WebStorageItem _self;
+  final $Res Function(WebStorageItem) _then;
 
-  /// Create a copy of WebStorageItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? key = null,
-    Object? value = freezed,
-  }) {
-    return _then(_value.copyWith(
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ) as $Val);
-  }
+/// Create a copy of WebStorageItem
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? key = null,Object? value = freezed,}) {
+  return _then(_self.copyWith(
+key: null == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
+as String,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as dynamic,
+  ));
 }
 
-/// @nodoc
-abstract class _$$WebStorageItemImplCopyWith<$Res>
-    implements $WebStorageItemCopyWith<$Res> {
-  factory _$$WebStorageItemImplCopyWith(_$WebStorageItemImpl value,
-          $Res Function(_$WebStorageItemImpl) then) =
-      __$$WebStorageItemImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String key, dynamic value});
 }
 
-/// @nodoc
-class __$$WebStorageItemImplCopyWithImpl<$Res>
-    extends _$WebStorageItemCopyWithImpl<$Res, _$WebStorageItemImpl>
-    implements _$$WebStorageItemImplCopyWith<$Res> {
-  __$$WebStorageItemImplCopyWithImpl(
-      _$WebStorageItemImpl _value, $Res Function(_$WebStorageItemImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of WebStorageItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? key = null,
-    Object? value = freezed,
-  }) {
-    return _then(_$WebStorageItemImpl(
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ));
-  }
-}
 
 /// @nodoc
 @JsonSerializable()
-class _$WebStorageItemImpl extends _WebStorageItem {
-  const _$WebStorageItemImpl({required this.key, this.value}) : super._();
 
-  factory _$WebStorageItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WebStorageItemImplFromJson(json);
+class _WebStorageItem extends WebStorageItem {
+  const _WebStorageItem({required this.key, this.value}): super._();
+  factory _WebStorageItem.fromJson(Map<String, dynamic> json) => _$WebStorageItemFromJson(json);
 
-  @override
-  final String key;
-  @override
-  final dynamic value;
+@override final  String key;
+@override final  dynamic value;
 
-  @override
-  String toString() {
-    return 'WebStorageItem(key: $key, value: $value)';
-  }
+/// Create a copy of WebStorageItem
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WebStorageItemCopyWith<_WebStorageItem> get copyWith => __$WebStorageItemCopyWithImpl<_WebStorageItem>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WebStorageItemImpl &&
-            (identical(other.key, key) || other.key == key) &&
-            const DeepCollectionEquality().equals(other.value, value));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, key, const DeepCollectionEquality().hash(value));
-
-  /// Create a copy of WebStorageItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WebStorageItemImplCopyWith<_$WebStorageItemImpl> get copyWith =>
-      __$$WebStorageItemImplCopyWithImpl<_$WebStorageItemImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WebStorageItemImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$WebStorageItemToJson(this, );
 }
 
-abstract class _WebStorageItem extends WebStorageItem {
-  const factory _WebStorageItem(
-      {required final String key, final dynamic value}) = _$WebStorageItemImpl;
-  const _WebStorageItem._() : super._();
-
-  factory _WebStorageItem.fromJson(Map<String, dynamic> json) =
-      _$WebStorageItemImpl.fromJson;
-
-  @override
-  String get key;
-  @override
-  dynamic get value;
-
-  /// Create a copy of WebStorageItem
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WebStorageItemImplCopyWith<_$WebStorageItemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebStorageItem&&(identical(other.key, key) || other.key == key)&&const DeepCollectionEquality().equals(other.value, value));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,key,const DeepCollectionEquality().hash(value));
+
+@override
+String toString() {
+  return 'WebStorageItem(key: $key, value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WebStorageItemCopyWith<$Res> implements $WebStorageItemCopyWith<$Res> {
+  factory _$WebStorageItemCopyWith(_WebStorageItem value, $Res Function(_WebStorageItem) _then) = __$WebStorageItemCopyWithImpl;
+@override @useResult
+$Res call({
+ String key, dynamic value
+});
+
+
+
+
+}
+/// @nodoc
+class __$WebStorageItemCopyWithImpl<$Res>
+    implements _$WebStorageItemCopyWith<$Res> {
+  __$WebStorageItemCopyWithImpl(this._self, this._then);
+
+  final _WebStorageItem _self;
+  final $Res Function(_WebStorageItem) _then;
+
+/// Create a copy of WebStorageItem
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? key = null,Object? value = freezed,}) {
+  return _then(_WebStorageItem(
+key: null == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
+as String,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as dynamic,
+  ));
+}
+
+
+}
+
+// dart format on

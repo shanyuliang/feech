@@ -34,9 +34,7 @@ abstract class _$AssetManifestProvider
     extends BuildlessAsyncNotifier<AssetManifest> {
   late final bool debugLogDiagnostics;
 
-  FutureOr<AssetManifest> build({
-    bool debugLogDiagnostics = false,
-  });
+  FutureOr<AssetManifest> build({bool debugLogDiagnostics = false});
 }
 
 /// See also [AssetManifestProvider].
@@ -49,9 +47,7 @@ class AssetManifestProviderFamily extends Family<AsyncValue<AssetManifest>> {
   const AssetManifestProviderFamily();
 
   /// See also [AssetManifestProvider].
-  AssetManifestProviderProvider call({
-    bool debugLogDiagnostics = false,
-  }) {
+  AssetManifestProviderProvider call({bool debugLogDiagnostics = false}) {
     return AssetManifestProviderProvider(
       debugLogDiagnostics: debugLogDiagnostics,
     );
@@ -61,9 +57,7 @@ class AssetManifestProviderFamily extends Family<AsyncValue<AssetManifest>> {
   AssetManifestProviderProvider getProviderOverride(
     covariant AssetManifestProviderProvider provider,
   ) {
-    return call(
-      debugLogDiagnostics: provider.debugLogDiagnostics,
-    );
+    return call(debugLogDiagnostics: provider.debugLogDiagnostics);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -85,22 +79,21 @@ class AssetManifestProviderFamily extends Family<AsyncValue<AssetManifest>> {
 class AssetManifestProviderProvider
     extends AsyncNotifierProviderImpl<AssetManifestProvider, AssetManifest> {
   /// See also [AssetManifestProvider].
-  AssetManifestProviderProvider({
-    bool debugLogDiagnostics = false,
-  }) : this._internal(
-          () => AssetManifestProvider()
-            ..debugLogDiagnostics = debugLogDiagnostics,
-          from: assetManifestProvider,
-          name: r'assetManifestProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$assetManifestProviderHash,
-          dependencies: AssetManifestProviderFamily._dependencies,
-          allTransitiveDependencies:
-              AssetManifestProviderFamily._allTransitiveDependencies,
-          debugLogDiagnostics: debugLogDiagnostics,
-        );
+  AssetManifestProviderProvider({bool debugLogDiagnostics = false})
+    : this._internal(
+        () =>
+            AssetManifestProvider()..debugLogDiagnostics = debugLogDiagnostics,
+        from: assetManifestProvider,
+        name: r'assetManifestProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$assetManifestProviderHash,
+        dependencies: AssetManifestProviderFamily._dependencies,
+        allTransitiveDependencies:
+            AssetManifestProviderFamily._allTransitiveDependencies,
+        debugLogDiagnostics: debugLogDiagnostics,
+      );
 
   AssetManifestProviderProvider._internal(
     super._createNotifier, {
@@ -118,9 +111,7 @@ class AssetManifestProviderProvider
   FutureOr<AssetManifest> runNotifierBuild(
     covariant AssetManifestProvider notifier,
   ) {
-    return notifier.build(
-      debugLogDiagnostics: debugLogDiagnostics,
-    );
+    return notifier.build(debugLogDiagnostics: debugLogDiagnostics);
   }
 
   @override
@@ -141,7 +132,7 @@ class AssetManifestProviderProvider
 
   @override
   AsyncNotifierProviderElement<AssetManifestProvider, AssetManifest>
-      createElement() {
+  createElement() {
     return _AssetManifestProviderProviderElement(this);
   }
 
@@ -176,5 +167,6 @@ class _AssetManifestProviderProviderElement
   bool get debugLogDiagnostics =>
       (origin as AssetManifestProviderProvider).debugLogDiagnostics;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -13,14 +13,15 @@ String _$userLocationProviderHash() =>
 @ProviderFor(UserLocationProvider)
 final userLocationProvider =
     NotifierProvider<UserLocationProvider, UserLocation>.internal(
-  UserLocationProvider.new,
-  name: r'userLocationProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userLocationProviderHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      UserLocationProvider.new,
+      name: r'userLocationProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$userLocationProviderHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$UserLocationProvider = Notifier<UserLocation>;
 // ignore_for_file: type=lint

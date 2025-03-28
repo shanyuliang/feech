@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,203 +10,142 @@ part of 'tts.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$Tts {
-  FlutterTts get flutterTts => throw _privateConstructorUsedError;
-  List<LocaleVoices> get allLocaleVoices => throw _privateConstructorUsedError;
-  String? get selectedLocaleId => throw _privateConstructorUsedError;
-  String? get selectedVoiceId => throw _privateConstructorUsedError;
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TtsCopyWith<Tts> get copyWith => throw _privateConstructorUsedError;
+ FlutterTts get flutterTts; List<LocaleVoices> get allLocaleVoices; String? get selectedLocaleId; String? get selectedVoiceId;
+/// Create a copy of Tts
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TtsCopyWith<Tts> get copyWith => _$TtsCopyWithImpl<Tts>(this as Tts, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Tts&&(identical(other.flutterTts, flutterTts) || other.flutterTts == flutterTts)&&const DeepCollectionEquality().equals(other.allLocaleVoices, allLocaleVoices)&&(identical(other.selectedLocaleId, selectedLocaleId) || other.selectedLocaleId == selectedLocaleId)&&(identical(other.selectedVoiceId, selectedVoiceId) || other.selectedVoiceId == selectedVoiceId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,flutterTts,const DeepCollectionEquality().hash(allLocaleVoices),selectedLocaleId,selectedVoiceId);
+
+@override
+String toString() {
+  return 'Tts(flutterTts: $flutterTts, allLocaleVoices: $allLocaleVoices, selectedLocaleId: $selectedLocaleId, selectedVoiceId: $selectedVoiceId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TtsCopyWith<$Res> {
-  factory $TtsCopyWith(Tts value, $Res Function(Tts) then) =
-      _$TtsCopyWithImpl<$Res, Tts>;
-  @useResult
-  $Res call(
-      {FlutterTts flutterTts,
-      List<LocaleVoices> allLocaleVoices,
-      String? selectedLocaleId,
-      String? selectedVoiceId});
-}
+abstract mixin class $TtsCopyWith<$Res>  {
+  factory $TtsCopyWith(Tts value, $Res Function(Tts) _then) = _$TtsCopyWithImpl;
+@useResult
+$Res call({
+ FlutterTts flutterTts, List<LocaleVoices> allLocaleVoices, String? selectedLocaleId, String? selectedVoiceId
+});
 
+
+
+
+}
 /// @nodoc
-class _$TtsCopyWithImpl<$Res, $Val extends Tts> implements $TtsCopyWith<$Res> {
-  _$TtsCopyWithImpl(this._value, this._then);
+class _$TtsCopyWithImpl<$Res>
+    implements $TtsCopyWith<$Res> {
+  _$TtsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Tts _self;
+  final $Res Function(Tts) _then;
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? flutterTts = null,
-    Object? allLocaleVoices = null,
-    Object? selectedLocaleId = freezed,
-    Object? selectedVoiceId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      flutterTts: null == flutterTts
-          ? _value.flutterTts
-          : flutterTts // ignore: cast_nullable_to_non_nullable
-              as FlutterTts,
-      allLocaleVoices: null == allLocaleVoices
-          ? _value.allLocaleVoices
-          : allLocaleVoices // ignore: cast_nullable_to_non_nullable
-              as List<LocaleVoices>,
-      selectedLocaleId: freezed == selectedLocaleId
-          ? _value.selectedLocaleId
-          : selectedLocaleId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selectedVoiceId: freezed == selectedVoiceId
-          ? _value.selectedVoiceId
-          : selectedVoiceId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of Tts
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? flutterTts = null,Object? allLocaleVoices = null,Object? selectedLocaleId = freezed,Object? selectedVoiceId = freezed,}) {
+  return _then(_self.copyWith(
+flutterTts: null == flutterTts ? _self.flutterTts : flutterTts // ignore: cast_nullable_to_non_nullable
+as FlutterTts,allLocaleVoices: null == allLocaleVoices ? _self.allLocaleVoices : allLocaleVoices // ignore: cast_nullable_to_non_nullable
+as List<LocaleVoices>,selectedLocaleId: freezed == selectedLocaleId ? _self.selectedLocaleId : selectedLocaleId // ignore: cast_nullable_to_non_nullable
+as String?,selectedVoiceId: freezed == selectedVoiceId ? _self.selectedVoiceId : selectedVoiceId // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$TtsImplCopyWith<$Res> implements $TtsCopyWith<$Res> {
-  factory _$$TtsImplCopyWith(_$TtsImpl value, $Res Function(_$TtsImpl) then) =
-      __$$TtsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {FlutterTts flutterTts,
-      List<LocaleVoices> allLocaleVoices,
-      String? selectedLocaleId,
-      String? selectedVoiceId});
 }
 
-/// @nodoc
-class __$$TtsImplCopyWithImpl<$Res> extends _$TtsCopyWithImpl<$Res, _$TtsImpl>
-    implements _$$TtsImplCopyWith<$Res> {
-  __$$TtsImplCopyWithImpl(_$TtsImpl _value, $Res Function(_$TtsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? flutterTts = null,
-    Object? allLocaleVoices = null,
-    Object? selectedLocaleId = freezed,
-    Object? selectedVoiceId = freezed,
-  }) {
-    return _then(_$TtsImpl(
-      flutterTts: null == flutterTts
-          ? _value.flutterTts
-          : flutterTts // ignore: cast_nullable_to_non_nullable
-              as FlutterTts,
-      allLocaleVoices: null == allLocaleVoices
-          ? _value.allLocaleVoices
-          : allLocaleVoices // ignore: cast_nullable_to_non_nullable
-              as List<LocaleVoices>,
-      selectedLocaleId: freezed == selectedLocaleId
-          ? _value.selectedLocaleId
-          : selectedLocaleId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selectedVoiceId: freezed == selectedVoiceId
-          ? _value.selectedVoiceId
-          : selectedVoiceId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$TtsImpl extends _Tts {
-  const _$TtsImpl(
-      {required this.flutterTts,
-      required this.allLocaleVoices,
-      required this.selectedLocaleId,
-      required this.selectedVoiceId})
-      : super._();
 
-  @override
-  final FlutterTts flutterTts;
-  @override
-  final List<LocaleVoices> allLocaleVoices;
-  @override
-  final String? selectedLocaleId;
-  @override
-  final String? selectedVoiceId;
+class _Tts extends Tts {
+  const _Tts({required this.flutterTts, required this.allLocaleVoices, required this.selectedLocaleId, required this.selectedVoiceId}): super._();
+  
 
-  @override
-  String toString() {
-    return 'Tts(flutterTts: $flutterTts, allLocaleVoices: $allLocaleVoices, selectedLocaleId: $selectedLocaleId, selectedVoiceId: $selectedVoiceId)';
-  }
+@override final  FlutterTts flutterTts;
+@override final  List<LocaleVoices> allLocaleVoices;
+@override final  String? selectedLocaleId;
+@override final  String? selectedVoiceId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TtsImpl &&
-            (identical(other.flutterTts, flutterTts) ||
-                other.flutterTts == flutterTts) &&
-            const DeepCollectionEquality()
-                .equals(other.allLocaleVoices, allLocaleVoices) &&
-            (identical(other.selectedLocaleId, selectedLocaleId) ||
-                other.selectedLocaleId == selectedLocaleId) &&
-            (identical(other.selectedVoiceId, selectedVoiceId) ||
-                other.selectedVoiceId == selectedVoiceId));
-  }
+/// Create a copy of Tts
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TtsCopyWith<_Tts> get copyWith => __$TtsCopyWithImpl<_Tts>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      flutterTts,
-      const DeepCollectionEquality().hash(allLocaleVoices),
-      selectedLocaleId,
-      selectedVoiceId);
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TtsImplCopyWith<_$TtsImpl> get copyWith =>
-      __$$TtsImplCopyWithImpl<_$TtsImpl>(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Tts&&(identical(other.flutterTts, flutterTts) || other.flutterTts == flutterTts)&&const DeepCollectionEquality().equals(other.allLocaleVoices, allLocaleVoices)&&(identical(other.selectedLocaleId, selectedLocaleId) || other.selectedLocaleId == selectedLocaleId)&&(identical(other.selectedVoiceId, selectedVoiceId) || other.selectedVoiceId == selectedVoiceId));
 }
 
-abstract class _Tts extends Tts {
-  const factory _Tts(
-      {required final FlutterTts flutterTts,
-      required final List<LocaleVoices> allLocaleVoices,
-      required final String? selectedLocaleId,
-      required final String? selectedVoiceId}) = _$TtsImpl;
-  const _Tts._() : super._();
 
-  @override
-  FlutterTts get flutterTts;
-  @override
-  List<LocaleVoices> get allLocaleVoices;
-  @override
-  String? get selectedLocaleId;
-  @override
-  String? get selectedVoiceId;
+@override
+int get hashCode => Object.hash(runtimeType,flutterTts,const DeepCollectionEquality().hash(allLocaleVoices),selectedLocaleId,selectedVoiceId);
 
-  /// Create a copy of Tts
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TtsImplCopyWith<_$TtsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'Tts(flutterTts: $flutterTts, allLocaleVoices: $allLocaleVoices, selectedLocaleId: $selectedLocaleId, selectedVoiceId: $selectedVoiceId)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TtsCopyWith<$Res> implements $TtsCopyWith<$Res> {
+  factory _$TtsCopyWith(_Tts value, $Res Function(_Tts) _then) = __$TtsCopyWithImpl;
+@override @useResult
+$Res call({
+ FlutterTts flutterTts, List<LocaleVoices> allLocaleVoices, String? selectedLocaleId, String? selectedVoiceId
+});
+
+
+
+
+}
+/// @nodoc
+class __$TtsCopyWithImpl<$Res>
+    implements _$TtsCopyWith<$Res> {
+  __$TtsCopyWithImpl(this._self, this._then);
+
+  final _Tts _self;
+  final $Res Function(_Tts) _then;
+
+/// Create a copy of Tts
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? flutterTts = null,Object? allLocaleVoices = null,Object? selectedLocaleId = freezed,Object? selectedVoiceId = freezed,}) {
+  return _then(_Tts(
+flutterTts: null == flutterTts ? _self.flutterTts : flutterTts // ignore: cast_nullable_to_non_nullable
+as FlutterTts,allLocaleVoices: null == allLocaleVoices ? _self.allLocaleVoices : allLocaleVoices // ignore: cast_nullable_to_non_nullable
+as List<LocaleVoices>,selectedLocaleId: freezed == selectedLocaleId ? _self.selectedLocaleId : selectedLocaleId // ignore: cast_nullable_to_non_nullable
+as String?,selectedVoiceId: freezed == selectedVoiceId ? _self.selectedVoiceId : selectedVoiceId // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

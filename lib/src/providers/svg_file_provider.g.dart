@@ -54,20 +54,14 @@ class SvgFileProviderFamily extends Family<AsyncValue<(String, File?)>> {
     required String svgLink,
     Map<String, String>? headers,
   }) {
-    return SvgFileProviderProvider(
-      svgLink: svgLink,
-      headers: headers,
-    );
+    return SvgFileProviderProvider(svgLink: svgLink, headers: headers);
   }
 
   @override
   SvgFileProviderProvider getProviderOverride(
     covariant SvgFileProviderProvider provider,
   ) {
-    return call(
-      svgLink: provider.svgLink,
-      headers: provider.headers,
-    );
+    return call(svgLink: provider.svgLink, headers: provider.headers);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -86,28 +80,33 @@ class SvgFileProviderFamily extends Family<AsyncValue<(String, File?)>> {
 }
 
 /// See also [SvgFileProvider].
-class SvgFileProviderProvider extends AutoDisposeStreamNotifierProviderImpl<
-    SvgFileProvider, (String, File?)> {
+class SvgFileProviderProvider
+    extends
+        AutoDisposeStreamNotifierProviderImpl<
+          SvgFileProvider,
+          (String, File?)
+        > {
   /// See also [SvgFileProvider].
   SvgFileProviderProvider({
     required String svgLink,
     Map<String, String>? headers,
   }) : this._internal(
-          () => SvgFileProvider()
-            ..svgLink = svgLink
-            ..headers = headers,
-          from: svgFileProvider,
-          name: r'svgFileProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$svgFileProviderHash,
-          dependencies: SvgFileProviderFamily._dependencies,
-          allTransitiveDependencies:
-              SvgFileProviderFamily._allTransitiveDependencies,
-          svgLink: svgLink,
-          headers: headers,
-        );
+         () =>
+             SvgFileProvider()
+               ..svgLink = svgLink
+               ..headers = headers,
+         from: svgFileProvider,
+         name: r'svgFileProvider',
+         debugGetCreateSourceHash:
+             const bool.fromEnvironment('dart.vm.product')
+                 ? null
+                 : _$svgFileProviderHash,
+         dependencies: SvgFileProviderFamily._dependencies,
+         allTransitiveDependencies:
+             SvgFileProviderFamily._allTransitiveDependencies,
+         svgLink: svgLink,
+         headers: headers,
+       );
 
   SvgFileProviderProvider._internal(
     super._createNotifier, {
@@ -124,13 +123,8 @@ class SvgFileProviderProvider extends AutoDisposeStreamNotifierProviderImpl<
   final Map<String, String>? headers;
 
   @override
-  Stream<(String, File?)> runNotifierBuild(
-    covariant SvgFileProvider notifier,
-  ) {
-    return notifier.build(
-      svgLink: svgLink,
-      headers: headers,
-    );
+  Stream<(String, File?)> runNotifierBuild(covariant SvgFileProvider notifier) {
+    return notifier.build(svgLink: svgLink, headers: headers);
   }
 
   @override
@@ -138,9 +132,10 @@ class SvgFileProviderProvider extends AutoDisposeStreamNotifierProviderImpl<
     return ProviderOverride(
       origin: this,
       override: SvgFileProviderProvider._internal(
-        () => create()
-          ..svgLink = svgLink
-          ..headers = headers,
+        () =>
+            create()
+              ..svgLink = svgLink
+              ..headers = headers,
         from: from,
         name: null,
         dependencies: null,
@@ -154,7 +149,7 @@ class SvgFileProviderProvider extends AutoDisposeStreamNotifierProviderImpl<
 
   @override
   AutoDisposeStreamNotifierProviderElement<SvgFileProvider, (String, File?)>
-      createElement() {
+  createElement() {
     return _SvgFileProviderProviderElement(this);
   }
 
@@ -187,8 +182,12 @@ mixin SvgFileProviderRef
 }
 
 class _SvgFileProviderProviderElement
-    extends AutoDisposeStreamNotifierProviderElement<SvgFileProvider,
-        (String, File?)> with SvgFileProviderRef {
+    extends
+        AutoDisposeStreamNotifierProviderElement<
+          SvgFileProvider,
+          (String, File?)
+        >
+    with SvgFileProviderRef {
   _SvgFileProviderProviderElement(super.provider);
 
   @override
@@ -197,5 +196,6 @@ class _SvgFileProviderProviderElement
   Map<String, String>? get headers =>
       (origin as SvgFileProviderProvider).headers;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -7,20 +7,21 @@ part of 'app_lifecycle_state_provider_web.dart';
 // **************************************************************************
 
 String _$appLifecycleStateProviderHash() =>
-    r'949a8f10139551826125794ab5d6dd59118685c6';
+    r'ce75074440924ed4182c2c3a783aad84c8f4d9a1';
 
 /// See also [AppLifecycleStateProvider].
 @ProviderFor(AppLifecycleStateProvider)
 final appLifecycleStateProvider =
     NotifierProvider<AppLifecycleStateProvider, AppLifecycleState>.internal(
-  AppLifecycleStateProvider.new,
-  name: r'appLifecycleStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$appLifecycleStateProviderHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      AppLifecycleStateProvider.new,
+      name: r'appLifecycleStateProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$appLifecycleStateProviderHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$AppLifecycleStateProvider = Notifier<AppLifecycleState>;
 // ignore_for_file: type=lint

@@ -13,14 +13,15 @@ String _$cameraMetaProviderHash() =>
 @ProviderFor(CameraMetaProvider)
 final cameraMetaProvider =
     AutoDisposeNotifierProvider<CameraMetaProvider, CameraMeta>.internal(
-  CameraMetaProvider.new,
-  name: r'cameraMetaProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$cameraMetaProviderHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      CameraMetaProvider.new,
+      name: r'cameraMetaProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$cameraMetaProviderHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$CameraMetaProvider = AutoDisposeNotifier<CameraMeta>;
 // ignore_for_file: type=lint

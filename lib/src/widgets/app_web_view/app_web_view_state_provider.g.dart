@@ -7,7 +7,7 @@ part of 'app_web_view_state_provider.dart';
 // **************************************************************************
 
 String _$appWebViewStateProviderHash() =>
-    r'4cbe345328a0e2904d71a6bd3afd98d43a10ecc7';
+    r'5e63a617fc91d7b4a03d3b135e815882d06bc2ff';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -92,31 +92,36 @@ class AppWebViewStateProviderFamily extends Family<AppWebViewState> {
 }
 
 /// See also [AppWebViewStateProvider].
-class AppWebViewStateProviderProvider extends AutoDisposeNotifierProviderImpl<
-    AppWebViewStateProvider, AppWebViewState> {
+class AppWebViewStateProviderProvider
+    extends
+        AutoDisposeNotifierProviderImpl<
+          AppWebViewStateProvider,
+          AppWebViewState
+        > {
   /// See also [AppWebViewStateProvider].
   AppWebViewStateProviderProvider({
     AppWebViewState? initialState,
     Set<String>? javaScriptChannelNames,
     bool Function(String, bool)? allowNavigation,
   }) : this._internal(
-          () => AppWebViewStateProvider()
-            ..initialState = initialState
-            ..javaScriptChannelNames = javaScriptChannelNames
-            ..allowNavigation = allowNavigation,
-          from: appWebViewStateProvider,
-          name: r'appWebViewStateProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$appWebViewStateProviderHash,
-          dependencies: AppWebViewStateProviderFamily._dependencies,
-          allTransitiveDependencies:
-              AppWebViewStateProviderFamily._allTransitiveDependencies,
-          initialState: initialState,
-          javaScriptChannelNames: javaScriptChannelNames,
-          allowNavigation: allowNavigation,
-        );
+         () =>
+             AppWebViewStateProvider()
+               ..initialState = initialState
+               ..javaScriptChannelNames = javaScriptChannelNames
+               ..allowNavigation = allowNavigation,
+         from: appWebViewStateProvider,
+         name: r'appWebViewStateProvider',
+         debugGetCreateSourceHash:
+             const bool.fromEnvironment('dart.vm.product')
+                 ? null
+                 : _$appWebViewStateProviderHash,
+         dependencies: AppWebViewStateProviderFamily._dependencies,
+         allTransitiveDependencies:
+             AppWebViewStateProviderFamily._allTransitiveDependencies,
+         initialState: initialState,
+         javaScriptChannelNames: javaScriptChannelNames,
+         allowNavigation: allowNavigation,
+       );
 
   AppWebViewStateProviderProvider._internal(
     super._createNotifier, {
@@ -135,9 +140,7 @@ class AppWebViewStateProviderProvider extends AutoDisposeNotifierProviderImpl<
   final bool Function(String, bool)? allowNavigation;
 
   @override
-  AppWebViewState runNotifierBuild(
-    covariant AppWebViewStateProvider notifier,
-  ) {
+  AppWebViewState runNotifierBuild(covariant AppWebViewStateProvider notifier) {
     return notifier.build(
       initialState: initialState,
       javaScriptChannelNames: javaScriptChannelNames,
@@ -150,10 +153,11 @@ class AppWebViewStateProviderProvider extends AutoDisposeNotifierProviderImpl<
     return ProviderOverride(
       origin: this,
       override: AppWebViewStateProviderProvider._internal(
-        () => create()
-          ..initialState = initialState
-          ..javaScriptChannelNames = javaScriptChannelNames
-          ..allowNavigation = allowNavigation,
+        () =>
+            create()
+              ..initialState = initialState
+              ..javaScriptChannelNames = javaScriptChannelNames
+              ..allowNavigation = allowNavigation,
         from: from,
         name: null,
         dependencies: null,
@@ -168,7 +172,7 @@ class AppWebViewStateProviderProvider extends AutoDisposeNotifierProviderImpl<
 
   @override
   AutoDisposeNotifierProviderElement<AppWebViewStateProvider, AppWebViewState>
-      createElement() {
+  createElement() {
     return _AppWebViewStateProviderProviderElement(this);
   }
 
@@ -206,8 +210,12 @@ mixin AppWebViewStateProviderRef
 }
 
 class _AppWebViewStateProviderProviderElement
-    extends AutoDisposeNotifierProviderElement<AppWebViewStateProvider,
-        AppWebViewState> with AppWebViewStateProviderRef {
+    extends
+        AutoDisposeNotifierProviderElement<
+          AppWebViewStateProvider,
+          AppWebViewState
+        >
+    with AppWebViewStateProviderRef {
   _AppWebViewStateProviderProviderElement(super.provider);
 
   @override
@@ -220,5 +228,6 @@ class _AppWebViewStateProviderProviderElement
   bool Function(String, bool)? get allowNavigation =>
       (origin as AppWebViewStateProviderProvider).allowNavigation;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

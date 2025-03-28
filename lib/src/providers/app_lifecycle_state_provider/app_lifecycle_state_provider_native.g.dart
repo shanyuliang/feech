@@ -13,14 +13,15 @@ String _$appLifecycleStateProviderHash() =>
 @ProviderFor(AppLifecycleStateProvider)
 final appLifecycleStateProvider =
     NotifierProvider<AppLifecycleStateProvider, AppLifecycleState>.internal(
-  AppLifecycleStateProvider.new,
-  name: r'appLifecycleStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$appLifecycleStateProviderHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      AppLifecycleStateProvider.new,
+      name: r'appLifecycleStateProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$appLifecycleStateProviderHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$AppLifecycleStateProvider = Notifier<AppLifecycleState>;
 // ignore_for_file: type=lint

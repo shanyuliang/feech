@@ -6,7 +6,7 @@ import '../../support/state_status.dart';
 part 'camera_meta.freezed.dart';
 
 @Freezed()
-class CameraMeta with _$CameraMeta {
+abstract class CameraMeta with _$CameraMeta {
   const factory CameraMeta({
     final List<CameraDescription>? cameraDescriptions,
     final CameraDescription? selectedCameraDescription,

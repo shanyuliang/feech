@@ -99,23 +99,24 @@ class AppInitialiseProviderProvider
     int minWaitDurationInMilliseconds = 0,
     bool debugLogDiagnostics = false,
   }) : this._internal(
-          () => AppInitialiseProvider()
-            ..initialiseList = initialiseList
-            ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
-            ..debugLogDiagnostics = debugLogDiagnostics,
-          from: appInitialiseProvider,
-          name: r'appInitialiseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$appInitialiseProviderHash,
-          dependencies: AppInitialiseProviderFamily._dependencies,
-          allTransitiveDependencies:
-              AppInitialiseProviderFamily._allTransitiveDependencies,
-          initialiseList: initialiseList,
-          minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
-          debugLogDiagnostics: debugLogDiagnostics,
-        );
+         () =>
+             AppInitialiseProvider()
+               ..initialiseList = initialiseList
+               ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
+               ..debugLogDiagnostics = debugLogDiagnostics,
+         from: appInitialiseProvider,
+         name: r'appInitialiseProvider',
+         debugGetCreateSourceHash:
+             const bool.fromEnvironment('dart.vm.product')
+                 ? null
+                 : _$appInitialiseProviderHash,
+         dependencies: AppInitialiseProviderFamily._dependencies,
+         allTransitiveDependencies:
+             AppInitialiseProviderFamily._allTransitiveDependencies,
+         initialiseList: initialiseList,
+         minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
+         debugLogDiagnostics: debugLogDiagnostics,
+       );
 
   AppInitialiseProviderProvider._internal(
     super._createNotifier, {
@@ -134,9 +135,7 @@ class AppInitialiseProviderProvider
   final bool debugLogDiagnostics;
 
   @override
-  FutureOr<void> runNotifierBuild(
-    covariant AppInitialiseProvider notifier,
-  ) {
+  FutureOr<void> runNotifierBuild(covariant AppInitialiseProvider notifier) {
     return notifier.build(
       initialiseList: initialiseList,
       minWaitDurationInMilliseconds: minWaitDurationInMilliseconds,
@@ -149,10 +148,11 @@ class AppInitialiseProviderProvider
     return ProviderOverride(
       origin: this,
       override: AppInitialiseProviderProvider._internal(
-        () => create()
-          ..initialiseList = initialiseList
-          ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
-          ..debugLogDiagnostics = debugLogDiagnostics,
+        () =>
+            create()
+              ..initialiseList = initialiseList
+              ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
+              ..debugLogDiagnostics = debugLogDiagnostics,
         from: from,
         name: null,
         dependencies: null,
@@ -217,5 +217,6 @@ class _AppInitialiseProviderProviderElement
   bool get debugLogDiagnostics =>
       (origin as AppInitialiseProviderProvider).debugLogDiagnostics;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

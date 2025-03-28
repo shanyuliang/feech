@@ -54,20 +54,14 @@ class SvgStringProviderFamily extends Family<AsyncValue<String?>> {
     required String svgLink,
     Map<String, String>? headers,
   }) {
-    return SvgStringProviderProvider(
-      svgLink: svgLink,
-      headers: headers,
-    );
+    return SvgStringProviderProvider(svgLink: svgLink, headers: headers);
   }
 
   @override
   SvgStringProviderProvider getProviderOverride(
     covariant SvgStringProviderProvider provider,
   ) {
-    return call(
-      svgLink: provider.svgLink,
-      headers: provider.headers,
-    );
+    return call(svgLink: provider.svgLink, headers: provider.headers);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -93,21 +87,22 @@ class SvgStringProviderProvider
     required String svgLink,
     Map<String, String>? headers,
   }) : this._internal(
-          () => SvgStringProvider()
-            ..svgLink = svgLink
-            ..headers = headers,
-          from: svgStringProvider,
-          name: r'svgStringProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$svgStringProviderHash,
-          dependencies: SvgStringProviderFamily._dependencies,
-          allTransitiveDependencies:
-              SvgStringProviderFamily._allTransitiveDependencies,
-          svgLink: svgLink,
-          headers: headers,
-        );
+         () =>
+             SvgStringProvider()
+               ..svgLink = svgLink
+               ..headers = headers,
+         from: svgStringProvider,
+         name: r'svgStringProvider',
+         debugGetCreateSourceHash:
+             const bool.fromEnvironment('dart.vm.product')
+                 ? null
+                 : _$svgStringProviderHash,
+         dependencies: SvgStringProviderFamily._dependencies,
+         allTransitiveDependencies:
+             SvgStringProviderFamily._allTransitiveDependencies,
+         svgLink: svgLink,
+         headers: headers,
+       );
 
   SvgStringProviderProvider._internal(
     super._createNotifier, {
@@ -124,13 +119,8 @@ class SvgStringProviderProvider
   final Map<String, String>? headers;
 
   @override
-  FutureOr<String?> runNotifierBuild(
-    covariant SvgStringProvider notifier,
-  ) {
-    return notifier.build(
-      svgLink: svgLink,
-      headers: headers,
-    );
+  FutureOr<String?> runNotifierBuild(covariant SvgStringProvider notifier) {
+    return notifier.build(svgLink: svgLink, headers: headers);
   }
 
   @override
@@ -138,9 +128,10 @@ class SvgStringProviderProvider
     return ProviderOverride(
       origin: this,
       override: SvgStringProviderProvider._internal(
-        () => create()
-          ..svgLink = svgLink
-          ..headers = headers,
+        () =>
+            create()
+              ..svgLink = svgLink
+              ..headers = headers,
         from: from,
         name: null,
         dependencies: null,
@@ -154,7 +145,7 @@ class SvgStringProviderProvider
 
   @override
   AutoDisposeAsyncNotifierProviderElement<SvgStringProvider, String?>
-      createElement() {
+  createElement() {
     return _SvgStringProviderProviderElement(this);
   }
 
@@ -196,5 +187,6 @@ class _SvgStringProviderProviderElement
   Map<String, String>? get headers =>
       (origin as SvgStringProviderProvider).headers;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

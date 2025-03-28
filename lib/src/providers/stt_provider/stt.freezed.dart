@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,180 +10,166 @@ part of 'stt.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$Stt {
-  List<AppLocale> get supportedLocales => throw _privateConstructorUsedError;
-  AppLocale? get selectedLocale => throw _privateConstructorUsedError;
 
-  /// Create a copy of Stt
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SttCopyWith<Stt> get copyWith => throw _privateConstructorUsedError;
+ List<AppLocale> get supportedLocales; AppLocale? get selectedLocale;
+/// Create a copy of Stt
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SttCopyWith<Stt> get copyWith => _$SttCopyWithImpl<Stt>(this as Stt, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Stt&&const DeepCollectionEquality().equals(other.supportedLocales, supportedLocales)&&(identical(other.selectedLocale, selectedLocale) || other.selectedLocale == selectedLocale));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(supportedLocales),selectedLocale);
+
+@override
+String toString() {
+  return 'Stt(supportedLocales: $supportedLocales, selectedLocale: $selectedLocale)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SttCopyWith<$Res> {
-  factory $SttCopyWith(Stt value, $Res Function(Stt) then) =
-      _$SttCopyWithImpl<$Res, Stt>;
-  @useResult
-  $Res call({List<AppLocale> supportedLocales, AppLocale? selectedLocale});
+abstract mixin class $SttCopyWith<$Res>  {
+  factory $SttCopyWith(Stt value, $Res Function(Stt) _then) = _$SttCopyWithImpl;
+@useResult
+$Res call({
+ List<AppLocale> supportedLocales, AppLocale? selectedLocale
+});
 
-  $AppLocaleCopyWith<$Res>? get selectedLocale;
+
+$AppLocaleCopyWith<$Res>? get selectedLocale;
+
 }
-
 /// @nodoc
-class _$SttCopyWithImpl<$Res, $Val extends Stt> implements $SttCopyWith<$Res> {
-  _$SttCopyWithImpl(this._value, this._then);
+class _$SttCopyWithImpl<$Res>
+    implements $SttCopyWith<$Res> {
+  _$SttCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Stt _self;
+  final $Res Function(Stt) _then;
 
-  /// Create a copy of Stt
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? supportedLocales = null,
-    Object? selectedLocale = freezed,
-  }) {
-    return _then(_value.copyWith(
-      supportedLocales: null == supportedLocales
-          ? _value.supportedLocales
-          : supportedLocales // ignore: cast_nullable_to_non_nullable
-              as List<AppLocale>,
-      selectedLocale: freezed == selectedLocale
-          ? _value.selectedLocale
-          : selectedLocale // ignore: cast_nullable_to_non_nullable
-              as AppLocale?,
-    ) as $Val);
+/// Create a copy of Stt
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? supportedLocales = null,Object? selectedLocale = freezed,}) {
+  return _then(_self.copyWith(
+supportedLocales: null == supportedLocales ? _self.supportedLocales : supportedLocales // ignore: cast_nullable_to_non_nullable
+as List<AppLocale>,selectedLocale: freezed == selectedLocale ? _self.selectedLocale : selectedLocale // ignore: cast_nullable_to_non_nullable
+as AppLocale?,
+  ));
+}
+/// Create a copy of Stt
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AppLocaleCopyWith<$Res>? get selectedLocale {
+    if (_self.selectedLocale == null) {
+    return null;
   }
 
-  /// Create a copy of Stt
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppLocaleCopyWith<$Res>? get selectedLocale {
-    if (_value.selectedLocale == null) {
-      return null;
-    }
-
-    return $AppLocaleCopyWith<$Res>(_value.selectedLocale!, (value) {
-      return _then(_value.copyWith(selectedLocale: value) as $Val);
-    });
-  }
+  return $AppLocaleCopyWith<$Res>(_self.selectedLocale!, (value) {
+    return _then(_self.copyWith(selectedLocale: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$SttImplCopyWith<$Res> implements $SttCopyWith<$Res> {
-  factory _$$SttImplCopyWith(_$SttImpl value, $Res Function(_$SttImpl) then) =
-      __$$SttImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<AppLocale> supportedLocales, AppLocale? selectedLocale});
-
-  @override
-  $AppLocaleCopyWith<$Res>? get selectedLocale;
-}
-
-/// @nodoc
-class __$$SttImplCopyWithImpl<$Res> extends _$SttCopyWithImpl<$Res, _$SttImpl>
-    implements _$$SttImplCopyWith<$Res> {
-  __$$SttImplCopyWithImpl(_$SttImpl _value, $Res Function(_$SttImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Stt
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? supportedLocales = null,
-    Object? selectedLocale = freezed,
-  }) {
-    return _then(_$SttImpl(
-      supportedLocales: null == supportedLocales
-          ? _value._supportedLocales
-          : supportedLocales // ignore: cast_nullable_to_non_nullable
-              as List<AppLocale>,
-      selectedLocale: freezed == selectedLocale
-          ? _value.selectedLocale
-          : selectedLocale // ignore: cast_nullable_to_non_nullable
-              as AppLocale?,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$SttImpl extends _Stt {
-  const _$SttImpl(
-      {required final List<AppLocale> supportedLocales,
-      required this.selectedLocale})
-      : _supportedLocales = supportedLocales,
-        super._();
 
-  final List<AppLocale> _supportedLocales;
-  @override
-  List<AppLocale> get supportedLocales {
-    if (_supportedLocales is EqualUnmodifiableListView)
-      return _supportedLocales;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_supportedLocales);
-  }
+class _Stt extends Stt {
+  const _Stt({required final  List<AppLocale> supportedLocales, required this.selectedLocale}): _supportedLocales = supportedLocales,super._();
+  
 
-  @override
-  final AppLocale? selectedLocale;
-
-  @override
-  String toString() {
-    return 'Stt(supportedLocales: $supportedLocales, selectedLocale: $selectedLocale)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SttImpl &&
-            const DeepCollectionEquality()
-                .equals(other._supportedLocales, _supportedLocales) &&
-            (identical(other.selectedLocale, selectedLocale) ||
-                other.selectedLocale == selectedLocale));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_supportedLocales), selectedLocale);
-
-  /// Create a copy of Stt
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SttImplCopyWith<_$SttImpl> get copyWith =>
-      __$$SttImplCopyWithImpl<_$SttImpl>(this, _$identity);
+ final  List<AppLocale> _supportedLocales;
+@override List<AppLocale> get supportedLocales {
+  if (_supportedLocales is EqualUnmodifiableListView) return _supportedLocales;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_supportedLocales);
 }
 
-abstract class _Stt extends Stt {
-  const factory _Stt(
-      {required final List<AppLocale> supportedLocales,
-      required final AppLocale? selectedLocale}) = _$SttImpl;
-  const _Stt._() : super._();
+@override final  AppLocale? selectedLocale;
 
-  @override
-  List<AppLocale> get supportedLocales;
-  @override
-  AppLocale? get selectedLocale;
+/// Create a copy of Stt
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SttCopyWith<_Stt> get copyWith => __$SttCopyWithImpl<_Stt>(this, _$identity);
 
-  /// Create a copy of Stt
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SttImplCopyWith<_$SttImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Stt&&const DeepCollectionEquality().equals(other._supportedLocales, _supportedLocales)&&(identical(other.selectedLocale, selectedLocale) || other.selectedLocale == selectedLocale));
 }
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_supportedLocales),selectedLocale);
+
+@override
+String toString() {
+  return 'Stt(supportedLocales: $supportedLocales, selectedLocale: $selectedLocale)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SttCopyWith<$Res> implements $SttCopyWith<$Res> {
+  factory _$SttCopyWith(_Stt value, $Res Function(_Stt) _then) = __$SttCopyWithImpl;
+@override @useResult
+$Res call({
+ List<AppLocale> supportedLocales, AppLocale? selectedLocale
+});
+
+
+@override $AppLocaleCopyWith<$Res>? get selectedLocale;
+
+}
+/// @nodoc
+class __$SttCopyWithImpl<$Res>
+    implements _$SttCopyWith<$Res> {
+  __$SttCopyWithImpl(this._self, this._then);
+
+  final _Stt _self;
+  final $Res Function(_Stt) _then;
+
+/// Create a copy of Stt
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? supportedLocales = null,Object? selectedLocale = freezed,}) {
+  return _then(_Stt(
+supportedLocales: null == supportedLocales ? _self._supportedLocales : supportedLocales // ignore: cast_nullable_to_non_nullable
+as List<AppLocale>,selectedLocale: freezed == selectedLocale ? _self.selectedLocale : selectedLocale // ignore: cast_nullable_to_non_nullable
+as AppLocale?,
+  ));
+}
+
+/// Create a copy of Stt
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AppLocaleCopyWith<$Res>? get selectedLocale {
+    if (_self.selectedLocale == null) {
+    return null;
+  }
+
+  return $AppLocaleCopyWith<$Res>(_self.selectedLocale!, (value) {
+    return _then(_self.copyWith(selectedLocale: value));
+  });
+}
+}
+
+// dart format on

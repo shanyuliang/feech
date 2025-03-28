@@ -6,15 +6,8 @@ part of 'web_storage_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WebStorageItemImpl _$$WebStorageItemImplFromJson(Map<String, dynamic> json) =>
-    _$WebStorageItemImpl(
-      key: json['key'] as String,
-      value: json['value'],
-    );
+_WebStorageItem _$WebStorageItemFromJson(Map<String, dynamic> json) =>
+    _WebStorageItem(key: json['key'] as String, value: json['value']);
 
-Map<String, dynamic> _$$WebStorageItemImplToJson(
-        _$WebStorageItemImpl instance) =>
-    <String, dynamic>{
-      'key': instance.key,
-      'value': instance.value,
-    };
+Map<String, dynamic> _$WebStorageItemToJson(_WebStorageItem instance) =>
+    <String, dynamic>{'key': instance.key, 'value': instance.value};

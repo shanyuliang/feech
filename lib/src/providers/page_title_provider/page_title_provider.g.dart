@@ -33,9 +33,7 @@ abstract class _$PageTitleProvider
     extends BuildlessAutoDisposeNotifier<String?> {
   late final String? routeName;
 
-  String? build(
-    String? routeName,
-  );
+  String? build(String? routeName);
 }
 
 /// See also [PageTitleProvider].
@@ -48,21 +46,15 @@ class PageTitleProviderFamily extends Family<String?> {
   const PageTitleProviderFamily();
 
   /// See also [PageTitleProvider].
-  PageTitleProviderProvider call(
-    String? routeName,
-  ) {
-    return PageTitleProviderProvider(
-      routeName,
-    );
+  PageTitleProviderProvider call(String? routeName) {
+    return PageTitleProviderProvider(routeName);
   }
 
   @override
   PageTitleProviderProvider getProviderOverride(
     covariant PageTitleProviderProvider provider,
   ) {
-    return call(
-      provider.routeName,
-    );
+    return call(provider.routeName);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -84,21 +76,20 @@ class PageTitleProviderFamily extends Family<String?> {
 class PageTitleProviderProvider
     extends AutoDisposeNotifierProviderImpl<PageTitleProvider, String?> {
   /// See also [PageTitleProvider].
-  PageTitleProviderProvider(
-    String? routeName,
-  ) : this._internal(
-          () => PageTitleProvider()..routeName = routeName,
-          from: pageTitleProvider,
-          name: r'pageTitleProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$pageTitleProviderHash,
-          dependencies: PageTitleProviderFamily._dependencies,
-          allTransitiveDependencies:
-              PageTitleProviderFamily._allTransitiveDependencies,
-          routeName: routeName,
-        );
+  PageTitleProviderProvider(String? routeName)
+    : this._internal(
+        () => PageTitleProvider()..routeName = routeName,
+        from: pageTitleProvider,
+        name: r'pageTitleProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$pageTitleProviderHash,
+        dependencies: PageTitleProviderFamily._dependencies,
+        allTransitiveDependencies:
+            PageTitleProviderFamily._allTransitiveDependencies,
+        routeName: routeName,
+      );
 
   PageTitleProviderProvider._internal(
     super._createNotifier, {
@@ -113,12 +104,8 @@ class PageTitleProviderProvider
   final String? routeName;
 
   @override
-  String? runNotifierBuild(
-    covariant PageTitleProvider notifier,
-  ) {
-    return notifier.build(
-      routeName,
-    );
+  String? runNotifierBuild(covariant PageTitleProvider notifier) {
+    return notifier.build(routeName);
   }
 
   @override
@@ -139,7 +126,7 @@ class PageTitleProviderProvider
 
   @override
   AutoDisposeNotifierProviderElement<PageTitleProvider, String?>
-      createElement() {
+  createElement() {
     return _PageTitleProviderProviderElement(this);
   }
 
@@ -172,5 +159,6 @@ class _PageTitleProviderProviderElement
   @override
   String? get routeName => (origin as PageTitleProviderProvider).routeName;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

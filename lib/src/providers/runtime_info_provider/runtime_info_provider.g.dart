@@ -33,9 +33,7 @@ class _SystemHash {
 abstract class _$RuntimeInfoProvider extends BuildlessNotifier<RuntimeInfo> {
   late final bool debugLogDiagnostics;
 
-  RuntimeInfo build({
-    bool debugLogDiagnostics = false,
-  });
+  RuntimeInfo build({bool debugLogDiagnostics = false});
 }
 
 /// See also [RuntimeInfoProvider].
@@ -48,9 +46,7 @@ class RuntimeInfoProviderFamily extends Family<RuntimeInfo> {
   const RuntimeInfoProviderFamily();
 
   /// See also [RuntimeInfoProvider].
-  RuntimeInfoProviderProvider call({
-    bool debugLogDiagnostics = false,
-  }) {
+  RuntimeInfoProviderProvider call({bool debugLogDiagnostics = false}) {
     return RuntimeInfoProviderProvider(
       debugLogDiagnostics: debugLogDiagnostics,
     );
@@ -60,9 +56,7 @@ class RuntimeInfoProviderFamily extends Family<RuntimeInfo> {
   RuntimeInfoProviderProvider getProviderOverride(
     covariant RuntimeInfoProviderProvider provider,
   ) {
-    return call(
-      debugLogDiagnostics: provider.debugLogDiagnostics,
-    );
+    return call(debugLogDiagnostics: provider.debugLogDiagnostics);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -84,22 +78,20 @@ class RuntimeInfoProviderFamily extends Family<RuntimeInfo> {
 class RuntimeInfoProviderProvider
     extends NotifierProviderImpl<RuntimeInfoProvider, RuntimeInfo> {
   /// See also [RuntimeInfoProvider].
-  RuntimeInfoProviderProvider({
-    bool debugLogDiagnostics = false,
-  }) : this._internal(
-          () =>
-              RuntimeInfoProvider()..debugLogDiagnostics = debugLogDiagnostics,
-          from: runtimeInfoProvider,
-          name: r'runtimeInfoProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$runtimeInfoProviderHash,
-          dependencies: RuntimeInfoProviderFamily._dependencies,
-          allTransitiveDependencies:
-              RuntimeInfoProviderFamily._allTransitiveDependencies,
-          debugLogDiagnostics: debugLogDiagnostics,
-        );
+  RuntimeInfoProviderProvider({bool debugLogDiagnostics = false})
+    : this._internal(
+        () => RuntimeInfoProvider()..debugLogDiagnostics = debugLogDiagnostics,
+        from: runtimeInfoProvider,
+        name: r'runtimeInfoProvider',
+        debugGetCreateSourceHash:
+            const bool.fromEnvironment('dart.vm.product')
+                ? null
+                : _$runtimeInfoProviderHash,
+        dependencies: RuntimeInfoProviderFamily._dependencies,
+        allTransitiveDependencies:
+            RuntimeInfoProviderFamily._allTransitiveDependencies,
+        debugLogDiagnostics: debugLogDiagnostics,
+      );
 
   RuntimeInfoProviderProvider._internal(
     super._createNotifier, {
@@ -114,12 +106,8 @@ class RuntimeInfoProviderProvider
   final bool debugLogDiagnostics;
 
   @override
-  RuntimeInfo runNotifierBuild(
-    covariant RuntimeInfoProvider notifier,
-  ) {
-    return notifier.build(
-      debugLogDiagnostics: debugLogDiagnostics,
-    );
+  RuntimeInfo runNotifierBuild(covariant RuntimeInfoProvider notifier) {
+    return notifier.build(debugLogDiagnostics: debugLogDiagnostics);
   }
 
   @override
@@ -174,5 +162,6 @@ class _RuntimeInfoProviderProviderElement
   bool get debugLogDiagnostics =>
       (origin as RuntimeInfoProviderProvider).debugLogDiagnostics;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
