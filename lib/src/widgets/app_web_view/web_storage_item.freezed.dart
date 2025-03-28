@@ -80,8 +80,8 @@ as dynamic,
 /// @nodoc
 @JsonSerializable()
 
-class _WebStorageItem extends WebStorageItem {
-  const _WebStorageItem({required this.key, this.value}): super._();
+class _WebStorageItem implements WebStorageItem {
+  const _WebStorageItem({required this.key, this.value});
   factory _WebStorageItem.fromJson(Map<String, dynamic> json) => _$WebStorageItemFromJson(json);
 
 @override final  String key;

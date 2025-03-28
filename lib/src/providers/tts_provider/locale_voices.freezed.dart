@@ -77,8 +77,8 @@ as List<String>,
 /// @nodoc
 
 
-class _LocaleVoices extends LocaleVoices {
-  const _LocaleVoices({required this.localeId, required this.voiceIds}): super._();
+class _LocaleVoices implements LocaleVoices {
+  const _LocaleVoices({required this.localeId, required this.voiceIds});
   
 
 @override final  String localeId;

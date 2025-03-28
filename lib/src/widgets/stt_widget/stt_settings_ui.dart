@@ -38,13 +38,12 @@ class _SttSettingsUIState extends ConsumerState<SttSettingsUI> {
       trailing: const Icon(Icons.chevron_right_outlined),
       onTap: () {
         ref.read(sttProvider.future).then((stt) async {
-          final selectedLocale = await context.pushNamed<AppLocale>(
-            "sttSelectLocaleDialog",
-            extra: stt.supportedLocales,
-          );
-          selectedLocale?.let((selectedLocale) {
-            ref.read(sttProvider.notifier).setSelectedLocale(selectedLocale);
-          });
+          if (mounted) {
+            final selectedLocale = await context.pushNamed<AppLocale>("sttSelectLocaleDialog", extra: stt.supportedLocales);
+            selectedLocale?.let((selectedLocale) {
+              ref.read(sttProvider.notifier).setSelectedLocale(selectedLocale);
+            });
+          }
         });
       },
     );

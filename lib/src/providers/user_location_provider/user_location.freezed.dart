@@ -106,8 +106,8 @@ $UserLatLngCopyWith<$Res>? get currentLocation {
 /// @nodoc
 @JsonSerializable()
 
-class _UserLocation extends UserLocation {
-  const _UserLocation({this.lastKnownLocation, this.currentLocation, this.error, this.isListeningLocationChange = false, this.stateStatus = StateStatus.initial}): super._();
+class _UserLocation implements UserLocation {
+  const _UserLocation({this.lastKnownLocation, this.currentLocation, this.error, this.isListeningLocationChange = false, this.stateStatus = StateStatus.initial});
   factory _UserLocation.fromJson(Map<String, dynamic> json) => _$UserLocationFromJson(json);
 
 @override final  UserLatLng? lastKnownLocation;
@@ -271,8 +271,8 @@ as double,
 /// @nodoc
 @JsonSerializable()
 
-class _UserLatLng extends UserLatLng {
-  const _UserLatLng({required this.latitude, required this.longitude}): super._();
+class _UserLatLng implements UserLatLng {
+  const _UserLatLng({required this.latitude, required this.longitude});
   factory _UserLatLng.fromJson(Map<String, dynamic> json) => _$UserLatLngFromJson(json);
 
 @override final  double latitude;

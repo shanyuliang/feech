@@ -4,10 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-T? suppressThrowableSync<T>({
-  required final T? Function() throwable,
-  final T? Function(Object error, StackTrace stackTrace)? whenError,
-}) {
+T? suppressThrowableSync<T>({required final T? Function() throwable, final T? Function(Object error, StackTrace stackTrace)? whenError}) {
   try {
     return throwable.call();
   } catch (error, stackTrace) {
@@ -19,10 +16,7 @@ T? suppressThrowableSync<T>({
   }
 }
 
-T suppressThrowableSyncDefault<T>({
-  required final T Function() throwable,
-  required final T Function(Object error, StackTrace stackTrace) whenError,
-}) {
+T suppressThrowableSyncDefault<T>({required final T Function() throwable, required final T Function(Object error, StackTrace stackTrace) whenError}) {
   try {
     return throwable.call();
   } catch (error, stackTrace) {
@@ -57,10 +51,9 @@ Future<T> suppressThrowableAsyncDefault<T>({
 }
 
 void setAppSwitcherTitle({required BuildContext context, String? title}) {
-  SystemChrome.setApplicationSwitcherDescription(ApplicationSwitcherDescription(
-    label: title,
-    primaryColor: Theme.of(context).primaryColor.value,
-  ));
+  SystemChrome.setApplicationSwitcherDescription(
+    ApplicationSwitcherDescription(label: title, primaryColor: Theme.of(context).primaryColor.toARGB32()),
+  );
 }
 
 String getBuildType() {

@@ -89,8 +89,8 @@ $AppLocaleCopyWith<$Res>? get selectedLocale {
 /// @nodoc
 
 
-class _Stt extends Stt {
-  const _Stt({required final  List<AppLocale> supportedLocales, required this.selectedLocale}): _supportedLocales = supportedLocales,super._();
+class _Stt implements Stt {
+  const _Stt({required final  List<AppLocale> supportedLocales, required this.selectedLocale}): _supportedLocales = supportedLocales;
   
 
  final  List<AppLocale> _supportedLocales;

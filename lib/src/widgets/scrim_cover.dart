@@ -6,13 +6,7 @@ class ScrimCover extends StatelessWidget {
   final Alignment begin;
   final Alignment end;
 
-  const ScrimCover({
-    super.key,
-    required this.child,
-    this.color = Colors.black,
-    this.begin = Alignment.bottomCenter,
-    this.end = Alignment.topCenter,
-  });
+  const ScrimCover({super.key, required this.child, this.color = Colors.black, this.begin = Alignment.bottomCenter, this.end = Alignment.topCenter});
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +16,8 @@ class ScrimCover extends StatelessWidget {
         return LinearGradient(
           begin: begin,
           end: end,
-          colors: [
-            color.withOpacity(0.66),
-            color.withOpacity(0.66),
-            Colors.transparent,
-          ],
-          stops: [
-            0.0,
-            0.4,
-            0.8,
-          ],
+          colors: [color.withAlpha((0.66 * 255) as int), color.withAlpha((0.66 * 255) as int), Colors.transparent],
+          stops: [0.0, 0.4, 0.8],
         ).createShader(bounds);
       },
       child: child,

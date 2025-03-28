@@ -14,7 +14,7 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
   /// [initialiseList] is a list of `provider.notifier` or `asyncProvider.future`
   @override
   Future<void> build({
-    List<AlwaysAliveRefreshable> initialiseList = const [],
+    List<Refreshable> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool debugLogDiagnostics = false,
   }) async {

@@ -81,8 +81,8 @@ as double,
 /// @nodoc
 
 
-class _RuntimeInfo extends RuntimeInfo {
-  const _RuntimeInfo({required this.appLifecycleState, required this.brightness, required this.displayConstraints, required this.displayWidthMode, required this.locale, required this.textScaleFactor}): super._();
+class _RuntimeInfo implements RuntimeInfo {
+  const _RuntimeInfo({required this.appLifecycleState, required this.brightness, required this.displayConstraints, required this.displayWidthMode, required this.locale, required this.textScaleFactor});
   
 
 @override final  AppLifecycleState appLifecycleState;

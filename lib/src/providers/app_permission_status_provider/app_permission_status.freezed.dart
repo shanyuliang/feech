@@ -78,8 +78,8 @@ as StateStatus,
 /// @nodoc
 
 
-class _AppPermissionStatus extends AppPermissionStatus {
-  const _AppPermissionStatus({required this.permission, this.combinedStatus, this.error, this.stateStatus = StateStatus.initial}): super._();
+class _AppPermissionStatus implements AppPermissionStatus {
+  const _AppPermissionStatus({required this.permission, this.combinedStatus, this.error, this.stateStatus = StateStatus.initial});
   
 
 @override final  Permission permission;
