@@ -1,6 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -58,6 +56,9 @@ class AppWebViewStateProvider extends _$AppWebViewStateProvider {
   @override
   AppWebViewState build({
     AppWebViewState? initialState,
+    int? id,
+    String? initialUrl,
+    String? title,
     Set<String>? javaScriptChannelNames,
     bool Function(String url, bool isMainFrame)? allowNavigation,
   }) {
@@ -76,7 +77,13 @@ class AppWebViewStateProvider extends _$AppWebViewStateProvider {
     Future(() {
       loadUrl(state.initialUrl);
     });
-    return initialState ?? AppWebViewState.nothing();
+    return AppWebViewState(
+      id: id ?? DateTime.now().microsecondsSinceEpoch,
+      initialUrl: initialUrl,
+      title: title,
+      urlEditorController: TextEditingController(text: initialUrl),
+      webViewController: _webViewController,
+    );
   }
 
   Future<void> loadUrl(String? url) async {

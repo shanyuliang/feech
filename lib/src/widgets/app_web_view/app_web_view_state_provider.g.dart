@@ -7,7 +7,7 @@ part of 'app_web_view_state_provider.dart';
 // **************************************************************************
 
 String _$appWebViewStateProviderHash() =>
-    r'5e63a617fc91d7b4a03d3b135e815882d06bc2ff';
+    r'29f3325d6f27f10b2abea49e8cb9f5cda5d9870d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,11 +33,17 @@ class _SystemHash {
 abstract class _$AppWebViewStateProvider
     extends BuildlessAutoDisposeNotifier<AppWebViewState> {
   late final AppWebViewState? initialState;
+  late final int? id;
+  late final String? initialUrl;
+  late final String? title;
   late final Set<String>? javaScriptChannelNames;
   late final bool Function(String, bool)? allowNavigation;
 
   AppWebViewState build({
     AppWebViewState? initialState,
+    int? id,
+    String? initialUrl,
+    String? title,
     Set<String>? javaScriptChannelNames,
     bool Function(String, bool)? allowNavigation,
   });
@@ -55,11 +61,17 @@ class AppWebViewStateProviderFamily extends Family<AppWebViewState> {
   /// See also [AppWebViewStateProvider].
   AppWebViewStateProviderProvider call({
     AppWebViewState? initialState,
+    int? id,
+    String? initialUrl,
+    String? title,
     Set<String>? javaScriptChannelNames,
     bool Function(String, bool)? allowNavigation,
   }) {
     return AppWebViewStateProviderProvider(
       initialState: initialState,
+      id: id,
+      initialUrl: initialUrl,
+      title: title,
       javaScriptChannelNames: javaScriptChannelNames,
       allowNavigation: allowNavigation,
     );
@@ -71,6 +83,9 @@ class AppWebViewStateProviderFamily extends Family<AppWebViewState> {
   ) {
     return call(
       initialState: provider.initialState,
+      id: provider.id,
+      initialUrl: provider.initialUrl,
+      title: provider.title,
       javaScriptChannelNames: provider.javaScriptChannelNames,
       allowNavigation: provider.allowNavigation,
     );
@@ -101,12 +116,18 @@ class AppWebViewStateProviderProvider
   /// See also [AppWebViewStateProvider].
   AppWebViewStateProviderProvider({
     AppWebViewState? initialState,
+    int? id,
+    String? initialUrl,
+    String? title,
     Set<String>? javaScriptChannelNames,
     bool Function(String, bool)? allowNavigation,
   }) : this._internal(
          () =>
              AppWebViewStateProvider()
                ..initialState = initialState
+               ..id = id
+               ..initialUrl = initialUrl
+               ..title = title
                ..javaScriptChannelNames = javaScriptChannelNames
                ..allowNavigation = allowNavigation,
          from: appWebViewStateProvider,
@@ -119,6 +140,9 @@ class AppWebViewStateProviderProvider
          allTransitiveDependencies:
              AppWebViewStateProviderFamily._allTransitiveDependencies,
          initialState: initialState,
+         id: id,
+         initialUrl: initialUrl,
+         title: title,
          javaScriptChannelNames: javaScriptChannelNames,
          allowNavigation: allowNavigation,
        );
@@ -131,11 +155,17 @@ class AppWebViewStateProviderProvider
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.initialState,
+    required this.id,
+    required this.initialUrl,
+    required this.title,
     required this.javaScriptChannelNames,
     required this.allowNavigation,
   }) : super.internal();
 
   final AppWebViewState? initialState;
+  final int? id;
+  final String? initialUrl;
+  final String? title;
   final Set<String>? javaScriptChannelNames;
   final bool Function(String, bool)? allowNavigation;
 
@@ -143,6 +173,9 @@ class AppWebViewStateProviderProvider
   AppWebViewState runNotifierBuild(covariant AppWebViewStateProvider notifier) {
     return notifier.build(
       initialState: initialState,
+      id: id,
+      initialUrl: initialUrl,
+      title: title,
       javaScriptChannelNames: javaScriptChannelNames,
       allowNavigation: allowNavigation,
     );
@@ -156,6 +189,9 @@ class AppWebViewStateProviderProvider
         () =>
             create()
               ..initialState = initialState
+              ..id = id
+              ..initialUrl = initialUrl
+              ..title = title
               ..javaScriptChannelNames = javaScriptChannelNames
               ..allowNavigation = allowNavigation,
         from: from,
@@ -164,6 +200,9 @@ class AppWebViewStateProviderProvider
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         initialState: initialState,
+        id: id,
+        initialUrl: initialUrl,
+        title: title,
         javaScriptChannelNames: javaScriptChannelNames,
         allowNavigation: allowNavigation,
       ),
@@ -180,6 +219,9 @@ class AppWebViewStateProviderProvider
   bool operator ==(Object other) {
     return other is AppWebViewStateProviderProvider &&
         other.initialState == initialState &&
+        other.id == id &&
+        other.initialUrl == initialUrl &&
+        other.title == title &&
         other.javaScriptChannelNames == javaScriptChannelNames &&
         other.allowNavigation == allowNavigation;
   }
@@ -188,6 +230,9 @@ class AppWebViewStateProviderProvider
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, initialState.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+    hash = _SystemHash.combine(hash, initialUrl.hashCode);
+    hash = _SystemHash.combine(hash, title.hashCode);
     hash = _SystemHash.combine(hash, javaScriptChannelNames.hashCode);
     hash = _SystemHash.combine(hash, allowNavigation.hashCode);
 
@@ -201,6 +246,15 @@ mixin AppWebViewStateProviderRef
     on AutoDisposeNotifierProviderRef<AppWebViewState> {
   /// The parameter `initialState` of this provider.
   AppWebViewState? get initialState;
+
+  /// The parameter `id` of this provider.
+  int? get id;
+
+  /// The parameter `initialUrl` of this provider.
+  String? get initialUrl;
+
+  /// The parameter `title` of this provider.
+  String? get title;
 
   /// The parameter `javaScriptChannelNames` of this provider.
   Set<String>? get javaScriptChannelNames;
@@ -221,6 +275,13 @@ class _AppWebViewStateProviderProviderElement
   @override
   AppWebViewState? get initialState =>
       (origin as AppWebViewStateProviderProvider).initialState;
+  @override
+  int? get id => (origin as AppWebViewStateProviderProvider).id;
+  @override
+  String? get initialUrl =>
+      (origin as AppWebViewStateProviderProvider).initialUrl;
+  @override
+  String? get title => (origin as AppWebViewStateProviderProvider).title;
   @override
   Set<String>? get javaScriptChannelNames =>
       (origin as AppWebViewStateProviderProvider).javaScriptChannelNames;
