@@ -46,7 +46,7 @@ abstract mixin class $AppPermissionStatusCopyWith<$Res>  {
   factory $AppPermissionStatusCopyWith(AppPermissionStatus value, $Res Function(AppPermissionStatus) _then) = _$AppPermissionStatusCopyWithImpl;
 @useResult
 $Res call({
- Permission permission, ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus, bool? shouldShowRequestRationale})? combinedStatus, Object? error, StateStatus stateStatus
+ Permission permission, CombinedStatus? combinedStatus, Object? error, StateStatus stateStatus
 });
 
 
@@ -66,8 +66,8 @@ class _$AppPermissionStatusCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? permission = null,Object? combinedStatus = freezed,Object? error = freezed,Object? stateStatus = null,}) {
   return _then(_self.copyWith(
 permission: null == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
-as Permission,combinedStatus: freezed == combinedStatus ? _self.combinedStatus! : combinedStatus // ignore: cast_nullable_to_non_nullable
-as ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus, bool? shouldShowRequestRationale})?,error: freezed == error ? _self.error : error ,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
+as Permission,combinedStatus: freezed == combinedStatus ? _self.combinedStatus : combinedStatus // ignore: cast_nullable_to_non_nullable
+as CombinedStatus?,error: freezed == error ? _self.error : error ,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
 as StateStatus,
   ));
 }
@@ -83,7 +83,7 @@ class _AppPermissionStatus implements AppPermissionStatus {
   
 
 @override final  Permission permission;
-@override final  ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus, bool? shouldShowRequestRationale})? combinedStatus;
+@override final  CombinedStatus? combinedStatus;
 @override final  Object? error;
 @override@JsonKey() final  StateStatus stateStatus;
 
@@ -117,7 +117,7 @@ abstract mixin class _$AppPermissionStatusCopyWith<$Res> implements $AppPermissi
   factory _$AppPermissionStatusCopyWith(_AppPermissionStatus value, $Res Function(_AppPermissionStatus) _then) = __$AppPermissionStatusCopyWithImpl;
 @override @useResult
 $Res call({
- Permission permission, ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus, bool? shouldShowRequestRationale})? combinedStatus, Object? error, StateStatus stateStatus
+ Permission permission, CombinedStatus? combinedStatus, Object? error, StateStatus stateStatus
 });
 
 
@@ -138,7 +138,7 @@ class __$AppPermissionStatusCopyWithImpl<$Res>
   return _then(_AppPermissionStatus(
 permission: null == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
 as Permission,combinedStatus: freezed == combinedStatus ? _self.combinedStatus : combinedStatus // ignore: cast_nullable_to_non_nullable
-as ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus, bool? shouldShowRequestRationale})?,error: freezed == error ? _self.error : error ,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
+as CombinedStatus?,error: freezed == error ? _self.error : error ,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
 as StateStatus,
   ));
 }

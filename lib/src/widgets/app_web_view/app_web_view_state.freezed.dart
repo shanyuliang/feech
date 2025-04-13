@@ -46,7 +46,7 @@ abstract mixin class $AppWebViewStateCopyWith<$Res>  {
   factory $AppWebViewStateCopyWith(AppWebViewState value, $Res Function(AppWebViewState) _then) = _$AppWebViewStateCopyWithImpl;
 @useResult
 $Res call({
- int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, ({String channel, String message})? javaScriptMessage, ({bool allowed, bool isMainFrame, String url})? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, StateStatus stateStatus
+ int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, StateStatus stateStatus
 });
 
 
@@ -75,9 +75,9 @@ as int?,pageStarted: freezed == pageStarted ? _self.pageStarted : pageStarted //
 as String?,pageFinished: freezed == pageFinished ? _self.pageFinished : pageFinished // ignore: cast_nullable_to_non_nullable
 as String?,currentUrl: freezed == currentUrl ? _self.currentUrl : currentUrl // ignore: cast_nullable_to_non_nullable
 as String?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String?,javaScriptMessage: freezed == javaScriptMessage ? _self.javaScriptMessage! : javaScriptMessage // ignore: cast_nullable_to_non_nullable
-as ({String channel, String message})?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision! : navigationDecision // ignore: cast_nullable_to_non_nullable
-as ({bool allowed, bool isMainFrame, String url})?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
+as String?,javaScriptMessage: freezed == javaScriptMessage ? _self.javaScriptMessage : javaScriptMessage // ignore: cast_nullable_to_non_nullable
+as AppJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision : navigationDecision // ignore: cast_nullable_to_non_nullable
+as AppNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
 as bool,canGoForward: null == canGoForward ? _self.canGoForward : canGoForward // ignore: cast_nullable_to_non_nullable
 as bool,expandTitleBar: null == expandTitleBar ? _self.expandTitleBar : expandTitleBar // ignore: cast_nullable_to_non_nullable
 as bool,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
@@ -105,8 +105,8 @@ class _AppWebViewState implements AppWebViewState {
 @override final  String? pageFinished;
 @override final  String? currentUrl;
 @override final  String? errorMessage;
-@override final  ({String channel, String message})? javaScriptMessage;
-@override final  ({bool allowed, bool isMainFrame, String url})? navigationDecision;
+@override final  AppJavaScriptMessage? javaScriptMessage;
+@override final  AppNavigationDecision? navigationDecision;
 @override@JsonKey() final  bool canGoBack;
 @override@JsonKey() final  bool canGoForward;
 @override@JsonKey() final  bool expandTitleBar;
@@ -142,7 +142,7 @@ abstract mixin class _$AppWebViewStateCopyWith<$Res> implements $AppWebViewState
   factory _$AppWebViewStateCopyWith(_AppWebViewState value, $Res Function(_AppWebViewState) _then) = __$AppWebViewStateCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, ({String channel, String message})? javaScriptMessage, ({bool allowed, bool isMainFrame, String url})? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, StateStatus stateStatus
+ int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, StateStatus stateStatus
 });
 
 
@@ -172,8 +172,8 @@ as String?,pageFinished: freezed == pageFinished ? _self.pageFinished : pageFini
 as String?,currentUrl: freezed == currentUrl ? _self.currentUrl : currentUrl // ignore: cast_nullable_to_non_nullable
 as String?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,javaScriptMessage: freezed == javaScriptMessage ? _self.javaScriptMessage : javaScriptMessage // ignore: cast_nullable_to_non_nullable
-as ({String channel, String message})?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision : navigationDecision // ignore: cast_nullable_to_non_nullable
-as ({bool allowed, bool isMainFrame, String url})?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
+as AppJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision : navigationDecision // ignore: cast_nullable_to_non_nullable
+as AppNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
 as bool,canGoForward: null == canGoForward ? _self.canGoForward : canGoForward // ignore: cast_nullable_to_non_nullable
 as bool,expandTitleBar: null == expandTitleBar ? _self.expandTitleBar : expandTitleBar // ignore: cast_nullable_to_non_nullable
 as bool,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
