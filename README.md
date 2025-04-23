@@ -10,6 +10,10 @@ Use the package to simplify your Flutter project development.
 
 Use `flutter packages get` to fetch new packages.
 
+## Command to publish the package
+
+Use `dart pub publish` to fetch new packages.
+
 ## How to generate the generated classes
 
 ```shell
