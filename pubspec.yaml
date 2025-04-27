@@ -20,7 +20,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  asn1lib: '>=1.6.3 <2.0.0' # https://pub.dev/packages/asn1lib
+  asn1lib: '>=1.6.4 <2.0.0' # https://pub.dev/packages/asn1lib
   async: '>=2.12.0 <3.0.0' # https://pub.dev/packages/async
   camera: '>=0.11.1 <1.0.0' # https://pub.dev/packages/camera
   cloud_firestore: ">=5.6.6 <6.0.0" # https://pub.dev/packages/cloud_firestore
