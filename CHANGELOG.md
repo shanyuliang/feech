@@ -1,3 +1,7 @@
+## 0.1.34
+
+* Update enhanced svg widget
+
 ## 0.1.33
 
 * Add StaticAppInfo class

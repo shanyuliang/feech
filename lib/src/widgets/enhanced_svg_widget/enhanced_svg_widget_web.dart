@@ -1,9 +1,10 @@
-import 'dart:html' as html;
+import 'dart:js_interop';
 import 'dart:ui_web';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:web/web.dart' as web;
 
 import '../../extensions/alignment_extension.dart';
 import '../../extensions/color_extension.dart';
@@ -33,29 +34,32 @@ class EnhancedSvgWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final htmlStringAndSize = ref.watch(svgAsHtmlStringProvider(
-      svgLink: svgLink,
-      headers: headers,
-      alignment: alignment,
-      backgroundColor: backgroundColor,
-      fillContainer: false,
-      fit: BoxFit.contain,
-    ));
+    final htmlStringAndSize = ref.watch(
+      svgAsHtmlStringProvider(
+        svgLink: svgLink,
+        headers: headers,
+        alignment: alignment,
+        backgroundColor: backgroundColor,
+        fillContainer: false,
+        fit: BoxFit.contain,
+      ),
+    );
     switch (htmlStringAndSize) {
       case AsyncData(:final value):
         {
           final svgHtml = value.$1;
           final svgSize = value.$2;
           if (svgHtml != null && svgSize != null) {
-            final viewType =
-                "$svgLink-${fit.name}-${alignment.resolve(null).toShortString()}-${backgroundColor.toHexRGBAString()}";
+            final viewType = "$svgLink-${fit.name}-${alignment.resolve(null).toShortString()}-${backgroundColor.toHexRGBAString()}";
             platformViewRegistry.registerViewFactory(
-                viewType,
-                (int viewId) => html.IFrameElement()
-                  ..srcdoc = svgHtml
-                  ..style.border = "none"
-                  ..style.width = "100%"
-                  ..style.height = "100%");
+              viewType,
+              (int viewId) =>
+                  web.HTMLIFrameElement()
+                    ..srcdoc = svgHtml.toJS
+                    ..frameBorder = "none"
+                    ..width = "100%"
+                    ..height = "100%",
+            );
             final containerSize = _decideSize(svgSize: svgSize);
             return Container(
               width: containerSize.width,
@@ -67,16 +71,8 @@ class EnhancedSvgWidget extends ConsumerWidget {
                 clipBehavior: clipBehavior,
                 child: Stack(
                   children: [
-                    SizedBox.fromSize(
-                      size: svgSize,
-                      child: HtmlElementView(viewType: viewType),
-                    ),
-                    PointerInterceptor(
-                      child: SizedBox.fromSize(
-                        size: svgSize,
-                        child: const Material(color: Colors.transparent),
-                      ),
-                    ),
+                    SizedBox.fromSize(size: svgSize, child: HtmlElementView(viewType: viewType)),
+                    PointerInterceptor(child: SizedBox.fromSize(size: svgSize, child: const Material(color: Colors.transparent))),
                   ],
                 ),
               ),
