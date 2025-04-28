@@ -77,6 +77,7 @@ export 'src/support/network/token_issuer.dart';
 export 'src/support/result.dart';
 export 'src/support/simple_dialog_page.dart';
 export 'src/support/state_status.dart';
+export 'src/support/static_app_info.dart';
 export 'src/utilities/geo_util.dart';
 export 'src/utilities/handy_util.dart';
 export 'src/utilities/spki_pin_checker.dart';

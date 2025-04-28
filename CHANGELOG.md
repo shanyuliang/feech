@@ -1,3 +1,7 @@
+## 0.1.33
+
+* Add StaticAppInfo class
+
 ## 0.1.32
 
 * Update dependencies
