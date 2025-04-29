@@ -1,3 +1,7 @@
+## 0.1.35
+
+* Add round corner avatar widget
+
 ## 0.1.34
 
 * Update enhanced svg widget
