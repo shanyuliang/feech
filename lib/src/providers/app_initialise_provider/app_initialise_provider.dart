@@ -13,11 +13,7 @@ part 'app_initialise_provider.g.dart';
 class AppInitialiseProvider extends _$AppInitialiseProvider {
   /// [initialiseList] is a list of `provider.notifier` or `asyncProvider.future`
   @override
-  Future<void> build({
-    List<Refreshable> initialiseList = const [],
-    int minWaitDurationInMilliseconds = 0,
-    bool debugLogDiagnostics = false,
-  }) async {
+  Future<void> build({List<Refreshable> initialiseList = const [], int minWaitDurationInMilliseconds = 0, bool debugLogDiagnostics = false}) async {
     final minWaitDuration = Duration(milliseconds: minWaitDurationInMilliseconds);
     if (debugLogDiagnostics) {
       developer.log("AppInitialiseProvider minWaitDuration $minWaitDuration", name: debugTag);
@@ -27,17 +23,34 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
         developer.log("AppInitialiseProvider minWaitDuration $minWaitDuration passed", name: debugTag);
       }
     });
-    final initialisingProviders = Future(() async {
-      for (final alwaysAliveRefreshable in initialiseList) {
-        if (debugLogDiagnostics) {
-          developer.log("AppInitialiseProvider initialise $alwaysAliveRefreshable started", name: debugTag);
-        }
-        await ref.read(alwaysAliveRefreshable);
-        if (debugLogDiagnostics) {
-          developer.log("AppInitialiseProvider initialise $alwaysAliveRefreshable ended", name: debugTag);
-        }
-      }
-    });
+
+    final initialisingProviders = Future.wait(
+      initialiseList.map((element) {
+        return Future(() {
+          if (debugLogDiagnostics) {
+            developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
+          }
+        }).then((_) {
+          ref.read<dynamic>(element).then(() {
+            if (debugLogDiagnostics) {
+              developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
+            }
+          });
+        });
+      }),
+    );
+
+    // final initialisingProviders = Future(() async {
+    //   for (final alwaysAliveRefreshable in initialiseList) {
+    //     if (debugLogDiagnostics) {
+    //       developer.log("AppInitialiseProvider initialise $alwaysAliveRefreshable started", name: debugTag);
+    //     }
+    //     final a=await ref.read(alwaysAliveRefreshable);
+    //     if (debugLogDiagnostics) {
+    //       developer.log("AppInitialiseProvider initialise $alwaysAliveRefreshable ended", name: debugTag);
+    //     }
+    //   }
+    // });
     await Future.wait([waitForMinWaitDuration, initialisingProviders]);
   }
 }
