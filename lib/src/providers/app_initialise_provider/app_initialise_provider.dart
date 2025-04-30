@@ -31,7 +31,7 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
             developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
           }
         }).then((_) {
-          ref.read<dynamic>(element).then(() {
+          ref.read<dynamic>(element).then((_) {
             if (debugLogDiagnostics) {
               developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
             }
