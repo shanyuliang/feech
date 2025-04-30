@@ -26,16 +26,14 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
 
     final initialisingProviders = Future.wait(
       initialiseList.map((element) {
-        return Future(() {
+        return Future(() async {
           if (debugLogDiagnostics) {
             developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
           }
-        }).then((_) {
-          ref.read<dynamic>(element).then((_) {
-            if (debugLogDiagnostics) {
-              developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
-            }
-          });
+          await ref.read(element);
+          if (debugLogDiagnostics) {
+            developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
+          }
         });
       }),
     );
