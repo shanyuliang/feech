@@ -12,7 +12,7 @@ Use `flutter packages get` to fetch new packages.
 
 ## Command to publish the package
 
-Use `dart pub publish` to fetch new packages.
+Use `dart pub publish` to fetch new packages. Before that, make sure you have push the code to the main branch.
 
 ## How to generate the generated classes
 
