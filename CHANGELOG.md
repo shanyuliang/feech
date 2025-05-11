@@ -1,3 +1,7 @@
+## 0.1.37
+
+* Add asset manifest signal
+
 ## 0.1.36
 
 * Add runtime info signal

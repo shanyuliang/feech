@@ -53,6 +53,7 @@ export 'src/providers/tts_provider/tts.dart';
 export 'src/providers/tts_provider/tts_provider.dart';
 export 'src/providers/user_location_provider/user_location.dart';
 export 'src/providers/user_location_provider/user_location_provider.dart';
+export 'src/signals/asset_manifest_signal.dart';
 export 'src/signals/runtime_info_signal.dart';
 export 'src/support/app_cache_manager.dart';
 export 'src/support/cache.dart';
