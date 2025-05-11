@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../extensions/box_constraints_extension.dart';
-import 'runtime_info.dart';
+import '../../models/runtime_info.dart';
 
 part 'runtime_info_provider.g.dart';
 
@@ -35,14 +35,14 @@ class RuntimeInfoProvider extends _$RuntimeInfoProvider {
   void setAppLifecycleState(AppLifecycleState appLifecycleState) {
     if (debugLogDiagnostics) {
       developer.log(
-          "AppEnvironmentProvider setAppLifecycleState $appLifecycleState");
+          "RuntimeInfoProvider setAppLifecycleState $appLifecycleState");
     }
     state = state.copyWith(appLifecycleState: appLifecycleState);
   }
 
   void setBrightness(Brightness brightness) {
     if (debugLogDiagnostics) {
-      developer.log("AppEnvironmentProvider setBrightness $brightness");
+      developer.log("RuntimeInfoProvider setBrightness $brightness");
     }
     state = state.copyWith(brightness: brightness);
   }
@@ -51,9 +51,9 @@ class RuntimeInfoProvider extends _$RuntimeInfoProvider {
     final displayWidthMode = displayConstraints.toDisplayWidthMode();
     if (debugLogDiagnostics) {
       developer.log(
-          "AppEnvironmentProvider setDisplayConstraints $displayConstraints");
+          "RuntimeInfoProvider setDisplayConstraints $displayConstraints");
       developer
-          .log("AppEnvironmentProvider setDisplayWidthMode $displayWidthMode}");
+          .log("RuntimeInfoProvider setDisplayWidthMode $displayWidthMode}");
     }
     state = state.copyWith(
         displayConstraints: displayConstraints,
@@ -62,7 +62,7 @@ class RuntimeInfoProvider extends _$RuntimeInfoProvider {
 
   void setLocale(Locale locale) {
     if (debugLogDiagnostics) {
-      developer.log("AppEnvironmentProvider setLocale $locale");
+      developer.log("RuntimeInfoProvider setLocale $locale");
     }
     state = state.copyWith(locale: locale);
   }
@@ -70,7 +70,7 @@ class RuntimeInfoProvider extends _$RuntimeInfoProvider {
   void setTextScaleFactor(double textScaleFactor) {
     if (debugLogDiagnostics) {
       developer
-          .log("AppEnvironmentProvider setTextScaleFactor $textScaleFactor");
+          .log("RuntimeInfoProvider setTextScaleFactor $textScaleFactor");
     }
     state = state.copyWith(textScaleFactor: textScaleFactor);
   }
@@ -81,7 +81,7 @@ class RuntimeInfoProvider extends _$RuntimeInfoProvider {
     final textScaleFactor = PlatformDispatcher.instance.textScaleFactor;
     if (debugLogDiagnostics) {
       developer.log(
-          "AppEnvironmentProvider refresh brightness $brightness, locale $locale, textScaleFactor $textScaleFactor");
+          "RuntimeInfoProvider refresh brightness $brightness, locale $locale, textScaleFactor $textScaleFactor");
     }
     state = state.copyWith(
       brightness: brightness,

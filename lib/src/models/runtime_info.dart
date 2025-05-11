@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../models/display_width_mode.dart';
+import 'display_width_mode.dart';
 
 part 'runtime_info.freezed.dart';
 

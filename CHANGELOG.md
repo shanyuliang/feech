@@ -1,3 +1,7 @@
+## 0.1.36
+
+* Add runtime info signal
+
 ## 0.1.35
 
 * Add round corner avatar widget
