@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../support/state_status.dart';
+import '../support/state_status.dart';
 
 part 'user_location.freezed.dart';
 part 'user_location.g.dart';
