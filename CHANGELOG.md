@@ -1,3 +1,7 @@
+## 0.1.39
+
+* Add page title and page lifecycle state signal
+
 ## 0.1.38
 
 * Add user location info signal
