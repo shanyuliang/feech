@@ -1,3 +1,8 @@
+## 0.1.38
+
+* Add user location info signal
+* Add app permission status signal
+
 ## 0.1.37
 
 * Add asset manifest signal
