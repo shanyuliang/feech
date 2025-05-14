@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../support/state_status.dart';
+import '../support/state_status.dart';
 
 part 'app_permission_status.freezed.dart';
 

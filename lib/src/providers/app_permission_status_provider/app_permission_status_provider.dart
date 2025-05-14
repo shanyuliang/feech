@@ -7,7 +7,7 @@ import '../../support/result.dart';
 import '../../support/state_status.dart';
 import '../../utilities/handy_util.dart';
 import '../app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
-import 'app_permission_status.dart';
+import '../../models/app_permission_status.dart';
 
 part 'app_permission_status_provider.g.dart';
 
