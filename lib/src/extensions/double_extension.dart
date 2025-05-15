@@ -13,4 +13,8 @@ extension DoubleExtension on double {
     }
     return DisplayWidthMode.compact;
   }
+
+  String toPercentageString({int decimalDigits = 0}) {
+    return "${(this * 100).toStringAsFixed(decimalDigits)}%";
+  }
 }
