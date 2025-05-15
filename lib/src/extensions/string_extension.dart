@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:version/version.dart';
 
 import '../utilities/handy_util.dart';
 import 'locale_extension.dart';
@@ -59,20 +60,26 @@ extension StringExtension on String {
     final localeName = locale.getLocaleName();
     final languageCode = locale.languageCode;
     final candidates = <String>[];
-    candidates
-        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).insertLastPathSegment(insertedPathSegment: localeName).path);
-    candidates
-        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(
+      originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).insertLastPathSegment(insertedPathSegment: localeName).path,
+    );
+    candidates.add(
+      originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).insertLastPathSegment(insertedPathSegment: languageCode).path,
+    );
     candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: variant).path);
-    candidates
-        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).insertLastPathSegment(insertedPathSegment: localeName).path);
-    candidates
-        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(
+      originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).insertLastPathSegment(insertedPathSegment: localeName).path,
+    );
+    candidates.add(
+      originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).insertLastPathSegment(insertedPathSegment: languageCode).path,
+    );
     candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: appFlavor).path);
-    candidates
-        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).insertLastPathSegment(insertedPathSegment: localeName).path);
-    candidates
-        .add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).insertLastPathSegment(insertedPathSegment: languageCode).path);
+    candidates.add(
+      originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).insertLastPathSegment(insertedPathSegment: localeName).path,
+    );
+    candidates.add(
+      originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).insertLastPathSegment(insertedPathSegment: languageCode).path,
+    );
     candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: buildType).path);
     candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: localeName).path);
     candidates.add(originalPathNameUri.insertLastPathSegment(insertedPathSegment: languageCode).path);
@@ -143,6 +150,8 @@ extension StringExtension on String {
 
     return capitalized.join(' ');
   }
+
+  Version parseAsVersion() => Version.parse(this);
 
   Uri? parseAsUri() {
     return Uri.tryParse(this);

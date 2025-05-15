@@ -2,6 +2,7 @@ export 'src/extensions/alignment_extension.dart';
 export 'src/extensions/base_request_extension.dart';
 export 'src/extensions/base_response_extension.dart';
 export 'src/extensions/box_constraints_extension.dart';
+export 'src/extensions/box_fit_extension.dart';
 export 'src/extensions/build_context_extension.dart';
 export 'src/extensions/characters_extension.dart';
 export 'src/extensions/color_extension.dart';

@@ -1,3 +1,7 @@
+## 0.1.40
+
+* Export box fit extension
+
 ## 0.1.39
 
 * Add page title and page lifecycle state signal
