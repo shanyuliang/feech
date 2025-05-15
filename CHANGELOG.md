@@ -1,3 +1,7 @@
+## 0.1.41
+
+* Update duration extension
+
 ## 0.1.40
 
 * Export box fit extension
