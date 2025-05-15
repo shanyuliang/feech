@@ -1,3 +1,7 @@
+## 0.1.42
+
+* Update double extension
+
 ## 0.1.41
 
 * Update duration extension
