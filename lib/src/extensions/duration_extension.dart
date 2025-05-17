@@ -1,3 +1,5 @@
+import '../models/time_granularity.dart';
+
 extension DurationExtension on Duration {
   String toDisplay() {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
@@ -7,24 +9,17 @@ extension DurationExtension on Duration {
     return "$twoDigitHours:$twoDigitMinutes:$twoDigitSeconds";
   }
 
-  /// granularity
-  /// 0: microseconds
-  /// 1: milliseconds
-  /// 2: seconds
-  /// 3: minutes
-  /// 4: hours
-  /// 5: days
-  String toReadable({String zeroText = "", int granularity = 0}) {
+  String toReadable({String zeroText = "", bool removeZeroValueGranularity = false, TimeGranularity timeGranularity = TimeGranularity.microseconds}) {
     if (this == Duration.zero) {
       return zeroText;
     } else {
-      final actionDuration = switch (granularity) {
-        0 => Duration(microseconds: inMicroseconds),
-        1 => Duration(milliseconds: inMilliseconds),
-        2 => Duration(seconds: inSeconds),
-        3 => Duration(minutes: inMinutes),
-        4 => Duration(hours: inHours),
-        _ => Duration(days: inDays),
+      final actionDuration = switch (timeGranularity) {
+        TimeGranularity.microseconds => Duration(microseconds: inMicroseconds),
+        TimeGranularity.milliseconds => Duration(milliseconds: inMilliseconds),
+        TimeGranularity.seconds => Duration(seconds: inSeconds),
+        TimeGranularity.minutes => Duration(minutes: inMinutes),
+        TimeGranularity.hours => Duration(hours: inHours),
+        TimeGranularity.days => Duration(days: inDays),
       };
 
       final dayCount = actionDuration.inDays;
@@ -41,7 +36,7 @@ extension DurationExtension on Duration {
       final millisecondText = millisecondCount > 1 ? "$millisecondCount ms" : (millisecondCount == 1 ? "$millisecondCount ms" : "");
       final microsecondText = microsecondCount > 1 ? "$microsecondCount μs" : (microsecondCount == 1 ? "$microsecondCount μs" : "");
 
-      return "$dayText $hourText $minuteText $secondText $millisecondText $microsecondText".trim();
+      return "$dayText $hourText $minuteText $secondText $millisecondText $microsecondText".replaceAll(RegExp(r'\s+'), ' ').trim();
     }
   }
 }

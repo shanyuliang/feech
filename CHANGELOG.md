@@ -1,3 +1,9 @@
+## 0.1.43
+
+* Update duration extension
+* Add Reg Exp collection
+* Add Time Granularity enum
+
 ## 0.1.42
 
 * Update double extension

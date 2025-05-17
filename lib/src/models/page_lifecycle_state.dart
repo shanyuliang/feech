@@ -1,7 +1,1 @@
-enum PageLifecycleState {
-  detached,
-  resumed,
-  inactive,
-  hidden,
-  paused,
-}
+enum PageLifecycleState { detached, resumed, inactive, hidden, paused }
