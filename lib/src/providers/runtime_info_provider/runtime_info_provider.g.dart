@@ -7,7 +7,7 @@ part of 'runtime_info_provider.dart';
 // **************************************************************************
 
 String _$runtimeInfoProviderHash() =>
-    r'26b931b3964ede120819f709bd322e414fc89802';
+    r'475a5f7df04ffcaa7ff3081ee07e5608dbfb067c';
 
 /// Copied from Dart SDK
 class _SystemHash {

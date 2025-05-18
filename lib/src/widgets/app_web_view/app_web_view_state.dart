@@ -24,6 +24,10 @@ abstract class AppWebViewState with _$AppWebViewState {
     @Default(false) final bool canGoBack,
     @Default(false) final bool canGoForward,
     @Default(false) final bool expandTitleBar,
+    @Default(false) final bool showDebugToolbar,
+    @Default([]) final List<String?> historyUrls,
+    @Default({}) final Map<String?, dynamic> localStorageItems,
+    @Default({}) final Map<String?, dynamic> sessionStorageItems,
     @Default(StateStatus.initial) final StateStatus stateStatus,
   }) = _AppWebViewState;
 }

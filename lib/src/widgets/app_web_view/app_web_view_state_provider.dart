@@ -1,10 +1,7 @@
+import 'package:feech/feech.dart';
 import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
-import '../../extensions/http_response_error_extension.dart';
-import '../../extensions/web_resource_error_extension.dart';
-import 'app_web_view_state.dart';
 
 part 'app_web_view_state_provider.g.dart';
 
@@ -131,6 +128,7 @@ class AppWebViewStateProvider extends _$AppWebViewStateProvider {
   void _setUrlChanged(UrlChange change) {
     state.urlEditorController.text = change.url ?? '';
     state = state.copyWith(currentUrl: change.url);
+    _refresh();
   }
 
   void _setErrorMessage(String? errorMessage) {
@@ -149,6 +147,25 @@ class AppWebViewStateProvider extends _$AppWebViewStateProvider {
     final title = await _webViewController.getTitle();
     final canGoBack = await _webViewController.canGoBack();
     final canGoForward = await _webViewController.canGoForward();
-    state = state.copyWith(title: title, canGoBack: canGoBack, canGoForward: canGoForward);
+    // final historyUrls =
+    //     state.showDebugToolbar ? ((await _webViewController.getCopyBackForwardList())?.list ?? []).map((item) => item.url).toList() : <Uri?>[];
+    final localStorageItems =
+        state.showDebugToolbar
+            ? {for (final item in (await _webViewController.getAllWebStorageItems(webStorageType: WebStorageType.localStorage))) item.key: item.value}
+            : <String?, dynamic>{};
+    final sessionStorageItems =
+        state.showDebugToolbar
+            ? {
+              for (final item in (await _webViewController.getAllWebStorageItems(webStorageType: WebStorageType.sessionStorage)))
+                item.key: item.value,
+            }
+            : <String?, dynamic>{};
+    state = state.copyWith(
+      title: title,
+      canGoBack: canGoBack,
+      canGoForward: canGoForward,
+      localStorageItems: localStorageItems,
+      sessionStorageItems: sessionStorageItems,
+    );
   }
 }

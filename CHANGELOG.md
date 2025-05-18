@@ -1,3 +1,7 @@
+## 0.1.44
+
+* Update DateTime extension
+
 ## 0.1.43
 
 * Update duration extension

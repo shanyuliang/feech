@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppWebViewState {
 
- int? get id; TextEditingController get urlEditorController; WebViewController get webViewController; String? get initialUrl; String? get title; int? get progress; String? get pageStarted; String? get pageFinished; String? get currentUrl; String? get errorMessage; AppJavaScriptMessage? get javaScriptMessage; AppNavigationDecision? get navigationDecision; bool get canGoBack; bool get canGoForward; bool get expandTitleBar; StateStatus get stateStatus;
+ int? get id; TextEditingController get urlEditorController; WebViewController get webViewController; String? get initialUrl; String? get title; int? get progress; String? get pageStarted; String? get pageFinished; String? get currentUrl; String? get errorMessage; AppJavaScriptMessage? get javaScriptMessage; AppNavigationDecision? get navigationDecision; bool get canGoBack; bool get canGoForward; bool get expandTitleBar; bool get showDebugToolbar; List<String?> get historyUrls; Map<String?, dynamic> get localStorageItems; Map<String?, dynamic> get sessionStorageItems; StateStatus get stateStatus;
 /// Create a copy of AppWebViewState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $AppWebViewStateCopyWith<AppWebViewState> get copyWith => _$AppWebViewStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppWebViewState&&(identical(other.id, id) || other.id == id)&&(identical(other.urlEditorController, urlEditorController) || other.urlEditorController == urlEditorController)&&(identical(other.webViewController, webViewController) || other.webViewController == webViewController)&&(identical(other.initialUrl, initialUrl) || other.initialUrl == initialUrl)&&(identical(other.title, title) || other.title == title)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.pageStarted, pageStarted) || other.pageStarted == pageStarted)&&(identical(other.pageFinished, pageFinished) || other.pageFinished == pageFinished)&&(identical(other.currentUrl, currentUrl) || other.currentUrl == currentUrl)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.javaScriptMessage, javaScriptMessage) || other.javaScriptMessage == javaScriptMessage)&&(identical(other.navigationDecision, navigationDecision) || other.navigationDecision == navigationDecision)&&(identical(other.canGoBack, canGoBack) || other.canGoBack == canGoBack)&&(identical(other.canGoForward, canGoForward) || other.canGoForward == canGoForward)&&(identical(other.expandTitleBar, expandTitleBar) || other.expandTitleBar == expandTitleBar)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppWebViewState&&(identical(other.id, id) || other.id == id)&&(identical(other.urlEditorController, urlEditorController) || other.urlEditorController == urlEditorController)&&(identical(other.webViewController, webViewController) || other.webViewController == webViewController)&&(identical(other.initialUrl, initialUrl) || other.initialUrl == initialUrl)&&(identical(other.title, title) || other.title == title)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.pageStarted, pageStarted) || other.pageStarted == pageStarted)&&(identical(other.pageFinished, pageFinished) || other.pageFinished == pageFinished)&&(identical(other.currentUrl, currentUrl) || other.currentUrl == currentUrl)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.javaScriptMessage, javaScriptMessage) || other.javaScriptMessage == javaScriptMessage)&&(identical(other.navigationDecision, navigationDecision) || other.navigationDecision == navigationDecision)&&(identical(other.canGoBack, canGoBack) || other.canGoBack == canGoBack)&&(identical(other.canGoForward, canGoForward) || other.canGoForward == canGoForward)&&(identical(other.expandTitleBar, expandTitleBar) || other.expandTitleBar == expandTitleBar)&&(identical(other.showDebugToolbar, showDebugToolbar) || other.showDebugToolbar == showDebugToolbar)&&const DeepCollectionEquality().equals(other.historyUrls, historyUrls)&&const DeepCollectionEquality().equals(other.localStorageItems, localStorageItems)&&const DeepCollectionEquality().equals(other.sessionStorageItems, sessionStorageItems)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,urlEditorController,webViewController,initialUrl,title,progress,pageStarted,pageFinished,currentUrl,errorMessage,javaScriptMessage,navigationDecision,canGoBack,canGoForward,expandTitleBar,stateStatus);
+int get hashCode => Object.hashAll([runtimeType,id,urlEditorController,webViewController,initialUrl,title,progress,pageStarted,pageFinished,currentUrl,errorMessage,javaScriptMessage,navigationDecision,canGoBack,canGoForward,expandTitleBar,showDebugToolbar,const DeepCollectionEquality().hash(historyUrls),const DeepCollectionEquality().hash(localStorageItems),const DeepCollectionEquality().hash(sessionStorageItems),stateStatus]);
 
 @override
 String toString() {
-  return 'AppWebViewState(id: $id, urlEditorController: $urlEditorController, webViewController: $webViewController, initialUrl: $initialUrl, title: $title, progress: $progress, pageStarted: $pageStarted, pageFinished: $pageFinished, currentUrl: $currentUrl, errorMessage: $errorMessage, javaScriptMessage: $javaScriptMessage, navigationDecision: $navigationDecision, canGoBack: $canGoBack, canGoForward: $canGoForward, expandTitleBar: $expandTitleBar, stateStatus: $stateStatus)';
+  return 'AppWebViewState(id: $id, urlEditorController: $urlEditorController, webViewController: $webViewController, initialUrl: $initialUrl, title: $title, progress: $progress, pageStarted: $pageStarted, pageFinished: $pageFinished, currentUrl: $currentUrl, errorMessage: $errorMessage, javaScriptMessage: $javaScriptMessage, navigationDecision: $navigationDecision, canGoBack: $canGoBack, canGoForward: $canGoForward, expandTitleBar: $expandTitleBar, showDebugToolbar: $showDebugToolbar, historyUrls: $historyUrls, localStorageItems: $localStorageItems, sessionStorageItems: $sessionStorageItems, stateStatus: $stateStatus)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $AppWebViewStateCopyWith<$Res>  {
   factory $AppWebViewStateCopyWith(AppWebViewState value, $Res Function(AppWebViewState) _then) = _$AppWebViewStateCopyWithImpl;
 @useResult
 $Res call({
- int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, StateStatus stateStatus
+ int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, bool showDebugToolbar, List<String?> historyUrls, Map<String?, dynamic> localStorageItems, Map<String?, dynamic> sessionStorageItems, StateStatus stateStatus
 });
 
 
@@ -63,7 +63,7 @@ class _$AppWebViewStateCopyWithImpl<$Res>
 
 /// Create a copy of AppWebViewState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? urlEditorController = null,Object? webViewController = null,Object? initialUrl = freezed,Object? title = freezed,Object? progress = freezed,Object? pageStarted = freezed,Object? pageFinished = freezed,Object? currentUrl = freezed,Object? errorMessage = freezed,Object? javaScriptMessage = freezed,Object? navigationDecision = freezed,Object? canGoBack = null,Object? canGoForward = null,Object? expandTitleBar = null,Object? stateStatus = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? urlEditorController = null,Object? webViewController = null,Object? initialUrl = freezed,Object? title = freezed,Object? progress = freezed,Object? pageStarted = freezed,Object? pageFinished = freezed,Object? currentUrl = freezed,Object? errorMessage = freezed,Object? javaScriptMessage = freezed,Object? navigationDecision = freezed,Object? canGoBack = null,Object? canGoForward = null,Object? expandTitleBar = null,Object? showDebugToolbar = null,Object? historyUrls = null,Object? localStorageItems = null,Object? sessionStorageItems = null,Object? stateStatus = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,urlEditorController: null == urlEditorController ? _self.urlEditorController : urlEditorController // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,11 @@ as AppJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _se
 as AppNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
 as bool,canGoForward: null == canGoForward ? _self.canGoForward : canGoForward // ignore: cast_nullable_to_non_nullable
 as bool,expandTitleBar: null == expandTitleBar ? _self.expandTitleBar : expandTitleBar // ignore: cast_nullable_to_non_nullable
-as bool,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
+as bool,showDebugToolbar: null == showDebugToolbar ? _self.showDebugToolbar : showDebugToolbar // ignore: cast_nullable_to_non_nullable
+as bool,historyUrls: null == historyUrls ? _self.historyUrls : historyUrls // ignore: cast_nullable_to_non_nullable
+as List<String?>,localStorageItems: null == localStorageItems ? _self.localStorageItems : localStorageItems // ignore: cast_nullable_to_non_nullable
+as Map<String?, dynamic>,sessionStorageItems: null == sessionStorageItems ? _self.sessionStorageItems : sessionStorageItems // ignore: cast_nullable_to_non_nullable
+as Map<String?, dynamic>,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
 as StateStatus,
   ));
 }
@@ -92,7 +96,7 @@ as StateStatus,
 
 
 class _AppWebViewState implements AppWebViewState {
-  const _AppWebViewState({required this.id, required this.urlEditorController, required this.webViewController, this.initialUrl, this.title, this.progress, this.pageStarted, this.pageFinished, this.currentUrl, this.errorMessage, this.javaScriptMessage, this.navigationDecision, this.canGoBack = false, this.canGoForward = false, this.expandTitleBar = false, this.stateStatus = StateStatus.initial});
+  const _AppWebViewState({required this.id, required this.urlEditorController, required this.webViewController, this.initialUrl, this.title, this.progress, this.pageStarted, this.pageFinished, this.currentUrl, this.errorMessage, this.javaScriptMessage, this.navigationDecision, this.canGoBack = false, this.canGoForward = false, this.expandTitleBar = false, this.showDebugToolbar = false, final  List<String?> historyUrls = const [], final  Map<String?, dynamic> localStorageItems = const {}, final  Map<String?, dynamic> sessionStorageItems = const {}, this.stateStatus = StateStatus.initial}): _historyUrls = historyUrls,_localStorageItems = localStorageItems,_sessionStorageItems = sessionStorageItems;
   
 
 @override final  int? id;
@@ -110,6 +114,28 @@ class _AppWebViewState implements AppWebViewState {
 @override@JsonKey() final  bool canGoBack;
 @override@JsonKey() final  bool canGoForward;
 @override@JsonKey() final  bool expandTitleBar;
+@override@JsonKey() final  bool showDebugToolbar;
+ final  List<String?> _historyUrls;
+@override@JsonKey() List<String?> get historyUrls {
+  if (_historyUrls is EqualUnmodifiableListView) return _historyUrls;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_historyUrls);
+}
+
+ final  Map<String?, dynamic> _localStorageItems;
+@override@JsonKey() Map<String?, dynamic> get localStorageItems {
+  if (_localStorageItems is EqualUnmodifiableMapView) return _localStorageItems;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_localStorageItems);
+}
+
+ final  Map<String?, dynamic> _sessionStorageItems;
+@override@JsonKey() Map<String?, dynamic> get sessionStorageItems {
+  if (_sessionStorageItems is EqualUnmodifiableMapView) return _sessionStorageItems;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_sessionStorageItems);
+}
+
 @override@JsonKey() final  StateStatus stateStatus;
 
 /// Create a copy of AppWebViewState
@@ -122,16 +148,16 @@ _$AppWebViewStateCopyWith<_AppWebViewState> get copyWith => __$AppWebViewStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppWebViewState&&(identical(other.id, id) || other.id == id)&&(identical(other.urlEditorController, urlEditorController) || other.urlEditorController == urlEditorController)&&(identical(other.webViewController, webViewController) || other.webViewController == webViewController)&&(identical(other.initialUrl, initialUrl) || other.initialUrl == initialUrl)&&(identical(other.title, title) || other.title == title)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.pageStarted, pageStarted) || other.pageStarted == pageStarted)&&(identical(other.pageFinished, pageFinished) || other.pageFinished == pageFinished)&&(identical(other.currentUrl, currentUrl) || other.currentUrl == currentUrl)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.javaScriptMessage, javaScriptMessage) || other.javaScriptMessage == javaScriptMessage)&&(identical(other.navigationDecision, navigationDecision) || other.navigationDecision == navigationDecision)&&(identical(other.canGoBack, canGoBack) || other.canGoBack == canGoBack)&&(identical(other.canGoForward, canGoForward) || other.canGoForward == canGoForward)&&(identical(other.expandTitleBar, expandTitleBar) || other.expandTitleBar == expandTitleBar)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppWebViewState&&(identical(other.id, id) || other.id == id)&&(identical(other.urlEditorController, urlEditorController) || other.urlEditorController == urlEditorController)&&(identical(other.webViewController, webViewController) || other.webViewController == webViewController)&&(identical(other.initialUrl, initialUrl) || other.initialUrl == initialUrl)&&(identical(other.title, title) || other.title == title)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.pageStarted, pageStarted) || other.pageStarted == pageStarted)&&(identical(other.pageFinished, pageFinished) || other.pageFinished == pageFinished)&&(identical(other.currentUrl, currentUrl) || other.currentUrl == currentUrl)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.javaScriptMessage, javaScriptMessage) || other.javaScriptMessage == javaScriptMessage)&&(identical(other.navigationDecision, navigationDecision) || other.navigationDecision == navigationDecision)&&(identical(other.canGoBack, canGoBack) || other.canGoBack == canGoBack)&&(identical(other.canGoForward, canGoForward) || other.canGoForward == canGoForward)&&(identical(other.expandTitleBar, expandTitleBar) || other.expandTitleBar == expandTitleBar)&&(identical(other.showDebugToolbar, showDebugToolbar) || other.showDebugToolbar == showDebugToolbar)&&const DeepCollectionEquality().equals(other._historyUrls, _historyUrls)&&const DeepCollectionEquality().equals(other._localStorageItems, _localStorageItems)&&const DeepCollectionEquality().equals(other._sessionStorageItems, _sessionStorageItems)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,urlEditorController,webViewController,initialUrl,title,progress,pageStarted,pageFinished,currentUrl,errorMessage,javaScriptMessage,navigationDecision,canGoBack,canGoForward,expandTitleBar,stateStatus);
+int get hashCode => Object.hashAll([runtimeType,id,urlEditorController,webViewController,initialUrl,title,progress,pageStarted,pageFinished,currentUrl,errorMessage,javaScriptMessage,navigationDecision,canGoBack,canGoForward,expandTitleBar,showDebugToolbar,const DeepCollectionEquality().hash(_historyUrls),const DeepCollectionEquality().hash(_localStorageItems),const DeepCollectionEquality().hash(_sessionStorageItems),stateStatus]);
 
 @override
 String toString() {
-  return 'AppWebViewState(id: $id, urlEditorController: $urlEditorController, webViewController: $webViewController, initialUrl: $initialUrl, title: $title, progress: $progress, pageStarted: $pageStarted, pageFinished: $pageFinished, currentUrl: $currentUrl, errorMessage: $errorMessage, javaScriptMessage: $javaScriptMessage, navigationDecision: $navigationDecision, canGoBack: $canGoBack, canGoForward: $canGoForward, expandTitleBar: $expandTitleBar, stateStatus: $stateStatus)';
+  return 'AppWebViewState(id: $id, urlEditorController: $urlEditorController, webViewController: $webViewController, initialUrl: $initialUrl, title: $title, progress: $progress, pageStarted: $pageStarted, pageFinished: $pageFinished, currentUrl: $currentUrl, errorMessage: $errorMessage, javaScriptMessage: $javaScriptMessage, navigationDecision: $navigationDecision, canGoBack: $canGoBack, canGoForward: $canGoForward, expandTitleBar: $expandTitleBar, showDebugToolbar: $showDebugToolbar, historyUrls: $historyUrls, localStorageItems: $localStorageItems, sessionStorageItems: $sessionStorageItems, stateStatus: $stateStatus)';
 }
 
 
@@ -142,7 +168,7 @@ abstract mixin class _$AppWebViewStateCopyWith<$Res> implements $AppWebViewState
   factory _$AppWebViewStateCopyWith(_AppWebViewState value, $Res Function(_AppWebViewState) _then) = __$AppWebViewStateCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, StateStatus stateStatus
+ int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, bool showDebugToolbar, List<String?> historyUrls, Map<String?, dynamic> localStorageItems, Map<String?, dynamic> sessionStorageItems, StateStatus stateStatus
 });
 
 
@@ -159,7 +185,7 @@ class __$AppWebViewStateCopyWithImpl<$Res>
 
 /// Create a copy of AppWebViewState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? urlEditorController = null,Object? webViewController = null,Object? initialUrl = freezed,Object? title = freezed,Object? progress = freezed,Object? pageStarted = freezed,Object? pageFinished = freezed,Object? currentUrl = freezed,Object? errorMessage = freezed,Object? javaScriptMessage = freezed,Object? navigationDecision = freezed,Object? canGoBack = null,Object? canGoForward = null,Object? expandTitleBar = null,Object? stateStatus = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? urlEditorController = null,Object? webViewController = null,Object? initialUrl = freezed,Object? title = freezed,Object? progress = freezed,Object? pageStarted = freezed,Object? pageFinished = freezed,Object? currentUrl = freezed,Object? errorMessage = freezed,Object? javaScriptMessage = freezed,Object? navigationDecision = freezed,Object? canGoBack = null,Object? canGoForward = null,Object? expandTitleBar = null,Object? showDebugToolbar = null,Object? historyUrls = null,Object? localStorageItems = null,Object? sessionStorageItems = null,Object? stateStatus = null,}) {
   return _then(_AppWebViewState(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,urlEditorController: null == urlEditorController ? _self.urlEditorController : urlEditorController // ignore: cast_nullable_to_non_nullable
@@ -176,7 +202,11 @@ as AppJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _se
 as AppNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
 as bool,canGoForward: null == canGoForward ? _self.canGoForward : canGoForward // ignore: cast_nullable_to_non_nullable
 as bool,expandTitleBar: null == expandTitleBar ? _self.expandTitleBar : expandTitleBar // ignore: cast_nullable_to_non_nullable
-as bool,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
+as bool,showDebugToolbar: null == showDebugToolbar ? _self.showDebugToolbar : showDebugToolbar // ignore: cast_nullable_to_non_nullable
+as bool,historyUrls: null == historyUrls ? _self._historyUrls : historyUrls // ignore: cast_nullable_to_non_nullable
+as List<String?>,localStorageItems: null == localStorageItems ? _self._localStorageItems : localStorageItems // ignore: cast_nullable_to_non_nullable
+as Map<String?, dynamic>,sessionStorageItems: null == sessionStorageItems ? _self._sessionStorageItems : sessionStorageItems // ignore: cast_nullable_to_non_nullable
+as Map<String?, dynamic>,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
 as StateStatus,
   ));
 }

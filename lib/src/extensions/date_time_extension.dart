@@ -13,8 +13,18 @@ extension DateTimeExtension on DateTime {
   }
 
   bool isToday() {
-    DateTime now = DateTime.now();
-    return year == now.year && month == now.month && day == now.day;
+    final today = DateTime.now();
+    return year == today.year && month == today.month && day == today.day;
+  }
+
+  bool isTomorrow() {
+    final tomorrow = DateTime.now().add(const Duration(days: 1));
+    return year == tomorrow.year && month == tomorrow.month && day == tomorrow.day;
+  }
+
+  bool wasYesterday() {
+    final yesterday = DateTime.now().add(const Duration(days: -1));
+    return year == yesterday.year && month == yesterday.month && day == yesterday.day;
   }
 
   bool isSameDay(DateTime other) {
@@ -74,7 +84,7 @@ extension DateTimeExtension on DateTime {
   }
 
   int dayCountInThisMonth() {
-    DateTime lastDayOfThisMonth = DateTime(year, month + 1, 0);
+    final lastDayOfThisMonth = DateTime(year, month + 1, 0);
     return lastDayOfThisMonth.day;
   }
 
@@ -93,5 +103,13 @@ extension DateTimeExtension on DateTime {
 
   String formatToShortDateStorage() {
     return DateFormat('yyyy-MM-dd').format(this);
+  }
+
+  String formatToShortDateTimeDisplay() {
+    return DateFormat('dd/MM/yyyy HH:mm:ss').format(this);
+  }
+
+  String formatToShortDateTimeStorage() {
+    return DateFormat('yyyy-MM-ddTHH:mm:ss').format(this);
   }
 }
