@@ -19,7 +19,7 @@ class ProcessingOverlay extends StatelessWidget {
         if (processing)
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
-            child: Container(color: Colors.black.withAlpha((dimmerOpacity * 255) as int), child: const Center(child: CircularProgressIndicator())),
+            child: Container(color: Colors.black.withAlpha((dimmerOpacity * 255).toInt()), child: const Center(child: CircularProgressIndicator())),
           ),
       ],
     );
