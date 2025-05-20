@@ -1,3 +1,7 @@
+## 0.1.48
+
+* Update Page Lifecycle State Signal and Page Title Signal
+
 ## 0.1.47
 
 * Update Page Lifecycle State Signal and Page Title Signal
