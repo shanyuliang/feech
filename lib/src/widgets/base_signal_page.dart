@@ -52,38 +52,38 @@ abstract class BaseSignalPage extends StatefulWidget {
           break;
       }
     });
-    // routeName?.let((it) {
-    //   effect(() {
-    //     final pageLifecycleState = pageLifecycleStateSignalContainer(pageLifecycleStateSignalContainerParameter).value;
-    //     switch (pageLifecycleState) {
-    //       case PageLifecycleState.resumed:
-    //         if (debugLogDiagnostics) {
-    //           developer.log("$routeName[$key] page resumed", name: debugTag);
-    //         }
-    //         _refreshTitle();
-    //         onPageResumed();
-    //         break;
-    //       case PageLifecycleState.paused:
-    //         if (debugLogDiagnostics) {
-    //           developer.log("$routeName[$key] page paused", name: debugTag);
-    //         }
-    //         onPagePaused();
-    //         break;
-    //       default:
-    //         if (debugLogDiagnostics) {
-    //           developer.log("$routeName[$key] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
-    //         }
-    //         break;
-    //     }
-    //   });
-    //   effect(() {
-    //     final pageTitle = pageTitleSignalContainer(pageTitleSignalContainerParameter).value;
-    //     if (debugLogDiagnostics) {
-    //       developer.log("$routeName[$key] page title changed to [$pageTitle]", name: debugTag);
-    //     }
-    //     _refreshTitle();
-    //   });
-    // });
+    routeName?.let((it) {
+      // effect(() {
+      //   final pageLifecycleState = pageLifecycleStateSignalContainer(pageLifecycleStateSignalContainerParameter).value;
+      //   switch (pageLifecycleState) {
+      //     case PageLifecycleState.resumed:
+      //       if (debugLogDiagnostics) {
+      //         developer.log("$routeName[$key] page resumed", name: debugTag);
+      //       }
+      //       _refreshTitle();
+      //       onPageResumed();
+      //       break;
+      //     case PageLifecycleState.paused:
+      //       if (debugLogDiagnostics) {
+      //         developer.log("$routeName[$key] page paused", name: debugTag);
+      //       }
+      //       onPagePaused();
+      //       break;
+      //     default:
+      //       if (debugLogDiagnostics) {
+      //         developer.log("$routeName[$key] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
+      //       }
+      //       break;
+      //   }
+      // });
+      effect(() {
+        final pageTitle = pageTitleSignalContainer(pageTitleSignalContainerParameter).value;
+        if (debugLogDiagnostics) {
+          developer.log("$routeName[$key] page title changed to [$pageTitle]", name: debugTag);
+        }
+        _refreshTitle();
+      });
+    });
   }
 
   @override
