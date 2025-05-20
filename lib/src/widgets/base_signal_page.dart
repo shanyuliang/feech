@@ -18,36 +18,99 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   final String initialTitle;
 
-  const BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false});
+  late final PageTitleSignalContainerParameter pageTitleSignalContainerParameter;
 
-  Widget build(BuildContext context);
+  late final PageLifecycleStateSignalContainerParameter pageLifecycleStateSignalContainerParameter;
+
+  BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false}) {
+    pageTitleSignalContainerParameter = PageTitleSignalContainerParameter(routeName: routeName, initialTitle: initialTitle);
+    pageLifecycleStateSignalContainerParameter = PageLifecycleStateSignalContainerParameter(routeName: routeName);
+    effect(() {
+      switch (appLifecycleStateSignal.value) {
+        case AppLifecycleState.resumed:
+          if (debugLogDiagnostics) {
+            developer.log("$routeName[$key] app resumed", name: debugTag);
+          }
+          onAppResumed();
+          break;
+        case AppLifecycleState.paused:
+          if (debugLogDiagnostics) {
+            developer.log("$routeName[$key] app paused", name: debugTag);
+          }
+          onAppPaused();
+          break;
+        case AppLifecycleState.detached:
+          if (debugLogDiagnostics) {
+            developer.log("$routeName[$key] app detached", name: debugTag);
+          }
+          onAppDetached();
+          break;
+        default:
+          break;
+      }
+    });
+    routeName?.let((it) {
+      effect(() {
+        switch (pageLifecycleStateSignalContainer(pageLifecycleStateSignalContainerParameter).value) {
+          case PageLifecycleState.resumed:
+            if (debugLogDiagnostics) {
+              developer.log("$routeName[$key] page resumed", name: debugTag);
+            }
+            _refreshTitle();
+            onPageResumed();
+            break;
+          case PageLifecycleState.paused:
+            if (debugLogDiagnostics) {
+              developer.log("$routeName[$key] page paused", name: debugTag);
+            }
+            onPagePaused();
+            break;
+          default:
+            break;
+        }
+      });
+      effect(() {
+        final pageTitle = pageTitleSignalContainer(pageTitleSignalContainerParameter).value;
+        if (debugLogDiagnostics) {
+          developer.log("$routeName[$key] page title changed to [$pageTitle]", name: debugTag);
+        }
+        _refreshTitle();
+      });
+    });
+  }
 
   @override
   State<StatefulWidget> createState() => _BaseSignalPageState();
 
   void setTitle(String title) {
-    pageTitleSignalContainer(PageTitleSignalContainerParameter(routeName: routeName, initialTitle: initialTitle)).value = title;
+    pageTitleSignalContainer(pageTitleSignalContainerParameter).value = title;
   }
 
   String getTitle() {
-    return pageTitleSignalContainer(PageTitleSignalContainerParameter(routeName: routeName, initialTitle: initialTitle)).peek() ?? initialTitle;
+    return pageTitleSignalContainer(pageTitleSignalContainerParameter).peek() ?? initialTitle;
+  }
+
+  void _refreshTitle() {
+    // setAppSwitcherTitle(context: context, title: getTitle());
   }
 
   void initialise() {}
 
   void didChangeDependencies(BuildContext context) {}
 
+  Widget build(BuildContext context);
+
   void onDisposed(BuildContext context) {}
 
-  void onAppResumed(BuildContext context) {}
+  void onAppResumed() {}
 
-  void onAppPaused(BuildContext context) {}
+  void onAppPaused() {}
 
-  void onAppDetached(BuildContext context) {}
+  void onAppDetached() {}
 
-  void onPageResumed(BuildContext context) {}
+  void onPageResumed() {}
 
-  void onPagePaused(BuildContext context) {}
+  void onPagePaused() {}
 }
 
 class _BaseSignalPageState extends State<BaseSignalPage> {
@@ -74,59 +137,6 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("${widget.routeName}[${widget.key}] page build", name: debugTag);
     }
-    effect(() {
-      switch (appLifecycleStateSignal.value) {
-        case AppLifecycleState.resumed:
-          if (widget.debugLogDiagnostics) {
-            developer.log("${widget.routeName}[${widget.key}] app resumed", name: debugTag);
-          }
-          widget.onAppResumed(context);
-          break;
-        case AppLifecycleState.paused:
-          if (widget.debugLogDiagnostics) {
-            developer.log("${widget.routeName}[${widget.key}] app paused", name: debugTag);
-          }
-          widget.onAppPaused(context);
-          break;
-        case AppLifecycleState.detached:
-          if (widget.debugLogDiagnostics) {
-            developer.log("${widget.routeName}[${widget.key}] app detached", name: debugTag);
-          }
-          widget.onAppDetached(context);
-          break;
-        default:
-          break;
-      }
-    });
-    widget.routeName?.let((it) {
-      effect(() {
-        switch (pageLifecycleStateSignalContainer(PageLifecycleStateSignalContainerParameter(routeName: widget.routeName)).value) {
-          case PageLifecycleState.resumed:
-            if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] page resumed", name: debugTag);
-            }
-            _refreshTitle();
-            widget.onPageResumed(context);
-            break;
-          case PageLifecycleState.paused:
-            if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] page paused", name: debugTag);
-            }
-            widget.onPagePaused(context);
-            break;
-          default:
-            break;
-        }
-      });
-      effect(() {
-        final pageTitle =
-            pageTitleSignalContainer(PageTitleSignalContainerParameter(routeName: widget.routeName, initialTitle: widget.initialTitle)).value;
-        if (widget.debugLogDiagnostics) {
-          developer.log("${widget.routeName}[${widget.key}] page title changed to [$pageTitle]", name: debugTag);
-        }
-        _refreshTitle();
-      });
-    });
     return Title(title: widget.getTitle(), color: Theme.of(context).colorScheme.primary, child: widget.build(context));
   }
 
@@ -137,9 +147,5 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     }
     widget.onDisposed(context);
     super.dispose();
-  }
-
-  void _refreshTitle() {
-    setAppSwitcherTitle(context: context, title: widget.getTitle());
   }
 }
