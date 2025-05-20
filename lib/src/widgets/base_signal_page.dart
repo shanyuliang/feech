@@ -9,7 +9,6 @@ import '../global.dart';
 import '../models/page_lifecycle_state.dart';
 import '../models/page_lifecycle_state_signal_container_parameter.dart';
 import '../models/page_title_signal_container_parameter.dart';
-import '../utilities/handy_util.dart';
 
 abstract class BaseSignalPage extends StatefulWidget {
   final bool debugLogDiagnostics;
@@ -26,7 +25,8 @@ abstract class BaseSignalPage extends StatefulWidget {
     pageTitleSignalContainerParameter = PageTitleSignalContainerParameter(routeName: routeName, initialTitle: initialTitle);
     pageLifecycleStateSignalContainerParameter = PageLifecycleStateSignalContainerParameter(routeName: routeName);
     effect(() {
-      switch (appLifecycleStateSignal.value) {
+      final appLifecycleState = appLifecycleStateSignal.value;
+      switch (appLifecycleState) {
         case AppLifecycleState.resumed:
           if (debugLogDiagnostics) {
             developer.log("$routeName[$key] app resumed", name: debugTag);
@@ -46,12 +46,16 @@ abstract class BaseSignalPage extends StatefulWidget {
           onAppDetached();
           break;
         default:
+          if (debugLogDiagnostics) {
+            developer.log("$routeName[$key] app lifecycle status: ${appLifecycleState.name}", name: debugTag);
+          }
           break;
       }
     });
     routeName?.let((it) {
       effect(() {
-        switch (pageLifecycleStateSignalContainer(pageLifecycleStateSignalContainerParameter).value) {
+        final pageLifecycleState = pageLifecycleStateSignalContainer(pageLifecycleStateSignalContainerParameter).value;
+        switch (pageLifecycleState) {
           case PageLifecycleState.resumed:
             if (debugLogDiagnostics) {
               developer.log("$routeName[$key] page resumed", name: debugTag);
@@ -66,6 +70,9 @@ abstract class BaseSignalPage extends StatefulWidget {
             onPagePaused();
             break;
           default:
+            if (debugLogDiagnostics) {
+              developer.log("$routeName[$key] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
+            }
             break;
         }
       });
