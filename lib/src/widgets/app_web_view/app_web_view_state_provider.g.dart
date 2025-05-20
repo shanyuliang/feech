@@ -7,7 +7,7 @@ part of 'app_web_view_state_provider.dart';
 // **************************************************************************
 
 String _$appWebViewStateProviderHash() =>
-    r'29f3325d6f27f10b2abea49e8cb9f5cda5d9870d';
+    r'e224b2be0dc24de2700487a62af813de19423ce1';
 
 /// Copied from Dart SDK
 class _SystemHash {

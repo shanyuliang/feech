@@ -1,13 +1,15 @@
 import 'package:signals_flutter/signals_flutter.dart';
 
 import '../models/page_lifecycle_state.dart';
+import '../models/page_lifecycle_state_signal_container_parameter.dart';
 import 'page_lifecycle_state_signal.dart';
 
-class PageLifecycleStateSignalContainer extends SignalContainer<PageLifecycleState, String?, Signal<PageLifecycleState>> {
+class PageLifecycleStateSignalContainer
+    extends SignalContainer<PageLifecycleState, PageLifecycleStateSignalContainerParameter, Signal<PageLifecycleState>> {
   final bool debugLogDiagnostics;
 
   PageLifecycleStateSignalContainer({this.debugLogDiagnostics = false})
-    : super((routeName) {
-        return PageLifecycleStateSignal();
+    : super((pageLifecycleStateSignalContainerParameter) {
+        return PageLifecycleStateSignal(initialLifecycleState: pageLifecycleStateSignalContainerParameter.initialLifecycleState);
       }, cache: true);
 }

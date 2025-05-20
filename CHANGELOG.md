@@ -1,3 +1,8 @@
+## 0.1.47
+
+* Update Page Lifecycle State Signal and Page Title Signal
+* Add global file
+
 ## 0.1.46
 
 * Update Processing Overlay
