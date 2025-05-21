@@ -19,10 +19,7 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   late final pageTitleSignal = PageTitleSignal(initialTitle: initialTitle);
 
-  // late final PageLifecycleStateSignalContainerParameter pageLifecycleStateSignalContainerParameter;
-
   BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false}) {
-    // pageLifecycleStateSignalContainerParameter = PageLifecycleStateSignalContainerParameter(routeName: routeName);
     effect(() {
       final appLifecycleState = appLifecycleStateSignal.value;
       switch (appLifecycleState) {
@@ -53,7 +50,7 @@ abstract class BaseSignalPage extends StatefulWidget {
     });
     routeName?.let((it) {
       effect(() {
-        final pageLifecycleState = pageLifecycleStateSignalContainer2(it).value;
+        final pageLifecycleState = pageLifecycleStateSignalMap.select((s) => s.value[it] ?? PageLifecycleState.detached).value;
         switch (pageLifecycleState) {
           case PageLifecycleState.resumed:
             if (debugLogDiagnostics) {
