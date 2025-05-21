@@ -1,5 +1,5 @@
 name: feech
-version: 0.1.48
+version: 0.1.49
 description: "Flutter Experience Emma Can Help"
 homepage: "https://github.com/shanyuliang/feech"
 repository: "https://github.com/shanyuliang/feech"
@@ -14,8 +14,8 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.7.2 <4.0.0'
-  flutter: ">=3.29.3"
+  sdk: '>=3.8.0 <4.0.0'
+  flutter: ">=3.32.0"
 
 dependencies:
   flutter:

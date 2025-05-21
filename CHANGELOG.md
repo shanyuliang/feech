@@ -1,3 +1,7 @@
+## 0.1.49
+
+* Update dependencies
+
 ## 0.1.48
 
 * Update Page Lifecycle State Signal and Page Title Signal
