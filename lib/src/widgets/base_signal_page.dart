@@ -1,5 +1,6 @@
 import 'dart:developer' as developer;
 
+import 'package:feech/src/signals/page_title_signal.dart';
 import 'package:flutter/material.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
@@ -16,6 +17,8 @@ abstract class BaseSignalPage extends StatefulWidget {
   final String? routeName;
 
   final String initialTitle;
+
+  late final pageTitleSignal = PageTitleSignal(initialTitle:initialTitle);
 
   late final PageTitleSignalContainerParameter pageTitleSignalContainerParameter;
 
@@ -77,9 +80,10 @@ abstract class BaseSignalPage extends StatefulWidget {
       //   }
       // });
       effect(() {
-        final pageTitle = pageTitleSignalContainer(pageTitleSignalContainerParameter).value;
+        // final pageTitle = pageTitleSignalContainer(pageTitleSignalContainerParameter).value;
+        final pageTitle2=pageTitleSignal.value;
         if (debugLogDiagnostics) {
-          developer.log("$routeName[$key] page title changed to [$pageTitle]", name: debugTag);
+          developer.log("$routeName[$key] page title changed to [$pageTitle2]", name: debugTag);
         }
         _refreshTitle();
       });
