@@ -1,15 +1,14 @@
 import 'dart:developer' as developer;
 
-import 'package:feech/src/signals/page_title_signal.dart';
 import 'package:flutter/material.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 import '../constants.dart';
 import '../extensions/general_type_extension.dart';
 import '../global.dart';
-import '../models/page_lifecycle_state.dart';
 import '../models/page_lifecycle_state_signal_container_parameter.dart';
-import '../models/page_title_signal_container_parameter.dart';
+import '../signals/page_title_signal.dart';
+import '../utilities/handy_util.dart';
 
 abstract class BaseSignalPage extends StatefulWidget {
   final bool debugLogDiagnostics;
@@ -18,14 +17,11 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   final String initialTitle;
 
-  late final pageTitleSignal = PageTitleSignal(initialTitle:initialTitle);
-
-  late final PageTitleSignalContainerParameter pageTitleSignalContainerParameter;
+  late final pageTitleSignal = PageTitleSignal(initialTitle: initialTitle);
 
   late final PageLifecycleStateSignalContainerParameter pageLifecycleStateSignalContainerParameter;
 
   BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false}) {
-    pageTitleSignalContainerParameter = PageTitleSignalContainerParameter(routeName: routeName, initialTitle: initialTitle);
     pageLifecycleStateSignalContainerParameter = PageLifecycleStateSignalContainerParameter(routeName: routeName);
     effect(() {
       final appLifecycleState = appLifecycleStateSignal.value;
@@ -80,10 +76,9 @@ abstract class BaseSignalPage extends StatefulWidget {
       //   }
       // });
       effect(() {
-        // final pageTitle = pageTitleSignalContainer(pageTitleSignalContainerParameter).value;
-        final pageTitle2=pageTitleSignal.value;
+        final pageTitle = pageTitleSignal.value;
         if (debugLogDiagnostics) {
-          developer.log("$routeName[$key] page title changed to [$pageTitle2]", name: debugTag);
+          developer.log("$routeName[$key] page title changed to [$pageTitle]", name: debugTag);
         }
         _refreshTitle();
       });
@@ -94,15 +89,15 @@ abstract class BaseSignalPage extends StatefulWidget {
   State<StatefulWidget> createState() => _BaseSignalPageState();
 
   void setTitle(String title) {
-    pageTitleSignalContainer(pageTitleSignalContainerParameter).value = title;
+    pageTitleSignal.value = title;
   }
 
   String getTitle() {
-    return pageTitleSignalContainer(pageTitleSignalContainerParameter).peek() ?? initialTitle;
+    return pageTitleSignal.peek() ?? initialTitle;
   }
 
   void _refreshTitle() {
-    // setAppSwitcherTitle(context: context, title: getTitle());
+    setAppSwitcherTitle(title: getTitle());
   }
 
   void initialise() {}

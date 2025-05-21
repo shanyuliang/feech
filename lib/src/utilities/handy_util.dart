@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../extensions/general_type_extension.dart';
+
 T? suppressThrowableSync<T>({required final T? Function() throwable, final T? Function(Object error, StackTrace stackTrace)? whenError}) {
   try {
     return throwable.call();
@@ -50,9 +52,9 @@ Future<T> suppressThrowableAsyncDefault<T>({
   }
 }
 
-void setAppSwitcherTitle({required BuildContext context, String? title}) {
+void setAppSwitcherTitle({BuildContext? context, String? title}) {
   SystemChrome.setApplicationSwitcherDescription(
-    ApplicationSwitcherDescription(label: title, primaryColor: Theme.of(context).primaryColor.toARGB32()),
+    ApplicationSwitcherDescription(label: title, primaryColor: context?.let((it) => Theme.of(it).primaryColor.toARGB32())),
   );
 }
 
