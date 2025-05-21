@@ -6,7 +6,7 @@ import 'package:signals_flutter/signals_flutter.dart';
 import '../constants.dart';
 import '../extensions/general_type_extension.dart';
 import '../global.dart';
-import '../models/page_lifecycle_state_signal_container_parameter.dart';
+import '../models/page_lifecycle_state.dart';
 import '../signals/page_title_signal.dart';
 import '../utilities/handy_util.dart';
 
@@ -19,10 +19,10 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   late final pageTitleSignal = PageTitleSignal(initialTitle: initialTitle);
 
-  late final PageLifecycleStateSignalContainerParameter pageLifecycleStateSignalContainerParameter;
+  // late final PageLifecycleStateSignalContainerParameter pageLifecycleStateSignalContainerParameter;
 
   BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false}) {
-    pageLifecycleStateSignalContainerParameter = PageLifecycleStateSignalContainerParameter(routeName: routeName);
+    // pageLifecycleStateSignalContainerParameter = PageLifecycleStateSignalContainerParameter(routeName: routeName);
     effect(() {
       final appLifecycleState = appLifecycleStateSignal.value;
       switch (appLifecycleState) {
@@ -52,29 +52,29 @@ abstract class BaseSignalPage extends StatefulWidget {
       }
     });
     routeName?.let((it) {
-      // effect(() {
-      //   final pageLifecycleState = pageLifecycleStateSignalContainer(pageLifecycleStateSignalContainerParameter).value;
-      //   switch (pageLifecycleState) {
-      //     case PageLifecycleState.resumed:
-      //       if (debugLogDiagnostics) {
-      //         developer.log("$routeName[$key] page resumed", name: debugTag);
-      //       }
-      //       _refreshTitle();
-      //       onPageResumed();
-      //       break;
-      //     case PageLifecycleState.paused:
-      //       if (debugLogDiagnostics) {
-      //         developer.log("$routeName[$key] page paused", name: debugTag);
-      //       }
-      //       onPagePaused();
-      //       break;
-      //     default:
-      //       if (debugLogDiagnostics) {
-      //         developer.log("$routeName[$key] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
-      //       }
-      //       break;
-      //   }
-      // });
+      effect(() {
+        final pageLifecycleState = pageLifecycleStateSignalContainer2(it).value;
+        switch (pageLifecycleState) {
+          case PageLifecycleState.resumed:
+            if (debugLogDiagnostics) {
+              developer.log("$routeName[$key] page resumed", name: debugTag);
+            }
+            _refreshTitle();
+            onPageResumed();
+            break;
+          case PageLifecycleState.paused:
+            if (debugLogDiagnostics) {
+              developer.log("$routeName[$key] page paused", name: debugTag);
+            }
+            onPagePaused();
+            break;
+          default:
+            if (debugLogDiagnostics) {
+              developer.log("$routeName[$key] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
+            }
+            break;
+        }
+      });
       effect(() {
         final pageTitle = pageTitleSignal.value;
         if (debugLogDiagnostics) {
