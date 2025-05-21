@@ -7,7 +7,6 @@ import '../constants.dart';
 import '../extensions/general_type_extension.dart';
 import '../global.dart';
 import '../models/page_lifecycle_state.dart';
-import '../signals/page_title_signal.dart';
 import '../utilities/handy_util.dart';
 
 abstract class BaseSignalPage extends StatefulWidget {
@@ -17,7 +16,8 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   final String initialTitle;
 
-  late final pageTitleSignal = PageTitleSignal(initialTitle: initialTitle);
+  late final pageLifecycleStateSignal = pageLifecycleStateSignalMap.select((s) => s.value[routeName] ?? PageLifecycleState.detached);
+  late final pageTitleSignal = pageTitleSignalMap.select((s) => s.value[routeName] ?? initialTitle);
 
   BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false}) {
     effect(() {
@@ -50,7 +50,7 @@ abstract class BaseSignalPage extends StatefulWidget {
     });
     routeName?.let((it) {
       effect(() {
-        final pageLifecycleState = pageLifecycleStateSignalMap.select((s) => s.value[it] ?? PageLifecycleState.detached).value;
+        final pageLifecycleState = pageLifecycleStateSignal.value;
         switch (pageLifecycleState) {
           case PageLifecycleState.resumed:
             if (debugLogDiagnostics) {
@@ -86,11 +86,11 @@ abstract class BaseSignalPage extends StatefulWidget {
   State<StatefulWidget> createState() => _BaseSignalPageState();
 
   void setTitle(String title) {
-    pageTitleSignal.value = title;
+    pageTitleSignalMap[routeName] = title;
   }
 
   String getTitle() {
-    return pageTitleSignal.peek() ?? initialTitle;
+    return pageTitleSignal.peek();
   }
 
   void _refreshTitle() {
