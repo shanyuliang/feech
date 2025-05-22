@@ -56,7 +56,7 @@ dependencies:
   ulid4d: '>=2.0.0 <3.0.0' # https://pub.dev/packages/ulid4d
   version: '>=3.0.2 <4.0.0' # https://pub.dev/packages/version
   web: '>=1.1.1 <2.0.0' # https://pub.dev/packages/web
-  webview_flutter: '>=4.12.0 <5.0.0' # https://pub.dev/packages/webview_flutter
+  webview_flutter: '>=4.13.0 <5.0.0' # https://pub.dev/packages/webview_flutter
 
 dev_dependencies:
   flutter_test:
