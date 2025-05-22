@@ -1,3 +1,7 @@
+## 0.1.50
+
+* Add more json converters
+
 ## 0.1.49
 
 * Update dependencies
