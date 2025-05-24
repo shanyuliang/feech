@@ -19,68 +19,7 @@ abstract class BaseSignalPage extends StatefulWidget {
   late final pageLifecycleStateSignal = pageLifecycleStateSignalMap.select((s) => s.value[routeName] ?? PageLifecycleState.detached);
   late final pageTitleSignal = pageTitleSignalMap.select((s) => s.value[routeName] ?? initialTitle);
 
-  BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false}) {
-    effect(() {
-      final appLifecycleState = appLifecycleStateSignal.value;
-      switch (appLifecycleState) {
-        case AppLifecycleState.resumed:
-          if (debugLogDiagnostics) {
-            developer.log("$routeName[$key] app resumed", name: debugTag);
-          }
-          onAppResumed();
-          break;
-        case AppLifecycleState.paused:
-          if (debugLogDiagnostics) {
-            developer.log("$routeName[$key] app paused", name: debugTag);
-          }
-          onAppPaused();
-          break;
-        case AppLifecycleState.detached:
-          if (debugLogDiagnostics) {
-            developer.log("$routeName[$key] app detached", name: debugTag);
-          }
-          onAppDetached();
-          break;
-        default:
-          if (debugLogDiagnostics) {
-            developer.log("$routeName[$key] app lifecycle status: ${appLifecycleState.name}", name: debugTag);
-          }
-          break;
-      }
-    });
-    routeName?.let((it) {
-      effect(() {
-        final pageLifecycleState = pageLifecycleStateSignal.value;
-        switch (pageLifecycleState) {
-          case PageLifecycleState.resumed:
-            if (debugLogDiagnostics) {
-              developer.log("$routeName[$key] page resumed", name: debugTag);
-            }
-            _refreshTitle();
-            onPageResumed();
-            break;
-          case PageLifecycleState.paused:
-            if (debugLogDiagnostics) {
-              developer.log("$routeName[$key] page paused", name: debugTag);
-            }
-            onPagePaused();
-            break;
-          default:
-            if (debugLogDiagnostics) {
-              developer.log("$routeName[$key] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
-            }
-            break;
-        }
-      });
-      effect(() {
-        final pageTitle = pageTitleSignal.value;
-        if (debugLogDiagnostics) {
-          developer.log("$routeName[$key] page title changed to [$pageTitle]", name: debugTag);
-        }
-        _refreshTitle();
-      });
-    });
-  }
+  BaseSignalPage({super.key, this.routeName, this.initialTitle = '', this.debugLogDiagnostics = false});
 
   @override
   State<StatefulWidget> createState() => _BaseSignalPageState();
@@ -93,8 +32,8 @@ abstract class BaseSignalPage extends StatefulWidget {
     return pageTitleSignal.peek();
   }
 
-  void _refreshTitle() {
-    setAppSwitcherTitle(title: getTitle());
+  void refreshTitle(BuildContext context) {
+    setAppSwitcherTitle(context: context, title: getTitle());
   }
 
   void initialise() {}
@@ -105,15 +44,15 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   void onDisposed(BuildContext context) {}
 
-  void onAppResumed() {}
+  void onAppResumed(BuildContext context) {}
 
-  void onAppPaused() {}
+  void onAppPaused(BuildContext context) {}
 
-  void onAppDetached() {}
+  void onAppDetached(BuildContext context) {}
 
-  void onPageResumed() {}
+  void onPageResumed(BuildContext context) {}
 
-  void onPagePaused() {}
+  void onPagePaused(BuildContext context) {}
 }
 
 class _BaseSignalPageState extends State<BaseSignalPage> {
@@ -140,6 +79,66 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("${widget.routeName}[${widget.key}] page build", name: debugTag);
     }
+    effect(() {
+      final appLifecycleState = appLifecycleStateSignal.value;
+      switch (appLifecycleState) {
+        case AppLifecycleState.resumed:
+          if (widget.debugLogDiagnostics) {
+            developer.log("${widget.routeName}[${widget.key}] app resumed", name: debugTag);
+          }
+          widget.onAppResumed(context);
+          break;
+        case AppLifecycleState.paused:
+          if (widget.debugLogDiagnostics) {
+            developer.log("${widget.routeName}[${widget.key}] app paused", name: debugTag);
+          }
+          widget.onAppPaused(context);
+          break;
+        case AppLifecycleState.detached:
+          if (widget.debugLogDiagnostics) {
+            developer.log("${widget.routeName}[${widget.key}] app detached", name: debugTag);
+          }
+          widget.onAppDetached(context);
+          break;
+        default:
+          if (widget.debugLogDiagnostics) {
+            developer.log("${widget.routeName}[${widget.key}] app lifecycle status: ${appLifecycleState.name}", name: debugTag);
+          }
+          break;
+      }
+    });
+    widget.routeName?.let((it) {
+      effect(() {
+        final pageLifecycleState = widget.pageLifecycleStateSignal.value;
+        switch (pageLifecycleState) {
+          case PageLifecycleState.resumed:
+            if (widget.debugLogDiagnostics) {
+              developer.log("${widget.routeName}[${widget.key}] page resumed", name: debugTag);
+            }
+            widget.refreshTitle(context);
+            widget.onPageResumed(context);
+            break;
+          case PageLifecycleState.paused:
+            if (widget.debugLogDiagnostics) {
+              developer.log("${widget.routeName}[${widget.key}] page paused", name: debugTag);
+            }
+            widget.onPagePaused(context);
+            break;
+          default:
+            if (widget.debugLogDiagnostics) {
+              developer.log("${widget.routeName}[${widget.key}] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
+            }
+            break;
+        }
+      });
+      effect(() {
+        final pageTitle = widget.pageTitleSignal.value;
+        if (widget.debugLogDiagnostics) {
+          developer.log("${widget.routeName}[${widget.key}] page title changed to [$pageTitle]", name: debugTag);
+        }
+        widget.refreshTitle(context);
+      });
+    });
     return Title(title: widget.getTitle(), color: Theme.of(context).colorScheme.primary, child: widget.build(context));
   }
 
