@@ -85,10 +85,9 @@ class AssetManifestProviderProvider
             AssetManifestProvider()..debugLogDiagnostics = debugLogDiagnostics,
         from: assetManifestProvider,
         name: r'assetManifestProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$assetManifestProviderHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$assetManifestProviderHash,
         dependencies: AssetManifestProviderFamily._dependencies,
         allTransitiveDependencies:
             AssetManifestProviderFamily._allTransitiveDependencies,

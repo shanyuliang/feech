@@ -105,18 +105,16 @@ class AppInitialiseProviderProvider
     bool inOrder = false,
     bool debugLogDiagnostics = false,
   }) : this._internal(
-         () =>
-             AppInitialiseProvider()
-               ..initialiseList = initialiseList
-               ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
-               ..inOrder = inOrder
-               ..debugLogDiagnostics = debugLogDiagnostics,
+         () => AppInitialiseProvider()
+           ..initialiseList = initialiseList
+           ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
+           ..inOrder = inOrder
+           ..debugLogDiagnostics = debugLogDiagnostics,
          from: appInitialiseProvider,
          name: r'appInitialiseProvider',
-         debugGetCreateSourceHash:
-             const bool.fromEnvironment('dart.vm.product')
-                 ? null
-                 : _$appInitialiseProviderHash,
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+             ? null
+             : _$appInitialiseProviderHash,
          dependencies: AppInitialiseProviderFamily._dependencies,
          allTransitiveDependencies:
              AppInitialiseProviderFamily._allTransitiveDependencies,
@@ -159,12 +157,11 @@ class AppInitialiseProviderProvider
     return ProviderOverride(
       origin: this,
       override: AppInitialiseProviderProvider._internal(
-        () =>
-            create()
-              ..initialiseList = initialiseList
-              ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
-              ..inOrder = inOrder
-              ..debugLogDiagnostics = debugLogDiagnostics,
+        () => create()
+          ..initialiseList = initialiseList
+          ..minWaitDurationInMilliseconds = minWaitDurationInMilliseconds
+          ..inOrder = inOrder
+          ..debugLogDiagnostics = debugLogDiagnostics,
         from: from,
         name: null,
         dependencies: null,

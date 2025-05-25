@@ -86,10 +86,9 @@ class PageLifecycleStateProviderProvider
         () => PageLifecycleStateProvider()..routeName = routeName,
         from: pageLifecycleStateProvider,
         name: r'pageLifecycleStateProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$pageLifecycleStateProviderHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$pageLifecycleStateProviderHash,
         dependencies: PageLifecycleStateProviderFamily._dependencies,
         allTransitiveDependencies:
             PageLifecycleStateProviderFamily._allTransitiveDependencies,

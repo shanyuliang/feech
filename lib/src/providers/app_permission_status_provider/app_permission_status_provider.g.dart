@@ -83,10 +83,9 @@ class AppPermissionStatusProviderProvider
         () => AppPermissionStatusProvider()..permission = permission,
         from: appPermissionStatusProvider,
         name: r'appPermissionStatusProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$appPermissionStatusProviderHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$appPermissionStatusProviderHash,
         dependencies: AppPermissionStatusProviderFamily._dependencies,
         allTransitiveDependencies:
             AppPermissionStatusProviderFamily._allTransitiveDependencies,

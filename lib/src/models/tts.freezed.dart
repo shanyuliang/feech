@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Tts {
 
- FlutterTts get flutterTts; List<LocaleVoices> get allLocaleVoices; String? get selectedLocaleId; String? get selectedVoiceId;
+ FlutterTts get flutterTts; List<TtsLocaleVoices> get allLocaleVoices; String? get selectedLocaleId; String? get selectedVoiceId;
 /// Create a copy of Tts
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $TtsCopyWith<$Res>  {
   factory $TtsCopyWith(Tts value, $Res Function(Tts) _then) = _$TtsCopyWithImpl;
 @useResult
 $Res call({
- FlutterTts flutterTts, List<LocaleVoices> allLocaleVoices, String? selectedLocaleId, String? selectedVoiceId
+ FlutterTts flutterTts, List<TtsLocaleVoices> allLocaleVoices, String? selectedLocaleId, String? selectedVoiceId
 });
 
 
@@ -67,7 +67,7 @@ class _$TtsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 flutterTts: null == flutterTts ? _self.flutterTts : flutterTts // ignore: cast_nullable_to_non_nullable
 as FlutterTts,allLocaleVoices: null == allLocaleVoices ? _self.allLocaleVoices : allLocaleVoices // ignore: cast_nullable_to_non_nullable
-as List<LocaleVoices>,selectedLocaleId: freezed == selectedLocaleId ? _self.selectedLocaleId : selectedLocaleId // ignore: cast_nullable_to_non_nullable
+as List<TtsLocaleVoices>,selectedLocaleId: freezed == selectedLocaleId ? _self.selectedLocaleId : selectedLocaleId // ignore: cast_nullable_to_non_nullable
 as String?,selectedVoiceId: freezed == selectedVoiceId ? _self.selectedVoiceId : selectedVoiceId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -84,7 +84,7 @@ class _Tts extends Tts {
   
 
 @override final  FlutterTts flutterTts;
-@override final  List<LocaleVoices> allLocaleVoices;
+@override final  List<TtsLocaleVoices> allLocaleVoices;
 @override final  String? selectedLocaleId;
 @override final  String? selectedVoiceId;
 
@@ -118,7 +118,7 @@ abstract mixin class _$TtsCopyWith<$Res> implements $TtsCopyWith<$Res> {
   factory _$TtsCopyWith(_Tts value, $Res Function(_Tts) _then) = __$TtsCopyWithImpl;
 @override @useResult
 $Res call({
- FlutterTts flutterTts, List<LocaleVoices> allLocaleVoices, String? selectedLocaleId, String? selectedVoiceId
+ FlutterTts flutterTts, List<TtsLocaleVoices> allLocaleVoices, String? selectedLocaleId, String? selectedVoiceId
 });
 
 
@@ -139,7 +139,7 @@ class __$TtsCopyWithImpl<$Res>
   return _then(_Tts(
 flutterTts: null == flutterTts ? _self.flutterTts : flutterTts // ignore: cast_nullable_to_non_nullable
 as FlutterTts,allLocaleVoices: null == allLocaleVoices ? _self.allLocaleVoices : allLocaleVoices // ignore: cast_nullable_to_non_nullable
-as List<LocaleVoices>,selectedLocaleId: freezed == selectedLocaleId ? _self.selectedLocaleId : selectedLocaleId // ignore: cast_nullable_to_non_nullable
+as List<TtsLocaleVoices>,selectedLocaleId: freezed == selectedLocaleId ? _self.selectedLocaleId : selectedLocaleId // ignore: cast_nullable_to_non_nullable
 as String?,selectedVoiceId: freezed == selectedVoiceId ? _self.selectedVoiceId : selectedVoiceId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

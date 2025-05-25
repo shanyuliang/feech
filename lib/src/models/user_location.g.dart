@@ -6,27 +6,22 @@ part of 'user_location.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserLocation _$UserLocationFromJson(Map<String, dynamic> json) =>
-    _UserLocation(
-      lastKnownLocation:
-          json['lastKnownLocation'] == null
-              ? null
-              : UserLatLng.fromJson(
-                json['lastKnownLocation'] as Map<String, dynamic>,
-              ),
-      currentLocation:
-          json['currentLocation'] == null
-              ? null
-              : UserLatLng.fromJson(
-                json['currentLocation'] as Map<String, dynamic>,
-              ),
-      error: json['error'],
-      isListeningLocationChange:
-          json['isListeningLocationChange'] as bool? ?? false,
-      stateStatus:
-          $enumDecodeNullable(_$StateStatusEnumMap, json['stateStatus']) ??
-          StateStatus.initial,
-    );
+_UserLocation _$UserLocationFromJson(
+  Map<String, dynamic> json,
+) => _UserLocation(
+  lastKnownLocation: json['lastKnownLocation'] == null
+      ? null
+      : UserLatLng.fromJson(json['lastKnownLocation'] as Map<String, dynamic>),
+  currentLocation: json['currentLocation'] == null
+      ? null
+      : UserLatLng.fromJson(json['currentLocation'] as Map<String, dynamic>),
+  error: json['error'],
+  isListeningLocationChange:
+      json['isListeningLocationChange'] as bool? ?? false,
+  stateStatus:
+      $enumDecodeNullable(_$StateStatusEnumMap, json['stateStatus']) ??
+      StateStatus.initial,
+);
 
 Map<String, dynamic> _$UserLocationToJson(_UserLocation instance) =>
     <String, dynamic>{

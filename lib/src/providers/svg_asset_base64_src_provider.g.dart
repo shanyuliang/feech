@@ -86,10 +86,9 @@ class SvgAssetBase64SrcProviderProvider
         () => SvgAssetBase64SrcProvider()..svgAsset = svgAsset,
         from: svgAssetBase64SrcProvider,
         name: r'svgAssetBase64SrcProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$svgAssetBase64SrcProviderHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$svgAssetBase64SrcProviderHash,
         dependencies: SvgAssetBase64SrcProviderFamily._dependencies,
         allTransitiveDependencies:
             SvgAssetBase64SrcProviderFamily._allTransitiveDependencies,

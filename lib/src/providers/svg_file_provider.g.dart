@@ -91,16 +91,14 @@ class SvgFileProviderProvider
     required String svgLink,
     Map<String, String>? headers,
   }) : this._internal(
-         () =>
-             SvgFileProvider()
-               ..svgLink = svgLink
-               ..headers = headers,
+         () => SvgFileProvider()
+           ..svgLink = svgLink
+           ..headers = headers,
          from: svgFileProvider,
          name: r'svgFileProvider',
-         debugGetCreateSourceHash:
-             const bool.fromEnvironment('dart.vm.product')
-                 ? null
-                 : _$svgFileProviderHash,
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+             ? null
+             : _$svgFileProviderHash,
          dependencies: SvgFileProviderFamily._dependencies,
          allTransitiveDependencies:
              SvgFileProviderFamily._allTransitiveDependencies,
@@ -132,10 +130,9 @@ class SvgFileProviderProvider
     return ProviderOverride(
       origin: this,
       override: SvgFileProviderProvider._internal(
-        () =>
-            create()
-              ..svgLink = svgLink
-              ..headers = headers,
+        () => create()
+          ..svgLink = svgLink
+          ..headers = headers,
         from: from,
         name: null,
         dependencies: null,

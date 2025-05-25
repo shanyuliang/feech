@@ -81,10 +81,9 @@ class PageTitleProviderProvider
         () => PageTitleProvider()..routeName = routeName,
         from: pageTitleProvider,
         name: r'pageTitleProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$pageTitleProviderHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$pageTitleProviderHash,
         dependencies: PageTitleProviderFamily._dependencies,
         allTransitiveDependencies:
             PageTitleProviderFamily._allTransitiveDependencies,

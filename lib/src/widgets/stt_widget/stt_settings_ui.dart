@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../extensions/general_type_extension.dart';
-import '../../providers/stt_provider/app_locale.dart';
+import '../../models/stt_locale.dart';
 import '../../providers/stt_provider/stt_provider.dart';
 
 class SttSettingsUI extends ConsumerStatefulWidget {
@@ -39,7 +39,7 @@ class _SttSettingsUIState extends ConsumerState<SttSettingsUI> {
       onTap: () {
         ref.read(sttProvider.future).then((stt) async {
           if (mounted) {
-            final selectedLocale = await context.pushNamed<AppLocale>("sttSelectLocaleDialog", extra: stt.supportedLocales);
+            final selectedLocale = await context.pushNamed<SttLocale>("sttSelectLocaleDialog", extra: stt.supportedLocales);
             selectedLocale?.let((selectedLocale) {
               ref.read(sttProvider.notifier).setSelectedLocale(selectedLocale);
             });

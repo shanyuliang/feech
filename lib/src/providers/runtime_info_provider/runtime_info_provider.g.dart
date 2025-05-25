@@ -83,10 +83,9 @@ class RuntimeInfoProviderProvider
         () => RuntimeInfoProvider()..debugLogDiagnostics = debugLogDiagnostics,
         from: runtimeInfoProvider,
         name: r'runtimeInfoProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$runtimeInfoProviderHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$runtimeInfoProviderHash,
         dependencies: RuntimeInfoProviderFamily._dependencies,
         allTransitiveDependencies:
             RuntimeInfoProviderFamily._allTransitiveDependencies,

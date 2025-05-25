@@ -123,20 +123,18 @@ class SvgAsHtmlStringProviderProvider
     bool fillContainer = false,
     BoxFit fit = BoxFit.contain,
   }) : this._internal(
-         () =>
-             SvgAsHtmlStringProvider()
-               ..svgLink = svgLink
-               ..headers = headers
-               ..alignment = alignment
-               ..backgroundColor = backgroundColor
-               ..fillContainer = fillContainer
-               ..fit = fit,
+         () => SvgAsHtmlStringProvider()
+           ..svgLink = svgLink
+           ..headers = headers
+           ..alignment = alignment
+           ..backgroundColor = backgroundColor
+           ..fillContainer = fillContainer
+           ..fit = fit,
          from: svgAsHtmlStringProvider,
          name: r'svgAsHtmlStringProvider',
-         debugGetCreateSourceHash:
-             const bool.fromEnvironment('dart.vm.product')
-                 ? null
-                 : _$svgAsHtmlStringProviderHash,
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+             ? null
+             : _$svgAsHtmlStringProviderHash,
          dependencies: SvgAsHtmlStringProviderFamily._dependencies,
          allTransitiveDependencies:
              SvgAsHtmlStringProviderFamily._allTransitiveDependencies,
@@ -189,14 +187,13 @@ class SvgAsHtmlStringProviderProvider
     return ProviderOverride(
       origin: this,
       override: SvgAsHtmlStringProviderProvider._internal(
-        () =>
-            create()
-              ..svgLink = svgLink
-              ..headers = headers
-              ..alignment = alignment
-              ..backgroundColor = backgroundColor
-              ..fillContainer = fillContainer
-              ..fit = fit,
+        () => create()
+          ..svgLink = svgLink
+          ..headers = headers
+          ..alignment = alignment
+          ..backgroundColor = backgroundColor
+          ..fillContainer = fillContainer
+          ..fit = fit,
         from: from,
         name: null,
         dependencies: null,

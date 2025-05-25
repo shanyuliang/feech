@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Stt {
 
- List<AppLocale> get supportedLocales; AppLocale? get selectedLocale;
+ List<SttLocale> get supportedLocales; SttLocale? get selectedLocale;
 /// Create a copy of Stt
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,11 +46,11 @@ abstract mixin class $SttCopyWith<$Res>  {
   factory $SttCopyWith(Stt value, $Res Function(Stt) _then) = _$SttCopyWithImpl;
 @useResult
 $Res call({
- List<AppLocale> supportedLocales, AppLocale? selectedLocale
+ List<SttLocale> supportedLocales, SttLocale? selectedLocale
 });
 
 
-$AppLocaleCopyWith<$Res>? get selectedLocale;
+$SttLocaleCopyWith<$Res>? get selectedLocale;
 
 }
 /// @nodoc
@@ -66,20 +66,20 @@ class _$SttCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? supportedLocales = null,Object? selectedLocale = freezed,}) {
   return _then(_self.copyWith(
 supportedLocales: null == supportedLocales ? _self.supportedLocales : supportedLocales // ignore: cast_nullable_to_non_nullable
-as List<AppLocale>,selectedLocale: freezed == selectedLocale ? _self.selectedLocale : selectedLocale // ignore: cast_nullable_to_non_nullable
-as AppLocale?,
+as List<SttLocale>,selectedLocale: freezed == selectedLocale ? _self.selectedLocale : selectedLocale // ignore: cast_nullable_to_non_nullable
+as SttLocale?,
   ));
 }
 /// Create a copy of Stt
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$AppLocaleCopyWith<$Res>? get selectedLocale {
+$SttLocaleCopyWith<$Res>? get selectedLocale {
     if (_self.selectedLocale == null) {
     return null;
   }
 
-  return $AppLocaleCopyWith<$Res>(_self.selectedLocale!, (value) {
+  return $SttLocaleCopyWith<$Res>(_self.selectedLocale!, (value) {
     return _then(_self.copyWith(selectedLocale: value));
   });
 }
@@ -90,17 +90,17 @@ $AppLocaleCopyWith<$Res>? get selectedLocale {
 
 
 class _Stt implements Stt {
-  const _Stt({required final  List<AppLocale> supportedLocales, required this.selectedLocale}): _supportedLocales = supportedLocales;
+  const _Stt({required final  List<SttLocale> supportedLocales, required this.selectedLocale}): _supportedLocales = supportedLocales;
   
 
- final  List<AppLocale> _supportedLocales;
-@override List<AppLocale> get supportedLocales {
+ final  List<SttLocale> _supportedLocales;
+@override List<SttLocale> get supportedLocales {
   if (_supportedLocales is EqualUnmodifiableListView) return _supportedLocales;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_supportedLocales);
 }
 
-@override final  AppLocale? selectedLocale;
+@override final  SttLocale? selectedLocale;
 
 /// Create a copy of Stt
 /// with the given fields replaced by the non-null parameter values.
@@ -132,11 +132,11 @@ abstract mixin class _$SttCopyWith<$Res> implements $SttCopyWith<$Res> {
   factory _$SttCopyWith(_Stt value, $Res Function(_Stt) _then) = __$SttCopyWithImpl;
 @override @useResult
 $Res call({
- List<AppLocale> supportedLocales, AppLocale? selectedLocale
+ List<SttLocale> supportedLocales, SttLocale? selectedLocale
 });
 
 
-@override $AppLocaleCopyWith<$Res>? get selectedLocale;
+@override $SttLocaleCopyWith<$Res>? get selectedLocale;
 
 }
 /// @nodoc
@@ -152,8 +152,8 @@ class __$SttCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? supportedLocales = null,Object? selectedLocale = freezed,}) {
   return _then(_Stt(
 supportedLocales: null == supportedLocales ? _self._supportedLocales : supportedLocales // ignore: cast_nullable_to_non_nullable
-as List<AppLocale>,selectedLocale: freezed == selectedLocale ? _self.selectedLocale : selectedLocale // ignore: cast_nullable_to_non_nullable
-as AppLocale?,
+as List<SttLocale>,selectedLocale: freezed == selectedLocale ? _self.selectedLocale : selectedLocale // ignore: cast_nullable_to_non_nullable
+as SttLocale?,
   ));
 }
 
@@ -161,12 +161,12 @@ as AppLocale?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$AppLocaleCopyWith<$Res>? get selectedLocale {
+$SttLocaleCopyWith<$Res>? get selectedLocale {
     if (_self.selectedLocale == null) {
     return null;
   }
 
-  return $AppLocaleCopyWith<$Res>(_self.selectedLocale!, (value) {
+  return $SttLocaleCopyWith<$Res>(_self.selectedLocale!, (value) {
     return _then(_self.copyWith(selectedLocale: value));
   });
 }

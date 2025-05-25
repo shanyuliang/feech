@@ -122,20 +122,18 @@ class AppWebViewStateProviderProvider
     Set<String>? javaScriptChannelNames,
     bool Function(String, bool)? allowNavigation,
   }) : this._internal(
-         () =>
-             AppWebViewStateProvider()
-               ..initialState = initialState
-               ..id = id
-               ..initialUrl = initialUrl
-               ..title = title
-               ..javaScriptChannelNames = javaScriptChannelNames
-               ..allowNavigation = allowNavigation,
+         () => AppWebViewStateProvider()
+           ..initialState = initialState
+           ..id = id
+           ..initialUrl = initialUrl
+           ..title = title
+           ..javaScriptChannelNames = javaScriptChannelNames
+           ..allowNavigation = allowNavigation,
          from: appWebViewStateProvider,
          name: r'appWebViewStateProvider',
-         debugGetCreateSourceHash:
-             const bool.fromEnvironment('dart.vm.product')
-                 ? null
-                 : _$appWebViewStateProviderHash,
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+             ? null
+             : _$appWebViewStateProviderHash,
          dependencies: AppWebViewStateProviderFamily._dependencies,
          allTransitiveDependencies:
              AppWebViewStateProviderFamily._allTransitiveDependencies,
@@ -186,14 +184,13 @@ class AppWebViewStateProviderProvider
     return ProviderOverride(
       origin: this,
       override: AppWebViewStateProviderProvider._internal(
-        () =>
-            create()
-              ..initialState = initialState
-              ..id = id
-              ..initialUrl = initialUrl
-              ..title = title
-              ..javaScriptChannelNames = javaScriptChannelNames
-              ..allowNavigation = allowNavigation,
+        () => create()
+          ..initialState = initialState
+          ..id = id
+          ..initialUrl = initialUrl
+          ..title = title
+          ..javaScriptChannelNames = javaScriptChannelNames
+          ..allowNavigation = allowNavigation,
         from: from,
         name: null,
         dependencies: null,

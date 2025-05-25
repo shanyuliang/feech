@@ -7,8 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
 import '../../extensions/general_type_extension.dart';
-import 'locale_voices.dart';
-import 'tts.dart';
+import '../../models/tts_locale_voices.dart';
+import '../../models/tts.dart';
 
 part 'tts_provider.g.dart';
 
@@ -30,14 +30,14 @@ class TtsProvider extends _$TtsProvider {
         .map((e) =>
             e.map((key, value) => MapEntry(key.toString(), value.toString())))
         .toList();
-    final List<LocaleVoices> allLocaleVoices = [];
+    final List<TtsLocaleVoices> allLocaleVoices = [];
     for (final element in voices) {
       final localeId = element['locale']!;
       final voiceId = element['name']!;
-      LocaleVoices? localeVoices =
+      TtsLocaleVoices? localeVoices =
           allLocaleVoices.firstWhereOrNull((e) => e.localeId == localeId);
       if (localeVoices == null) {
-        localeVoices = LocaleVoices(localeId: localeId, voiceIds: [voiceId]);
+        localeVoices = TtsLocaleVoices(localeId: localeId, voiceIds: [voiceId]);
         allLocaleVoices.add(localeVoices);
       } else {
         localeVoices.voiceIds.add(voiceId);

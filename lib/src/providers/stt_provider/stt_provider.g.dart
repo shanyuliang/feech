@@ -6,15 +6,16 @@ part of 'stt_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sttProviderHash() => r'5226bd0fedcde30586bcca897879a7722a5a99ee';
+String _$sttProviderHash() => r'6f0ac4dc5ed66ffc1a598ee61de19e43b2ddb1f4';
 
 /// See also [SttProvider].
 @ProviderFor(SttProvider)
 final sttProvider = AsyncNotifierProvider<SttProvider, Stt>.internal(
   SttProvider.new,
   name: r'sttProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$sttProviderHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sttProviderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

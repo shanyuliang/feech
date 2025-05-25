@@ -15,10 +15,9 @@ final userLocationProvider =
     NotifierProvider<UserLocationProvider, UserLocation>.internal(
       UserLocationProvider.new,
       name: r'userLocationProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$userLocationProviderHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$userLocationProviderHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );

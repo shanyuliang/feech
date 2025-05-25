@@ -4,8 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../extensions/general_type_extension.dart';
-import 'app_locale.dart';
-import 'stt.dart';
+import '../../models/stt_locale.dart';
+import '../../models/stt.dart';
 
 part 'stt_provider.g.dart';
 
@@ -20,11 +20,11 @@ class SttProvider extends _$SttProvider {
     final speech = SpeechToText();
     final locales = await speech.locales();
     final allLocales = locales
-        .map((e) => AppLocale(localeId: e.localeId, localeName: e.name))
+        .map((e) => SttLocale(localeId: e.localeId, localeName: e.name))
         .toList();
     final lastLocaleId = _sharedPreferences.getString(_spKeyLastSttLocaleId);
     final selectedLocale = lastLocaleId?.let((it) => allLocales
-            .firstWhereOrNull((appLocale) => appLocale.localeId == it)) ??
+            .firstWhereOrNull((sttLocale) => sttLocale.localeId == it)) ??
         allLocales.firstOrNull;
     return Stt(
       supportedLocales: allLocales,
@@ -32,12 +32,12 @@ class SttProvider extends _$SttProvider {
     );
   }
 
-  void setSelectedLocale(AppLocale? appLocale) {
+  void setSelectedLocale(SttLocale? sttLocale) {
     update((previousState) {
-      appLocale?.localeId.let((localeId) {
+      sttLocale?.localeId.let((localeId) {
         _sharedPreferences.setString(_spKeyLastSttLocaleId, localeId);
       });
-      return previousState.copyWith(selectedLocale: appLocale);
+      return previousState.copyWith(selectedLocale: sttLocale);
     });
   }
 }

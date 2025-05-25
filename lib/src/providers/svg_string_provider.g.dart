@@ -87,16 +87,14 @@ class SvgStringProviderProvider
     required String svgLink,
     Map<String, String>? headers,
   }) : this._internal(
-         () =>
-             SvgStringProvider()
-               ..svgLink = svgLink
-               ..headers = headers,
+         () => SvgStringProvider()
+           ..svgLink = svgLink
+           ..headers = headers,
          from: svgStringProvider,
          name: r'svgStringProvider',
-         debugGetCreateSourceHash:
-             const bool.fromEnvironment('dart.vm.product')
-                 ? null
-                 : _$svgStringProviderHash,
+         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+             ? null
+             : _$svgStringProviderHash,
          dependencies: SvgStringProviderFamily._dependencies,
          allTransitiveDependencies:
              SvgStringProviderFamily._allTransitiveDependencies,
@@ -128,10 +126,9 @@ class SvgStringProviderProvider
     return ProviderOverride(
       origin: this,
       override: SvgStringProviderProvider._internal(
-        () =>
-            create()
-              ..svgLink = svgLink
-              ..headers = headers,
+        () => create()
+          ..svgLink = svgLink
+          ..headers = headers,
         from: from,
         name: null,
         dependencies: null,

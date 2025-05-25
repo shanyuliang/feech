@@ -15,10 +15,9 @@ final cameraMetaProvider =
     AutoDisposeNotifierProvider<CameraMetaProvider, CameraMeta>.internal(
       CameraMetaProvider.new,
       name: r'cameraMetaProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$cameraMetaProviderHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$cameraMetaProviderHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );

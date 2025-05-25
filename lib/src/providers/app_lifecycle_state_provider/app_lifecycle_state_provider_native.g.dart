@@ -15,10 +15,9 @@ final appLifecycleStateProvider =
     NotifierProvider<AppLifecycleStateProvider, AppLifecycleState>.internal(
       AppLifecycleStateProvider.new,
       name: r'appLifecycleStateProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$appLifecycleStateProviderHash,
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$appLifecycleStateProviderHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );

@@ -84,10 +84,9 @@ class LoggingProviderProvider
         () => LoggingProvider()..actionLoggingList = actionLoggingList,
         from: loggingProvider,
         name: r'loggingProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$loggingProviderHash,
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$loggingProviderHash,
         dependencies: LoggingProviderFamily._dependencies,
         allTransitiveDependencies:
             LoggingProviderFamily._allTransitiveDependencies,

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'locale_voices.dart';
+import 'tts_locale_voices.dart';
 
 part 'tts.freezed.dart';
 
@@ -10,7 +10,7 @@ part 'tts.freezed.dart';
 abstract class Tts with _$Tts {
   const factory Tts({
     required final FlutterTts flutterTts,
-    required final List<LocaleVoices> allLocaleVoices,
+    required final List<TtsLocaleVoices> allLocaleVoices,
     required final String? selectedLocaleId,
     required final String? selectedVoiceId,
   }) = _Tts;

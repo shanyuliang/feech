@@ -6,15 +6,16 @@ part of 'tts_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ttsProviderHash() => r'6c8f23aaf3a09c23312f6d0eb9e36eb53e4eea3d';
+String _$ttsProviderHash() => r'9e9718e7f41fe1695429682498607c0d14048085';
 
 /// See also [TtsProvider].
 @ProviderFor(TtsProvider)
 final ttsProvider = AsyncNotifierProvider<TtsProvider, Tts>.internal(
   TtsProvider.new,
   name: r'ttsProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$ttsProviderHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$ttsProviderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
