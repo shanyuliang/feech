@@ -72,6 +72,8 @@ export 'src/signals/page_title_signal.dart';
 export 'src/signals/page_title_signal_container.dart';
 export 'src/signals/page_title_signal_map.dart';
 export 'src/signals/runtime_info_signal.dart';
+export 'src/signals/stt_signal.dart';
+export 'src/signals/tts_signal.dart';
 export 'src/signals/user_location_signal.dart';
 export 'src/support/app_cache_manager.dart';
 export 'src/support/cache.dart';

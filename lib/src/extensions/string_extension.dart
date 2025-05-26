@@ -156,6 +156,10 @@ extension StringExtension on String {
     return Uri.tryParse(this);
   }
 
+  String encodeToBeUrlParameter() => Uri.encodeComponent(this);
+
+  String encodeAsUrl() => Uri.encodeFull(this);
+
   BoxFit parseAsBoxFit() {
     return switch (toUpperCase()) {
       "CONTAIN" => BoxFit.contain,

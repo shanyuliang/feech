@@ -1,3 +1,7 @@
+## 0.1.51
+
+* Add stt and tts signal
+
 ## 0.1.50
 
 * Add more json converters
