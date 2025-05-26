@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:version/version.dart';
 
+import '../reg_exp_collection.dart';
 import '../utilities/handy_util.dart';
 import 'locale_extension.dart';
 import 'uri_extension.dart';
 
 extension StringExtension on String {
-  static final whitespacesRegExp = RegExp(r"\s+");
-  static final leftRightSingleQuoteRegExp = RegExp(r"[\u2018\u2019]");
   static final countryInDName = RegExp(r"/C=([^/]+)");
   static final organizationInDName = RegExp(r"/O=([^/]+)");
   static final commonNameInDName = RegExp(r"/CN=([^/]+)");
