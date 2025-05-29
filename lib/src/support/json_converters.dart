@@ -40,6 +40,15 @@ class DateTimeDynamicConverterNullable extends JsonConverterEx<DateTime?, dynami
 
   @override
   dynamic toJson(DateTime? object) => object?.formatToDTOString();
+
+  const DateTimeDynamicConverterNullable.auLocalInputLocalOutput()
+    : this(parsingOfFormat: 'dd/MM/yyyy HH:mm:ss', parsingWithTimezoneSuffix: null, parsingOutputTimezoneMode: TimezoneMode.local);
+
+  const DateTimeDynamicConverterNullable.isoUtcInputLocalOutput()
+    : this(parsingOfFormat: null, parsingWithTimezoneSuffix: 'Z', parsingOutputTimezoneMode: TimezoneMode.local);
+
+  const DateTimeDynamicConverterNullable.isoInputLocalOutput()
+    : this(parsingOfFormat: null, parsingWithTimezoneSuffix: null, parsingOutputTimezoneMode: TimezoneMode.local);
 }
 
 class DateTimeStringConverter extends JsonConverterEx<DateTime, String> {
