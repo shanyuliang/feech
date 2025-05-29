@@ -1,3 +1,7 @@
+## 0.1.52
+
+* Update dependencies
+
 ## 0.1.51
 
 * Add stt and tts signal

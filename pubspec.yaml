@@ -1,5 +1,5 @@
 name: feech
-version: 0.1.51
+version: 0.1.52
 description: "Flutter Experience Emma Can Help"
 homepage: "https://github.com/shanyuliang/feech"
 repository: "https://github.com/shanyuliang/feech"
@@ -15,7 +15,7 @@ platforms:
 
 environment:
   sdk: '>=3.8.0 <4.0.0'
-  flutter: ">=3.32.0"
+  flutter: ">=3.32.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -32,7 +32,7 @@ dependencies:
   flutter_svg: '>=2.1.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.2 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.0.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
-  geocoding: '>=3.0.0 <4.0.0' # https://pub.dev/packages/geocoding
+  geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
   geolocator: '>=14.0.0 <15.0.0' # https://pub.dev/packages/geolocator
   go_router: '>=15.1.2 <16.0.0' # https://pub.dev/packages/go_router
   google_maps_flutter: '>=2.12.2 <3.0.0' # https://pub.dev/packages/google_maps_flutter
@@ -65,7 +65,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: '>=2.4.15 <3.0.0' # https://pub.dev/packages/build_runner
-  flutter_lints: '>=5.0.0 <6.0.0' # https://pub.dev/packages/flutter_lints
+  flutter_lints: '>=6.0.0 <7.0.0' # https://pub.dev/packages/flutter_lints
   freezed: '>=3.0.6 <4.0.0' # https://pub.dev/packages/freezed
   json_serializable: '>=6.9.4 <7.0.0' # https://pub.dev/packages/json_serializable
   riverpod_analyzer_utils: '>=0.5.10 <1.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
