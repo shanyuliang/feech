@@ -9,19 +9,27 @@ import '../extensions/color_extension.dart';
 import '../extensions/date_time_extension.dart';
 import '../extensions/int_extension.dart';
 import '../extensions/string_extension.dart';
+import '../models/timezone_mode.dart';
 import 'json_converter_ex.dart';
 
-/// The output of the `fromJson` method is a local time.
 class DateTimeDynamicConverterNullable extends JsonConverterEx<DateTime?, dynamic> {
-  const DateTimeDynamicConverterNullable();
+  final String? parsingOfFormat;
+  final String? parsingWithTimezoneSuffix;
+  final TimezoneMode parsingOutputTimezoneMode;
+
+  const DateTimeDynamicConverterNullable({this.parsingOfFormat, this.parsingWithTimezoneSuffix, this.parsingOutputTimezoneMode = TimezoneMode.auto});
 
   @override
   DateTime? fromJson(dynamic json) {
     if (json != null) {
       if (json is String) {
-        return DateTime.parse(json).toLocal();
+        return json.parseAsDTODateTime(
+          ofFormat: parsingOfFormat,
+          withTimezoneSuffix: parsingWithTimezoneSuffix,
+          outputTimezoneMode: parsingOutputTimezoneMode,
+        );
       } else if (json is int) {
-        return DateTime.fromMillisecondsSinceEpoch(json, isUtc: false);
+        return DateTime.fromMillisecondsSinceEpoch(json, isUtc: parsingOutputTimezoneMode == TimezoneMode.utc);
       } else {
         return null;
       }
@@ -35,20 +43,36 @@ class DateTimeDynamicConverterNullable extends JsonConverterEx<DateTime?, dynami
 }
 
 class DateTimeStringConverter extends JsonConverterEx<DateTime, String> {
-  const DateTimeStringConverter();
+  final String? parsingOfFormat;
+  final String? parsingWithTimezoneSuffix;
+  final TimezoneMode parsingOutputTimezoneMode;
+
+  const DateTimeStringConverter({this.parsingOfFormat, this.parsingWithTimezoneSuffix, this.parsingOutputTimezoneMode = TimezoneMode.auto});
 
   @override
-  DateTime fromJson(String json) => json.parseAsDTODateTime();
+  DateTime fromJson(String json) => json.parseAsDTODateTime(
+    ofFormat: parsingOfFormat,
+    withTimezoneSuffix: parsingWithTimezoneSuffix,
+    outputTimezoneMode: parsingOutputTimezoneMode,
+  );
 
   @override
   String toJson(DateTime object) => object.formatToDTOString();
 }
 
 class DateTimeStringConverterNullable extends JsonConverterEx<DateTime?, String?> {
-  const DateTimeStringConverterNullable();
+  final String? parsingOfFormat;
+  final String? parsingWithTimezoneSuffix;
+  final TimezoneMode parsingOutputTimezoneMode;
+
+  const DateTimeStringConverterNullable({this.parsingOfFormat, this.parsingWithTimezoneSuffix, this.parsingOutputTimezoneMode = TimezoneMode.auto});
 
   @override
-  DateTime? fromJson(String? json) => json?.parseAsDTODateTime();
+  DateTime? fromJson(String? json) => json?.parseAsDTODateTime(
+    ofFormat: parsingOfFormat,
+    withTimezoneSuffix: parsingWithTimezoneSuffix,
+    outputTimezoneMode: parsingOutputTimezoneMode,
+  );
 
   @override
   String? toJson(DateTime? object) => object?.formatToDTOString();

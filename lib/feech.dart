@@ -41,6 +41,7 @@ export 'src/models/runtime_info.dart';
 export 'src/models/stt.dart';
 export 'src/models/stt_locale.dart';
 export 'src/models/time_granularity.dart';
+export 'src/models/timezone_mode.dart';
 export 'src/models/tts.dart';
 export 'src/models/tts_locale_voices.dart';
 export 'src/models/user_location.dart';

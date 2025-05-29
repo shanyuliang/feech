@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:version/version.dart';
 
+import '../models/timezone_mode.dart';
 import '../reg_exp_collection.dart';
 import '../utilities/handy_util.dart';
 import 'locale_extension.dart';
@@ -117,7 +119,17 @@ extension StringExtension on String {
     return hslColor.toColor();
   }
 
-  DateTime parseAsDTODateTime() => DateTime.parse(this);
+  DateTime parseAsDTODateTime({final String? ofFormat, final String? withTimezoneSuffix, final TimezoneMode outputTimezoneMode = TimezoneMode.auto}) {
+    final dataTime = switch (ofFormat) {
+      null => DateTime.parse('$this${withTimezoneSuffix ?? ''}'),
+      _ => DateFormat(ofFormat).parse('$this${withTimezoneSuffix ?? ''}'),
+    };
+    return switch (outputTimezoneMode) {
+      TimezoneMode.auto => dataTime,
+      TimezoneMode.utc => dataTime.toUtc(),
+      TimezoneMode.local => dataTime.toLocal(),
+    };
+  }
 
   /// Trim leading and trailing spaces and also replace multiple whitespaces to single whitespace
   String superTrim() => trim().replaceAll(whitespacesRegExp, ' ');
