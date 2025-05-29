@@ -12,6 +12,42 @@ import '../extensions/string_extension.dart';
 import '../models/timezone_mode.dart';
 import 'json_converter_ex.dart';
 
+class DateTimeDynamicConverter extends JsonConverterEx<DateTime, Object> {
+  static final dummyDateTime = DateTime(1970, 1, 1, 0, 0, 0, 0, 0);
+  final String? parsingOfFormat;
+  final String? parsingWithTimezoneSuffix;
+  final TimezoneMode parsingOutputTimezoneMode;
+
+  const DateTimeDynamicConverter({this.parsingOfFormat, this.parsingWithTimezoneSuffix, this.parsingOutputTimezoneMode = TimezoneMode.auto});
+
+  @override
+  DateTime fromJson(Object json) {
+    if (json is String) {
+      return json.parseAsDTODateTime(
+        ofFormat: parsingOfFormat,
+        withTimezoneSuffix: parsingWithTimezoneSuffix,
+        outputTimezoneMode: parsingOutputTimezoneMode,
+      );
+    } else if (json is int) {
+      return DateTime.fromMillisecondsSinceEpoch(json, isUtc: parsingOutputTimezoneMode == TimezoneMode.utc);
+    } else {
+      return dummyDateTime;
+    }
+  }
+
+  @override
+  Object toJson(DateTime object) => object.formatToDTOString();
+
+  const DateTimeDynamicConverter.auLocalInputLocalOutput()
+    : this(parsingOfFormat: 'dd/MM/yyyy HH:mm:ss', parsingWithTimezoneSuffix: null, parsingOutputTimezoneMode: TimezoneMode.local);
+
+  const DateTimeDynamicConverter.isoUtcInputLocalOutput()
+    : this(parsingOfFormat: null, parsingWithTimezoneSuffix: 'Z', parsingOutputTimezoneMode: TimezoneMode.local);
+
+  const DateTimeDynamicConverter.isoInputLocalOutput()
+    : this(parsingOfFormat: null, parsingWithTimezoneSuffix: null, parsingOutputTimezoneMode: TimezoneMode.local);
+}
+
 class DateTimeDynamicConverterNullable extends JsonConverterEx<DateTime?, dynamic> {
   final String? parsingOfFormat;
   final String? parsingWithTimezoneSuffix;
