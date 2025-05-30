@@ -8,8 +8,7 @@ import '../support/cancellation_exception.dart';
 import '../support/json_converter_ex.dart';
 import '../support/network/http_method.dart';
 import '../support/network/http_status.dart';
-import '../support/network/network_result_new.dart';
-// import '../support/network/network_result.dart';
+import '../support/network/network_result.dart';
 
 class NetworkHelper {
   final Map<String, Completer> _runningCompleterMap = {};
@@ -25,39 +24,31 @@ class NetworkHelper {
     NetworkResult<G, E> networkResult;
     if (response.statusCode >= 200 && response.statusCode <= 299) {
       if (G == Uint8List) {
-        networkResult = NetworkResultGood(
-            response.bodyBytes as G, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultGood(response.bodyBytes as G, HttpStatus.fromResponse(response));
       } else if (G == String) {
-        networkResult = NetworkResultGood(
-            response.body as G, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultGood(response.body as G, HttpStatus.fromResponse(response));
       } else if (jsonProcessor != null) {
         try {
           final object = await jsonProcessor.fromJsonEx(response.body);
-          networkResult =
-              NetworkResultGood(object, HttpStatus.fromResponse(response));
+          networkResult = NetworkResultGood(object, HttpStatus.fromResponse(response));
         } catch (ex) {
           final exception = (ex is Exception) ? ex : Exception(ex.toString());
-          networkResult = NetworkResultMalformed(
-              response.body, HttpStatus.fromResponse(response), exception);
+          networkResult = NetworkResultMalformed(response.body, HttpStatus.fromResponse(response), exception);
         }
       } else {
-        networkResult = NetworkResultGood(
-            response.body as G, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultGood(response.body as G, HttpStatus.fromResponse(response));
       }
     } else {
       if (errorJsonProcessor != null) {
         try {
           final object = await errorJsonProcessor.fromJsonEx(response.body);
-          networkResult =
-              NetworkResultHttpError(object, HttpStatus.fromResponse(response));
+          networkResult = NetworkResultHttpError(object, HttpStatus.fromResponse(response));
         } catch (ex) {
           final exception = (ex is Exception) ? ex : Exception(ex.toString());
-          networkResult = NetworkResultHttpErrorMalformed(
-              response.body, HttpStatus.fromResponse(response), exception);
+          networkResult = NetworkResultHttpErrorMalformed(response.body, HttpStatus.fromResponse(response), exception);
         }
       } else {
-        networkResult = NetworkResultHttpError(
-            response.body as E, HttpStatus.fromResponse(response));
+        networkResult = NetworkResultHttpError(response.body as E, HttpStatus.fromResponse(response));
       }
     }
     return networkResult;
@@ -94,19 +85,21 @@ class NetworkHelper {
         HttpMethod.patch => _client.patch(url, headers: headerMap, body: body),
         HttpMethod.delete => _client.delete(url, headers: headerMap),
       };
-      futureResponse.then((response) {
-        if (!completer.isCompleted) {
-          completer.complete(response);
-        }
-      }, onError: (error) {
-        if (!completer.isCompleted) {
-          completer.completeError(error);
-        }
-        return null;
-      });
+      futureResponse.then(
+        (response) {
+          if (!completer.isCompleted) {
+            completer.complete(response);
+          }
+        },
+        onError: (error) {
+          if (!completer.isCompleted) {
+            completer.completeError(error);
+          }
+          return null;
+        },
+      );
       final response = await completer.future;
-      networkResult = await _createNetworkResultFromResponse(
-          response, jsonProcessor, errorJsonProcessor);
+      networkResult = await _createNetworkResultFromResponse(response, jsonProcessor, errorJsonProcessor);
     } on TimeoutException catch (e) {
       networkResult = NetworkResultTimeout(e.duration);
     } on CancellationException {
@@ -119,17 +112,8 @@ class NetworkHelper {
     return networkResult;
   }
 
-  Future<NetworkResult<G, E>> headAsync<G, E>({
-    required String url,
-    Map<String, String>? headerMap,
-    String? tag,
-  }) {
-    return _doAsync(
-      httpMethod: HttpMethod.head,
-      url: Uri.parse(url),
-      headerMap: headerMap,
-      tag: tag,
-    );
+  Future<NetworkResult<G, E>> headAsync<G, E>({required String url, Map<String, String>? headerMap, String? tag}) {
+    return _doAsync(httpMethod: HttpMethod.head, url: Uri.parse(url), headerMap: headerMap, tag: tag);
   }
 
   Future<NetworkResult<G, E>> getAsync<G, E>({

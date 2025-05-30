@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:feech/src/support/app_cache_manager.dart';
+import 'package:feech/src/support/network/app_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -42,7 +44,7 @@ class CachedNetworkSvgPicture extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncUrlAndFile = ref.watch(svgFileProvider(svgLink: url, headers: headers));
+    final asyncUrlAndFile = ref.watch(svgFileProvider(appCacheManager: AppCacheManager(httpClient: AppClient()), svgLink: url, headers: headers));
     return asyncUrlAndFile.when(
       loading: () {
         return loadingBuilder?.call(context) ?? _cachedSvgPictureDefaultPlaceholder(context);

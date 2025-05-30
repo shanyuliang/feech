@@ -6,7 +6,7 @@ part of 'svg_file_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$svgFileProviderHash() => r'449f68e96844cef2da4b2cb509f22d4030607f39';
+String _$svgFileProviderHash() => r'ec7133742a96350e60416587c50f64e6025401f2';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,12 @@ class _SystemHash {
 
 abstract class _$SvgFileProvider
     extends BuildlessAutoDisposeStreamNotifier<(String, File?)> {
+  late final AppCacheManager appCacheManager;
   late final String svgLink;
   late final Map<String, String>? headers;
 
   Stream<(String, File?)> build({
+    required AppCacheManager appCacheManager,
     required String svgLink,
     Map<String, String>? headers,
   });
@@ -51,17 +53,26 @@ class SvgFileProviderFamily extends Family<AsyncValue<(String, File?)>> {
 
   /// See also [SvgFileProvider].
   SvgFileProviderProvider call({
+    required AppCacheManager appCacheManager,
     required String svgLink,
     Map<String, String>? headers,
   }) {
-    return SvgFileProviderProvider(svgLink: svgLink, headers: headers);
+    return SvgFileProviderProvider(
+      appCacheManager: appCacheManager,
+      svgLink: svgLink,
+      headers: headers,
+    );
   }
 
   @override
   SvgFileProviderProvider getProviderOverride(
     covariant SvgFileProviderProvider provider,
   ) {
-    return call(svgLink: provider.svgLink, headers: provider.headers);
+    return call(
+      appCacheManager: provider.appCacheManager,
+      svgLink: provider.svgLink,
+      headers: provider.headers,
+    );
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -88,10 +99,12 @@ class SvgFileProviderProvider
         > {
   /// See also [SvgFileProvider].
   SvgFileProviderProvider({
+    required AppCacheManager appCacheManager,
     required String svgLink,
     Map<String, String>? headers,
   }) : this._internal(
          () => SvgFileProvider()
+           ..appCacheManager = appCacheManager
            ..svgLink = svgLink
            ..headers = headers,
          from: svgFileProvider,
@@ -102,6 +115,7 @@ class SvgFileProviderProvider
          dependencies: SvgFileProviderFamily._dependencies,
          allTransitiveDependencies:
              SvgFileProviderFamily._allTransitiveDependencies,
+         appCacheManager: appCacheManager,
          svgLink: svgLink,
          headers: headers,
        );
@@ -113,16 +127,22 @@ class SvgFileProviderProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
+    required this.appCacheManager,
     required this.svgLink,
     required this.headers,
   }) : super.internal();
 
+  final AppCacheManager appCacheManager;
   final String svgLink;
   final Map<String, String>? headers;
 
   @override
   Stream<(String, File?)> runNotifierBuild(covariant SvgFileProvider notifier) {
-    return notifier.build(svgLink: svgLink, headers: headers);
+    return notifier.build(
+      appCacheManager: appCacheManager,
+      svgLink: svgLink,
+      headers: headers,
+    );
   }
 
   @override
@@ -131,6 +151,7 @@ class SvgFileProviderProvider
       origin: this,
       override: SvgFileProviderProvider._internal(
         () => create()
+          ..appCacheManager = appCacheManager
           ..svgLink = svgLink
           ..headers = headers,
         from: from,
@@ -138,6 +159,7 @@ class SvgFileProviderProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
+        appCacheManager: appCacheManager,
         svgLink: svgLink,
         headers: headers,
       ),
@@ -153,6 +175,7 @@ class SvgFileProviderProvider
   @override
   bool operator ==(Object other) {
     return other is SvgFileProviderProvider &&
+        other.appCacheManager == appCacheManager &&
         other.svgLink == svgLink &&
         other.headers == headers;
   }
@@ -160,6 +183,7 @@ class SvgFileProviderProvider
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, appCacheManager.hashCode);
     hash = _SystemHash.combine(hash, svgLink.hashCode);
     hash = _SystemHash.combine(hash, headers.hashCode);
 
@@ -171,6 +195,9 @@ class SvgFileProviderProvider
 // ignore: unused_element
 mixin SvgFileProviderRef
     on AutoDisposeStreamNotifierProviderRef<(String, File?)> {
+  /// The parameter `appCacheManager` of this provider.
+  AppCacheManager get appCacheManager;
+
   /// The parameter `svgLink` of this provider.
   String get svgLink;
 
@@ -187,6 +214,9 @@ class _SvgFileProviderProviderElement
     with SvgFileProviderRef {
   _SvgFileProviderProviderElement(super.provider);
 
+  @override
+  AppCacheManager get appCacheManager =>
+      (origin as SvgFileProviderProvider).appCacheManager;
   @override
   String get svgLink => (origin as SvgFileProviderProvider).svgLink;
   @override

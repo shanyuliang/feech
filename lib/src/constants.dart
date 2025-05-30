@@ -1,16 +1,11 @@
 import 'package:flutter/animation.dart';
 
-import 'helpers/network_helper.dart';
 import 'support/app_cache_manager.dart';
 import 'support/network/app_client.dart';
 
 const debugTag = "Feech";
 const frameDelay = Duration(milliseconds: 16);
-final defaultAppClient = AppClient();
-final defaultJsonAppClient = AppClient(jsonAppClient: true);
-final defaultAppCacheManager = AppCacheManager(httpClient: defaultAppClient);
-final defaultNetworkHelper = NetworkHelper(defaultAppClient);
-final defaultJsonNetworkHelper = NetworkHelper(defaultJsonAppClient);
+final defaultAppCacheManager = AppCacheManager(httpClient: AppClient());
 const allCurves = [
   (Curves.bounceIn, "bounceIn"),
   (Curves.bounceInOut, "bounceInOut"),

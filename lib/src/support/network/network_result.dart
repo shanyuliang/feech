@@ -1,180 +1,75 @@
 import 'http_status.dart';
 
-abstract class NetworkResult<G, E> {
-  NetworkResult._();
-
-  G? getGoodValueOrNull();
-
-  E? getErrorValueOrNull();
-
-  Exception? getExceptionOrNull();
-
-  String? getErrorMessageOrNull();
-
-  factory NetworkResult.good(G? value, HttpStatus httpStatus) => NetworkResultGood<G, E>._internal(value, httpStatus);
-
-  factory NetworkResult.malformed(String value, HttpStatus httpStatus, Exception exception) =>
-      NetworkResultMalformed<G, E>._internal(value, httpStatus, exception);
-
-  factory NetworkResult.httpError(E? value, HttpStatus httpStatus) => NetworkResultHttpError<G, E>._internal(value, httpStatus);
-
-  factory NetworkResult.httpErrorMalformed(String value, HttpStatus httpStatus, Exception exception) =>
-      NetworkResultHttpErrorMalformed<G, E>._internal(value, httpStatus, exception);
-
-  factory NetworkResult.ioError(Exception exception) => NetworkResultIoError<G, E>._internal(exception);
-
-  factory NetworkResult.timeout(Duration? timeout) => NetworkResultTimeout<G, E>._internal(timeout);
-
-  factory NetworkResult.cancelled() => NetworkResultCancelled<G, E>._internal();
-}
+sealed class NetworkResult<G, E> {}
 
 class NetworkResultGood<G, E> extends NetworkResult<G, E> {
   final G? value;
   final HttpStatus httpStatus;
 
-  NetworkResultGood._internal(this.value, this.httpStatus) : super._();
+  NetworkResultGood(this.value, this.httpStatus);
 
   @override
-  String toString() => "{NetworkResultGood={httpStatus=$httpStatus},value=$value}";
-
-  @override
-  String? getErrorMessageOrNull() => null;
-
-  @override
-  E? getErrorValueOrNull() => null;
-
-  @override
-  Exception? getExceptionOrNull() => null;
-
-  @override
-  G? getGoodValueOrNull() => value;
-}
-
-class NetworkResultHttpError<G, E> extends NetworkResult<G, E> {
-  final E? value;
-  final HttpStatus httpStatus;
-
-  NetworkResultHttpError._internal(this.value, this.httpStatus) : super._();
-
-  @override
-  String toString() => "{NetworkResultHttpError={httpStatus=$httpStatus,value=$value}}";
-
-  @override
-  String? getErrorMessageOrNull() => httpStatus.message;
-
-  @override
-  E? getErrorValueOrNull() => value;
-
-  @override
-  Exception? getExceptionOrNull() => null;
-
-  @override
-  G? getGoodValueOrNull() => null;
+  String toString() =>
+      "NetworkResultGood [httpStatus=$httpStatus,value=$value]";
 }
 
 class NetworkResultMalformed<G, E> extends NetworkResult<G, E> {
-  final String value;
+  final String? stringValue;
   final HttpStatus httpStatus;
-  final Exception exception;
+  final Object? error;
 
-  NetworkResultMalformed._internal(this.value, this.httpStatus, this.exception) : super._();
-
-  @override
-  String toString() => "{NetworkResultMalformed={httpStatus=$httpStatus,exception=$exception,value=$value}}";
+  NetworkResultMalformed(this.stringValue, this.httpStatus, this.error);
 
   @override
-  String? getErrorMessageOrNull() => null;
+  String toString() =>
+      "NetworkResultMalformed [httpStatus=$httpStatus,stringValue=$stringValue,error=$error]";
+}
+
+class NetworkResultHttpError<G, E> extends NetworkResult<G, E> {
+  final E? error;
+  final HttpStatus httpStatus;
+
+  NetworkResultHttpError(this.error, this.httpStatus);
 
   @override
-  E? getErrorValueOrNull() => null;
-
-  @override
-  Exception? getExceptionOrNull() => exception;
-
-  @override
-  G? getGoodValueOrNull() => null;
+  String toString() =>
+      "NetworkResultHttpError [httpStatus=$httpStatus,error=$error]";
 }
 
 class NetworkResultHttpErrorMalformed<G, E> extends NetworkResult<G, E> {
-  final String value;
+  final String? stringValue;
   final HttpStatus httpStatus;
-  final Exception exception;
+  final Object? error;
 
-  NetworkResultHttpErrorMalformed._internal(this.value, this.httpStatus, this.exception) : super._();
-
-  @override
-  String toString() => "{NetworkResultHttpErrorMalformed={httpStatus=$httpStatus,exception=$exception,value=$value}}";
+  NetworkResultHttpErrorMalformed(
+      this.stringValue, this.httpStatus, this.error);
 
   @override
-  String? getErrorMessageOrNull() => httpStatus.message;
-
-  @override
-  E? getErrorValueOrNull() => null;
-
-  @override
-  Exception? getExceptionOrNull() => exception;
-
-  @override
-  G? getGoodValueOrNull() => null;
+  String toString() =>
+      "NetworkResultHttpErrorMalformed [httpStatus=$httpStatus,stringValue=$stringValue,error=$error]";
 }
 
 class NetworkResultIoError<G, E> extends NetworkResult<G, E> {
-  final Exception exception;
+  final Object? error;
 
-  NetworkResultIoError._internal(this.exception) : super._();
-
-  @override
-  String toString() => "{NetworkResultIoError={exception=$exception}";
+  NetworkResultIoError(this.error);
 
   @override
-  String? getErrorMessageOrNull() => null;
-
-  @override
-  E? getErrorValueOrNull() => null;
-
-  @override
-  Exception? getExceptionOrNull() => exception;
-
-  @override
-  G? getGoodValueOrNull() => null;
+  String toString() => "NetworkResultIoError [error=$error]";
 }
 
 class NetworkResultTimeout<G, E> extends NetworkResult<G, E> {
   final Duration? timeout;
 
-  NetworkResultTimeout._internal(this.timeout) : super._();
+  NetworkResultTimeout(this.timeout);
 
   @override
-  String toString() => "{NetworkResultTimeout={timeout=${timeout.toString()}}";
-
-  @override
-  String? getErrorMessageOrNull() => "Network operation timeout ${timeout.toString()}";
-
-  @override
-  E? getErrorValueOrNull() => null;
-
-  @override
-  Exception? getExceptionOrNull() => null;
-
-  @override
-  G? getGoodValueOrNull() => null;
+  String toString() => "NetworkResultTimeout [timeout=$timeout]";
 }
 
 class NetworkResultCancelled<G, E> extends NetworkResult<G, E> {
-  NetworkResultCancelled._internal() : super._();
+  NetworkResultCancelled();
 
   @override
-  String toString() => "{NetworkResultCancelled}";
-
-  @override
-  String? getErrorMessageOrNull() => "Network operation cancelled";
-
-  @override
-  E? getErrorValueOrNull() => null;
-
-  @override
-  Exception? getExceptionOrNull() => null;
-
-  @override
-  G? getGoodValueOrNull() => null;
+  String toString() => "NetworkResultCancelled";
 }
