@@ -1,3 +1,7 @@
+## 0.1.53
+
+* Update dependencies
+
 ## 0.1.52
 
 * Update dependencies
