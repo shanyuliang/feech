@@ -1,3 +1,7 @@
+## 0.1.56
+
+* Update dependencies
+
 ## 0.1.55
 
 * Update app client
