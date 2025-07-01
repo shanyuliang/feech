@@ -20,20 +20,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  asn1lib: '>=1.6.4 <2.0.0' # https://pub.dev/packages/asn1lib
-  async: '>=2.12.0 <3.0.0' # https://pub.dev/packages/async
+  asn1lib: '>=1.6.5 <2.0.0' # https://pub.dev/packages/asn1lib
+  async: '>=2.13.0 <3.0.0' # https://pub.dev/packages/async
   camera: '>=0.11.1 <1.0.0' # https://pub.dev/packages/camera
   cloud_firestore: ">=5.6.9 <6.0.0" # https://pub.dev/packages/cloud_firestore
   collection: '>=1.19.1 <2.0.0' # https://pub.dev/packages/collection
   crypto: '>=3.0.6 <4.0.0' # https://pub.dev/packages/crypto
-  firebase_crashlytics: '>=4.3.6 <5.0.0' # https://pub.dev/packages/firebase_crashlytics
+  firebase_crashlytics: '>=4.3.7 <5.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=2.6.1 <3.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_svg: '>=2.2.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.3 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.0.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
-  geolocator: '>=14.0.0 <15.0.0' # https://pub.dev/packages/geolocator
+  geolocator: '>=14.0.1 <15.0.0' # https://pub.dev/packages/geolocator
   go_router: '>=15.2.4 <16.0.0' # https://pub.dev/packages/go_router
   google_maps_flutter: '>=2.12.3 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=1.4.0 <2.0.0' # https://pub.dev/packages/http
@@ -64,7 +64,7 @@ dev_dependencies:
   build_runner: '>=2.5.4 <3.0.0' # https://pub.dev/packages/build_runner
   flutter_lints: '>=6.0.0 <7.0.0' # https://pub.dev/packages/flutter_lints
   freezed: '>=3.0.6 <4.0.0' # https://pub.dev/packages/freezed
-  json_serializable: '>=6.9.4 <7.0.0' # https://pub.dev/packages/json_serializable
+  json_serializable: '>=6.9.5 <7.0.0' # https://pub.dev/packages/json_serializable
   riverpod_analyzer_utils: '>=0.5.10 <1.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
   riverpod_generator: '>=2.6.5 <3.0.0' # https://pub.dev/packages/riverpod_generator
   riverpod_lint: '>=2.6.5 <3.0.0' # https://pub.dev/packages/riverpod_lint
