@@ -34,7 +34,7 @@ dependencies:
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
   geolocator: '>=14.0.2 <15.0.0' # https://pub.dev/packages/geolocator
-  go_router: '>=16.2.0 <17.0.0' # https://pub.dev/packages/go_router
+  go_router: '>=16.2.1 <17.0.0' # https://pub.dev/packages/go_router
   google_maps_flutter: '>=2.12.3 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=1.5.0 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.5.4 <5.0.0' # https://pub.dev/packages/image
