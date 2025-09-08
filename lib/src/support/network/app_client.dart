@@ -98,11 +98,11 @@ final class AppClient extends BaseClient {
           }
         }
         response = await Response.fromStream(streamedResponse);
+        await _afterReceivingResponse(response);
       } catch (error, stackTrace) {
         if (!(retryWhenError?.call(error, stackTrace, count) ?? false)) rethrow;
       }
       if (response != null) {
-        await _afterReceivingResponse(response);
         if (!(retryWhen?.call(response, count) ?? false)) return response;
       }
       request = await _createRequest(method, url, headers, body, encoding);
