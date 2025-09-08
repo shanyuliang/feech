@@ -87,9 +87,7 @@ final class AppClient extends BaseClient {
       try {
         await _beforeSendingRequest(request);
         final streamedResponse = await send(request).timeout(timeoutOfRequest?.call(request) ?? const Duration(seconds: 999999));
-        debugPrint("11111");
         if (streamedResponse is EnhancedIOStreamedResponse) {
-          debugPrint("22222");
           final validCertificate = streamedResponse._inner?.certificate?.validateSpkiPin(validSpkiPins) ?? false;
           if (!validCertificate) {
             final serverSpkiPin = streamedResponse._inner?.certificate?.der.asCertificateDerGetSpkiPin();
@@ -99,13 +97,12 @@ final class AppClient extends BaseClient {
             );
           }
         }
-        debugPrint("33333");
         response = await Response.fromStream(streamedResponse);
-        await _afterReceivingResponse(response);
       } catch (error, stackTrace) {
         if (!(retryWhenError?.call(error, stackTrace, count) ?? false)) rethrow;
       }
       if (response != null) {
+        await _afterReceivingResponse(response);
         if (!(retryWhen?.call(response, count) ?? false)) return response;
       }
       request = await _createRequest(method, url, headers, body, encoding);
