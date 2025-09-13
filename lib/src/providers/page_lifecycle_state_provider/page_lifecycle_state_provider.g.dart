@@ -6,175 +6,106 @@ part of 'page_lifecycle_state_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pageLifecycleStateProviderHash() =>
-    r'56f4fd4df9420cb133437ae6569aa3eb620cb6b6';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-abstract class _$PageLifecycleStateProvider
-    extends BuildlessAutoDisposeNotifier<PageLifecycleState> {
-  late final String? routeName;
-
-  PageLifecycleState build(String? routeName);
-}
-
-/// See also [PageLifecycleStateProvider].
 @ProviderFor(PageLifecycleStateProvider)
-const pageLifecycleStateProvider = PageLifecycleStateProviderFamily();
+const pageLifecycleStateProvider = PageLifecycleStateProviderFamily._();
 
-/// See also [PageLifecycleStateProvider].
-class PageLifecycleStateProviderFamily extends Family<PageLifecycleState> {
-  /// See also [PageLifecycleStateProvider].
-  const PageLifecycleStateProviderFamily();
+final class PageLifecycleStateProviderProvider
+    extends $NotifierProvider<PageLifecycleStateProvider, PageLifecycleState> {
+  const PageLifecycleStateProviderProvider._({
+    required PageLifecycleStateProviderFamily super.from,
+    required String? super.argument,
+  }) : super(
+         retry: null,
+         name: r'pageLifecycleStateProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [PageLifecycleStateProvider].
-  PageLifecycleStateProviderProvider call(String? routeName) {
-    return PageLifecycleStateProviderProvider(routeName);
+  @override
+  String debugGetCreateSourceHash() => _$pageLifecycleStateProviderHash();
+
+  @override
+  String toString() {
+    return r'pageLifecycleStateProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  PageLifecycleStateProviderProvider getProviderOverride(
-    covariant PageLifecycleStateProviderProvider provider,
-  ) {
-    return call(provider.routeName);
-  }
+  PageLifecycleStateProvider create() => PageLifecycleStateProvider();
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'pageLifecycleStateProvider';
-}
-
-/// See also [PageLifecycleStateProvider].
-class PageLifecycleStateProviderProvider
-    extends
-        AutoDisposeNotifierProviderImpl<
-          PageLifecycleStateProvider,
-          PageLifecycleState
-        > {
-  /// See also [PageLifecycleStateProvider].
-  PageLifecycleStateProviderProvider(String? routeName)
-    : this._internal(
-        () => PageLifecycleStateProvider()..routeName = routeName,
-        from: pageLifecycleStateProvider,
-        name: r'pageLifecycleStateProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$pageLifecycleStateProviderHash,
-        dependencies: PageLifecycleStateProviderFamily._dependencies,
-        allTransitiveDependencies:
-            PageLifecycleStateProviderFamily._allTransitiveDependencies,
-        routeName: routeName,
-      );
-
-  PageLifecycleStateProviderProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.routeName,
-  }) : super.internal();
-
-  final String? routeName;
-
-  @override
-  PageLifecycleState runNotifierBuild(
-    covariant PageLifecycleStateProvider notifier,
-  ) {
-    return notifier.build(routeName);
-  }
-
-  @override
-  Override overrideWith(PageLifecycleStateProvider Function() create) {
-    return ProviderOverride(
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PageLifecycleState value) {
+    return $ProviderOverride(
       origin: this,
-      override: PageLifecycleStateProviderProvider._internal(
-        () => create()..routeName = routeName,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        routeName: routeName,
-      ),
+      providerOverride: $SyncValueProvider<PageLifecycleState>(value),
     );
-  }
-
-  @override
-  AutoDisposeNotifierProviderElement<
-    PageLifecycleStateProvider,
-    PageLifecycleState
-  >
-  createElement() {
-    return _PageLifecycleStateProviderProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
     return other is PageLifecycleStateProviderProvider &&
-        other.routeName == routeName;
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, routeName.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin PageLifecycleStateProviderRef
-    on AutoDisposeNotifierProviderRef<PageLifecycleState> {
-  /// The parameter `routeName` of this provider.
-  String? get routeName;
-}
+String _$pageLifecycleStateProviderHash() =>
+    r'56f4fd4df9420cb133437ae6569aa3eb620cb6b6';
 
-class _PageLifecycleStateProviderProviderElement
-    extends
-        AutoDisposeNotifierProviderElement<
+final class PageLifecycleStateProviderFamily extends $Family
+    with
+        $ClassFamilyOverride<
           PageLifecycleStateProvider,
-          PageLifecycleState
-        >
-    with PageLifecycleStateProviderRef {
-  _PageLifecycleStateProviderProviderElement(super.provider);
+          PageLifecycleState,
+          PageLifecycleState,
+          PageLifecycleState,
+          String?
+        > {
+  const PageLifecycleStateProviderFamily._()
+    : super(
+        retry: null,
+        name: r'pageLifecycleStateProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  PageLifecycleStateProviderProvider call(String? routeName) =>
+      PageLifecycleStateProviderProvider._(argument: routeName, from: this);
 
   @override
-  String? get routeName =>
-      (origin as PageLifecycleStateProviderProvider).routeName;
+  String toString() => r'pageLifecycleStateProvider';
 }
 
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$PageLifecycleStateProvider
+    extends $Notifier<PageLifecycleState> {
+  late final _$args = ref.$arg as String?;
+  String? get routeName => _$args;
+
+  PageLifecycleState build(String? routeName);
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(_$args);
+    final ref = this.ref as $Ref<PageLifecycleState, PageLifecycleState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<PageLifecycleState, PageLifecycleState>,
+              PageLifecycleState,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

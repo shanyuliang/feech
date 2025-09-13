@@ -6,162 +6,98 @@ part of 'logging_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loggingProviderHash() => r'35c191c075eddf6f7dd69b30c0206ceadf467a9f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-abstract class _$LoggingProvider extends BuildlessAsyncNotifier<Logging> {
-  late final List<Logging> Function() actionLoggingList;
-
-  FutureOr<Logging> build({
-    required List<Logging> Function() actionLoggingList,
-  });
-}
-
-/// See also [LoggingProvider].
 @ProviderFor(LoggingProvider)
-const loggingProvider = LoggingProviderFamily();
+const loggingProvider = LoggingProviderFamily._();
 
-/// See also [LoggingProvider].
-class LoggingProviderFamily extends Family<AsyncValue<Logging>> {
-  /// See also [LoggingProvider].
-  const LoggingProviderFamily();
+final class LoggingProviderProvider
+    extends $AsyncNotifierProvider<LoggingProvider, Logging> {
+  const LoggingProviderProvider._({
+    required LoggingProviderFamily super.from,
+    required List<Logging> Function() super.argument,
+  }) : super(
+         retry: null,
+         name: r'loggingProvider',
+         isAutoDispose: false,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [LoggingProvider].
-  LoggingProviderProvider call({
-    required List<Logging> Function() actionLoggingList,
-  }) {
-    return LoggingProviderProvider(actionLoggingList: actionLoggingList);
+  @override
+  String debugGetCreateSourceHash() => _$loggingProviderHash();
+
+  @override
+  String toString() {
+    return r'loggingProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  LoggingProviderProvider getProviderOverride(
-    covariant LoggingProviderProvider provider,
-  ) {
-    return call(actionLoggingList: provider.actionLoggingList);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'loggingProvider';
-}
-
-/// See also [LoggingProvider].
-class LoggingProviderProvider
-    extends AsyncNotifierProviderImpl<LoggingProvider, Logging> {
-  /// See also [LoggingProvider].
-  LoggingProviderProvider({required List<Logging> Function() actionLoggingList})
-    : this._internal(
-        () => LoggingProvider()..actionLoggingList = actionLoggingList,
-        from: loggingProvider,
-        name: r'loggingProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$loggingProviderHash,
-        dependencies: LoggingProviderFamily._dependencies,
-        allTransitiveDependencies:
-            LoggingProviderFamily._allTransitiveDependencies,
-        actionLoggingList: actionLoggingList,
-      );
-
-  LoggingProviderProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.actionLoggingList,
-  }) : super.internal();
-
-  final List<Logging> Function() actionLoggingList;
-
-  @override
-  FutureOr<Logging> runNotifierBuild(covariant LoggingProvider notifier) {
-    return notifier.build(actionLoggingList: actionLoggingList);
-  }
-
-  @override
-  Override overrideWith(LoggingProvider Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: LoggingProviderProvider._internal(
-        () => create()..actionLoggingList = actionLoggingList,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        actionLoggingList: actionLoggingList,
-      ),
-    );
-  }
-
-  @override
-  AsyncNotifierProviderElement<LoggingProvider, Logging> createElement() {
-    return _LoggingProviderProviderElement(this);
-  }
+  LoggingProvider create() => LoggingProvider();
 
   @override
   bool operator ==(Object other) {
-    return other is LoggingProviderProvider &&
-        other.actionLoggingList == actionLoggingList;
+    return other is LoggingProviderProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, actionLoggingList.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin LoggingProviderRef on AsyncNotifierProviderRef<Logging> {
-  /// The parameter `actionLoggingList` of this provider.
-  List<Logging> Function() get actionLoggingList;
-}
+String _$loggingProviderHash() => r'35c191c075eddf6f7dd69b30c0206ceadf467a9f';
 
-class _LoggingProviderProviderElement
-    extends AsyncNotifierProviderElement<LoggingProvider, Logging>
-    with LoggingProviderRef {
-  _LoggingProviderProviderElement(super.provider);
+final class LoggingProviderFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          LoggingProvider,
+          AsyncValue<Logging>,
+          Logging,
+          FutureOr<Logging>,
+          List<Logging> Function()
+        > {
+  const LoggingProviderFamily._()
+    : super(
+        retry: null,
+        name: r'loggingProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: false,
+      );
+
+  LoggingProviderProvider call({
+    required List<Logging> Function() actionLoggingList,
+  }) => LoggingProviderProvider._(argument: actionLoggingList, from: this);
 
   @override
-  List<Logging> Function() get actionLoggingList =>
-      (origin as LoggingProviderProvider).actionLoggingList;
+  String toString() => r'loggingProvider';
 }
 
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$LoggingProvider extends $AsyncNotifier<Logging> {
+  late final _$args = ref.$arg as List<Logging> Function();
+  List<Logging> Function() get actionLoggingList => _$args;
+
+  FutureOr<Logging> build({
+    required List<Logging> Function() actionLoggingList,
+  });
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(actionLoggingList: _$args);
+    final ref = this.ref as $Ref<AsyncValue<Logging>, Logging>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<Logging>, Logging>,
+              AsyncValue<Logging>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

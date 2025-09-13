@@ -6,158 +6,103 @@ part of 'page_title_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pageTitleProviderHash() => r'46e0da22b0e9eac7774ea3da1e81983eae98a9f5';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-abstract class _$PageTitleProvider
-    extends BuildlessAutoDisposeNotifier<String?> {
-  late final String? routeName;
-
-  String? build(String? routeName);
-}
-
-/// See also [PageTitleProvider].
 @ProviderFor(PageTitleProvider)
-const pageTitleProvider = PageTitleProviderFamily();
+const pageTitleProvider = PageTitleProviderFamily._();
 
-/// See also [PageTitleProvider].
-class PageTitleProviderFamily extends Family<String?> {
-  /// See also [PageTitleProvider].
-  const PageTitleProviderFamily();
+final class PageTitleProviderProvider
+    extends $NotifierProvider<PageTitleProvider, String?> {
+  const PageTitleProviderProvider._({
+    required PageTitleProviderFamily super.from,
+    required String? super.argument,
+  }) : super(
+         retry: null,
+         name: r'pageTitleProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [PageTitleProvider].
-  PageTitleProviderProvider call(String? routeName) {
-    return PageTitleProviderProvider(routeName);
+  @override
+  String debugGetCreateSourceHash() => _$pageTitleProviderHash();
+
+  @override
+  String toString() {
+    return r'pageTitleProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  PageTitleProviderProvider getProviderOverride(
-    covariant PageTitleProviderProvider provider,
-  ) {
-    return call(provider.routeName);
-  }
+  PageTitleProvider create() => PageTitleProvider();
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'pageTitleProvider';
-}
-
-/// See also [PageTitleProvider].
-class PageTitleProviderProvider
-    extends AutoDisposeNotifierProviderImpl<PageTitleProvider, String?> {
-  /// See also [PageTitleProvider].
-  PageTitleProviderProvider(String? routeName)
-    : this._internal(
-        () => PageTitleProvider()..routeName = routeName,
-        from: pageTitleProvider,
-        name: r'pageTitleProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$pageTitleProviderHash,
-        dependencies: PageTitleProviderFamily._dependencies,
-        allTransitiveDependencies:
-            PageTitleProviderFamily._allTransitiveDependencies,
-        routeName: routeName,
-      );
-
-  PageTitleProviderProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.routeName,
-  }) : super.internal();
-
-  final String? routeName;
-
-  @override
-  String? runNotifierBuild(covariant PageTitleProvider notifier) {
-    return notifier.build(routeName);
-  }
-
-  @override
-  Override overrideWith(PageTitleProvider Function() create) {
-    return ProviderOverride(
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String? value) {
+    return $ProviderOverride(
       origin: this,
-      override: PageTitleProviderProvider._internal(
-        () => create()..routeName = routeName,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        routeName: routeName,
-      ),
+      providerOverride: $SyncValueProvider<String?>(value),
     );
   }
 
   @override
-  AutoDisposeNotifierProviderElement<PageTitleProvider, String?>
-  createElement() {
-    return _PageTitleProviderProviderElement(this);
-  }
-
-  @override
   bool operator ==(Object other) {
-    return other is PageTitleProviderProvider && other.routeName == routeName;
+    return other is PageTitleProviderProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, routeName.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin PageTitleProviderRef on AutoDisposeNotifierProviderRef<String?> {
-  /// The parameter `routeName` of this provider.
-  String? get routeName;
-}
+String _$pageTitleProviderHash() => r'46e0da22b0e9eac7774ea3da1e81983eae98a9f5';
 
-class _PageTitleProviderProviderElement
-    extends AutoDisposeNotifierProviderElement<PageTitleProvider, String?>
-    with PageTitleProviderRef {
-  _PageTitleProviderProviderElement(super.provider);
+final class PageTitleProviderFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          PageTitleProvider,
+          String?,
+          String?,
+          String?,
+          String?
+        > {
+  const PageTitleProviderFamily._()
+    : super(
+        retry: null,
+        name: r'pageTitleProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  PageTitleProviderProvider call(String? routeName) =>
+      PageTitleProviderProvider._(argument: routeName, from: this);
 
   @override
-  String? get routeName => (origin as PageTitleProviderProvider).routeName;
+  String toString() => r'pageTitleProvider';
 }
 
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$PageTitleProvider extends $Notifier<String?> {
+  late final _$args = ref.$arg as String?;
+  String? get routeName => _$args;
+
+  String? build(String? routeName);
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(_$args);
+    final ref = this.ref as $Ref<String?, String?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<String?, String?>,
+              String?,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

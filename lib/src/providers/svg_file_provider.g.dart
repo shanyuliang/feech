@@ -6,223 +6,130 @@ part of 'svg_file_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$svgFileProviderHash() => r'ec7133742a96350e60416587c50f64e6025401f2';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
+@ProviderFor(SvgFileProvider)
+const svgFileProvider = SvgFileProviderFamily._();
 
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
+final class SvgFileProviderProvider
+    extends $StreamNotifierProvider<SvgFileProvider, (String, File?)> {
+  const SvgFileProviderProvider._({
+    required SvgFileProviderFamily super.from,
+    required ({
+      AppCacheManager appCacheManager,
+      String svgLink,
+      Map<String, String>? headers,
+    })
+    super.argument,
+  }) : super(
+         retry: null,
+         name: r'svgFileProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$svgFileProviderHash();
+
+  @override
+  String toString() {
+    return r'svgFileProvider'
+        ''
+        '$argument';
   }
 
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  @$internal
+  @override
+  SvgFileProvider create() => SvgFileProvider();
+
+  @override
+  bool operator ==(Object other) {
+    return other is SvgFileProviderProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
   }
 }
 
-abstract class _$SvgFileProvider
-    extends BuildlessAutoDisposeStreamNotifier<(String, File?)> {
-  late final AppCacheManager appCacheManager;
-  late final String svgLink;
-  late final Map<String, String>? headers;
+String _$svgFileProviderHash() => r'ec7133742a96350e60416587c50f64e6025401f2';
+
+final class SvgFileProviderFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          SvgFileProvider,
+          AsyncValue<(String, File?)>,
+          (String, File?),
+          Stream<(String, File?)>,
+          ({
+            AppCacheManager appCacheManager,
+            String svgLink,
+            Map<String, String>? headers,
+          })
+        > {
+  const SvgFileProviderFamily._()
+    : super(
+        retry: null,
+        name: r'svgFileProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  SvgFileProviderProvider call({
+    required AppCacheManager appCacheManager,
+    required String svgLink,
+    Map<String, String>? headers,
+  }) => SvgFileProviderProvider._(
+    argument: (
+      appCacheManager: appCacheManager,
+      svgLink: svgLink,
+      headers: headers,
+    ),
+    from: this,
+  );
+
+  @override
+  String toString() => r'svgFileProvider';
+}
+
+abstract class _$SvgFileProvider extends $StreamNotifier<(String, File?)> {
+  late final _$args =
+      ref.$arg
+          as ({
+            AppCacheManager appCacheManager,
+            String svgLink,
+            Map<String, String>? headers,
+          });
+  AppCacheManager get appCacheManager => _$args.appCacheManager;
+  String get svgLink => _$args.svgLink;
+  Map<String, String>? get headers => _$args.headers;
 
   Stream<(String, File?)> build({
     required AppCacheManager appCacheManager,
     required String svgLink,
     Map<String, String>? headers,
   });
-}
-
-/// See also [SvgFileProvider].
-@ProviderFor(SvgFileProvider)
-const svgFileProvider = SvgFileProviderFamily();
-
-/// See also [SvgFileProvider].
-class SvgFileProviderFamily extends Family<AsyncValue<(String, File?)>> {
-  /// See also [SvgFileProvider].
-  const SvgFileProviderFamily();
-
-  /// See also [SvgFileProvider].
-  SvgFileProviderProvider call({
-    required AppCacheManager appCacheManager,
-    required String svgLink,
-    Map<String, String>? headers,
-  }) {
-    return SvgFileProviderProvider(
-      appCacheManager: appCacheManager,
-      svgLink: svgLink,
-      headers: headers,
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(
+      appCacheManager: _$args.appCacheManager,
+      svgLink: _$args.svgLink,
+      headers: _$args.headers,
     );
-  }
-
-  @override
-  SvgFileProviderProvider getProviderOverride(
-    covariant SvgFileProviderProvider provider,
-  ) {
-    return call(
-      appCacheManager: provider.appCacheManager,
-      svgLink: provider.svgLink,
-      headers: provider.headers,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'svgFileProvider';
-}
-
-/// See also [SvgFileProvider].
-class SvgFileProviderProvider
-    extends
-        AutoDisposeStreamNotifierProviderImpl<
-          SvgFileProvider,
-          (String, File?)
-        > {
-  /// See also [SvgFileProvider].
-  SvgFileProviderProvider({
-    required AppCacheManager appCacheManager,
-    required String svgLink,
-    Map<String, String>? headers,
-  }) : this._internal(
-         () => SvgFileProvider()
-           ..appCacheManager = appCacheManager
-           ..svgLink = svgLink
-           ..headers = headers,
-         from: svgFileProvider,
-         name: r'svgFileProvider',
-         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-             ? null
-             : _$svgFileProviderHash,
-         dependencies: SvgFileProviderFamily._dependencies,
-         allTransitiveDependencies:
-             SvgFileProviderFamily._allTransitiveDependencies,
-         appCacheManager: appCacheManager,
-         svgLink: svgLink,
-         headers: headers,
-       );
-
-  SvgFileProviderProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.appCacheManager,
-    required this.svgLink,
-    required this.headers,
-  }) : super.internal();
-
-  final AppCacheManager appCacheManager;
-  final String svgLink;
-  final Map<String, String>? headers;
-
-  @override
-  Stream<(String, File?)> runNotifierBuild(covariant SvgFileProvider notifier) {
-    return notifier.build(
-      appCacheManager: appCacheManager,
-      svgLink: svgLink,
-      headers: headers,
-    );
-  }
-
-  @override
-  Override overrideWith(SvgFileProvider Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: SvgFileProviderProvider._internal(
-        () => create()
-          ..appCacheManager = appCacheManager
-          ..svgLink = svgLink
-          ..headers = headers,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        appCacheManager: appCacheManager,
-        svgLink: svgLink,
-        headers: headers,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeStreamNotifierProviderElement<SvgFileProvider, (String, File?)>
-  createElement() {
-    return _SvgFileProviderProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is SvgFileProviderProvider &&
-        other.appCacheManager == appCacheManager &&
-        other.svgLink == svgLink &&
-        other.headers == headers;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, appCacheManager.hashCode);
-    hash = _SystemHash.combine(hash, svgLink.hashCode);
-    hash = _SystemHash.combine(hash, headers.hashCode);
-
-    return _SystemHash.finish(hash);
+    final ref = this.ref as $Ref<AsyncValue<(String, File?)>, (String, File?)>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<(String, File?)>, (String, File?)>,
+              AsyncValue<(String, File?)>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
   }
 }
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SvgFileProviderRef
-    on AutoDisposeStreamNotifierProviderRef<(String, File?)> {
-  /// The parameter `appCacheManager` of this provider.
-  AppCacheManager get appCacheManager;
-
-  /// The parameter `svgLink` of this provider.
-  String get svgLink;
-
-  /// The parameter `headers` of this provider.
-  Map<String, String>? get headers;
-}
-
-class _SvgFileProviderProviderElement
-    extends
-        AutoDisposeStreamNotifierProviderElement<
-          SvgFileProvider,
-          (String, File?)
-        >
-    with SvgFileProviderRef {
-  _SvgFileProviderProviderElement(super.provider);
-
-  @override
-  AppCacheManager get appCacheManager =>
-      (origin as SvgFileProviderProvider).appCacheManager;
-  @override
-  String get svgLink => (origin as SvgFileProviderProvider).svgLink;
-  @override
-  Map<String, String>? get headers =>
-      (origin as SvgFileProviderProvider).headers;
-}
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

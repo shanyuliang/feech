@@ -4,36 +4,36 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants.dart';
 
-class AppProviderObserver extends ProviderObserver {
+final class AppProviderObserver extends ProviderObserver {
   final bool debugLogDiagnostics;
 
   AppProviderObserver({this.debugLogDiagnostics = false});
 
   @override
-  void didAddProvider(ProviderBase<Object?> provider, Object? value, ProviderContainer container) {
+  void didAddProvider(ProviderObserverContext context, Object? value) {
     if (debugLogDiagnostics) {
-      developer.log('Provider $provider was initialized with $value', name: debugTag);
+      developer.log('Provider ${context.provider} was initialized with $value', name: debugTag);
     }
   }
 
   @override
-  void didDisposeProvider(ProviderBase<Object?> provider, ProviderContainer container) {
+  void didDisposeProvider(ProviderObserverContext context) {
     if (debugLogDiagnostics) {
-      developer.log('Provider $provider was disposed', name: debugTag);
+      developer.log('Provider ${context.provider} was disposed', name: debugTag);
     }
   }
 
   @override
-  void didUpdateProvider(ProviderBase<Object?> provider, Object? previousValue, Object? newValue, ProviderContainer container) {
+  void didUpdateProvider(ProviderObserverContext context, Object? previousValue, Object? newValue) {
     if (debugLogDiagnostics) {
-      developer.log('Provider $provider updated\nfrom\n$previousValue\nto\n$newValue', name: debugTag);
+      developer.log('Provider ${context.provider} updated\nfrom\n$previousValue\nto\n$newValue', name: debugTag);
     }
   }
 
   @override
-  void providerDidFail(ProviderBase<Object?> provider, Object error, StackTrace stackTrace, ProviderContainer container) {
+  void providerDidFail(ProviderObserverContext context, Object error, StackTrace stackTrace) {
     if (debugLogDiagnostics) {
-      developer.log('Provider $provider threw $error at $stackTrace', name: debugTag);
+      developer.log('Provider ${context.provider} threw $error at $stackTrace', name: debugTag);
     }
   }
 }
