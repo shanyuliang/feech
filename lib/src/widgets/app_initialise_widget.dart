@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../providers/app_initialise_provider/app_initialise_provider.dart';
 
 class AppInitialiseWidget extends ConsumerStatefulWidget {
   /// [initialiseList] is a list of `provider.notifier` or `asyncProvider.future`
-  final List<Refreshable> initialiseList;
+  final List<ProviderListenable> initialiseList;
   final int minWaitDurationInMilliseconds;
   final bool debugLogDiagnostics;
   final Widget Function(BuildContext context) loadedChild;
@@ -36,24 +37,26 @@ class _AppInitialiseWidgetState extends ConsumerState<AppInitialiseWidget> {
   @override
   Widget build(BuildContext context) {
     return ref
-        .watch(appInitialiseProvider(
-      initialiseList: widget.initialiseList,
-      minWaitDurationInMilliseconds: widget.minWaitDurationInMilliseconds,
-      debugLogDiagnostics: widget.debugLogDiagnostics,
-    ))
+        .watch(
+          appInitialiseProvider(
+            initialiseList: widget.initialiseList,
+            minWaitDurationInMilliseconds: widget.minWaitDurationInMilliseconds,
+            debugLogDiagnostics: widget.debugLogDiagnostics,
+          ),
+        )
         .when(
-      data: (_) {
-        widget.onLoaded?.call();
-        return widget.loadedChild.call(context);
-      },
-      error: (_, __) {
-        widget.onLoadError?.call();
-        return widget.loadErrorChild?.call(context) ?? const SizedBox.shrink();
-      },
-      loading: () {
-        widget.onLoading?.call();
-        return widget.loadingChild?.call(context) ?? const SizedBox.shrink();
-      },
-    );
+          data: (_) {
+            widget.onLoaded?.call();
+            return widget.loadedChild.call(context);
+          },
+          error: (_, _) {
+            widget.onLoadError?.call();
+            return widget.loadErrorChild?.call(context) ?? const SizedBox.shrink();
+          },
+          loading: () {
+            widget.onLoading?.call();
+            return widget.loadingChild?.call(context) ?? const SizedBox.shrink();
+          },
+        );
   }
 }

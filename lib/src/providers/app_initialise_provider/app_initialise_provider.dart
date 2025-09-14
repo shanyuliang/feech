@@ -2,7 +2,6 @@
 import 'dart:async';
 import 'dart:developer' as developer;
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../constants.dart';
@@ -14,7 +13,7 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
   /// [initialiseList] is a list of `provider.notifier` or `asyncProvider.future`
   @override
   Future<void> build({
-    List<Refreshable> initialiseList = const [],
+    List<ProviderListenable> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool inOrder = false,
     bool debugLogDiagnostics = false,
@@ -29,10 +28,21 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
       }
     });
 
-    final initialisingProviders =
-        inOrder
-            ? Future(() async {
-              for (final element in initialiseList) {
+    final initialisingProviders = inOrder
+        ? Future(() async {
+            for (final element in initialiseList) {
+              if (debugLogDiagnostics) {
+                developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
+              }
+              await ref.read(element);
+              if (debugLogDiagnostics) {
+                developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
+              }
+            }
+          })
+        : Future.wait(
+            initialiseList.map((element) {
+              return Future(() async {
                 if (debugLogDiagnostics) {
                   developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
                 }
@@ -40,21 +50,9 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
                 if (debugLogDiagnostics) {
                   developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
                 }
-              }
-            })
-            : Future.wait(
-              initialiseList.map((element) {
-                return Future(() async {
-                  if (debugLogDiagnostics) {
-                    developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
-                  }
-                  await ref.read(element);
-                  if (debugLogDiagnostics) {
-                    developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
-                  }
-                });
-              }),
-            );
+              });
+            }),
+          );
 
     await Future.wait([waitForMinWaitDuration, initialisingProviders]);
   }
