@@ -35,14 +35,14 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
               if (debugLogDiagnostics) {
                 developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
               }
-              developer.log("Element is ${element.runtimeType}", name: debugTag);
+              developer.log("Element runtime type is ${element.runtimeType}", name: debugTag);
               switch (element) {
                 case $AsyncNotifierProvider anp:
                   developer.log("Element is an AsyncNotifierProvider: $element", name: debugTag);
                   await ref.read(anp.future);
                   break;
                 case $NotifierProvider np:
-                  developer.log("Element is an NotifierProvider: $element", name: debugTag);
+                  developer.log("Element is a NotifierProvider: $element", name: debugTag);
                   ref.read(np);
                   break;
                 default:
@@ -60,7 +60,20 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
                 if (debugLogDiagnostics) {
                   developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
                 }
-                await ref.read(element);
+                developer.log("Element runtime type is ${element.runtimeType}", name: debugTag);
+                switch (element) {
+                  case $AsyncNotifierProvider anp:
+                    developer.log("Element is an AsyncNotifierProvider: $element", name: debugTag);
+                    await ref.read(anp.future);
+                    break;
+                  case $NotifierProvider np:
+                    developer.log("Element is a NotifierProvider: $element", name: debugTag);
+                    ref.read(np);
+                    break;
+                  default:
+                    developer.log("Element is an unknown provider: $element", name: debugTag);
+                    break;
+                }
                 if (debugLogDiagnostics) {
                   developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
                 }
