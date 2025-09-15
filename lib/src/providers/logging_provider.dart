@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../support/logging/consolidated_logging.dart';
-import '../../support/logging/logging.dart';
+import '../support/logging/consolidated_logging.dart';
+import '../support/logging/logging.dart';
 
 part 'logging_provider.g.dart';
 
