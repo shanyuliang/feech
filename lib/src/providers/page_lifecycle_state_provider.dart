@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../models/page_lifecycle_state.dart';
+import '../models/page_lifecycle_state.dart';
 
 part 'page_lifecycle_state_provider.g.dart';
 

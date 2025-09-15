@@ -52,7 +52,7 @@ export 'src/providers/app_permission_status_provider.dart';
 export 'src/providers/app_provider_observer.dart';
 export 'src/providers/asset_manifest_provider.dart';
 export 'src/providers/logging_provider.dart';
-export 'src/providers/page_lifecycle_state_provider/page_lifecycle_state_provider.dart';
+export 'src/providers/page_lifecycle_state_provider.dart';
 export 'src/providers/page_title_provider.dart';
 export 'src/providers/runtime_info_provider.dart';
 export 'src/providers/stt_provider/stt_provider.dart';

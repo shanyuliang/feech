@@ -7,7 +7,7 @@ import '../constants.dart';
 import '../extensions/general_type_extension.dart';
 import '../providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
 import '../models/page_lifecycle_state.dart';
-import '../providers/page_lifecycle_state_provider/page_lifecycle_state_provider.dart';
+import '../providers/page_lifecycle_state_provider.dart';
 import '../providers/page_title_provider.dart';
 import '../utilities/handy_util.dart';
 
