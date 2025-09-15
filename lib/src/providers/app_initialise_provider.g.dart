@@ -17,7 +17,7 @@ final class AppInitialiseProviderProvider
   const AppInitialiseProviderProvider._({
     required AppInitialiseProviderFamily super.from,
     required ({
-      List<Provider<dynamic>> initialiseList,
+      List<ProviderBase<dynamic>> initialiseList,
       int minWaitDurationInMilliseconds,
       bool inOrder,
       bool debugLogDiagnostics,
@@ -57,7 +57,7 @@ final class AppInitialiseProviderProvider
 }
 
 String _$appInitialiseProviderHash() =>
-    r'b136e1b842d9f7437722b681130b100465b5b753';
+    r'b348ed668b2bad588b2a5661cdf6062cf9d7d5c7';
 
 final class AppInitialiseProviderFamily extends $Family
     with
@@ -67,7 +67,7 @@ final class AppInitialiseProviderFamily extends $Family
           void,
           FutureOr<void>,
           ({
-            List<Provider<dynamic>> initialiseList,
+            List<ProviderBase<dynamic>> initialiseList,
             int minWaitDurationInMilliseconds,
             bool inOrder,
             bool debugLogDiagnostics,
@@ -83,7 +83,7 @@ final class AppInitialiseProviderFamily extends $Family
       );
 
   AppInitialiseProviderProvider call({
-    List<Provider<dynamic>> initialiseList = const [],
+    List<ProviderBase<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool inOrder = false,
     bool debugLogDiagnostics = false,
@@ -105,18 +105,18 @@ abstract class _$AppInitialiseProvider extends $AsyncNotifier<void> {
   late final _$args =
       ref.$arg
           as ({
-            List<Provider<dynamic>> initialiseList,
+            List<ProviderBase<dynamic>> initialiseList,
             int minWaitDurationInMilliseconds,
             bool inOrder,
             bool debugLogDiagnostics,
           });
-  List<Provider<dynamic>> get initialiseList => _$args.initialiseList;
+  List<ProviderBase<dynamic>> get initialiseList => _$args.initialiseList;
   int get minWaitDurationInMilliseconds => _$args.minWaitDurationInMilliseconds;
   bool get inOrder => _$args.inOrder;
   bool get debugLogDiagnostics => _$args.debugLogDiagnostics;
 
   FutureOr<void> build({
-    List<Provider<dynamic>> initialiseList = const [],
+    List<ProviderBase<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool inOrder = false,
     bool debugLogDiagnostics = false,
