@@ -2,7 +2,7 @@
 import 'dart:async';
 import 'dart:developer' as developer;
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../constants.dart';
@@ -13,7 +13,7 @@ part 'app_initialise_provider.g.dart';
 class AppInitialiseProvider extends _$AppInitialiseProvider {
   @override
   Future<void> build({
-    List<Provider> initialiseList = const [],
+    List<ProviderBase> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool inOrder = false,
     bool debugLogDiagnostics = false,
