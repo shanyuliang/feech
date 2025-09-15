@@ -4,8 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../constants.dart';
-import '../../extensions/string_extension.dart';
+import '../constants.dart';
+import '../extensions/string_extension.dart';
 
 part 'asset_manifest_provider.g.dart';
 

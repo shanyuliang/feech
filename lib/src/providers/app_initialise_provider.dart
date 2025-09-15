@@ -4,7 +4,7 @@ import 'dart:developer' as developer;
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../constants.dart';
+import '../constants.dart';
 
 part 'app_initialise_provider.g.dart';
 
