@@ -33,24 +33,23 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
         ? Future(() async {
             for (final element in initialiseList) {
               if (debugLogDiagnostics) {
-                developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
+                developer.log("AppInitialiseProvider initialise $element [${element.runtimeType}] started", name: debugTag);
               }
-              developer.log("Element runtime type is ${element.runtimeType}", name: debugTag);
               switch (element) {
                 case $AsyncNotifierProvider anp:
-                  developer.log("Element is an AsyncNotifierProvider: $element", name: debugTag);
+                  developer.log("AppInitialiseProvider $element [${element.runtimeType}] is an AsyncNotifierProvider", name: debugTag);
                   await ref.read(anp.future);
                   break;
                 case $NotifierProvider np:
-                  developer.log("Element is a NotifierProvider: $element", name: debugTag);
+                  developer.log("AppInitialiseProvider $element [${element.runtimeType}] is a NotifierProvider", name: debugTag);
                   ref.read(np);
                   break;
                 default:
-                  developer.log("Element is an unknown provider: $element", name: debugTag);
+                  developer.log("AppInitialiseProvider $element [${element.runtimeType}] is an unknown provider", name: debugTag);
                   break;
               }
               if (debugLogDiagnostics) {
-                developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
+                developer.log("AppInitialiseProvider initialise $element [${element.runtimeType}] ended", name: debugTag);
               }
             }
           })
@@ -58,24 +57,23 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
             initialiseList.map((element) {
               return Future(() async {
                 if (debugLogDiagnostics) {
-                  developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
+                  developer.log("AppInitialiseProvider initialise $element [${element.runtimeType}] started", name: debugTag);
                 }
-                developer.log("Element runtime type is ${element.runtimeType}", name: debugTag);
                 switch (element) {
                   case $AsyncNotifierProvider anp:
-                    developer.log("Element is an AsyncNotifierProvider: $element", name: debugTag);
+                    developer.log("AppInitialiseProvider $element [${element.runtimeType}] is an AsyncNotifierProvider", name: debugTag);
                     await ref.read(anp.future);
                     break;
                   case $NotifierProvider np:
-                    developer.log("Element is a NotifierProvider: $element", name: debugTag);
+                    developer.log("AppInitialiseProvider $element [${element.runtimeType}] is a NotifierProvider", name: debugTag);
                     ref.read(np);
                     break;
                   default:
-                    developer.log("Element is an unknown provider: $element", name: debugTag);
+                    developer.log("AppInitialiseProvider $element [${element.runtimeType}] is an unknown provider", name: debugTag);
                     break;
                 }
                 if (debugLogDiagnostics) {
-                  developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
+                  developer.log("AppInitialiseProvider initialise $element [${element.runtimeType}] ended", name: debugTag);
                 }
               });
             }),
