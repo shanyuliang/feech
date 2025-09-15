@@ -18,11 +18,11 @@ void main() {
 
     final testAppInitialiseProvider = appInitialiseProvider(
       initialiseList: [
-        appLifecycleStateProvider.notifier,
-        appPermissionStatusProvider(Permission.location).notifier,
-        appPermissionStatusProvider(Permission.notification).notifier,
-        testLoggingProvider.future,
-        userLocationProvider.notifier,
+        appLifecycleStateProvider,
+        appPermissionStatusProvider(Permission.location),
+        appPermissionStatusProvider(Permission.notification),
+        testLoggingProvider,
+        userLocationProvider,
       ],
     );
     await container.read(testAppInitialiseProvider.future);
