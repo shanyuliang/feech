@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../extensions/box_constraints_extension.dart';
-import '../../models/runtime_info.dart';
+import '../extensions/box_constraints_extension.dart';
+import '../models/runtime_info.dart';
 
 part 'runtime_info_provider.g.dart';
 

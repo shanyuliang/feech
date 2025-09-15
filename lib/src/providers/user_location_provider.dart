@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../extensions/general_type_extension.dart';
-import '../../support/result.dart';
-import '../../support/state_status.dart';
-import '../../utilities/handy_util.dart';
-import '../../models/user_location.dart';
+import '../extensions/general_type_extension.dart';
+import '../support/result.dart';
+import '../support/state_status.dart';
+import '../utilities/handy_util.dart';
+import '../models/user_location.dart';
 
 part 'user_location_provider.g.dart';
 

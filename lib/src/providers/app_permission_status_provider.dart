@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../support/result.dart';
-import '../../support/state_status.dart';
-import '../../utilities/handy_util.dart';
-import '../app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
-import '../../models/app_permission_status.dart';
+import '../support/result.dart';
+import '../support/state_status.dart';
+import '../utilities/handy_util.dart';
+import 'app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
+import '../models/app_permission_status.dart';
 
 part 'app_permission_status_provider.g.dart';
 
