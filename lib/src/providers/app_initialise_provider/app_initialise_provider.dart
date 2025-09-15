@@ -28,6 +28,7 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
       }
     });
 
+    developer.log("AppInitialiseProvider initialisingProviders setup begin", name: debugTag);
     final initialisingProviders = inOrder
         ? Future(() async {
             for (final element in initialiseList) {
@@ -53,6 +54,7 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
               });
             }),
           );
+    developer.log("AppInitialiseProvider initialisingProviders setup end", name: debugTag);
 
     await Future.wait([waitForMinWaitDuration, initialisingProviders]);
   }
