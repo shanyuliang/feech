@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:developer' as developer;
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../constants.dart';
@@ -10,10 +11,9 @@ part 'app_initialise_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppInitialiseProvider extends _$AppInitialiseProvider {
-  /// [initialiseList] is a list of `provider.notifier` or `asyncProvider.future`
   @override
   Future<void> build({
-    List<ProviderListenable> initialiseList = const [],
+    List<Provider> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool inOrder = false,
     bool debugLogDiagnostics = false,
@@ -35,7 +35,20 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
               if (debugLogDiagnostics) {
                 developer.log("AppInitialiseProvider initialise $element started", name: debugTag);
               }
-              await ref.read(element);
+              developer.log("Element is ${element.runtimeType}", name: debugTag);
+              switch (element) {
+                case $AsyncNotifierProvider anp:
+                  developer.log("Element is an AsyncNotifierProvider: $element", name: debugTag);
+                  await ref.read(anp.future);
+                  break;
+                case $NotifierProvider np:
+                  developer.log("Element is an NotifierProvider: $element", name: debugTag);
+                  ref.read(np);
+                  break;
+                default:
+                  developer.log("Element is an unknown provider: $element", name: debugTag);
+                  break;
+              }
               if (debugLogDiagnostics) {
                 developer.log("AppInitialiseProvider initialise $element ended", name: debugTag);
               }
