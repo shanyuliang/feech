@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../extensions/general_type_extension.dart';
 import '../../models/stt_locale.dart';
-import '../../providers/stt_provider/stt_provider.dart';
+import '../../providers/stt_provider.dart';
 
 class SttSettingsUI extends ConsumerStatefulWidget {
   const SttSettingsUI({super.key});

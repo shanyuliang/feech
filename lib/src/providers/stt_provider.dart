@@ -3,9 +3,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-import '../../extensions/general_type_extension.dart';
-import '../../models/stt_locale.dart';
-import '../../models/stt.dart';
+import '../extensions/general_type_extension.dart';
+import '../models/stt_locale.dart';
+import '../models/stt.dart';
 
 part 'stt_provider.g.dart';
 

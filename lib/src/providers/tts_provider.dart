@@ -5,10 +5,10 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../constants.dart';
-import '../../extensions/general_type_extension.dart';
-import '../../models/tts_locale_voices.dart';
-import '../../models/tts.dart';
+import '../constants.dart';
+import '../extensions/general_type_extension.dart';
+import '../models/tts_locale_voices.dart';
+import '../models/tts.dart';
 
 part 'tts_provider.g.dart';
 
