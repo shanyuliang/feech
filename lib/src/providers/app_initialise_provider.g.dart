@@ -13,7 +13,7 @@ part of 'app_initialise_provider.dart';
 const appInitialiseProvider = AppInitialiseProviderFamily._();
 
 final class AppInitialiseProviderProvider
-    extends $AsyncNotifierProvider<AppInitialiseProvider, void> {
+    extends $AsyncNotifierProvider<AppInitialiseProvider, bool> {
   const AppInitialiseProviderProvider._({
     required AppInitialiseProviderFamily super.from,
     required ({
@@ -57,15 +57,15 @@ final class AppInitialiseProviderProvider
 }
 
 String _$appInitialiseProviderHash() =>
-    r'4b5936c2a9118f971fd14515bb32eff89dd57de5';
+    r'962aa4185b2384d8ae09b55cf750d69992a52dbd';
 
 final class AppInitialiseProviderFamily extends $Family
     with
         $ClassFamilyOverride<
           AppInitialiseProvider,
-          AsyncValue<void>,
-          void,
-          FutureOr<void>,
+          AsyncValue<bool>,
+          bool,
+          FutureOr<bool>,
           ({
             List<ProviderBase<dynamic>> initialiseList,
             int minWaitDurationInMilliseconds,
@@ -101,7 +101,7 @@ final class AppInitialiseProviderFamily extends $Family
   String toString() => r'appInitialiseProvider';
 }
 
-abstract class _$AppInitialiseProvider extends $AsyncNotifier<void> {
+abstract class _$AppInitialiseProvider extends $AsyncNotifier<bool> {
   late final _$args =
       ref.$arg
           as ({
@@ -115,7 +115,7 @@ abstract class _$AppInitialiseProvider extends $AsyncNotifier<void> {
   bool get inOrder => _$args.inOrder;
   bool get debugLogDiagnostics => _$args.debugLogDiagnostics;
 
-  FutureOr<void> build({
+  FutureOr<bool> build({
     List<ProviderBase<dynamic>> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool inOrder = false,
@@ -124,21 +124,21 @@ abstract class _$AppInitialiseProvider extends $AsyncNotifier<void> {
   @$mustCallSuper
   @override
   void runBuild() {
-    build(
+    final created = build(
       initialiseList: _$args.initialiseList,
       minWaitDurationInMilliseconds: _$args.minWaitDurationInMilliseconds,
       inOrder: _$args.inOrder,
       debugLogDiagnostics: _$args.debugLogDiagnostics,
     );
-    final ref = this.ref as $Ref<AsyncValue<void>, void>;
+    final ref = this.ref as $Ref<AsyncValue<bool>, bool>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<void>, void>,
-              AsyncValue<void>,
+              AnyNotifier<AsyncValue<bool>, bool>,
+              AsyncValue<bool>,
               Object?,
               Object?
             >;
-    element.handleValue(ref, null);
+    element.handleValue(ref, created);
   }
 }

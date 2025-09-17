@@ -12,7 +12,7 @@ part 'app_initialise_provider.g.dart';
 @Riverpod(keepAlive: true)
 class AppInitialiseProvider extends _$AppInitialiseProvider {
   @override
-  Future<void> build({
+  Future<bool> build({
     List<ProviderBase> initialiseList = const [],
     int minWaitDurationInMilliseconds = 0,
     bool inOrder = false,
@@ -81,5 +81,6 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
     developer.log("AppInitialiseProvider initialisingProviders setup end", name: debugTag);
 
     await Future.wait([waitForMinWaitDuration, initialisingProviders]);
+    return true;
   }
 }
