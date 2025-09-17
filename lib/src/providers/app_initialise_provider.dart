@@ -37,7 +37,7 @@ class AppInitialiseProvider extends _$AppInitialiseProvider {
         : Future.wait(
             initialiseList.map(
               (element) => Future(() async {
-                _initialiseProvider(element);
+                await _initialiseProvider(element);
               }),
             ),
           );
