@@ -26,6 +26,7 @@ dependencies:
   cloud_firestore: ">=6.0.1 <7.0.0" # https://pub.dev/packages/cloud_firestore
   collection: '>=1.19.1 <2.0.0' # https://pub.dev/packages/collection
   crypto: '>=3.0.6 <4.0.0' # https://pub.dev/packages/crypto
+  device_info_plus: '>=12.1.0 <13.0.0' # https://pub.dev/packages/device_info_plus
   firebase_crashlytics: '>=5.0.1 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.0.0 <4.0.0' # https://pub.dev/packages/flutter_riverpod
