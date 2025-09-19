@@ -6,6 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:version/version.dart';
 
 import '../constants.dart';
+import '../utilities/handy_util.dart';
 
 class StaticAppInfo {
   static late final String name;
@@ -27,7 +28,14 @@ class StaticAppInfo {
     if (kIsWeb) {
       final webBrowserInfo = await deviceInfoPlugin.webBrowserInfo;
       deviceModel = webBrowserInfo.appName ?? webBrowserInfo.browserName.name;
-      deviceOsVersion = Version.parse(webBrowserInfo.appVersion ?? "0");
+      deviceOsVersion = suppressThrowableSyncDefault(
+        throwable: () {
+          return Version.parse(webBrowserInfo.appVersion ?? "0");
+        },
+        whenError: (error, stackTrace) {
+          return Version(0, 0, 0);
+        },
+      );
     } else {
       switch (defaultTargetPlatform) {
         case TargetPlatform.fuchsia:
@@ -37,12 +45,26 @@ class StaticAppInfo {
         case TargetPlatform.linux:
           final linuxInfo = await deviceInfoPlugin.linuxInfo;
           deviceModel = linuxInfo.prettyName;
-          deviceOsVersion = Version.parse(linuxInfo.version ?? "0");
+          deviceOsVersion = suppressThrowableSyncDefault(
+            throwable: () {
+              return Version.parse(linuxInfo.version ?? "0");
+            },
+            whenError: (error, stackTrace) {
+              return Version(0, 0, 0);
+            },
+          );
           break;
         case TargetPlatform.macOS:
           final macOsInfo = await deviceInfoPlugin.macOsInfo;
           deviceModel = macOsInfo.model;
-          deviceOsVersion = Version.parse(macOsInfo.osRelease);
+          deviceOsVersion = suppressThrowableSyncDefault(
+            throwable: () {
+              return Version.parse(macOsInfo.osRelease);
+            },
+            whenError: (error, stackTrace) {
+              return Version(0, 0, 0);
+            },
+          );
           break;
         case TargetPlatform.windows:
           final windowsInfo = await deviceInfoPlugin.windowsInfo;
@@ -52,12 +74,26 @@ class StaticAppInfo {
         case TargetPlatform.android:
           final androidInfo = await deviceInfoPlugin.androidInfo;
           deviceModel = androidInfo.model;
-          deviceOsVersion = Version.parse(androidInfo.version.release);
+          deviceOsVersion = suppressThrowableSyncDefault(
+            throwable: () {
+              return Version.parse(androidInfo.version.release);
+            },
+            whenError: (error, stackTrace) {
+              return Version(0, 0, 0);
+            },
+          );
           break;
         case TargetPlatform.iOS:
           final iosInfo = await deviceInfoPlugin.iosInfo;
           deviceModel = iosInfo.utsname.machine;
-          deviceOsVersion = Version.parse(iosInfo.systemVersion);
+          deviceOsVersion = suppressThrowableSyncDefault(
+            throwable: () {
+              return Version.parse(iosInfo.systemVersion);
+            },
+            whenError: (error, stackTrace) {
+              return Version(0, 0, 0);
+            },
+          );
           break;
       }
     }
