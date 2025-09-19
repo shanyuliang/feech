@@ -30,7 +30,9 @@ class StaticAppInfo {
       if (debugLogDiagnostics) {
         developer.log("${webBrowserInfo.data}", name: debugTag);
       }
-      deviceModel = webBrowserInfo.appName ?? webBrowserInfo.browserName.name;
+      deviceModel = webBrowserInfo.browserName.name.isNotEmpty
+          ? webBrowserInfo.browserName.name[0].toUpperCase() + webBrowserInfo.browserName.name.substring(1)
+          : webBrowserInfo.browserName.name;
       deviceOsVersion = suppressThrowableSyncDefault(
         throwable: () {
           return Version.parse(webBrowserInfo.appVersion ?? "0");
@@ -39,6 +41,11 @@ class StaticAppInfo {
           return Version(0, 0, 0);
         },
       );
+
+      // Example user agent string for reference:
+      // final userAgent = "5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
+      // final chromeVersionMatch = RegExp(r'Chrome/([\d\.]+)').firstMatch(userAgent);
+      // final chromeVersion = chromeVersionMatch != null ? chromeVersionMatch.group(1) : null;
     } else {
       switch (defaultTargetPlatform) {
         case TargetPlatform.fuchsia:
