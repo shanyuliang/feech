@@ -21,6 +21,7 @@ export 'src/extensions/locale_extension.dart';
 export 'src/extensions/palette_generator_extension.dart';
 export 'src/extensions/placemark_extension.dart';
 export 'src/extensions/string_extension.dart';
+export 'src/extensions/text_style_extension.dart';
 export 'src/extensions/ui_image_extension.dart';
 export 'src/extensions/uint8list_extension.dart';
 export 'src/extensions/uri_extension.dart';
