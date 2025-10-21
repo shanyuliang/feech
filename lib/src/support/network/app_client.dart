@@ -87,7 +87,13 @@ final class AppClient extends BaseClient {
       try {
         await _beforeSendingRequest(request);
         final streamedResponse = await send(request).timeout(timeoutOfRequest?.call(request) ?? const Duration(seconds: 999999));
+        if (debugLogDiagnostics) {
+          developer.log("AppClient streamedResponse ${streamedResponse.toString()}", name: debugTag);
+        }
         if (streamedResponse is EnhancedIOStreamedResponse) {
+          if (debugLogDiagnostics) {
+            developer.log("AppClient streamedResponse is EnhancedIOStreamedResponse", name: debugTag);
+          }
           final validCertificate = streamedResponse._inner?.certificate?.validateSpkiPin(validSpkiPins) ?? false;
           if (!validCertificate) {
             final serverSpkiPin = streamedResponse._inner?.certificate?.der.asCertificateDerGetSpkiPin();
@@ -96,6 +102,9 @@ final class AppClient extends BaseClient {
               request.url,
             );
           }
+        }
+        if (debugLogDiagnostics) {
+          developer.log("AppClient before parsing streamedResponse", name: debugTag);
         }
         response = await Response.fromStream(streamedResponse);
         await _afterReceivingResponse(response);
