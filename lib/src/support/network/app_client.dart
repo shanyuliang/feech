@@ -19,6 +19,7 @@ final class AppClient extends BaseClient {
   final Client _innerClient;
   final bool debugLogDiagnostics;
   final bool isJsonAppClient;
+  final bool setUserAgent;
   final List<String>? validSpkiPins;
   final FutureOr<void> Function(Request request)? updateOriginalRequest;
   final FutureOr<void> Function(Request request)? beforeSendingRequest;
@@ -30,7 +31,8 @@ final class AppClient extends BaseClient {
 
   AppClient({
     this.debugLogDiagnostics = false,
-    this.isJsonAppClient = false,
+    this.isJsonAppClient = true,
+    this.setUserAgent = false,
     this.validSpkiPins,
     this.updateOriginalRequest,
     this.beforeSendingRequest,
@@ -87,13 +89,7 @@ final class AppClient extends BaseClient {
       try {
         await _beforeSendingRequest(request);
         final streamedResponse = await send(request).timeout(timeoutOfRequest?.call(request) ?? const Duration(seconds: 999999));
-        if (debugLogDiagnostics) {
-          developer.log("AppClient streamedResponse ${streamedResponse.toString()}", name: debugTag);
-        }
         if (streamedResponse is EnhancedIOStreamedResponse) {
-          if (debugLogDiagnostics) {
-            developer.log("AppClient streamedResponse is EnhancedIOStreamedResponse", name: debugTag);
-          }
           final validCertificate = streamedResponse._inner?.certificate?.validateSpkiPin(validSpkiPins) ?? false;
           if (!validCertificate) {
             final serverSpkiPin = streamedResponse._inner?.certificate?.der.asCertificateDerGetSpkiPin();
@@ -102,9 +98,6 @@ final class AppClient extends BaseClient {
               request.url,
             );
           }
-        }
-        if (debugLogDiagnostics) {
-          developer.log("AppClient before parsing streamedResponse", name: debugTag);
         }
         response = await Response.fromStream(streamedResponse);
         await _afterReceivingResponse(response);
@@ -143,6 +136,11 @@ final class AppClient extends BaseClient {
     if (isJsonAppClient) {
       request.headers[HttpHeaderKey.contentType.keyName] = HttpHeaderValue.contentTypeJson.value;
       request.headers[HttpHeaderKey.accept.keyName] = HttpHeaderValue.acceptJson.value;
+    }
+    if (setUserAgent) {
+      request.headers[HttpHeaderKey.userAgent.keyName] = defaultTargetPlatform == TargetPlatform.android
+          ? HttpHeaderValue.userAgentAndroid.value
+          : HttpHeaderValue.userAgentIOS.value;
     }
     await updateOriginalRequest?.call(request);
     if (debugLogDiagnostics) {
