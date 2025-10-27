@@ -19,8 +19,9 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
   final AlignmentGeometry alignment;
   final Clip clipBehavior;
   final Color backgroundColor;
+  late final SvgAsHtmlStringSignal svgAsHtmlStringSignal;
 
-  const EnhancedSvgWidgetViaSignal({
+  EnhancedSvgWidgetViaSignal({
     super.key,
     required this.svgLink,
     this.headers,
@@ -30,19 +31,21 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
     this.alignment = Alignment.center,
     this.clipBehavior = Clip.antiAlias,
     this.backgroundColor = Colors.transparent,
-  });
+  }) {
+    svgAsHtmlStringSignal = SvgAsHtmlStringSignal(
+      svgLink: svgLink,
+      headers: headers,
+      alignment: alignment,
+      backgroundColor: backgroundColor,
+      fillContainer: false,
+      fit: BoxFit.contain,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Watch((ctx) {
-      final htmlStringAndSize = SvgAsHtmlStringSignal(
-        svgLink: svgLink,
-        headers: headers,
-        alignment: alignment,
-        backgroundColor: backgroundColor,
-        fillContainer: false,
-        fit: BoxFit.contain,
-      ).value;
+      final htmlStringAndSize = svgAsHtmlStringSignal.value;
       switch (htmlStringAndSize) {
         case AsyncData(:final value):
           {
