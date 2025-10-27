@@ -34,61 +34,63 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final htmlStringAndSize = SvgAsHtmlStringSignal(
-      svgLink: svgLink,
-      headers: headers,
-      alignment: alignment,
-      backgroundColor: backgroundColor,
-      fillContainer: false,
-      fit: BoxFit.contain,
-    ).value;
-    switch (htmlStringAndSize) {
-      case AsyncData(:final value):
-        {
-          final svgHtml = value.$1;
-          final svgSize = value.$2;
-          if (svgHtml != null && svgSize != null) {
-            final viewType = "$svgLink-${fit.name}-${alignment.resolve(null).toShortString()}-${backgroundColor.toHexRGBAString()}";
-            platformViewRegistry.registerViewFactory(
-              viewType,
-              (int viewId) => web.HTMLIFrameElement()
-                ..srcdoc = svgHtml.toJS
-                ..frameBorder = "none"
-                ..width = "100%"
-                ..height = "100%",
-            );
-            final containerSize = _decideSize(svgSize: svgSize);
-            return Container(
-              width: containerSize.width,
-              height: containerSize.height,
-              color: backgroundColor,
-              child: FittedBox(
-                fit: fit,
-                alignment: alignment,
-                clipBehavior: clipBehavior,
-                child: Stack(
-                  children: [
-                    SizedBox.fromSize(
-                      size: svgSize,
-                      child: HtmlElementView(viewType: viewType),
-                    ),
-                    PointerInterceptor(
-                      child: SizedBox.fromSize(
+    return Watch((ctx) {
+      final htmlStringAndSize = SvgAsHtmlStringSignal(
+        svgLink: svgLink,
+        headers: headers,
+        alignment: alignment,
+        backgroundColor: backgroundColor,
+        fillContainer: false,
+        fit: BoxFit.contain,
+      ).value;
+      switch (htmlStringAndSize) {
+        case AsyncData(:final value):
+          {
+            final svgHtml = value.$1;
+            final svgSize = value.$2;
+            if (svgHtml != null && svgSize != null) {
+              final viewType = "$svgLink-${fit.name}-${alignment.resolve(null).toShortString()}-${backgroundColor.toHexRGBAString()}";
+              platformViewRegistry.registerViewFactory(
+                viewType,
+                (int viewId) => web.HTMLIFrameElement()
+                  ..srcdoc = svgHtml.toJS
+                  ..frameBorder = "none"
+                  ..width = "100%"
+                  ..height = "100%",
+              );
+              final containerSize = _decideSize(svgSize: svgSize);
+              return Container(
+                width: containerSize.width,
+                height: containerSize.height,
+                color: backgroundColor,
+                child: FittedBox(
+                  fit: fit,
+                  alignment: alignment,
+                  clipBehavior: clipBehavior,
+                  child: Stack(
+                    children: [
+                      SizedBox.fromSize(
                         size: svgSize,
-                        child: const Material(color: Colors.transparent),
+                        child: HtmlElementView(viewType: viewType),
                       ),
-                    ),
-                  ],
+                      PointerInterceptor(
+                        child: SizedBox.fromSize(
+                          size: svgSize,
+                          child: const Material(color: Colors.transparent),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          } else {
-            return _placeholder();
+              );
+            } else {
+              return _placeholder();
+            }
           }
-        }
-      default:
-        return _placeholder();
-    }
+        default:
+          return _placeholder();
+      }
+    });
   }
 
   Size _decideSize({required final Size svgSize}) {
