@@ -139,12 +139,12 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
 
          final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics).future;
          if (debugLogDiagnostics) {
-           developer.log("svgString: $svgString", name: debugTag);
+           developer.log("SvgAsHtmlStringSignal svgString: $svgString", name: debugTag);
          }
          if (svgString != null) {
            final size = await getSizeFromSVGString(svgString);
            if (debugLogDiagnostics) {
-             developer.log("size: $size", name: debugTag);
+             developer.log("SvgAsHtmlStringSignal size: $size", name: debugTag);
            }
            final alignmentString = fillContainer
                ? (fit == BoxFit.fill ? "none" : alignment.resolve(null).toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
@@ -153,6 +153,9 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
                .replaceFirst('''--IMAGE--''', svgString)
                .replaceFirst('''--COLOR--''', backgroundColor.toHexRGBAString())
                .replaceFirst('''--ALIGNMENT--''', alignmentString);
+           if (debugLogDiagnostics) {
+             developer.log("SvgAsHtmlStringSignal returning: ${(htmlString, size)}", name: debugTag);
+           }
            return (htmlString, size);
          } else {
            return (null, null);
