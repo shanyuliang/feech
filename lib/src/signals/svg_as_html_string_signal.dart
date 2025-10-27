@@ -137,12 +137,15 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
            );
          }
 
-         final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers).future;
+         final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics).future;
          if (debugLogDiagnostics) {
            developer.log("svgString: $svgString", name: debugTag);
          }
          if (svgString != null) {
            final size = await getSizeFromSVGString(svgString);
+           if (debugLogDiagnostics) {
+             developer.log("size: $size", name: debugTag);
+           }
            final alignmentString = fillContainer
                ? (fit == BoxFit.fill ? "none" : alignment.resolve(null).toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
                : alignment.resolve(null).toCSSMargin();

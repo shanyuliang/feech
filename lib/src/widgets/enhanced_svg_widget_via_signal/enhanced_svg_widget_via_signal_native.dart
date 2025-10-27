@@ -13,6 +13,7 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
   final AlignmentGeometry alignment;
   final Clip clipBehavior;
   final Color backgroundColor;
+  final bool debugLogDiagnostics;
   late final SvgAsHtmlStringSignal svgAsHtmlStringSignal;
 
   EnhancedSvgWidgetViaSignal({
@@ -25,6 +26,7 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
     this.alignment = Alignment.center,
     this.clipBehavior = Clip.antiAlias,
     this.backgroundColor = Colors.transparent,
+    this.debugLogDiagnostics = false,
   }) {
     svgAsHtmlStringSignal = SvgAsHtmlStringSignal(
       svgLink: svgLink,
@@ -33,6 +35,7 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
       backgroundColor: backgroundColor,
       fillContainer: false,
       fit: BoxFit.contain,
+      debugLogDiagnostics: debugLogDiagnostics,
     );
   }
 
