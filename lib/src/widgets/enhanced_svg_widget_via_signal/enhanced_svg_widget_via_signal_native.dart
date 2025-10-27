@@ -1,7 +1,10 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../constants.dart';
 import '../../signals/svg_as_html_string_signal.dart';
 
 class EnhancedSvgWidgetViaSignal extends StatelessWidget {
@@ -41,11 +44,23 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (debugLogDiagnostics) {
+      developer.log("EnhancedSvgWidgetViaSignal 1", name: debugTag);
+    }
     return Watch((ctx) {
+      if (debugLogDiagnostics) {
+        developer.log("EnhancedSvgWidgetViaSignal 2", name: debugTag);
+      }
       final htmlStringAndSize = svgAsHtmlStringSignal.value;
+      if (debugLogDiagnostics) {
+        developer.log("EnhancedSvgWidgetViaSignal $htmlStringAndSize", name: debugTag);
+      }
       switch (htmlStringAndSize) {
         case AsyncData(:final value):
           {
+            if (debugLogDiagnostics) {
+              developer.log("EnhancedSvgWidgetViaSignal $value", name: debugTag);
+            }
             final svgHtml = value.$1;
             final svgSize = value.$2;
             if (svgHtml != null && svgSize != null) {
