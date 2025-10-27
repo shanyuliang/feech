@@ -1,7 +1,10 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
+import '../constants.dart';
 import '../extensions/alignment_extension.dart';
 import '../extensions/color_extension.dart';
 import '../utilities/handy_util.dart';
@@ -135,6 +138,9 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
          }
 
          final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers).future;
+         if (debugLogDiagnostics) {
+           developer.log("svgString: $svgString", name: debugTag);
+         }
          if (svgString != null) {
            final size = await getSizeFromSVGString(svgString);
            final alignmentString = fillContainer
