@@ -138,6 +138,9 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
            );
          }
 
+         if (debugLogDiagnostics) {
+           developer.log("SvgAsHtmlStringSignal 1", name: debugTag);
+         }
          final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics).future;
          if (debugLogDiagnostics) {
            developer.log("SvgAsHtmlStringSignal svgString: $svgString", name: debugTag);
