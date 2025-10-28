@@ -59,7 +59,7 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
         case AsyncData(:final value):
           {
             if (debugLogDiagnostics) {
-              developer.log("EnhancedSvgWidgetViaSignal $value", name: debugTag);
+              developer.log("EnhancedSvgWidgetViaSignal AsyncData $value", name: debugTag);
             }
             final svgHtml = value.$1;
             final svgSize = value.$2;
@@ -88,7 +88,12 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
             }
           }
         default:
-          return _placeholder();
+          {
+            if (debugLogDiagnostics) {
+              developer.log("EnhancedSvgWidgetViaSignal Non-AsyncData", name: debugTag);
+            }
+            return _placeholder();
+          }
       }
     });
   }
