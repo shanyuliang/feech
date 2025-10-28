@@ -108,6 +108,9 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
       ''';
   final bool debugLogDiagnostics;
 
+  @override
+  final String? debugLabel = "SvgAsHtmlStringSignal";
+
   // Note: If `fillContainer` is true:
   // 1. The svg will occupy the whole container;
   // 2. Content outside of view box may be seen;
