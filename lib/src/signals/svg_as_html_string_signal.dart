@@ -107,9 +107,6 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
       </html>
       ''';
 
-  // final SvgStringSignal svgStringSignal;
-  // final bool debugLogDiagnostics;
-
   // Note: If `fillContainer` is true:
   // 1. The svg will occupy the whole container;
   // 2. Content outside of view box may be seen;
@@ -141,19 +138,9 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
              );
            }
 
-           if (debugLogDiagnostics) {
-             developer.log("SvgAsHtmlStringSignal 1", name: debugTag);
-           }
-           // final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics).future;
            final svgString = await svgStringSignal.future;
-           if (debugLogDiagnostics) {
-             developer.log("SvgAsHtmlStringSignal svgString: $svgString", name: debugTag);
-           }
            if (svgString != null) {
              final size = await getSizeFromSVGString(svgString);
-             if (debugLogDiagnostics) {
-               developer.log("SvgAsHtmlStringSignal size: $size", name: debugTag);
-             }
              final alignmentString = fillContainer
                  ? (fit == BoxFit.fill ? "none" : alignment.resolve(null).toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
                  : alignment.resolve(null).toCSSMargin();

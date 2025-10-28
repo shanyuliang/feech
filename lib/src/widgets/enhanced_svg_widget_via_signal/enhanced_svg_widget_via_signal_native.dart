@@ -1,10 +1,7 @@
-import 'dart:developer' as developer;
-
 import 'package:flutter/material.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../constants.dart';
 import '../../signals/svg_as_html_string_signal.dart';
 import '../../signals/svg_string_signal.dart';
 
@@ -46,23 +43,11 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (debugLogDiagnostics) {
-      developer.log("EnhancedSvgWidgetViaSignal[$hashCode] 1", name: debugTag);
-    }
     return Watch((ctx) {
-      if (debugLogDiagnostics) {
-        developer.log("EnhancedSvgWidgetViaSignal[$hashCode] 2", name: debugTag);
-      }
       final htmlStringAndSize = svgAsHtmlStringSignal.value;
-      if (debugLogDiagnostics) {
-        developer.log("EnhancedSvgWidgetViaSignal[$hashCode] htmlStringAndSize $htmlStringAndSize", name: debugTag);
-      }
       switch (htmlStringAndSize) {
         case AsyncData(:final value):
           {
-            if (debugLogDiagnostics) {
-              developer.log("EnhancedSvgWidgetViaSignal[$hashCode] AsyncData value $value", name: debugTag);
-            }
             final svgHtml = value.$1;
             final svgSize = value.$2;
             if (svgHtml != null && svgSize != null) {
@@ -91,9 +76,6 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
           }
         default:
           {
-            if (debugLogDiagnostics) {
-              developer.log("EnhancedSvgWidgetViaSignal Non-AsyncData", name: debugTag);
-            }
             return _placeholder();
           }
       }

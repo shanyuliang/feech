@@ -9,6 +9,7 @@ import 'package:web/web.dart' as web;
 import '../../extensions/alignment_extension.dart';
 import '../../extensions/color_extension.dart';
 import '../../signals/svg_as_html_string_signal.dart';
+import '../../signals/svg_string_signal.dart';
 
 class EnhancedSvgWidgetViaSignal extends StatelessWidget {
   final String svgLink;
@@ -41,6 +42,7 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
       backgroundColor: backgroundColor,
       fillContainer: false,
       fit: BoxFit.contain,
+      svgStringSignal: SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics),
       debugLogDiagnostics: debugLogDiagnostics,
     );
   }
