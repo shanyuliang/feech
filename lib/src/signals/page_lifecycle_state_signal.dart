@@ -5,6 +5,6 @@ import '../models/page_lifecycle_state.dart';
 class PageLifecycleStateSignal extends Signal<PageLifecycleState> {
   final bool debugLogDiagnostics;
 
-  PageLifecycleStateSignal({PageLifecycleState initialLifecycleState = PageLifecycleState.detached, this.debugLogDiagnostics = false})
-    : super(initialLifecycleState);
+  PageLifecycleStateSignal(PageLifecycleState? initValue, {this.debugLogDiagnostics = false})
+    : super(initValue ?? PageLifecycleState.detached, debugLabel: "PageLifecycleStateSignal");
 }

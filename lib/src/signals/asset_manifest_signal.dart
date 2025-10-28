@@ -13,7 +13,7 @@ class AssetManifestSignal extends FutureSignal<AssetManifest> {
   AssetManifestSignal({this.debugLogDiagnostics = false})
     : super(() {
         return AssetManifest.loadFromAssetBundle(rootBundle);
-      });
+      }, debugLabel: "AssetManifestSignal");
 
   String getActionAssetName(String baseAssetName) {
     final assetList = peek().value?.listAssets() ?? [];

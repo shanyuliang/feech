@@ -8,6 +8,6 @@ class PageTitleSignalContainer extends SignalContainer<String?, PageTitleSignalC
 
   PageTitleSignalContainer({this.debugLogDiagnostics = false})
     : super((pageTitleSignalContainerParameter) {
-        return PageTitleSignal(initialTitle: pageTitleSignalContainerParameter.initialTitle);
+        return PageTitleSignal(pageTitleSignalContainerParameter.initialTitle);
       }, cache: true);
 }

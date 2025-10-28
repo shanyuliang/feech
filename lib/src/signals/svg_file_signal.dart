@@ -25,5 +25,5 @@ class SvgFileSignal extends StreamSignal<(String, File?)> {
              return (svgLink, null);
            }
          });
-       });
+       }, debugLabel: "SvgFileSignal");
 }

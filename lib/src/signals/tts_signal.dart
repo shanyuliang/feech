@@ -60,7 +60,7 @@ class TtsSignal extends FutureSignal<Tts> {
          }
 
          return Tts(flutterTts: flutterTts, allLocaleVoices: allLocaleVoices, selectedLocaleId: selectedLocaleId, selectedVoiceId: selectedVoiceId);
-       });
+       }, debugLabel: "TtsSignal");
 
   FutureOr<void> setSelectedTtsLocaleId(String? localeId) async {
     await onSelectedTtsLocaleIdChanged?.call(localeId);

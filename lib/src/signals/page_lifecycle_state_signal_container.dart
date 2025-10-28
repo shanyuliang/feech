@@ -10,6 +10,6 @@ class PageLifecycleStateSignalContainer
 
   PageLifecycleStateSignalContainer({this.debugLogDiagnostics = false})
     : super((pageLifecycleStateSignalContainerParameter) {
-        return PageLifecycleStateSignal(initialLifecycleState: pageLifecycleStateSignalContainerParameter.initialLifecycleState);
+        return PageLifecycleStateSignal(pageLifecycleStateSignalContainerParameter.initialLifecycleState);
       }, cache: true);
 }

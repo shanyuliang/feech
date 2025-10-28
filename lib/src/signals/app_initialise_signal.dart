@@ -49,5 +49,5 @@ class AppInitialiseSignal extends FutureSignal<bool> {
 
          await Future.wait([waitForMinWaitDuration, initialisingProviders]);
          return true;
-       });
+       }, debugLabel: "AppInitialiseSignal");
 }

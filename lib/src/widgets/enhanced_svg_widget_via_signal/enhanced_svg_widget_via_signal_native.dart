@@ -45,21 +45,21 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (debugLogDiagnostics) {
-      developer.log("EnhancedSvgWidgetViaSignal 1", name: debugTag);
+      developer.log("EnhancedSvgWidgetViaSignal[$hashCode] 1", name: debugTag);
     }
     return Watch((ctx) {
       if (debugLogDiagnostics) {
-        developer.log("EnhancedSvgWidgetViaSignal 2", name: debugTag);
+        developer.log("EnhancedSvgWidgetViaSignal[$hashCode] 2", name: debugTag);
       }
       final htmlStringAndSize = svgAsHtmlStringSignal.value;
       if (debugLogDiagnostics) {
-        developer.log("EnhancedSvgWidgetViaSignal $htmlStringAndSize", name: debugTag);
+        developer.log("EnhancedSvgWidgetViaSignal[$hashCode] htmlStringAndSize $htmlStringAndSize", name: debugTag);
       }
       switch (htmlStringAndSize) {
         case AsyncData(:final value):
           {
             if (debugLogDiagnostics) {
-              developer.log("EnhancedSvgWidgetViaSignal AsyncData $value", name: debugTag);
+              developer.log("EnhancedSvgWidgetViaSignal[$hashCode] AsyncData value $value", name: debugTag);
             }
             final svgHtml = value.$1;
             final svgSize = value.$2;

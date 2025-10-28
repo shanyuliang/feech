@@ -18,13 +18,13 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
           displayConstraints: BoxConstraints.fromViewConstraints(
             PlatformDispatcher.instance.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
           ),
-          displayWidthMode:
-              BoxConstraints.fromViewConstraints(
-                PlatformDispatcher.instance.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
-              ).toDisplayWidthMode(),
+          displayWidthMode: BoxConstraints.fromViewConstraints(
+            PlatformDispatcher.instance.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+          ).toDisplayWidthMode(),
           locale: PlatformDispatcher.instance.locale,
           textScaleFactor: PlatformDispatcher.instance.textScaleFactor,
         ),
+        debugLabel: "RuntimeInfoSignal",
       );
 
   void setAppLifecycleState(AppLifecycleState appLifecycleState) {

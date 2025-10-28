@@ -9,5 +9,5 @@ class LoggingSignal extends FutureSignal<Logging> {
         final logging = ConsolidatedLogging(actionLoggingList: actionLoggingList);
         await logging.initialise();
         return logging;
-      });
+      }, debugLabel: "LoggingSignal");
 }

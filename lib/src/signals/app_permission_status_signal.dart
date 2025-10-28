@@ -17,7 +17,7 @@ class AppPermissionStatusSignal extends Signal<AppPermissionStatus> {
   AppPermissionStatusSignal({
     required CombinedAppPermissionStatusSignalParameter combinedAppPermissionStatusSignalParameter,
     this.debugLogDiagnostics = false,
-  }) : super(AppPermissionStatus(permission: combinedAppPermissionStatusSignalParameter.permission)) {
+  }) : super(AppPermissionStatus(permission: combinedAppPermissionStatusSignalParameter.permission), debugLabel: "AppPermissionStatusSignal") {
     Future(() {
       _getStatus();
     });
@@ -35,8 +35,9 @@ class AppPermissionStatusSignal extends Signal<AppPermissionStatus> {
     final combinedStatusResult = await suppressThrowableAsyncDefault<Result<CombinedStatus>>(
       throwable: () async {
         final permissionStatus = await currentValue.permission.status;
-        final serviceStatus =
-            (currentValue.permission is PermissionWithService) ? await (currentValue.permission as PermissionWithService).serviceStatus : null;
+        final serviceStatus = (currentValue.permission is PermissionWithService)
+            ? await (currentValue.permission as PermissionWithService).serviceStatus
+            : null;
         final shouldShowRequestRationale = await currentValue.permission.shouldShowRequestRationale;
         return Success(
           data: (permissionStatus: permissionStatus, serviceStatus: serviceStatus, shouldShowRequestRationale: shouldShowRequestRationale),
@@ -61,8 +62,9 @@ class AppPermissionStatusSignal extends Signal<AppPermissionStatus> {
     final combinedStatusResult = await suppressThrowableAsyncDefault<Result<CombinedStatus>>(
       throwable: () async {
         final permissionStatus = await currentValue.permission.request();
-        final serviceStatus =
-            (currentValue.permission is PermissionWithService) ? await (currentValue.permission as PermissionWithService).serviceStatus : null;
+        final serviceStatus = (currentValue.permission is PermissionWithService)
+            ? await (currentValue.permission as PermissionWithService).serviceStatus
+            : null;
         final shouldShowRequestRationale = await currentValue.permission.shouldShowRequestRationale;
         return Success(
           data: (permissionStatus: permissionStatus, serviceStatus: serviceStatus, shouldShowRequestRationale: shouldShowRequestRationale),

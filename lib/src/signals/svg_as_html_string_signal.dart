@@ -107,6 +107,7 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
       </html>
       ''';
   final bool debugLogDiagnostics;
+  late final SvgStringSignal svgStringSignal;
 
   // Note: If `fillContainer` is true:
   // 1. The svg will occupy the whole container;

@@ -18,7 +18,7 @@ class SttSignal extends FutureSignal<Stt> {
         final selectedLocale =
             selectedSttLocaleId?.let((it) => allLocales.firstWhereOrNull((sttLocale) => sttLocale.localeId == it)) ?? allLocales.firstOrNull;
         return Stt(supportedLocales: allLocales, selectedLocale: selectedLocale);
-      });
+      }, debugLabel: "SttSignal");
 
   FutureOr<void> setSelectedSttLocale(SttLocale? sttLocale) async {
     await onSelectedSttLocaleIdChanged?.call(sttLocale?.localeId);

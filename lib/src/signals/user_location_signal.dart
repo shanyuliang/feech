@@ -13,7 +13,7 @@ class UserLocationSignal extends Signal<UserLocation> {
   StreamSubscription<Position>? _positionStreamSubscription;
   final bool debugLogDiagnostics;
 
-  UserLocationSignal({this.debugLogDiagnostics = false}) : super(const UserLocation()) {
+  UserLocationSignal({this.debugLogDiagnostics = false}) : super(const UserLocation(), debugLabel: "UserLocationSignal") {
     Future(() async {
       await getLastKnownLocation();
       await getCurrentLocation();

@@ -5,5 +5,5 @@ import '../models/page_lifecycle_state.dart';
 class PageLifecycleStateSignalMap extends MapSignal<String?, PageLifecycleState> {
   final bool debugLogDiagnostics;
 
-  PageLifecycleStateSignalMap({this.debugLogDiagnostics = false}) : super({});
+  PageLifecycleStateSignalMap({this.debugLogDiagnostics = false}) : super({}, debugLabel: "PageLifecycleStateSignalMap");
 }
