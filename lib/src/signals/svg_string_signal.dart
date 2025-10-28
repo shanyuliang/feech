@@ -5,9 +5,6 @@ import 'package:signals_flutter/signals_flutter.dart';
 class SvgStringSignal extends FutureSignal<String?> {
   final bool debugLogDiagnostics;
 
-  @override
-  final String? debugLabel = "SvgStringSignal";
-
   SvgStringSignal({required final String svgLink, final Map<String, String>? headers, this.debugLogDiagnostics = false})
     : super(() async {
         if (svgLink.startsWith("http")) {
@@ -20,5 +17,5 @@ class SvgStringSignal extends FutureSignal<String?> {
         } else {
           return await rootBundle.loadString(svgLink);
         }
-      });
+      }, debugLabel: "SvgStringSignal");
 }
