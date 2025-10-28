@@ -106,8 +106,9 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
       </body>
       </html>
       ''';
-  final bool debugLogDiagnostics;
-  late final SvgStringSignal svgStringSignal;
+
+  // final SvgStringSignal svgStringSignal;
+  // final bool debugLogDiagnostics;
 
   // Note: If `fillContainer` is true:
   // 1. The svg will occupy the whole container;
@@ -122,47 +123,53 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
     final Color backgroundColor = Colors.transparent,
     final bool fillContainer = false,
     final BoxFit fit = BoxFit.contain,
-    this.debugLogDiagnostics = false,
-  }) : super(() async {
-         Future<Size?> getSizeFromSVGString(String svgString) async {
-           return suppressThrowableAsyncDefault(
-             throwable: () async {
-               final pictureInfo = await vg.loadPicture(SvgStringLoader(svgString), null);
-               final size = pictureInfo.size;
-               pictureInfo.picture.dispose();
-               return size;
-             },
-             whenError: (error, stackTrace) async {
-               return null;
-             },
-           );
-         }
+    required SvgStringSignal svgStringSignal,
+    bool debugLogDiagnostics = false,
+  }) : super(
+         () async {
+           Future<Size?> getSizeFromSVGString(String svgString) async {
+             return suppressThrowableAsyncDefault(
+               throwable: () async {
+                 final pictureInfo = await vg.loadPicture(SvgStringLoader(svgString), null);
+                 final size = pictureInfo.size;
+                 pictureInfo.picture.dispose();
+                 return size;
+               },
+               whenError: (error, stackTrace) async {
+                 return null;
+               },
+             );
+           }
 
-         if (debugLogDiagnostics) {
-           developer.log("SvgAsHtmlStringSignal 1", name: debugTag);
-         }
-         final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics).future;
-         if (debugLogDiagnostics) {
-           developer.log("SvgAsHtmlStringSignal svgString: $svgString", name: debugTag);
-         }
-         if (svgString != null) {
-           final size = await getSizeFromSVGString(svgString);
            if (debugLogDiagnostics) {
-             developer.log("SvgAsHtmlStringSignal size: $size", name: debugTag);
+             developer.log("SvgAsHtmlStringSignal 1", name: debugTag);
            }
-           final alignmentString = fillContainer
-               ? (fit == BoxFit.fill ? "none" : alignment.resolve(null).toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
-               : alignment.resolve(null).toCSSMargin();
-           final htmlString = (fillContainer ? htmlStringTemplateSvgFillContainer : htmlStringTemplateSvg)
-               .replaceFirst('''--IMAGE--''', svgString)
-               .replaceFirst('''--COLOR--''', backgroundColor.toHexRGBAString())
-               .replaceFirst('''--ALIGNMENT--''', alignmentString);
+           // final svgString = await SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics).future;
+           final svgString = await svgStringSignal.future;
            if (debugLogDiagnostics) {
-             developer.log("SvgAsHtmlStringSignal returning: ${(htmlString, size)}", name: debugTag);
+             developer.log("SvgAsHtmlStringSignal svgString: $svgString", name: debugTag);
            }
-           return (htmlString, size);
-         } else {
-           return (null, null);
-         }
-       }, debugLabel: "SvgAsHtmlStringSignal");
+           if (svgString != null) {
+             final size = await getSizeFromSVGString(svgString);
+             if (debugLogDiagnostics) {
+               developer.log("SvgAsHtmlStringSignal size: $size", name: debugTag);
+             }
+             final alignmentString = fillContainer
+                 ? (fit == BoxFit.fill ? "none" : alignment.resolve(null).toSvgPreserveAspectRatio(fit == BoxFit.cover ? "slice" : "meet"))
+                 : alignment.resolve(null).toCSSMargin();
+             final htmlString = (fillContainer ? htmlStringTemplateSvgFillContainer : htmlStringTemplateSvg)
+                 .replaceFirst('''--IMAGE--''', svgString)
+                 .replaceFirst('''--COLOR--''', backgroundColor.toHexRGBAString())
+                 .replaceFirst('''--ALIGNMENT--''', alignmentString);
+             if (debugLogDiagnostics) {
+               developer.log("SvgAsHtmlStringSignal returning: ${(htmlString, size)}", name: debugTag);
+             }
+             return (htmlString, size);
+           } else {
+             return (null, null);
+           }
+         },
+         dependencies: [svgStringSignal],
+         debugLabel: "SvgAsHtmlStringSignal",
+       );
 }
