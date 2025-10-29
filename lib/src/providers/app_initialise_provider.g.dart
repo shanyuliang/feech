@@ -57,7 +57,7 @@ final class AppInitialiseProviderProvider
 }
 
 String _$appInitialiseProviderHash() =>
-    r'02112e8b04a0859b3d431d1d2f746073766a41a0';
+    r'6caa68dc163c9ac435ea2767b7544077f38943d5';
 
 final class AppInitialiseProviderFamily extends $Family
     with

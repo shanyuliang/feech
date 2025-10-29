@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'web_storage_item.dart';
-import 'web_storage_type.dart';
+import '../models/web_storage_item.dart';
+import '../models/web_storage_type.dart';
 
 extension WebViewControllerExtension on WebViewController {
   Future<List<WebStorageItem>> getAllWebStorageItems({required WebStorageType webStorageType}) async {
-    final resultString = ((await runJavaScriptReturningResult("""
+    final resultString =
+        ((await runJavaScriptReturningResult("""
       function getAllWebStorageItems() {
           return Object.keys(window.${webStorageType.name}).map(key => {
               return {
@@ -17,14 +18,17 @@ extension WebViewControllerExtension on WebViewController {
           });
       }
       getAllWebStorageItems();
-    """)) as String?) ?? "[]";
+    """))
+            as String?) ??
+        "[]";
 
     final List<dynamic> resultList = jsonDecode(resultString);
     return resultList.map((item) => WebStorageItem.fromJson(item)).toList();
   }
 
   Future<WebStorageItem?> getSingleWebStorageItem({required WebStorageType webStorageType, required String key}) async {
-    final resultString = (await runJavaScriptReturningResult("""
+    final resultString =
+        (await runJavaScriptReturningResult("""
       function getSingleWebStorageItem() {
           if (Object.keys(window.${webStorageType.name}).includes("$key")) {
               return {
@@ -36,7 +40,8 @@ extension WebViewControllerExtension on WebViewController {
           }
       }
       getSingleWebStorageItem();
-    """)) as String?;
+    """))
+            as String?;
 
     if (resultString != null && resultString != "null") {
       return WebStorageItem.fromJson(jsonDecode(resultString));
@@ -54,10 +59,7 @@ extension WebViewControllerExtension on WebViewController {
     """);
   }
 
-  Future<void> removeMatchedWebStorageItem({
-    required WebStorageType webStorageType,
-    required bool Function(String key) matcher,
-  }) async {
+  Future<void> removeMatchedWebStorageItem({required WebStorageType webStorageType, required bool Function(String key) matcher}) async {
     final allItems = await getAllWebStorageItems(webStorageType: webStorageType);
     for (final item in allItems) {
       if (matcher(item.key)) {
@@ -66,11 +68,7 @@ extension WebViewControllerExtension on WebViewController {
     }
   }
 
-  Future<void> setWebStorageItem({
-    required WebStorageType webStorageType,
-    required String key,
-    required dynamic value,
-  }) async {
+  Future<void> setWebStorageItem({required WebStorageType webStorageType, required String key, required dynamic value}) async {
     final encodedValue = json.encode(value);
     await runJavaScriptReturningResult("""
       function setWebStorageItem() {

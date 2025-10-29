@@ -1,17 +1,11 @@
-import 'dart:js_interop';
-import 'dart:ui_web';
-
 import 'package:flutter/material.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:signals_flutter/signals_flutter.dart';
-import 'package:web/web.dart' as web;
+import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../extensions/alignment_extension.dart';
-import '../../extensions/color_extension.dart';
 import '../../signals/svg_as_html_string_signal.dart';
 import '../../signals/svg_string_signal.dart';
 
-class EnhancedSvgWidgetViaSignal extends StatelessWidget {
+class FeechSvgWidget extends StatelessWidget {
   final String svgLink;
   final Map<String, String>? headers;
   final double? width;
@@ -23,7 +17,7 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
   final bool debugLogDiagnostics;
   late final SvgAsHtmlStringSignal svgAsHtmlStringSignal;
 
-  EnhancedSvgWidgetViaSignal({
+  FeechSvgWidget({
     super.key,
     required this.svgLink,
     this.headers,
@@ -57,15 +51,10 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
             final svgHtml = value.$1;
             final svgSize = value.$2;
             if (svgHtml != null && svgSize != null) {
-              final viewType = "$svgLink-${fit.name}-${alignment.resolve(null).toShortString()}-${backgroundColor.toHexRGBAString()}";
-              platformViewRegistry.registerViewFactory(
-                viewType,
-                (int viewId) => web.HTMLIFrameElement()
-                  ..srcdoc = svgHtml.toJS
-                  ..frameBorder = "none"
-                  ..width = "100%"
-                  ..height = "100%",
-              );
+              final webViewController = WebViewController()
+                ..setBackgroundColor(Colors.transparent)
+                ..setJavaScriptMode(JavaScriptMode.unrestricted);
+              webViewController.loadHtmlString(svgHtml);
               final containerSize = _decideSize(svgSize: svgSize);
               return Container(
                 width: containerSize.width,
@@ -75,19 +64,9 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
                   fit: fit,
                   alignment: alignment,
                   clipBehavior: clipBehavior,
-                  child: Stack(
-                    children: [
-                      SizedBox.fromSize(
-                        size: svgSize,
-                        child: HtmlElementView(viewType: viewType),
-                      ),
-                      PointerInterceptor(
-                        child: SizedBox.fromSize(
-                          size: svgSize,
-                          child: const Material(color: Colors.transparent),
-                        ),
-                      ),
-                    ],
+                  child: SizedBox.fromSize(
+                    size: svgSize,
+                    child: WebViewWidget(controller: webViewController),
                   ),
                 ),
               );
@@ -96,7 +75,9 @@ class EnhancedSvgWidgetViaSignal extends StatelessWidget {
             }
           }
         default:
-          return _placeholder();
+          {
+            return _placeholder();
+          }
       }
     });
   }
