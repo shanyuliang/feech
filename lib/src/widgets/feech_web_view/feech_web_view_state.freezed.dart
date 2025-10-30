@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FeechWebViewState {
 
- int? get id; TextEditingController get urlEditorController; WebViewController get webViewController; String? get initialUrl; String? get title; int? get progress; String? get pageStarted; String? get pageFinished; String? get currentUrl; String? get errorMessage; AppJavaScriptMessage? get javaScriptMessage; AppNavigationDecision? get navigationDecision; bool get canGoBack; bool get canGoForward; bool get expandTitleBar; bool get showDebugToolbar; List<String?> get historyUrls; Map<String?, dynamic> get localStorageItems; Map<String?, dynamic> get sessionStorageItems; StateStatus get stateStatus;
+ int? get id; TextEditingController get urlEditorController; WebViewController get webViewController; String? get initialUrl; String? get title; int? get progress; String? get pageStarted; String? get pageFinished; String? get currentUrl; String? get errorMessage; FeechJavaScriptMessage? get javaScriptMessage; FeechNavigationDecision? get navigationDecision; bool get canGoBack; bool get canGoForward; bool get expandTitleBar; bool get showDebugToolbar; List<String?> get historyUrls; Map<String?, dynamic> get localStorageItems; Map<String?, dynamic> get sessionStorageItems; StateStatus get stateStatus;
 /// Create a copy of FeechWebViewState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $FeechWebViewStateCopyWith<$Res>  {
   factory $FeechWebViewStateCopyWith(FeechWebViewState value, $Res Function(FeechWebViewState) _then) = _$FeechWebViewStateCopyWithImpl;
 @useResult
 $Res call({
- int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, bool showDebugToolbar, List<String?> historyUrls, Map<String?, dynamic> localStorageItems, Map<String?, dynamic> sessionStorageItems, StateStatus stateStatus
+ int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, FeechJavaScriptMessage? javaScriptMessage, FeechNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, bool showDebugToolbar, List<String?> historyUrls, Map<String?, dynamic> localStorageItems, Map<String?, dynamic> sessionStorageItems, StateStatus stateStatus
 });
 
 
@@ -75,8 +75,8 @@ as String?,pageFinished: freezed == pageFinished ? _self.pageFinished : pageFini
 as String?,currentUrl: freezed == currentUrl ? _self.currentUrl : currentUrl // ignore: cast_nullable_to_non_nullable
 as String?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,javaScriptMessage: freezed == javaScriptMessage ? _self.javaScriptMessage : javaScriptMessage // ignore: cast_nullable_to_non_nullable
-as AppJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision : navigationDecision // ignore: cast_nullable_to_non_nullable
-as AppNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
+as FeechJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision : navigationDecision // ignore: cast_nullable_to_non_nullable
+as FeechNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
 as bool,canGoForward: null == canGoForward ? _self.canGoForward : canGoForward // ignore: cast_nullable_to_non_nullable
 as bool,expandTitleBar: null == expandTitleBar ? _self.expandTitleBar : expandTitleBar // ignore: cast_nullable_to_non_nullable
 as bool,showDebugToolbar: null == showDebugToolbar ? _self.showDebugToolbar : showDebugToolbar // ignore: cast_nullable_to_non_nullable
@@ -169,7 +169,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  TextEditingController urlEditorController,  WebViewController webViewController,  String? initialUrl,  String? title,  int? progress,  String? pageStarted,  String? pageFinished,  String? currentUrl,  String? errorMessage,  AppJavaScriptMessage? javaScriptMessage,  AppNavigationDecision? navigationDecision,  bool canGoBack,  bool canGoForward,  bool expandTitleBar,  bool showDebugToolbar,  List<String?> historyUrls,  Map<String?, dynamic> localStorageItems,  Map<String?, dynamic> sessionStorageItems,  StateStatus stateStatus)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  TextEditingController urlEditorController,  WebViewController webViewController,  String? initialUrl,  String? title,  int? progress,  String? pageStarted,  String? pageFinished,  String? currentUrl,  String? errorMessage,  FeechJavaScriptMessage? javaScriptMessage,  FeechNavigationDecision? navigationDecision,  bool canGoBack,  bool canGoForward,  bool expandTitleBar,  bool showDebugToolbar,  List<String?> historyUrls,  Map<String?, dynamic> localStorageItems,  Map<String?, dynamic> sessionStorageItems,  StateStatus stateStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FeechWebViewState() when $default != null:
 return $default(_that.id,_that.urlEditorController,_that.webViewController,_that.initialUrl,_that.title,_that.progress,_that.pageStarted,_that.pageFinished,_that.currentUrl,_that.errorMessage,_that.javaScriptMessage,_that.navigationDecision,_that.canGoBack,_that.canGoForward,_that.expandTitleBar,_that.showDebugToolbar,_that.historyUrls,_that.localStorageItems,_that.sessionStorageItems,_that.stateStatus);case _:
@@ -190,7 +190,7 @@ return $default(_that.id,_that.urlEditorController,_that.webViewController,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  TextEditingController urlEditorController,  WebViewController webViewController,  String? initialUrl,  String? title,  int? progress,  String? pageStarted,  String? pageFinished,  String? currentUrl,  String? errorMessage,  AppJavaScriptMessage? javaScriptMessage,  AppNavigationDecision? navigationDecision,  bool canGoBack,  bool canGoForward,  bool expandTitleBar,  bool showDebugToolbar,  List<String?> historyUrls,  Map<String?, dynamic> localStorageItems,  Map<String?, dynamic> sessionStorageItems,  StateStatus stateStatus)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  TextEditingController urlEditorController,  WebViewController webViewController,  String? initialUrl,  String? title,  int? progress,  String? pageStarted,  String? pageFinished,  String? currentUrl,  String? errorMessage,  FeechJavaScriptMessage? javaScriptMessage,  FeechNavigationDecision? navigationDecision,  bool canGoBack,  bool canGoForward,  bool expandTitleBar,  bool showDebugToolbar,  List<String?> historyUrls,  Map<String?, dynamic> localStorageItems,  Map<String?, dynamic> sessionStorageItems,  StateStatus stateStatus)  $default,) {final _that = this;
 switch (_that) {
 case _FeechWebViewState():
 return $default(_that.id,_that.urlEditorController,_that.webViewController,_that.initialUrl,_that.title,_that.progress,_that.pageStarted,_that.pageFinished,_that.currentUrl,_that.errorMessage,_that.javaScriptMessage,_that.navigationDecision,_that.canGoBack,_that.canGoForward,_that.expandTitleBar,_that.showDebugToolbar,_that.historyUrls,_that.localStorageItems,_that.sessionStorageItems,_that.stateStatus);case _:
@@ -210,7 +210,7 @@ return $default(_that.id,_that.urlEditorController,_that.webViewController,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  TextEditingController urlEditorController,  WebViewController webViewController,  String? initialUrl,  String? title,  int? progress,  String? pageStarted,  String? pageFinished,  String? currentUrl,  String? errorMessage,  AppJavaScriptMessage? javaScriptMessage,  AppNavigationDecision? navigationDecision,  bool canGoBack,  bool canGoForward,  bool expandTitleBar,  bool showDebugToolbar,  List<String?> historyUrls,  Map<String?, dynamic> localStorageItems,  Map<String?, dynamic> sessionStorageItems,  StateStatus stateStatus)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  TextEditingController urlEditorController,  WebViewController webViewController,  String? initialUrl,  String? title,  int? progress,  String? pageStarted,  String? pageFinished,  String? currentUrl,  String? errorMessage,  FeechJavaScriptMessage? javaScriptMessage,  FeechNavigationDecision? navigationDecision,  bool canGoBack,  bool canGoForward,  bool expandTitleBar,  bool showDebugToolbar,  List<String?> historyUrls,  Map<String?, dynamic> localStorageItems,  Map<String?, dynamic> sessionStorageItems,  StateStatus stateStatus)?  $default,) {final _that = this;
 switch (_that) {
 case _FeechWebViewState() when $default != null:
 return $default(_that.id,_that.urlEditorController,_that.webViewController,_that.initialUrl,_that.title,_that.progress,_that.pageStarted,_that.pageFinished,_that.currentUrl,_that.errorMessage,_that.javaScriptMessage,_that.navigationDecision,_that.canGoBack,_that.canGoForward,_that.expandTitleBar,_that.showDebugToolbar,_that.historyUrls,_that.localStorageItems,_that.sessionStorageItems,_that.stateStatus);case _:
@@ -238,8 +238,8 @@ class _FeechWebViewState implements FeechWebViewState {
 @override final  String? pageFinished;
 @override final  String? currentUrl;
 @override final  String? errorMessage;
-@override final  AppJavaScriptMessage? javaScriptMessage;
-@override final  AppNavigationDecision? navigationDecision;
+@override final  FeechJavaScriptMessage? javaScriptMessage;
+@override final  FeechNavigationDecision? navigationDecision;
 @override@JsonKey() final  bool canGoBack;
 @override@JsonKey() final  bool canGoForward;
 @override@JsonKey() final  bool expandTitleBar;
@@ -297,7 +297,7 @@ abstract mixin class _$FeechWebViewStateCopyWith<$Res> implements $FeechWebViewS
   factory _$FeechWebViewStateCopyWith(_FeechWebViewState value, $Res Function(_FeechWebViewState) _then) = __$FeechWebViewStateCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, AppJavaScriptMessage? javaScriptMessage, AppNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, bool showDebugToolbar, List<String?> historyUrls, Map<String?, dynamic> localStorageItems, Map<String?, dynamic> sessionStorageItems, StateStatus stateStatus
+ int? id, TextEditingController urlEditorController, WebViewController webViewController, String? initialUrl, String? title, int? progress, String? pageStarted, String? pageFinished, String? currentUrl, String? errorMessage, FeechJavaScriptMessage? javaScriptMessage, FeechNavigationDecision? navigationDecision, bool canGoBack, bool canGoForward, bool expandTitleBar, bool showDebugToolbar, List<String?> historyUrls, Map<String?, dynamic> localStorageItems, Map<String?, dynamic> sessionStorageItems, StateStatus stateStatus
 });
 
 
@@ -327,8 +327,8 @@ as String?,pageFinished: freezed == pageFinished ? _self.pageFinished : pageFini
 as String?,currentUrl: freezed == currentUrl ? _self.currentUrl : currentUrl // ignore: cast_nullable_to_non_nullable
 as String?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,javaScriptMessage: freezed == javaScriptMessage ? _self.javaScriptMessage : javaScriptMessage // ignore: cast_nullable_to_non_nullable
-as AppJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision : navigationDecision // ignore: cast_nullable_to_non_nullable
-as AppNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
+as FeechJavaScriptMessage?,navigationDecision: freezed == navigationDecision ? _self.navigationDecision : navigationDecision // ignore: cast_nullable_to_non_nullable
+as FeechNavigationDecision?,canGoBack: null == canGoBack ? _self.canGoBack : canGoBack // ignore: cast_nullable_to_non_nullable
 as bool,canGoForward: null == canGoForward ? _self.canGoForward : canGoForward // ignore: cast_nullable_to_non_nullable
 as bool,expandTitleBar: null == expandTitleBar ? _self.expandTitleBar : expandTitleBar // ignore: cast_nullable_to_non_nullable
 as bool,showDebugToolbar: null == showDebugToolbar ? _self.showDebugToolbar : showDebugToolbar // ignore: cast_nullable_to_non_nullable
