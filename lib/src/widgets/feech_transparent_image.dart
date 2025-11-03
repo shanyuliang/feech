@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-final Uint8List feechTransparentImage = Uint8List.fromList(<int>[
+final feechTransparentImage = Uint8List.fromList(<int>[
   0x89,
   0x50,
   0x4E,
@@ -65,4 +65,7 @@ final Uint8List feechTransparentImage = Uint8List.fromList(<int>[
   0x4E,
   0x44,
   0xAE,
+  0x42,
+  0x60,
+  0x82,
 ]);
