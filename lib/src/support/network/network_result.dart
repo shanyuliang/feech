@@ -22,7 +22,7 @@ class NetworkResultMalformed<G, E> extends NetworkResult<G, E> {
 
   @override
   String toString() =>
-      "NetworkResultMalformed [httpStatus=$httpStatus,stringValue=$stringValue,error=$error]";
+      "NetworkResultMalformed [httpStatus=$httpStatus,error=$error,stringValue=$stringValue]";
 }
 
 class NetworkResultHttpError<G, E> extends NetworkResult<G, E> {
@@ -46,7 +46,7 @@ class NetworkResultHttpErrorMalformed<G, E> extends NetworkResult<G, E> {
 
   @override
   String toString() =>
-      "NetworkResultHttpErrorMalformed [httpStatus=$httpStatus,stringValue=$stringValue,error=$error]";
+      "NetworkResultHttpErrorMalformed [httpStatus=$httpStatus,error=$error,stringValue=$stringValue]";
 }
 
 class NetworkResultIoError<G, E> extends NetworkResult<G, E> {
