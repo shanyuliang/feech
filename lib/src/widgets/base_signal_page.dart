@@ -60,7 +60,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
   void initState() {
     super.initState();
     if (widget.debugLogDiagnostics) {
-      developer.log("${widget.routeName}[${widget.key}] page initialise", name: debugTag);
+      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page initialise", name: debugTag);
     }
     widget.initialise();
   }
@@ -69,7 +69,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (widget.debugLogDiagnostics) {
-      developer.log("${widget.routeName}[${widget.key}] page didChangeDependencies", name: debugTag);
+      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
     }
     widget.didChangeDependencies(context);
   }
@@ -77,32 +77,32 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
   @override
   Widget build(BuildContext context) {
     if (widget.debugLogDiagnostics) {
-      developer.log("${widget.routeName}[${widget.key}] page build", name: debugTag);
+      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page build", name: debugTag);
     }
     effect(() {
       final appLifecycleState = appLifecycleStateSignal.value;
       switch (appLifecycleState) {
         case AppLifecycleState.resumed:
           if (widget.debugLogDiagnostics) {
-            developer.log("${widget.routeName}[${widget.key}] app resumed", name: debugTag);
+            developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] app resumed", name: debugTag);
           }
           widget.onAppResumed(context);
           break;
         case AppLifecycleState.paused:
           if (widget.debugLogDiagnostics) {
-            developer.log("${widget.routeName}[${widget.key}] app paused", name: debugTag);
+            developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] app paused", name: debugTag);
           }
           widget.onAppPaused(context);
           break;
         case AppLifecycleState.detached:
           if (widget.debugLogDiagnostics) {
-            developer.log("${widget.routeName}[${widget.key}] app detached", name: debugTag);
+            developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] app detached", name: debugTag);
           }
           widget.onAppDetached(context);
           break;
         default:
           if (widget.debugLogDiagnostics) {
-            developer.log("${widget.routeName}[${widget.key}] app lifecycle status: ${appLifecycleState.name}", name: debugTag);
+            developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] app lifecycle status: ${appLifecycleState.name}", name: debugTag);
           }
           break;
       }
@@ -113,20 +113,20 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         switch (pageLifecycleState) {
           case PageLifecycleState.resumed:
             if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] page resumed", name: debugTag);
+              developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page resumed", name: debugTag);
             }
             widget.refreshTitle(context);
             widget.onPageResumed(context);
             break;
           case PageLifecycleState.paused:
             if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] page paused", name: debugTag);
+              developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page paused", name: debugTag);
             }
             widget.onPagePaused(context);
             break;
           default:
             if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
+              developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page lifecycle status:${pageLifecycleState.name}", name: debugTag);
             }
             break;
         }
@@ -134,7 +134,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
       effect(() {
         final pageTitle = widget.pageTitleSignal.value;
         if (widget.debugLogDiagnostics) {
-          developer.log("${widget.routeName}[${widget.key}] page title changed to [$pageTitle]", name: debugTag);
+          developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page title changed to [$pageTitle]", name: debugTag);
         }
         widget.refreshTitle(context);
       });
@@ -145,7 +145,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
   @override
   void dispose() {
     if (widget.debugLogDiagnostics) {
-      developer.log("${widget.routeName}[${widget.key}] page dispose", name: debugTag);
+      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page dispose", name: debugTag);
     }
     widget.onDisposed(context);
     super.dispose();
