@@ -5,9 +5,9 @@ import 'package:signals_flutter/signals_flutter.dart';
 
 import '../constants.dart';
 import '../extensions/general_type_extension.dart';
-import '../global.dart';
 import '../models/page_lifecycle_state.dart';
 import '../signals/app_lifecycle_state_signal/app_lifecycle_state_signal.dart';
+import '../signals/page_lifecycle_state_map_signal.dart';
 import '../signals/page_title_map_signal.dart';
 import '../utilities/handy_util.dart';
 
@@ -22,16 +22,15 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   final PageTitleMapSignal? pageTitleMapSignal;
 
-  late final pageLifecycleStateSignal = pageLifecycleStateSignalMap.select((s) => s.value[routeName] ?? PageLifecycleState.detached);
+  final PageLifecycleStateMapSignal? pageLifecycleStateMapSignal;
 
-  // late final pageTitleSignal = pageTitleSignalMap.select((s) => s.value[routeName] ?? initialTitle);
-
-  BaseSignalPage({
+  const BaseSignalPage({
     super.key,
     this.routeName,
     this.initialTitle = '',
     this.appLifecycleStateSignal,
     this.pageTitleMapSignal,
+    this.pageLifecycleStateMapSignal,
     this.debugLogDiagnostics = false,
   });
 
@@ -120,7 +119,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     }
     widget.routeName?.let((it) {
       effect(() {
-        final pageLifecycleState = widget.pageLifecycleStateSignal.value;
+        final pageLifecycleState = widget.pageLifecycleStateMapSignal?[widget.routeName];
         switch (pageLifecycleState) {
           case PageLifecycleState.resumed:
             if (widget.debugLogDiagnostics) {
@@ -138,7 +137,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
           default:
             if (widget.debugLogDiagnostics) {
               developer.log(
-                "[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page lifecycle status:${pageLifecycleState.name}",
+                "[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page lifecycle status:${pageLifecycleState?.name}",
                 name: debugTag,
               );
             }
