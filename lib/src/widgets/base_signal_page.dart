@@ -76,6 +76,15 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page initialise", name: debugTag);
     }
+    widget.initialise();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.debugLogDiagnostics) {
+      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
+    }
     if (widget.appLifecycleStateSignal != null) {
       effect(() {
         final appLifecycleState = widget.appLifecycleStateSignal!.value;
@@ -144,15 +153,6 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         widget.refreshTitle(context);
       });
     });
-    widget.initialise();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (widget.debugLogDiagnostics) {
-      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
-    }
     widget.didChangeDependencies(context);
   }
 
