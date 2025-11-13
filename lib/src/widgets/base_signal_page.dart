@@ -23,6 +23,7 @@ abstract class BaseSignalPage extends StatefulWidget {
   final PageTitleMapSignal? pageTitleMapSignal;
 
   late final pageLifecycleStateSignal = pageLifecycleStateSignalMap.select((s) => s.value[routeName] ?? PageLifecycleState.detached);
+
   // late final pageTitleSignal = pageTitleSignalMap.select((s) => s.value[routeName] ?? initialTitle);
 
   BaseSignalPage({
@@ -75,23 +76,6 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page initialise", name: debugTag);
     }
-    widget.initialise();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (widget.debugLogDiagnostics) {
-      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
-    }
-    widget.didChangeDependencies(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (widget.debugLogDiagnostics) {
-      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page build", name: debugTag);
-    }
     if (widget.appLifecycleStateSignal != null) {
       effect(() {
         final appLifecycleState = widget.appLifecycleStateSignal!.value;
@@ -125,7 +109,6 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         }
       });
     }
-
     widget.routeName?.let((it) {
       effect(() {
         final pageLifecycleState = widget.pageLifecycleStateSignal.value;
@@ -161,6 +144,23 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         widget.refreshTitle(context);
       });
     });
+    widget.initialise();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.debugLogDiagnostics) {
+      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
+    }
+    widget.didChangeDependencies(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.debugLogDiagnostics) {
+      developer.log("[${widget.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page build", name: debugTag);
+    }
     return Title(title: widget.getTitle(), color: Theme.of(context).colorScheme.primary, child: widget.build(context));
   }
 
