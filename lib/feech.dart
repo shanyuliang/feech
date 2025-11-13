@@ -74,6 +74,7 @@ export 'src/signals/page_lifecycle_state_map_signal.dart';
 export 'src/signals/page_lifecycle_state_signal.dart';
 export 'src/signals/page_lifecycle_state_signal_container.dart';
 export 'src/signals/page_lifecycle_state_signal_map.dart';
+export 'src/signals/page_title_map_signal.dart';
 export 'src/signals/page_title_signal.dart';
 export 'src/signals/page_title_signal_container.dart';
 export 'src/signals/page_title_signal_map.dart';
