@@ -68,6 +68,7 @@ export 'src/signals/app_lifecycle_state_signal/app_lifecycle_state_signal.dart';
 export 'src/signals/app_permission_status_signal.dart';
 export 'src/signals/app_permission_status_signal_container.dart';
 export 'src/signals/asset_manifest_signal.dart';
+export 'src/signals/feech_page_title_signal_container.dart';
 export 'src/signals/logging_signal.dart';
 export 'src/signals/page_lifecycle_state_map_signal.dart';
 export 'src/signals/page_lifecycle_state_signal.dart';
