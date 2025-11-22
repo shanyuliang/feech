@@ -14,8 +14,8 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.10.0 <4.0.0'
-  flutter: ">=3.38.2"
+  sdk: '>=3.10.1 <4.0.0'
+  flutter: ">=3.38.3"
 
 dependencies:
   flutter:
@@ -30,7 +30,7 @@ dependencies:
   firebase_crashlytics: '>=5.0.5 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.0.3 <4.0.0' # https://pub.dev/packages/flutter_riverpod
-  flutter_svg: '>=2.2.2 <3.0.0' # https://pub.dev/packages/flutter_svg
+  flutter_svg: '>=2.2.3 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.3 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
