@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PageParameter {
 
- String get routeName; String? get initialTitle;
+ String get routeName; PageLifecycleState get initialLifecycleState; String? get initialTitle;
 /// Create a copy of PageParameter
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PageParameterCopyWith<PageParameter> get copyWith => _$PageParameterCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PageParameter&&(identical(other.routeName, routeName) || other.routeName == routeName)&&(identical(other.initialTitle, initialTitle) || other.initialTitle == initialTitle));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PageParameter&&(identical(other.routeName, routeName) || other.routeName == routeName)&&(identical(other.initialLifecycleState, initialLifecycleState) || other.initialLifecycleState == initialLifecycleState)&&(identical(other.initialTitle, initialTitle) || other.initialTitle == initialTitle));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,routeName,initialTitle);
+int get hashCode => Object.hash(runtimeType,routeName,initialLifecycleState,initialTitle);
 
 @override
 String toString() {
-  return 'PageParameter(routeName: $routeName, initialTitle: $initialTitle)';
+  return 'PageParameter(routeName: $routeName, initialLifecycleState: $initialLifecycleState, initialTitle: $initialTitle)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $PageParameterCopyWith<$Res>  {
   factory $PageParameterCopyWith(PageParameter value, $Res Function(PageParameter) _then) = _$PageParameterCopyWithImpl;
 @useResult
 $Res call({
- String routeName, String? initialTitle
+ String routeName, PageLifecycleState initialLifecycleState, String? initialTitle
 });
 
 
@@ -62,10 +62,11 @@ class _$PageParameterCopyWithImpl<$Res>
 
 /// Create a copy of PageParameter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? routeName = null,Object? initialTitle = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? routeName = null,Object? initialLifecycleState = null,Object? initialTitle = freezed,}) {
   return _then(_self.copyWith(
 routeName: null == routeName ? _self.routeName : routeName // ignore: cast_nullable_to_non_nullable
-as String,initialTitle: freezed == initialTitle ? _self.initialTitle : initialTitle // ignore: cast_nullable_to_non_nullable
+as String,initialLifecycleState: null == initialLifecycleState ? _self.initialLifecycleState : initialLifecycleState // ignore: cast_nullable_to_non_nullable
+as PageLifecycleState,initialTitle: freezed == initialTitle ? _self.initialTitle : initialTitle // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -151,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String routeName,  String? initialTitle)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String routeName,  PageLifecycleState initialLifecycleState,  String? initialTitle)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PageParameter() when $default != null:
-return $default(_that.routeName,_that.initialTitle);case _:
+return $default(_that.routeName,_that.initialLifecycleState,_that.initialTitle);case _:
   return orElse();
 
 }
@@ -172,10 +173,10 @@ return $default(_that.routeName,_that.initialTitle);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String routeName,  String? initialTitle)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String routeName,  PageLifecycleState initialLifecycleState,  String? initialTitle)  $default,) {final _that = this;
 switch (_that) {
 case _PageParameter():
-return $default(_that.routeName,_that.initialTitle);case _:
+return $default(_that.routeName,_that.initialLifecycleState,_that.initialTitle);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +193,10 @@ return $default(_that.routeName,_that.initialTitle);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String routeName,  String? initialTitle)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String routeName,  PageLifecycleState initialLifecycleState,  String? initialTitle)?  $default,) {final _that = this;
 switch (_that) {
 case _PageParameter() when $default != null:
-return $default(_that.routeName,_that.initialTitle);case _:
+return $default(_that.routeName,_that.initialLifecycleState,_that.initialTitle);case _:
   return null;
 
 }
@@ -207,10 +208,11 @@ return $default(_that.routeName,_that.initialTitle);case _:
 
 
 class _PageParameter implements PageParameter {
-  const _PageParameter({required this.routeName, this.initialTitle});
+  const _PageParameter({required this.routeName, this.initialLifecycleState = PageLifecycleState.detached, this.initialTitle});
   
 
 @override final  String routeName;
+@override@JsonKey() final  PageLifecycleState initialLifecycleState;
 @override final  String? initialTitle;
 
 /// Create a copy of PageParameter
@@ -223,16 +225,16 @@ _$PageParameterCopyWith<_PageParameter> get copyWith => __$PageParameterCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PageParameter&&(identical(other.routeName, routeName) || other.routeName == routeName)&&(identical(other.initialTitle, initialTitle) || other.initialTitle == initialTitle));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PageParameter&&(identical(other.routeName, routeName) || other.routeName == routeName)&&(identical(other.initialLifecycleState, initialLifecycleState) || other.initialLifecycleState == initialLifecycleState)&&(identical(other.initialTitle, initialTitle) || other.initialTitle == initialTitle));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,routeName,initialTitle);
+int get hashCode => Object.hash(runtimeType,routeName,initialLifecycleState,initialTitle);
 
 @override
 String toString() {
-  return 'PageParameter(routeName: $routeName, initialTitle: $initialTitle)';
+  return 'PageParameter(routeName: $routeName, initialLifecycleState: $initialLifecycleState, initialTitle: $initialTitle)';
 }
 
 
@@ -243,7 +245,7 @@ abstract mixin class _$PageParameterCopyWith<$Res> implements $PageParameterCopy
   factory _$PageParameterCopyWith(_PageParameter value, $Res Function(_PageParameter) _then) = __$PageParameterCopyWithImpl;
 @override @useResult
 $Res call({
- String routeName, String? initialTitle
+ String routeName, PageLifecycleState initialLifecycleState, String? initialTitle
 });
 
 
@@ -260,10 +262,11 @@ class __$PageParameterCopyWithImpl<$Res>
 
 /// Create a copy of PageParameter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? routeName = null,Object? initialTitle = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? routeName = null,Object? initialLifecycleState = null,Object? initialTitle = freezed,}) {
   return _then(_PageParameter(
 routeName: null == routeName ? _self.routeName : routeName // ignore: cast_nullable_to_non_nullable
-as String,initialTitle: freezed == initialTitle ? _self.initialTitle : initialTitle // ignore: cast_nullable_to_non_nullable
+as String,initialLifecycleState: null == initialLifecycleState ? _self.initialLifecycleState : initialLifecycleState // ignore: cast_nullable_to_non_nullable
+as PageLifecycleState,initialTitle: freezed == initialTitle ? _self.initialTitle : initialTitle // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

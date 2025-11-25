@@ -36,7 +36,6 @@ export 'src/helpers/svg_helper.dart';
 export 'src/models/app_permission_status.dart';
 export 'src/models/display_width_mode.dart';
 export 'src/models/page_lifecycle_state.dart';
-export 'src/models/page_lifecycle_state_signal_container_parameter.dart';
 export 'src/models/page_parameter.dart';
 export 'src/models/runtime_info.dart';
 export 'src/models/stt.dart';
