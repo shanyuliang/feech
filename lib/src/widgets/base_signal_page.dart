@@ -8,14 +8,15 @@ import '../extensions/general_type_extension.dart';
 import '../models/page_lifecycle_state.dart';
 import '../models/page_parameter.dart';
 import '../signals/app_lifecycle_state_signal/app_lifecycle_state_signal.dart';
+import '../signals/page_lifecycle_state_signal.dart';
 import '../signals/page_lifecycle_state_signal_container.dart';
+import '../signals/page_title_signal.dart';
 import '../signals/page_title_signal_container.dart';
 import '../utilities/handy_util.dart';
 
 abstract class BaseSignalPage extends StatefulWidget {
   final bool debugLogDiagnostics;
   final PageParameter pageParameter;
-
   final AppLifecycleStateSignal? appLifecycleStateSignal;
   final PageLifecycleStateSignalContainer? pageLifecycleStateSignalContainer;
   final PageTitleSignalContainer? pageTitleSignalContainer;
@@ -70,12 +71,21 @@ abstract class BaseSignalPage extends StatefulWidget {
 }
 
 class _BaseSignalPageState extends State<BaseSignalPage> {
+  late final PageLifecycleStateSignal? pageLifecycleStateSignal;
+  late final PageTitleSignal? pageTitleSignal;
+
   @override
   void initState() {
     super.initState();
     if (widget.debugLogDiagnostics) {
       developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page initialise", name: debugTag);
     }
+    widget.pageLifecycleStateSignalContainer?.let((it) {
+      pageLifecycleStateSignal = it(widget.pageParameter);
+    });
+    widget.pageTitleSignalContainer?.let((it) {
+      pageTitleSignal = it(widget.pageParameter);
+    });
     widget.initialise();
   }
 
@@ -118,10 +128,9 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         }
       });
     });
-    widget.pageLifecycleStateSignalContainer?.let((it) {
+    pageLifecycleStateSignal?.let((it) {
       effect(() {
-        final pageLifecycleStateSignal = it(widget.pageParameter);
-        final pageLifecycleState = pageLifecycleStateSignal.value;
+        final pageLifecycleState = it.value;
         switch (pageLifecycleState) {
           case PageLifecycleState.resumed:
             if (widget.debugLogDiagnostics) {
@@ -147,10 +156,9 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         }
       });
     });
-    widget.pageTitleSignalContainer?.let((it) {
+    pageTitleSignal?.let((it) {
       effect(() {
-        final pageTitleSignal = it(widget.pageParameter);
-        final pageTitle = pageTitleSignal.value;
+        final pageTitle = it.value;
         if (widget.debugLogDiagnostics) {
           developer.log(
             "[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page title changed to [$pageTitle]",
