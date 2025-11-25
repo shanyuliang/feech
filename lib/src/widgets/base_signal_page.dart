@@ -8,7 +8,7 @@ import '../extensions/general_type_extension.dart';
 import '../models/page_lifecycle_state.dart';
 import '../models/page_parameter.dart';
 import '../signals/app_lifecycle_state_signal/app_lifecycle_state_signal.dart';
-import '../signals/page_lifecycle_state_map_signal.dart';
+import '../signals/page_lifecycle_state_signal_container.dart';
 import '../signals/page_title_signal_container.dart';
 import '../utilities/handy_util.dart';
 
@@ -17,17 +17,15 @@ abstract class BaseSignalPage extends StatefulWidget {
   final PageParameter pageParameter;
 
   final AppLifecycleStateSignal? appLifecycleStateSignal;
-
+  final PageLifecycleStateSignalContainer? pageLifecycleStateSignalContainer;
   final PageTitleSignalContainer? pageTitleSignalContainer;
-
-  final PageLifecycleStateMapSignal? pageLifecycleStateMapSignal;
 
   const BaseSignalPage({
     super.key,
     required this.pageParameter,
     this.appLifecycleStateSignal,
+    this.pageLifecycleStateSignalContainer,
     this.pageTitleSignalContainer,
-    this.pageLifecycleStateMapSignal,
     this.debugLogDiagnostics = false,
   });
 
@@ -121,30 +119,33 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
       });
     }
     effect(() {
-      final pageLifecycleState = widget.pageLifecycleStateMapSignal?[widget.pageParameter.routeName];
-      switch (pageLifecycleState) {
-        case PageLifecycleState.resumed:
-          if (widget.debugLogDiagnostics) {
-            developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page resumed", name: debugTag);
-          }
-          widget.refreshTitle(context);
-          widget.onPageResumed(context);
-          break;
-        case PageLifecycleState.paused:
-          if (widget.debugLogDiagnostics) {
-            developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page paused", name: debugTag);
-          }
-          widget.onPagePaused(context);
-          break;
-        default:
-          if (widget.debugLogDiagnostics) {
-            developer.log(
-              "[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page lifecycle status:${pageLifecycleState?.name}",
-              name: debugTag,
-            );
-          }
-          break;
-      }
+      widget.pageLifecycleStateSignalContainer?.let((it) {
+        final pageLifecycleStateSignal = it(widget.pageParameter);
+        final pageLifecycleState = pageLifecycleStateSignal.value;
+        switch (pageLifecycleState) {
+          case PageLifecycleState.resumed:
+            if (widget.debugLogDiagnostics) {
+              developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page resumed", name: debugTag);
+            }
+            widget.refreshTitle(context);
+            widget.onPageResumed(context);
+            break;
+          case PageLifecycleState.paused:
+            if (widget.debugLogDiagnostics) {
+              developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page paused", name: debugTag);
+            }
+            widget.onPagePaused(context);
+            break;
+          default:
+            if (widget.debugLogDiagnostics) {
+              developer.log(
+                "[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page lifecycle status:${pageLifecycleState.name}",
+                name: debugTag,
+              );
+            }
+            break;
+        }
+      });
     });
     effect(() {
       widget.pageTitleSignalContainer?.let((it) {
