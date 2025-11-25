@@ -85,9 +85,9 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
     }
-    if (widget.appLifecycleStateSignal != null) {
+    widget.appLifecycleStateSignal?.let((it) {
       effect(() {
-        final appLifecycleState = widget.appLifecycleStateSignal!.value;
+        final appLifecycleState = it.value;
         switch (appLifecycleState) {
           case AppLifecycleState.resumed:
             if (widget.debugLogDiagnostics) {
@@ -117,9 +117,9 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
             break;
         }
       });
-    }
-    effect(() {
-      widget.pageLifecycleStateSignalContainer?.let((it) {
+    });
+    widget.pageLifecycleStateSignalContainer?.let((it) {
+      effect(() {
         final pageLifecycleStateSignal = it(widget.pageParameter);
         final pageLifecycleState = pageLifecycleStateSignal.value;
         switch (pageLifecycleState) {
@@ -147,8 +147,8 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         }
       });
     });
-    effect(() {
-      widget.pageTitleSignalContainer?.let((it) {
+    widget.pageTitleSignalContainer?.let((it) {
+      effect(() {
         final pageTitleSignal = it(widget.pageParameter);
         final pageTitle = pageTitleSignal.value;
         if (widget.debugLogDiagnostics) {
