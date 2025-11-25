@@ -23,14 +23,7 @@ $PageParameterCopyWith<PageParameter> get copyWith => _$PageParameterCopyWithImp
 
 
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PageParameter&&(identical(other.routeName, routeName) || other.routeName == routeName)&&(identical(other.initialLifecycleState, initialLifecycleState) || other.initialLifecycleState == initialLifecycleState)&&(identical(other.initialTitle, initialTitle) || other.initialTitle == initialTitle));
-}
 
-
-@override
-int get hashCode => Object.hash(runtimeType,routeName,initialLifecycleState,initialTitle);
 
 @override
 String toString() {
@@ -207,8 +200,8 @@ return $default(_that.routeName,_that.initialLifecycleState,_that.initialTitle);
 /// @nodoc
 
 
-class _PageParameter implements PageParameter {
-  const _PageParameter({required this.routeName, this.initialLifecycleState = PageLifecycleState.detached, this.initialTitle});
+class _PageParameter extends PageParameter {
+  const _PageParameter({required this.routeName, this.initialLifecycleState = PageLifecycleState.detached, this.initialTitle}): super._();
   
 
 @override final  String routeName;
@@ -223,14 +216,7 @@ _$PageParameterCopyWith<_PageParameter> get copyWith => __$PageParameterCopyWith
 
 
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PageParameter&&(identical(other.routeName, routeName) || other.routeName == routeName)&&(identical(other.initialLifecycleState, initialLifecycleState) || other.initialLifecycleState == initialLifecycleState)&&(identical(other.initialTitle, initialTitle) || other.initialTitle == initialTitle));
-}
 
-
-@override
-int get hashCode => Object.hash(runtimeType,routeName,initialLifecycleState,initialTitle);
 
 @override
 String toString() {
