@@ -33,24 +33,6 @@ abstract class BaseSignalPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _BaseSignalPageState();
 
-  void setTitle(String title) {
-    pageTitleSignalContainer?.let((it) {
-      final pageTitleSignal = it(pageParameter);
-      pageTitleSignal.value = title;
-    });
-  }
-
-  String? getTitle() {
-    return pageTitleSignalContainer?.let((it) {
-      final pageTitleSignal = it(pageParameter);
-      return pageTitleSignal.peek();
-    });
-  }
-
-  void refreshTitle(BuildContext context) {
-    setAppSwitcherTitle(context: context, title: getTitle());
-  }
-
   void initialise() {}
 
   void didChangeDependencies(BuildContext context) {}
@@ -136,7 +118,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
             if (widget.debugLogDiagnostics) {
               developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page resumed", name: debugTag);
             }
-            widget.refreshTitle(context);
+            _refreshTitle();
             widget.onPageResumed(context);
             break;
           case PageLifecycleState.paused:
@@ -165,7 +147,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
             name: debugTag,
           );
         }
-        widget.refreshTitle(context);
+        _refreshTitle();
       });
     });
     widget.didChangeDependencies(context);
@@ -176,7 +158,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page build", name: debugTag);
     }
-    return Title(title: widget.getTitle() ?? '', color: Theme.of(context).colorScheme.primary, child: widget.build(context));
+    return Title(title: pageTitleSignal?.value ?? '', color: Theme.of(context).colorScheme.primary, child: widget.build(context));
   }
 
   @override
@@ -186,5 +168,9 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     }
     widget.onDisposed(context);
     super.dispose();
+  }
+
+  void _refreshTitle() {
+    setAppSwitcherTitle(context: context, title: pageTitleSignal?.value);
   }
 }
