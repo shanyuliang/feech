@@ -55,6 +55,9 @@ abstract class BaseSignalPage extends StatefulWidget {
 class _BaseSignalPageState extends State<BaseSignalPage> {
   late final PageLifecycleStateSignal? pageLifecycleStateSignal;
   late final PageTitleSignal? pageTitleSignal;
+  late final Function()? disposeAppLifecycleStateListener;
+  late final Function()? disposePageLifecycleStateListener;
+  late final Function()? disposePageTitleListener;
 
   @override
   void initState() {
@@ -78,7 +81,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
       developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
     }
     widget.appLifecycleStateSignal?.let((it) {
-      effect(() {
+      disposeAppLifecycleStateListener = effect(() {
         final appLifecycleState = it.value;
         switch (appLifecycleState) {
           case AppLifecycleState.resumed:
@@ -111,7 +114,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
       });
     });
     pageLifecycleStateSignal?.let((it) {
-      effect(() {
+      disposePageLifecycleStateListener = effect(() {
         final pageLifecycleState = it.value;
         switch (pageLifecycleState) {
           case PageLifecycleState.resumed:
@@ -139,7 +142,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
       });
     });
     pageTitleSignal?.let((it) {
-      effect(() {
+      disposePageTitleListener = effect(() {
         final pageTitle = it.value;
         if (widget.debugLogDiagnostics) {
           developer.log(
@@ -170,6 +173,9 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page dispose", name: debugTag);
     }
+    disposeAppLifecycleStateListener?.call();
+    disposePageLifecycleStateListener?.call();
+    disposePageTitleListener?.call();
     widget.onDisposed(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
     super.dispose();
   }
