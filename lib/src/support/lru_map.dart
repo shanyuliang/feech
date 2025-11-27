@@ -396,4 +396,4 @@ class LinkedLruHashMap<K, V> implements LruMap<K, V> {
 final List _toStringVisiting = [];
 
 /// Check if we are currently visiting `o` in a toString() call.
-bool _isToStringVisiting(o) => _toStringVisiting.any((e) => identical(o, e));
+bool _isToStringVisiting(dynamic o) => _toStringVisiting.any((e) => identical(o, e));

@@ -9,14 +9,9 @@ class Debouncer {
   final VoidCallback? onCoolDownDurationPassed;
   Timer? _timer;
 
-  Debouncer({
-    required this.durationInMilliseconds,
-    required this.debouncingMode,
-    this.onWarmedUpActionCalled,
-    this.onCoolDownDurationPassed,
-  });
+  Debouncer({required this.durationInMilliseconds, required this.debouncingMode, this.onWarmedUpActionCalled, this.onCoolDownDurationPassed});
 
-  run(VoidCallback action) {
+  void run(VoidCallback action) {
     if (debouncingMode == DebouncingMode.warmUp) {
       _timer?.cancel();
       _timer = Timer(Duration(milliseconds: durationInMilliseconds), () {
@@ -39,5 +34,5 @@ enum DebouncingMode {
   // Run the action after [DURATION] delay. New coming action will cancel previous not-yet-run action.
   warmUp,
   // Run the action immediately if there is no previous action run in last [DURATION], otherwise the action is cancelled.
-  coolDown;
+  coolDown,
 }
