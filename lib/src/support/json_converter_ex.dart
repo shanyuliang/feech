@@ -7,10 +7,10 @@ abstract class JsonConverterEx<T, S> implements JsonConverter<T, S> {
   const JsonConverterEx();
 
   Future<T> fromJsonEx(S json) async {
-    return await compute(fromJson, json);
+    return compute(fromJson, json);
   }
 
   Future<S> toJsonEx(T object) async {
-    return await compute(toJson, object);
+    return compute(toJson, object);
   }
 }
