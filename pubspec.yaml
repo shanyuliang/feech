@@ -51,10 +51,10 @@ dependencies:
   quiver: '>=3.2.2 <4.0.0' # https://pub.dev/packages/quiver
   riverpod_annotation: '>=3.0.3 <4.0.0' # https://pub.dev/packages/riverpod_annotation
   shared_preferences: '>=2.5.3 <3.0.0' # https://pub.dev/packages/shared_preferences
-  signals_flutter: '>=6.2.0 <7.0.0' # https://pub.dev/packages/signals_flutter
+  signals_flutter: '>=6.3.0 <7.0.0' # https://pub.dev/packages/signals_flutter
   speech_to_text: '>=7.3.0 <8.0.0' # https://pub.dev/packages/speech_to_text
   sqflite: '>=2.4.2 <3.0.0' # https://pub.dev/packages/sqflite
-  sqlite3: '>=3.1.0 <4.0.0' # https://pub.dev/packages/sqlite3
+  sqlite3: '>=3.1.1 <4.0.0' # https://pub.dev/packages/sqlite3
   ulid4d: '>=2.0.0 <3.0.0' # https://pub.dev/packages/ulid4d
   version: '>=3.0.2 <4.0.0' # https://pub.dev/packages/version
   web: '>=1.1.1 <2.0.0' # https://pub.dev/packages/web

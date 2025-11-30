@@ -5,109 +5,91 @@ import 'package:sqflite/sqflite.dart';
 
 import '../constants.dart';
 
-abstract class DatabaseResult<G> {
-  DatabaseResult._();
-
-  factory DatabaseResult._openGood(String databaseName, Database database) => DatabaseResultOpenGood<G>(databaseName, database);
-
-  factory DatabaseResult._closeGood(String databaseName) => DatabaseResultCloseGood<G>(databaseName);
-
-  factory DatabaseResult._queryGood(List<G> values) => DatabaseResultQueryGood<G>(values);
-
-  factory DatabaseResult._insertGood(G value) => DatabaseResultInsertGood<G>(value);
-
-  factory DatabaseResult._updateGood(G value) => DatabaseResultUpdateGood<G>(value);
-
-  factory DatabaseResult._deleteGood() => DatabaseResultDeleteGood<G>();
-
-  factory DatabaseResult._badInputData(G data, Exception exception) => DatabaseResultBadInputData<G>(data, exception);
-
-  factory DatabaseResult._badOutputData(List<Map<String, dynamic>> output, Exception exception) =>
-      DatabaseResultBadOutputData<G>(output, exception);
-
-  factory DatabaseResult._error(Exception exception) => DatabaseResultError<G>(exception);
-}
+sealed class DatabaseResult<G> {}
 
 class DatabaseResultOpenGood<G> extends DatabaseResult<G> {
   final String databaseName;
   final Database database;
 
-  DatabaseResultOpenGood(this.databaseName, this.database) : super._();
+  DatabaseResultOpenGood(this.databaseName, this.database);
 
   @override
-  String toString() => "{DatabaseResultOpenGood={databaseName=$databaseName,database=$database}}";
+  String toString() => "DatabaseResultOpenGood [databaseName=$databaseName,database=$database]";
 }
 
 class DatabaseResultCloseGood<G> extends DatabaseResult<G> {
   final String databaseName;
 
-  DatabaseResultCloseGood(this.databaseName) : super._();
+  DatabaseResultCloseGood(this.databaseName);
 
   @override
-  String toString() => "{DatabaseResultCloseGood={databaseName=$databaseName}}";
+  String toString() => "DatabaseResultCloseGood [databaseName=$databaseName]";
 }
 
 class DatabaseResultQueryGood<G> extends DatabaseResult<G> {
   final List<G> values;
 
-  DatabaseResultQueryGood(this.values) : super._();
+  DatabaseResultQueryGood(this.values);
 
   @override
-  String toString() => "{DatabaseResultQueryGood={values=$values}}";
+  String toString() => "DatabaseResultQueryGood [values=$values]";
 }
 
 class DatabaseResultInsertGood<G> extends DatabaseResult<G> {
   final G value;
 
-  DatabaseResultInsertGood(this.value) : super._();
+  DatabaseResultInsertGood(this.value);
 
   @override
-  String toString() => "{DatabaseResultInsertGood={value=$value}}";
+  String toString() => "DatabaseResultInsertGood [value=$value]";
 }
 
 class DatabaseResultUpdateGood<G> extends DatabaseResult<G> {
+  final int updatedCount;
   final G value;
 
-  DatabaseResultUpdateGood(this.value) : super._();
+  DatabaseResultUpdateGood(this.updatedCount, this.value);
 
   @override
-  String toString() => "{DatabaseResultUpdateGood={value=$value}}";
+  String toString() => "DatabaseResultUpdateGood [updatedCount=$updatedCount,value=$value]";
 }
 
 class DatabaseResultDeleteGood<G> extends DatabaseResult<G> {
-  DatabaseResultDeleteGood() : super._();
+  final int deletedCount;
+
+  DatabaseResultDeleteGood(this.deletedCount);
 
   @override
-  String toString() => "{DatabaseResultDeleteGood}";
+  String toString() => "DatabaseResultDeleteGood [deletedCount=$deletedCount]";
 }
 
 class DatabaseResultBadInputData<G> extends DatabaseResult<G> {
   final G data;
   final Exception exception;
 
-  DatabaseResultBadInputData(this.data, this.exception) : super._();
+  DatabaseResultBadInputData(this.data, this.exception);
 
   @override
-  String toString() => "{DatabaseResultBadInputData={exception=$exception}}";
+  String toString() => "DatabaseResultBadInputData [data=$data,exception=$exception]";
 }
 
 class DatabaseResultBadOutputData<G> extends DatabaseResult<G> {
   final List<Map<String, dynamic>> output;
   final Exception exception;
 
-  DatabaseResultBadOutputData(this.output, this.exception) : super._();
+  DatabaseResultBadOutputData(this.output, this.exception);
 
   @override
-  String toString() => "{DatabaseResultBadOutputData={output=$output,exception=$exception}}";
+  String toString() => "DatabaseResultBadOutputData [output=$output,exception=$exception]";
 }
 
 class DatabaseResultError<G> extends DatabaseResult<G> {
   final Exception exception;
 
-  DatabaseResultError(this.exception) : super._();
+  DatabaseResultError(this.exception);
 
   @override
-  String toString() => "{DatabaseResultError={exception=$exception}";
+  String toString() => "DatabaseResultError [exception=$exception]";
 }
 
 typedef FromMap<G> = G Function(Map<String, dynamic> map);
@@ -126,8 +108,7 @@ class SqliteHelper {
     return _database?.isOpen ?? false;
   }
 
-  Future<DatabaseResult> open(
-      String databaseName, List<String> onCreateCommandList, List<String> onUpgradeCommandList, int version) async {
+  Future<DatabaseResult> open(String databaseName, List<String> onCreateCommandList, List<String> onUpgradeCommandList, int version) async {
     DatabaseResult databaseResult;
     try {
       _database = await openDatabase(
@@ -150,9 +131,9 @@ class SqliteHelper {
         },
         version: version,
       );
-      databaseResult = DatabaseResult._openGood(databaseName, _database!);
+      databaseResult = DatabaseResultOpenGood(databaseName, _database!);
     } catch (e) {
-      databaseResult = DatabaseResult._error(e as Exception);
+      databaseResult = DatabaseResultError(e as Exception);
     }
     if (debugLogDiagnostics) {
       developer.log("SqliteHelper $databaseResult", name: debugTag);
@@ -166,9 +147,9 @@ class SqliteHelper {
       String databaseName = _database?.path ?? "";
       await _database?.close();
       _database = null;
-      databaseResult = DatabaseResult._closeGood(databaseName);
+      databaseResult = DatabaseResultCloseGood(databaseName);
     } catch (e) {
-      databaseResult = DatabaseResult._error(e as Exception);
+      databaseResult = DatabaseResultError(e as Exception);
     }
     if (debugLogDiagnostics) {
       developer.log("SqliteHelper $databaseResult", name: debugTag);
@@ -176,22 +157,20 @@ class SqliteHelper {
     return databaseResult;
   }
 
-  Future<DatabaseResult<G>> query<G>(String tableName, FromMap<G> fromMap,
-      {String? where, List<String>? whereValueList, String? orderBy}) async {
+  Future<DatabaseResult<G>> query<G>(String tableName, FromMap<G> fromMap, {String? where, List<String>? whereValueList, String? orderBy}) async {
     DatabaseResult<G> databaseResult;
     try {
-      List<Map<String, dynamic>> dataList =
-          await _database!.query(tableName, where: where, whereArgs: whereValueList, orderBy: orderBy);
+      List<Map<String, dynamic>> dataList = await _database!.query(tableName, where: where, whereArgs: whereValueList, orderBy: orderBy);
       try {
         List<G> values = dataList.map((map) => fromMap(map)).toList();
-        databaseResult = DatabaseResult._queryGood(values);
+        databaseResult = DatabaseResultQueryGood(values);
       } on Error catch (err) {
-        databaseResult = DatabaseResult._badOutputData(dataList, Exception(err.toString()));
+        databaseResult = DatabaseResultBadOutputData(dataList, Exception(err.toString()));
       } catch (e) {
-        databaseResult = DatabaseResult._error(e as Exception);
+        databaseResult = DatabaseResultError(e as Exception);
       }
     } catch (e) {
-      databaseResult = DatabaseResult._error(e as Exception);
+      databaseResult = DatabaseResultError(e as Exception);
     }
     if (debugLogDiagnostics) {
       developer.log("SqliteHelper $databaseResult", name: debugTag);
@@ -205,14 +184,14 @@ class SqliteHelper {
       Map<String, dynamic> map = toMap(data);
       try {
         await _database!.insert(tableName, map, conflictAlgorithm: ConflictAlgorithm.replace);
-        databaseResult = DatabaseResult._insertGood(data);
+        databaseResult = DatabaseResultInsertGood(data);
       } catch (e) {
-        databaseResult = DatabaseResult._error(e as Exception);
+        databaseResult = DatabaseResultError(e as Exception);
       }
     } on Error catch (err) {
-      databaseResult = DatabaseResult._badInputData(data, Exception(err.toString()));
+      databaseResult = DatabaseResultBadInputData(data, Exception(err.toString()));
     } catch (e) {
-      databaseResult = DatabaseResult._error(e as Exception);
+      databaseResult = DatabaseResultError(e as Exception);
     }
     if (debugLogDiagnostics) {
       developer.log("SqliteHelper $databaseResult", name: debugTag);
@@ -225,16 +204,15 @@ class SqliteHelper {
     try {
       Map<String, dynamic> map = toMap(data);
       try {
-        await _database!
-            .update(tableName, map, where: where, whereArgs: whereValueList, conflictAlgorithm: ConflictAlgorithm.replace);
-        databaseResult = DatabaseResult._updateGood(data);
+        final result = await _database!.update(tableName, map, where: where, whereArgs: whereValueList, conflictAlgorithm: ConflictAlgorithm.replace);
+        databaseResult = DatabaseResultUpdateGood(result, data);
       } catch (e) {
-        databaseResult = DatabaseResult._error(e as Exception);
+        databaseResult = DatabaseResultError(e as Exception);
       }
     } on Error catch (err) {
-      databaseResult = DatabaseResult._badInputData(data, Exception(err.toString()));
+      databaseResult = DatabaseResultBadInputData(data, Exception(err.toString()));
     } catch (e) {
-      databaseResult = DatabaseResult._error(e as Exception);
+      databaseResult = DatabaseResultError(e as Exception);
     }
     if (debugLogDiagnostics) {
       developer.log("SqliteHelper $databaseResult", name: debugTag);
@@ -245,10 +223,10 @@ class SqliteHelper {
   Future<DatabaseResult> delete(String tableName, String where, List<String> whereValueList) async {
     DatabaseResult databaseResult;
     try {
-      await _database!.delete(tableName, where: where, whereArgs: whereValueList);
-      databaseResult = DatabaseResult._deleteGood();
+      final result = await _database!.delete(tableName, where: where, whereArgs: whereValueList);
+      databaseResult = DatabaseResultDeleteGood(result);
     } catch (e) {
-      databaseResult = DatabaseResult._error(e as Exception);
+      databaseResult = DatabaseResultError(e as Exception);
     }
     if (debugLogDiagnostics) {
       developer.log("SqliteHelper $databaseResult", name: debugTag);
