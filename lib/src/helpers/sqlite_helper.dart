@@ -4,149 +4,55 @@ import 'dart:developer' as developer;
 import 'package:sqflite/sqflite.dart';
 
 import '../constants.dart';
-
-sealed class DatabaseResult<G> {}
-
-class DatabaseResultOpenGood<G> extends DatabaseResult<G> {
-  final String databaseName;
-  final Database database;
-
-  DatabaseResultOpenGood(this.databaseName, this.database);
-
-  @override
-  String toString() => "DatabaseResultOpenGood [databaseName=$databaseName,database=$database]";
-}
-
-class DatabaseResultCloseGood<G> extends DatabaseResult<G> {
-  final String databaseName;
-
-  DatabaseResultCloseGood(this.databaseName);
-
-  @override
-  String toString() => "DatabaseResultCloseGood [databaseName=$databaseName]";
-}
-
-class DatabaseResultQueryGood<G> extends DatabaseResult<G> {
-  final List<G> values;
-
-  DatabaseResultQueryGood(this.values);
-
-  @override
-  String toString() => "DatabaseResultQueryGood [values=$values]";
-}
-
-class DatabaseResultInsertGood<G> extends DatabaseResult<G> {
-  final G value;
-
-  DatabaseResultInsertGood(this.value);
-
-  @override
-  String toString() => "DatabaseResultInsertGood [value=$value]";
-}
-
-class DatabaseResultUpdateGood<G> extends DatabaseResult<G> {
-  final int updatedCount;
-  final G value;
-
-  DatabaseResultUpdateGood(this.updatedCount, this.value);
-
-  @override
-  String toString() => "DatabaseResultUpdateGood [updatedCount=$updatedCount,value=$value]";
-}
-
-class DatabaseResultDeleteGood<G> extends DatabaseResult<G> {
-  final int deletedCount;
-
-  DatabaseResultDeleteGood(this.deletedCount);
-
-  @override
-  String toString() => "DatabaseResultDeleteGood [deletedCount=$deletedCount]";
-}
-
-class DatabaseResultBadInputData<G> extends DatabaseResult<G> {
-  final G data;
-  final Exception exception;
-
-  DatabaseResultBadInputData(this.data, this.exception);
-
-  @override
-  String toString() => "DatabaseResultBadInputData [data=$data,exception=$exception]";
-}
-
-class DatabaseResultBadOutputData<G> extends DatabaseResult<G> {
-  final List<Map<String, dynamic>> output;
-  final Exception exception;
-
-  DatabaseResultBadOutputData(this.output, this.exception);
-
-  @override
-  String toString() => "DatabaseResultBadOutputData [output=$output,exception=$exception]";
-}
-
-class DatabaseResultError<G> extends DatabaseResult<G> {
-  final Exception exception;
-
-  DatabaseResultError(this.exception);
-
-  @override
-  String toString() => "DatabaseResultError [exception=$exception]";
-}
+import '../support/database/database_result.dart';
 
 typedef FromMap<G> = G Function(Map<String, dynamic> map);
 typedef ToMap<G> = Map<String, dynamic> Function(G data);
 
 class SqliteHelper {
-  SqliteHelper._({this.debugLogDiagnostics = false});
-
-  factory SqliteHelper({bool debugLogDiagnostics = false}) => SqliteHelper._(debugLogDiagnostics: debugLogDiagnostics);
-
-  Database? _database;
-
+  late final Database _database;
+  final String databaseName;
+  final int version;
   final bool debugLogDiagnostics;
 
-  bool isDatabaseOpened() {
-    return _database?.isOpen ?? false;
-  }
-
-  Future<DatabaseResult> open(String databaseName, List<String> onCreateCommandList, List<String> onUpgradeCommandList, int version) async {
-    DatabaseResult databaseResult;
+  SqliteHelper({
+    required this.databaseName,
+    required this.version,
+    Map<int, List<String>> onUpgradeCommandListMap = const {},
+    this.debugLogDiagnostics = false,
+  }) {
     try {
-      _database = await openDatabase(
+      openDatabase(
         databaseName,
-        onCreate: (db, version) async {
-          if (debugLogDiagnostics) {
-            developer.log("SqliteHelper $databaseName onCreate called", name: debugTag);
-          }
-          for (final command in onCreateCommandList) {
-            await db.execute(command);
-          }
-        },
+        version: version,
         onUpgrade: (db, oldVersion, newVersion) async {
           if (debugLogDiagnostics) {
-            developer.log("SqliteHelper $databaseName onUpgrade called", name: debugTag);
+            developer.log("SqliteHelper opening $databaseName onUpgrade ($oldVersion -> $newVersion) called", name: debugTag);
           }
-          for (final command in onUpgradeCommandList) {
-            await db.execute(command);
+          for (int v = oldVersion + 1; v <= newVersion; v++) {
+            final commands = onUpgradeCommandListMap[v] ?? [];
+            for (final command in commands) {
+              await db.execute(command);
+            }
           }
         },
-        version: version,
-      );
-      databaseResult = DatabaseResultOpenGood(databaseName, _database!);
+      ).then((value) {
+        _database = value;
+        if (debugLogDiagnostics) {
+          developer.log("SqliteHelper opened $databaseName", name: debugTag);
+        }
+      });
     } catch (e) {
-      databaseResult = DatabaseResultError(e as Exception);
+      if (debugLogDiagnostics) {
+        developer.log("SqliteHelper open $databaseName error ${e.toString()}", name: debugTag);
+      }
     }
-    if (debugLogDiagnostics) {
-      developer.log("SqliteHelper $databaseResult", name: debugTag);
-    }
-    return databaseResult;
   }
 
-  Future<DatabaseResult> close() async {
+  Future<DatabaseResult> closeDatabase() async {
     DatabaseResult databaseResult;
     try {
-      String databaseName = _database?.path ?? "";
-      await _database?.close();
-      _database = null;
+      await _database.close();
       databaseResult = DatabaseResultCloseGood(databaseName);
     } catch (e) {
       databaseResult = DatabaseResultError(e as Exception);
@@ -157,10 +63,10 @@ class SqliteHelper {
     return databaseResult;
   }
 
-  Future<DatabaseResult<G>> query<G>(String tableName, FromMap<G> fromMap, {String? where, List<String>? whereValueList, String? orderBy}) async {
+  Future<DatabaseResult<G>> query<G>({required String sql, required FromMap<G> fromMap, List<Object?>? arguments}) async {
     DatabaseResult<G> databaseResult;
     try {
-      List<Map<String, dynamic>> dataList = await _database!.query(tableName, where: where, whereArgs: whereValueList, orderBy: orderBy);
+      final dataList = await _database.rawQuery(sql, arguments);
       try {
         List<G> values = dataList.map((map) => fromMap(map)).toList();
         databaseResult = DatabaseResultQueryGood(values);
@@ -183,7 +89,7 @@ class SqliteHelper {
     try {
       Map<String, dynamic> map = toMap(data);
       try {
-        await _database!.insert(tableName, map, conflictAlgorithm: ConflictAlgorithm.replace);
+        await _database.insert(tableName, map, conflictAlgorithm: ConflictAlgorithm.replace);
         databaseResult = DatabaseResultInsertGood(data);
       } catch (e) {
         databaseResult = DatabaseResultError(e as Exception);
@@ -204,7 +110,7 @@ class SqliteHelper {
     try {
       Map<String, dynamic> map = toMap(data);
       try {
-        final result = await _database!.update(tableName, map, where: where, whereArgs: whereValueList, conflictAlgorithm: ConflictAlgorithm.replace);
+        final result = await _database.update(tableName, map, where: where, whereArgs: whereValueList, conflictAlgorithm: ConflictAlgorithm.replace);
         databaseResult = DatabaseResultUpdateGood(result, data);
       } catch (e) {
         databaseResult = DatabaseResultError(e as Exception);
@@ -223,7 +129,7 @@ class SqliteHelper {
   Future<DatabaseResult> delete(String tableName, String where, List<String> whereValueList) async {
     DatabaseResult databaseResult;
     try {
-      final result = await _database!.delete(tableName, where: where, whereArgs: whereValueList);
+      final result = await _database.delete(tableName, where: where, whereArgs: whereValueList);
       databaseResult = DatabaseResultDeleteGood(result);
     } catch (e) {
       databaseResult = DatabaseResultError(e as Exception);
@@ -234,5 +140,3 @@ class SqliteHelper {
     return databaseResult;
   }
 }
-
-SqliteHelper databaseHelper = SqliteHelper(debugLogDiagnostics: false);

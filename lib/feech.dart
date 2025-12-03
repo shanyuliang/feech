@@ -84,6 +84,7 @@ export 'src/signals/user_location_signal.dart';
 export 'src/support/app_cache_manager.dart';
 export 'src/support/cache.dart';
 export 'src/support/cancellation_exception.dart';
+export 'src/support/database/database_result.dart';
 export 'src/support/debouncer.dart';
 export 'src/support/dialog_page.dart';
 export 'src/support/json_converter_ex.dart';
