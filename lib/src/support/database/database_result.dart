@@ -1,85 +1,89 @@
-sealed class DatabaseResult<G> {}
+sealed class DatabaseResult {}
 
-class DatabaseResultOpenGood<G> extends DatabaseResult<G> {
+class DatabaseResultOpen extends DatabaseResult {
+  DatabaseResultOpen(this.databaseName);
+
   final String databaseName;
 
-  DatabaseResultOpenGood(this.databaseName);
-
   @override
-  String toString() => "DatabaseResultOpenGood [databaseName=$databaseName]";
+  String toString() => 'DatabaseResultOpen [databaseName=$databaseName]';
 }
 
-class DatabaseResultCloseGood<G> extends DatabaseResult<G> {
+class DatabaseResultClose extends DatabaseResult {
+  DatabaseResultClose(this.databaseName);
+
   final String databaseName;
 
-  DatabaseResultCloseGood(this.databaseName);
-
   @override
-  String toString() => "DatabaseResultCloseGood [databaseName=$databaseName]";
+  String toString() => 'DatabaseResultClose [databaseName=$databaseName]';
 }
 
-class DatabaseResultQueryGood<G> extends DatabaseResult<G> {
+class DatabaseResultBegin extends DatabaseResult {
+  DatabaseResultBegin();
+
+  @override
+  String toString() => 'DatabaseResultBegin';
+}
+
+class DatabaseResultCommit extends DatabaseResult {
+  DatabaseResultCommit();
+
+  @override
+  String toString() => 'DatabaseResultCommit';
+}
+
+class DatabaseResultRollback extends DatabaseResult {
+  DatabaseResultRollback();
+
+  @override
+  String toString() => 'DatabaseResultRollback';
+}
+
+class DatabaseResultExecute extends DatabaseResult {
+  DatabaseResultExecute({required this.sql, this.parameters = const []});
+
+  final String sql;
+  final List<Object?> parameters;
+
+  @override
+  String toString() => 'DatabaseResultExecute [sql=$sql,parameters=$parameters]';
+}
+
+class DatabaseResultSelect<G> extends DatabaseResult {
+  DatabaseResultSelect({
+    required this.sql,
+    this.parameters = const [],
+    this.values = const [],
+  });
+
+  final String sql;
+  final List<Object?> parameters;
   final List<G> values;
 
-  DatabaseResultQueryGood(this.values);
-
   @override
-  String toString() => "DatabaseResultQueryGood [values=$values]";
+  String toString() => 'DatabaseResultSelect [sql=$sql,parameters=$parameters,values=$values]';
 }
 
-class DatabaseResultInsertGood<G> extends DatabaseResult<G> {
-  final G value;
+class DatabaseResultInsertUpdateDelete extends DatabaseResult {
+  DatabaseResultInsertUpdateDelete({
+    required this.sql,
+    this.parameters = const [],
+    this.value = 0,
+  });
 
-  DatabaseResultInsertGood(this.value);
+  final String sql;
+  final List<Object?> parameters;
+  final int value;
 
   @override
-  String toString() => "DatabaseResultInsertGood [value=$value]";
+  String toString() => 'DatabaseResultInsertUpdateDelete [sql=$sql,parameters=$parameters,value=$value]';
 }
 
-class DatabaseResultUpdateGood<G> extends DatabaseResult<G> {
-  final int updatedCount;
-  final G value;
+class DatabaseResultError extends DatabaseResult {
+  DatabaseResultError(this.error);
 
-  DatabaseResultUpdateGood(this.updatedCount, this.value);
-
-  @override
-  String toString() => "DatabaseResultUpdateGood [updatedCount=$updatedCount,value=$value]";
-}
-
-class DatabaseResultDeleteGood<G> extends DatabaseResult<G> {
-  final int deletedCount;
-
-  DatabaseResultDeleteGood(this.deletedCount);
+  final Object? error;
 
   @override
-  String toString() => "DatabaseResultDeleteGood [deletedCount=$deletedCount]";
-}
-
-class DatabaseResultBadInputData<G> extends DatabaseResult<G> {
-  final G data;
-  final Exception exception;
-
-  DatabaseResultBadInputData(this.data, this.exception);
-
-  @override
-  String toString() => "DatabaseResultBadInputData [data=$data,exception=$exception]";
-}
-
-class DatabaseResultBadOutputData<G> extends DatabaseResult<G> {
-  final List<Map<String, dynamic>> output;
-  final Exception exception;
-
-  DatabaseResultBadOutputData(this.output, this.exception);
-
-  @override
-  String toString() => "DatabaseResultBadOutputData [output=$output,exception=$exception]";
-}
-
-class DatabaseResultError<G> extends DatabaseResult<G> {
-  final Exception exception;
-
-  DatabaseResultError(this.exception);
-
-  @override
-  String toString() => "DatabaseResultError [exception=$exception]";
+  String toString() => 'DatabaseResultError [error=$error]';
 }

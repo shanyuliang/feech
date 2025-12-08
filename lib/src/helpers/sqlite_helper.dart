@@ -53,7 +53,7 @@ class SqliteHelper {
     DatabaseResult databaseResult;
     try {
       await _database.close();
-      databaseResult = DatabaseResultCloseGood(databaseName);
+      databaseResult = DatabaseResultClose(databaseName);
     } catch (e) {
       databaseResult = DatabaseResultError(e as Exception);
     }
@@ -63,74 +63,16 @@ class SqliteHelper {
     return databaseResult;
   }
 
-  Future<DatabaseResult<G>> query<G>({required String sql, required FromMap<G> fromMap, List<Object?>? arguments}) async {
-    DatabaseResult<G> databaseResult;
-    try {
-      final dataList = await _database.rawQuery(sql, arguments);
-      try {
-        List<G> values = dataList.map((map) => fromMap(map)).toList();
-        databaseResult = DatabaseResultQueryGood(values);
-      } on Error catch (err) {
-        databaseResult = DatabaseResultBadOutputData(dataList, Exception(err.toString()));
-      } catch (e) {
-        databaseResult = DatabaseResultError(e as Exception);
-      }
-    } catch (e) {
-      databaseResult = DatabaseResultError(e as Exception);
-    }
-    if (debugLogDiagnostics) {
-      developer.log("SqliteHelper $databaseResult", name: debugTag);
-    }
-    return databaseResult;
-  }
-
-  Future<DatabaseResult<G>> insert<G>(String tableName, G data, ToMap<G> toMap) async {
-    DatabaseResult<G> databaseResult;
-    try {
-      Map<String, dynamic> map = toMap(data);
-      try {
-        await _database.insert(tableName, map, conflictAlgorithm: ConflictAlgorithm.replace);
-        databaseResult = DatabaseResultInsertGood(data);
-      } catch (e) {
-        databaseResult = DatabaseResultError(e as Exception);
-      }
-    } on Error catch (err) {
-      databaseResult = DatabaseResultBadInputData(data, Exception(err.toString()));
-    } catch (e) {
-      databaseResult = DatabaseResultError(e as Exception);
-    }
-    if (debugLogDiagnostics) {
-      developer.log("SqliteHelper $databaseResult", name: debugTag);
-    }
-    return databaseResult;
-  }
-
-  Future<DatabaseResult<G>> update<G>(String tableName, G data, ToMap<G> toMap, String where, List<String> whereValueList) async {
-    DatabaseResult<G> databaseResult;
-    try {
-      Map<String, dynamic> map = toMap(data);
-      try {
-        final result = await _database.update(tableName, map, where: where, whereArgs: whereValueList, conflictAlgorithm: ConflictAlgorithm.replace);
-        databaseResult = DatabaseResultUpdateGood(result, data);
-      } catch (e) {
-        databaseResult = DatabaseResultError(e as Exception);
-      }
-    } on Error catch (err) {
-      databaseResult = DatabaseResultBadInputData(data, Exception(err.toString()));
-    } catch (e) {
-      databaseResult = DatabaseResultError(e as Exception);
-    }
-    if (debugLogDiagnostics) {
-      developer.log("SqliteHelper $databaseResult", name: debugTag);
-    }
-    return databaseResult;
-  }
-
-  Future<DatabaseResult> delete(String tableName, String where, List<String> whereValueList) async {
+  Future<DatabaseResult> query<G>({required String sql, required FromMap<G> fromMap, List<Object?> parameters = const []}) async {
     DatabaseResult databaseResult;
     try {
-      final result = await _database.delete(tableName, where: where, whereArgs: whereValueList);
-      databaseResult = DatabaseResultDeleteGood(result);
+      final dataList = await _database.rawQuery(sql, parameters);
+      try {
+        List<G> values = dataList.map((map) => fromMap(map)).toList();
+        databaseResult = DatabaseResultSelect(sql: sql, parameters: parameters, values: values);
+      } catch (e) {
+        databaseResult = DatabaseResultError(e as Exception);
+      }
     } catch (e) {
       databaseResult = DatabaseResultError(e as Exception);
     }
@@ -139,4 +81,25 @@ class SqliteHelper {
     }
     return databaseResult;
   }
+
+  // Future<DatabaseResult> insertUpdateDelete(String tableName, G data, ToMap<G> toMap) async {
+  //   DatabaseResult databaseResult;
+  //   try {
+  //     Map<String, dynamic> map = toMap(data);
+  //     try {
+  //       await _database.insert(tableName, map, conflictAlgorithm: ConflictAlgorithm.replace);
+  //       databaseResult = DatabaseResultInsertUpdateDelete(sql: sql, parameters: parameters, value: value);
+  //     } catch (e) {
+  //       databaseResult = DatabaseResultError(e as Exception);
+  //     }
+  //   } on Error catch (err) {
+  //     databaseResult = DatabaseResultBadInputData(data, Exception(err.toString()));
+  //   } catch (e) {
+  //     databaseResult = DatabaseResultError(e as Exception);
+  //   }
+  //   if (debugLogDiagnostics) {
+  //     developer.log("SqliteHelper $databaseResult", name: debugTag);
+  //   }
+  //   return databaseResult;
+  // }
 }
