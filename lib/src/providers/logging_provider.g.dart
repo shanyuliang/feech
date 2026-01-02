@@ -10,11 +10,11 @@ part of 'logging_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(LoggingProvider)
-const loggingProvider = LoggingProviderFamily._();
+final loggingProvider = LoggingProviderFamily._();
 
 final class LoggingProviderProvider
     extends $AsyncNotifierProvider<LoggingProvider, Logging> {
-  const LoggingProviderProvider._({
+  LoggingProviderProvider._({
     required LoggingProviderFamily super.from,
     required List<Logging> Function() super.argument,
   }) : super(
@@ -61,7 +61,7 @@ final class LoggingProviderFamily extends $Family
           FutureOr<Logging>,
           List<Logging> Function()
         > {
-  const LoggingProviderFamily._()
+  LoggingProviderFamily._()
     : super(
         retry: null,
         name: r'loggingProvider',
@@ -88,7 +88,6 @@ abstract class _$LoggingProvider extends $AsyncNotifier<Logging> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(actionLoggingList: _$args);
     final ref = this.ref as $Ref<AsyncValue<Logging>, Logging>;
     final element =
         ref.element
@@ -98,6 +97,6 @@ abstract class _$LoggingProvider extends $AsyncNotifier<Logging> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(actionLoggingList: _$args));
   }
 }

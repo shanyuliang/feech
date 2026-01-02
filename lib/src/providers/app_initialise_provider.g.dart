@@ -10,11 +10,11 @@ part of 'app_initialise_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AppInitialiseProvider)
-const appInitialiseProvider = AppInitialiseProviderFamily._();
+final appInitialiseProvider = AppInitialiseProviderFamily._();
 
 final class AppInitialiseProviderProvider
     extends $AsyncNotifierProvider<AppInitialiseProvider, bool> {
-  const AppInitialiseProviderProvider._({
+  AppInitialiseProviderProvider._({
     required AppInitialiseProviderFamily super.from,
     required ({
       List<ProviderBase<dynamic>> initialiseList,
@@ -73,7 +73,7 @@ final class AppInitialiseProviderFamily extends $Family
             bool debugLogDiagnostics,
           })
         > {
-  const AppInitialiseProviderFamily._()
+  AppInitialiseProviderFamily._()
     : super(
         retry: null,
         name: r'appInitialiseProvider',
@@ -124,12 +124,6 @@ abstract class _$AppInitialiseProvider extends $AsyncNotifier<bool> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      initialiseList: _$args.initialiseList,
-      minWaitDurationInMilliseconds: _$args.minWaitDurationInMilliseconds,
-      inOrder: _$args.inOrder,
-      debugLogDiagnostics: _$args.debugLogDiagnostics,
-    );
     final ref = this.ref as $Ref<AsyncValue<bool>, bool>;
     final element =
         ref.element
@@ -139,6 +133,14 @@ abstract class _$AppInitialiseProvider extends $AsyncNotifier<bool> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(
+        initialiseList: _$args.initialiseList,
+        minWaitDurationInMilliseconds: _$args.minWaitDurationInMilliseconds,
+        inOrder: _$args.inOrder,
+        debugLogDiagnostics: _$args.debugLogDiagnostics,
+      ),
+    );
   }
 }

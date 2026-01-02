@@ -10,12 +10,12 @@ part of 'app_permission_status_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AppPermissionStatusProvider)
-const appPermissionStatusProvider = AppPermissionStatusProviderFamily._();
+final appPermissionStatusProvider = AppPermissionStatusProviderFamily._();
 
 final class AppPermissionStatusProviderProvider
     extends
         $NotifierProvider<AppPermissionStatusProvider, AppPermissionStatus> {
-  const AppPermissionStatusProviderProvider._({
+  AppPermissionStatusProviderProvider._({
     required AppPermissionStatusProviderFamily super.from,
     required Permission super.argument,
   }) : super(
@@ -72,7 +72,7 @@ final class AppPermissionStatusProviderFamily extends $Family
           AppPermissionStatus,
           Permission
         > {
-  const AppPermissionStatusProviderFamily._()
+  AppPermissionStatusProviderFamily._()
     : super(
         retry: null,
         name: r'appPermissionStatusProvider',
@@ -97,7 +97,6 @@ abstract class _$AppPermissionStatusProvider
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(_$args);
     final ref = this.ref as $Ref<AppPermissionStatus, AppPermissionStatus>;
     final element =
         ref.element
@@ -107,6 +106,6 @@ abstract class _$AppPermissionStatusProvider
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(_$args));
   }
 }

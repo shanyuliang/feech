@@ -10,11 +10,11 @@ part of 'runtime_info_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(RuntimeInfoProvider)
-const runtimeInfoProvider = RuntimeInfoProviderFamily._();
+final runtimeInfoProvider = RuntimeInfoProviderFamily._();
 
 final class RuntimeInfoProviderProvider
     extends $NotifierProvider<RuntimeInfoProvider, RuntimeInfo> {
-  const RuntimeInfoProviderProvider._({
+  RuntimeInfoProviderProvider._({
     required RuntimeInfoProviderFamily super.from,
     required bool super.argument,
   }) : super(
@@ -70,7 +70,7 @@ final class RuntimeInfoProviderFamily extends $Family
           RuntimeInfo,
           bool
         > {
-  const RuntimeInfoProviderFamily._()
+  RuntimeInfoProviderFamily._()
     : super(
         retry: null,
         name: r'runtimeInfoProvider',
@@ -94,7 +94,6 @@ abstract class _$RuntimeInfoProvider extends $Notifier<RuntimeInfo> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(debugLogDiagnostics: _$args);
     final ref = this.ref as $Ref<RuntimeInfo, RuntimeInfo>;
     final element =
         ref.element
@@ -104,6 +103,6 @@ abstract class _$RuntimeInfoProvider extends $Notifier<RuntimeInfo> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(debugLogDiagnostics: _$args));
   }
 }

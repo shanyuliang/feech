@@ -10,11 +10,11 @@ part of 'page_title_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(PageTitleProvider)
-const pageTitleProvider = PageTitleProviderFamily._();
+final pageTitleProvider = PageTitleProviderFamily._();
 
 final class PageTitleProviderProvider
     extends $NotifierProvider<PageTitleProvider, String?> {
-  const PageTitleProviderProvider._({
+  PageTitleProviderProvider._({
     required PageTitleProviderFamily super.from,
     required String? super.argument,
   }) : super(
@@ -69,7 +69,7 @@ final class PageTitleProviderFamily extends $Family
           String?,
           String?
         > {
-  const PageTitleProviderFamily._()
+  PageTitleProviderFamily._()
     : super(
         retry: null,
         name: r'pageTitleProvider',
@@ -93,7 +93,6 @@ abstract class _$PageTitleProvider extends $Notifier<String?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(_$args);
     final ref = this.ref as $Ref<String?, String?>;
     final element =
         ref.element
@@ -103,6 +102,6 @@ abstract class _$PageTitleProvider extends $Notifier<String?> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(_$args));
   }
 }

@@ -10,11 +10,11 @@ part of 'camera_meta_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(CameraMetaProvider)
-const cameraMetaProvider = CameraMetaProviderProvider._();
+final cameraMetaProvider = CameraMetaProviderProvider._();
 
 final class CameraMetaProviderProvider
     extends $NotifierProvider<CameraMetaProvider, CameraMeta> {
-  const CameraMetaProviderProvider._()
+  CameraMetaProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$CameraMetaProvider extends $Notifier<CameraMeta> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<CameraMeta, CameraMeta>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$CameraMetaProvider extends $Notifier<CameraMeta> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

@@ -10,11 +10,11 @@ part of 'stt_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(SttProvider)
-const sttProvider = SttProviderProvider._();
+final sttProvider = SttProviderProvider._();
 
 final class SttProviderProvider
     extends $AsyncNotifierProvider<SttProvider, Stt> {
-  const SttProviderProvider._()
+  SttProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -40,7 +40,6 @@ abstract class _$SttProvider extends $AsyncNotifier<Stt> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<Stt>, Stt>;
     final element =
         ref.element
@@ -50,6 +49,6 @@ abstract class _$SttProvider extends $AsyncNotifier<Stt> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

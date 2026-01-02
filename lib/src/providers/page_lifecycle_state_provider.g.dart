@@ -10,11 +10,11 @@ part of 'page_lifecycle_state_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(PageLifecycleStateProvider)
-const pageLifecycleStateProvider = PageLifecycleStateProviderFamily._();
+final pageLifecycleStateProvider = PageLifecycleStateProviderFamily._();
 
 final class PageLifecycleStateProviderProvider
     extends $NotifierProvider<PageLifecycleStateProvider, PageLifecycleState> {
-  const PageLifecycleStateProviderProvider._({
+  PageLifecycleStateProviderProvider._({
     required PageLifecycleStateProviderFamily super.from,
     required String? super.argument,
   }) : super(
@@ -71,7 +71,7 @@ final class PageLifecycleStateProviderFamily extends $Family
           PageLifecycleState,
           String?
         > {
-  const PageLifecycleStateProviderFamily._()
+  PageLifecycleStateProviderFamily._()
     : super(
         retry: null,
         name: r'pageLifecycleStateProvider',
@@ -96,7 +96,6 @@ abstract class _$PageLifecycleStateProvider
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(_$args);
     final ref = this.ref as $Ref<PageLifecycleState, PageLifecycleState>;
     final element =
         ref.element
@@ -106,6 +105,6 @@ abstract class _$PageLifecycleStateProvider
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(_$args));
   }
 }

@@ -10,11 +10,11 @@ part of 'app_web_view_state_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AppWebViewStateProvider)
-const appWebViewStateProvider = AppWebViewStateProviderFamily._();
+final appWebViewStateProvider = AppWebViewStateProviderFamily._();
 
 final class AppWebViewStateProviderProvider
     extends $NotifierProvider<AppWebViewStateProvider, AppWebViewState> {
-  const AppWebViewStateProviderProvider._({
+  AppWebViewStateProviderProvider._({
     required AppWebViewStateProviderFamily super.from,
     required ({
       AppWebViewState? initialState,
@@ -86,7 +86,7 @@ final class AppWebViewStateProviderFamily extends $Family
             bool Function(String url, bool isMainFrame)? allowNavigation,
           })
         > {
-  const AppWebViewStateProviderFamily._()
+  AppWebViewStateProviderFamily._()
     : super(
         retry: null,
         name: r'appWebViewStateProvider',
@@ -148,14 +148,6 @@ abstract class _$AppWebViewStateProvider extends $Notifier<AppWebViewState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      initialState: _$args.initialState,
-      id: _$args.id,
-      initialUrl: _$args.initialUrl,
-      title: _$args.title,
-      javaScriptChannelNames: _$args.javaScriptChannelNames,
-      allowNavigation: _$args.allowNavigation,
-    );
     final ref = this.ref as $Ref<AppWebViewState, AppWebViewState>;
     final element =
         ref.element
@@ -165,6 +157,16 @@ abstract class _$AppWebViewStateProvider extends $Notifier<AppWebViewState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(
+        initialState: _$args.initialState,
+        id: _$args.id,
+        initialUrl: _$args.initialUrl,
+        title: _$args.title,
+        javaScriptChannelNames: _$args.javaScriptChannelNames,
+        allowNavigation: _$args.allowNavigation,
+      ),
+    );
   }
 }

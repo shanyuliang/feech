@@ -10,11 +10,11 @@ part of 'svg_as_html_string_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(SvgAsHtmlStringProvider)
-const svgAsHtmlStringProvider = SvgAsHtmlStringProviderFamily._();
+final svgAsHtmlStringProvider = SvgAsHtmlStringProviderFamily._();
 
 final class SvgAsHtmlStringProviderProvider
     extends $AsyncNotifierProvider<SvgAsHtmlStringProvider, (String?, Size?)> {
-  const SvgAsHtmlStringProviderProvider._({
+  SvgAsHtmlStringProviderProvider._({
     required SvgAsHtmlStringProviderFamily super.from,
     required ({
       String svgLink,
@@ -78,7 +78,7 @@ final class SvgAsHtmlStringProviderFamily extends $Family
             BoxFit fit,
           })
         > {
-  const SvgAsHtmlStringProviderFamily._()
+  SvgAsHtmlStringProviderFamily._()
     : super(
         retry: null,
         name: r'svgAsHtmlStringProvider',
@@ -140,14 +140,6 @@ abstract class _$SvgAsHtmlStringProvider
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      svgLink: _$args.svgLink,
-      headers: _$args.headers,
-      alignment: _$args.alignment,
-      backgroundColor: _$args.backgroundColor,
-      fillContainer: _$args.fillContainer,
-      fit: _$args.fit,
-    );
     final ref =
         this.ref as $Ref<AsyncValue<(String?, Size?)>, (String?, Size?)>;
     final element =
@@ -158,6 +150,16 @@ abstract class _$SvgAsHtmlStringProvider
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(
+        svgLink: _$args.svgLink,
+        headers: _$args.headers,
+        alignment: _$args.alignment,
+        backgroundColor: _$args.backgroundColor,
+        fillContainer: _$args.fillContainer,
+        fit: _$args.fit,
+      ),
+    );
   }
 }

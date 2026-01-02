@@ -10,11 +10,11 @@ part of 'asset_manifest_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AssetManifestProvider)
-const assetManifestProvider = AssetManifestProviderFamily._();
+final assetManifestProvider = AssetManifestProviderFamily._();
 
 final class AssetManifestProviderProvider
     extends $AsyncNotifierProvider<AssetManifestProvider, AssetManifest> {
-  const AssetManifestProviderProvider._({
+  AssetManifestProviderProvider._({
     required AssetManifestProviderFamily super.from,
     required bool super.argument,
   }) : super(
@@ -62,7 +62,7 @@ final class AssetManifestProviderFamily extends $Family
           FutureOr<AssetManifest>,
           bool
         > {
-  const AssetManifestProviderFamily._()
+  AssetManifestProviderFamily._()
     : super(
         retry: null,
         name: r'assetManifestProvider',
@@ -89,7 +89,6 @@ abstract class _$AssetManifestProvider extends $AsyncNotifier<AssetManifest> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(debugLogDiagnostics: _$args);
     final ref = this.ref as $Ref<AsyncValue<AssetManifest>, AssetManifest>;
     final element =
         ref.element
@@ -99,6 +98,6 @@ abstract class _$AssetManifestProvider extends $AsyncNotifier<AssetManifest> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(debugLogDiagnostics: _$args));
   }
 }

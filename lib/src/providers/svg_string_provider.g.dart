@@ -10,11 +10,11 @@ part of 'svg_string_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(SvgStringProvider)
-const svgStringProvider = SvgStringProviderFamily._();
+final svgStringProvider = SvgStringProviderFamily._();
 
 final class SvgStringProviderProvider
     extends $AsyncNotifierProvider<SvgStringProvider, String?> {
-  const SvgStringProviderProvider._({
+  SvgStringProviderProvider._({
     required SvgStringProviderFamily super.from,
     required ({String svgLink, Map<String, String>? headers}) super.argument,
   }) : super(
@@ -61,7 +61,7 @@ final class SvgStringProviderFamily extends $Family
           FutureOr<String?>,
           ({String svgLink, Map<String, String>? headers})
         > {
-  const SvgStringProviderFamily._()
+  SvgStringProviderFamily._()
     : super(
         retry: null,
         name: r'svgStringProvider',
@@ -95,7 +95,6 @@ abstract class _$SvgStringProvider extends $AsyncNotifier<String?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(svgLink: _$args.svgLink, headers: _$args.headers);
     final ref = this.ref as $Ref<AsyncValue<String?>, String?>;
     final element =
         ref.element
@@ -105,6 +104,9 @@ abstract class _$SvgStringProvider extends $AsyncNotifier<String?> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(svgLink: _$args.svgLink, headers: _$args.headers),
+    );
   }
 }

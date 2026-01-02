@@ -10,11 +10,11 @@ part of 'tts_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(TtsProvider)
-const ttsProvider = TtsProviderProvider._();
+final ttsProvider = TtsProviderProvider._();
 
 final class TtsProviderProvider
     extends $AsyncNotifierProvider<TtsProvider, Tts> {
-  const TtsProviderProvider._()
+  TtsProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -40,7 +40,6 @@ abstract class _$TtsProvider extends $AsyncNotifier<Tts> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<Tts>, Tts>;
     final element =
         ref.element
@@ -50,6 +49,6 @@ abstract class _$TtsProvider extends $AsyncNotifier<Tts> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

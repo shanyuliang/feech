@@ -10,11 +10,11 @@ part of 'svg_file_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(SvgFileProvider)
-const svgFileProvider = SvgFileProviderFamily._();
+final svgFileProvider = SvgFileProviderFamily._();
 
 final class SvgFileProviderProvider
     extends $StreamNotifierProvider<SvgFileProvider, (String, File?)> {
-  const SvgFileProviderProvider._({
+  SvgFileProviderProvider._({
     required SvgFileProviderFamily super.from,
     required ({
       AppCacheManager appCacheManager,
@@ -70,7 +70,7 @@ final class SvgFileProviderFamily extends $Family
             Map<String, String>? headers,
           })
         > {
-  const SvgFileProviderFamily._()
+  SvgFileProviderFamily._()
     : super(
         retry: null,
         name: r'svgFileProvider',
@@ -116,11 +116,6 @@ abstract class _$SvgFileProvider extends $StreamNotifier<(String, File?)> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(
-      appCacheManager: _$args.appCacheManager,
-      svgLink: _$args.svgLink,
-      headers: _$args.headers,
-    );
     final ref = this.ref as $Ref<AsyncValue<(String, File?)>, (String, File?)>;
     final element =
         ref.element
@@ -130,6 +125,13 @@ abstract class _$SvgFileProvider extends $StreamNotifier<(String, File?)> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(
+        appCacheManager: _$args.appCacheManager,
+        svgLink: _$args.svgLink,
+        headers: _$args.headers,
+      ),
+    );
   }
 }
