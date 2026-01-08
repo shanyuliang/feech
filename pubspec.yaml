@@ -14,8 +14,8 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.10.4 <4.0.0'
-  flutter: ">=3.38.5"
+  sdk: '>=3.10.7 <4.0.0'
+  flutter: ">=3.38.6"
 
 dependencies:
   flutter:
@@ -31,7 +31,7 @@ dependencies:
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.1.0 <4.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_svg: '>=2.2.3 <3.0.0' # https://pub.dev/packages/flutter_svg
-  flutter_tts: '>=4.2.3 <5.0.0' # https://pub.dev/packages/flutter_tts
+  flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
   geolocator: '>=14.0.2 <15.0.0' # https://pub.dev/packages/geolocator
@@ -59,7 +59,7 @@ dependencies:
   ulid4d: '>=2.0.0 <3.0.0' # https://pub.dev/packages/ulid4d
   version: '>=3.0.2 <4.0.0' # https://pub.dev/packages/version
   web: '>=1.1.1 <2.0.0' # https://pub.dev/packages/web
-  webview_flutter: '>=4.13.0 <5.0.0' # https://pub.dev/packages/webview_flutter
+  webview_flutter: '>=4.13.1 <5.0.0' # https://pub.dev/packages/webview_flutter
 
 dev_dependencies:
   flutter_test:
