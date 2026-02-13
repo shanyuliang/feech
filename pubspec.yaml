@@ -36,7 +36,7 @@ dependencies:
   geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
   geolocator: '>=14.0.2 <15.0.0' # https://pub.dev/packages/geolocator
   go_router: '>=17.1.0 <18.0.0' # https://pub.dev/packages/go_router
-  google_maps_flutter: '>=2.14.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
+  google_maps_flutter: '>=2.14.2 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=1.6.0 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.7.2 <5.0.0' # https://pub.dev/packages/image
   intl: any # https://pub.dev/packages/intl
