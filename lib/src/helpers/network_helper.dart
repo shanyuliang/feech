@@ -11,10 +11,10 @@ import '../support/network/http_status.dart';
 import '../support/network/network_result.dart';
 
 class NetworkHelper {
-  final Map<String, Completer> _runningCompleterMap = {};
-  final Client _client;
-
   NetworkHelper(this._client);
+
+  final Map<String, Completer<Response>> _runningCompleterMap = {};
+  final Client _client;
 
   Future<NetworkResult<G, E>> _createNetworkResultFromResponse<G, E>(
     Response response,
@@ -65,7 +65,7 @@ class NetworkHelper {
     String? tag,
   }) async {
     NetworkResult<G, E> networkResult;
-    Completer<Response> completer = Completer();
+    final completer = Completer<Response>();
     _runningCompleterMap[tag ?? url.toString()] = completer;
     headerMap ??= {};
     // if (token != null) {
@@ -91,7 +91,7 @@ class NetworkHelper {
             completer.complete(response);
           }
         },
-        onError: (error) {
+        onError: (Object error) {
           if (!completer.isCompleted) {
             completer.completeError(error);
           }
@@ -113,7 +113,7 @@ class NetworkHelper {
   }
 
   Future<NetworkResult<G, E>> headAsync<G, E>({required String url, Map<String, String>? headerMap, String? tag}) {
-    return _doAsync(httpMethod: HttpMethod.head, url: Uri.parse(url), headerMap: headerMap, tag: tag);
+    return _doAsync<void, G, E>(httpMethod: HttpMethod.head, url: Uri.parse(url), headerMap: headerMap, tag: tag);
   }
 
   Future<NetworkResult<G, E>> getAsync<G, E>({
@@ -123,7 +123,7 @@ class NetworkHelper {
     JsonConverterEx<E, String>? errorJsonProcessor,
     String? tag,
   }) {
-    return _doAsync(
+    return _doAsync<void, G, E>(
       httpMethod: HttpMethod.get,
       url: Uri.parse(url),
       headerMap: headerMap,
@@ -203,7 +203,7 @@ class NetworkHelper {
     JsonConverterEx<E, String>? errorJsonProcessor,
     String? tag,
   }) {
-    return _doAsync(
+    return _doAsync<void, G, E>(
       httpMethod: HttpMethod.delete,
       url: Uri.parse(url),
       headerMap: headerMap,
