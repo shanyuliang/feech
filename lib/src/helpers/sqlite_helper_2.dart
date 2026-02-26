@@ -179,7 +179,7 @@ class SqliteHelper2 {
     try {
       final resultSet = _database.select(sql, parameters);
       final values = resultSet.map((row) => mapToObject(row)).toList();
-      databaseResult = DatabaseResultSelect(sql: sql, parameters: parameters, values: values);
+      databaseResult = DatabaseResultSelect<G>(sql: sql, parameters: parameters, values: values);
     } catch (e) {
       databaseResult = DatabaseResultError(e);
     }
