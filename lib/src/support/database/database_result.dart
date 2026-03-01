@@ -1,21 +1,29 @@
 sealed class DatabaseResult {}
 
 class DatabaseResultOpen extends DatabaseResult {
-  DatabaseResultOpen(this.databaseName);
+  DatabaseResultOpen({required this.databaseName, required this.previousVersion, required this.currentVersion, required this.elapsedMilliseconds});
 
   final String databaseName;
+  final int previousVersion;
+  final int currentVersion;
+  final int elapsedMilliseconds;
 
   @override
-  String toString() => 'DatabaseResultOpen [databaseName=$databaseName]';
+  String toString() =>
+      'DatabaseResultOpen [databaseName=$databaseName,previousVersion=$previousVersion,currentVersion=$currentVersion,elapsedMilliseconds=$elapsedMilliseconds]';
 }
 
 class DatabaseResultClose extends DatabaseResult {
-  DatabaseResultClose(this.databaseName);
+  DatabaseResultClose({required this.databaseName, required this.previousVersion, required this.currentVersion, required this.elapsedMilliseconds});
 
   final String databaseName;
+  final int previousVersion;
+  final int currentVersion;
+  final int elapsedMilliseconds;
 
   @override
-  String toString() => 'DatabaseResultClose [databaseName=$databaseName]';
+  String toString() =>
+      'DatabaseResultClose [databaseName=$databaseName,previousVersion=$previousVersion,currentVersion=$currentVersion,elapsedMilliseconds=$elapsedMilliseconds]';
 }
 
 class DatabaseResultBegin extends DatabaseResult {
@@ -50,11 +58,7 @@ class DatabaseResultExecute extends DatabaseResult {
 }
 
 class DatabaseResultSelect<G> extends DatabaseResult {
-  DatabaseResultSelect({
-    required this.sql,
-    this.parameters = const [],
-    this.values = const [],
-  });
+  DatabaseResultSelect({required this.sql, this.parameters = const [], this.values = const []});
 
   final String sql;
   final List<Object?> parameters;
@@ -65,11 +69,7 @@ class DatabaseResultSelect<G> extends DatabaseResult {
 }
 
 class DatabaseResultInsertUpdateDelete extends DatabaseResult {
-  DatabaseResultInsertUpdateDelete({
-    required this.sql,
-    this.parameters = const [],
-    this.value = 0,
-  });
+  DatabaseResultInsertUpdateDelete({required this.sql, this.parameters = const [], this.value = 0});
 
   final String sql;
   final List<Object?> parameters;
