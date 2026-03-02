@@ -12,9 +12,9 @@ typedef ObjectToMap<G> = Map<String, dynamic> Function(G object);
 
 class SqliteHelper {
   /*
-    final dbHelper = SqliteHelper2(
+    final dbHelper = SqliteHelper(
       databaseName: 'databaseName',
-      version: 2,
+      version: 1,
       onUpgradeCommandListMap: {
         1: [
           '''
@@ -38,12 +38,19 @@ class SqliteHelper {
       debugLogDiagnostics: true,
     );
    */
-  SqliteHelper({
-    required this.databaseName,
-    required this.version,
-    Map<int, List<String>> onUpgradeCommandListMap = const {},
-    this.debugLogDiagnostics = false,
-  }) {
+  SqliteHelper({required this.databaseName, required this.version, this.onUpgradeCommandListMap = const {}, this.debugLogDiagnostics = false});
+
+  static const logPrefix = 'SqliteHelper';
+
+  final String databaseName;
+  final int version;
+  final Map<int, List<String>> onUpgradeCommandListMap;
+  final bool debugLogDiagnostics;
+  late Database _database;
+
+  Future<DatabaseResult> open() async {
+    final stopwatch = Stopwatch()..start();
+    DatabaseResult databaseResult;
     try {
       if (debugLogDiagnostics) {
         developer.log('$logPrefix opening $databaseName target version $version', name: debugTag);
@@ -80,19 +87,17 @@ class SqliteHelper {
           developer.log('$logPrefix upgraded $databaseName from $currentVersion to $version', name: debugTag);
         }
       }
+      databaseResult = DatabaseResultOpen(databaseName: databaseName, previousVersion: currentVersion, version: version, elapsed: stopwatch.elapsed);
     } catch (e) {
-      if (debugLogDiagnostics) {
-        developer.log('$logPrefix open $databaseName error $e', name: debugTag);
-      }
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: -1, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
+    if (debugLogDiagnostics) {
+      developer.log('$logPrefix open $databaseResult', name: debugTag);
+    }
+    return databaseResult;
   }
-
-  static const logPrefix = 'SqliteHelper';
-
-  late final Database _database;
-  final String databaseName;
-  final int version;
-  final bool debugLogDiagnostics;
 
   Future<DatabaseResult> close() async {
     final stopwatch = Stopwatch()..start();
