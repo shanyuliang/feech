@@ -95,12 +95,15 @@ class SqliteHelper {
   final bool debugLogDiagnostics;
 
   Future<DatabaseResult> close() async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       _database.close();
-      databaseResult = DatabaseResultClose(databaseName);
+      databaseResult = DatabaseResultClose(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed);
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix close $databaseResult', name: debugTag);
@@ -109,12 +112,15 @@ class SqliteHelper {
   }
 
   Future<DatabaseResult> begin() async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       _database.execute('BEGIN;');
-      databaseResult = DatabaseResultBegin();
+      databaseResult = DatabaseResultBegin(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed);
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix begin $databaseResult', name: debugTag);
@@ -123,12 +129,15 @@ class SqliteHelper {
   }
 
   Future<DatabaseResult> commit() async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       _database.execute('COMMIT;');
-      databaseResult = DatabaseResultCommit();
+      databaseResult = DatabaseResultCommit(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed);
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix commit $databaseResult', name: debugTag);
@@ -137,12 +146,15 @@ class SqliteHelper {
   }
 
   Future<DatabaseResult> rollback() async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       _database.execute('ROLLBACK;');
-      databaseResult = DatabaseResultRollback();
+      databaseResult = DatabaseResultRollback(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed);
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix rollback $databaseResult', name: debugTag);
@@ -151,12 +163,21 @@ class SqliteHelper {
   }
 
   Future<DatabaseResult> execute({required String sql, List<Object?> parameters = const []}) async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       _database.execute(sql, parameters);
-      databaseResult = DatabaseResultExecute(sql: sql, parameters: parameters);
+      databaseResult = DatabaseResultExecute(
+        databaseName: databaseName,
+        version: version,
+        elapsed: stopwatch.elapsed,
+        sql: sql,
+        parameters: parameters,
+      );
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix execute $databaseResult', name: debugTag);
@@ -175,13 +196,23 @@ class SqliteHelper {
     );
    */
   Future<DatabaseResult> select<G>({required String sql, required MapToObject<G> mapToObject, List<Object?> parameters = const []}) async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       final resultSet = _database.select(sql, parameters);
       final values = resultSet.map((row) => mapToObject(row)).toList();
-      databaseResult = DatabaseResultSelect<G>(sql: sql, parameters: parameters, values: values);
+      databaseResult = DatabaseResultSelect<G>(
+        databaseName: databaseName,
+        version: version,
+        elapsed: stopwatch.elapsed,
+        sql: sql,
+        parameters: parameters,
+        values: values,
+      );
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix select $databaseResult', name: debugTag);
@@ -196,6 +227,7 @@ class SqliteHelper {
     );
    */
   Future<DatabaseResult> insertUpdateDelete({required String sql, List<Object?> parameters = const []}) async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       final cleanedSql = sql.trim().replaceFirst(RegExp(r';$'), '');
@@ -205,9 +237,18 @@ class SqliteHelper {
         developer.log('$logPrefix insertUpdateDelete resultSet.length ${resultSet.length}', name: debugTag);
       }
       final value = resultSet.length;
-      databaseResult = DatabaseResultInsertUpdateDelete(sql: sql, parameters: parameters, value: value);
+      databaseResult = DatabaseResultInsertUpdateDelete(
+        databaseName: databaseName,
+        version: version,
+        elapsed: stopwatch.elapsed,
+        sql: sql,
+        parameters: parameters,
+        value: value,
+      );
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix insertUpdateDelete $databaseResult', name: debugTag);
@@ -226,6 +267,7 @@ class SqliteHelper {
     );
    */
   Future<DatabaseResult> prepareAndInsertUpdateDelete({required String sql, List<List<Object?>> parameters = const []}) async {
+    final stopwatch = Stopwatch()..start();
     DatabaseResult databaseResult;
     try {
       final cleanedSql = sql.trim().replaceFirst(RegExp(r';$'), '');
@@ -239,9 +281,18 @@ class SqliteHelper {
           developer.log('$logPrefix prepareAndInsertUpdateDelete [$index] resultSet.length ${resultSet.length}', name: debugTag);
         }
       });
-      databaseResult = DatabaseResultInsertUpdateDelete(sql: sql, parameters: parameters, value: value);
+      databaseResult = DatabaseResultInsertUpdateDelete(
+        databaseName: databaseName,
+        version: version,
+        elapsed: stopwatch.elapsed,
+        sql: sql,
+        parameters: parameters,
+        value: value,
+      );
     } catch (e) {
-      databaseResult = DatabaseResultError(e);
+      databaseResult = DatabaseResultError(databaseName: databaseName, version: version, elapsed: stopwatch.elapsed, error: e);
+    } finally {
+      stopwatch.stop();
     }
     if (debugLogDiagnostics) {
       developer.log('$logPrefix prepareAndInsertUpdateDelete $databaseResult', name: debugTag);
