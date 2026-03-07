@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer' as developer;
 
 import 'package:collection/collection.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqlite3/sqlite3.dart';
 
 import '../constants.dart';
@@ -55,7 +57,9 @@ class SqliteHelper {
       if (debugLogDiagnostics) {
         developer.log('$logPrefix opening $databaseName target version $version', name: debugTag);
       }
-      _database = sqlite3.open(databaseName);
+      final applicationDocumentsDirectory = await getApplicationDocumentsDirectory();
+      String fullDatabasePath = join(applicationDocumentsDirectory.path, databaseName);
+      _database = sqlite3.open(fullDatabasePath);
       final currentVersion = _database.userVersion;
       if (debugLogDiagnostics) {
         developer.log('$logPrefix opened $databaseName current version $currentVersion', name: debugTag);
