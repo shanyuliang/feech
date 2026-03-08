@@ -31,6 +31,18 @@ extension StringExtension on String {
     return match?.group(1);
   }
 
+  String insertDividers({required int segmentLength, required String divider}) {
+    if (segmentLength <= 0) return this;
+    final buffer = StringBuffer();
+    for (int i = 0; i < length; i++) {
+      if (i > 0 && i % segmentLength == 0) {
+        buffer.write(divider);
+      }
+      buffer.write(this[i]);
+    }
+    return buffer.toString();
+  }
+
   Uint8List asHexConvertToUint8List() {
     if (length % 2 != 0) {
       throw 'Odd number of hex digits';
