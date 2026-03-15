@@ -16,6 +16,9 @@ class FeechTextFormField extends StatelessWidget {
     this.onChanged,
     this.onTap,
     this.prefixIcon,
+    this.prefixIconColor,
+    this.suffixIcon,
+    this.suffixIconColor,
     this.readOnly = false,
     this.showCursor,
     this.validator,
@@ -33,7 +36,10 @@ class FeechTextFormField extends StatelessWidget {
   final bool obscureText;
   final void Function(String)? onChanged;
   final GestureTapCallback? onTap;
-  final Widget? prefixIcon;
+  final Widget? prefixIcon; // Usually an Icon
+  final Color? prefixIconColor;
+  final Widget? suffixIcon; // Usually an IconButton
+  final Color? suffixIconColor;
   final bool readOnly;
   final bool? showCursor;
   final String? Function(String?)? validator;
@@ -51,6 +57,9 @@ class FeechTextFormField extends StatelessWidget {
         isDense: isDense,
         labelText: labelText,
         prefixIcon: prefixIcon,
+        prefixIconColor: prefixIconColor,
+        suffixIcon: suffixIcon,
+        suffixIconColor: suffixIconColor,
       ),
       enabled: enabled,
       enableSuggestions: enableSuggestions,
