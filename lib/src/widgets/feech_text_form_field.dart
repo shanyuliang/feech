@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppTextFormField extends StatelessWidget {
-  const AppTextFormField({
+class FeechTextFormField extends StatelessWidget {
+  const FeechTextFormField({
     super.key,
     this.autoCorrect = true,
     this.autovalidateMode = AutovalidateMode.disabled,

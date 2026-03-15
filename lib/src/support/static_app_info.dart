@@ -1,12 +1,12 @@
 import 'dart:developer' as developer;
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:feech/src/extensions/string_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:version/version.dart';
 
 import '../constants.dart';
+import '../extensions/string_extension.dart';
 import '../utilities/handy_util.dart';
 
 class StaticAppInfo {
