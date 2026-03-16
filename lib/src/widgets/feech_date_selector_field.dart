@@ -4,7 +4,7 @@ import '../extensions/date_time_extension.dart';
 import 'feech_text_form_field.dart';
 
 class FeechDateSelectorField extends StatelessWidget {
-  FeechDateSelectorField({
+  const FeechDateSelectorField({
     super.key,
     this.autovalidateMode = AutovalidateMode.disabled,
     required this.initialDate,
@@ -15,9 +15,7 @@ class FeechDateSelectorField extends StatelessWidget {
     this.enabled = true,
     this.onChanged,
     this.validator,
-  }) {
-    controller.text = initialDate.formatToShortDateDisplay();
-  }
+  });
 
   final AutovalidateMode autovalidateMode;
   final DateTime initialDate;
@@ -28,13 +26,12 @@ class FeechDateSelectorField extends StatelessWidget {
   final bool enabled;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
-  final controller = TextEditingController();
 
   @override
   Widget build(final BuildContext context) {
     return FeechTextFormField(
       autovalidateMode: autovalidateMode,
-      controller: controller,
+      initialText: initialDate.formatToShortDateDisplay(),
       labelText: labelText,
       prefixIcon: const Icon(Icons.calendar_today_outlined),
       enabled: enabled,
@@ -43,12 +40,7 @@ class FeechDateSelectorField extends StatelessWidget {
       onChanged: onChanged,
       validator: validator,
       onTap: () async {
-        onDateSelected?.call(await showDatePicker(
-          context: context,
-          initialDate: initialDate,
-          firstDate: firstDate,
-          lastDate: lastDate,
-        ));
+        onDateSelected?.call(await showDatePicker(context: context, initialDate: initialDate, firstDate: firstDate, lastDate: lastDate));
       },
     );
   }
