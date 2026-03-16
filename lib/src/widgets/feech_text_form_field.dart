@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FeechTextFormField extends StatelessWidget {
+class FeechTextFormField extends StatefulWidget {
   const FeechTextFormField({
     super.key,
     this.autoCorrect = true,
@@ -17,11 +17,12 @@ class FeechTextFormField extends StatelessWidget {
     this.onTap,
     this.prefixIcon,
     this.prefixIconColor,
-    this.suffixIcon,
-    this.suffixIconColor,
+    this.showClearIconButton = true,
+    this.clearIconButtonColor,
     this.readOnly = false,
     this.showCursor,
     this.validator,
+    this.initialText,
   });
 
   final bool autoCorrect;
@@ -36,41 +37,71 @@ class FeechTextFormField extends StatelessWidget {
   final bool obscureText;
   final void Function(String)? onChanged;
   final GestureTapCallback? onTap;
-  final Widget? prefixIcon; // Usually an Icon
+  final Widget? prefixIcon;
   final Color? prefixIconColor;
-  final Widget? suffixIcon; // Usually an IconButton
-  final Color? suffixIconColor;
+  final bool showClearIconButton;
+  final Color? clearIconButtonColor;
   final bool readOnly;
   final bool? showCursor;
   final String? Function(String?)? validator;
+  final String? initialText;
+
+  @override
+  State<FeechTextFormField> createState() => _FeechTextFormFieldState();
+}
+
+class _FeechTextFormFieldState extends State<FeechTextFormField> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialText ?? '')
+      ..addListener(() {
+        setState(() {});
+      });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(final BuildContext context) {
     return TextFormField(
-      autocorrect: autoCorrect,
-      autovalidateMode: autovalidateMode,
-      controller: controller,
+      autocorrect: widget.autoCorrect,
+      autovalidateMode: widget.autovalidateMode,
+      controller: widget.controller,
       decoration: InputDecoration(
         alignLabelWithHint: true,
         border: const OutlineInputBorder(),
         helperText: '',
-        isDense: isDense,
-        labelText: labelText,
-        prefixIcon: prefixIcon,
-        prefixIconColor: prefixIconColor,
-        suffixIcon: suffixIcon,
-        suffixIconColor: suffixIconColor,
+        isDense: widget.isDense,
+        labelText: widget.labelText,
+        prefixIcon: widget.prefixIcon,
+        prefixIconColor: widget.prefixIconColor,
+        suffixIcon: (widget.showClearIconButton && _controller.text.isNotEmpty)
+            ? IconButton(
+                onPressed: () {
+                  _controller.clear();
+                },
+                icon: const Icon(Icons.clear),
+              )
+            : null,
+        suffixIconColor: widget.clearIconButtonColor,
       ),
-      enabled: enabled,
-      enableSuggestions: enableSuggestions,
-      maxLines: maxLines,
-      minLines: minLines,
-      obscureText: obscureText,
-      onChanged: onChanged,
-      onTap: onTap,
-      readOnly: readOnly,
-      showCursor: showCursor,
-      validator: validator,
+      enabled: widget.enabled,
+      enableSuggestions: widget.enableSuggestions,
+      maxLines: widget.maxLines,
+      minLines: widget.minLines,
+      obscureText: widget.obscureText,
+      onChanged: widget.onChanged,
+      onTap: widget.onTap,
+      readOnly: widget.readOnly,
+      showCursor: widget.showCursor,
+      validator: widget.validator,
     );
   }
 }
