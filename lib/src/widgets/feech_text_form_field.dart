@@ -84,6 +84,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
             ? IconButton(
                 onPressed: () {
                   _controller.clear();
+                  widget.onChanged?.call("");
                 },
                 icon: const Icon(Icons.clear),
               )
