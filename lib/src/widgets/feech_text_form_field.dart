@@ -5,7 +5,6 @@ class FeechTextFormField extends StatefulWidget {
     super.key,
     this.autoCorrect = true,
     this.autovalidateMode = AutovalidateMode.disabled,
-    this.controller,
     this.enabled = true,
     this.enableSuggestions = true,
     this.isDense = false,
@@ -27,7 +26,6 @@ class FeechTextFormField extends StatefulWidget {
 
   final bool autoCorrect;
   final AutovalidateMode autovalidateMode;
-  final TextEditingController? controller;
   final bool enabled;
   final bool enableSuggestions;
   final bool isDense;
@@ -73,7 +71,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
     return TextFormField(
       autocorrect: widget.autoCorrect,
       autovalidateMode: widget.autovalidateMode,
-      controller: widget.controller,
+      controller: _controller,
       decoration: InputDecoration(
         alignLabelWithHint: true,
         border: const OutlineInputBorder(),
