@@ -80,7 +80,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
         labelText: widget.labelText,
         prefixIcon: widget.prefixIcon,
         prefixIconColor: widget.prefixIconColor,
-        suffixIcon: (widget.showClearIconButton && _controller.text.isNotEmpty)
+        suffixIcon: (!widget.readOnly && widget.showClearIconButton && _controller.text.isNotEmpty)
             ? IconButton(
                 onPressed: () {
                   _controller.clear();
