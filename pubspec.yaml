@@ -14,8 +14,8 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.11.1 <4.0.0'
-  flutter: ">=3.41.4"
+  sdk: '>=3.11.3 <4.0.0'
+  flutter: ">=3.41.5"
 
 dependencies:
   flutter:
@@ -36,7 +36,7 @@ dependencies:
   geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
   geolocator: '>=14.0.2 <15.0.0' # https://pub.dev/packages/geolocator
   go_router: '>=17.1.0 <18.0.0' # https://pub.dev/packages/go_router
-  google_maps_flutter: '>=2.15.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
+  google_maps_flutter: '>=2.16.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=1.6.0 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.8.0 <5.0.0' # https://pub.dev/packages/image
   intl: any # https://pub.dev/packages/intl
@@ -65,7 +65,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: '>=2.12.2 <3.0.0' # https://pub.dev/packages/build_runner
+  build_runner: '>=2.13.0 <3.0.0' # https://pub.dev/packages/build_runner
   flutter_lints: '>=6.0.0 <7.0.0' # https://pub.dev/packages/flutter_lints
   freezed: '>=3.2.5 <4.0.0' # https://pub.dev/packages/freezed
   json_serializable: '>=6.13.0 <7.0.0' # https://pub.dev/packages/json_serializable
