@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class FeechTextFormField extends StatefulWidget {
   const FeechTextFormField({
     super.key,
+    this.controller,
     this.autoCorrect = true,
     this.autovalidateMode = AutovalidateMode.disabled,
     this.enabled = true,
@@ -20,10 +21,12 @@ class FeechTextFormField extends StatefulWidget {
     this.clearIconButtonColor,
     this.readOnly = false,
     this.showCursor,
+    this.helperTextPlaceholder = '',
     this.validator,
     this.initialText,
   });
 
+  final TextEditingController? controller;
   final bool autoCorrect;
   final AutovalidateMode autovalidateMode;
   final bool enabled;
@@ -41,6 +44,7 @@ class FeechTextFormField extends StatefulWidget {
   final Color? clearIconButtonColor;
   final bool readOnly;
   final bool? showCursor;
+  final String? helperTextPlaceholder;
   final String? Function(String?)? validator;
   final String? initialText;
 
@@ -54,9 +58,11 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.initialText ?? '')
+    _controller = (widget.controller ?? TextEditingController(text: widget.initialText ?? ''))
       ..addListener(() {
-        setState(() {});
+        setState(() {
+          widget.onChanged?.call(_controller.text);
+        });
       });
   }
 
@@ -75,7 +81,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
       decoration: InputDecoration(
         alignLabelWithHint: true,
         border: const OutlineInputBorder(),
-        helperText: '',
+        helperText: widget.helperTextPlaceholder,
         isDense: widget.isDense,
         labelText: widget.labelText,
         prefixIcon: widget.prefixIcon,
@@ -84,7 +90,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
             ? IconButton(
                 onPressed: () {
                   _controller.clear();
-                  widget.onChanged?.call("");
+                  // widget.onChanged?.call("");
                 },
                 icon: const Icon(Icons.clear),
               )
