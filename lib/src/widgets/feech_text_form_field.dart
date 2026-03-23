@@ -102,7 +102,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       obscureText: widget.obscureText,
-      onChanged: widget.onChanged,
+      // onChanged: widget.onChanged,
       onTap: widget.onTap,
       readOnly: widget.readOnly,
       showCursor: widget.showCursor,
