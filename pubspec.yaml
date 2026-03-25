@@ -52,7 +52,7 @@ dependencies:
   pointer_interceptor: '>=0.10.1+2 <1.0.0' # https://pub.dev/packages/pointer_interceptor
   quiver: '>=3.2.2 <4.0.0' # https://pub.dev/packages/quiver
   riverpod_annotation: '>=4.0.2 <5.0.0' # https://pub.dev/packages/riverpod_annotation
-  shared_preferences: '>=2.5.4 <3.0.0' # https://pub.dev/packages/shared_preferences
+  shared_preferences: '>=2.5.5 <3.0.0' # https://pub.dev/packages/shared_preferences
   signals_flutter: '>=6.3.0 <7.0.0' # https://pub.dev/packages/signals_flutter
   speech_to_text: '>=7.3.0 <8.0.0' # https://pub.dev/packages/speech_to_text
   sqlite3: '>=3.2.0 <4.0.0' # https://pub.dev/packages/sqlite3
