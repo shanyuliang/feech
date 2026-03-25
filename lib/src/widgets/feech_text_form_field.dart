@@ -68,7 +68,10 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    // Only dispose the controller if it's not provided by the caller
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
