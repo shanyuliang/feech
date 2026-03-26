@@ -4,6 +4,7 @@ class FeechTextFormField extends StatefulWidget {
   const FeechTextFormField({
     super.key,
     this.controller,
+    this.focusNode,
     this.autoCorrect = true,
     this.autovalidateMode = AutovalidateMode.disabled,
     this.enabled = true,
@@ -26,11 +27,12 @@ class FeechTextFormField extends StatefulWidget {
     this.initialText,
   });
 
-  final TextEditingController? controller;
   final bool autoCorrect;
   final AutovalidateMode autovalidateMode;
+  final TextEditingController? controller;
   final bool enabled;
   final bool enableSuggestions;
+  final FocusNode? focusNode;
   final bool isDense;
   final String? labelText;
   final int? maxLines;
@@ -104,6 +106,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
       ),
       enabled: widget.enabled,
       enableSuggestions: widget.enableSuggestions,
+      focusNode: widget.focusNode,
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       obscureText: widget.obscureText,
