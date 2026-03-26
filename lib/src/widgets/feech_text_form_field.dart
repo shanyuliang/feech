@@ -63,16 +63,12 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
     // If a controller is provided by the caller, use it; otherwise, create a new one with the initial text
     // That gives the caller the flexibility to update the text if they choose to provide one
     // Example: controller.value = TextEditingValue(text: newText, selection: TextSelection.collapsed(offset: newText.length));
-    _controller = (widget.controller ?? TextEditingController(text: widget.initialText ?? ''))
-      ..addListener(() {
-        setState(() {
-          widget.onChanged?.call(_controller.text);
-        });
-      });
+    _controller = (widget.controller ?? TextEditingController(text: widget.initialText ?? ''))..addListener(_onTextChanged);
   }
 
   @override
   void dispose() {
+    _controller.removeListener(_onTextChanged);
     // Only dispose the controller if it's not provided by the caller
     if (widget.controller == null) {
       _controller.dispose();
@@ -115,5 +111,11 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
       showCursor: widget.showCursor,
       validator: widget.validator,
     );
+  }
+
+  void _onTextChanged() {
+    setState(() {
+      widget.onChanged?.call(_controller.text);
+    });
   }
 }
