@@ -19,20 +19,18 @@ extension GlobalKeyExtension on GlobalKey {
 
   Size? get size {
     final renderObject = currentContext?.findRenderObject();
-    return renderObject?.let((it) => (it as RenderBox).size);
+    return renderObject?.let((it) => (it as RenderBox).let((v) => v.hasSize ? v.size : null));
   }
 
   Offset? get offset {
     final renderObject = currentContext?.findRenderObject();
-    return renderObject
-        ?.let((it) => (it as RenderBox).localToGlobal(Offset.zero));
+    return renderObject?.let((it) => (it as RenderBox).localToGlobal(Offset.zero));
   }
 
   Size? get physicalSize {
     final logicalSize = size;
     if (logicalSize != null && currentContext != null) {
-      final devicePixelRatio =
-          MediaQuery.maybeDevicePixelRatioOf(currentContext!);
+      final devicePixelRatio = MediaQuery.maybeDevicePixelRatioOf(currentContext!);
       if (devicePixelRatio != null) {
         return logicalSize * devicePixelRatio;
       }
