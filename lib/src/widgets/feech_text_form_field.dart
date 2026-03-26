@@ -58,6 +58,9 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
   @override
   void initState() {
     super.initState();
+    // If a controller is provided by the caller, use it; otherwise, create a new one with the initial text
+    // That gives the caller the flexibility to update the text if they choose to provide one
+    // Example: controller.value = TextEditingValue(text: newText, selection: TextSelection.collapsed(offset: newText.length));
     _controller = (widget.controller ?? TextEditingController(text: widget.initialText ?? ''))
       ..addListener(() {
         setState(() {
