@@ -100,7 +100,9 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
             ? IconButton(
                 onPressed: () {
                   _controller.clear();
-                  _focusNode.requestFocus();
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    _focusNode.requestFocus();
+                  });
                 },
                 icon: const Icon(Icons.clear),
               )
