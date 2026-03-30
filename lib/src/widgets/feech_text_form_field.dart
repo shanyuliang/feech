@@ -99,12 +99,12 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
         suffixIcon: (!widget.readOnly && widget.showClearIconButton && _controller.text.isNotEmpty)
             ? IconButton(
                 onPressed: () {
-                  if (_focusNode.hasFocus) {
+                  if (!_focusNode.hasFocus) {
                     _focusNode.requestFocus();
                   }
                   _controller.clear();
                   Future.delayed(Duration(milliseconds: 50), () {
-                    if (_focusNode.hasFocus) {
+                    if (!_focusNode.hasFocus) {
                       _focusNode.requestFocus();
                     }
                   });
