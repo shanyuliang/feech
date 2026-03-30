@@ -109,7 +109,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
       ),
       enabled: widget.enabled,
       enableSuggestions: widget.enableSuggestions,
-      focusNode: widget.focusNode,
+      focusNode: _focusNode,
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       obscureText: widget.obscureText,
