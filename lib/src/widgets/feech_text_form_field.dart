@@ -99,9 +99,14 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
         suffixIcon: (!widget.readOnly && widget.showClearIconButton && _controller.text.isNotEmpty)
             ? IconButton(
                 onPressed: () {
-                  _controller.clear();
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (_focusNode.hasFocus) {
                     _focusNode.requestFocus();
+                  }
+                  _controller.clear();
+                  Future.delayed(Duration(milliseconds: 50), () {
+                    if (_focusNode.hasFocus) {
+                      _focusNode.requestFocus();
+                    }
                   });
                 },
                 icon: const Icon(Icons.clear),
