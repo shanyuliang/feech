@@ -56,6 +56,7 @@ class FeechTextFormField extends StatefulWidget {
 
 class _FeechTextFormFieldState extends State<FeechTextFormField> {
   late TextEditingController _controller;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
@@ -64,6 +65,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
     // That gives the caller the flexibility to update the text if they choose to provide one
     // Example: controller.value = TextEditingValue(text: newText, selection: TextSelection.collapsed(offset: newText.length));
     _controller = (widget.controller ?? TextEditingController(text: widget.initialText ?? ''))..addListener(_onTextChanged);
+    _focusNode = widget.focusNode ?? FocusNode();
   }
 
   @override
@@ -72,6 +74,10 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
     // Only dispose the controller if it's not provided by the caller
     if (widget.controller == null) {
       _controller.dispose();
+    }
+    // Only dispose the focus node if it's not provided by the caller
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
     }
     super.dispose();
   }
@@ -94,6 +100,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
             ? IconButton(
                 onPressed: () {
                   _controller.clear();
+                  _focusNode.requestFocus();
                 },
                 icon: const Icon(Icons.clear),
               )
