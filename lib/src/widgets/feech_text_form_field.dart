@@ -99,6 +99,8 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
         suffixIcon: (!widget.readOnly && widget.showClearIconButton && _controller.text.isNotEmpty)
             ? IconButton(
                 onPressed: () {
+                  // When the clear button is pressed, we want to ensure the text field remains focused and the text is cleared
+                  // It MAY NOT work if there is only one focusable component in the widget tree.
                   if (!_focusNode.hasFocus) {
                     _focusNode.requestFocus();
                   }
