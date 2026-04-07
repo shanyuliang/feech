@@ -55,9 +55,9 @@ abstract class BaseSignalPage extends StatefulWidget {
 class _BaseSignalPageState extends State<BaseSignalPage> {
   late final PageLifecycleStateSignal? pageLifecycleStateSignal;
   late final PageTitleSignal? pageTitleSignal;
-  late final Function()? disposeAppLifecycleStateListener;
-  late final Function()? disposePageLifecycleStateListener;
-  late final Function()? disposePageTitleListener;
+  Function()? disposeAppLifecycleStateListener;
+  Function()? disposePageLifecycleStateListener;
+  Function()? disposePageTitleListener;
 
   @override
   void initState() {
@@ -71,6 +71,15 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     widget.pageTitleSignalContainer?.let((it) {
       pageTitleSignal = it(widget.pageParameter);
     });
+    widget.initialise();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.debugLogDiagnostics) {
+      developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
+    }
     widget.appLifecycleStateSignal?.let((it) {
       disposeAppLifecycleStateListener = effect(() {
         final appLifecycleState = it.value;
@@ -144,15 +153,6 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         _refreshTitle();
       });
     });
-    widget.initialise();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (widget.debugLogDiagnostics) {
-      developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page didChangeDependencies", name: debugTag);
-    }
     widget.didChangeDependencies(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
   }
 
