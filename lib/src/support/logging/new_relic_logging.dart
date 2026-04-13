@@ -27,9 +27,11 @@ class NewRelicLogging extends Logging {
     String loggerName = "New Relic",
   }) : logger = Logger(loggerName)..level = minLoggingLevel {
     logger.onRecord.listen((record) {
-      suppressThrowableAsync(throwable: () async {
-        await _log(record);
-      });
+      suppressThrowableAsync(
+        throwable: () async {
+          await _log(record);
+        },
+      );
     });
   }
 
@@ -40,10 +42,7 @@ class NewRelicLogging extends Logging {
     } else {
       eventAttributes.addAll({"feechLogMessage": logRecord.message});
     }
-    eventAttributes.addAll({
-      "feechLogTime": logRecord.time.toIso8601String(),
-      "feechLogLevel": logRecord.level.name,
-    });
+    eventAttributes.addAll({"feechLogTime": logRecord.time.toIso8601String(), "feechLogLevel": logRecord.level.name});
     if (logRecord.level >= Level.SEVERE && logErrorAsNormalEvent) {
       eventAttributes.addAll({
         "feechError": logRecord.error.toString(),
@@ -52,21 +51,11 @@ class NewRelicLogging extends Logging {
       });
     }
     if (logRecord.level < Level.SEVERE || logErrorAsNormalEvent) {
-      NewrelicMobile.instance
-          .recordCustomEvent(
-        eventType,
-        eventAttributes: eventAttributes,
-      )
-          .then(
-        (value) {
-          if (debugLogDiagnostics) {
-            developer.log(
-              "New Relic recordCustomEvent result: $value",
-              name: debugTag,
-            );
-          }
-        },
-      );
+      NewrelicMobile.instance.recordCustomEvent(eventType, eventAttributes: eventAttributes).then((value) {
+        if (debugLogDiagnostics) {
+          developer.log("New Relic recordCustomEvent result: $value", name: debugTag);
+        }
+      });
     } else {
       NewrelicMobile.instance.recordError(
         logRecord.error ?? Error(),
@@ -81,15 +70,24 @@ class NewRelicLogging extends Logging {
   final Logger logger;
 
   @override
-  FlutterExceptionHandler? get flutterExceptionHandler =>
-      NewrelicMobile.onError;
+  FlutterExceptionHandler? get flutterExceptionHandler => NewrelicMobile.onError;
 
   @override
   Future<void> initialise() async {
-    final config =
-        Config(accessToken: accessToken, printStatementAsEventsEnabled: false);
+    final config = Config(
+      accessToken: accessToken,
+      printStatementAsEventsEnabled: false,
+      analyticsEventEnabled: true,
+      networkErrorRequestEnabled: true,
+      networkRequestEnabled: true,
+      crashReportingEnabled: true,
+      interactionTracingEnabled: true,
+      httpResponseBodyCaptureEnabled: true,
+      loggingEnabled: true,
+      webViewInstrumentation: true,
+      httpInstrumentationEnabled: true,
+    );
     await NewrelicMobile.instance.startAgent(config);
-    await NewrelicMobile.instance
-        .setMaxEventBufferTime(maxEventBufferTimeInSeconds);
+    await NewrelicMobile.instance.setMaxEventBufferTime(maxEventBufferTimeInSeconds);
   }
 }
