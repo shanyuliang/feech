@@ -63,6 +63,7 @@ export 'src/providers/svg_asset_base64_src_provider.dart';
 export 'src/providers/tts_provider.dart';
 export 'src/providers/user_location_provider.dart';
 export 'src/reg_exp_collection.dart';
+export 'src/signals/app_initialise_signal.dart';
 export 'src/signals/app_lifecycle_state_signal/app_lifecycle_state_signal.dart';
 export 'src/signals/app_permission_status_signal.dart';
 export 'src/signals/app_permission_status_signal_container.dart';
