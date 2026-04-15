@@ -74,6 +74,9 @@ class NewRelicLogging extends Logging {
 
   @override
   Future<void> initialise() async {
+    if (debugLogDiagnostics) {
+      developer.log("NewRelicLogging initialise start", name: debugTag);
+    }
     final config = Config(
       accessToken: accessToken,
       printStatementAsEventsEnabled: false,
@@ -89,5 +92,8 @@ class NewRelicLogging extends Logging {
     );
     await NewrelicMobile.instance.startAgent(config);
     await NewrelicMobile.instance.setMaxEventBufferTime(maxEventBufferTimeInSeconds);
+    if (debugLogDiagnostics) {
+      developer.log("NewRelicLogging initialise end", name: debugTag);
+    }
   }
 }
