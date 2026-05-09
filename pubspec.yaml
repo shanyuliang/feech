@@ -15,7 +15,7 @@ platforms:
 
 environment:
   sdk: '>=3.11.5 <4.0.0'
-  flutter: ">=3.41.8"
+  flutter: ">=3.41.9"
 
 dependencies:
   flutter:
@@ -30,12 +30,12 @@ dependencies:
   firebase_crashlytics: '>=5.2.0 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.3.1 <4.0.0' # https://pub.dev/packages/flutter_riverpod
-  flutter_svg: '>=2.2.4 <3.0.0' # https://pub.dev/packages/flutter_svg
+  flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   geocoding: '>=4.0.0 <5.0.0' # https://pub.dev/packages/geocoding
   geolocator: '>=14.0.2 <15.0.0' # https://pub.dev/packages/geolocator
-  go_router: '>=17.2.2 <18.0.0' # https://pub.dev/packages/go_router
+  go_router: '>=17.2.3 <18.0.0' # https://pub.dev/packages/go_router
   google_maps_flutter: '>=2.17.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=1.6.0 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.8.0 <5.0.0' # https://pub.dev/packages/image
@@ -65,7 +65,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: '>=2.14.0 <3.0.0' # https://pub.dev/packages/build_runner
+  build_runner: '>=2.15.0 <3.0.0' # https://pub.dev/packages/build_runner
   flutter_lints: '>=6.0.0 <7.0.0' # https://pub.dev/packages/flutter_lints
   freezed: '>=3.2.5 <4.0.0' # https://pub.dev/packages/freezed
   json_serializable: '>=6.13.0 <7.0.0' # https://pub.dev/packages/json_serializable
