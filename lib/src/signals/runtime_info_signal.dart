@@ -24,7 +24,7 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
           locale: PlatformDispatcher.instance.locale,
           textScaleFactor: PlatformDispatcher.instance.textScaleFactor,
         ),
-        debugLabel: "RuntimeInfoSignal",
+        options: SignalOptions(name: "RuntimeInfoSignal"),
       );
 
   void setAppLifecycleState(AppLifecycleState appLifecycleState) {
