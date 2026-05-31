@@ -15,5 +15,5 @@ class SvgStringSignal extends FutureSignal<String?> {
         } else {
           return await rootBundle.loadString(svgLink);
         }
-      }, debugLabel: "SvgStringSignal");
+      }, options: AsyncSignalOptions(name: "SvgStringSignal"));
 }

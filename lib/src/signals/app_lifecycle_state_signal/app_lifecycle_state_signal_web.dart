@@ -7,7 +7,8 @@ import 'package:web/web.dart';
 class AppLifecycleStateSignal extends Signal<AppLifecycleState> {
   final bool debugLogDiagnostics;
 
-  AppLifecycleStateSignal({this.debugLogDiagnostics = false}) : super(AppLifecycleState.resumed, debugLabel: "AppLifecycleStateSignal") {
+  AppLifecycleStateSignal({this.debugLogDiagnostics = false})
+    : super(AppLifecycleState.resumed, options: SignalOptions(name: "AppLifecycleStateSignal")) {
     void onFocus(Event e) {
       value = AppLifecycleState.resumed;
     }

@@ -17,7 +17,10 @@ class AppPermissionStatusSignal extends Signal<AppPermissionStatus> {
   AppPermissionStatusSignal({
     required CombinedAppPermissionStatusSignalParameter combinedAppPermissionStatusSignalParameter,
     this.debugLogDiagnostics = false,
-  }) : super(AppPermissionStatus(permission: combinedAppPermissionStatusSignalParameter.permission), debugLabel: "AppPermissionStatusSignal") {
+  }) : super(
+         AppPermissionStatus(permission: combinedAppPermissionStatusSignalParameter.permission),
+         options: SignalOptions(name: "AppPermissionStatusSignal"),
+       ) {
     Future(() {
       _getStatus();
     });

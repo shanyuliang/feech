@@ -4,7 +4,8 @@ import 'package:signals_flutter/signals_flutter.dart';
 class AppLifecycleStateSignal extends Signal<AppLifecycleState> {
   final bool debugLogDiagnostics;
 
-  AppLifecycleStateSignal({this.debugLogDiagnostics = false}) : super(AppLifecycleState.resumed, debugLabel: "AppLifecycleStateSignal") {
+  AppLifecycleStateSignal({this.debugLogDiagnostics = false})
+    : super(AppLifecycleState.resumed, options: SignalOptions(name: "AppLifecycleStateSignal")) {
     final appLifecycleListener = AppLifecycleListener(
       onStateChange: (appLifecycleState) {
         value = appLifecycleState;
