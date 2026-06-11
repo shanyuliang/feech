@@ -95,7 +95,7 @@ abstract class _$PageLifecycleStateProvider
   PageLifecycleState build(String? routeName);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<PageLifecycleState, PageLifecycleState>;
     final element =
         ref.element
@@ -105,6 +105,6 @@ abstract class _$PageLifecycleStateProvider
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

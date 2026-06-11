@@ -48,7 +48,7 @@ abstract class _$CameraMetaProvider extends $Notifier<CameraMeta> {
   CameraMeta build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<CameraMeta, CameraMeta>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$CameraMetaProvider extends $Notifier<CameraMeta> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

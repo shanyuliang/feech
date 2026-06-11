@@ -88,7 +88,7 @@ abstract class _$AssetManifestProvider extends $AsyncNotifier<AssetManifest> {
   FutureOr<AssetManifest> build({bool debugLogDiagnostics = false});
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<AssetManifest>, AssetManifest>;
     final element =
         ref.element
@@ -98,6 +98,6 @@ abstract class _$AssetManifestProvider extends $AsyncNotifier<AssetManifest> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(debugLogDiagnostics: _$args));
+    return element.handleCreate(ref, () => build(debugLogDiagnostics: _$args));
   }
 }

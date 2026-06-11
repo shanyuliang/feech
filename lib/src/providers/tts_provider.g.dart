@@ -39,7 +39,7 @@ abstract class _$TtsProvider extends $AsyncNotifier<Tts> {
   FutureOr<Tts> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<Tts>, Tts>;
     final element =
         ref.element
@@ -49,6 +49,6 @@ abstract class _$TtsProvider extends $AsyncNotifier<Tts> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

@@ -87,7 +87,7 @@ abstract class _$LoggingProvider extends $AsyncNotifier<Logging> {
   });
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<Logging>, Logging>;
     final element =
         ref.element
@@ -97,6 +97,6 @@ abstract class _$LoggingProvider extends $AsyncNotifier<Logging> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(actionLoggingList: _$args));
+    return element.handleCreate(ref, () => build(actionLoggingList: _$args));
   }
 }

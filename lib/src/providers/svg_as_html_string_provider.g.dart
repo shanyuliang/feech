@@ -139,7 +139,7 @@ abstract class _$SvgAsHtmlStringProvider
   });
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<AsyncValue<(String?, Size?)>, (String?, Size?)>;
     final element =
@@ -150,7 +150,7 @@ abstract class _$SvgAsHtmlStringProvider
               Object?,
               Object?
             >;
-    element.handleCreate(
+    return element.handleCreate(
       ref,
       () => build(
         svgLink: _$args.svgLink,

@@ -39,7 +39,7 @@ abstract class _$SttProvider extends $AsyncNotifier<Stt> {
   FutureOr<Stt> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<Stt>, Stt>;
     final element =
         ref.element
@@ -49,6 +49,6 @@ abstract class _$SttProvider extends $AsyncNotifier<Stt> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

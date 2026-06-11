@@ -115,7 +115,7 @@ abstract class _$SvgFileProvider extends $StreamNotifier<(String, File?)> {
   });
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<(String, File?)>, (String, File?)>;
     final element =
         ref.element
@@ -125,7 +125,7 @@ abstract class _$SvgFileProvider extends $StreamNotifier<(String, File?)> {
               Object?,
               Object?
             >;
-    element.handleCreate(
+    return element.handleCreate(
       ref,
       () => build(
         appCacheManager: _$args.appCacheManager,

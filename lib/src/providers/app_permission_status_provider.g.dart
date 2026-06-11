@@ -96,7 +96,7 @@ abstract class _$AppPermissionStatusProvider
   AppPermissionStatus build(Permission permission);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AppPermissionStatus, AppPermissionStatus>;
     final element =
         ref.element
@@ -106,6 +106,6 @@ abstract class _$AppPermissionStatusProvider
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

@@ -48,7 +48,7 @@ abstract class _$UserLocationProvider extends $Notifier<UserLocation> {
   UserLocation build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<UserLocation, UserLocation>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$UserLocationProvider extends $Notifier<UserLocation> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

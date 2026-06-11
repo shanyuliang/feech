@@ -94,7 +94,7 @@ abstract class _$SvgStringProvider extends $AsyncNotifier<String?> {
   });
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<String?>, String?>;
     final element =
         ref.element
@@ -104,7 +104,7 @@ abstract class _$SvgStringProvider extends $AsyncNotifier<String?> {
               Object?,
               Object?
             >;
-    element.handleCreate(
+    return element.handleCreate(
       ref,
       () => build(svgLink: _$args.svgLink, headers: _$args.headers),
     );

@@ -123,7 +123,7 @@ abstract class _$AppInitialiseProvider extends $AsyncNotifier<bool> {
   });
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<bool>, bool>;
     final element =
         ref.element
@@ -133,7 +133,7 @@ abstract class _$AppInitialiseProvider extends $AsyncNotifier<bool> {
               Object?,
               Object?
             >;
-    element.handleCreate(
+    return element.handleCreate(
       ref,
       () => build(
         initialiseList: _$args.initialiseList,

@@ -86,7 +86,7 @@ abstract class _$SvgAssetBase64SrcProvider extends $AsyncNotifier<String> {
   FutureOr<String> build({required String svgAsset});
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<String>, String>;
     final element =
         ref.element
@@ -96,6 +96,6 @@ abstract class _$SvgAssetBase64SrcProvider extends $AsyncNotifier<String> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(svgAsset: _$args));
+    return element.handleCreate(ref, () => build(svgAsset: _$args));
   }
 }

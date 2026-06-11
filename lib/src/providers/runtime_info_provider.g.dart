@@ -93,7 +93,7 @@ abstract class _$RuntimeInfoProvider extends $Notifier<RuntimeInfo> {
   RuntimeInfo build({bool debugLogDiagnostics = false});
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<RuntimeInfo, RuntimeInfo>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$RuntimeInfoProvider extends $Notifier<RuntimeInfo> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(debugLogDiagnostics: _$args));
+    return element.handleCreate(ref, () => build(debugLogDiagnostics: _$args));
   }
 }
