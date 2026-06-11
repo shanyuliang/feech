@@ -29,7 +29,7 @@ dependencies:
   device_info_plus: '>=13.1.0 <14.0.0' # https://pub.dev/packages/device_info_plus
   firebase_crashlytics: '>=5.2.3 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
-  flutter_riverpod: '>=3.3.2-dev.2 <4.0.0' # https://pub.dev/packages/flutter_riverpod
+  flutter_riverpod: '>=3.3.2 <4.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
@@ -51,7 +51,7 @@ dependencies:
   permission_handler: '>=12.0.3 <13.0.0' # https://pub.dev/packages/permission_handler
   pointer_interceptor: '>=0.10.1+2 <1.0.0' # https://pub.dev/packages/pointer_interceptor
   quiver: '>=3.2.2 <4.0.0' # https://pub.dev/packages/quiver
-  riverpod_annotation: '>=4.0.3-dev.2 <5.0.0' # https://pub.dev/packages/riverpod_annotation
+  riverpod_annotation: '>=4.0.3 <5.0.0' # https://pub.dev/packages/riverpod_annotation
   shared_preferences: '>=2.5.5 <3.0.0' # https://pub.dev/packages/shared_preferences
   signals_flutter: '>=7.1.0 <8.0.0' # https://pub.dev/packages/signals_flutter
   speech_to_text: '>=7.4.0 <8.0.0' # https://pub.dev/packages/speech_to_text
@@ -70,8 +70,8 @@ dev_dependencies:
   freezed: '>=3.2.6-dev.1 <4.0.0' # https://pub.dev/packages/freezed
   json_serializable: '>=6.14.0 <7.0.0' # https://pub.dev/packages/json_serializable
   riverpod_analyzer_utils: '>=1.0.0-dev.10 <2.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
-  riverpod_generator: '>=4.0.4-dev.3 <5.0.0' # https://pub.dev/packages/riverpod_generator
-  riverpod_lint: '>=3.1.4-dev.3 <4.0.0' # https://pub.dev/packages/riverpod_lint
+  riverpod_generator: '>=4.0.4 <5.0.0' # https://pub.dev/packages/riverpod_generator
+  riverpod_lint: '>=3.1.4 <4.0.0' # https://pub.dev/packages/riverpod_lint
 
 flutter:
   generate: true
