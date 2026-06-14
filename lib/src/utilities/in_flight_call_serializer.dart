@@ -5,21 +5,14 @@
  * final result = await _inFlightCallSerializer.run<String?>('getAccessToken', _fetchAccessToken);
  */
 class InFlightCallSerializer {
-  final Map<String, Future<Object?>> _inFlightCalls = <String, Future<Object?>>{};
+  final Map<String, Future<dynamic>> _inFlightCalls = {};
 
   Future<T> run<T>(String key, Future<T> Function() task) {
-    final inFlight = _inFlightCalls[key];
-    if (inFlight != null) {
-      return inFlight as Future<T>;
-    }
+    final existing = _inFlightCalls[key];
+    if (existing != null) return existing as Future<T>;
 
-    final future = task();
-    _inFlightCalls[key] = future as Future<Object?>;
-
-    return future.whenComplete(() {
-      if (identical(_inFlightCalls[key], future)) {
-        _inFlightCalls.remove(key);
-      }
-    });
+    final future = task().whenComplete(() => _inFlightCalls.remove(key));
+    _inFlightCalls[key] = future;
+    return future;
   }
 }
