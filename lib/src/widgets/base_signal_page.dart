@@ -14,7 +14,7 @@ import '../signals/page_title_signal.dart';
 import '../signals/page_title_signal_container.dart';
 import '../utilities/handy_util.dart';
 
-abstract class BaseSignalPage extends StatefulWidget {
+abstract class BaseSignalPage extends SignalStatefulWidget {
   final bool debugLogDiagnostics;
   final PageParameter pageParameter;
   final AppLifecycleStateSignal? appLifecycleStateSignal;
@@ -32,6 +32,14 @@ abstract class BaseSignalPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _BaseSignalPageState();
+
+  void setTitle(String? title) {
+    pageTitleSignalContainer?.call(pageParameter).set(title);
+  }
+
+  String? getTitle() {
+    return pageTitleSignalContainer?.call(pageParameter).peek();
+  }
 
   void initialise({PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
 
@@ -65,12 +73,8 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     if (widget.debugLogDiagnostics) {
       developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page initialise", name: debugTag);
     }
-    widget.pageLifecycleStateSignalContainer?.let((it) {
-      pageLifecycleStateSignal = it(widget.pageParameter);
-    });
-    widget.pageTitleSignalContainer?.let((it) {
-      pageTitleSignal = it(widget.pageParameter);
-    });
+    pageLifecycleStateSignal = widget.pageLifecycleStateSignalContainer?.call(widget.pageParameter);
+    pageTitleSignal=widget.pageTitleSignalContainer?.call(widget.pageParameter);
     widget.initialise();
   }
 
@@ -181,6 +185,6 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
   }
 
   void _refreshTitle() {
-    setAppSwitcherTitle(context: context, title: pageTitleSignal?.value);
+    setAppSwitcherTitle(context: context, title: pageTitleSignal?.peek());
   }
 }
