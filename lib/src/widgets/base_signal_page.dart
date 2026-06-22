@@ -41,23 +41,23 @@ abstract class BaseSignalPage extends SignalStatefulWidget {
     return pageTitleSignalContainer?.call(pageParameter).peek();
   }
 
-  void initialise({PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void initialise() {}
 
-  void didChangeDependencies({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void didChangeDependencies({required BuildContext context}) {}
 
-  Widget build({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal});
+  Widget build({required BuildContext context});
 
-  void onDisposed({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void onDisposed({required BuildContext context}) {}
 
-  void onAppResumed({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void onAppResumed({required BuildContext context}) {}
 
-  void onAppPaused({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void onAppPaused({required BuildContext context}) {}
 
-  void onAppDetached({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void onAppDetached({required BuildContext context}) {}
 
-  void onPageResumed({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void onPageResumed({required BuildContext context}) {}
 
-  void onPagePaused({required BuildContext context, PageLifecycleStateSignal? pageLifecycleStateSignal, PageTitleSignal? pageTitleSignal}) {}
+  void onPagePaused({required BuildContext context}) {}
 }
 
 class _BaseSignalPageState extends State<BaseSignalPage> {
@@ -74,7 +74,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
       developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page initialise", name: debugTag);
     }
     pageLifecycleStateSignal = widget.pageLifecycleStateSignalContainer?.call(widget.pageParameter);
-    pageTitleSignal=widget.pageTitleSignalContainer?.call(widget.pageParameter);
+    pageTitleSignal = widget.pageTitleSignalContainer?.call(widget.pageParameter);
     widget.initialise();
   }
 
@@ -92,19 +92,19 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
             if (widget.debugLogDiagnostics) {
               developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] app resumed", name: debugTag);
             }
-            widget.onAppResumed(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
+            widget.onAppResumed(context: context);
             break;
           case AppLifecycleState.paused:
             if (widget.debugLogDiagnostics) {
               developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] app paused", name: debugTag);
             }
-            widget.onAppPaused(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
+            widget.onAppPaused(context: context);
             break;
           case AppLifecycleState.detached:
             if (widget.debugLogDiagnostics) {
               developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] app detached", name: debugTag);
             }
-            widget.onAppDetached(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
+            widget.onAppDetached(context: context);
             break;
           default:
             if (widget.debugLogDiagnostics) {
@@ -126,13 +126,13 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
               developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page resumed", name: debugTag);
             }
             _refreshTitle();
-            widget.onPageResumed(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
+            widget.onPageResumed(context: context);
             break;
           case PageLifecycleState.paused:
             if (widget.debugLogDiagnostics) {
               developer.log("[${widget.pageParameter.routeName}][${widget.key}][${widget.hashCode}-$hashCode] page paused", name: debugTag);
             }
-            widget.onPagePaused(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
+            widget.onPagePaused(context: context);
             break;
           default:
             if (widget.debugLogDiagnostics) {
@@ -157,7 +157,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
         _refreshTitle();
       });
     });
-    widget.didChangeDependencies(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
+    widget.didChangeDependencies(context: context);
   }
 
   @override
@@ -168,7 +168,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     return Title(
       title: pageTitleSignal?.value ?? '',
       color: Theme.of(context).colorScheme.primary,
-      child: widget.build(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal),
+      child: widget.build(context: context),
     );
   }
 
@@ -180,7 +180,7 @@ class _BaseSignalPageState extends State<BaseSignalPage> {
     disposeAppLifecycleStateListener?.call();
     disposePageLifecycleStateListener?.call();
     disposePageTitleListener?.call();
-    widget.onDisposed(context: context, pageLifecycleStateSignal: pageLifecycleStateSignal, pageTitleSignal: pageTitleSignal);
+    widget.onDisposed(context: context);
     super.dispose();
   }
 
