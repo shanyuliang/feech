@@ -26,12 +26,13 @@ dependencies:
   camera: '>=0.12.0+1 <1.0.0' # https://pub.dev/packages/camera
   cloud_firestore: ">=6.6.0 <7.0.0" # https://pub.dev/packages/cloud_firestore
   collection: '>=1.19.1 <2.0.0' # https://pub.dev/packages/collection
+  cross_file: '>=0.3.5+3 <1.0.0' # https://pub.dev/packages/cross_file
   crypto: '>=3.0.7 <4.0.0' # https://pub.dev/packages/crypto
   device_info_plus: '>=13.2.0 <14.0.0' # https://pub.dev/packages/device_info_plus
   firebase_crashlytics: '>=5.2.4 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.1 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.3.2 <4.0.0' # https://pub.dev/packages/flutter_riverpod
-  flutter_soloud: '>=4.0.11 <5.0.0' # https://pub.dev/packages/flutter_soloud
+  flutter_soloud: '>=4.0.12 <5.0.0' # https://pub.dev/packages/flutter_soloud
   flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
