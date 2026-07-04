@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as develop;
 
 import 'package:flutter_soloud/flutter_soloud.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -9,7 +10,6 @@ import 'audio_playback_signal.dart';
 
 class AudioPlaybackSoLoudSignal extends AudioPlaybackSignal {
   final _soLoud = SoLoud.instance;
-  final _soLoudInit = SoLoud.instance.init();
   late AudioSource _audioSource;
   late SoundHandle _soundHandle;
   Timer? _timer;
@@ -32,9 +32,13 @@ class AudioPlaybackSoLoudSignal extends AudioPlaybackSignal {
   }
 
   Future<void> _setSource({required String assetName}) async {
-    await _soLoudInit;
-    await _soLoud.disposeAllSources();
-    _audioSource = await _soLoud.loadAsset(assetName);
+    try {
+      await _soLoud.init();
+      await _soLoud.disposeAllSources();
+      _audioSource = await _soLoud.loadAsset(assetName);
+    } catch (ex) {
+      develop.log(ex.toString());
+    }
   }
 
   @override
