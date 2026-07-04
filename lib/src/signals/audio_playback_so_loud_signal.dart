@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as develop;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
@@ -43,7 +44,7 @@ class AudioPlaybackSoLoudSignal extends AudioPlaybackSignal {
 
   @override
   Future<void> play({required String assetName}) async {
-    develop.log("AudioPlaybackSoLoudSignal play $assetName");
+    debugPrint("AudioPlaybackSoLoudSignal play $assetName");
     await _setSource(assetName: assetName);
     _soundHandle = _soLoud.play(_audioSource);
     _startTrackingPosition();
