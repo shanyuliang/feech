@@ -43,6 +43,7 @@ class AudioPlaybackSoLoudSignal extends AudioPlaybackSignal {
 
   @override
   Future<void> play({required String assetName}) async {
+    develop.log("AudioPlaybackSoLoudSignal play $assetName");
     await _setSource(assetName: assetName);
     _soundHandle = _soLoud.play(_audioSource);
     _startTrackingPosition();
