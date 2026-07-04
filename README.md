@@ -6,6 +6,10 @@ Use the package to simplify your Flutter project development.
 
 ## Getting started
 
+### SQLite3 on web
+
+If you use `SqliteHelper` on Flutter web, add a compatible `sqlite3.wasm` file to your app's `web/` directory (for example `web/sqlite3.wasm`).
+
 ## Command to update dependencies
 
 Use `flutter packages get` to fetch new packages.
