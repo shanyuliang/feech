@@ -8,7 +8,7 @@ Use the package to simplify your Flutter project development.
 
 ### SQLite3 on web
 
-If you use `SqliteHelper` on Flutter web, add a compatible `sqlite3.wasm` file to your app's `web/` directory (for example `web/sqlite3.wasm`).
+If you use `SqliteHelper` on Flutter web, download `sqlite3.wasm` file from [SQLite Download Page](https://sqlite.org/download.html) to your app's `web/` directory (for example `web/sqlite3.wasm`).
 
 ## Command to update dependencies
 
@@ -16,7 +16,7 @@ Use `flutter packages get` to fetch new packages.
 
 ## Command to publish the package
 
-Use `dart pub publish` to fetch new packages. Before that, make sure you have push the code to the main branch.
+Use `dart pub publish` to publish new packages. Before that, make sure you have push the code to the main branch.
 
 ## How to generate the generated classes
 
