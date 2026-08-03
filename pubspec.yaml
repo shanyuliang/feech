@@ -32,7 +32,7 @@ dependencies:
   firebase_crashlytics: '>=5.2.6 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.2 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.3.2 <4.0.0' # https://pub.dev/packages/flutter_riverpod
-  flutter_soloud: '>=4.1.4 <5.0.0' # https://pub.dev/packages/flutter_soloud
+  flutter_soloud: '>=4.1.5 <5.0.0' # https://pub.dev/packages/flutter_soloud
   flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
