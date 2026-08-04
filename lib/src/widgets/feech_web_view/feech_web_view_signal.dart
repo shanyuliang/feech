@@ -26,7 +26,7 @@ class FeechWebViewSignal extends Signal<FeechWebViewState> {
            urlEditorController: TextEditingController(text: initialUrl),
            webViewController: WebViewController(),
          ),
-         debugLabel: "SvgStringSignal",
+         options: SignalOptions(name: "FeechWebViewSignal"),
        ) {
     _webViewController = value.webViewController
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
