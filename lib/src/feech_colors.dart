@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+/// https://github.com/nevertoday/zhongguo-traditional-colors
+/// https://zhongguose.com/
 class FeechColors {
   static const Color chineseYellowRuBai001 = Color(0xFFF9F4DC); // 乳白
   static const Color chineseYellowXingRenHuang002 = Color(0xFFF7E8AA); // 杏仁黄
