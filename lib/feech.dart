@@ -30,6 +30,7 @@ export 'src/extensions/web_resource_error_extension.dart';
 export 'src/extensions/web_view_controller_extension.dart';
 export 'src/extensions/widget_extension.dart';
 export 'src/extensions/x509certificate_extension.dart';
+export 'src/feech_colors.dart';
 export 'src/helpers/network_helper.dart';
 export 'src/helpers/sqlite_helper.dart';
 export 'src/helpers/svg_helper.dart';

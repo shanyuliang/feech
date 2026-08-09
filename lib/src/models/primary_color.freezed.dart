@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PrimaryColor {
 
-@ColorStringConverter() Color get color; String? get name; String? get nameAlias;
+@ColorStringConverter() Color get color; String? get id; String? get name; String? get nameAlias;
 /// Create a copy of PrimaryColor
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PrimaryColorCopyWith<PrimaryColor> get copyWith => _$PrimaryColorCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColor&&(identical(other.color, color) || other.color == color)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColor&&(identical(other.color, color) || other.color == color)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,color,name,nameAlias);
+int get hashCode => Object.hash(runtimeType,color,id,name,nameAlias);
 
 @override
 String toString() {
-  return 'PrimaryColor(color: $color, name: $name, nameAlias: $nameAlias)';
+  return 'PrimaryColor(color: $color, id: $id, name: $name, nameAlias: $nameAlias)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $PrimaryColorCopyWith<$Res>  {
   factory $PrimaryColorCopyWith(PrimaryColor value, $Res Function(PrimaryColor) _then) = _$PrimaryColorCopyWithImpl;
 @useResult
 $Res call({
-@ColorStringConverter() Color color, String? name, String? nameAlias
+@ColorStringConverter() Color color, String? id, String? name, String? nameAlias
 });
 
 
@@ -62,10 +62,11 @@ class _$PrimaryColorCopyWithImpl<$Res>
 
 /// Create a copy of PrimaryColor
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? color = null,Object? name = freezed,Object? nameAlias = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? color = null,Object? id = freezed,Object? name = freezed,Object? nameAlias = freezed,}) {
   return _then(_self.copyWith(
 color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
-as Color,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as Color,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,nameAlias: freezed == nameAlias ? _self.nameAlias : nameAlias // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -152,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@ColorStringConverter()  Color color,  String? name,  String? nameAlias)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@ColorStringConverter()  Color color,  String? id,  String? name,  String? nameAlias)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PrimaryColor() when $default != null:
-return $default(_that.color,_that.name,_that.nameAlias);case _:
+return $default(_that.color,_that.id,_that.name,_that.nameAlias);case _:
   return orElse();
 
 }
@@ -173,10 +174,10 @@ return $default(_that.color,_that.name,_that.nameAlias);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@ColorStringConverter()  Color color,  String? name,  String? nameAlias)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@ColorStringConverter()  Color color,  String? id,  String? name,  String? nameAlias)  $default,) {final _that = this;
 switch (_that) {
 case _PrimaryColor():
-return $default(_that.color,_that.name,_that.nameAlias);case _:
+return $default(_that.color,_that.id,_that.name,_that.nameAlias);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +194,10 @@ return $default(_that.color,_that.name,_that.nameAlias);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@ColorStringConverter()  Color color,  String? name,  String? nameAlias)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@ColorStringConverter()  Color color,  String? id,  String? name,  String? nameAlias)?  $default,) {final _that = this;
 switch (_that) {
 case _PrimaryColor() when $default != null:
-return $default(_that.color,_that.name,_that.nameAlias);case _:
+return $default(_that.color,_that.id,_that.name,_that.nameAlias);case _:
   return null;
 
 }
@@ -208,10 +209,11 @@ return $default(_that.color,_that.name,_that.nameAlias);case _:
 
 
 class _PrimaryColor implements PrimaryColor {
-  const _PrimaryColor({@ColorStringConverter() required this.color, this.name, this.nameAlias});
+  const _PrimaryColor({@ColorStringConverter() required this.color, this.id, this.name, this.nameAlias});
   
 
 @override@ColorStringConverter() final  Color color;
+@override final  String? id;
 @override final  String? name;
 @override final  String? nameAlias;
 
@@ -225,16 +227,16 @@ _$PrimaryColorCopyWith<_PrimaryColor> get copyWith => __$PrimaryColorCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColor&&(identical(other.color, color) || other.color == color)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColor&&(identical(other.color, color) || other.color == color)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,color,name,nameAlias);
+int get hashCode => Object.hash(runtimeType,color,id,name,nameAlias);
 
 @override
 String toString() {
-  return 'PrimaryColor(color: $color, name: $name, nameAlias: $nameAlias)';
+  return 'PrimaryColor(color: $color, id: $id, name: $name, nameAlias: $nameAlias)';
 }
 
 
@@ -245,7 +247,7 @@ abstract mixin class _$PrimaryColorCopyWith<$Res> implements $PrimaryColorCopyWi
   factory _$PrimaryColorCopyWith(_PrimaryColor value, $Res Function(_PrimaryColor) _then) = __$PrimaryColorCopyWithImpl;
 @override @useResult
 $Res call({
-@ColorStringConverter() Color color, String? name, String? nameAlias
+@ColorStringConverter() Color color, String? id, String? name, String? nameAlias
 });
 
 
@@ -262,10 +264,11 @@ class __$PrimaryColorCopyWithImpl<$Res>
 
 /// Create a copy of PrimaryColor
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? color = null,Object? name = freezed,Object? nameAlias = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? color = null,Object? id = freezed,Object? name = freezed,Object? nameAlias = freezed,}) {
   return _then(_PrimaryColor(
 color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
-as Color,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as Color,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,nameAlias: freezed == nameAlias ? _self.nameAlias : nameAlias // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

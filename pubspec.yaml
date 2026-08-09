@@ -32,7 +32,7 @@ dependencies:
   firebase_crashlytics: '>=5.2.7 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.2 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.3.2 <4.0.0' # https://pub.dev/packages/flutter_riverpod
-  flutter_soloud: '>=4.1.6 <5.0.0' # https://pub.dev/packages/flutter_soloud
+  flutter_soloud: '>=4.1.7 <5.0.0' # https://pub.dev/packages/flutter_soloud
   flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
@@ -46,6 +46,7 @@ dependencies:
   json_annotation: '>=4.12.0 <5.0.0' # https://pub.dev/packages/json_annotation
   just_audio: '>=0.10.6 <1.0.0' # https://pub.dev/packages/just_audio
   logging: '>=1.3.0 <2.0.0' # https://pub.dev/packages/logging
+  material_color_utilities: '>=0.13.0 <1.0.0' # https://pub.dev/packages/material_color_utilities
   mime: '>=2.0.0 <3.0.0' # https://pub.dev/packages/mime
   newrelic_mobile: '>=1.2.9 <2.0.0' # https://pub.dev/packages/newrelic_mobile
   package_info_plus: '>=10.2.1 <11.0.0' # https://pub.dev/packages/package_info_plus
@@ -89,7 +90,7 @@ flutter:
     - assets/data/toilets_filtered.json
     - assets/data/water_fountains.json
     - assets/data/two-min-passenger_zones.json
-    - assets/data/feech_colors.json
+    - assets/data/primary_colors.json
   shaders:
     - assets/shaders/art_fractal.frag
     - assets/shaders/image_blur.frag
