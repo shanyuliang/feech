@@ -10,317 +10,317 @@
           "colors": [
             {
               "color": "#FFF9F4DC",
-              "name": "乳白",
+              "name": "RuBai",
               "nameAlias": "乳白"
             },
             {
               "color": "#FFF7E8AA",
-              "name": "杏仁黄",
+              "name": "XingRenHuang",
               "nameAlias": "杏仁黄"
             },
             {
               "color": "#FFF8DF72",
-              "name": "茉莉黄",
+              "name": "MoLiHuang",
               "nameAlias": "茉莉黄"
             },
             {
               "color": "#FFF8DF70",
-              "name": "麦秆黄",
+              "name": "MaiGanHuang",
               "nameAlias": "麦秆黄"
             },
             {
               "color": "#FFFBDA41",
-              "name": "油菜花黄",
+              "name": "YouCaiHuaHuang",
               "nameAlias": "油菜花黄"
             },
             {
               "color": "#FFFED71A",
-              "name": "佛手黄",
+              "name": "FoShouHuang",
               "nameAlias": "佛手黄"
             },
             {
               "color": "#FFF8D86A",
-              "name": "葵扇黄",
+              "name": "KuiShanHuang",
               "nameAlias": "葵扇黄"
             },
             {
               "color": "#FFFCD337",
-              "name": "柠檬黄",
+              "name": "NingMengHuang",
               "nameAlias": "柠檬黄"
             },
             {
               "color": "#FFFCD217",
-              "name": "金瓜黄",
+              "name": "JinGuaHuang",
               "nameAlias": "金瓜黄"
             },
             {
               "color": "#FFFFD111",
-              "name": "藤黄",
+              "name": "TengHuang",
               "nameAlias": "藤黄"
             },
             {
               "color": "#FFFBCD31",
-              "name": "大豆黄",
+              "name": "DaDouHuang",
               "nameAlias": "大豆黄"
             },
             {
               "color": "#FFFCCB16",
-              "name": "素馨黄",
+              "name": "SuXinHuang",
               "nameAlias": "素馨黄"
             },
             {
               "color": "#FFFECC11",
-              "name": "向日葵黄",
+              "name": "XiangRiKuiHuang",
               "nameAlias": "向日葵黄"
             },
             {
               "color": "#FFFBC82F",
-              "name": "雅梨黄",
+              "name": "YaLiHuang",
               "nameAlias": "雅梨黄"
             },
             {
               "color": "#FFFCC515",
-              "name": "黄连黄",
+              "name": "HuangLianHuang",
               "nameAlias": "黄连黄"
             },
             {
               "color": "#FFFCC307",
-              "name": "金盏黄",
+              "name": "JinZhanHuang",
               "nameAlias": "金盏黄"
             },
             {
               "color": "#FFE9DDB6",
-              "name": "菊蕾白",
+              "name": "JuLeiBai",
               "nameAlias": "菊蕾白"
             },
             {
               "color": "#FFEED045",
-              "name": "秋葵黄",
+              "name": "QiuKuiHuang",
               "nameAlias": "秋葵黄"
             },
             {
               "color": "#FFF2CE2B",
-              "name": "硫华黄",
+              "name": "LiuHuaHuang",
               "nameAlias": "硫华黄"
             },
             {
               "color": "#FFF1CA17",
-              "name": "柚黄",
+              "name": "YouHuang",
               "nameAlias": "柚黄"
             },
             {
               "color": "#FFDDC871",
-              "name": "芒果黄",
+              "name": "MangGuoHuang",
               "nameAlias": "芒果黄"
             },
             {
               "color": "#FFDFC243",
-              "name": "蒿黄",
+              "name": "HaoHuang",
               "nameAlias": "蒿黄"
             },
             {
               "color": "#FFE2C027",
-              "name": "姜黄",
+              "name": "JiangHuang",
               "nameAlias": "姜黄"
             },
             {
               "color": "#FFE4BF11",
-              "name": "香蕉黄",
+              "name": "XiangJiaoHuang",
               "nameAlias": "香蕉黄"
             },
             {
               "color": "#FFD2B42C",
-              "name": "草黄",
+              "name": "CaoHuang",
               "nameAlias": "草黄"
             },
             {
               "color": "#FFD2B116",
-              "name": "新禾绿",
+              "name": "XinHeLv",
               "nameAlias": "新禾绿"
             },
             {
               "color": "#FFB7AE8F",
-              "name": "月灰",
+              "name": "YueHui",
               "nameAlias": "月灰"
             },
             {
               "color": "#FFAD9E5F",
-              "name": "淡灰绿",
+              "name": "DanHuiLv",
               "nameAlias": "淡灰绿"
             },
             {
               "color": "#FF8E804B",
-              "name": "草灰绿",
+              "name": "CaoHuiLv",
               "nameAlias": "草灰绿"
             },
             {
               "color": "#FF887322",
-              "name": "苔绿",
+              "name": "TaiLv",
               "nameAlias": "苔绿"
             },
             {
               "color": "#FF867018",
-              "name": "碧螺春绿",
+              "name": "BiLuoChunLv",
               "nameAlias": "碧螺春绿"
             },
             {
               "color": "#FF645822",
-              "name": "潭水绿",
+              "name": "TanShuiLv",
               "nameAlias": "潭水绿"
             },
             {
               "color": "#FF5E5314",
-              "name": "橄榄绿",
+              "name": "GanLanLv",
               "nameAlias": "橄榄绿"
             },
             {
               "color": "#FFF9D770",
-              "name": "淡茧黄",
+              "name": "DanJianHuang",
               "nameAlias": "淡茧黄"
             },
             {
               "color": "#FFFFC90C",
-              "name": "乳鸭黄",
+              "name": "RuYaHuang",
               "nameAlias": "乳鸭黄"
             },
             {
               "color": "#FFF6C430",
-              "name": "鹦鹉冠黄",
+              "name": "YingWuGuanHuang",
               "nameAlias": "鹦鹉冠黄"
             },
             {
               "color": "#FFF9C116",
-              "name": "木瓜黄",
+              "name": "MuGuaHuang",
               "nameAlias": "木瓜黄"
             },
             {
               "color": "#FFF9BD10",
-              "name": "浅烙黄",
+              "name": "QianLaoHuang",
               "nameAlias": "浅烙黄"
             },
             {
               "color": "#FFE8B004",
-              "name": "谷黄",
+              "name": "GuHuang",
               "nameAlias": "谷黄"
             },
             {
               "color": "#FFB78D12",
-              "name": "枯绿",
+              "name": "KuLv",
               "nameAlias": "枯绿"
             },
             {
               "color": "#FF5B4913",
-              "name": "棕榈绿",
+              "name": "ZongLvLv",
               "nameAlias": "棕榈绿"
             },
             {
               "color": "#FFF1F0ED",
-              "name": "银白",
+              "name": "YinBai",
               "nameAlias": "银白"
             },
             {
               "color": "#FFFFFEFA",
-              "name": "海参灰",
+              "name": "HaiShenHui",
               "nameAlias": "海参灰"
             },
             {
               "color": "#FFE2E7BF",
-              "name": "海沬绿",
+              "name": "HaiMeiLv",
               "nameAlias": "海沬绿"
             },
             {
               "color": "#FFD2D97A",
-              "name": "槐花黄绿",
+              "name": "HuaiHuaHuangLv",
               "nameAlias": "槐花黄绿"
             },
             {
               "color": "#FFBACF65",
-              "name": "苹果绿",
+              "name": "PingGuoLv",
               "nameAlias": "苹果绿"
             },
             {
               "color": "#FFE2D849",
-              "name": "蝶黄",
+              "name": "DieHuang",
               "nameAlias": "蝶黄"
             },
             {
               "color": "#FFBEC936",
-              "name": "橄榄黄绿",
+              "name": "GanLanHuangLv",
               "nameAlias": "橄榄黄绿"
             },
             {
               "color": "#FFFFFEF8",
-              "name": "象牙白",
+              "name": "XiangYaBai",
               "nameAlias": "象牙白"
             },
             {
               "color": "#FFFFFEF9",
-              "name": "雪白",
+              "name": "XueBai",
               "nameAlias": "雪白"
             },
             {
               "color": "#FFC3B787",
-              "name": "秋香",
+              "name": "QiuXiang",
               "nameAlias": "秋香"
             },
             {
               "color": "#FFC9E079",
-              "name": "柳黄",
+              "name": "LiuHuang",
               "nameAlias": "柳黄"
             },
             {
               "color": "#FFD8C37C",
-              "name": "槐黄",
+              "name": "HuaiHuang",
               "nameAlias": "槐黄"
             },
             {
               "color": "#FFF9E4A5",
-              "name": "奶黄色",
+              "name": "NaiHuangSe",
               "nameAlias": "奶黄色"
             },
             {
               "color": "#FFF5F3E9",
-              "name": "纯衣",
+              "name": "ChunYi",
               "nameAlias": "纯衣"
             },
             {
               "color": "#FFF2F0E6",
-              "name": "素衣",
+              "name": "SuYi",
               "nameAlias": "素衣"
             },
             {
               "color": "#FFF5F3E6",
-              "name": "白屦",
+              "name": "BaiJu",
               "nameAlias": "白屦"
             },
             {
               "color": "#FFF5D87E",
-              "name": "黄裳",
+              "name": "HuangShang",
               "nameAlias": "黄裳"
             },
             {
               "color": "#FFFFD700",
-              "name": "明黄",
+              "name": "MingHuang",
               "nameAlias": "明黄"
             },
             {
               "color": "#FF9C8B4D",
-              "name": "暗金",
+              "name": "AnJin",
               "nameAlias": "暗金"
             },
             {
               "color": "#FFCCFF00",
-              "name": "柠檬绿",
+              "name": "NingMengLv",
               "nameAlias": "柠檬绿"
             },
             {
               "color": "#FFD4AF37",
-              "name": "鎏金",
+              "name": "LiuJin",
               "nameAlias": "鎏金"
             },
             {
               "color": "#FFE6C24D",
-              "name": "鸦黄",
+              "name": "YaHuang",
               "nameAlias": "鸦黄"
             }
           ]
@@ -331,917 +331,917 @@
           "colors": [
             {
               "color": "#FFF7DE98",
-              "name": "篾黄",
+              "name": "MieHuang",
               "nameAlias": "篾黄"
             },
             {
               "color": "#FFF6DEAD",
-              "name": "酪黄",
+              "name": "LaoHuang",
               "nameAlias": "酪黄"
             },
             {
               "color": "#FFF7DA94",
-              "name": "香水玫瑰黄",
+              "name": "XiangShuiMeiGuiHuang",
               "nameAlias": "香水玫瑰黄"
             },
             {
               "color": "#FFF9D367",
-              "name": "淡密黄",
+              "name": "DanMiHuang",
               "nameAlias": "淡密黄"
             },
             {
               "color": "#FFF8C387",
-              "name": "蛋壳黄",
+              "name": "DanKeHuang",
               "nameAlias": "蛋壳黄"
             },
             {
               "color": "#FFF7C173",
-              "name": "肉色",
+              "name": "RouSe",
               "nameAlias": "肉色"
             },
             {
               "color": "#FFFBB929",
-              "name": "鹅掌黄",
+              "name": "EZhangHuang",
               "nameAlias": "鹅掌黄"
             },
             {
               "color": "#FFFBB612",
-              "name": "鸡蛋黄",
+              "name": "JiDanHuang",
               "nameAlias": "鸡蛋黄"
             },
             {
               "color": "#FFFCB70A",
-              "name": "鼬黄",
+              "name": "YouHuang",
               "nameAlias": "鼬黄"
             },
             {
               "color": "#FFF9A633",
-              "name": "榴萼黄",
+              "name": "LiuEHuang",
               "nameAlias": "榴萼黄"
             },
             {
               "color": "#FFFBA414",
-              "name": "淡橘橙",
+              "name": "DanJuCheng",
               "nameAlias": "淡橘橙"
             },
             {
               "color": "#FFFCA106",
-              "name": "枇杷黄",
+              "name": "PiPaHuang",
               "nameAlias": "枇杷黄"
             },
             {
               "color": "#FFFCA104",
-              "name": "橙皮黄",
+              "name": "ChengPiHuang",
               "nameAlias": "橙皮黄"
             },
             {
               "color": "#FFFC8C23",
-              "name": "北瓜黄",
+              "name": "BeiGuaHuang",
               "nameAlias": "北瓜黄"
             },
             {
               "color": "#FFF28E16",
-              "name": "杏黄",
+              "name": "XingHuang",
               "nameAlias": "杏黄"
             },
             {
               "color": "#FFFF9900",
-              "name": "雄黄",
+              "name": "XiongHuang",
               "nameAlias": "雄黄"
             },
             {
               "color": "#FFFB8B05",
-              "name": "万寿菊黄",
+              "name": "WanShouJuHuang",
               "nameAlias": "万寿菊黄"
             },
             {
               "color": "#FF685E48",
-              "name": "燕羽灰",
+              "name": "YanYuHui",
               "nameAlias": "燕羽灰"
             },
             {
               "color": "#FF695E45",
-              "name": "蟹壳灰",
+              "name": "XieKeHui",
               "nameAlias": "蟹壳灰"
             },
             {
               "color": "#FFF9F1DB",
-              "name": "蚌肉白",
+              "name": "BangRouBai",
               "nameAlias": "蚌肉白"
             },
             {
               "color": "#FFF8E8C1",
-              "name": "豆汁黄",
+              "name": "DouZhiHuang",
               "nameAlias": "豆汁黄"
             },
             {
               "color": "#FFF2E6CE",
-              "name": "荔肉白",
+              "name": "LiRouBai",
               "nameAlias": "荔肉白"
             },
             {
               "color": "#FFF0D695",
-              "name": "象牙黄",
+              "name": "XiangYaHuang",
               "nameAlias": "象牙黄"
             },
             {
               "color": "#FFF4CE69",
-              "name": "炒米黄",
+              "name": "ChaoMiHuang",
               "nameAlias": "炒米黄"
             },
             {
               "color": "#FFE5D3AA",
-              "name": "莲子白",
+              "name": "LianZiBai",
               "nameAlias": "莲子白"
             },
             {
               "color": "#FFEBB10D",
-              "name": "栀子黄",
+              "name": "ZhiZiHuang",
               "nameAlias": "栀子黄"
             },
             {
               "color": "#FFD9A40E",
-              "name": "芥黄",
+              "name": "JieHuang",
               "nameAlias": "芥黄"
             },
             {
               "color": "#FFB5AA90",
-              "name": "银鼠灰",
+              "name": "YinShuHui",
               "nameAlias": "银鼠灰"
             },
             {
               "color": "#FFB6A476",
-              "name": "尘灰",
+              "name": "ChenHui",
               "nameAlias": "尘灰"
             },
             {
               "color": "#FF87723E",
-              "name": "鲛青",
+              "name": "JiaoQing",
               "nameAlias": "鲛青"
             },
             {
               "color": "#FF876818",
-              "name": "粽叶绿",
+              "name": "ZongYeLv",
               "nameAlias": "粽叶绿"
             },
             {
               "color": "#FF8A6913",
-              "name": "灰绿",
+              "name": "HuiLv",
               "nameAlias": "灰绿"
             },
             {
               "color": "#FF4A4035",
-              "name": "鹤灰",
+              "name": "HeHui",
               "nameAlias": "鹤灰"
             },
             {
               "color": "#FF4D4030",
-              "name": "淡松烟",
+              "name": "DanSongYan",
               "nameAlias": "淡松烟"
             },
             {
               "color": "#FF584717",
-              "name": "暗海水绿",
+              "name": "AnHaiShuiLv",
               "nameAlias": "暗海水绿"
             },
             {
               "color": "#FFF9E9CD",
-              "name": "米色",
+              "name": "MiSe",
               "nameAlias": "米色"
             },
             {
               "color": "#FFF8E0B0",
-              "name": "淡肉色",
+              "name": "DanRouSe",
               "nameAlias": "淡肉色"
             },
             {
               "color": "#FFF9D27D",
-              "name": "麦芽糖黄",
+              "name": "MaiYaTangHuang",
               "nameAlias": "麦芽糖黄"
             },
             {
               "color": "#FFFEBA07",
-              "name": "琥珀黄",
+              "name": "HuPoHuang",
               "nameAlias": "琥珀黄"
             },
             {
               "color": "#FFF3BF4C",
-              "name": "甘草黄",
+              "name": "GanCaoHuang",
               "nameAlias": "甘草黄"
             },
             {
               "color": "#FFF8BC31",
-              "name": "初熟杏黄",
+              "name": "ChuShuXingHuang",
               "nameAlias": "初熟杏黄"
             },
             {
               "color": "#FFE2C17C",
-              "name": "浅驼色",
+              "name": "QianTuoSe",
               "nameAlias": "浅驼色"
             },
             {
               "color": "#FFE5B751",
-              "name": "沙石黄",
+              "name": "ShaShiHuang",
               "nameAlias": "沙石黄"
             },
             {
               "color": "#FFEAAD1A",
-              "name": "虎皮黄",
+              "name": "HuPiHuang",
               "nameAlias": "虎皮黄"
             },
             {
               "color": "#FFD6A01D",
-              "name": "土黄",
+              "name": "TuHuang",
               "nameAlias": "土黄"
             },
             {
               "color": "#FFB4A992",
-              "name": "百灵鸟灰",
+              "name": "BaiLingNiaoHui",
               "nameAlias": "百灵鸟灰"
             },
             {
               "color": "#FFB78B26",
-              "name": "山鸡黄",
+              "name": "ShanJiHuang",
               "nameAlias": "山鸡黄"
             },
             {
               "color": "#FF826B48",
-              "name": "龟背黄",
+              "name": "GuiBeiHuang",
               "nameAlias": "龟背黄"
             },
             {
               "color": "#FF806332",
-              "name": "苍黄",
+              "name": "CangHuang",
               "nameAlias": "苍黄"
             },
             {
               "color": "#FF815F25",
-              "name": "莱阳梨黄",
+              "name": "LaiYangLiHuang",
               "nameAlias": "莱阳梨黄"
             },
             {
               "color": "#FF835E1D",
-              "name": "蜴蜊绿",
+              "name": "YiLiLv",
               "nameAlias": "蜴蜊绿"
             },
             {
               "color": "#FF4F4032",
-              "name": "松鼠灰",
+              "name": "SongShuHui",
               "nameAlias": "松鼠灰"
             },
             {
               "color": "#FF503E2A",
-              "name": "橄榄灰",
+              "name": "GanLanHui",
               "nameAlias": "橄榄灰"
             },
             {
               "color": "#FF513C20",
-              "name": "蟹壳绿",
+              "name": "XieKeLv",
               "nameAlias": "蟹壳绿"
             },
             {
               "color": "#FF533C1B",
-              "name": "古铜绿",
+              "name": "GuTongLv",
               "nameAlias": "古铜绿"
             },
             {
               "color": "#FF553B18",
-              "name": "焦茶绿",
+              "name": "JiaoChaLv",
               "nameAlias": "焦茶绿"
             },
             {
               "color": "#FFFBF2E3",
-              "name": "粉白",
+              "name": "FenBai",
               "nameAlias": "粉白"
             },
             {
               "color": "#FFF9E8D0",
-              "name": "落英淡粉",
+              "name": "LuoYingDanFen",
               "nameAlias": "落英淡粉"
             },
             {
               "color": "#FFF9CB8B",
-              "name": "瓜瓤粉",
+              "name": "GuaRangFen",
               "nameAlias": "瓜瓤粉"
             },
             {
               "color": "#FFFBB957",
-              "name": "蜜黄",
+              "name": "MiHuang",
               "nameAlias": "蜜黄"
             },
             {
               "color": "#FFFFA60F",
-              "name": "金叶黄",
+              "name": "JinYeHuang",
               "nameAlias": "金叶黄"
             },
             {
               "color": "#FFF4A83A",
-              "name": "金莺黄",
+              "name": "JinYingHuang",
               "nameAlias": "金莺黄"
             },
             {
               "color": "#FFE3BD8D",
-              "name": "鹿角棕",
+              "name": "LuJiaoZong",
               "nameAlias": "鹿角棕"
             },
             {
               "color": "#FFE7A23F",
-              "name": "凋叶棕",
+              "name": "DiaoYeZong",
               "nameAlias": "凋叶棕"
             },
             {
               "color": "#FFDAA45A",
-              "name": "玳瑁黄",
+              "name": "DaiMaoHuang",
               "nameAlias": "玳瑁黄"
             },
             {
               "color": "#FFDE9E44",
-              "name": "软木黄",
+              "name": "RuanMuHuang",
               "nameAlias": "软木黄"
             },
             {
               "color": "#FFDC9123",
-              "name": "风帆黄",
+              "name": "FengFanHuang",
               "nameAlias": "风帆黄"
             },
             {
               "color": "#FFC09351",
-              "name": "桂皮淡棕",
+              "name": "GuiPiDanZong",
               "nameAlias": "桂皮淡棕"
             },
             {
               "color": "#FF97846C",
-              "name": "猴毛灰",
+              "name": "HouMaoHui",
               "nameAlias": "猴毛灰"
             },
             {
               "color": "#FF986524",
-              "name": "山鸡褐",
+              "name": "ShanJiHe",
               "nameAlias": "山鸡褐"
             },
             {
               "color": "#FF66462A",
-              "name": "驼色",
+              "name": "TuoSe",
               "nameAlias": "驼色"
             },
             {
               "color": "#FF5D3D21",
-              "name": "茶褐",
+              "name": "ChaHe",
               "nameAlias": "茶褐"
             },
             {
               "color": "#FF5C3719",
-              "name": "古铜褐",
+              "name": "GuTongHe",
               "nameAlias": "古铜褐"
             },
             {
               "color": "#FFFBECDE",
-              "name": "荷花白",
+              "name": "HeHuaBai",
               "nameAlias": "荷花白"
             },
             {
               "color": "#FFF8B37F",
-              "name": "玫瑰粉",
+              "name": "MeiGuiFen",
               "nameAlias": "玫瑰粉"
             },
             {
               "color": "#FFF97D1C",
-              "name": "橘橙",
+              "name": "JuCheng",
               "nameAlias": "橘橙"
             },
             {
               "color": "#FFFA7E23",
-              "name": "美人焦橙",
+              "name": "MeiRenJiaoCheng",
               "nameAlias": "美人焦橙"
             },
             {
               "color": "#FFF7CDBC",
-              "name": "润红",
+              "name": "RunHong",
               "nameAlias": "润红"
             },
             {
               "color": "#FFF6CEC1",
-              "name": "淡桃红",
+              "name": "DanTaoHong",
               "nameAlias": "淡桃红"
             },
             {
               "color": "#FFF0945D",
-              "name": "海螺橙",
+              "name": "HaiLuoCheng",
               "nameAlias": "海螺橙"
             },
             {
               "color": "#FFEA8958",
-              "name": "晨曦红",
+              "name": "ChenXiHong",
               "nameAlias": "晨曦红"
             },
             {
               "color": "#FFF27635",
-              "name": "蟹壳红",
+              "name": "XieKeHong",
               "nameAlias": "蟹壳红"
             },
             {
               "color": "#FFF86B1D",
-              "name": "金莲花橙",
+              "name": "JinLianHuaCheng",
               "nameAlias": "金莲花橙"
             },
             {
               "color": "#FFEF632B",
-              "name": "龙睛鱼红",
+              "name": "LongJingYuHong",
               "nameAlias": "龙睛鱼红"
             },
             {
               "color": "#FFF09C5A",
-              "name": "鲑鱼红",
+              "name": "GuiYuHong",
               "nameAlias": "鲑鱼红"
             },
             {
               "color": "#FFF26B1F",
-              "name": "金黄",
+              "name": "JinHuang",
               "nameAlias": "金黄"
             },
             {
               "color": "#FFD99156",
-              "name": "鹿皮褐",
+              "name": "LuPiHe",
               "nameAlias": "鹿皮褐"
             },
             {
               "color": "#FFDB8540",
-              "name": "醉瓜肉",
+              "name": "ZuiGuaRou",
               "nameAlias": "醉瓜肉"
             },
             {
               "color": "#FFDE7622",
-              "name": "麂棕",
+              "name": "JiZong",
               "nameAlias": "麂棕"
             },
             {
               "color": "#FFC1B2A3",
-              "name": "淡银灰",
+              "name": "DanYinHui",
               "nameAlias": "淡银灰"
             },
             {
               "color": "#FFBE7E4A",
-              "name": "淡赭",
+              "name": "DanZhe",
               "nameAlias": "淡赭"
             },
             {
               "color": "#FFC1651A",
-              "name": "槟榔综",
+              "name": "BingLangZong",
               "nameAlias": "槟榔综"
             },
             {
               "color": "#FF918072",
-              "name": "银灰",
+              "name": "YinHui",
               "nameAlias": "银灰"
             },
             {
               "color": "#FF9A8878",
-              "name": "海鸥灰",
+              "name": "HaiOuHui",
               "nameAlias": "海鸥灰"
             },
             {
               "color": "#FF945833",
-              "name": "淡咖啡",
+              "name": "DanKaFei",
               "nameAlias": "淡咖啡"
             },
             {
               "color": "#FF964D22",
-              "name": "岩石棕",
+              "name": "YanShiZong",
               "nameAlias": "岩石棕"
             },
             {
               "color": "#FF954416",
-              "name": "芒果棕",
+              "name": "MangGuoZong",
               "nameAlias": "芒果棕"
             },
             {
               "color": "#FF624941",
-              "name": "石板灰",
+              "name": "ShiBanHui",
               "nameAlias": "石板灰"
             },
             {
               "color": "#FF64483D",
-              "name": "珠母灰",
+              "name": "ZhuMuHui",
               "nameAlias": "珠母灰"
             },
             {
               "color": "#FF71361D",
-              "name": "丁香棕",
+              "name": "DingXiangZong",
               "nameAlias": "丁香棕"
             },
             {
               "color": "#FF753117",
-              "name": "咖啡",
+              "name": "KaFei",
               "nameAlias": "咖啡"
             },
             {
               "color": "#FF732E12",
-              "name": "筍皮棕",
+              "name": "SunPiZong",
               "nameAlias": "筍皮棕"
             },
             {
               "color": "#FFFC6315",
-              "name": "燕颔红",
+              "name": "YanHanHong",
               "nameAlias": "燕颔红"
             },
             {
               "color": "#FFE8B49A",
-              "name": "玉粉红",
+              "name": "YuFenHong",
               "nameAlias": "玉粉红"
             },
             {
               "color": "#FFE46828",
-              "name": "金驼",
+              "name": "JinTuo",
               "nameAlias": "金驼"
             },
             {
               "color": "#FFD85916",
-              "name": "铁棕",
+              "name": "TieZong",
               "nameAlias": "铁棕"
             },
             {
               "color": "#FFB7A091",
-              "name": "蛛网灰",
+              "name": "ZhuWangHui",
               "nameAlias": "蛛网灰"
             },
             {
               "color": "#FFB7511D",
-              "name": "淡可可棕",
+              "name": "DanKeKeZong",
               "nameAlias": "淡可可棕"
             },
             {
               "color": "#FF8B614D",
-              "name": "中红灰",
+              "name": "ZhongHongHui",
               "nameAlias": "中红灰"
             },
             {
               "color": "#FF8C4B31",
-              "name": "淡土黄",
+              "name": "DanTuHuang",
               "nameAlias": "淡土黄"
             },
             {
               "color": "#FF873D24",
-              "name": "淡豆沙",
+              "name": "DanDouSha",
               "nameAlias": "淡豆沙"
             },
             {
               "color": "#FF883A1E",
-              "name": "椰壳棕",
+              "name": "YeKeZong",
               "nameAlias": "椰壳棕"
             },
             {
               "color": "#FF5B423A",
-              "name": "淡铁灰",
+              "name": "DanTieHui",
               "nameAlias": "淡铁灰"
             },
             {
               "color": "#FF603D30",
-              "name": "中灰驼",
+              "name": "ZhongHuiTuo",
               "nameAlias": "中灰驼"
             },
             {
               "color": "#FFFB9968",
-              "name": "野蔷薇红",
+              "name": "YeQiangWeiHong",
               "nameAlias": "野蔷薇红"
             },
             {
               "color": "#FFFC7930",
-              "name": "菠萝红",
+              "name": "BoLuoHong",
               "nameAlias": "菠萝红"
             },
             {
               "color": "#FFEDC3AE",
-              "name": "藕荷",
+              "name": "OuHe",
               "nameAlias": "藕荷"
             },
             {
               "color": "#FFE16723",
-              "name": "陶瓷红",
+              "name": "TaoCiHong",
               "nameAlias": "陶瓷红"
             },
             {
               "color": "#FFD4C4B7",
-              "name": "晓灰",
+              "name": "XiaoHui",
               "nameAlias": "晓灰"
             },
             {
               "color": "#FFCF7543",
-              "name": "余烬红",
+              "name": "YuJinHong",
               "nameAlias": "余烬红"
             },
             {
               "color": "#FFCD6227",
-              "name": "火砖红",
+              "name": "HuoZhuanHong",
               "nameAlias": "火砖红"
             },
             {
               "color": "#FFAA6A4C",
-              "name": "火泥棕",
+              "name": "HuoNiZong",
               "nameAlias": "火泥棕"
             },
             {
               "color": "#FFA6522C",
-              "name": "绀红",
+              "name": "GanHong",
               "nameAlias": "绀红"
             },
             {
               "color": "#FFFBEEE2",
-              "name": "淡米粉",
+              "name": "DanMiFen",
               "nameAlias": "淡米粉"
             },
             {
               "color": "#FFF6DCCE",
-              "name": "初桃粉红",
+              "name": "ChuTaoFenHong",
               "nameAlias": "初桃粉红"
             },
             {
               "color": "#FFF7CFBA",
-              "name": "介壳淡粉红",
+              "name": "JieKeDanFenHong",
               "nameAlias": "介壳淡粉红"
             },
             {
               "color": "#FFF6AD8F",
-              "name": "淡藏花红",
+              "name": "DanCangHuaHong",
               "nameAlias": "淡藏花红"
             },
             {
               "color": "#FFF68C60",
-              "name": "瓜瓤红",
+              "name": "GuaRangHong",
               "nameAlias": "瓜瓤红"
             },
             {
               "color": "#FFF9723D",
-              "name": "芙蓉红",
+              "name": "FuRongHong",
               "nameAlias": "芙蓉红"
             },
             {
               "color": "#FFFA5D19",
-              "name": "莓酱红",
+              "name": "MeiJiangHong",
               "nameAlias": "莓酱红"
             },
             {
               "color": "#FFEE8055",
-              "name": "法螺红",
+              "name": "FaLuoHong",
               "nameAlias": "法螺红"
             },
             {
               "color": "#FFCF4813",
-              "name": "落霞红",
+              "name": "LuoXiaHong",
               "nameAlias": "落霞红"
             },
             {
               "color": "#FFB89485",
-              "name": "淡玫瑰灰",
+              "name": "DanMeiGuiHui",
               "nameAlias": "淡玫瑰灰"
             },
             {
               "color": "#FFB14B28",
-              "name": "蟹蝥红",
+              "name": "XieMaoHong",
               "nameAlias": "蟹蝥红"
             },
             {
               "color": "#FFF8EBE6",
-              "name": "草珠红",
+              "name": "CaoZhuHong",
               "nameAlias": "草珠红"
             },
             {
               "color": "#FFF8F4ED",
-              "name": "汉白玉",
+              "name": "HanBaiYu",
               "nameAlias": "汉白玉"
             },
             {
               "color": "#FFF7F4ED",
-              "name": "鱼肚白",
+              "name": "YuDuBai",
               "nameAlias": "鱼肚白"
             },
             {
               "color": "#FFE4DFD7",
-              "name": "珍珠灰",
+              "name": "ZhenZhuHui",
               "nameAlias": "珍珠灰"
             },
             {
               "color": "#FFDAD4CB",
-              "name": "浅灰",
+              "name": "QianHui",
               "nameAlias": "浅灰"
             },
             {
               "color": "#FFCA6924",
-              "name": "琥珀",
+              "name": "HuPo",
               "nameAlias": "琥珀"
             },
             {
               "color": "#FFD2B48C",
-              "name": "浅褐色",
+              "name": "QianHeSe",
               "nameAlias": "浅褐色"
             },
             {
               "color": "#FFF8F3E6",
-              "name": "绫素白",
+              "name": "LingSuBai",
               "nameAlias": "绫素白"
             },
             {
               "color": "#FFF8C471",
-              "name": "缃绮",
+              "name": "XiangQi",
               "nameAlias": "缃绮"
             },
             {
               "color": "#FF8B6D5C",
-              "name": "烟褐",
+              "name": "YanHe",
               "nameAlias": "烟褐"
             },
             {
               "color": "#FFF2C867",
-              "name": "鹅黄",
+              "name": "EHuang",
               "nameAlias": "鹅黄"
             },
             {
               "color": "#FFA65F2E",
-              "name": "檀色",
+              "name": "TanSe",
               "nameAlias": "檀色"
             },
             {
               "color": "#FFFF8C00",
-              "name": "橙色",
+              "name": "ChengSe",
               "nameAlias": "橙色"
             },
             {
               "color": "#FFFFD8B3",
-              "name": "奶橙色",
+              "name": "NaiChengSe",
               "nameAlias": "奶橙色"
             },
             {
               "color": "#FFC8A58E",
-              "name": "浅栗棕",
+              "name": "QianLiZong",
               "nameAlias": "浅栗棕"
             },
             {
               "color": "#FFD9A594",
-              "name": "浅绛",
+              "name": "QianJiang",
               "nameAlias": "浅绛"
             },
             {
               "color": "#FF5C4A43",
-              "name": "緅",
+              "name": "Zou",
               "nameAlias": "緅"
             },
             {
               "color": "#FFC79A6A",
-              "name": "缊",
+              "name": "Yun",
               "nameAlias": "缊"
             },
             {
               "color": "#FFEBCDA8",
-              "name": "浅肤色",
+              "name": "QianFuSe",
               "nameAlias": "浅肤色"
             },
             {
               "color": "#FFA88A6F",
-              "name": "银褐",
+              "name": "YinHe",
               "nameAlias": "银褐"
             },
             {
               "color": "#FFD2B89A",
-              "name": "荞麦",
+              "name": "QiaoMai",
               "nameAlias": "荞麦"
             },
             {
               "color": "#FF8B6D47",
-              "name": "荞麦棕",
+              "name": "QiaoMaiZong",
               "nameAlias": "荞麦棕"
             },
             {
               "color": "#FFA5441B",
-              "name": "韎韐",
+              "name": "MeiGe",
               "nameAlias": "韎韐"
             },
             {
               "color": "#FF8B5D33",
-              "name": "皮弁",
+              "name": "PiBian",
               "nameAlias": "皮弁"
             },
             {
               "color": "#FFD2C8BC",
-              "name": "素积",
+              "name": "SuJi",
               "nameAlias": "素积"
             },
             {
               "color": "#FFD6C9B8",
-              "name": "素鞸",
+              "name": "SuBi",
               "nameAlias": "素鞸"
             },
             {
               "color": "#FF2E2014",
-              "name": "缁絇繶纯",
+              "name": "ZiQuYiChun",
               "nameAlias": "缁絇繶纯"
             },
             {
               "color": "#FFC48A69",
-              "name": "灰橙色",
+              "name": "HuiChengSe",
               "nameAlias": "灰橙色"
             },
             {
               "color": "#FFD46D3A",
-              "name": "纁色",
+              "name": "XunSe",
               "nameAlias": "纁色"
             },
             {
               "color": "#FF5C4033",
-              "name": "緅色",
+              "name": "ZouSe",
               "nameAlias": "緅色"
             },
             {
               "color": "#FFFFF8F0",
-              "name": "棉花糖白",
+              "name": "MianHuaTangBai",
               "nameAlias": "棉花糖白"
             },
             {
               "color": "#FFB8860B",
-              "name": "金棕",
+              "name": "JinZong",
               "nameAlias": "金棕"
             },
             {
               "color": "#FF8B6E4F",
-              "name": "复方甘草",
+              "name": "FuFangGanCao",
               "nameAlias": "复方甘草"
             },
             {
               "color": "#FFFFF8E7",
-              "name": "奶油白",
+              "name": "NaiYouBai",
               "nameAlias": "奶油白"
             },
             {
               "color": "#FFF8F4E9",
-              "name": "茉莉白",
+              "name": "MoLiBai",
               "nameAlias": "茉莉白"
             },
             {
               "color": "#FFD4A017",
-              "name": "流黄",
+              "name": "LiuHuang",
               "nameAlias": "流黄"
             },
             {
               "color": "#FF8B4513",
-              "name": "木色",
+              "name": "MuSe",
               "nameAlias": "木色"
             },
             {
               "color": "#FFFDDA9F",
-              "name": "杏子",
+              "name": "XingZi",
               "nameAlias": "杏子"
             },
             {
               "color": "#FFD9CBB8",
-              "name": "杏子灰",
+              "name": "XingZiHui",
               "nameAlias": "杏子灰"
             },
             {
               "color": "#FFD9C6B0",
-              "name": "藕丝秋半",
+              "name": "OuSiQiuBan",
               "nameAlias": "藕丝秋半"
             },
             {
               "color": "#FFF57C00",
-              "name": "荔色",
+              "name": "LiSe",
               "nameAlias": "荔色"
             },
             {
               "color": "#FFF0D9D0",
-              "name": "杏粉",
+              "name": "XingFen",
               "nameAlias": "杏粉"
             },
             {
               "color": "#FFF5E6E0",
-              "name": "浅杏粉",
+              "name": "QianXingFen",
               "nameAlias": "浅杏粉"
             },
             {
               "color": "#FFF5F0E6",
-              "name": "米白",
+              "name": "MiBai",
               "nameAlias": "米白"
             },
             {
               "color": "#FFF8F5F0",
-              "name": "梨花白",
+              "name": "LiHuaBai",
               "nameAlias": "梨花白"
             },
             {
               "color": "#FFB8A996",
-              "name": "杏子阴",
+              "name": "XingZiYin",
               "nameAlias": "杏子阴"
             },
             {
               "color": "#FFD9C6B3",
-              "name": "藕丝秋",
+              "name": "OuSiQiu",
               "nameAlias": "藕丝秋"
             },
             {
               "color": "#FFF8F4F0",
-              "name": "荼蘼白",
+              "name": "TuMiBai",
               "nameAlias": "荼蘼白"
             },
             {
               "color": "#FFDCC6B5",
-              "name": "藕丝秋色",
+              "name": "OuSiQiuSe",
               "nameAlias": "藕丝秋色"
             }
           ]
@@ -1252,982 +1252,982 @@
           "colors": [
             {
               "color": "#FFF0ADA0",
-              "name": "桃红",
+              "name": "TaoHong",
               "nameAlias": "桃红"
             },
             {
               "color": "#FFEEAA9C",
-              "name": "颊红",
+              "name": "JiaHong",
               "nameAlias": "颊红"
             },
             {
               "color": "#FFEEA08C",
-              "name": "淡罂粟红",
+              "name": "DanYingSuHong",
               "nameAlias": "淡罂粟红"
             },
             {
               "color": "#FFEF6F48",
-              "name": "草莓红",
+              "name": "CaoMeiHong",
               "nameAlias": "草莓红"
             },
             {
               "color": "#FFF1441D",
-              "name": "蜻蜓红",
+              "name": "QingTingHong",
               "nameAlias": "蜻蜓红"
             },
             {
               "color": "#FFF04B22",
-              "name": "大红",
+              "name": "DaHong",
               "nameAlias": "大红"
             },
             {
               "color": "#FFF2481B",
-              "name": "柿红",
+              "name": "ShiHong",
               "nameAlias": "柿红"
             },
             {
               "color": "#FFF34718",
-              "name": "榴花红",
+              "name": "LiuHuaHong",
               "nameAlias": "榴花红"
             },
             {
               "color": "#FFF43E06",
-              "name": "银朱",
+              "name": "YinZhu",
               "nameAlias": "银朱"
             },
             {
               "color": "#FFED5126",
-              "name": "朱红",
+              "name": "ZhuHong",
               "nameAlias": "朱红"
             },
             {
               "color": "#FF673424",
-              "name": "淡栗棕",
+              "name": "DanLiZong",
               "nameAlias": "淡栗棕"
             },
             {
               "color": "#FF652B1C",
-              "name": "可可棕",
+              "name": "KeKeZong",
               "nameAlias": "可可棕"
             },
             {
               "color": "#FF692A1B",
-              "name": "柞叶棕",
+              "name": "ZhaYeZong",
               "nameAlias": "柞叶棕"
             },
             {
               "color": "#FF773D31",
-              "name": "橡树棕",
+              "name": "XiangShuZong",
               "nameAlias": "橡树棕"
             },
             {
               "color": "#FF483332",
-              "name": "海报灰",
+              "name": "HaiBaoHui",
               "nameAlias": "海报灰"
             },
             {
               "color": "#FF4B2E2B",
-              "name": "玫瑰灰",
+              "name": "MeiGuiHui",
               "nameAlias": "玫瑰灰"
             },
             {
               "color": "#FF482522",
-              "name": "火山棕",
+              "name": "HuoShanZong",
               "nameAlias": "火山棕"
             },
             {
               "color": "#FF481E1C",
-              "name": "豆沙",
+              "name": "DouSha",
               "nameAlias": "豆沙"
             },
             {
               "color": "#FF863020",
-              "name": "火岩棕",
+              "name": "HuoYanZong",
               "nameAlias": "火岩棕"
             },
             {
               "color": "#FF862617",
-              "name": "赭石",
+              "name": "ZheShi",
               "nameAlias": "赭石"
             },
             {
               "color": "#FF592620",
-              "name": "暗驼棕",
+              "name": "AnTuoZong",
               "nameAlias": "暗驼棕"
             },
             {
               "color": "#FF5A1F1B",
-              "name": "酱棕",
+              "name": "JiangZong",
               "nameAlias": "酱棕"
             },
             {
               "color": "#FF5C1E19",
-              "name": "栗棕",
+              "name": "LiZong",
               "nameAlias": "栗棕"
             },
             {
               "color": "#FFF4C7BA",
-              "name": "洋水仙红",
+              "name": "YangShuiXianHong",
               "nameAlias": "洋水仙红"
             },
             {
               "color": "#FFF17666",
-              "name": "谷鞘红",
+              "name": "GuQiaoHong",
               "nameAlias": "谷鞘红"
             },
             {
               "color": "#FFF15642",
-              "name": "苹果红",
+              "name": "PingGuoHong",
               "nameAlias": "苹果红"
             },
             {
               "color": "#FFF5391C",
-              "name": "铁水红",
+              "name": "TieShuiHong",
               "nameAlias": "铁水红"
             },
             {
               "color": "#FFF25A47",
-              "name": "桂红",
+              "name": "GuiHong",
               "nameAlias": "桂红"
             },
             {
               "color": "#FFF33B1F",
-              "name": "极光红",
+              "name": "JiGuangHong",
               "nameAlias": "极光红"
             },
             {
               "color": "#FFF2B9B2",
-              "name": "粉红",
+              "name": "FenHong",
               "nameAlias": "粉红"
             },
             {
               "color": "#FFF19790",
-              "name": "舌红",
+              "name": "SheHong",
               "nameAlias": "舌红"
             },
             {
               "color": "#FFF05A46",
-              "name": "曲红",
+              "name": "QuHong",
               "nameAlias": "曲红"
             },
             {
               "color": "#FFF23E23",
-              "name": "红汞红",
+              "name": "HongGongHong",
               "nameAlias": "红汞红"
             },
             {
               "color": "#FFF2CAC9",
-              "name": "淡绯",
+              "name": "DanFei",
               "nameAlias": "淡绯"
             },
             {
               "color": "#FFEFAFAD",
-              "name": "无花果红",
+              "name": "WuHuaGuoHong",
               "nameAlias": "无花果红"
             },
             {
               "color": "#FFF1908C",
-              "name": "榴子红",
+              "name": "LiuZiHong",
               "nameAlias": "榴子红"
             },
             {
               "color": "#FFF03F24",
-              "name": "胭脂红",
+              "name": "YanZhiHong",
               "nameAlias": "胭脂红"
             },
             {
               "color": "#FFF0A1A8",
-              "name": "合欢红",
+              "name": "HeHuanHong",
               "nameAlias": "合欢红"
             },
             {
               "color": "#FFF1939C",
-              "name": "春梅红",
+              "name": "ChunMeiHong",
               "nameAlias": "春梅红"
             },
             {
               "color": "#FFF07C82",
-              "name": "香叶红",
+              "name": "XiangYeHong",
               "nameAlias": "香叶红"
             },
             {
               "color": "#FFF04A3A",
-              "name": "珊瑚红",
+              "name": "ShanHuHong",
               "nameAlias": "珊瑚红"
             },
             {
               "color": "#FFF13C22",
-              "name": "萝卜红",
+              "name": "LuoBoHong",
               "nameAlias": "萝卜红"
             },
             {
               "color": "#FFE77C8E",
-              "name": "淡茜红",
+              "name": "DanQianHong",
               "nameAlias": "淡茜红"
             },
             {
               "color": "#FFED5A65",
-              "name": "艳红",
+              "name": "YanHong",
               "nameAlias": "艳红"
             },
             {
               "color": "#FFED4845",
-              "name": "淡菽红",
+              "name": "DanShuHong",
               "nameAlias": "淡菽红"
             },
             {
               "color": "#FFED3B2F",
-              "name": "鱼鳃红",
+              "name": "YuSaiHong",
               "nameAlias": "鱼鳃红"
             },
             {
               "color": "#FFED3321",
-              "name": "樱桃红",
+              "name": "YingTaoHong",
               "nameAlias": "樱桃红"
             },
             {
               "color": "#FFEE4866",
-              "name": "淡蕊香红",
+              "name": "DanRuiXiangHong",
               "nameAlias": "淡蕊香红"
             },
             {
               "color": "#FFEE4863",
-              "name": "石竹红",
+              "name": "ShiZhuHong",
               "nameAlias": "石竹红"
             },
             {
               "color": "#FFEF475D",
-              "name": "草茉莉红",
+              "name": "CaoMoLiHong",
               "nameAlias": "草茉莉红"
             },
             {
               "color": "#FFEE3F4D",
-              "name": "茶花红",
+              "name": "ChaHuaHong",
               "nameAlias": "茶花红"
             },
             {
               "color": "#FFED3333",
-              "name": "枸枢红",
+              "name": "GouShuHong",
               "nameAlias": "枸枢红"
             },
             {
               "color": "#FFEC2B24",
-              "name": "秋海棠红",
+              "name": "QiuHaiTangHong",
               "nameAlias": "秋海棠红"
             },
             {
               "color": "#FFEB261A",
-              "name": "丽春红",
+              "name": "LiChunHong",
               "nameAlias": "丽春红"
             },
             {
               "color": "#FFDE2A18",
-              "name": "夕阳红",
+              "name": "XiYangHong",
               "nameAlias": "夕阳红"
             },
             {
               "color": "#FFD42517",
-              "name": "鹤顶红",
+              "name": "HeDingHong",
               "nameAlias": "鹤顶红"
             },
             {
               "color": "#FFAB372F",
-              "name": "鹅血石红",
+              "name": "EXueShiHong",
               "nameAlias": "鹅血石红"
             },
             {
               "color": "#FFAC1F18",
-              "name": "覆盆子红",
+              "name": "FuPenZiHong",
               "nameAlias": "覆盆子红"
             },
             {
               "color": "#FF5D3131",
-              "name": "貂紫",
+              "name": "DiaoZi",
               "nameAlias": "貂紫"
             },
             {
               "color": "#FF5C2223",
-              "name": "暗玉紫",
+              "name": "AnYuZi",
               "nameAlias": "暗玉紫"
             },
             {
               "color": "#FF5A191B",
-              "name": "栗紫",
+              "name": "LiZi",
               "nameAlias": "栗紫"
             },
             {
               "color": "#FF5A1216",
-              "name": "葡萄酱紫",
+              "name": "PuTaoJiangZi",
               "nameAlias": "葡萄酱紫"
             },
             {
               "color": "#FFEEA2A4",
-              "name": "牡丹粉红",
+              "name": "MuDanFenHong",
               "nameAlias": "牡丹粉红"
             },
             {
               "color": "#FFED556A",
-              "name": "山茶红",
+              "name": "ShanChaHong",
               "nameAlias": "山茶红"
             },
             {
               "color": "#FFF03752",
-              "name": "海棠红",
+              "name": "HaiTangHong",
               "nameAlias": "海棠红"
             },
             {
               "color": "#FFC04851",
-              "name": "玉红",
+              "name": "YuHong",
               "nameAlias": "玉红"
             },
             {
               "color": "#FFC02C38",
-              "name": "高粱红",
+              "name": "GaoLiangHong",
               "nameAlias": "高粱红"
             },
             {
               "color": "#FFA7535A",
-              "name": "满江红",
+              "name": "ManJiangHong",
               "nameAlias": "满江红"
             },
             {
               "color": "#FF7C1823",
-              "name": "枣红",
+              "name": "ZaoHong",
               "nameAlias": "枣红"
             },
             {
               "color": "#FF4C1F24",
-              "name": "葡萄紫",
+              "name": "PuTaoZi",
               "nameAlias": "葡萄紫"
             },
             {
               "color": "#FF4D1018",
-              "name": "酱紫",
+              "name": "JiangZi",
               "nameAlias": "酱紫"
             },
             {
               "color": "#FFEE2746",
-              "name": "淡曙红",
+              "name": "DanShuHong",
               "nameAlias": "淡曙红"
             },
             {
               "color": "#FFDE1C31",
-              "name": "唐菖蒲红",
+              "name": "TangChangPuHong",
               "nameAlias": "唐菖蒲红"
             },
             {
               "color": "#FFD11A2D",
-              "name": "鹅冠红",
+              "name": "EGuanHong",
               "nameAlias": "鹅冠红"
             },
             {
               "color": "#FFC45A65",
-              "name": "莓红",
+              "name": "MeiHong",
               "nameAlias": "莓红"
             },
             {
               "color": "#FFC21F30",
-              "name": "枫叶红",
+              "name": "FengYeHong",
               "nameAlias": "枫叶红"
             },
             {
               "color": "#FFA61B29",
-              "name": "苋菜红",
+              "name": "XianCaiHong",
               "nameAlias": "苋菜红"
             },
             {
               "color": "#FF894E54",
-              "name": "烟红",
+              "name": "YanHong",
               "nameAlias": "烟红"
             },
             {
               "color": "#FF82202B",
-              "name": "暗紫苑红",
+              "name": "AnZiYuanHong",
               "nameAlias": "暗紫苑红"
             },
             {
               "color": "#FF82111F",
-              "name": "殷红",
+              "name": "YanHong",
               "nameAlias": "殷红"
             },
             {
               "color": "#FF541E24",
-              "name": "猪肝紫",
+              "name": "ZhuGanZi",
               "nameAlias": "猪肝紫"
             },
             {
               "color": "#FF500A16",
-              "name": "金鱼紫",
+              "name": "JinYuZi",
               "nameAlias": "金鱼紫"
             },
             {
               "color": "#FFEC7696",
-              "name": "淡绛红",
+              "name": "DanJiangHong",
               "nameAlias": "淡绛红"
             },
             {
               "color": "#FFEF3473",
-              "name": "品红",
+              "name": "PinHong",
               "nameAlias": "品红"
             },
             {
               "color": "#FFEA7293",
-              "name": "凤仙花红",
+              "name": "FengXianHuaHong",
               "nameAlias": "凤仙花红"
             },
             {
               "color": "#FFEC9BAD",
-              "name": "粉团花红",
+              "name": "FenTuanHuaHong",
               "nameAlias": "粉团花红"
             },
             {
               "color": "#FFEB507E",
-              "name": "夹竹桃红",
+              "name": "JiaZhuTaoHong",
               "nameAlias": "夹竹桃红"
             },
             {
               "color": "#FFED2F6A",
-              "name": "榲桲红",
+              "name": "WenPoHong",
               "nameAlias": "榲桲红"
             },
             {
               "color": "#FFEEB8C3",
-              "name": "姜红",
+              "name": "JiangHong",
               "nameAlias": "姜红"
             },
             {
               "color": "#FFEA517F",
-              "name": "莲瓣红",
+              "name": "LianBanHong",
               "nameAlias": "莲瓣红"
             },
             {
               "color": "#FFF1C4CD",
-              "name": "水红",
+              "name": "ShuiHong",
               "nameAlias": "水红"
             },
             {
               "color": "#FFEC8AA4",
-              "name": "报春红",
+              "name": "BaoChunHong",
               "nameAlias": "报春红"
             },
             {
               "color": "#FFCE5777",
-              "name": "月季红",
+              "name": "YueJiHong",
               "nameAlias": "月季红"
             },
             {
               "color": "#FFED9DB2",
-              "name": "豇豆红",
+              "name": "JiangDouHong",
               "nameAlias": "豇豆红"
             },
             {
               "color": "#FFEF82A0",
-              "name": "霞光红",
+              "name": "XiaGuangHong",
               "nameAlias": "霞光红"
             },
             {
               "color": "#FFEB3C70",
-              "name": "松叶牡丹红",
+              "name": "SongYeMuDanHong",
               "nameAlias": "松叶牡丹红"
             },
             {
               "color": "#FFEC2C64",
-              "name": "喜蛋红",
+              "name": "XiDanHong",
               "nameAlias": "喜蛋红"
             },
             {
               "color": "#FFE3B4B8",
-              "name": "鼠鼻红",
+              "name": "ShuBiHong",
               "nameAlias": "鼠鼻红"
             },
             {
               "color": "#FFCC163A",
-              "name": "尖晶玉红",
+              "name": "JianJingYuHong",
               "nameAlias": "尖晶玉红"
             },
             {
               "color": "#FFC27C88",
-              "name": "山黎豆红",
+              "name": "ShanLiDouHong",
               "nameAlias": "山黎豆红"
             },
             {
               "color": "#FFBF3553",
-              "name": "锦葵红",
+              "name": "JinKuiHong",
               "nameAlias": "锦葵红"
             },
             {
               "color": "#FF73575C",
-              "name": "鼠背灰",
+              "name": "ShuBeiHui",
               "nameAlias": "鼠背灰"
             },
             {
               "color": "#FF621624",
-              "name": "甘蔗紫",
+              "name": "GanZheZi",
               "nameAlias": "甘蔗紫"
             },
             {
               "color": "#FF63071C",
-              "name": "石竹紫",
+              "name": "ShiZhuZi",
               "nameAlias": "石竹紫"
             },
             {
               "color": "#FF36282B",
-              "name": "苍蝇灰",
+              "name": "CangYingHui",
               "nameAlias": "苍蝇灰"
             },
             {
               "color": "#FF30161C",
-              "name": "卵石紫",
+              "name": "LuanShiZi",
               "nameAlias": "卵石紫"
             },
             {
               "color": "#FF2B1216",
-              "name": "李紫",
+              "name": "LiZi",
               "nameAlias": "李紫"
             },
             {
               "color": "#FF2D0C13",
-              "name": "茄皮紫",
+              "name": "JiaPiZi",
               "nameAlias": "茄皮紫"
             },
             {
               "color": "#FFCE5E8A",
-              "name": "吊钟花红",
+              "name": "DiaoZhongHuaHong",
               "nameAlias": "吊钟花红"
             },
             {
               "color": "#FFEC4E8A",
-              "name": "兔眼红",
+              "name": "TuYanHong",
               "nameAlias": "兔眼红"
             },
             {
               "color": "#FFEE2C79",
-              "name": "紫荆红",
+              "name": "ZiJingHong",
               "nameAlias": "紫荆红"
             },
             {
               "color": "#FF951C48",
-              "name": "菜头紫",
+              "name": "CaiTouZi",
               "nameAlias": "菜头紫"
             },
             {
               "color": "#FF621D34",
-              "name": "鹞冠紫",
+              "name": "YaoGuanZi",
               "nameAlias": "鹞冠紫"
             },
             {
               "color": "#FF62102E",
-              "name": "葡萄酒红",
+              "name": "PuTaoJiuHong",
               "nameAlias": "葡萄酒红"
             },
             {
               "color": "#FF382129",
-              "name": "磨石紫",
+              "name": "MoShiZi",
               "nameAlias": "磨石紫"
             },
             {
               "color": "#FF381924",
-              "name": "檀紫",
+              "name": "TanZi",
               "nameAlias": "檀紫"
             },
             {
               "color": "#FF33141E",
-              "name": "火鹅紫",
+              "name": "HuoEZi",
               "nameAlias": "火鹅紫"
             },
             {
               "color": "#FF310F1B",
-              "name": "墨紫",
+              "name": "MoZi",
               "nameAlias": "墨紫"
             },
             {
               "color": "#FFEEA6B7",
-              "name": "晶红",
+              "name": "JingHong",
               "nameAlias": "晶红"
             },
             {
               "color": "#FFEF498B",
-              "name": "扁豆花红",
+              "name": "BianDouHuaHong",
               "nameAlias": "扁豆花红"
             },
             {
               "color": "#FFDE7897",
-              "name": "白芨红",
+              "name": "BaiJiHong",
               "nameAlias": "白芨红"
             },
             {
               "color": "#FFDE3F7C",
-              "name": "嫩菱红",
+              "name": "NenLingHong",
               "nameAlias": "嫩菱红"
             },
             {
               "color": "#FFD13C74",
-              "name": "菠根红",
+              "name": "BoGenHong",
               "nameAlias": "菠根红"
             },
             {
               "color": "#FFC5708B",
-              "name": "酢酱草红",
+              "name": "CuJiangCaoHong",
               "nameAlias": "酢酱草红"
             },
             {
               "color": "#FFA8456B",
-              "name": "洋葱紫",
+              "name": "YangCongZi",
               "nameAlias": "洋葱紫"
             },
             {
               "color": "#FF4B1E2F",
-              "name": "海象紫",
+              "name": "HaiXiangZi",
               "nameAlias": "海象紫"
             },
             {
               "color": "#FF461629",
-              "name": "绀紫",
+              "name": "GanZi",
               "nameAlias": "绀紫"
             },
             {
               "color": "#FF440E25",
-              "name": "古铜紫",
+              "name": "GuTongZi",
               "nameAlias": "古铜紫"
             },
             {
               "color": "#FFF0C9CF",
-              "name": "石蕊红",
+              "name": "ShiRuiHong",
               "nameAlias": "石蕊红"
             },
             {
               "color": "#FFEBA0B3",
-              "name": "芍药耕红",
+              "name": "ShaoYaoGengHong",
               "nameAlias": "芍药耕红"
             },
             {
               "color": "#FFEC2D7A",
-              "name": "藏花红",
+              "name": "CangHuaHong",
               "nameAlias": "藏花红"
             },
             {
               "color": "#FFE16C96",
-              "name": "初荷红",
+              "name": "ChuHeHong",
               "nameAlias": "初荷红"
             },
             {
               "color": "#FFEDE3E7",
-              "name": "马鞭草紫",
+              "name": "MaBianCaoZi",
               "nameAlias": "马鞭草紫"
             },
             {
               "color": "#FFE9D7DF",
-              "name": "丁香淡紫",
+              "name": "DingXiangDanZi",
               "nameAlias": "丁香淡紫"
             },
             {
               "color": "#FFD2568C",
-              "name": "丹紫红",
+              "name": "DanZiHong",
               "nameAlias": "丹紫红"
             },
             {
               "color": "#FFD2357D",
-              "name": "玫瑰红",
+              "name": "MeiGuiHong",
               "nameAlias": "玫瑰红"
             },
             {
               "color": "#FFC08EAF",
-              "name": "萝兰紫",
+              "name": "LuoLanZi",
               "nameAlias": "萝兰紫"
             },
             {
               "color": "#FFBA2F7B",
-              "name": "玫瑰紫",
+              "name": "MeiGuiZi",
               "nameAlias": "玫瑰紫"
             },
             {
               "color": "#FFE9CCD3",
-              "name": "芝兰紫",
+              "name": "ZhiLanZi",
               "nameAlias": "芝兰紫"
             },
             {
               "color": "#FFD276A3",
-              "name": "菱锰红",
+              "name": "LingMengHong",
               "nameAlias": "菱锰红"
             },
             {
               "color": "#FFCC5595",
-              "name": "龙须红",
+              "name": "LongXuHong",
               "nameAlias": "龙须红"
             },
             {
               "color": "#FFE6D2D5",
-              "name": "蓟粉红",
+              "name": "JiFenHong",
               "nameAlias": "蓟粉红"
             },
             {
               "color": "#FFC35691",
-              "name": "电气石红",
+              "name": "DianQiShiHong",
               "nameAlias": "电气石红"
             },
             {
               "color": "#FFC06F98",
-              "name": "樱草紫",
+              "name": "YingCaoZi",
               "nameAlias": "樱草紫"
             },
             {
               "color": "#FFB598A1",
-              "name": "隐红灰",
+              "name": "YinHongHui",
               "nameAlias": "隐红灰"
             },
             {
               "color": "#FF9B1E64",
-              "name": "苋菜紫",
+              "name": "XianCaiZi",
               "nameAlias": "苋菜紫"
             },
             {
               "color": "#FF4F383E",
-              "name": "暮云灰",
+              "name": "MuYunHui",
               "nameAlias": "暮云灰"
             },
             {
               "color": "#FF482936",
-              "name": "斑鸠灰",
+              "name": "BanJiuHui",
               "nameAlias": "斑鸠灰"
             },
             {
               "color": "#FFF2E7E5",
-              "name": "淡藤萝紫",
+              "name": "DanTengLuoZi",
               "nameAlias": "淡藤萝紫"
             },
             {
               "color": "#FFE0C8D1",
-              "name": "淡青紫",
+              "name": "DanQingZi",
               "nameAlias": "淡青紫"
             },
             {
               "color": "#FFBC84A8",
-              "name": "青蛤壳紫",
+              "name": "QingHaKeZi",
               "nameAlias": "青蛤壳紫"
             },
             {
               "color": "#FFAD6598",
-              "name": "豆蔻紫",
+              "name": "DouKouZi",
               "nameAlias": "豆蔻紫"
             },
             {
               "color": "#FFA35C8F",
-              "name": "扁豆紫",
+              "name": "BianDouZi",
               "nameAlias": "扁豆紫"
             },
             {
               "color": "#FF983680",
-              "name": "芥花紫",
+              "name": "JieHuaZi",
               "nameAlias": "芥花紫"
             },
             {
               "color": "#FF8B2671",
-              "name": "青莲",
+              "name": "QingLian",
               "nameAlias": "青莲"
             },
             {
               "color": "#FF894276",
-              "name": "芓紫",
+              "name": "ZiZi",
               "nameAlias": "芓紫"
             },
             {
               "color": "#FF7E2065",
-              "name": "葛巾紫",
+              "name": "GeJinZi",
               "nameAlias": "葛巾紫"
             },
             {
               "color": "#FF681752",
-              "name": "牵牛紫",
+              "name": "QianNiuZi",
               "nameAlias": "牵牛紫"
             },
             {
               "color": "#FF5D3F51",
-              "name": "紫灰",
+              "name": "ZiHui",
               "nameAlias": "紫灰"
             },
             {
               "color": "#FF4E2A40",
-              "name": "龙睛鱼紫",
+              "name": "LongJingYuZi",
               "nameAlias": "龙睛鱼紫"
             },
             {
               "color": "#FF411C35",
-              "name": "荸荠紫",
+              "name": "BiQiZi",
               "nameAlias": "荸荠紫"
             },
             {
               "color": "#FF36292F",
-              "name": "古鼎灰",
+              "name": "GuDingHui",
               "nameAlias": "古鼎灰"
             },
             {
               "color": "#FFF4512C",
-              "name": "火焰红",
+              "name": "HuoYanHong",
               "nameAlias": "火焰红"
             },
             {
               "color": "#FFE3256B",
-              "name": "绯红",
+              "name": "FeiHong",
               "nameAlias": "绯红"
             },
             {
               "color": "#FFFF6B6B",
-              "name": "霞绯",
+              "name": "XiaFei",
               "nameAlias": "霞绯"
             },
             {
               "color": "#FFB34B43",
-              "name": "梅红",
+              "name": "MeiHong",
               "nameAlias": "梅红"
             },
             {
               "color": "#FF8E443D",
-              "name": "檀褐",
+              "name": "TanHe",
               "nameAlias": "檀褐"
             },
             {
               "color": "#FFC92B27",
-              "name": "枫丹",
+              "name": "FengDan",
               "nameAlias": "枫丹"
             },
             {
               "color": "#FFF7B7C5",
-              "name": "樱粉",
+              "name": "YingFen",
               "nameAlias": "樱粉"
             },
             {
               "color": "#FFFF4D4D",
-              "name": "茜色",
+              "name": "QianSe",
               "nameAlias": "茜色"
             },
             {
               "color": "#FFFADADD",
-              "name": "粉色",
+              "name": "FenSe",
               "nameAlias": "粉色"
             },
             {
               "color": "#FF6D0B1E",
-              "name": "勃艮第红",
+              "name": "BoGenDiHong",
               "nameAlias": "勃艮第红"
             },
             {
               "color": "#FFD92121",
-              "name": "朱砂红",
+              "name": "ZhuShaHong",
               "nameAlias": "朱砂红"
             },
             {
               "color": "#FFC41E3A",
-              "name": "朱墙",
+              "name": "ZhuQiang",
               "nameAlias": "朱墙"
             },
             {
               "color": "#FFD8B0C8",
-              "name": "藕丝",
+              "name": "OuSi",
               "nameAlias": "藕丝"
             },
             {
               "color": "#FF6B3E3C",
-              "name": "爵弁",
+              "name": "JueBian",
               "nameAlias": "爵弁"
             },
             {
               "color": "#FFFF6F61",
-              "name": "海棠",
+              "name": "HaiTang",
               "nameAlias": "海棠"
             },
             {
               "color": "#FFC74A4D",
-              "name": "银红",
+              "name": "YinHong",
               "nameAlias": "银红"
             },
             {
               "color": "#FF8E354A",
-              "name": "绛紫",
+              "name": "JiangZi",
               "nameAlias": "绛紫"
             },
             {
               "color": "#FF8A3A3A",
-              "name": "醋",
+              "name": "Cu",
               "nameAlias": "醋"
             },
             {
               "color": "#FFC73B44",
-              "name": "霜叶红",
+              "name": "ShuangYeHong",
               "nameAlias": "霜叶红"
             },
             {
               "color": "#FFD46A6A",
-              "name": "纁裳",
+              "name": "XunShang",
               "nameAlias": "纁裳"
             },
             {
               "color": "#FFD47A5E",
-              "name": "纁屦",
+              "name": "XunJu",
               "nameAlias": "纁屦"
             },
             {
               "color": "#FF7B3F61",
-              "name": "帝王紫",
+              "name": "DiWangZi",
               "nameAlias": "帝王紫"
             },
             {
               "color": "#FFC70039",
-              "name": "茜红",
+              "name": "QianHong",
               "nameAlias": "茜红"
             },
             {
               "color": "#FFFA7C5E",
-              "name": "落霞",
+              "name": "LuoXia",
               "nameAlias": "落霞"
             },
             {
               "color": "#FFE4B5C4",
-              "name": "烟粉",
+              "name": "YanFen",
               "nameAlias": "烟粉"
             },
             {
               "color": "#FFD8B0B0",
-              "name": "灰粉",
+              "name": "HuiFen",
               "nameAlias": "灰粉"
             },
             {
               "color": "#FFFEDBE1",
-              "name": "藕粉",
+              "name": "OuFen",
               "nameAlias": "藕粉"
             },
             {
               "color": "#FFFF007F",
-              "name": "玫红色",
+              "name": "MeiHongSe",
               "nameAlias": "玫红色"
             },
             {
               "color": "#FFC75A6B",
-              "name": "茜裙",
+              "name": "QianQun",
               "nameAlias": "茜裙"
             },
             {
               "color": "#FF9D4E5C",
-              "name": "胭脂泪",
+              "name": "YanZhiLei",
               "nameAlias": "胭脂泪"
             },
             {
               "color": "#FFC83737",
-              "name": "社红配",
+              "name": "SheHongPei",
               "nameAlias": "社红配"
             },
             {
               "color": "#FFBC1E46",
-              "name": "猩红",
+              "name": "XingHong",
               "nameAlias": "猩红"
             },
             {
               "color": "#FF9E2F2F",
-              "name": "汉绣红",
+              "name": "HanXiuHong",
               "nameAlias": "汉绣红"
             },
             {
               "color": "#FFC94A5E",
-              "name": "胭脂晕",
+              "name": "YanZhiYun",
               "nameAlias": "胭脂晕"
             }
           ]
@@ -2238,107 +2238,107 @@
           "colors": [
             {
               "color": "#FFD1C2D3",
-              "name": "淡牵牛紫",
+              "name": "DanQianNiuZi",
               "nameAlias": "淡牵牛紫"
             },
             {
               "color": "#FFC8ADC4",
-              "name": "凤信紫",
+              "name": "FengXinZi",
               "nameAlias": "凤信紫"
             },
             {
               "color": "#FF806D9E",
-              "name": "槿紫",
+              "name": "JinZi",
               "nameAlias": "槿紫"
             },
             {
               "color": "#FF815C94",
-              "name": "蕈紫",
+              "name": "XunZi",
               "nameAlias": "蕈紫"
             },
             {
               "color": "#FF813C85",
-              "name": "桔梗紫",
+              "name": "JieGengZi",
               "nameAlias": "桔梗紫"
             },
             {
               "color": "#FF7E1671",
-              "name": "魏紫",
+              "name": "WeiZi",
               "nameAlias": "魏紫"
             },
             {
               "color": "#FF1E131D",
-              "name": "乌梅紫",
+              "name": "WuMeiZi",
               "nameAlias": "乌梅紫"
             },
             {
               "color": "#FF1C0D1A",
-              "name": "深牵牛紫",
+              "name": "ShenQianNiuZi",
               "nameAlias": "深牵牛紫"
             },
             {
               "color": "#FF704A70",
-              "name": "烟紫",
+              "name": "YanZi",
               "nameAlias": "烟紫"
             },
             {
               "color": "#FF6E4D7E",
-              "name": "暮山紫",
+              "name": "MuShanZi",
               "nameAlias": "暮山紫"
             },
             {
               "color": "#FFA020F0",
-              "name": "紫云",
+              "name": "ZiYun",
               "nameAlias": "紫云"
             },
             {
               "color": "#FF8A4B9C",
-              "name": "烟萦紫",
+              "name": "YanYingZi",
               "nameAlias": "烟萦紫"
             },
             {
               "color": "#FFB8A5D2",
-              "name": "霜紫",
+              "name": "ShuangZi",
               "nameAlias": "霜紫"
             },
             {
               "color": "#FF5D3A6F",
-              "name": "黛紫",
+              "name": "DaiZi",
               "nameAlias": "黛紫"
             },
             {
               "color": "#FFC8A2C8",
-              "name": "丁香紫",
+              "name": "DingXiangZi",
               "nameAlias": "丁香紫"
             },
             {
               "color": "#FFD1B3FF",
-              "name": "浅紫藤萝",
+              "name": "QianZiTengLuo",
               "nameAlias": "浅紫藤萝"
             },
             {
               "color": "#FFD8B0D8",
-              "name": "粉紫藤萝",
+              "name": "FenZiTengLuo",
               "nameAlias": "粉紫藤萝"
             },
             {
               "color": "#FF8A6E8B",
-              "name": "檀香紫",
+              "name": "TanXiangZi",
               "nameAlias": "檀香紫"
             },
             {
               "color": "#FF4B0082",
-              "name": "靛蓝",
+              "name": "DianLan",
               "nameAlias": "靛蓝"
             },
             {
               "color": "#FFB5A0C2",
-              "name": "藕荷色",
+              "name": "OuHeSe",
               "nameAlias": "藕荷色"
             },
             {
               "color": "#FFD8BFD8",
-              "name": "浅苋菜紫",
+              "name": "QianXianCaiZi",
               "nameAlias": "浅苋菜紫"
             }
           ]
@@ -2349,477 +2349,477 @@
           "colors": [
             {
               "color": "#FF8076A3",
-              "name": "藤萝紫",
+              "name": "TengLuoZi",
               "nameAlias": "藤萝紫"
             },
             {
               "color": "#FFA7A8BD",
-              "name": "淡蓝紫",
+              "name": "DanLanZi",
               "nameAlias": "淡蓝紫"
             },
             {
               "color": "#FF61649F",
-              "name": "山梗紫",
+              "name": "ShanGengZi",
               "nameAlias": "山梗紫"
             },
             {
               "color": "#FF74759B",
-              "name": "螺甸紫",
+              "name": "LuoDianZi",
               "nameAlias": "螺甸紫"
             },
             {
               "color": "#FF525288",
-              "name": "野菊紫",
+              "name": "YeJuZi",
               "nameAlias": "野菊紫"
             },
             {
               "color": "#FF2E317C",
-              "name": "满天星紫",
+              "name": "ManTianXingZi",
               "nameAlias": "满天星紫"
             },
             {
               "color": "#FF302F4B",
-              "name": "野葡萄紫",
+              "name": "YePuTaoZi",
               "nameAlias": "野葡萄紫"
             },
             {
               "color": "#FF22202E",
-              "name": "暗龙胆紫",
+              "name": "AnLongDanZi",
               "nameAlias": "暗龙胆紫"
             },
             {
               "color": "#FF1F2040",
-              "name": "晶石紫",
+              "name": "JingShiZi",
               "nameAlias": "晶石紫"
             },
             {
               "color": "#FF131124",
-              "name": "暗蓝紫",
+              "name": "AnLanZi",
               "nameAlias": "暗蓝紫"
             },
             {
               "color": "#FF2775B6",
-              "name": "景泰蓝",
+              "name": "JingTaiLan",
               "nameAlias": "景泰蓝"
             },
             {
               "color": "#FF2474B5",
-              "name": "尼罗蓝",
+              "name": "NiLuoLan",
               "nameAlias": "尼罗蓝"
             },
             {
               "color": "#FFD0DFE6",
-              "name": "远天蓝",
+              "name": "YuanTianLan",
               "nameAlias": "远天蓝"
             },
             {
               "color": "#FF93B5CF",
-              "name": "星蓝",
+              "name": "XingLan",
               "nameAlias": "星蓝"
             },
             {
               "color": "#FF619AC3",
-              "name": "羽扇豆蓝",
+              "name": "YuShanDouLan",
               "nameAlias": "羽扇豆蓝"
             },
             {
               "color": "#FF2376B7",
-              "name": "花青",
+              "name": "HuaQing",
               "nameAlias": "花青"
             },
             {
               "color": "#FF5698C3",
-              "name": "睛蓝",
+              "name": "JingLan",
               "nameAlias": "睛蓝"
             },
             {
               "color": "#FF2177B8",
-              "name": "虹蓝",
+              "name": "HongLan",
               "nameAlias": "虹蓝"
             },
             {
               "color": "#FF8ABCD1",
-              "name": "秋波蓝",
+              "name": "QiuBoLan",
               "nameAlias": "秋波蓝"
             },
             {
               "color": "#FF66A9C9",
-              "name": "涧石蓝",
+              "name": "JianShiLan",
               "nameAlias": "涧石蓝"
             },
             {
               "color": "#FF2983BB",
-              "name": "潮蓝",
+              "name": "ChaoLan",
               "nameAlias": "潮蓝"
             },
             {
               "color": "#FF1772B4",
-              "name": "群青",
+              "name": "QunQing",
               "nameAlias": "群青"
             },
             {
               "color": "#FF2486B9",
-              "name": "宝石蓝",
+              "name": "BaoShiLan",
               "nameAlias": "宝石蓝"
             },
             {
               "color": "#FF1677B3",
-              "name": "天蓝",
+              "name": "TianLan",
               "nameAlias": "天蓝"
             },
             {
               "color": "#FF126BAE",
-              "name": "柏林蓝",
+              "name": "BoLinLan",
               "nameAlias": "柏林蓝"
             },
             {
               "color": "#FF1A94BC",
-              "name": "钴蓝",
+              "name": "GuLan",
               "nameAlias": "钴蓝"
             },
             {
               "color": "#FF158BB8",
-              "name": "鸢尾蓝",
+              "name": "YuanWeiLan",
               "nameAlias": "鸢尾蓝"
             },
             {
               "color": "#FF1177B0",
-              "name": "牵牛花蓝",
+              "name": "QianNiuHuaLan",
               "nameAlias": "牵牛花蓝"
             },
             {
               "color": "#FF0F59A4",
-              "name": "飞燕草蓝",
+              "name": "FeiYanCaoLan",
               "nameAlias": "飞燕草蓝"
             },
             {
               "color": "#FF2B73AF",
-              "name": "品蓝",
+              "name": "PinLan",
               "nameAlias": "品蓝"
             },
             {
               "color": "#FF3170A7",
-              "name": "安安蓝",
+              "name": "AnAnLan",
               "nameAlias": "安安蓝"
             },
             {
               "color": "#FF475164",
-              "name": "鲸鱼灰",
+              "name": "JingYuHui",
               "nameAlias": "鲸鱼灰"
             },
             {
               "color": "#FF0F1423",
-              "name": "钢蓝",
+              "name": "GangLan",
               "nameAlias": "钢蓝"
             },
             {
               "color": "#FFBACCD9",
-              "name": "云水蓝",
+              "name": "YunShuiLan",
               "nameAlias": "云水蓝"
             },
             {
               "color": "#FF8FB2C9",
-              "name": "晴山蓝",
+              "name": "QingShanLan",
               "nameAlias": "晴山蓝"
             },
             {
               "color": "#FF1661AB",
-              "name": "靛青",
+              "name": "DianQing",
               "nameAlias": "靛青"
             },
             {
               "color": "#FF15559A",
-              "name": "海涛蓝",
+              "name": "HaiTaoLan",
               "nameAlias": "海涛蓝"
             },
             {
               "color": "#FF4E7CA1",
-              "name": "蝶翅蓝",
+              "name": "DieChiLan",
               "nameAlias": "蝶翅蓝"
             },
             {
               "color": "#FF346C9C",
-              "name": "海军蓝",
+              "name": "HaiJunLan",
               "nameAlias": "海军蓝"
             },
             {
               "color": "#FF131824",
-              "name": "燕颔蓝",
+              "name": "YanHanLan",
               "nameAlias": "燕颔蓝"
             },
             {
               "color": "#FFD8E3E7",
-              "name": "云峰白",
+              "name": "YunFengBai",
               "nameAlias": "云峰白"
             },
             {
               "color": "#FFC3D7DF",
-              "name": "井天蓝",
+              "name": "JingTianLan",
               "nameAlias": "井天蓝"
             },
             {
               "color": "#FF2F90B9",
-              "name": "云山蓝",
+              "name": "YunShanLan",
               "nameAlias": "云山蓝"
             },
             {
               "color": "#FF1781B5",
-              "name": "釉蓝",
+              "name": "YouLan",
               "nameAlias": "釉蓝"
             },
             {
               "color": "#FF11659A",
-              "name": "搪磁蓝",
+              "name": "TangCiLan",
               "nameAlias": "搪磁蓝"
             },
             {
               "color": "#FF5E7987",
-              "name": "淡蓝灰",
+              "name": "DanLanHui",
               "nameAlias": "淡蓝灰"
             },
             {
               "color": "#FF144A74",
-              "name": "鷃蓝",
+              "name": "YanLan",
               "nameAlias": "鷃蓝"
             },
             {
               "color": "#FF495C69",
-              "name": "战舰灰",
+              "name": "ZhanJianHui",
               "nameAlias": "战舰灰"
             },
             {
               "color": "#FF2B333E",
-              "name": "青灰",
+              "name": "QingHui",
               "nameAlias": "青灰"
             },
             {
               "color": "#FF1C2938",
-              "name": "鸽蓝",
+              "name": "GeLan",
               "nameAlias": "鸽蓝"
             },
             {
               "color": "#FF142334",
-              "name": "钢青",
+              "name": "GangQing",
               "nameAlias": "钢青"
             },
             {
               "color": "#FF101F30",
-              "name": "暗蓝",
+              "name": "AnLan",
               "nameAlias": "暗蓝"
             },
             {
               "color": "#FF003152",
-              "name": "普鲁士蓝",
+              "name": "PuLuShiLan",
               "nameAlias": "普鲁士蓝"
             },
             {
               "color": "#FF2A3C5C",
-              "name": "黛蓝",
+              "name": "DaiLan",
               "nameAlias": "黛蓝"
             },
             {
               "color": "#FF4682B4",
-              "name": "青霜",
+              "name": "QingShuang",
               "nameAlias": "青霜"
             },
             {
               "color": "#FF708090",
-              "name": "烟青",
+              "name": "YanQing",
               "nameAlias": "烟青"
             },
             {
               "color": "#FF2A52BE",
-              "name": "苍碧",
+              "name": "CangBi",
               "nameAlias": "苍碧"
             },
             {
               "color": "#FF1D3F5A",
-              "name": "夜筵青",
+              "name": "YeYanQing",
               "nameAlias": "夜筵青"
             },
             {
               "color": "#FF2A475F",
-              "name": "黛青",
+              "name": "DaiQing",
               "nameAlias": "黛青"
             },
             {
               "color": "#FFB0D8E8",
-              "name": "雪青",
+              "name": "XueQing",
               "nameAlias": "雪青"
             },
             {
               "color": "#FF87CEEB",
-              "name": "云蓝",
+              "name": "YunLan",
               "nameAlias": "云蓝"
             },
             {
               "color": "#FF4B6C8C",
-              "name": "绀碧",
+              "name": "GanBi",
               "nameAlias": "绀碧"
             },
             {
               "color": "#FF4A6FA6",
-              "name": "霜蓝",
+              "name": "ShuangLan",
               "nameAlias": "霜蓝"
             },
             {
               "color": "#FF6B8E9A",
-              "name": "潆青",
+              "name": "YingQing",
               "nameAlias": "潆青"
             },
             {
               "color": "#FF4F84FF",
-              "name": "绀青",
+              "name": "GanQing",
               "nameAlias": "绀青"
             },
             {
               "color": "#FFA8C9E4",
-              "name": "缥色",
+              "name": "PiaoSe",
               "nameAlias": "缥色"
             },
             {
               "color": "#FFE0E7EF",
-              "name": "月魄",
+              "name": "YuePo",
               "nameAlias": "月魄"
             },
             {
               "color": "#FF8EC4E9",
-              "name": "滢蓝",
+              "name": "YingLan",
               "nameAlias": "滢蓝"
             },
             {
               "color": "#FFCDE8F9",
-              "name": "雾绡",
+              "name": "WuXiao",
               "nameAlias": "雾绡"
             },
             {
               "color": "#FF2B5F7C",
-              "name": "缥青",
+              "name": "PiaoQing",
               "nameAlias": "缥青"
             },
             {
               "color": "#FF4B9CD3",
-              "name": "瑶碧",
+              "name": "YaoBi",
               "nameAlias": "瑶碧"
             },
             {
               "color": "#FFD0E7F9",
-              "name": "霜华",
+              "name": "ShuangHua",
               "nameAlias": "霜华"
             },
             {
               "color": "#FF6C9BCA",
-              "name": "天青",
+              "name": "TianQing",
               "nameAlias": "天青"
             },
             {
               "color": "#FFE8F4F8",
-              "name": "霜色",
+              "name": "ShuangSe",
               "nameAlias": "霜色"
             },
             {
               "color": "#FFE6F2FF",
-              "name": "东方既白",
+              "name": "DongFangJiBai",
               "nameAlias": "东方既白"
             },
             {
               "color": "#FF2E5A6F",
-              "name": "黛青山",
+              "name": "DaiQingShan",
               "nameAlias": "黛青山"
             },
             {
               "color": "#FF4A8DDA",
-              "name": "蓝色",
+              "name": "LanSe",
               "nameAlias": "蓝色"
             },
             {
               "color": "#FF2B3A4F",
-              "name": "玄青",
+              "name": "XuanQing",
               "nameAlias": "玄青"
             },
             {
               "color": "#FF7EC0EE",
-              "name": "长春花蓝",
+              "name": "ChangChunHuaLan",
               "nameAlias": "长春花蓝"
             },
             {
               "color": "#FFC2D1E0",
-              "name": "浅灰蓝",
+              "name": "QianHuiLan",
               "nameAlias": "浅灰蓝"
             },
             {
               "color": "#FF1A3E72",
-              "name": "宝蓝",
+              "name": "BaoLan",
               "nameAlias": "宝蓝"
             },
             {
               "color": "#FF7BA4B8",
-              "name": "烟蓝",
+              "name": "YanLan",
               "nameAlias": "烟蓝"
             },
             {
               "color": "#FFC8D3D7",
-              "name": "天际灰",
+              "name": "TianJiHui",
               "nameAlias": "天际灰"
             },
             {
               "color": "#FF9B8AE8",
-              "name": "紫藤萝",
+              "name": "ZiTengLuo",
               "nameAlias": "紫藤萝"
             },
             {
               "color": "#FFC1C8D6",
-              "name": "云峰灰",
+              "name": "YunFengHui",
               "nameAlias": "云峰灰"
             },
             {
               "color": "#FF1E5A8F",
-              "name": "霁蓝",
+              "name": "JiLan",
               "nameAlias": "霁蓝"
             },
             {
               "color": "#FFF0F8FF",
-              "name": "玉色",
+              "name": "YuSe",
               "nameAlias": "玉色"
             },
             {
               "color": "#FF3B4F5C",
-              "name": "黛色",
+              "name": "DaiSe",
               "nameAlias": "黛色"
             },
             {
               "color": "#FFB0D4E3",
-              "name": "浅蓝",
+              "name": "QianLan",
               "nameAlias": "浅蓝"
             },
             {
               "color": "#FF4A76A8",
-              "name": "湘蓝",
+              "name": "XiangLan",
               "nameAlias": "湘蓝"
             },
             {
               "color": "#FF2E5A88",
-              "name": "蓼蓝青",
+              "name": "LiaoLanQing",
               "nameAlias": "蓼蓝青"
             },
             {
               "color": "#FF2A5C82",
-              "name": "青蓝",
+              "name": "QingLan",
               "nameAlias": "青蓝"
             },
             {
               "color": "#FF2E5D8C",
-              "name": "石青",
+              "name": "ShiQing",
               "nameAlias": "石青"
             },
             {
               "color": "#FF0F1A20",
-              "name": "墨黑",
+              "name": "MoHei",
               "nameAlias": "墨黑"
             },
             {
               "color": "#FF1A3A5F",
-              "name": "青黛",
+              "name": "QingDai",
               "nameAlias": "青黛"
             }
           ]
@@ -2830,287 +2830,287 @@
           "colors": [
             {
               "color": "#FFBDAEAD",
-              "name": "芦穗灰",
+              "name": "LuSuiHui",
               "nameAlias": "芦穗灰"
             },
             {
               "color": "#FF856D72",
-              "name": "芦灰",
+              "name": "LuHui",
               "nameAlias": "芦灰"
             },
             {
               "color": "#FFE2E1E4",
-              "name": "芡食白",
+              "name": "QianShiBai",
               "nameAlias": "芡食白"
             },
             {
               "color": "#FFCCCCD6",
-              "name": "远山紫",
+              "name": "YuanShanZi",
               "nameAlias": "远山紫"
             },
             {
               "color": "#FFCFCCC9",
-              "name": "玛瑙灰",
+              "name": "MaNaoHui",
               "nameAlias": "玛瑙灰"
             },
             {
               "color": "#FF7A7374",
-              "name": "锌灰",
+              "name": "XinHui",
               "nameAlias": "锌灰"
             },
             {
               "color": "#FF3E3841",
-              "name": "剑锋紫",
+              "name": "JianFengZi",
               "nameAlias": "剑锋紫"
             },
             {
               "color": "#FF322F3B",
-              "name": "龙葵紫",
+              "name": "LongKuiZi",
               "nameAlias": "龙葵紫"
             },
             {
               "color": "#FFCDD1D3",
-              "name": "银鱼白",
+              "name": "YinYuBai",
               "nameAlias": "银鱼白"
             },
             {
               "color": "#FF5E616D",
-              "name": "鱼尾灰",
+              "name": "YuWeiHui",
               "nameAlias": "鱼尾灰"
             },
             {
               "color": "#FF35333C",
-              "name": "沙鱼灰",
+              "name": "ShaYuHui",
               "nameAlias": "沙鱼灰"
             },
             {
               "color": "#FFC4CBCF",
-              "name": "大理石灰",
+              "name": "DaLiShiHui",
               "nameAlias": "大理石灰"
             },
             {
               "color": "#FF2F2F35",
-              "name": "水牛灰",
+              "name": "ShuiNiuHui",
               "nameAlias": "水牛灰"
             },
             {
               "color": "#FF2D2E36",
-              "name": "牛角灰",
+              "name": "NiuJiaoHui",
               "nameAlias": "牛角灰"
             },
             {
               "color": "#FFC0C4C3",
-              "name": "月影白",
+              "name": "YueYingBai",
               "nameAlias": "月影白"
             },
             {
               "color": "#FFB2BBBE",
-              "name": "星灰",
+              "name": "XingHui",
               "nameAlias": "星灰"
             },
             {
               "color": "#FF74787A",
-              "name": "嫩灰",
+              "name": "NenHui",
               "nameAlias": "嫩灰"
             },
             {
               "color": "#FF47484C",
-              "name": "瓦罐灰",
+              "name": "WaGuanHui",
               "nameAlias": "瓦罐灰"
             },
             {
               "color": "#FFA4ACA7",
-              "name": "冰山蓝",
+              "name": "BingShanLan",
               "nameAlias": "冰山蓝"
             },
             {
               "color": "#FF869D9D",
-              "name": "虾壳青",
+              "name": "XiaKeQing",
               "nameAlias": "虾壳青"
             },
             {
               "color": "#FF737C7B",
-              "name": "垩灰",
+              "name": "EHui",
               "nameAlias": "垩灰"
             },
             {
               "color": "#FF617172",
-              "name": "夏云灰",
+              "name": "XiaYunHui",
               "nameAlias": "夏云灰"
             },
             {
               "color": "#FF474B4C",
-              "name": "黄昏灰",
+              "name": "HuangHunHui",
               "nameAlias": "黄昏灰"
             },
             {
               "color": "#FF9FA39A",
-              "name": "镍灰",
+              "name": "NieHui",
               "nameAlias": "镍灰"
             },
             {
               "color": "#FF8A988E",
-              "name": "明灰",
+              "name": "MingHui",
               "nameAlias": "明灰"
             },
             {
               "color": "#FF70887D",
-              "name": "淡绿灰",
+              "name": "DanLvHui",
               "nameAlias": "淡绿灰"
             },
             {
               "color": "#FF5D655F",
-              "name": "狼烟灰",
+              "name": "LangYanHui",
               "nameAlias": "狼烟灰"
             },
             {
               "color": "#FF363433",
-              "name": "长石灰",
+              "name": "ChangShiHui",
               "nameAlias": "长石灰"
             },
             {
               "color": "#FF1F2623",
-              "name": "苷蓝绿",
+              "name": "GanLanLv",
               "nameAlias": "苷蓝绿"
             },
             {
               "color": "#FF5E665B",
-              "name": "田螺绿",
+              "name": "TianLuoLv",
               "nameAlias": "田螺绿"
             },
             {
               "color": "#FF393733",
-              "name": "河豚灰",
+              "name": "HeTunHui",
               "nameAlias": "河豚灰"
             },
             {
               "color": "#FF373834",
-              "name": "蒽油绿",
+              "name": "EnYouLv",
               "nameAlias": "蒽油绿"
             },
             {
               "color": "#FF2B312C",
-              "name": "槲寄生绿",
+              "name": "HuJiShengLv",
               "nameAlias": "槲寄生绿"
             },
             {
               "color": "#FFBBB5AC",
-              "name": "铅灰",
+              "name": "QianHui",
               "nameAlias": "铅灰"
             },
             {
               "color": "#FFA49C93",
-              "name": "中灰",
+              "name": "ZhongHui",
               "nameAlias": "中灰"
             },
             {
               "color": "#FF867E76",
-              "name": "瓦灰",
+              "name": "WaHui",
               "nameAlias": "瓦灰"
             },
             {
               "color": "#FF847C74",
-              "name": "夜灰",
+              "name": "YeHui",
               "nameAlias": "夜灰"
             },
             {
               "color": "#FF80766E",
-              "name": "雁灰",
+              "name": "YanHui",
               "nameAlias": "雁灰"
             },
             {
               "color": "#FF81776E",
-              "name": "深灰",
+              "name": "ShenHui",
               "nameAlias": "深灰"
             },
             {
               "color": "#FF8A9A9C",
-              "name": "云青灰",
+              "name": "YunQingHui",
               "nameAlias": "云青灰"
             },
             {
               "color": "#FF000000",
-              "name": "黑",
+              "name": "Hei",
               "nameAlias": "黑"
             },
             {
               "color": "#FF2E2E2E",
-              "name": "墨韵黑",
+              "name": "MoYunHei",
               "nameAlias": "墨韵黑"
             },
             {
               "color": "#FFF2F3F4",
-              "name": "霜白",
+              "name": "ShuangBai",
               "nameAlias": "霜白"
             },
             {
               "color": "#FF424B50",
-              "name": "鸦青",
+              "name": "YaQing",
               "nameAlias": "鸦青"
             },
             {
               "color": "#FF0E100F",
-              "name": "玄黑",
+              "name": "XuanHei",
               "nameAlias": "玄黑"
             },
             {
               "color": "#FF2C2C2C",
-              "name": "缁",
+              "name": "Zi",
               "nameAlias": "缁"
             },
             {
               "color": "#FF1A1A1A",
-              "name": "玄色",
+              "name": "XuanSe",
               "nameAlias": "玄色"
             },
             {
               "color": "#FF2E3439",
-              "name": "青骊",
+              "name": "QingLi",
               "nameAlias": "青骊"
             },
             {
               "color": "#FF3B3131",
-              "name": "緇",
+              "name": "Zi",
               "nameAlias": "緇"
             },
             {
               "color": "#FF2E2A2D",
-              "name": "缁带",
+              "name": "ZiDai",
               "nameAlias": "缁带"
             },
             {
               "color": "#FFB7A8A5",
-              "name": "暖灰",
+              "name": "NuanHui",
               "nameAlias": "暖灰"
             },
             {
               "color": "#FF1D1B1C",
-              "name": "墨色",
+              "name": "MoSe",
               "nameAlias": "墨色"
             },
             {
               "color": "#FF2E292B",
-              "name": "芝麻黑",
+              "name": "ZhiMaHei",
               "nameAlias": "芝麻黑"
             },
             {
               "color": "#FF9C9CA4",
-              "name": "高级灰",
+              "name": "GaoJiHui",
               "nameAlias": "高级灰"
             },
             {
               "color": "#FF3B3A3E",
-              "name": "松烟墨",
+              "name": "SongYanMo",
               "nameAlias": "松烟墨"
             },
             {
               "color": "#FF8A8A8A",
-              "name": "灰色",
+              "name": "HuiSe",
               "nameAlias": "灰色"
             },
             {
               "color": "#FFF8F8F8",
-              "name": "白色",
+              "name": "BaiSe",
               "nameAlias": "白色"
             }
           ]
@@ -3121,317 +3121,317 @@
           "colors": [
             {
               "color": "#FFB0D5DF",
-              "name": "湖水蓝",
+              "name": "HuShuiLan",
               "nameAlias": "湖水蓝"
             },
             {
               "color": "#FF63BBD0",
-              "name": "霁青",
+              "name": "JiQing",
               "nameAlias": "霁青"
             },
             {
               "color": "#FF5CB3CC",
-              "name": "碧青",
+              "name": "BiQing",
               "nameAlias": "碧青"
             },
             {
               "color": "#FF22A2C3",
-              "name": "海青",
+              "name": "HaiQing",
               "nameAlias": "海青"
             },
             {
               "color": "#FFC7D2D4",
-              "name": "鸥蓝",
+              "name": "OuLan",
               "nameAlias": "鸥蓝"
             },
             {
               "color": "#FFC6E6E8",
-              "name": "海天蓝",
+              "name": "HaiTianLan",
               "nameAlias": "海天蓝"
             },
             {
               "color": "#FF93D5DC",
-              "name": "清水蓝",
+              "name": "QingShuiLan",
               "nameAlias": "清水蓝"
             },
             {
               "color": "#FF51C4D3",
-              "name": "瀑布蓝",
+              "name": "PuBuLan",
               "nameAlias": "瀑布蓝"
             },
             {
               "color": "#FF29B7CB",
-              "name": "蔚蓝",
+              "name": "WeiLan",
               "nameAlias": "蔚蓝"
             },
             {
               "color": "#FF0EB0C9",
-              "name": "孔雀蓝",
+              "name": "KongQueLan",
               "nameAlias": "孔雀蓝"
             },
             {
               "color": "#FF10AEC2",
-              "name": "甸子蓝",
+              "name": "DianZiLan",
               "nameAlias": "甸子蓝"
             },
             {
               "color": "#FF57C3C2",
-              "name": "石绿",
+              "name": "ShiLv",
               "nameAlias": "石绿"
             },
             {
               "color": "#FF12AA9C",
-              "name": "美蝶绿",
+              "name": "MeiDieLv",
               "nameAlias": "美蝶绿"
             },
             {
               "color": "#FF45B787",
-              "name": "蛙绿",
+              "name": "WaLv",
               "nameAlias": "蛙绿"
             },
             {
               "color": "#FF2BAE85",
-              "name": "铜绿",
+              "name": "TongLv",
               "nameAlias": "铜绿"
             },
             {
               "color": "#FF1BA784",
-              "name": "竹绿",
+              "name": "ZhuLv",
               "nameAlias": "竹绿"
             },
             {
               "color": "#FF12A182",
-              "name": "蓝绿",
+              "name": "LanLv",
               "nameAlias": "蓝绿"
             },
             {
               "color": "#FFC4D7D6",
-              "name": "穹灰",
+              "name": "QiongHui",
               "nameAlias": "穹灰"
             },
             {
               "color": "#FF1E9EB3",
-              "name": "翠蓝",
+              "name": "CuiLan",
               "nameAlias": "翠蓝"
             },
             {
               "color": "#FF0F95B0",
-              "name": "胆矾蓝",
+              "name": "DanFanLan",
               "nameAlias": "胆矾蓝"
             },
             {
               "color": "#FF1491A8",
-              "name": "樫鸟蓝",
+              "name": "JianNiaoLan",
               "nameAlias": "樫鸟蓝"
             },
             {
               "color": "#FF7CABB1",
-              "name": "闪蓝",
+              "name": "ShanLan",
               "nameAlias": "闪蓝"
             },
             {
               "color": "#FF648E93",
-              "name": "晚波蓝",
+              "name": "WanBoLan",
               "nameAlias": "晚波蓝"
             },
             {
               "color": "#FF3B818C",
-              "name": "蜻蜓蓝",
+              "name": "QingTingLan",
               "nameAlias": "蜻蜓蓝"
             },
             {
               "color": "#FF126E82",
-              "name": "玉鈫蓝",
+              "name": "YuQinLan",
               "nameAlias": "玉鈫蓝"
             },
             {
               "color": "#FF134857",
-              "name": "苍蓝",
+              "name": "CangLan",
               "nameAlias": "苍蓝"
             },
             {
               "color": "#FF21373D",
-              "name": "灰蓝",
+              "name": "HuiLan",
               "nameAlias": "灰蓝"
             },
             {
               "color": "#FF132C33",
-              "name": "深灰蓝",
+              "name": "ShenHuiLan",
               "nameAlias": "深灰蓝"
             },
             {
               "color": "#FF2C9678",
-              "name": "青矾绿",
+              "name": "QingFanLv",
               "nameAlias": "青矾绿"
             },
             {
               "color": "#FF9ABEAF",
-              "name": "草原远绿",
+              "name": "CaoYuanYuanLv",
               "nameAlias": "草原远绿"
             },
             {
               "color": "#FF69A794",
-              "name": "梧枝绿",
+              "name": "WuZhiLv",
               "nameAlias": "梧枝绿"
             },
             {
               "color": "#FF92B3A5",
-              "name": "浪花绿",
+              "name": "LangHuaLv",
               "nameAlias": "浪花绿"
             },
             {
               "color": "#FF248067",
-              "name": "海王绿",
+              "name": "HaiWangLv",
               "nameAlias": "海王绿"
             },
             {
               "color": "#FF428675",
-              "name": "亚丁绿",
+              "name": "YaDingLv",
               "nameAlias": "亚丁绿"
             },
             {
               "color": "#FF497568",
-              "name": "飞泉绿",
+              "name": "FeiQuanLv",
               "nameAlias": "飞泉绿"
             },
             {
               "color": "#FF314A43",
-              "name": "绿灰",
+              "name": "LvHui",
               "nameAlias": "绿灰"
             },
             {
               "color": "#FF223E36",
-              "name": "苍绿",
+              "name": "CangLv",
               "nameAlias": "苍绿"
             },
             {
               "color": "#FF1A3B32",
-              "name": "深海绿",
+              "name": "ShenHaiLv",
               "nameAlias": "深海绿"
             },
             {
               "color": "#FF141E1B",
-              "name": "莽丛绿",
+              "name": "MangCongLv",
               "nameAlias": "莽丛绿"
             },
             {
               "color": "#FF4B8F8C",
-              "name": "蓝翠竹",
+              "name": "LanCuiZhu",
               "nameAlias": "蓝翠竹"
             },
             {
               "color": "#FFC6D7DB",
-              "name": "月白天青",
+              "name": "YueBaiTianQing",
               "nameAlias": "月白天青"
             },
             {
               "color": "#FFE0FFFF",
-              "name": "月华",
+              "name": "YueHua",
               "nameAlias": "月华"
             },
             {
               "color": "#FF86A1A7",
-              "name": "蟹壳青",
+              "name": "XieKeQing",
               "nameAlias": "蟹壳青"
             },
             {
               "color": "#FF6B8E99",
-              "name": "月蓝",
+              "name": "YueLan",
               "nameAlias": "月蓝"
             },
             {
               "color": "#FF00A86B",
-              "name": "竹青",
+              "name": "ZhuQing",
               "nameAlias": "竹青"
             },
             {
               "color": "#FF66B7D0",
-              "name": "湖蓝",
+              "name": "HuLan",
               "nameAlias": "湖蓝"
             },
             {
               "color": "#FF7CB9A8",
-              "name": "霜青",
+              "name": "ShuangQing",
               "nameAlias": "霜青"
             },
             {
               "color": "#FFA0D8D8",
-              "name": "露碧",
+              "name": "LuBi",
               "nameAlias": "露碧"
             },
             {
               "color": "#FF7AB9C1",
-              "name": "缥碧",
+              "name": "PiaoBi",
               "nameAlias": "缥碧"
             },
             {
               "color": "#FF70C8A4",
-              "name": "湖绿",
+              "name": "HuLv",
               "nameAlias": "湖绿"
             },
             {
               "color": "#FF3EB489",
-              "name": "莹翠",
+              "name": "YingCui",
               "nameAlias": "莹翠"
             },
             {
               "color": "#FFAED9D4",
-              "name": "天水碧",
+              "name": "TianShuiBi",
               "nameAlias": "天水碧"
             },
             {
               "color": "#FF3B7C7F",
-              "name": "青组缨",
+              "name": "QingZuYing",
               "nameAlias": "青组缨"
             },
             {
               "color": "#FFBCE5D6",
-              "name": "竹月",
+              "name": "ZhuYue",
               "nameAlias": "竹月"
             },
             {
               "color": "#FF4A9D9C",
-              "name": "玉青",
+              "name": "YuQing",
               "nameAlias": "玉青"
             },
             {
               "color": "#FF7BA0A5",
-              "name": "雾霾蓝",
+              "name": "WuMaiLan",
               "nameAlias": "雾霾蓝"
             },
             {
               "color": "#FFB2F0D9",
-              "name": "浅薄荷绿",
+              "name": "QianBoHeLv",
               "nameAlias": "浅薄荷绿"
             },
             {
               "color": "#FFE8F4F0",
-              "name": "白雪藤",
+              "name": "BaiXueTeng",
               "nameAlias": "白雪藤"
             },
             {
               "color": "#FFC6E3E1",
-              "name": "凝脂莲青",
+              "name": "NingZhiLianQing",
               "nameAlias": "凝脂莲青"
             },
             {
               "color": "#FF3AB08C",
-              "name": "黛绿色",
+              "name": "DaiLvSe",
               "nameAlias": "黛绿色"
             },
             {
               "color": "#FF2F4F4F",
-              "name": "鸦青色",
+              "name": "YaQingSe",
               "nameAlias": "鸦青色"
             },
             {
               "color": "#FF2E5D4A",
-              "name": "苍筤",
+              "name": "CangLang",
               "nameAlias": "苍筤"
             },
             {
               "color": "#FF1A3B2E",
-              "name": "墨绿",
+              "name": "MoLv",
               "nameAlias": "墨绿"
             }
           ]
@@ -3442,322 +3442,322 @@
           "colors": [
             {
               "color": "#FFEEF7F2",
-              "name": "月白",
+              "name": "YueBai",
               "nameAlias": "月白"
             },
             {
               "color": "#FFB9DEC9",
-              "name": "竹篁绿",
+              "name": "ZhuHuangLv",
               "nameAlias": "竹篁绿"
             },
             {
               "color": "#FF83CBAC",
-              "name": "粉绿",
+              "name": "FenLv",
               "nameAlias": "粉绿"
             },
             {
               "color": "#FF66C18C",
-              "name": "毛绿",
+              "name": "MaoLv",
               "nameAlias": "毛绿"
             },
             {
               "color": "#FF5DBE8A",
-              "name": "蔻梢绿",
+              "name": "KouShaoLv",
               "nameAlias": "蔻梢绿"
             },
             {
               "color": "#FF55BB8A",
-              "name": "麦苗绿",
+              "name": "MaiMiaoLv",
               "nameAlias": "麦苗绿"
             },
             {
               "color": "#FFA4CAB6",
-              "name": "玉簪绿",
+              "name": "YuZanLv",
               "nameAlias": "玉簪绿"
             },
             {
               "color": "#FFC6DFC8",
-              "name": "淡翠绿",
+              "name": "DanCuiLv",
               "nameAlias": "淡翠绿"
             },
             {
               "color": "#FF9ECCAB",
-              "name": "明绿",
+              "name": "MingLv",
               "nameAlias": "明绿"
             },
             {
               "color": "#FF68B88E",
-              "name": "田园绿",
+              "name": "TianYuanLv",
               "nameAlias": "田园绿"
             },
             {
               "color": "#FF20A162",
-              "name": "翠绿",
+              "name": "CuiLv",
               "nameAlias": "翠绿"
             },
             {
               "color": "#FF61AC85",
-              "name": "淡绿",
+              "name": "DanLv",
               "nameAlias": "淡绿"
             },
             {
               "color": "#FF40A070",
-              "name": "葱绿",
+              "name": "CongLv",
               "nameAlias": "葱绿"
             },
             {
               "color": "#FF229453",
-              "name": "孔雀绿",
+              "name": "KongQueLv",
               "nameAlias": "孔雀绿"
             },
             {
               "color": "#FFCAD3C3",
-              "name": "艾绿",
+              "name": "AiLv",
               "nameAlias": "艾绿"
             },
             {
               "color": "#FF3C9566",
-              "name": "蟾绿",
+              "name": "ChanLv",
               "nameAlias": "蟾绿"
             },
             {
               "color": "#FF20894D",
-              "name": "宫殿绿",
+              "name": "GongDianLv",
               "nameAlias": "宫殿绿"
             },
             {
               "color": "#FF83A78D",
-              "name": "松霜绿",
+              "name": "SongShuangLv",
               "nameAlias": "松霜绿"
             },
             {
               "color": "#FF579572",
-              "name": "蛋白石绿",
+              "name": "DanBaiShiLv",
               "nameAlias": "蛋白石绿"
             },
             {
               "color": "#FF207F4C",
-              "name": "薄荷绿",
+              "name": "BoHeLv",
               "nameAlias": "薄荷绿"
             },
             {
               "color": "#FF6E8B74",
-              "name": "瓦松绿",
+              "name": "WaSongLv",
               "nameAlias": "瓦松绿"
             },
             {
               "color": "#FF1A6840",
-              "name": "荷叶绿",
+              "name": "HeYeLv",
               "nameAlias": "荷叶绿"
             },
             {
               "color": "#FF485B4D",
-              "name": "白屈菜绿",
+              "name": "BaiQuCaiLv",
               "nameAlias": "白屈菜绿"
             },
             {
               "color": "#FF15231B",
-              "name": "云杉绿",
+              "name": "YunShanLv",
               "nameAlias": "云杉绿"
             },
             {
               "color": "#FFF0F5E5",
-              "name": "嫩菊绿",
+              "name": "NenJuLv",
               "nameAlias": "嫩菊绿"
             },
             {
               "color": "#FFDFECD5",
-              "name": "艾背绿",
+              "name": "AiBeiLv",
               "nameAlias": "艾背绿"
             },
             {
               "color": "#FFADD5A2",
-              "name": "嘉陵水绿",
+              "name": "JiaLingShuiLv",
               "nameAlias": "嘉陵水绿"
             },
             {
               "color": "#FF41B349",
-              "name": "玉髓绿",
+              "name": "YuSuiLv",
               "nameAlias": "玉髓绿"
             },
             {
               "color": "#FF43B244",
-              "name": "鲜绿",
+              "name": "XianLv",
               "nameAlias": "鲜绿"
             },
             {
               "color": "#FF41AE3C",
-              "name": "宝石绿",
+              "name": "BaoShiLv",
               "nameAlias": "宝石绿"
             },
             {
               "color": "#FFD0DEAA",
-              "name": "姚黄",
+              "name": "YaoHuang",
               "nameAlias": "姚黄"
             },
             {
               "color": "#FFB2CF87",
-              "name": "橄榄石绿",
+              "name": "GanLanShiLv",
               "nameAlias": "橄榄石绿"
             },
             {
               "color": "#FF8CC269",
-              "name": "水绿",
+              "name": "ShuiLv",
               "nameAlias": "水绿"
             },
             {
               "color": "#FFB7D07A",
-              "name": "芦苇绿",
+              "name": "LuWeiLv",
               "nameAlias": "芦苇绿"
             },
             {
               "color": "#FF96C24E",
-              "name": "芽绿",
+              "name": "YaLv",
               "nameAlias": "芽绿"
             },
             {
               "color": "#FF5BAE23",
-              "name": "鹦鹉绿",
+              "name": "YingWuLv",
               "nameAlias": "鹦鹉绿"
             },
             {
               "color": "#FF253D24",
-              "name": "油绿",
+              "name": "YouLv",
               "nameAlias": "油绿"
             },
             {
               "color": "#FFB2C9B2",
-              "name": "山岚",
+              "name": "ShanLan",
               "nameAlias": "山岚"
             },
             {
               "color": "#FF6B8E23",
-              "name": "綟绶",
+              "name": "LiShou",
               "nameAlias": "綟绶"
             },
             {
               "color": "#FF3CB371",
-              "name": "翠微",
+              "name": "CuiWei",
               "nameAlias": "翠微"
             },
             {
               "color": "#FF7BC092",
-              "name": "梅子青",
+              "name": "MeiZiQing",
               "nameAlias": "梅子青"
             },
             {
               "color": "#FF3E6A3D",
-              "name": "柳苍",
+              "name": "LiuCang",
               "nameAlias": "柳苍"
             },
             {
               "color": "#FF70C870",
-              "name": "柳绿",
+              "name": "LiuLv",
               "nameAlias": "柳绿"
             },
             {
               "color": "#FF2E4B26",
-              "name": "松墨",
+              "name": "SongMo",
               "nameAlias": "松墨"
             },
             {
               "color": "#FFA4C2A8",
-              "name": "缥缃",
+              "name": "PiaoXiang",
               "nameAlias": "缥缃"
             },
             {
               "color": "#FFB6D7A8",
-              "name": "松花",
+              "name": "SongHua",
               "nameAlias": "松花"
             },
             {
               "color": "#FF4A7856",
-              "name": "荷绿",
+              "name": "HeLv",
               "nameAlias": "荷绿"
             },
             {
               "color": "#FF2E4B3A",
-              "name": "墨玉",
+              "name": "MoYu",
               "nameAlias": "墨玉"
             },
             {
               "color": "#FF3B7A57",
-              "name": "黛绿",
+              "name": "DaiLv",
               "nameAlias": "黛绿"
             },
             {
               "color": "#FFB8C7A0",
-              "name": "茶粉绿",
+              "name": "ChaFenLv",
               "nameAlias": "茶粉绿"
             },
             {
               "color": "#FF3B7A5D",
-              "name": "青絇繶纯",
+              "name": "QingQuYiChun",
               "nameAlias": "青絇繶纯"
             },
             {
               "color": "#FF7AA35A",
-              "name": "官绿",
+              "name": "GuanLv",
               "nameAlias": "官绿"
             },
             {
               "color": "#FF3B5F3A",
-              "name": "焦绿",
+              "name": "JiaoLv",
               "nameAlias": "焦绿"
             },
             {
               "color": "#FFB2C8A0",
-              "name": "浅豆绿",
+              "name": "QianDouLv",
               "nameAlias": "浅豆绿"
             },
             {
               "color": "#FF2E8B57",
-              "name": "青绿",
+              "name": "QingLv",
               "nameAlias": "青绿"
             },
             {
               "color": "#FF6CC788",
-              "name": "新绿",
+              "name": "XinLv",
               "nameAlias": "新绿"
             },
             {
               "color": "#FFE2F0CB",
-              "name": "霜地",
+              "name": "ShuangDi",
               "nameAlias": "霜地"
             },
             {
               "color": "#FFA0D6B4",
-              "name": "松花绿",
+              "name": "SongHuaLv",
               "nameAlias": "松花绿"
             },
             {
               "color": "#FF3A5F4B",
-              "name": "马尔斯绿",
+              "name": "MaErSiLv",
               "nameAlias": "马尔斯绿"
             },
             {
               "color": "#FF8DB67A",
-              "name": "荠麦绿",
+              "name": "JiMaiLv",
               "nameAlias": "荠麦绿"
             },
             {
               "color": "#FFA8D865",
-              "name": "莺儿",
+              "name": "YingEr",
               "nameAlias": "莺儿"
             },
             {
               "color": "#FF2E7D32",
-              "name": "汉绣绿",
+              "name": "HanXiuLv",
               "nameAlias": "汉绣绿"
             },
             {
               "color": "#FF2AAE6F",
-              "name": "翠青",
+              "name": "CuiQing",
               "nameAlias": "翠青"
             },
             {
               "color": "#FF0D5E3A",
-              "name": "深绿",
+              "name": "ShenLv",
               "nameAlias": "深绿"
             }
           ]
