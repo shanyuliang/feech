@@ -1,0 +1,140 @@
+{
+  "cultures": [
+    {
+      "name": "Chinese Traditional Colors",
+      "nameAlias": "中国传统颜色",
+      "categories": [
+        {
+          "name": "Red",
+          "nameAlias": "红",
+          "colors": [
+            {
+              "value": "#FFED3333",
+              "name": "GouShuHong",
+              "nameAlias": "枸枢红"
+            },
+            {
+              "value": "#FFD42517",
+              "name": "HeDingHong",
+              "nameAlias": "鹤顶红"
+            },
+            {
+              "value": "#FFED3321",
+              "name": "YingTaoHong",
+              "nameAlias": "樱桃红"
+            },
+            {
+              "value": "#FFF03F24",
+              "name": "YanZhiHong",
+              "nameAlias": "胭脂红"
+            }
+          ]
+        },
+        {
+          "name": "Green",
+          "nameAlias": "绿",
+          "colors": [
+            {
+              "value": "#FF207F4C",
+              "name": "BoHeLv",
+              "nameAlias": "薄荷绿"
+            },
+            {
+              "value": "#FF229453",
+              "name": "KongQueLv",
+              "nameAlias": "孔雀绿"
+            },
+            {
+              "value": "#FFE2E7BF",
+              "name": "HaiMoLv",
+              "nameAlias": "海沫绿"
+            },
+            {
+              "value": "#FF43B244",
+              "name": "XianLv",
+              "nameAlias": "鲜绿"
+            }
+          ]
+        },
+        {
+          "name": "Yellow",
+          "nameAlias": "黄",
+          "colors": [
+            {
+              "value": "#FFFED71A",
+              "name": "FoShouHuang",
+              "nameAlias": "佛手黄"
+            },
+            {
+              "value": "#FFEED045",
+              "name": "QiuKuiHuang",
+              "nameAlias": "秋葵黄"
+            },
+            {
+              "value": "#FFF8DF72",
+              "name": "MoLiHuang",
+              "nameAlias": "茉莉黄"
+            }
+          ]
+        },
+        {
+          "name": "Blue",
+          "nameAlias": "蓝",
+          "colors": [
+            {
+              "value": "#FF126E82",
+              "name": "YuQinLan",
+              "nameAlias": "玉鈙蓝"
+            },
+            {
+              "value": "#FF0F95B0",
+              "name": "DanFanLan",
+              "nameAlias": "胆矾蓝"
+            },
+            {
+              "value": "#FF134857",
+              "name": "CangLan",
+              "nameAlias": "苍蓝"
+            },
+            {
+              "value": "#FF1661AB",
+              "name": "DianQing",
+              "nameAlias": "靛青"
+            },
+            {
+                "value": "#FF2775B6",
+              "name": "JingTaiLan",
+              "nameAlias": "景泰蓝"
+            }
+          ]
+        },
+        {
+          "name": "White",
+          "nameAlias": "白",
+          "colors": [
+            {
+              "value": "#FFFFFEF8",
+              "name": "XiangYaBai",
+              "nameAlias": "象牙白"
+            },
+            {
+              "value": "#FFF8F4ED",
+              "name": "HanBaiYu",
+              "nameAlias": "汉白玉"
+            },
+            {
+              "value": "#FFEEF7F2",
+              "name": "YueBai",
+              "nameAlias": "月白"
+            },
+            {
+              "value": "#FFD8E3E7",
+              "name": "YunFengBai",
+              "nameAlias": "云峰白"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

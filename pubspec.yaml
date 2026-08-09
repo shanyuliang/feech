@@ -89,6 +89,7 @@ flutter:
     - assets/data/toilets_filtered.json
     - assets/data/water_fountains.json
     - assets/data/two-min-passenger_zones.json
+    - assets/data/feech_colors.json
   shaders:
     - assets/shaders/art_fractal.frag
     - assets/shaders/image_blur.frag
