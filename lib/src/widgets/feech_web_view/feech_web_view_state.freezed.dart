@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'feech_web_view_state.dart';
@@ -9,6 +9,7 @@ part of 'feech_web_view_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -63,7 +64,7 @@ class _$FeechWebViewStateCopyWithImpl<$Res>
 /// Create a copy of FeechWebViewState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? urlEditorController = null,Object? webViewController = null,Object? initialUrl = freezed,Object? title = freezed,Object? progress = freezed,Object? pageStarted = freezed,Object? pageFinished = freezed,Object? currentUrl = freezed,Object? errorMessage = freezed,Object? javaScriptMessage = freezed,Object? navigationDecision = freezed,Object? canGoBack = null,Object? canGoForward = null,Object? expandTitleBar = null,Object? showDebugToolbar = null,Object? historyUrls = null,Object? localStorageItems = null,Object? sessionStorageItems = null,Object? stateStatus = null,}) {
-  return _then(_self.copyWith(
+  return _then(FeechWebViewState(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,urlEditorController: null == urlEditorController ? _self.urlEditorController : urlEditorController // ignore: cast_nullable_to_non_nullable
 as TextEditingController,webViewController: null == webViewController ? _self.webViewController : webViewController // ignore: cast_nullable_to_non_nullable
@@ -225,7 +226,7 @@ return $default(_that.id,_that.urlEditorController,_that.webViewController,_that
 
 
 class _FeechWebViewState implements FeechWebViewState {
-  const _FeechWebViewState({required this.id, required this.urlEditorController, required this.webViewController, this.initialUrl, this.title, this.progress, this.pageStarted, this.pageFinished, this.currentUrl, this.errorMessage, this.javaScriptMessage, this.navigationDecision, this.canGoBack = false, this.canGoForward = false, this.expandTitleBar = false, this.showDebugToolbar = false, final  List<String?> historyUrls = const [], final  Map<String?, dynamic> localStorageItems = const {}, final  Map<String?, dynamic> sessionStorageItems = const {}, this.stateStatus = StateStatus.initial}): _historyUrls = historyUrls,_localStorageItems = localStorageItems,_sessionStorageItems = sessionStorageItems;
+  const _FeechWebViewState({required this.id, required this.urlEditorController, required this.webViewController, this.initialUrl, this.title, this.progress, this.pageStarted, this.pageFinished, this.currentUrl, this.errorMessage, this.javaScriptMessage, this.navigationDecision, this.canGoBack = false, this.canGoForward = false, this.expandTitleBar = false, this.showDebugToolbar = false,  List<String?> historyUrls = const [],  Map<String?, dynamic> localStorageItems = const {},  Map<String?, dynamic> sessionStorageItems = const {}, this.stateStatus = StateStatus.initial}): _historyUrls = historyUrls,_localStorageItems = localStorageItems,_sessionStorageItems = sessionStorageItems;
   
 
 @override final  int? id;

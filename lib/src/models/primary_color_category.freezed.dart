@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'primary_color_category.dart';
@@ -9,6 +9,7 @@ part of 'primary_color_category.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -63,7 +64,7 @@ class _$PrimaryColorCategoryCopyWithImpl<$Res>
 /// Create a copy of PrimaryColorCategory
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? nameAlias = freezed,Object? colors = null,}) {
-  return _then(_self.copyWith(
+  return _then(PrimaryColorCategory(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,nameAlias: freezed == nameAlias ? _self.nameAlias : nameAlias // ignore: cast_nullable_to_non_nullable
 as String?,colors: null == colors ? _self.colors : colors // ignore: cast_nullable_to_non_nullable
@@ -208,7 +209,7 @@ return $default(_that.name,_that.nameAlias,_that.colors);case _:
 
 
 class _PrimaryColorCategory implements PrimaryColorCategory {
-  const _PrimaryColorCategory({required this.name, this.nameAlias, final  List<PrimaryColor> colors = const []}): _colors = colors;
+  const _PrimaryColorCategory({required this.name, this.nameAlias,  List<PrimaryColor> colors = const []}): _colors = colors;
   
 
 @override final  String name;
