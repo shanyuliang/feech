@@ -116,12 +116,12 @@ class SvgAsHtmlStringSignal extends FutureSignal<(String?, Size?)> {
   // Note: `fit` only apply if `fillContainer` is true.
 
   SvgAsHtmlStringSignal({
-    required final String svgLink,
-    final Map<String, String>? headers,
-    final AlignmentGeometry alignment = Alignment.center,
-    final Color backgroundColor = Colors.transparent,
-    final bool fillContainer = false,
-    final BoxFit fit = BoxFit.contain,
+    required String svgLink,
+    Map<String, String>? headers,
+    AlignmentGeometry alignment = Alignment.center,
+    Color backgroundColor = Colors.transparent,
+    bool fillContainer = false,
+    BoxFit fit = BoxFit.contain,
     required SvgStringSignal svgStringSignal,
     this.debugLogDiagnostics = false,
   }) : super(() async {

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:signals_flutter/signals_flutter.dart';
 
 class SvgStringSignal extends FutureSignal<String?> {
-  SvgStringSignal({required final String svgLink, final Map<String, String>? headers, bool debugLogDiagnostics = false})
+  SvgStringSignal({required String svgLink, Map<String, String>? headers, bool debugLogDiagnostics = false})
     : super(() async {
         if (svgLink.startsWith("http")) {
           final response = await http.get(Uri.parse(svgLink), headers: headers);

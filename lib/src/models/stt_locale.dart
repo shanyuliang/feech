@@ -4,7 +4,7 @@ part 'stt_locale.freezed.dart';
 
 @Freezed()
 abstract class SttLocale with _$SttLocale {
-  const factory SttLocale({required final String localeId, required final String localeName}) = _SttLocale;
+  const factory SttLocale({required String localeId, required String localeName}) = _SttLocale;
 
   const SttLocale._();
 

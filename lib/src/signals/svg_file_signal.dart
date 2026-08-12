@@ -9,9 +9,9 @@ class SvgFileSignal extends StreamSignal<(String, File?)> {
   final bool debugLogDiagnostics;
 
   SvgFileSignal({
-    required final AppCacheManager appCacheManager,
-    required final String svgLink,
-    final Map<String, String>? headers,
+    required AppCacheManager appCacheManager,
+    required String svgLink,
+    Map<String, String>? headers,
     this.debugLogDiagnostics = false,
   }) : super(() async* {
          yield* appCacheManager.getFileStream(svgLink, headers: headers).asyncMap((fileResponse) async {

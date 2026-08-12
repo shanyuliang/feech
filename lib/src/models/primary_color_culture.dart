@@ -6,6 +6,6 @@ part 'primary_color_culture.freezed.dart';
 
 @Freezed()
 abstract class PrimaryColorCulture with _$PrimaryColorCulture {
-  const factory PrimaryColorCulture({required final String name, final String? nameAlias, @Default([]) final List<PrimaryColorCategory> categories}) =
+  const factory PrimaryColorCulture({required String name, String? nameAlias, @Default([]) List<PrimaryColorCategory> categories}) =
       _PrimaryColorCulture;
 }

@@ -12,7 +12,7 @@ part 'runtime_info_provider.g.dart';
 @Riverpod(keepAlive: true)
 class RuntimeInfoProvider extends _$RuntimeInfoProvider {
   @override
-  RuntimeInfo build({final bool debugLogDiagnostics = false}) {
+  RuntimeInfo build({bool debugLogDiagnostics = false}) {
     const appLifecycleState = AppLifecycleState.resumed;
     final brightness = PlatformDispatcher.instance.platformBrightness;
     final displayConstraints = BoxConstraints.fromViewConstraints(

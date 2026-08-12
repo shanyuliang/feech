@@ -10,10 +10,10 @@ abstract class AudioPlaybackState with _$AudioPlaybackState {
   const AudioPlaybackState._();
 
   const factory AudioPlaybackState({
-    @Default(AudioPlayerState.stopped) final AudioPlayerState playerState,
-    final Duration? duration,
-    final Duration? position,
-    final AudioPlayerState? playerStateWhenAppPaused,
+    @Default(AudioPlayerState.stopped) AudioPlayerState playerState,
+    Duration? duration,
+    Duration? position,
+    AudioPlayerState? playerStateWhenAppPaused,
   }) = _AudioPlaybackState;
 
   factory AudioPlaybackState.fromJson(Map<String, dynamic> json) => _$AudioPlaybackStateFromJson(json);

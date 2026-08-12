@@ -8,10 +8,10 @@ part 'camera_meta.freezed.dart';
 @Freezed()
 abstract class CameraMeta with _$CameraMeta {
   const factory CameraMeta({
-    final List<CameraDescription>? cameraDescriptions,
-    final CameraDescription? selectedCameraDescription,
-    final CameraController? selectedCameraController,
-    final String? imagePath,
-    @Default(StateStatus.initial) final StateStatus stateStatus,
+    List<CameraDescription>? cameraDescriptions,
+    CameraDescription? selectedCameraDescription,
+    CameraController? selectedCameraController,
+    String? imagePath,
+    @Default(StateStatus.initial) StateStatus stateStatus,
   }) = _CameraMeta;
 }

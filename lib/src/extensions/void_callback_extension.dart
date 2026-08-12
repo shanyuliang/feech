@@ -5,7 +5,7 @@ import '../support/debouncer.dart';
 extension VoidCallbackExtension on VoidCallback {
   static final Map<String, Debouncer> debouncerMap = {};
 
-  void debounceWarmUp({required final String actionId, required final durationInMilliseconds}) {
+  void debounceWarmUp({required String actionId, required durationInMilliseconds}) {
     final debouncer = debouncerMap[actionId] ??
         Debouncer(
           durationInMilliseconds: durationInMilliseconds,
@@ -18,7 +18,7 @@ extension VoidCallbackExtension on VoidCallback {
     debouncer.run(this);
   }
 
-  void debounceCoolDown({required final String actionId, required final durationInMilliseconds}) {
+  void debounceCoolDown({required String actionId, required durationInMilliseconds}) {
     final debouncer = debouncerMap[actionId] ??
         Debouncer(
           durationInMilliseconds: durationInMilliseconds,

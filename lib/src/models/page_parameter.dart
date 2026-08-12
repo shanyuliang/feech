@@ -9,9 +9,9 @@ abstract class PageParameter with _$PageParameter {
   const PageParameter._();
 
   const factory PageParameter({
-    required final String routeName,
-    @Default(PageLifecycleState.detached) final PageLifecycleState initialLifecycleState,
-    final String? initialTitle,
+    required String routeName,
+    @Default(PageLifecycleState.detached) PageLifecycleState initialLifecycleState,
+    String? initialTitle,
   }) = _PageParameter;
 
   @override

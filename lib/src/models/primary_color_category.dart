@@ -6,6 +6,6 @@ part 'primary_color_category.freezed.dart';
 
 @Freezed()
 abstract class PrimaryColorCategory with _$PrimaryColorCategory {
-  const factory PrimaryColorCategory({required final String name, final String? nameAlias, @Default([]) final List<PrimaryColor> colors}) =
+  const factory PrimaryColorCategory({required String name, String? nameAlias, @Default([]) List<PrimaryColor> colors}) =
       _PrimaryColorCategory;
 }

@@ -131,7 +131,7 @@ extension StringExtension on String {
     return hslColor.toColor();
   }
 
-  DateTime parseAsDTODateTime({final String? ofFormat, final String? withTimezoneSuffix, final TimezoneMode outputTimezoneMode = TimezoneMode.auto}) {
+  DateTime parseAsDTODateTime({String? ofFormat, String? withTimezoneSuffix, TimezoneMode outputTimezoneMode = TimezoneMode.auto}) {
     final dataTime = switch (ofFormat) {
       null => DateTime.parse('$this${withTimezoneSuffix ?? ''}'),
       _ => DateFormat(ofFormat).parse('$this${withTimezoneSuffix ?? ''}'),
@@ -164,7 +164,7 @@ extension StringExtension on String {
       return toUpperCase();
     }
     final words = split(' ');
-    final capitalized = words.map((final word) {
+    final capitalized = words.map((word) {
       final first = word.substring(0, 1).toUpperCase();
       final rest = word.substring(1);
 

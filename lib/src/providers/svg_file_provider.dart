@@ -11,9 +11,9 @@ part 'svg_file_provider.g.dart';
 class SvgFileProvider extends _$SvgFileProvider {
   @override
   Stream<(String, File?)> build({
-    required final AppCacheManager appCacheManager,
-    required final String svgLink,
-    final Map<String, String>? headers,
+    required AppCacheManager appCacheManager,
+    required String svgLink,
+    Map<String, String>? headers,
   }) async* {
     yield* appCacheManager.getFileStream(svgLink, headers: headers).asyncMap((fileResponse) async {
       final file = (fileResponse as FileInfo).file;

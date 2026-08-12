@@ -6,5 +6,5 @@ part 'primary_colors.freezed.dart';
 
 @Freezed()
 abstract class PrimaryColors with _$PrimaryColors {
-  const factory PrimaryColors({@Default([]) final List<PrimaryColorCulture> cultures}) = _PrimaryColors;
+  const factory PrimaryColors({@Default([]) List<PrimaryColorCulture> cultures}) = _PrimaryColors;
 }

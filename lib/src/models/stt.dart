@@ -6,5 +6,5 @@ part 'stt.freezed.dart';
 
 @Freezed()
 abstract class Stt with _$Stt {
-  const factory Stt({required final List<SttLocale> supportedLocales, required final SttLocale? selectedLocale}) = _Stt;
+  const factory Stt({required List<SttLocale> supportedLocales, required SttLocale? selectedLocale}) = _Stt;
 }

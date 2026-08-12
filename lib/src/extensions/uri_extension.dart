@@ -56,7 +56,7 @@ extension UriExtension on Uri {
     return returnedParameters;
   }
 
-  Uri insertLastPathSegment({final String? insertedPathSegment}) {
+  Uri insertLastPathSegment({String? insertedPathSegment}) {
     if (insertedPathSegment != null) {
       final originalPathSegments = pathSegments.toList();
       return replace(pathSegments: originalPathSegments..insert(originalPathSegments.length - 1, insertedPathSegment));

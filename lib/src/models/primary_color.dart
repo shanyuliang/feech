@@ -8,6 +8,6 @@ part 'primary_color.freezed.dart';
 
 @Freezed()
 abstract class PrimaryColor with _$PrimaryColor {
-  const factory PrimaryColor({@ColorStringConverter() required final Color color, final String? id, final String? name, final String? nameAlias}) =
+  const factory PrimaryColor({@ColorStringConverter() required Color color, String? id, String? name, String? nameAlias}) =
       _PrimaryColor;
 }

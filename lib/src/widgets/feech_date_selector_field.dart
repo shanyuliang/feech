@@ -28,7 +28,7 @@ class FeechDateSelectorField extends StatelessWidget {
   final String? Function(String?)? validator;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return FeechTextFormField(
       autovalidateMode: autovalidateMode,
       initialText: initialDate.formatToShortDateDisplay(),

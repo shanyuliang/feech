@@ -9,10 +9,10 @@ part 'tts.freezed.dart';
 @Freezed(makeCollectionsUnmodifiable: false)
 abstract class Tts with _$Tts {
   const factory Tts({
-    required final FlutterTts flutterTts,
-    required final List<TtsLocaleVoices> allLocaleVoices,
-    required final String? selectedLocaleId,
-    required final String? selectedVoiceId,
+    required FlutterTts flutterTts,
+    required List<TtsLocaleVoices> allLocaleVoices,
+    required String? selectedLocaleId,
+    required String? selectedVoiceId,
   }) = _Tts;
 
   const Tts._();

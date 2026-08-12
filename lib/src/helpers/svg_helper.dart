@@ -32,8 +32,8 @@ class SvgHelper {
 
   static Future<String?> _getSvgString({
     required String svgLink,
-    final Map<String, String>? headers,
-    final bool debugLogDiagnostics = false,
+    Map<String, String>? headers,
+    bool debugLogDiagnostics = false,
   }) async {
     if (svgLink.startsWith("http")) {
       final response = await http_pkg.get(Uri.parse(svgLink), headers: headers);
@@ -55,10 +55,10 @@ class SvgHelper {
 
   static Future<PictureInfo?> getPictureInfo({
     required String svgLink,
-    final Map<String, String>? headers,
-    final List<String>? interpolateParams,
-    final bool useCache = true,
-    final bool debugLogDiagnostics = false,
+    Map<String, String>? headers,
+    List<String>? interpolateParams,
+    bool useCache = true,
+    bool debugLogDiagnostics = false,
   }) async {
     PictureInfo? pictureInfo;
     final pictureInfoCacheKey =
@@ -116,11 +116,11 @@ class SvgHelper {
 
   static Future<Uint8List?> getPngBytes({
     required String svgLink,
-    final double scale = 1.0,
-    final Map<String, String>? headers,
-    final List<String>? interpolateParams,
-    final bool useCache = true,
-    final bool debugLogDiagnostics = false,
+    double scale = 1.0,
+    Map<String, String>? headers,
+    List<String>? interpolateParams,
+    bool useCache = true,
+    bool debugLogDiagnostics = false,
   }) async {
     Uint8List? pngBytes;
     final pngBytesCacheKey =
@@ -195,10 +195,10 @@ class SvgHelper {
 
   static Future<BitmapDescriptor?> getBitmapDescriptor({
     required String svgLink,
-    final double scale = 1.0,
-    final Map<String, String>? headers,
-    final List<String>? interpolateParams,
-    final bool debugLogDiagnostics = false,
+    double scale = 1.0,
+    Map<String, String>? headers,
+    List<String>? interpolateParams,
+    bool debugLogDiagnostics = false,
   }) async {
     final bitmapDescriptorCacheKey =
         Object.hashAll([svgLink, scale, ...?interpolateParams]);

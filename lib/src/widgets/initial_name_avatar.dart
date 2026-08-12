@@ -11,7 +11,7 @@ class InitialNameAvatar extends StatelessWidget {
   final bool roundCornerShape;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final initials = fullText?.asNameGetInitials(maxResultLength: maxCharacterCount) ?? '';
     final color = fullText?.mapToHSLColor(0.5, 0.5);
     final theme = Theme.of(context);

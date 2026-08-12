@@ -7,7 +7,7 @@ part 'svg_string_provider.g.dart';
 @Riverpod()
 class SvgStringProvider extends _$SvgStringProvider {
   @override
-  Future<String?> build({required final String svgLink, final Map<String, String>? headers}) async {
+  Future<String?> build({required String svgLink, Map<String, String>? headers}) async {
     if (svgLink.startsWith("http")) {
       final response = await http.get(Uri.parse(svgLink), headers: headers);
       if (response.statusCode >= 200 && response.statusCode <= 299) {

@@ -10,11 +10,11 @@ abstract class UserLocation with _$UserLocation {
   factory UserLocation.fromJson(Map<String, dynamic> json) => _$UserLocationFromJson(json);
 
   const factory UserLocation({
-    final UserLatLng? lastKnownLocation,
-    final UserLatLng? currentLocation,
-    final Object? error,
-    @Default(false) final bool isListeningLocationChange,
-    @Default(StateStatus.initial) final StateStatus stateStatus,
+    UserLatLng? lastKnownLocation,
+    UserLatLng? currentLocation,
+    Object? error,
+    @Default(false) bool isListeningLocationChange,
+    @Default(StateStatus.initial) StateStatus stateStatus,
   }) = _UserLocation;
 }
 
@@ -22,5 +22,5 @@ abstract class UserLocation with _$UserLocation {
 abstract class UserLatLng with _$UserLatLng {
   factory UserLatLng.fromJson(Map<String, dynamic> json) => _$UserLatLngFromJson(json);
 
-  const factory UserLatLng({required final double latitude, required final double longitude}) = _UserLatLng;
+  const factory UserLatLng({required double latitude, required double longitude}) = _UserLatLng;
 }

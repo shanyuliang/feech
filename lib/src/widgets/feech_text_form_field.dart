@@ -83,7 +83,7 @@ class _FeechTextFormFieldState extends State<FeechTextFormField> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return TextFormField(
       autocorrect: widget.autoCorrect,
       autovalidateMode: widget.autovalidateMode,

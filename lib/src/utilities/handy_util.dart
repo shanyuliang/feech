@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../extensions/general_type_extension.dart';
 
-T? suppressThrowableSync<T>({required final T? Function() throwable, final T? Function(Object error, StackTrace stackTrace)? whenError}) {
+T? suppressThrowableSync<T>({required T? Function() throwable, T? Function(Object error, StackTrace stackTrace)? whenError}) {
   try {
     return throwable.call();
   } catch (error, stackTrace) {
@@ -18,7 +18,7 @@ T? suppressThrowableSync<T>({required final T? Function() throwable, final T? Fu
   }
 }
 
-T suppressThrowableSyncDefault<T>({required final T Function() throwable, required final T Function(Object error, StackTrace stackTrace) whenError}) {
+T suppressThrowableSyncDefault<T>({required T Function() throwable, required T Function(Object error, StackTrace stackTrace) whenError}) {
   try {
     return throwable.call();
   } catch (error, stackTrace) {
@@ -27,8 +27,8 @@ T suppressThrowableSyncDefault<T>({required final T Function() throwable, requir
 }
 
 Future<T?> suppressThrowableAsync<T>({
-  required final Future<T?> Function() throwable,
-  final Future<T?> Function(Object error, StackTrace stackTrace)? whenError,
+  required Future<T?> Function() throwable,
+  Future<T?> Function(Object error, StackTrace stackTrace)? whenError,
 }) async {
   try {
     return await throwable.call();
@@ -42,8 +42,8 @@ Future<T?> suppressThrowableAsync<T>({
 }
 
 Future<T> suppressThrowableAsyncDefault<T>({
-  required final Future<T> Function() throwable,
-  required final Future<T> Function(Object error, StackTrace stackTrace) whenError,
+  required Future<T> Function() throwable,
+  required Future<T> Function(Object error, StackTrace stackTrace) whenError,
 }) async {
   try {
     return await throwable.call();

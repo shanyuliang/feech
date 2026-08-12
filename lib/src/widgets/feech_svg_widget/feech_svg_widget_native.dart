@@ -82,7 +82,7 @@ class FeechSvgWidget extends StatelessWidget {
     });
   }
 
-  Size _decideSize({required final Size svgSize}) {
+  Size _decideSize({required Size svgSize}) {
     double? width = this.width;
     double? height = this.height;
     if (width != null && height != null) {

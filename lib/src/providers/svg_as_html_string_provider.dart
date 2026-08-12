@@ -115,12 +115,12 @@ class SvgAsHtmlStringProvider extends _$SvgAsHtmlStringProvider {
 
   @override
   Future<(String?, Size?)> build({
-    required final String svgLink,
-    final Map<String, String>? headers,
-    final AlignmentGeometry alignment = Alignment.center,
-    final Color backgroundColor = Colors.transparent,
-    final bool fillContainer = false,
-    final BoxFit fit = BoxFit.contain,
+    required String svgLink,
+    Map<String, String>? headers,
+    AlignmentGeometry alignment = Alignment.center,
+    Color backgroundColor = Colors.transparent,
+    bool fillContainer = false,
+    BoxFit fit = BoxFit.contain,
   }) async {
     final svgString = await ref.watch(svgStringProvider(svgLink: svgLink, headers: headers).future);
     if (svgString != null) {
