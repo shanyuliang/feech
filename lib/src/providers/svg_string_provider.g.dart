@@ -50,7 +50,7 @@ final class SvgStringProviderProvider
   }
 }
 
-String _$svgStringProviderHash() => r'd684d4a6346625503b26536707420325bef1963d';
+String _$svgStringProviderHash() => r'0ceb5759db79d7058b7faa83a8ad52b586333f88';
 
 final class SvgStringProviderFamily extends $Family
     with

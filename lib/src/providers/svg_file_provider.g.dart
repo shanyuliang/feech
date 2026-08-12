@@ -55,7 +55,7 @@ final class SvgFileProviderProvider
   }
 }
 
-String _$svgFileProviderHash() => r'ec7133742a96350e60416587c50f64e6025401f2';
+String _$svgFileProviderHash() => r'074d446b9ca993352e3cf004883408607b2b7471';
 
 final class SvgFileProviderFamily extends $Family
     with

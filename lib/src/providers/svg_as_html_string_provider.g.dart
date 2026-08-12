@@ -60,7 +60,7 @@ final class SvgAsHtmlStringProviderProvider
 }
 
 String _$svgAsHtmlStringProviderHash() =>
-    r'182c0a15407a46b916e40fa9f1bf71a710e4d9fe';
+    r'735a8d0a79f1624adbedf344b538699decfd2d4e';
 
 final class SvgAsHtmlStringProviderFamily extends $Family
     with
