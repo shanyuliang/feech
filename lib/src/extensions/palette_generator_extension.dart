@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 extension PaletteGeneratorExtension on PaletteGenerator {

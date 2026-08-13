@@ -1,12 +1,12 @@
 import 'dart:developer' as developer;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../constants.dart';
 import '../extensions/general_type_extension.dart';
-import '../providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
 import '../models/page_lifecycle_state.dart';
+import '../providers/app_lifecycle_state_provider/app_lifecycle_state_provider.dart';
 import '../providers/page_lifecycle_state_provider.dart';
 import '../providers/page_title_provider.dart';
 import '../utilities/handy_util.dart';
@@ -74,73 +74,58 @@ class _BasePageState extends ConsumerState<BasePage> {
     if (widget.debugLogDiagnostics) {
       developer.log("${widget.routeName}[${widget.key}] page build", name: debugTag);
     }
-    ref.listen(
-      appLifecycleStateProvider,
-      (previous, next) {
+    ref.listen(appLifecycleStateProvider, (previous, next) {
+      switch (next) {
+        case AppLifecycleState.resumed:
+          if (widget.debugLogDiagnostics) {
+            developer.log("${widget.routeName}[${widget.key}] app resumed", name: debugTag);
+          }
+          widget.onAppResumed(context, ref);
+          break;
+        case AppLifecycleState.paused:
+          if (widget.debugLogDiagnostics) {
+            developer.log("${widget.routeName}[${widget.key}] app paused", name: debugTag);
+          }
+          widget.onAppPaused(context, ref);
+          break;
+        case AppLifecycleState.detached:
+          if (widget.debugLogDiagnostics) {
+            developer.log("${widget.routeName}[${widget.key}] app detached", name: debugTag);
+          }
+          widget.onAppDetached(context, ref);
+          break;
+        default:
+          break;
+      }
+    });
+    widget.routeName?.let((it) {
+      ref.listen(pageLifecycleStateProvider(it), (previous, next) {
         switch (next) {
-          case AppLifecycleState.resumed:
+          case PageLifecycleState.resumed:
             if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] app resumed", name: debugTag);
+              developer.log("${widget.routeName}[${widget.key}] page resumed", name: debugTag);
             }
-            widget.onAppResumed(context, ref);
+            _refreshTitle();
+            widget.onPageResumed(context, ref);
             break;
-          case AppLifecycleState.paused:
+          case PageLifecycleState.paused:
             if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] app paused", name: debugTag);
+              developer.log("${widget.routeName}[${widget.key}] page paused", name: debugTag);
             }
-            widget.onAppPaused(context, ref);
-            break;
-          case AppLifecycleState.detached:
-            if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] app detached", name: debugTag);
-            }
-            widget.onAppDetached(context, ref);
+            widget.onPagePaused(context, ref);
             break;
           default:
             break;
         }
-      },
-    );
-    widget.routeName?.let(
-      (it) {
-        ref.listen(
-          pageLifecycleStateProvider(it),
-          (previous, next) {
-            switch (next) {
-              case PageLifecycleState.resumed:
-                if (widget.debugLogDiagnostics) {
-                  developer.log("${widget.routeName}[${widget.key}] page resumed", name: debugTag);
-                }
-                _refreshTitle();
-                widget.onPageResumed(context, ref);
-                break;
-              case PageLifecycleState.paused:
-                if (widget.debugLogDiagnostics) {
-                  developer.log("${widget.routeName}[${widget.key}] page paused", name: debugTag);
-                }
-                widget.onPagePaused(context, ref);
-                break;
-              default:
-                break;
-            }
-          },
-        );
-        ref.listen(
-          pageTitleProvider(it),
-          (previous, next) {
-            if (widget.debugLogDiagnostics) {
-              developer.log("${widget.routeName}[${widget.key}] page title changed to [$next]", name: debugTag);
-            }
-            _refreshTitle();
-          },
-        );
-      },
-    );
-    return Title(
-      title: widget.getTitle(ref),
-      color: Theme.of(context).colorScheme.primary,
-      child: widget.build(context, ref),
-    );
+      });
+      ref.listen(pageTitleProvider(it), (previous, next) {
+        if (widget.debugLogDiagnostics) {
+          developer.log("${widget.routeName}[${widget.key}] page title changed to [$next]", name: debugTag);
+        }
+        _refreshTitle();
+      });
+    });
+    return Title(title: widget.getTitle(ref), color: Theme.of(context).colorScheme.primary, child: widget.build(context, ref));
   }
 
   @override

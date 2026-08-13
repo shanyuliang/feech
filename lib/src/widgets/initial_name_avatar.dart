@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../extensions/string_extension.dart';
 import 'round_corner_avatar.dart';

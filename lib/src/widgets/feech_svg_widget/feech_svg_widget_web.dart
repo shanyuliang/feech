@@ -1,7 +1,7 @@
 import 'dart:js_interop';
 import 'dart:ui_web';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 import 'package:web/web.dart' as web;
