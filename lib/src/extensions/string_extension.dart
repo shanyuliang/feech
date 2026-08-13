@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:version/version.dart';
 
 import '../models/timezone_mode.dart';

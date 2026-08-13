@@ -1,6 +1,6 @@
 import 'package:feech/feech.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 void main() {
   test('toHexString black', () {

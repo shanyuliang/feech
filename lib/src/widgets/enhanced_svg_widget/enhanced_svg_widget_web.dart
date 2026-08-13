@@ -1,8 +1,8 @@
 import 'dart:js_interop';
 import 'dart:ui_web';
 
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:web/web.dart' as web;
 

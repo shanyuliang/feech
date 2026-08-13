@@ -8,8 +8,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqlite3/common.dart';
 
 import '../constants.dart';
-import 'sqlite/sqlite_database_opener.dart';
 import '../support/database/database_result.dart';
+import 'sqlite/sqlite_database_opener.dart';
 
 typedef MapToObject<G> = G Function(Map<String, dynamic> map);
 typedef ObjectToMap<G> = Map<String, dynamic> Function(G object);
