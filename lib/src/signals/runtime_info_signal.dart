@@ -14,15 +14,15 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
     : super(
         RuntimeInfo(
           appLifecycleState: AppLifecycleState.resumed,
-          brightness: PlatformDispatcher.instance.platformBrightness,
+          brightness: WidgetsBinding.instance.platformDispatcher.platformBrightness,
           displayConstraints: BoxConstraints.fromViewConstraints(
-            PlatformDispatcher.instance.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
           ),
           displayWidthMode: BoxConstraints.fromViewConstraints(
-            PlatformDispatcher.instance.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
           ).toDisplayWidthMode(),
-          locale: PlatformDispatcher.instance.locale,
-          textScaleFactor: PlatformDispatcher.instance.textScaleFactor,
+          locale: WidgetsBinding.instance.platformDispatcher.locale,
+          textScaleFactor: WidgetsBinding.instance.platformDispatcher.textScaleFactor,
         ),
         options: SignalOptions(name: "RuntimeInfoSignal"),
       );
@@ -65,9 +65,9 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
   }
 
   void refresh() {
-    final brightness = PlatformDispatcher.instance.platformBrightness;
-    final locale = PlatformDispatcher.instance.locale;
-    final textScaleFactor = PlatformDispatcher.instance.textScaleFactor;
+    final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    final locale = WidgetsBinding.instance.platformDispatcher.locale;
+    final textScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
     if (debugLogDiagnostics) {
       developer.log("RuntimeInfoSignal refresh brightness $brightness, locale $locale, textScaleFactor $textScaleFactor");
     }

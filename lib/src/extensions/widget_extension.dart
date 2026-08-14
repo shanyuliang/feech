@@ -30,7 +30,7 @@ extension WidgetExtension on Widget {
     }
 
     final renderRepaintBoundary = RenderRepaintBoundary();
-    final fallBackView = ui.PlatformDispatcher.instance.views.first;
+    final fallBackView = WidgetsBinding.instance.platformDispatcher.views.first;
     final view =
         context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
     pixelRatio ??= context == null
@@ -126,7 +126,7 @@ extension WidgetExtension on Widget {
     }
 
     final renderRepaintBoundary = RenderRepaintBoundary();
-    final fallBackView = ui.PlatformDispatcher.instance.views.first;
+    final fallBackView = WidgetsBinding.instance.platformDispatcher.views.first;
     final view =
         context == null ? fallBackView : View.maybeOf(context) ?? fallBackView;
     pixelRatio ??= context == null

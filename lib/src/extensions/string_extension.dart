@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
@@ -69,7 +67,7 @@ extension StringExtension on String {
     final originalPathNameUri = parseAsUri()!;
     final variant = getVariant();
     final buildType = getBuildType();
-    final locale = PlatformDispatcher.instance.locale;
+    final locale = WidgetsBinding.instance.platformDispatcher.locale;
     final localeName = locale.getLocaleName();
     final languageCode = locale.languageCode;
     final candidates = <String>[];

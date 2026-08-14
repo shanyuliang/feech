@@ -2,6 +2,7 @@ import 'dart:developer' as developer_lib;
 import 'dart:ui' as ui_lib;
 
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http_pkg;
@@ -225,7 +226,7 @@ class SvgHelper {
         useCache: false,
         debugLogDiagnostics: debugLogDiagnostics,
       );
-      final view = ui_lib.PlatformDispatcher.instance.views.first;
+      final view = WidgetsBinding.instance.platformDispatcher.views.first;
       bitmapDescriptor = pngBytes?.let((it) => BitmapDescriptor.bytes(
             it,
             imagePixelRatio: view.devicePixelRatio,

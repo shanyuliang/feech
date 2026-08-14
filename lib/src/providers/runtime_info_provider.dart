@@ -14,13 +14,13 @@ class RuntimeInfoProvider extends _$RuntimeInfoProvider {
   @override
   RuntimeInfo build({bool debugLogDiagnostics = false}) {
     const appLifecycleState = AppLifecycleState.resumed;
-    final brightness = PlatformDispatcher.instance.platformBrightness;
+    final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
     final displayConstraints = BoxConstraints.fromViewConstraints(
-        PlatformDispatcher.instance.implicitView?.physicalConstraints ??
+        WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ??
             ViewConstraints.tight(Size.zero));
     final displayWidthMode = displayConstraints.toDisplayWidthMode();
-    final locale = PlatformDispatcher.instance.locale;
-    final textScaleFactor = PlatformDispatcher.instance.textScaleFactor;
+    final locale = WidgetsBinding.instance.platformDispatcher.locale;
+    final textScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
 
     return RuntimeInfo(
       appLifecycleState: appLifecycleState,
@@ -76,9 +76,9 @@ class RuntimeInfoProvider extends _$RuntimeInfoProvider {
   }
 
   void refresh() {
-    final brightness = PlatformDispatcher.instance.platformBrightness;
-    final locale = PlatformDispatcher.instance.locale;
-    final textScaleFactor = PlatformDispatcher.instance.textScaleFactor;
+    final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    final locale = WidgetsBinding.instance.platformDispatcher.locale;
+    final textScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
     if (debugLogDiagnostics) {
       developer.log(
           "RuntimeInfoProvider refresh brightness $brightness, locale $locale, textScaleFactor $textScaleFactor");
