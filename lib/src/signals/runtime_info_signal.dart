@@ -17,11 +17,17 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
           brightness: WidgetsBinding.instance.platformDispatcher.platformBrightness,
           locale: WidgetsBinding.instance.platformDispatcher.locale,
           textScaleFactor: WidgetsBinding.instance.platformDispatcher.textScaleFactor,
-          displayConstraints: BoxConstraints.fromViewConstraints(
-            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+          // displayConstraints: BoxConstraints.fromViewConstraints(
+          //   WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+          // ),
+          // displayWidthMode: BoxConstraints.fromViewConstraints(
+          //   WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+          // ).toDisplayWidthMode(),
+          displayConstraints: BoxConstraints.loose(
+            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero,
           ),
-          displayWidthMode: BoxConstraints.fromViewConstraints(
-            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+          displayWidthMode: BoxConstraints.loose(
+            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero,
           ).toDisplayWidthMode(),
         ),
         options: SignalOptions(name: "RuntimeInfoSignal"),
@@ -41,8 +47,11 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
       setTextScaleFactor(WidgetsBinding.instance.platformDispatcher.textScaleFactor);
     };
     WidgetsBinding.instance.platformDispatcher.onMetricsChanged = () {
-      final displayConstraints = BoxConstraints.fromViewConstraints(
-        WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+      // final displayConstraints = BoxConstraints.fromViewConstraints(
+      //   WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
+      // );
+      final displayConstraints = BoxConstraints.loose(
+        WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero,
       );
       setDisplayConstraints(displayConstraints);
     };

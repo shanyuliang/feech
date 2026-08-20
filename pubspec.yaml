@@ -29,7 +29,7 @@ dependencies:
   cross_file: '>=0.3.5+4 <1.0.0' # https://pub.dev/packages/cross_file
   crypto: '>=3.0.7 <4.0.0' # https://pub.dev/packages/crypto
   device_info_plus: '>=13.2.0 <14.0.0' # https://pub.dev/packages/device_info_plus
-  dynamic_color: '>=1.9.0 <2.0.0' # https://pub.dev/packages/dynamic_color
+  dynamic_color: '>=2.1.0 <3.0.0' # https://pub.dev/packages/dynamic_color
   firebase_crashlytics: '>=5.2.7 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.2 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.4.2 <4.0.0' # https://pub.dev/packages/flutter_riverpod
