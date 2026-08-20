@@ -157,6 +157,6 @@ class StaticAppInfo {
   }
 
   static String staticToString() {
-    return 'StaticAppInfo{name: $name, package: $package, signature: $signature, versionString: $versionString, versionWithBuildNumberString: $versionWithBuildNumberString, version: $version, deviceModel: $deviceModel, deviceOsVersion: $deviceOsVersion}';
+    return 'StaticAppInfo{name: $name, package: $package, signature: $signature, versionString: $versionString, versionWithBuildNumberString: $versionWithBuildNumberString, version: $version, deviceModel: $deviceModel, deviceOsVersion: $deviceOsVersion}, firstLaunchTime: $firstLaunchTime, lastLaunchTime: $lastLaunchTime, sessionId: $sessionId}';
   }
 }

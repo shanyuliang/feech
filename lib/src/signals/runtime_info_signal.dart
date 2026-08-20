@@ -1,5 +1,4 @@
 import 'dart:developer' as developer;
-import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -23,12 +22,10 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
           // displayWidthMode: BoxConstraints.fromViewConstraints(
           //   WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
           // ).toDisplayWidthMode(),
-          displayConstraints: BoxConstraints.loose(
-            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero,
-          ),
-          displayWidthMode: BoxConstraints.loose(
-            WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero,
-          ).toDisplayWidthMode(),
+          devicePixelRatio: WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0,
+          displayConstraints: BoxConstraints.loose(WidgetsBinding.instance.platformDispatcher.implicitView?.display.size ?? Size.zero),
+          displayWidthMode: BoxConstraints.loose(WidgetsBinding.instance.platformDispatcher.implicitView?.display.size ?? Size.zero)
+              .toDisplayWidthMode(),
         ),
         options: SignalOptions(name: "RuntimeInfoSignal"),
       ) {
@@ -50,10 +47,9 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
       // final displayConstraints = BoxConstraints.fromViewConstraints(
       //   WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
       // );
-      final displayConstraints = BoxConstraints.loose(
-        WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero,
-      );
-      setDisplayConstraints(displayConstraints);
+      final devicePixelRatio = WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
+      final displayConstraints = BoxConstraints.loose(WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero);
+      setDevicePixelRatioAndDisplayConstraints(devicePixelRatio, displayConstraints);
     };
     onDispose(() {
       appLifecycleListener.dispose();
@@ -78,13 +74,14 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
     value = peek().copyWith(brightness: brightness);
   }
 
-  void setDisplayConstraints(BoxConstraints displayConstraints) {
+  void setDevicePixelRatioAndDisplayConstraints(double devicePixelRatio, BoxConstraints displayConstraints) {
     final displayWidthMode = displayConstraints.toDisplayWidthMode();
     if (debugLogDiagnostics) {
+      developer.log("RuntimeInfoSignal setDevicePixelRatio $devicePixelRatio");
       developer.log("RuntimeInfoSignal setDisplayConstraints $displayConstraints");
-      developer.log("RuntimeInfoSignal setDisplayWidthMode $displayWidthMode}");
+      developer.log("RuntimeInfoSignal setDisplayWidthMode $displayWidthMode");
     }
-    value = peek().copyWith(displayConstraints: displayConstraints, displayWidthMode: displayWidthMode);
+    value = peek().copyWith(devicePixelRatio: devicePixelRatio, displayConstraints: displayConstraints, displayWidthMode: displayWidthMode);
   }
 
   void setLocale(Locale locale) {

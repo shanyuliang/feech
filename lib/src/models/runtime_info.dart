@@ -12,6 +12,7 @@ abstract class RuntimeInfo with _$RuntimeInfo {
     required Brightness brightness,
     required Locale locale,
     required double textScaleFactor,
+    required double devicePixelRatio,
     required BoxConstraints displayConstraints,
     required DisplayWidthMode displayWidthMode,
   }) = _RuntimeInfo;
