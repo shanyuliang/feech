@@ -58,7 +58,6 @@ export 'src/providers/asset_manifest_provider.dart';
 export 'src/providers/logging_provider.dart';
 export 'src/providers/page_lifecycle_state_provider.dart';
 export 'src/providers/page_title_provider.dart';
-export 'src/providers/runtime_info_provider.dart';
 export 'src/providers/stt_provider.dart';
 export 'src/providers/svg_as_html_string_provider.dart';
 export 'src/providers/svg_asset_base64_src_provider.dart';
