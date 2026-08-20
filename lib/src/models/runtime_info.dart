@@ -8,11 +8,11 @@ part 'runtime_info.freezed.dart';
 @Freezed()
 abstract class RuntimeInfo with _$RuntimeInfo {
   const factory RuntimeInfo({
-    required AppLifecycleState appLifecycleState,
+    required AppLifecycleState? appLifecycleState,
     required Brightness brightness,
-    required BoxConstraints displayConstraints,
-    required DisplayWidthMode displayWidthMode,
     required Locale locale,
     required double textScaleFactor,
+    required BoxConstraints displayConstraints,
+    required DisplayWidthMode displayWidthMode,
   }) = _RuntimeInfo;
 }

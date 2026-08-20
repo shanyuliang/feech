@@ -13,19 +13,47 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
   RuntimeInfoSignal({this.debugLogDiagnostics = false})
     : super(
         RuntimeInfo(
-          appLifecycleState: AppLifecycleState.resumed,
+          appLifecycleState: WidgetsBinding.instance.lifecycleState,
           brightness: WidgetsBinding.instance.platformDispatcher.platformBrightness,
+          locale: WidgetsBinding.instance.platformDispatcher.locale,
+          textScaleFactor: WidgetsBinding.instance.platformDispatcher.textScaleFactor,
           displayConstraints: BoxConstraints.fromViewConstraints(
             WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
           ),
           displayWidthMode: BoxConstraints.fromViewConstraints(
             WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
           ).toDisplayWidthMode(),
-          locale: WidgetsBinding.instance.platformDispatcher.locale,
-          textScaleFactor: WidgetsBinding.instance.platformDispatcher.textScaleFactor,
         ),
         options: SignalOptions(name: "RuntimeInfoSignal"),
+      ) {
+    final appLifecycleListener = AppLifecycleListener(
+      onStateChange: (appLifecycleState) {
+        setAppLifecycleState(appLifecycleState);
+      },
+    );
+    WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged = () {
+      setBrightness(WidgetsBinding.instance.platformDispatcher.platformBrightness);
+    };
+    WidgetsBinding.instance.platformDispatcher.onLocaleChanged = () {
+      setLocale(WidgetsBinding.instance.platformDispatcher.locale);
+    };
+    WidgetsBinding.instance.platformDispatcher.onTextScaleFactorChanged = () {
+      setTextScaleFactor(WidgetsBinding.instance.platformDispatcher.textScaleFactor);
+    };
+    WidgetsBinding.instance.platformDispatcher.onMetricsChanged = () {
+      final displayConstraints = BoxConstraints.fromViewConstraints(
+        WidgetsBinding.instance.platformDispatcher.implicitView?.physicalConstraints ?? ViewConstraints.tight(Size.zero),
       );
+      setDisplayConstraints(displayConstraints);
+    };
+    onDispose(() {
+      appLifecycleListener.dispose();
+      WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged = null;
+      WidgetsBinding.instance.platformDispatcher.onLocaleChanged = null;
+      WidgetsBinding.instance.platformDispatcher.onTextScaleFactorChanged = null;
+      WidgetsBinding.instance.platformDispatcher.onMetricsChanged = null;
+    });
+  }
 
   void setAppLifecycleState(AppLifecycleState appLifecycleState) {
     if (debugLogDiagnostics) {

@@ -59,7 +59,7 @@ final class RuntimeInfoProviderProvider
 }
 
 String _$runtimeInfoProviderHash() =>
-    r'f8a7fb25eace43fc9ac9e66a73b428b2d3e34fce';
+    r'4b6a6bf7a2c249c55febdc205b3b49aed20b96af';
 
 final class RuntimeInfoProviderFamily extends $Family
     with
