@@ -13,7 +13,8 @@ abstract class RuntimeInfo with _$RuntimeInfo {
     required Locale locale,
     required double textScaleFactor,
     required double devicePixelRatio,
-    required BoxConstraints displayConstraints,
+    required BoxConstraints physicalDisplayConstraints,
+    required BoxConstraints logicalDisplayConstraints,
     required DisplayWidthMode displayWidthMode,
   }) = _RuntimeInfo;
 }
