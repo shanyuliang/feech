@@ -34,15 +34,18 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
       },
     );
     WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged = () {
+      WidgetsBinding.instance.handlePlatformBrightnessChanged();
       setBrightness(WidgetsBinding.instance.platformDispatcher.platformBrightness);
     };
     WidgetsBinding.instance.platformDispatcher.onLocaleChanged = () {
       setLocale(WidgetsBinding.instance.platformDispatcher.locale);
     };
     WidgetsBinding.instance.platformDispatcher.onTextScaleFactorChanged = () {
+      WidgetsBinding.instance.handleTextScaleFactorChanged();
       setTextScaleFactor(WidgetsBinding.instance.platformDispatcher.textScaleFactor);
     };
     WidgetsBinding.instance.platformDispatcher.onMetricsChanged = () {
+      WidgetsBinding.instance.handleMetricsChanged();
       final devicePixelRatio = WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
       final physicalDisplaySize = WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero;
       setDevicePixelRatioAndPhysicalDisplaySize(devicePixelRatio, physicalDisplaySize);
