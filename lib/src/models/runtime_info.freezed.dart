@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RuntimeInfo {
 
- AppLifecycleState? get appLifecycleState; Brightness get brightness; Locale get locale; double get textScaleFactor; double get devicePixelRatio; BoxConstraints get physicalDisplayConstraints; BoxConstraints get logicalDisplayConstraints; DisplayWidthMode get displayWidthMode;
+ AppLifecycleState? get appLifecycleState; Brightness get brightness; Locale get locale; double get textScaleFactor; double get devicePixelRatio; Size get physicalDisplaySize; Size get logicalDisplaySize; DisplayWidthMode get displayWidthMode;
 /// Create a copy of RuntimeInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $RuntimeInfoCopyWith<RuntimeInfo> get copyWith => _$RuntimeInfoCopyWithImpl<Runt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RuntimeInfo&&(identical(other.appLifecycleState, appLifecycleState) || other.appLifecycleState == appLifecycleState)&&(identical(other.brightness, brightness) || other.brightness == brightness)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.textScaleFactor, textScaleFactor) || other.textScaleFactor == textScaleFactor)&&(identical(other.devicePixelRatio, devicePixelRatio) || other.devicePixelRatio == devicePixelRatio)&&(identical(other.physicalDisplayConstraints, physicalDisplayConstraints) || other.physicalDisplayConstraints == physicalDisplayConstraints)&&(identical(other.logicalDisplayConstraints, logicalDisplayConstraints) || other.logicalDisplayConstraints == logicalDisplayConstraints)&&(identical(other.displayWidthMode, displayWidthMode) || other.displayWidthMode == displayWidthMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RuntimeInfo&&(identical(other.appLifecycleState, appLifecycleState) || other.appLifecycleState == appLifecycleState)&&(identical(other.brightness, brightness) || other.brightness == brightness)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.textScaleFactor, textScaleFactor) || other.textScaleFactor == textScaleFactor)&&(identical(other.devicePixelRatio, devicePixelRatio) || other.devicePixelRatio == devicePixelRatio)&&(identical(other.physicalDisplaySize, physicalDisplaySize) || other.physicalDisplaySize == physicalDisplaySize)&&(identical(other.logicalDisplaySize, logicalDisplaySize) || other.logicalDisplaySize == logicalDisplaySize)&&(identical(other.displayWidthMode, displayWidthMode) || other.displayWidthMode == displayWidthMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appLifecycleState,brightness,locale,textScaleFactor,devicePixelRatio,physicalDisplayConstraints,logicalDisplayConstraints,displayWidthMode);
+int get hashCode => Object.hash(runtimeType,appLifecycleState,brightness,locale,textScaleFactor,devicePixelRatio,physicalDisplaySize,logicalDisplaySize,displayWidthMode);
 
 @override
 String toString() {
-  return 'RuntimeInfo(appLifecycleState: $appLifecycleState, brightness: $brightness, locale: $locale, textScaleFactor: $textScaleFactor, devicePixelRatio: $devicePixelRatio, physicalDisplayConstraints: $physicalDisplayConstraints, logicalDisplayConstraints: $logicalDisplayConstraints, displayWidthMode: $displayWidthMode)';
+  return 'RuntimeInfo(appLifecycleState: $appLifecycleState, brightness: $brightness, locale: $locale, textScaleFactor: $textScaleFactor, devicePixelRatio: $devicePixelRatio, physicalDisplaySize: $physicalDisplaySize, logicalDisplaySize: $logicalDisplaySize, displayWidthMode: $displayWidthMode)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $RuntimeInfoCopyWith<$Res>  {
   factory $RuntimeInfoCopyWith(RuntimeInfo value, $Res Function(RuntimeInfo) _then) = _$RuntimeInfoCopyWithImpl;
 @useResult
 $Res call({
- AppLifecycleState? appLifecycleState, Brightness brightness, Locale locale, double textScaleFactor, double devicePixelRatio, BoxConstraints physicalDisplayConstraints, BoxConstraints logicalDisplayConstraints, DisplayWidthMode displayWidthMode
+ AppLifecycleState? appLifecycleState, Brightness brightness, Locale locale, double textScaleFactor, double devicePixelRatio, Size physicalDisplaySize, Size logicalDisplaySize, DisplayWidthMode displayWidthMode
 });
 
 
@@ -63,16 +63,16 @@ class _$RuntimeInfoCopyWithImpl<$Res>
 
 /// Create a copy of RuntimeInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? appLifecycleState = freezed,Object? brightness = null,Object? locale = null,Object? textScaleFactor = null,Object? devicePixelRatio = null,Object? physicalDisplayConstraints = null,Object? logicalDisplayConstraints = null,Object? displayWidthMode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? appLifecycleState = freezed,Object? brightness = null,Object? locale = null,Object? textScaleFactor = null,Object? devicePixelRatio = null,Object? physicalDisplaySize = null,Object? logicalDisplaySize = null,Object? displayWidthMode = null,}) {
   return _then(RuntimeInfo(
 appLifecycleState: freezed == appLifecycleState ? _self.appLifecycleState : appLifecycleState // ignore: cast_nullable_to_non_nullable
 as AppLifecycleState?,brightness: null == brightness ? _self.brightness : brightness // ignore: cast_nullable_to_non_nullable
 as Brightness,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as Locale,textScaleFactor: null == textScaleFactor ? _self.textScaleFactor : textScaleFactor // ignore: cast_nullable_to_non_nullable
 as double,devicePixelRatio: null == devicePixelRatio ? _self.devicePixelRatio : devicePixelRatio // ignore: cast_nullable_to_non_nullable
-as double,physicalDisplayConstraints: null == physicalDisplayConstraints ? _self.physicalDisplayConstraints : physicalDisplayConstraints // ignore: cast_nullable_to_non_nullable
-as BoxConstraints,logicalDisplayConstraints: null == logicalDisplayConstraints ? _self.logicalDisplayConstraints : logicalDisplayConstraints // ignore: cast_nullable_to_non_nullable
-as BoxConstraints,displayWidthMode: null == displayWidthMode ? _self.displayWidthMode : displayWidthMode // ignore: cast_nullable_to_non_nullable
+as double,physicalDisplaySize: null == physicalDisplaySize ? _self.physicalDisplaySize : physicalDisplaySize // ignore: cast_nullable_to_non_nullable
+as Size,logicalDisplaySize: null == logicalDisplaySize ? _self.logicalDisplaySize : logicalDisplaySize // ignore: cast_nullable_to_non_nullable
+as Size,displayWidthMode: null == displayWidthMode ? _self.displayWidthMode : displayWidthMode // ignore: cast_nullable_to_non_nullable
 as DisplayWidthMode,
   ));
 }
@@ -158,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  BoxConstraints physicalDisplayConstraints,  BoxConstraints logicalDisplayConstraints,  DisplayWidthMode displayWidthMode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  Size physicalDisplaySize,  Size logicalDisplaySize,  DisplayWidthMode displayWidthMode)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RuntimeInfo() when $default != null:
-return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplayConstraints,_that.logicalDisplayConstraints,_that.displayWidthMode);case _:
+return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplaySize,_that.logicalDisplaySize,_that.displayWidthMode);case _:
   return orElse();
 
 }
@@ -179,10 +179,10 @@ return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.text
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  BoxConstraints physicalDisplayConstraints,  BoxConstraints logicalDisplayConstraints,  DisplayWidthMode displayWidthMode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  Size physicalDisplaySize,  Size logicalDisplaySize,  DisplayWidthMode displayWidthMode)  $default,) {final _that = this;
 switch (_that) {
 case _RuntimeInfo():
-return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplayConstraints,_that.logicalDisplayConstraints,_that.displayWidthMode);case _:
+return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplaySize,_that.logicalDisplaySize,_that.displayWidthMode);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +199,10 @@ return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.text
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  BoxConstraints physicalDisplayConstraints,  BoxConstraints logicalDisplayConstraints,  DisplayWidthMode displayWidthMode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  Size physicalDisplaySize,  Size logicalDisplaySize,  DisplayWidthMode displayWidthMode)?  $default,) {final _that = this;
 switch (_that) {
 case _RuntimeInfo() when $default != null:
-return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplayConstraints,_that.logicalDisplayConstraints,_that.displayWidthMode);case _:
+return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplaySize,_that.logicalDisplaySize,_that.displayWidthMode);case _:
   return null;
 
 }
@@ -214,7 +214,7 @@ return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.text
 
 
 class _RuntimeInfo implements RuntimeInfo {
-  const _RuntimeInfo({required this.appLifecycleState, required this.brightness, required this.locale, required this.textScaleFactor, required this.devicePixelRatio, required this.physicalDisplayConstraints, required this.logicalDisplayConstraints, required this.displayWidthMode});
+  const _RuntimeInfo({required this.appLifecycleState, required this.brightness, required this.locale, required this.textScaleFactor, required this.devicePixelRatio, required this.physicalDisplaySize, required this.logicalDisplaySize, required this.displayWidthMode});
   
 
 @override final  AppLifecycleState? appLifecycleState;
@@ -222,8 +222,8 @@ class _RuntimeInfo implements RuntimeInfo {
 @override final  Locale locale;
 @override final  double textScaleFactor;
 @override final  double devicePixelRatio;
-@override final  BoxConstraints physicalDisplayConstraints;
-@override final  BoxConstraints logicalDisplayConstraints;
+@override final  Size physicalDisplaySize;
+@override final  Size logicalDisplaySize;
 @override final  DisplayWidthMode displayWidthMode;
 
 /// Create a copy of RuntimeInfo
@@ -236,16 +236,16 @@ _$RuntimeInfoCopyWith<_RuntimeInfo> get copyWith => __$RuntimeInfoCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RuntimeInfo&&(identical(other.appLifecycleState, appLifecycleState) || other.appLifecycleState == appLifecycleState)&&(identical(other.brightness, brightness) || other.brightness == brightness)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.textScaleFactor, textScaleFactor) || other.textScaleFactor == textScaleFactor)&&(identical(other.devicePixelRatio, devicePixelRatio) || other.devicePixelRatio == devicePixelRatio)&&(identical(other.physicalDisplayConstraints, physicalDisplayConstraints) || other.physicalDisplayConstraints == physicalDisplayConstraints)&&(identical(other.logicalDisplayConstraints, logicalDisplayConstraints) || other.logicalDisplayConstraints == logicalDisplayConstraints)&&(identical(other.displayWidthMode, displayWidthMode) || other.displayWidthMode == displayWidthMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RuntimeInfo&&(identical(other.appLifecycleState, appLifecycleState) || other.appLifecycleState == appLifecycleState)&&(identical(other.brightness, brightness) || other.brightness == brightness)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.textScaleFactor, textScaleFactor) || other.textScaleFactor == textScaleFactor)&&(identical(other.devicePixelRatio, devicePixelRatio) || other.devicePixelRatio == devicePixelRatio)&&(identical(other.physicalDisplaySize, physicalDisplaySize) || other.physicalDisplaySize == physicalDisplaySize)&&(identical(other.logicalDisplaySize, logicalDisplaySize) || other.logicalDisplaySize == logicalDisplaySize)&&(identical(other.displayWidthMode, displayWidthMode) || other.displayWidthMode == displayWidthMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appLifecycleState,brightness,locale,textScaleFactor,devicePixelRatio,physicalDisplayConstraints,logicalDisplayConstraints,displayWidthMode);
+int get hashCode => Object.hash(runtimeType,appLifecycleState,brightness,locale,textScaleFactor,devicePixelRatio,physicalDisplaySize,logicalDisplaySize,displayWidthMode);
 
 @override
 String toString() {
-  return 'RuntimeInfo(appLifecycleState: $appLifecycleState, brightness: $brightness, locale: $locale, textScaleFactor: $textScaleFactor, devicePixelRatio: $devicePixelRatio, physicalDisplayConstraints: $physicalDisplayConstraints, logicalDisplayConstraints: $logicalDisplayConstraints, displayWidthMode: $displayWidthMode)';
+  return 'RuntimeInfo(appLifecycleState: $appLifecycleState, brightness: $brightness, locale: $locale, textScaleFactor: $textScaleFactor, devicePixelRatio: $devicePixelRatio, physicalDisplaySize: $physicalDisplaySize, logicalDisplaySize: $logicalDisplaySize, displayWidthMode: $displayWidthMode)';
 }
 
 
@@ -256,7 +256,7 @@ abstract mixin class _$RuntimeInfoCopyWith<$Res> implements $RuntimeInfoCopyWith
   factory _$RuntimeInfoCopyWith(_RuntimeInfo value, $Res Function(_RuntimeInfo) _then) = __$RuntimeInfoCopyWithImpl;
 @override @useResult
 $Res call({
- AppLifecycleState? appLifecycleState, Brightness brightness, Locale locale, double textScaleFactor, double devicePixelRatio, BoxConstraints physicalDisplayConstraints, BoxConstraints logicalDisplayConstraints, DisplayWidthMode displayWidthMode
+ AppLifecycleState? appLifecycleState, Brightness brightness, Locale locale, double textScaleFactor, double devicePixelRatio, Size physicalDisplaySize, Size logicalDisplaySize, DisplayWidthMode displayWidthMode
 });
 
 
@@ -273,16 +273,16 @@ class __$RuntimeInfoCopyWithImpl<$Res>
 
 /// Create a copy of RuntimeInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? appLifecycleState = freezed,Object? brightness = null,Object? locale = null,Object? textScaleFactor = null,Object? devicePixelRatio = null,Object? physicalDisplayConstraints = null,Object? logicalDisplayConstraints = null,Object? displayWidthMode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? appLifecycleState = freezed,Object? brightness = null,Object? locale = null,Object? textScaleFactor = null,Object? devicePixelRatio = null,Object? physicalDisplaySize = null,Object? logicalDisplaySize = null,Object? displayWidthMode = null,}) {
   return _then(_RuntimeInfo(
 appLifecycleState: freezed == appLifecycleState ? _self.appLifecycleState : appLifecycleState // ignore: cast_nullable_to_non_nullable
 as AppLifecycleState?,brightness: null == brightness ? _self.brightness : brightness // ignore: cast_nullable_to_non_nullable
 as Brightness,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as Locale,textScaleFactor: null == textScaleFactor ? _self.textScaleFactor : textScaleFactor // ignore: cast_nullable_to_non_nullable
 as double,devicePixelRatio: null == devicePixelRatio ? _self.devicePixelRatio : devicePixelRatio // ignore: cast_nullable_to_non_nullable
-as double,physicalDisplayConstraints: null == physicalDisplayConstraints ? _self.physicalDisplayConstraints : physicalDisplayConstraints // ignore: cast_nullable_to_non_nullable
-as BoxConstraints,logicalDisplayConstraints: null == logicalDisplayConstraints ? _self.logicalDisplayConstraints : logicalDisplayConstraints // ignore: cast_nullable_to_non_nullable
-as BoxConstraints,displayWidthMode: null == displayWidthMode ? _self.displayWidthMode : displayWidthMode // ignore: cast_nullable_to_non_nullable
+as double,physicalDisplaySize: null == physicalDisplaySize ? _self.physicalDisplaySize : physicalDisplaySize // ignore: cast_nullable_to_non_nullable
+as Size,logicalDisplaySize: null == logicalDisplaySize ? _self.logicalDisplaySize : logicalDisplaySize // ignore: cast_nullable_to_non_nullable
+as Size,displayWidthMode: null == displayWidthMode ? _self.displayWidthMode : displayWidthMode // ignore: cast_nullable_to_non_nullable
 as DisplayWidthMode,
   ));
 }
