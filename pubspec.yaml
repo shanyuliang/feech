@@ -71,7 +71,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: '>=2.16.0 <3.0.0' # https://pub.dev/packages/build_runner
   flutter_lints: '>=6.0.0 <7.0.0' # https://pub.dev/packages/flutter_lints
-  freezed: '>=4.0.0-dev.3 <5.0.0' # https://pub.dev/packages/freezed
+  freezed: '>=4.0.0 <5.0.0' # https://pub.dev/packages/freezed
   json_serializable: '>=6.14.1 <7.0.0' # https://pub.dev/packages/json_serializable
   riverpod_analyzer_utils: '>=1.0.0-dev.11 <2.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
   riverpod_generator: '>=4.0.8 <5.0.0' # https://pub.dev/packages/riverpod_generator
