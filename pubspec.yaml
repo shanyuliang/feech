@@ -24,13 +24,13 @@ dependencies:
   async: '>=2.13.1 <3.0.0' # https://pub.dev/packages/async
   audioplayers: '>=6.8.1 <7.0.0' # https://pub.dev/packages/audioplayers
   camera: '>=0.12.0+2 <1.0.0' # https://pub.dev/packages/camera
-  cloud_firestore: ">=6.8.0 <7.0.0" # https://pub.dev/packages/cloud_firestore
+  cloud_firestore: ">=6.9.0 <7.0.0" # https://pub.dev/packages/cloud_firestore
   collection: '>=1.19.1 <2.0.0' # https://pub.dev/packages/collection
   cross_file: '>=0.3.5+4 <1.0.0' # https://pub.dev/packages/cross_file
   crypto: '>=3.0.7 <4.0.0' # https://pub.dev/packages/crypto
   device_info_plus: '>=13.2.0 <14.0.0' # https://pub.dev/packages/device_info_plus
   dynamic_color: '>=2.1.0 <3.0.0' # https://pub.dev/packages/dynamic_color
-  firebase_crashlytics: '>=5.2.7 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
+  firebase_crashlytics: '>=5.3.0 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
   flutter_cache_manager: '>=3.4.2 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.4.2 <4.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_soloud: '>=4.1.7 <5.0.0' # https://pub.dev/packages/flutter_soloud
@@ -38,7 +38,7 @@ dependencies:
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   geolocator: '>=14.0.3 <15.0.0' # https://pub.dev/packages/geolocator
-  go_router: '>=17.5.0 <18.0.0' # https://pub.dev/packages/go_router
+  go_router: '>=17.5.0 <19.0.0' # https://pub.dev/packages/go_router
   google_maps_flutter: '>=2.18.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=1.6.0 <2.0.0' # https://pub.dev/packages/http
   image: '>=4.9.2 <5.0.0' # https://pub.dev/packages/image
@@ -46,7 +46,7 @@ dependencies:
   json_annotation: '>=4.12.0 <5.0.0' # https://pub.dev/packages/json_annotation
   just_audio: '>=0.10.6 <1.0.0' # https://pub.dev/packages/just_audio
   logging: '>=1.3.0 <2.0.0' # https://pub.dev/packages/logging
-  material_ui: '>=1.0.1 <2.0.0' # https://pub.dev/packages/material_ui
+  material_ui: '>=1.1.0 <2.0.0' # https://pub.dev/packages/material_ui
   mime: '>=2.0.0 <3.0.0' # https://pub.dev/packages/mime
   newrelic_mobile: '>=1.2.10 <2.0.0' # https://pub.dev/packages/newrelic_mobile
   package_info_plus: '>=10.2.1 <11.0.0' # https://pub.dev/packages/package_info_plus
