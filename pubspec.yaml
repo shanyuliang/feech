@@ -26,7 +26,7 @@ dependencies:
   camera: '>=0.12.0+2 <1.0.0' # https://pub.dev/packages/camera
   cloud_firestore: ">=6.9.0 <7.0.0" # https://pub.dev/packages/cloud_firestore
   collection: '>=1.19.1 <2.0.0' # https://pub.dev/packages/collection
-  cross_file: '>=0.3.5+4 <1.0.0' # https://pub.dev/packages/cross_file
+  cross_file: '>=0.3.5+5 <1.0.0' # https://pub.dev/packages/cross_file
   crypto: '>=3.0.7 <4.0.0' # https://pub.dev/packages/crypto
   device_info_plus: '>=13.2.0 <14.0.0' # https://pub.dev/packages/device_info_plus
   dynamic_color: '>=2.1.0 <3.0.0' # https://pub.dev/packages/dynamic_color
