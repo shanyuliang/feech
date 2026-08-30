@@ -12,19 +12,16 @@ part of 'audio_playback_state.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
 mixin _$AudioPlaybackState {
 
- AudioPlayerState get playerState; Duration? get duration; Duration? get position; AudioPlayerState? get playerStateWhenAppPaused;
+
 /// Create a copy of AudioPlaybackState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $AudioPlaybackStateCopyWith<AudioPlaybackState> get copyWith => _$AudioPlaybackStateCopyWithImpl<AudioPlaybackState>(this as AudioPlaybackState, _$identity);
 
-  /// Serializes this AudioPlaybackState to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -33,7 +30,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is AudioPlaybackState&&(identical(other.playerState, _this.playerState) || other.playerState == _this.playerState)&&(identical(other.duration, _this.duration) || other.duration == _this.duration)&&(identical(other.position, _this.position) || other.position == _this.position)&&(identical(other.playerStateWhenAppPaused, _this.playerStateWhenAppPaused) || other.playerStateWhenAppPaused == _this.playerStateWhenAppPaused));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode {
   final _this = this as AudioPlaybackState;
@@ -84,144 +81,15 @@ as AudioPlayerState?,
 }
 
 
-/// Adds pattern-matching-related methods to [AudioPlaybackState].
-extension AudioPlaybackStatePatterns on AudioPlaybackState {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AudioPlaybackState value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _AudioPlaybackState() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AudioPlaybackState value)  $default,){
-final _that = this;
-switch (_that) {
-case _AudioPlaybackState():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AudioPlaybackState value)?  $default,){
-final _that = this;
-switch (_that) {
-case _AudioPlaybackState() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AudioPlayerState playerState,  Duration? duration,  Duration? position,  AudioPlayerState? playerStateWhenAppPaused)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _AudioPlaybackState() when $default != null:
-return $default(_that.playerState,_that.duration,_that.position,_that.playerStateWhenAppPaused);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AudioPlayerState playerState,  Duration? duration,  Duration? position,  AudioPlayerState? playerStateWhenAppPaused)  $default,) {final _that = this;
-switch (_that) {
-case _AudioPlaybackState():
-return $default(_that.playerState,_that.duration,_that.position,_that.playerStateWhenAppPaused);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AudioPlayerState playerState,  Duration? duration,  Duration? position,  AudioPlayerState? playerStateWhenAppPaused)?  $default,) {final _that = this;
-switch (_that) {
-case _AudioPlaybackState() when $default != null:
-return $default(_that.playerState,_that.duration,_that.position,_that.playerStateWhenAppPaused);case _:
-  return null;
-
-}
-}
-
-}
 
 /// @nodoc
-@JsonSerializable()
+
 
 class _AudioPlaybackState extends AudioPlaybackState {
-  const _AudioPlaybackState({this.playerState = AudioPlayerState.stopped, this.duration, this.position, this.playerStateWhenAppPaused}): super._();
-  factory _AudioPlaybackState.fromJson(Map<String, dynamic> json) => _$AudioPlaybackStateFromJson(json);
+  const _AudioPlaybackState({this.playerState = AudioPlayerState.stopped, this.duration, this.position, this.playerStateWhenAppPaused}): super(playerState: playerState, duration: duration, position: position, playerStateWhenAppPaused: playerStateWhenAppPaused);
+  
 
-@override@JsonKey() final  AudioPlayerState playerState;
+@override final  AudioPlayerState playerState;
 @override final  Duration? duration;
 @override final  Duration? position;
 @override final  AudioPlayerState? playerStateWhenAppPaused;
@@ -232,17 +100,14 @@ class _AudioPlaybackState extends AudioPlaybackState {
 @pragma('vm:prefer-inline')
 _$AudioPlaybackStateCopyWith<_AudioPlaybackState> get copyWith => __$AudioPlaybackStateCopyWithImpl<_AudioPlaybackState>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$AudioPlaybackStateToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
     return identical(this, other) || (other.runtimeType == runtimeType&&other is _AudioPlaybackState&&(identical(other.playerState, playerState) || other.playerState == playerState)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.position, position) || other.position == position)&&(identical(other.playerStateWhenAppPaused, playerStateWhenAppPaused) || other.playerStateWhenAppPaused == playerStateWhenAppPaused));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode {
     return Object.hash(runtimeType,playerState,duration,position,playerStateWhenAppPaused);

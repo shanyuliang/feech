@@ -3,22 +3,15 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'audio_player_state.dart';
 
 part 'audio_playback_state.freezed.dart';
-part 'audio_playback_state.g.dart';
 
-@Freezed()
-abstract class AudioPlaybackState with _$AudioPlaybackState {
-  const AudioPlaybackState._();
-
-  const factory AudioPlaybackState({
-    @Default(AudioPlayerState.stopped) AudioPlayerState playerState,
-    Duration? duration,
-    Duration? position,
-    AudioPlayerState? playerStateWhenAppPaused,
-  }) = _AudioPlaybackState;
-
-  factory AudioPlaybackState.fromJson(Map<String, dynamic> json) => _$AudioPlaybackStateFromJson(json);
-
-  double get progress {
+@freezed
+class const AudioPlaybackState({
+  final AudioPlayerState playerState = AudioPlayerState.stopped,
+  final Duration? duration,
+  final Duration? position,
+  final AudioPlayerState? playerStateWhenAppPaused,
+}) with _$AudioPlaybackState {
+  double getProgress() {
     if (duration != null && position != null) {
       if (duration! >= position!) {
         return position!.inMilliseconds / duration!.inMilliseconds;

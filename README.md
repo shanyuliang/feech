@@ -21,7 +21,7 @@ Use `dart pub publish` to publish new packages. Before that, make sure you have 
 ## How to generate the generated classes
 
 ```shell
-dart run build_runner build -d
+dart run build_runner build
 ```
 
 ## Usage
