@@ -26,16 +26,21 @@ $TtsCopyWith<Tts> get copyWith => _$TtsCopyWithImpl<Tts>(this as Tts, _$identity
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Tts&&(identical(other.flutterTts, flutterTts) || other.flutterTts == flutterTts)&&const DeepCollectionEquality().equals(other.allLocaleVoices, allLocaleVoices)&&(identical(other.selectedLocaleId, selectedLocaleId) || other.selectedLocaleId == selectedLocaleId)&&(identical(other.selectedVoiceId, selectedVoiceId) || other.selectedVoiceId == selectedVoiceId));
+  final _this = this as Tts;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Tts&&(identical(other.flutterTts, _this.flutterTts) || other.flutterTts == _this.flutterTts)&&const DeepCollectionEquality().equals(other.allLocaleVoices, _this.allLocaleVoices)&&(identical(other.selectedLocaleId, _this.selectedLocaleId) || other.selectedLocaleId == _this.selectedLocaleId)&&(identical(other.selectedVoiceId, _this.selectedVoiceId) || other.selectedVoiceId == _this.selectedVoiceId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,flutterTts,const DeepCollectionEquality().hash(allLocaleVoices),selectedLocaleId,selectedVoiceId);
+int get hashCode {
+  final _this = this as Tts;
+  return Object.hash(runtimeType,_this.flutterTts,const DeepCollectionEquality().hash(_this.allLocaleVoices),_this.selectedLocaleId,_this.selectedVoiceId);
+}
 
 @override
 String toString() {
-  return 'Tts(flutterTts: $flutterTts, allLocaleVoices: $allLocaleVoices, selectedLocaleId: $selectedLocaleId, selectedVoiceId: $selectedVoiceId)';
+  final _this = this as Tts;
+  return 'Tts(flutterTts: ${_this.flutterTts}, allLocaleVoices: ${_this.allLocaleVoices}, selectedLocaleId: ${_this.selectedLocaleId}, selectedVoiceId: ${_this.selectedVoiceId})';
 }
 
 
@@ -228,16 +233,18 @@ _$TtsCopyWith<_Tts> get copyWith => __$TtsCopyWithImpl<_Tts>(this, _$identity);
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Tts&&(identical(other.flutterTts, flutterTts) || other.flutterTts == flutterTts)&&const DeepCollectionEquality().equals(other.allLocaleVoices, allLocaleVoices)&&(identical(other.selectedLocaleId, selectedLocaleId) || other.selectedLocaleId == selectedLocaleId)&&(identical(other.selectedVoiceId, selectedVoiceId) || other.selectedVoiceId == selectedVoiceId));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Tts&&(identical(other.flutterTts, flutterTts) || other.flutterTts == flutterTts)&&const DeepCollectionEquality().equals(other.allLocaleVoices, allLocaleVoices)&&(identical(other.selectedLocaleId, selectedLocaleId) || other.selectedLocaleId == selectedLocaleId)&&(identical(other.selectedVoiceId, selectedVoiceId) || other.selectedVoiceId == selectedVoiceId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,flutterTts,const DeepCollectionEquality().hash(allLocaleVoices),selectedLocaleId,selectedVoiceId);
+int get hashCode {
+    return Object.hash(runtimeType,flutterTts,const DeepCollectionEquality().hash(allLocaleVoices),selectedLocaleId,selectedVoiceId);
+}
 
 @override
 String toString() {
-  return 'Tts(flutterTts: $flutterTts, allLocaleVoices: $allLocaleVoices, selectedLocaleId: $selectedLocaleId, selectedVoiceId: $selectedVoiceId)';
+    return 'Tts(flutterTts: $flutterTts, allLocaleVoices: $allLocaleVoices, selectedLocaleId: $selectedLocaleId, selectedVoiceId: $selectedVoiceId)';
 }
 
 

@@ -26,16 +26,21 @@ $AppPermissionStatusCopyWith<AppPermissionStatus> get copyWith => _$AppPermissio
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppPermissionStatus&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.combinedStatus, combinedStatus) || other.combinedStatus == combinedStatus)&&const DeepCollectionEquality().equals(other.error, error)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+  final _this = this as AppPermissionStatus;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppPermissionStatus&&(identical(other.permission, _this.permission) || other.permission == _this.permission)&&(identical(other.combinedStatus, _this.combinedStatus) || other.combinedStatus == _this.combinedStatus)&&const DeepCollectionEquality().equals(other.error, _this.error)&&(identical(other.stateStatus, _this.stateStatus) || other.stateStatus == _this.stateStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission,combinedStatus,const DeepCollectionEquality().hash(error),stateStatus);
+int get hashCode {
+  final _this = this as AppPermissionStatus;
+  return Object.hash(runtimeType,_this.permission,_this.combinedStatus,const DeepCollectionEquality().hash(_this.error),_this.stateStatus);
+}
 
 @override
 String toString() {
-  return 'AppPermissionStatus(permission: $permission, combinedStatus: $combinedStatus, error: $error, stateStatus: $stateStatus)';
+  final _this = this as AppPermissionStatus;
+  return 'AppPermissionStatus(permission: ${_this.permission}, combinedStatus: ${_this.combinedStatus}, error: ${_this.error}, stateStatus: ${_this.stateStatus})';
 }
 
 
@@ -227,16 +232,18 @@ _$AppPermissionStatusCopyWith<_AppPermissionStatus> get copyWith => __$AppPermis
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppPermissionStatus&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.combinedStatus, combinedStatus) || other.combinedStatus == combinedStatus)&&const DeepCollectionEquality().equals(other.error, error)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppPermissionStatus&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.combinedStatus, combinedStatus) || other.combinedStatus == combinedStatus)&&const DeepCollectionEquality().equals(other.error, error)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission,combinedStatus,const DeepCollectionEquality().hash(error),stateStatus);
+int get hashCode {
+    return Object.hash(runtimeType,permission,combinedStatus,const DeepCollectionEquality().hash(error),stateStatus);
+}
 
 @override
 String toString() {
-  return 'AppPermissionStatus(permission: $permission, combinedStatus: $combinedStatus, error: $error, stateStatus: $stateStatus)';
+    return 'AppPermissionStatus(permission: $permission, combinedStatus: $combinedStatus, error: $error, stateStatus: $stateStatus)';
 }
 
 

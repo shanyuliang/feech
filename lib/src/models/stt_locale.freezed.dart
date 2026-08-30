@@ -26,12 +26,16 @@ $SttLocaleCopyWith<SttLocale> get copyWith => _$SttLocaleCopyWithImpl<SttLocale>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SttLocale&&(identical(other.localeId, localeId) || other.localeId == localeId)&&(identical(other.localeName, localeName) || other.localeName == localeName));
+  final _this = this as SttLocale;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SttLocale&&(identical(other.localeId, _this.localeId) || other.localeId == _this.localeId)&&(identical(other.localeName, _this.localeName) || other.localeName == _this.localeName));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localeId,localeName);
+int get hashCode {
+  final _this = this as SttLocale;
+  return Object.hash(runtimeType,_this.localeId,_this.localeName);
+}
 
 
 
@@ -220,12 +224,14 @@ _$SttLocaleCopyWith<_SttLocale> get copyWith => __$SttLocaleCopyWithImpl<_SttLoc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SttLocale&&(identical(other.localeId, localeId) || other.localeId == localeId)&&(identical(other.localeName, localeName) || other.localeName == localeName));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SttLocale&&(identical(other.localeId, localeId) || other.localeId == localeId)&&(identical(other.localeName, localeName) || other.localeName == localeName));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localeId,localeName);
+int get hashCode {
+    return Object.hash(runtimeType,localeId,localeName);
+}
 
 
 

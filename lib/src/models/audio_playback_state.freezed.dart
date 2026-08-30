@@ -29,16 +29,21 @@ $AudioPlaybackStateCopyWith<AudioPlaybackState> get copyWith => _$AudioPlaybackS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AudioPlaybackState&&(identical(other.playerState, playerState) || other.playerState == playerState)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.position, position) || other.position == position)&&(identical(other.playerStateWhenAppPaused, playerStateWhenAppPaused) || other.playerStateWhenAppPaused == playerStateWhenAppPaused));
+  final _this = this as AudioPlaybackState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AudioPlaybackState&&(identical(other.playerState, _this.playerState) || other.playerState == _this.playerState)&&(identical(other.duration, _this.duration) || other.duration == _this.duration)&&(identical(other.position, _this.position) || other.position == _this.position)&&(identical(other.playerStateWhenAppPaused, _this.playerStateWhenAppPaused) || other.playerStateWhenAppPaused == _this.playerStateWhenAppPaused));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,playerState,duration,position,playerStateWhenAppPaused);
+int get hashCode {
+  final _this = this as AudioPlaybackState;
+  return Object.hash(runtimeType,_this.playerState,_this.duration,_this.position,_this.playerStateWhenAppPaused);
+}
 
 @override
 String toString() {
-  return 'AudioPlaybackState(playerState: $playerState, duration: $duration, position: $position, playerStateWhenAppPaused: $playerStateWhenAppPaused)';
+  final _this = this as AudioPlaybackState;
+  return 'AudioPlaybackState(playerState: ${_this.playerState}, duration: ${_this.duration}, position: ${_this.position}, playerStateWhenAppPaused: ${_this.playerStateWhenAppPaused})';
 }
 
 
@@ -234,16 +239,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AudioPlaybackState&&(identical(other.playerState, playerState) || other.playerState == playerState)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.position, position) || other.position == position)&&(identical(other.playerStateWhenAppPaused, playerStateWhenAppPaused) || other.playerStateWhenAppPaused == playerStateWhenAppPaused));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AudioPlaybackState&&(identical(other.playerState, playerState) || other.playerState == playerState)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.position, position) || other.position == position)&&(identical(other.playerStateWhenAppPaused, playerStateWhenAppPaused) || other.playerStateWhenAppPaused == playerStateWhenAppPaused));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,playerState,duration,position,playerStateWhenAppPaused);
+int get hashCode {
+    return Object.hash(runtimeType,playerState,duration,position,playerStateWhenAppPaused);
+}
 
 @override
 String toString() {
-  return 'AudioPlaybackState(playerState: $playerState, duration: $duration, position: $position, playerStateWhenAppPaused: $playerStateWhenAppPaused)';
+    return 'AudioPlaybackState(playerState: $playerState, duration: $duration, position: $position, playerStateWhenAppPaused: $playerStateWhenAppPaused)';
 }
 
 

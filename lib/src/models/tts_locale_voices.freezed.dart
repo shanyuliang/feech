@@ -26,16 +26,21 @@ $TtsLocaleVoicesCopyWith<TtsLocaleVoices> get copyWith => _$TtsLocaleVoicesCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TtsLocaleVoices&&(identical(other.localeId, localeId) || other.localeId == localeId)&&const DeepCollectionEquality().equals(other.voiceIds, voiceIds));
+  final _this = this as TtsLocaleVoices;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TtsLocaleVoices&&(identical(other.localeId, _this.localeId) || other.localeId == _this.localeId)&&const DeepCollectionEquality().equals(other.voiceIds, _this.voiceIds));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localeId,const DeepCollectionEquality().hash(voiceIds));
+int get hashCode {
+  final _this = this as TtsLocaleVoices;
+  return Object.hash(runtimeType,_this.localeId,const DeepCollectionEquality().hash(_this.voiceIds));
+}
 
 @override
 String toString() {
-  return 'TtsLocaleVoices(localeId: $localeId, voiceIds: $voiceIds)';
+  final _this = this as TtsLocaleVoices;
+  return 'TtsLocaleVoices(localeId: ${_this.localeId}, voiceIds: ${_this.voiceIds})';
 }
 
 
@@ -224,16 +229,18 @@ _$TtsLocaleVoicesCopyWith<_TtsLocaleVoices> get copyWith => __$TtsLocaleVoicesCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TtsLocaleVoices&&(identical(other.localeId, localeId) || other.localeId == localeId)&&const DeepCollectionEquality().equals(other.voiceIds, voiceIds));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _TtsLocaleVoices&&(identical(other.localeId, localeId) || other.localeId == localeId)&&const DeepCollectionEquality().equals(other.voiceIds, voiceIds));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localeId,const DeepCollectionEquality().hash(voiceIds));
+int get hashCode {
+    return Object.hash(runtimeType,localeId,const DeepCollectionEquality().hash(voiceIds));
+}
 
 @override
 String toString() {
-  return 'TtsLocaleVoices(localeId: $localeId, voiceIds: $voiceIds)';
+    return 'TtsLocaleVoices(localeId: $localeId, voiceIds: $voiceIds)';
 }
 
 

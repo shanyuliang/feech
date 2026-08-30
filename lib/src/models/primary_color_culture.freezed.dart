@@ -26,16 +26,21 @@ $PrimaryColorCultureCopyWith<PrimaryColorCulture> get copyWith => _$PrimaryColor
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColorCulture&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias)&&const DeepCollectionEquality().equals(other.categories, categories));
+  final _this = this as PrimaryColorCulture;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColorCulture&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.nameAlias, _this.nameAlias) || other.nameAlias == _this.nameAlias)&&const DeepCollectionEquality().equals(other.categories, _this.categories));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,nameAlias,const DeepCollectionEquality().hash(categories));
+int get hashCode {
+  final _this = this as PrimaryColorCulture;
+  return Object.hash(runtimeType,_this.name,_this.nameAlias,const DeepCollectionEquality().hash(_this.categories));
+}
 
 @override
 String toString() {
-  return 'PrimaryColorCulture(name: $name, nameAlias: $nameAlias, categories: $categories)';
+  final _this = this as PrimaryColorCulture;
+  return 'PrimaryColorCulture(name: ${_this.name}, nameAlias: ${_this.nameAlias}, categories: ${_this.categories})';
 }
 
 
@@ -232,16 +237,18 @@ _$PrimaryColorCultureCopyWith<_PrimaryColorCulture> get copyWith => __$PrimaryCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColorCulture&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias)&&const DeepCollectionEquality().equals(other._categories, _categories));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColorCulture&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias)&&const DeepCollectionEquality().equals(other.categories, _categories));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,nameAlias,const DeepCollectionEquality().hash(_categories));
+int get hashCode {
+    return Object.hash(runtimeType,name,nameAlias,const DeepCollectionEquality().hash(_categories));
+}
 
 @override
 String toString() {
-  return 'PrimaryColorCulture(name: $name, nameAlias: $nameAlias, categories: $categories)';
+    return 'PrimaryColorCulture(name: $name, nameAlias: $nameAlias, categories: $categories)';
 }
 
 

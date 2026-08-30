@@ -26,16 +26,21 @@ $RuntimeInfoCopyWith<RuntimeInfo> get copyWith => _$RuntimeInfoCopyWithImpl<Runt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RuntimeInfo&&(identical(other.appLifecycleState, appLifecycleState) || other.appLifecycleState == appLifecycleState)&&(identical(other.brightness, brightness) || other.brightness == brightness)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.textScaleFactor, textScaleFactor) || other.textScaleFactor == textScaleFactor)&&(identical(other.devicePixelRatio, devicePixelRatio) || other.devicePixelRatio == devicePixelRatio)&&(identical(other.physicalDisplaySize, physicalDisplaySize) || other.physicalDisplaySize == physicalDisplaySize)&&(identical(other.logicalDisplaySize, logicalDisplaySize) || other.logicalDisplaySize == logicalDisplaySize)&&(identical(other.displayWidthMode, displayWidthMode) || other.displayWidthMode == displayWidthMode));
+  final _this = this as RuntimeInfo;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RuntimeInfo&&(identical(other.appLifecycleState, _this.appLifecycleState) || other.appLifecycleState == _this.appLifecycleState)&&(identical(other.brightness, _this.brightness) || other.brightness == _this.brightness)&&(identical(other.locale, _this.locale) || other.locale == _this.locale)&&(identical(other.textScaleFactor, _this.textScaleFactor) || other.textScaleFactor == _this.textScaleFactor)&&(identical(other.devicePixelRatio, _this.devicePixelRatio) || other.devicePixelRatio == _this.devicePixelRatio)&&(identical(other.physicalDisplaySize, _this.physicalDisplaySize) || other.physicalDisplaySize == _this.physicalDisplaySize)&&(identical(other.logicalDisplaySize, _this.logicalDisplaySize) || other.logicalDisplaySize == _this.logicalDisplaySize)&&(identical(other.displayWidthMode, _this.displayWidthMode) || other.displayWidthMode == _this.displayWidthMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appLifecycleState,brightness,locale,textScaleFactor,devicePixelRatio,physicalDisplaySize,logicalDisplaySize,displayWidthMode);
+int get hashCode {
+  final _this = this as RuntimeInfo;
+  return Object.hash(runtimeType,_this.appLifecycleState,_this.brightness,_this.locale,_this.textScaleFactor,_this.devicePixelRatio,_this.physicalDisplaySize,_this.logicalDisplaySize,_this.displayWidthMode);
+}
 
 @override
 String toString() {
-  return 'RuntimeInfo(appLifecycleState: $appLifecycleState, brightness: $brightness, locale: $locale, textScaleFactor: $textScaleFactor, devicePixelRatio: $devicePixelRatio, physicalDisplaySize: $physicalDisplaySize, logicalDisplaySize: $logicalDisplaySize, displayWidthMode: $displayWidthMode)';
+  final _this = this as RuntimeInfo;
+  return 'RuntimeInfo(appLifecycleState: ${_this.appLifecycleState}, brightness: ${_this.brightness}, locale: ${_this.locale}, textScaleFactor: ${_this.textScaleFactor}, devicePixelRatio: ${_this.devicePixelRatio}, physicalDisplaySize: ${_this.physicalDisplaySize}, logicalDisplaySize: ${_this.logicalDisplaySize}, displayWidthMode: ${_this.displayWidthMode})';
 }
 
 
@@ -236,16 +241,18 @@ _$RuntimeInfoCopyWith<_RuntimeInfo> get copyWith => __$RuntimeInfoCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RuntimeInfo&&(identical(other.appLifecycleState, appLifecycleState) || other.appLifecycleState == appLifecycleState)&&(identical(other.brightness, brightness) || other.brightness == brightness)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.textScaleFactor, textScaleFactor) || other.textScaleFactor == textScaleFactor)&&(identical(other.devicePixelRatio, devicePixelRatio) || other.devicePixelRatio == devicePixelRatio)&&(identical(other.physicalDisplaySize, physicalDisplaySize) || other.physicalDisplaySize == physicalDisplaySize)&&(identical(other.logicalDisplaySize, logicalDisplaySize) || other.logicalDisplaySize == logicalDisplaySize)&&(identical(other.displayWidthMode, displayWidthMode) || other.displayWidthMode == displayWidthMode));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RuntimeInfo&&(identical(other.appLifecycleState, appLifecycleState) || other.appLifecycleState == appLifecycleState)&&(identical(other.brightness, brightness) || other.brightness == brightness)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.textScaleFactor, textScaleFactor) || other.textScaleFactor == textScaleFactor)&&(identical(other.devicePixelRatio, devicePixelRatio) || other.devicePixelRatio == devicePixelRatio)&&(identical(other.physicalDisplaySize, physicalDisplaySize) || other.physicalDisplaySize == physicalDisplaySize)&&(identical(other.logicalDisplaySize, logicalDisplaySize) || other.logicalDisplaySize == logicalDisplaySize)&&(identical(other.displayWidthMode, displayWidthMode) || other.displayWidthMode == displayWidthMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appLifecycleState,brightness,locale,textScaleFactor,devicePixelRatio,physicalDisplaySize,logicalDisplaySize,displayWidthMode);
+int get hashCode {
+    return Object.hash(runtimeType,appLifecycleState,brightness,locale,textScaleFactor,devicePixelRatio,physicalDisplaySize,logicalDisplaySize,displayWidthMode);
+}
 
 @override
 String toString() {
-  return 'RuntimeInfo(appLifecycleState: $appLifecycleState, brightness: $brightness, locale: $locale, textScaleFactor: $textScaleFactor, devicePixelRatio: $devicePixelRatio, physicalDisplaySize: $physicalDisplaySize, logicalDisplaySize: $logicalDisplaySize, displayWidthMode: $displayWidthMode)';
+    return 'RuntimeInfo(appLifecycleState: $appLifecycleState, brightness: $brightness, locale: $locale, textScaleFactor: $textScaleFactor, devicePixelRatio: $devicePixelRatio, physicalDisplaySize: $physicalDisplaySize, logicalDisplaySize: $logicalDisplaySize, displayWidthMode: $displayWidthMode)';
 }
 
 

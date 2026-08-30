@@ -26,16 +26,21 @@ $PrimaryColorCopyWith<PrimaryColor> get copyWith => _$PrimaryColorCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColor&&(identical(other.color, color) || other.color == color)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias));
+  final _this = this as PrimaryColor;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColor&&(identical(other.color, _this.color) || other.color == _this.color)&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.nameAlias, _this.nameAlias) || other.nameAlias == _this.nameAlias));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,color,id,name,nameAlias);
+int get hashCode {
+  final _this = this as PrimaryColor;
+  return Object.hash(runtimeType,_this.color,_this.id,_this.name,_this.nameAlias);
+}
 
 @override
 String toString() {
-  return 'PrimaryColor(color: $color, id: $id, name: $name, nameAlias: $nameAlias)';
+  final _this = this as PrimaryColor;
+  return 'PrimaryColor(color: ${_this.color}, id: ${_this.id}, name: ${_this.name}, nameAlias: ${_this.nameAlias})';
 }
 
 
@@ -228,16 +233,18 @@ _$PrimaryColorCopyWith<_PrimaryColor> get copyWith => __$PrimaryColorCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColor&&(identical(other.color, color) || other.color == color)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColor&&(identical(other.color, color) || other.color == color)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,color,id,name,nameAlias);
+int get hashCode {
+    return Object.hash(runtimeType,color,id,name,nameAlias);
+}
 
 @override
 String toString() {
-  return 'PrimaryColor(color: $color, id: $id, name: $name, nameAlias: $nameAlias)';
+    return 'PrimaryColor(color: $color, id: $id, name: $name, nameAlias: $nameAlias)';
 }
 
 

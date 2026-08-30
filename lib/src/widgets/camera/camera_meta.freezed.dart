@@ -26,16 +26,21 @@ $CameraMetaCopyWith<CameraMeta> get copyWith => _$CameraMetaCopyWithImpl<CameraM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraMeta&&const DeepCollectionEquality().equals(other.cameraDescriptions, cameraDescriptions)&&(identical(other.selectedCameraDescription, selectedCameraDescription) || other.selectedCameraDescription == selectedCameraDescription)&&(identical(other.selectedCameraController, selectedCameraController) || other.selectedCameraController == selectedCameraController)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+  final _this = this as CameraMeta;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraMeta&&const DeepCollectionEquality().equals(other.cameraDescriptions, _this.cameraDescriptions)&&(identical(other.selectedCameraDescription, _this.selectedCameraDescription) || other.selectedCameraDescription == _this.selectedCameraDescription)&&(identical(other.selectedCameraController, _this.selectedCameraController) || other.selectedCameraController == _this.selectedCameraController)&&(identical(other.imagePath, _this.imagePath) || other.imagePath == _this.imagePath)&&(identical(other.stateStatus, _this.stateStatus) || other.stateStatus == _this.stateStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(cameraDescriptions),selectedCameraDescription,selectedCameraController,imagePath,stateStatus);
+int get hashCode {
+  final _this = this as CameraMeta;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.cameraDescriptions),_this.selectedCameraDescription,_this.selectedCameraController,_this.imagePath,_this.stateStatus);
+}
 
 @override
 String toString() {
-  return 'CameraMeta(cameraDescriptions: $cameraDescriptions, selectedCameraDescription: $selectedCameraDescription, selectedCameraController: $selectedCameraController, imagePath: $imagePath, stateStatus: $stateStatus)';
+  final _this = this as CameraMeta;
+  return 'CameraMeta(cameraDescriptions: ${_this.cameraDescriptions}, selectedCameraDescription: ${_this.selectedCameraDescription}, selectedCameraController: ${_this.selectedCameraController}, imagePath: ${_this.imagePath}, stateStatus: ${_this.stateStatus})';
 }
 
 
@@ -238,16 +243,18 @@ _$CameraMetaCopyWith<_CameraMeta> get copyWith => __$CameraMetaCopyWithImpl<_Cam
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CameraMeta&&const DeepCollectionEquality().equals(other._cameraDescriptions, _cameraDescriptions)&&(identical(other.selectedCameraDescription, selectedCameraDescription) || other.selectedCameraDescription == selectedCameraDescription)&&(identical(other.selectedCameraController, selectedCameraController) || other.selectedCameraController == selectedCameraController)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CameraMeta&&const DeepCollectionEquality().equals(other.cameraDescriptions, _cameraDescriptions)&&(identical(other.selectedCameraDescription, selectedCameraDescription) || other.selectedCameraDescription == selectedCameraDescription)&&(identical(other.selectedCameraController, selectedCameraController) || other.selectedCameraController == selectedCameraController)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cameraDescriptions),selectedCameraDescription,selectedCameraController,imagePath,stateStatus);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_cameraDescriptions),selectedCameraDescription,selectedCameraController,imagePath,stateStatus);
+}
 
 @override
 String toString() {
-  return 'CameraMeta(cameraDescriptions: $cameraDescriptions, selectedCameraDescription: $selectedCameraDescription, selectedCameraController: $selectedCameraController, imagePath: $imagePath, stateStatus: $stateStatus)';
+    return 'CameraMeta(cameraDescriptions: $cameraDescriptions, selectedCameraDescription: $selectedCameraDescription, selectedCameraController: $selectedCameraController, imagePath: $imagePath, stateStatus: $stateStatus)';
 }
 
 

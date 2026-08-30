@@ -28,7 +28,8 @@ $PageParameterCopyWith<PageParameter> get copyWith => _$PageParameterCopyWithImp
 
 @override
 String toString() {
-  return 'PageParameter(routeName: $routeName, initialLifecycleState: $initialLifecycleState, initialTitle: $initialTitle)';
+  final _this = this as PageParameter;
+  return 'PageParameter(routeName: ${_this.routeName}, initialLifecycleState: ${_this.initialLifecycleState}, initialTitle: ${_this.initialTitle})';
 }
 
 
@@ -221,7 +222,7 @@ _$PageParameterCopyWith<_PageParameter> get copyWith => __$PageParameterCopyWith
 
 @override
 String toString() {
-  return 'PageParameter(routeName: $routeName, initialLifecycleState: $initialLifecycleState, initialTitle: $initialTitle)';
+    return 'PageParameter(routeName: $routeName, initialLifecycleState: $initialLifecycleState, initialTitle: $initialTitle)';
 }
 
 

@@ -29,16 +29,21 @@ $UserLocationCopyWith<UserLocation> get copyWith => _$UserLocationCopyWithImpl<U
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserLocation&&(identical(other.lastKnownLocation, lastKnownLocation) || other.lastKnownLocation == lastKnownLocation)&&(identical(other.currentLocation, currentLocation) || other.currentLocation == currentLocation)&&const DeepCollectionEquality().equals(other.error, error)&&(identical(other.isListeningLocationChange, isListeningLocationChange) || other.isListeningLocationChange == isListeningLocationChange)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+  final _this = this as UserLocation;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserLocation&&(identical(other.lastKnownLocation, _this.lastKnownLocation) || other.lastKnownLocation == _this.lastKnownLocation)&&(identical(other.currentLocation, _this.currentLocation) || other.currentLocation == _this.currentLocation)&&const DeepCollectionEquality().equals(other.error, _this.error)&&(identical(other.isListeningLocationChange, _this.isListeningLocationChange) || other.isListeningLocationChange == _this.isListeningLocationChange)&&(identical(other.stateStatus, _this.stateStatus) || other.stateStatus == _this.stateStatus));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,lastKnownLocation,currentLocation,const DeepCollectionEquality().hash(error),isListeningLocationChange,stateStatus);
+int get hashCode {
+  final _this = this as UserLocation;
+  return Object.hash(runtimeType,_this.lastKnownLocation,_this.currentLocation,const DeepCollectionEquality().hash(_this.error),_this.isListeningLocationChange,_this.stateStatus);
+}
 
 @override
 String toString() {
-  return 'UserLocation(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, error: $error, isListeningLocationChange: $isListeningLocationChange, stateStatus: $stateStatus)';
+  final _this = this as UserLocation;
+  return 'UserLocation(lastKnownLocation: ${_this.lastKnownLocation}, currentLocation: ${_this.currentLocation}, error: ${_this.error}, isListeningLocationChange: ${_this.isListeningLocationChange}, stateStatus: ${_this.stateStatus})';
 }
 
 
@@ -259,16 +264,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserLocation&&(identical(other.lastKnownLocation, lastKnownLocation) || other.lastKnownLocation == lastKnownLocation)&&(identical(other.currentLocation, currentLocation) || other.currentLocation == currentLocation)&&const DeepCollectionEquality().equals(other.error, error)&&(identical(other.isListeningLocationChange, isListeningLocationChange) || other.isListeningLocationChange == isListeningLocationChange)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserLocation&&(identical(other.lastKnownLocation, lastKnownLocation) || other.lastKnownLocation == lastKnownLocation)&&(identical(other.currentLocation, currentLocation) || other.currentLocation == currentLocation)&&const DeepCollectionEquality().equals(other.error, error)&&(identical(other.isListeningLocationChange, isListeningLocationChange) || other.isListeningLocationChange == isListeningLocationChange)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,lastKnownLocation,currentLocation,const DeepCollectionEquality().hash(error),isListeningLocationChange,stateStatus);
+int get hashCode {
+    return Object.hash(runtimeType,lastKnownLocation,currentLocation,const DeepCollectionEquality().hash(error),isListeningLocationChange,stateStatus);
+}
 
 @override
 String toString() {
-  return 'UserLocation(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, error: $error, isListeningLocationChange: $isListeningLocationChange, stateStatus: $stateStatus)';
+    return 'UserLocation(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, error: $error, isListeningLocationChange: $isListeningLocationChange, stateStatus: $stateStatus)';
 }
 
 
@@ -350,16 +357,21 @@ $UserLatLngCopyWith<UserLatLng> get copyWith => _$UserLatLngCopyWithImpl<UserLat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserLatLng&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
+  final _this = this as UserLatLng;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserLatLng&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,latitude,longitude);
+int get hashCode {
+  final _this = this as UserLatLng;
+  return Object.hash(runtimeType,_this.latitude,_this.longitude);
+}
 
 @override
 String toString() {
-  return 'UserLatLng(latitude: $latitude, longitude: $longitude)';
+  final _this = this as UserLatLng;
+  return 'UserLatLng(latitude: ${_this.latitude}, longitude: ${_this.longitude})';
 }
 
 
@@ -551,16 +563,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserLatLng&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserLatLng&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,latitude,longitude);
+int get hashCode {
+    return Object.hash(runtimeType,latitude,longitude);
+}
 
 @override
 String toString() {
-  return 'UserLatLng(latitude: $latitude, longitude: $longitude)';
+    return 'UserLatLng(latitude: $latitude, longitude: $longitude)';
 }
 
 

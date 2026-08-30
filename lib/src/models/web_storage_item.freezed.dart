@@ -29,16 +29,21 @@ $WebStorageItemCopyWith<WebStorageItem> get copyWith => _$WebStorageItemCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebStorageItem&&(identical(other.key, key) || other.key == key)&&const DeepCollectionEquality().equals(other.value, value));
+  final _this = this as WebStorageItem;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebStorageItem&&(identical(other.key, _this.key) || other.key == _this.key)&&const DeepCollectionEquality().equals(other.value, _this.value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,key,const DeepCollectionEquality().hash(value));
+int get hashCode {
+  final _this = this as WebStorageItem;
+  return Object.hash(runtimeType,_this.key,const DeepCollectionEquality().hash(_this.value));
+}
 
 @override
 String toString() {
-  return 'WebStorageItem(key: $key, value: $value)';
+  final _this = this as WebStorageItem;
+  return 'WebStorageItem(key: ${_this.key}, value: ${_this.value})';
 }
 
 
@@ -230,16 +235,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebStorageItem&&(identical(other.key, key) || other.key == key)&&const DeepCollectionEquality().equals(other.value, value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebStorageItem&&(identical(other.key, key) || other.key == key)&&const DeepCollectionEquality().equals(other.value, value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,key,const DeepCollectionEquality().hash(value));
+int get hashCode {
+    return Object.hash(runtimeType,key,const DeepCollectionEquality().hash(value));
+}
 
 @override
 String toString() {
-  return 'WebStorageItem(key: $key, value: $value)';
+    return 'WebStorageItem(key: $key, value: $value)';
 }
 
 

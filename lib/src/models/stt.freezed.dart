@@ -26,16 +26,21 @@ $SttCopyWith<Stt> get copyWith => _$SttCopyWithImpl<Stt>(this as Stt, _$identity
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Stt&&const DeepCollectionEquality().equals(other.supportedLocales, supportedLocales)&&(identical(other.selectedLocale, selectedLocale) || other.selectedLocale == selectedLocale));
+  final _this = this as Stt;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Stt&&const DeepCollectionEquality().equals(other.supportedLocales, _this.supportedLocales)&&(identical(other.selectedLocale, _this.selectedLocale) || other.selectedLocale == _this.selectedLocale));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(supportedLocales),selectedLocale);
+int get hashCode {
+  final _this = this as Stt;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.supportedLocales),_this.selectedLocale);
+}
 
 @override
 String toString() {
-  return 'Stt(supportedLocales: $supportedLocales, selectedLocale: $selectedLocale)';
+  final _this = this as Stt;
+  return 'Stt(supportedLocales: ${_this.supportedLocales}, selectedLocale: ${_this.selectedLocale})';
 }
 
 
@@ -242,16 +247,18 @@ _$SttCopyWith<_Stt> get copyWith => __$SttCopyWithImpl<_Stt>(this, _$identity);
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Stt&&const DeepCollectionEquality().equals(other._supportedLocales, _supportedLocales)&&(identical(other.selectedLocale, selectedLocale) || other.selectedLocale == selectedLocale));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Stt&&const DeepCollectionEquality().equals(other.supportedLocales, _supportedLocales)&&(identical(other.selectedLocale, selectedLocale) || other.selectedLocale == selectedLocale));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_supportedLocales),selectedLocale);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_supportedLocales),selectedLocale);
+}
 
 @override
 String toString() {
-  return 'Stt(supportedLocales: $supportedLocales, selectedLocale: $selectedLocale)';
+    return 'Stt(supportedLocales: $supportedLocales, selectedLocale: $selectedLocale)';
 }
 
 

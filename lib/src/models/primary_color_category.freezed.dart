@@ -26,16 +26,21 @@ $PrimaryColorCategoryCopyWith<PrimaryColorCategory> get copyWith => _$PrimaryCol
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColorCategory&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias)&&const DeepCollectionEquality().equals(other.colors, colors));
+  final _this = this as PrimaryColorCategory;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColorCategory&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.nameAlias, _this.nameAlias) || other.nameAlias == _this.nameAlias)&&const DeepCollectionEquality().equals(other.colors, _this.colors));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,nameAlias,const DeepCollectionEquality().hash(colors));
+int get hashCode {
+  final _this = this as PrimaryColorCategory;
+  return Object.hash(runtimeType,_this.name,_this.nameAlias,const DeepCollectionEquality().hash(_this.colors));
+}
 
 @override
 String toString() {
-  return 'PrimaryColorCategory(name: $name, nameAlias: $nameAlias, colors: $colors)';
+  final _this = this as PrimaryColorCategory;
+  return 'PrimaryColorCategory(name: ${_this.name}, nameAlias: ${_this.nameAlias}, colors: ${_this.colors})';
 }
 
 
@@ -232,16 +237,18 @@ _$PrimaryColorCategoryCopyWith<_PrimaryColorCategory> get copyWith => __$Primary
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColorCategory&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias)&&const DeepCollectionEquality().equals(other._colors, _colors));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColorCategory&&(identical(other.name, name) || other.name == name)&&(identical(other.nameAlias, nameAlias) || other.nameAlias == nameAlias)&&const DeepCollectionEquality().equals(other.colors, _colors));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,nameAlias,const DeepCollectionEquality().hash(_colors));
+int get hashCode {
+    return Object.hash(runtimeType,name,nameAlias,const DeepCollectionEquality().hash(_colors));
+}
 
 @override
 String toString() {
-  return 'PrimaryColorCategory(name: $name, nameAlias: $nameAlias, colors: $colors)';
+    return 'PrimaryColorCategory(name: $name, nameAlias: $nameAlias, colors: $colors)';
 }
 
 

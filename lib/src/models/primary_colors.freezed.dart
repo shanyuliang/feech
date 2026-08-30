@@ -26,16 +26,21 @@ $PrimaryColorsCopyWith<PrimaryColors> get copyWith => _$PrimaryColorsCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColors&&const DeepCollectionEquality().equals(other.cultures, cultures));
+  final _this = this as PrimaryColors;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PrimaryColors&&const DeepCollectionEquality().equals(other.cultures, _this.cultures));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(cultures));
+int get hashCode {
+  final _this = this as PrimaryColors;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.cultures));
+}
 
 @override
 String toString() {
-  return 'PrimaryColors(cultures: $cultures)';
+  final _this = this as PrimaryColors;
+  return 'PrimaryColors(cultures: ${_this.cultures})';
 }
 
 
@@ -228,16 +233,18 @@ _$PrimaryColorsCopyWith<_PrimaryColors> get copyWith => __$PrimaryColorsCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColors&&const DeepCollectionEquality().equals(other._cultures, _cultures));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PrimaryColors&&const DeepCollectionEquality().equals(other.cultures, _cultures));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cultures));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_cultures));
+}
 
 @override
 String toString() {
-  return 'PrimaryColors(cultures: $cultures)';
+    return 'PrimaryColors(cultures: $cultures)';
 }
 
 
