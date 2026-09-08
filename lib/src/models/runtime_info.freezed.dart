@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RuntimeInfo {
 
- AppLifecycleState? get appLifecycleState; Brightness get brightness; Locale get locale; double get textScaleFactor; double get devicePixelRatio; Size get physicalDisplaySize; Size get logicalDisplaySize; DisplayWidthMode get displayWidthMode;
+
 /// Create a copy of RuntimeInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -85,141 +85,12 @@ as DisplayWidthMode,
 }
 
 
-/// Adds pattern-matching-related methods to [RuntimeInfo].
-extension RuntimeInfoPatterns on RuntimeInfo {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RuntimeInfo value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _RuntimeInfo() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RuntimeInfo value)  $default,){
-final _that = this;
-switch (_that) {
-case _RuntimeInfo():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RuntimeInfo value)?  $default,){
-final _that = this;
-switch (_that) {
-case _RuntimeInfo() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  Size physicalDisplaySize,  Size logicalDisplaySize,  DisplayWidthMode displayWidthMode)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _RuntimeInfo() when $default != null:
-return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplaySize,_that.logicalDisplaySize,_that.displayWidthMode);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  Size physicalDisplaySize,  Size logicalDisplaySize,  DisplayWidthMode displayWidthMode)  $default,) {final _that = this;
-switch (_that) {
-case _RuntimeInfo():
-return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplaySize,_that.logicalDisplaySize,_that.displayWidthMode);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppLifecycleState? appLifecycleState,  Brightness brightness,  Locale locale,  double textScaleFactor,  double devicePixelRatio,  Size physicalDisplaySize,  Size logicalDisplaySize,  DisplayWidthMode displayWidthMode)?  $default,) {final _that = this;
-switch (_that) {
-case _RuntimeInfo() when $default != null:
-return $default(_that.appLifecycleState,_that.brightness,_that.locale,_that.textScaleFactor,_that.devicePixelRatio,_that.physicalDisplaySize,_that.logicalDisplaySize,_that.displayWidthMode);case _:
-  return null;
-
-}
-}
-
-}
 
 /// @nodoc
 
 
-class _RuntimeInfo implements RuntimeInfo {
-  const _RuntimeInfo({required this.appLifecycleState, required this.brightness, required this.locale, required this.textScaleFactor, required this.devicePixelRatio, required this.physicalDisplaySize, required this.logicalDisplaySize, required this.displayWidthMode});
+class _RuntimeInfo extends RuntimeInfo {
+  const _RuntimeInfo({required this.appLifecycleState, required this.brightness, required this.locale, required this.textScaleFactor, required this.devicePixelRatio, required this.physicalDisplaySize, required this.logicalDisplaySize, required this.displayWidthMode}): super(appLifecycleState: appLifecycleState, brightness: brightness, locale: locale, textScaleFactor: textScaleFactor, devicePixelRatio: devicePixelRatio, physicalDisplaySize: physicalDisplaySize, logicalDisplaySize: logicalDisplaySize, displayWidthMode: displayWidthMode);
   
 
 @override final  AppLifecycleState? appLifecycleState;

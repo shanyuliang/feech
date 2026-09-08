@@ -105,12 +105,35 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
   }
 
   void refresh() {
+    final appLifecycleState = WidgetsBinding.instance.lifecycleState;
     final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
     final locale = WidgetsBinding.instance.platformDispatcher.locale;
     final textScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
+
+    final devicePixelRatio = WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
+    final physicalDisplaySize = WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero;
+    final logicalDisplaySize =
+        (WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero) /
+        (WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0);
+    final displayWidthMode =
+        ((WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero) /
+                (WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0))
+            .toDisplayWidthMode();
+
     if (debugLogDiagnostics) {
-      developer.log("RuntimeInfoSignal refresh brightness $brightness, locale $locale, textScaleFactor $textScaleFactor");
+      developer.log(
+        "RuntimeInfoSignal refresh appLifecycleState $appLifecycleState, brightness $brightness, locale $locale, textScaleFactor $textScaleFactor, devicePixelRatio $devicePixelRatio, physicalDisplaySize $physicalDisplaySize, logicalDisplaySize $logicalDisplaySize, displayWidthMode $displayWidthMode",
+      );
     }
-    value = peek().copyWith(brightness: brightness, locale: locale, textScaleFactor: textScaleFactor);
+    value = peek().copyWith(
+      appLifecycleState: appLifecycleState,
+      brightness: brightness,
+      locale: locale,
+      textScaleFactor: textScaleFactor,
+      devicePixelRatio: devicePixelRatio,
+      physicalDisplaySize: physicalDisplaySize,
+      logicalDisplaySize: logicalDisplaySize,
+      displayWidthMode: displayWidthMode,
+    );
   }
 }

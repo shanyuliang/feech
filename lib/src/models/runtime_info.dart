@@ -5,16 +5,14 @@ import 'display_width_mode.dart';
 
 part 'runtime_info.freezed.dart';
 
-@Freezed()
-abstract class RuntimeInfo with _$RuntimeInfo {
-  const factory RuntimeInfo({
-    required AppLifecycleState? appLifecycleState,
-    required Brightness brightness,
-    required Locale locale,
-    required double textScaleFactor,
-    required double devicePixelRatio,
-    required Size physicalDisplaySize,
-    required Size logicalDisplaySize,
-    required DisplayWidthMode displayWidthMode,
-  }) = _RuntimeInfo;
-}
+@freezed
+class const RuntimeInfo({
+  required final AppLifecycleState? appLifecycleState,
+  required final Brightness brightness,
+  required final Locale locale,
+  required final double textScaleFactor,
+  required final double devicePixelRatio,
+  required final Size physicalDisplaySize,
+  required final Size logicalDisplaySize,
+  required final DisplayWidthMode displayWidthMode,
+}) with _$RuntimeInfo;
