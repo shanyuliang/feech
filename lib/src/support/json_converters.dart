@@ -7,7 +7,7 @@ import '../extensions/alignment_extension.dart';
 import '../extensions/box_fit_extension.dart';
 import '../extensions/color_extension.dart';
 import '../extensions/date_time_extension.dart';
-import '../extensions/int_extension.dart';
+import '../extensions/num_extension.dart';
 import '../extensions/string_extension.dart';
 import '../models/timezone_mode.dart';
 import 'json_converter_ex.dart';

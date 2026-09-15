@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../models/display_width_mode.dart';
-import 'double_extension.dart';
+import 'num_extension.dart';
 
 extension BuildContextExtension on BuildContext {
   DisplayWidthMode getDisplayWidthMode() {
