@@ -31,7 +31,7 @@ dependencies:
   device_info_plus: '>=13.2.0 <14.0.0' # https://pub.dev/packages/device_info_plus
   dynamic_color: '>=2.1.0 <3.0.0' # https://pub.dev/packages/dynamic_color
   firebase_crashlytics: '>=5.4.0 <6.0.0' # https://pub.dev/packages/firebase_crashlytics
-  flutter_cache_manager: '>=3.4.3 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
+  flutter_cache_manager: '>=3.4.4 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.4.3 <4.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_soloud: '>=5.1.1 <6.0.0' # https://pub.dev/packages/flutter_soloud
   flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
