@@ -109,16 +109,10 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
     final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
     final locale = WidgetsBinding.instance.platformDispatcher.locale;
     final textScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
-
     final devicePixelRatio = WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
     final physicalDisplaySize = WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero;
-    final logicalDisplaySize =
-        (WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero) /
-        (WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0);
-    final displayWidthMode =
-        ((WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero) /
-                (WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0))
-            .toDisplayWidthMode();
+    final logicalDisplaySize = physicalDisplaySize / devicePixelRatio;
+    final displayWidthMode = logicalDisplaySize.toDisplayWidthMode();
 
     if (debugLogDiagnostics) {
       developer.log(
