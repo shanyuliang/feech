@@ -9,53 +9,37 @@ import '../models/runtime_info.dart';
 class RuntimeInfoSignal extends Signal<RuntimeInfo> {
   final bool debugLogDiagnostics;
 
-  RuntimeInfoSignal({this.debugLogDiagnostics = false})
-    : super(
-        RuntimeInfo(
-          appLifecycleState: WidgetsBinding.instance.lifecycleState,
-          brightness: WidgetsBinding.instance.platformDispatcher.platformBrightness,
-          locale: WidgetsBinding.instance.platformDispatcher.locale,
-          textScaleFactor: WidgetsBinding.instance.platformDispatcher.textScaleFactor,
-          devicePixelRatio: WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0,
-          physicalDisplaySize: WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero,
-          logicalDisplaySize:
-              (WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero) /
-              (WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0),
-          displayWidthMode:
-              ((WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero) /
-                      (WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0))
-                  .toDisplayWidthMode(),
-        ),
-        options: SignalOptions(name: "RuntimeInfoSignal"),
-      ) {
+  RuntimeInfoSignal({this.debugLogDiagnostics = false}) : super(_readRuntimeInfo(), options: SignalOptions(name: "RuntimeInfoSignal")) {
     final appLifecycleListener = AppLifecycleListener(
       onStateChange: (appLifecycleState) {
         setAppLifecycleState(appLifecycleState);
       },
     );
-    WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged = () {
-      WidgetsBinding.instance.handlePlatformBrightnessChanged();
-      setBrightness(WidgetsBinding.instance.platformDispatcher.platformBrightness);
+    final widgetsBinding = WidgetsBinding.instance;
+    final platformDispatcher = widgetsBinding.platformDispatcher;
+    platformDispatcher.onPlatformBrightnessChanged = () {
+      widgetsBinding.handlePlatformBrightnessChanged();
+      setBrightness(platformDispatcher.platformBrightness);
     };
-    WidgetsBinding.instance.platformDispatcher.onLocaleChanged = () {
-      setLocale(WidgetsBinding.instance.platformDispatcher.locale);
+    platformDispatcher.onLocaleChanged = () {
+      setLocale(platformDispatcher.locale);
     };
-    WidgetsBinding.instance.platformDispatcher.onTextScaleFactorChanged = () {
-      WidgetsBinding.instance.handleTextScaleFactorChanged();
-      setTextScaleFactor(WidgetsBinding.instance.platformDispatcher.textScaleFactor);
+    platformDispatcher.onTextScaleFactorChanged = () {
+      widgetsBinding.handleTextScaleFactorChanged();
+      setTextScaleFactor(platformDispatcher.textScaleFactor);
     };
-    WidgetsBinding.instance.platformDispatcher.onMetricsChanged = () {
-      WidgetsBinding.instance.handleMetricsChanged();
-      final devicePixelRatio = WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
-      final physicalDisplaySize = WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero;
+    platformDispatcher.onMetricsChanged = () {
+      widgetsBinding.handleMetricsChanged();
+      final devicePixelRatio = platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
+      final physicalDisplaySize = platformDispatcher.implicitView?.physicalSize ?? Size.zero;
       setDevicePixelRatioAndPhysicalDisplaySize(devicePixelRatio, physicalDisplaySize);
     };
     onDispose(() {
       appLifecycleListener.dispose();
-      WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged = null;
-      WidgetsBinding.instance.platformDispatcher.onLocaleChanged = null;
-      WidgetsBinding.instance.platformDispatcher.onTextScaleFactorChanged = null;
-      WidgetsBinding.instance.platformDispatcher.onMetricsChanged = null;
+      platformDispatcher.onPlatformBrightnessChanged = null;
+      platformDispatcher.onLocaleChanged = null;
+      platformDispatcher.onTextScaleFactorChanged = null;
+      platformDispatcher.onMetricsChanged = null;
     });
   }
 
@@ -105,29 +89,31 @@ class RuntimeInfoSignal extends Signal<RuntimeInfo> {
   }
 
   void refresh() {
-    final appLifecycleState = WidgetsBinding.instance.lifecycleState;
-    final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-    final locale = WidgetsBinding.instance.platformDispatcher.locale;
-    final textScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
-    final devicePixelRatio = WidgetsBinding.instance.platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
-    final physicalDisplaySize = WidgetsBinding.instance.platformDispatcher.implicitView?.physicalSize ?? Size.zero;
-    final logicalDisplaySize = physicalDisplaySize / devicePixelRatio;
-    final displayWidthMode = logicalDisplaySize.toDisplayWidthMode();
+    final runtimeInfo = _readRuntimeInfo();
 
     if (debugLogDiagnostics) {
       developer.log(
-        "RuntimeInfoSignal refresh appLifecycleState $appLifecycleState, brightness $brightness, locale $locale, textScaleFactor $textScaleFactor, devicePixelRatio $devicePixelRatio, physicalDisplaySize $physicalDisplaySize, logicalDisplaySize $logicalDisplaySize, displayWidthMode $displayWidthMode",
+        "RuntimeInfoSignal refresh appLifecycleState ${runtimeInfo.appLifecycleState}, brightness ${runtimeInfo.brightness}, locale ${runtimeInfo.locale}, textScaleFactor ${runtimeInfo.textScaleFactor}, devicePixelRatio ${runtimeInfo.devicePixelRatio}, physicalDisplaySize ${runtimeInfo.physicalDisplaySize}, logicalDisplaySize ${runtimeInfo.logicalDisplaySize}, displayWidthMode ${runtimeInfo.displayWidthMode}",
       );
     }
-    value = peek().copyWith(
-      appLifecycleState: appLifecycleState,
-      brightness: brightness,
-      locale: locale,
-      textScaleFactor: textScaleFactor,
+    value = runtimeInfo;
+  }
+
+  static RuntimeInfo _readRuntimeInfo() {
+    final widgetsBinding = WidgetsBinding.instance;
+    final platformDispatcher = widgetsBinding.platformDispatcher;
+    final devicePixelRatio = platformDispatcher.implicitView?.devicePixelRatio ?? 1.0;
+    final physicalDisplaySize = platformDispatcher.implicitView?.physicalSize ?? Size.zero;
+    final logicalDisplaySize = physicalDisplaySize / devicePixelRatio;
+    return RuntimeInfo(
+      appLifecycleState: widgetsBinding.lifecycleState,
+      brightness: platformDispatcher.platformBrightness,
+      locale: platformDispatcher.locale,
+      textScaleFactor: platformDispatcher.textScaleFactor,
       devicePixelRatio: devicePixelRatio,
       physicalDisplaySize: physicalDisplaySize,
       logicalDisplaySize: logicalDisplaySize,
-      displayWidthMode: displayWidthMode,
+      displayWidthMode: logicalDisplaySize.toDisplayWidthMode(),
     );
   }
 }
