@@ -37,7 +37,7 @@ dependencies:
   flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
-  geolocator: '>=14.1.1 <15.0.0' # https://pub.dev/packages/geolocator
+  geolocator: '>=14.1.2 <15.0.0' # https://pub.dev/packages/geolocator
   go_router: '>=18.1.0 <19.0.0' # https://pub.dev/packages/go_router
   google_maps_flutter: '>=2.19.0 <3.0.0' # https://pub.dev/packages/google_maps_flutter
   http: '>=1.6.0 <2.0.0' # https://pub.dev/packages/http
@@ -72,7 +72,7 @@ dev_dependencies:
   build_runner: '>=2.16.2 <3.0.0' # https://pub.dev/packages/build_runner
   flutter_lints: '>=6.0.0 <7.0.0' # https://pub.dev/packages/flutter_lints
   freezed: '>=4.0.3 <5.0.0' # https://pub.dev/packages/freezed
-  json_serializable: '>=6.14.1 <7.0.0' # https://pub.dev/packages/json_serializable
+  json_serializable: '>=6.15.1 <7.0.0' # https://pub.dev/packages/json_serializable
   riverpod_analyzer_utils: '>=1.0.0-dev.12 <2.0.0' # https://pub.dev/packages/riverpod_analyzer_utils
   riverpod_generator: '>=4.0.9 <5.0.0' # https://pub.dev/packages/riverpod_generator
   riverpod_lint: '>=3.1.9 <4.0.0' # https://pub.dev/packages/riverpod_lint
