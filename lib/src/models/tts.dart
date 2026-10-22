@@ -7,16 +7,12 @@ import 'tts_locale_voices.dart';
 part 'tts.freezed.dart';
 
 @Freezed(makeCollectionsUnmodifiable: false)
-abstract class Tts with _$Tts {
-  const factory Tts({
-    required FlutterTts flutterTts,
-    required List<TtsLocaleVoices> allLocaleVoices,
-    required String? selectedLocaleId,
-    required String? selectedVoiceId,
-  }) = _Tts;
-
-  const Tts._();
-
+class const Tts({
+  required final FlutterTts flutterTts,
+  required final List<TtsLocaleVoices> allLocaleVoices,
+  final String? selectedLocaleId,
+  final String? selectedVoiceId,
+}) with _$Tts {
   List<String> getSupportedLocales() {
     return allLocaleVoices.map((e) => e.localeId).toList()..sort();
   }

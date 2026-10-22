@@ -4,16 +4,12 @@ import 'page_lifecycle_state.dart';
 
 part 'page_parameter.freezed.dart';
 
-@Freezed()
-abstract class PageParameter with _$PageParameter {
-  const PageParameter._();
-
-  const factory PageParameter({
-    required String routeName,
-    @Default(PageLifecycleState.detached) PageLifecycleState initialLifecycleState,
-    String? initialTitle,
-  }) = _PageParameter;
-
+@freezed
+class const PageParameter({
+  required final String routeName,
+  final PageLifecycleState initialLifecycleState = PageLifecycleState.detached,
+  final String? initialTitle,
+}) with _$PageParameter {
   @override
   bool operator ==(Object other) => identical(this, other) || other is PageParameter && routeName == other.routeName;
 

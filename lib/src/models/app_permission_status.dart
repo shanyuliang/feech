@@ -5,14 +5,12 @@ import '../support/state_status.dart';
 
 part 'app_permission_status.freezed.dart';
 
-@Freezed()
-abstract class AppPermissionStatus with _$AppPermissionStatus {
-  const factory AppPermissionStatus({
-    required Permission permission,
-    CombinedStatus? combinedStatus,
-    Object? error,
-    @Default(StateStatus.initial) StateStatus stateStatus,
-  }) = _AppPermissionStatus;
-}
+@freezed
+class const AppPermissionStatus({
+  required final Permission permission,
+  final CombinedStatus? combinedStatus,
+  final Object? error,
+  final StateStatus stateStatus = StateStatus.initial,
+}) with _$AppPermissionStatus;
 
 typedef CombinedStatus = ({PermissionStatus? permissionStatus, ServiceStatus? serviceStatus, bool? shouldShowRequestRationale});
