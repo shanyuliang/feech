@@ -4,8 +4,6 @@ import 'primary_color.dart';
 
 part 'primary_color_category.freezed.dart';
 
-@Freezed()
-abstract class PrimaryColorCategory with _$PrimaryColorCategory {
-  const factory PrimaryColorCategory({required String name, String? nameAlias, @Default([]) List<PrimaryColor> colors}) =
-      _PrimaryColorCategory;
-}
+@freezed
+class const PrimaryColorCategory({required final String name, final String? nameAlias, final List<PrimaryColor> colors = const []})
+    with _$PrimaryColorCategory;
