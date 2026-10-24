@@ -1,26 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../support/state_status.dart';
+import 'user_lat_lng.dart';
 
 part 'user_location.freezed.dart';
 part 'user_location.g.dart';
 
-@Freezed()
-abstract class UserLocation with _$UserLocation {
+@freezed
+class const UserLocation({
+  final UserLatLng? lastKnownLocation,
+  final UserLatLng? currentLocation,
+  final Object? error,
+  final bool isListeningLocationChange=false,
+  final StateStatus stateStatus=StateStatus.initial,
+}) with _$UserLocation {
   factory UserLocation.fromJson(Map<String, dynamic> json) => _$UserLocationFromJson(json);
-
-  const factory UserLocation({
-    UserLatLng? lastKnownLocation,
-    UserLatLng? currentLocation,
-    Object? error,
-    @Default(false) bool isListeningLocationChange,
-    @Default(StateStatus.initial) StateStatus stateStatus,
-  }) = _UserLocation;
-}
-
-@Freezed()
-abstract class UserLatLng with _$UserLatLng {
-  factory UserLatLng.fromJson(Map<String, dynamic> json) => _$UserLatLngFromJson(json);
-
-  const factory UserLatLng({required double latitude, required double longitude}) = _UserLatLng;
 }
