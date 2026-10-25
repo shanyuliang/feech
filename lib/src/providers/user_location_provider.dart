@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../extensions/general_type_extension.dart';
+import '../models/user_lat_lng.dart';
 import '../models/user_location.dart';
 import '../support/result.dart';
 import '../support/state_status.dart';
@@ -38,7 +39,10 @@ class UserLocationProvider extends _$UserLocationProvider {
       },
     );
     final lastKnowLocation = positionResult.dataOrNull?.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
-    final stateStatus = switch (positionResult) { Success() => StateStatus.updated, _ => StateStatus.errorUpdating };
+    final stateStatus = switch (positionResult) {
+      Success() => StateStatus.updated,
+      _ => StateStatus.errorUpdating,
+    };
     state = state.copyWith(lastKnownLocation: lastKnowLocation, error: positionResult.errorOrNull, stateStatus: stateStatus);
     return lastKnowLocation;
   }
@@ -59,7 +63,10 @@ class UserLocationProvider extends _$UserLocationProvider {
       },
     );
     final currentLocation = positionResult.dataOrNull?.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
-    final stateStatus = switch (positionResult) { Success() => StateStatus.updated, _ => StateStatus.errorUpdating };
+    final stateStatus = switch (positionResult) {
+      Success() => StateStatus.updated,
+      _ => StateStatus.errorUpdating,
+    };
     state = state.copyWith(
       lastKnownLocation: currentLocation,
       currentLocation: currentLocation,
@@ -73,20 +80,15 @@ class UserLocationProvider extends _$UserLocationProvider {
     state = state.copyWith(isListeningLocationChange: true);
     await _detachPositionStreamListener();
 
-    _positionStreamSubscription = Geolocator.getPositionStream().listen((position) {
-      final currentLocation = position.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
-      state = state.copyWith(
-        lastKnownLocation: currentLocation,
-        currentLocation: currentLocation,
-        error: null,
-        stateStatus: StateStatus.updated,
-      );
-    }, onError: (error, stackTrace) {
-      state = state.copyWith(
-        error: error,
-        stateStatus: StateStatus.errorUpdating,
-      );
-    });
+    _positionStreamSubscription = Geolocator.getPositionStream().listen(
+      (position) {
+        final currentLocation = position.let((it) => UserLatLng(latitude: it.latitude, longitude: it.longitude));
+        state = state.copyWith(lastKnownLocation: currentLocation, currentLocation: currentLocation, error: null, stateStatus: StateStatus.updated);
+      },
+      onError: (error, stackTrace) {
+        state = state.copyWith(error: error, stateStatus: StateStatus.errorUpdating);
+      },
+    );
   }
 
   Future<void> stopListeningLocationChange() async {

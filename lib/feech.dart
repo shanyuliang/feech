@@ -46,6 +46,7 @@ export 'src/models/time_granularity.dart';
 export 'src/models/timezone_mode.dart';
 export 'src/models/tts.dart';
 export 'src/models/tts_locale_voices.dart';
+export 'src/models/user_lat_lng.dart';
 export 'src/models/user_location.dart';
 export 'src/models/web_storage_item.dart';
 export 'src/models/web_storage_type.dart';

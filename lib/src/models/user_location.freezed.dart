@@ -16,13 +16,15 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserLocation {
 
-
+ UserLatLng? get lastKnownLocation; UserLatLng? get currentLocation; Object? get error; bool get isListeningLocationChange; StateStatus get stateStatus;
 /// Create a copy of UserLocation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $UserLocationCopyWith<UserLocation> get copyWith => _$UserLocationCopyWithImpl<UserLocation>(this as UserLocation, _$identity);
 
+  /// Serializes this UserLocation to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -120,10 +122,11 @@ extension UserLocationPatterns on UserLocation {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserLocation value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _UserLocation() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -141,10 +144,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserLocation value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _UserLocation():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -161,10 +165,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserLocation value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _UserLocation() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -181,9 +186,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( UserLatLng? lastKnownLocation,  UserLatLng? currentLocation,  Object? error,  bool isListeningLocationChange,  StateStatus stateStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _UserLocation() when $default != null:
+return $default(_that.lastKnownLocation,_that.currentLocation,_that.error,_that.isListeningLocationChange,_that.stateStatus);case _:
   return orElse();
 
 }
@@ -201,9 +207,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( UserLatLng? lastKnownLocation,  UserLatLng? currentLocation,  Object? error,  bool isListeningLocationChange,  StateStatus stateStatus)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _UserLocation():
+return $default(_that.lastKnownLocation,_that.currentLocation,_that.error,_that.isListeningLocationChange,_that.stateStatus);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -220,14 +227,117 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( UserLatLng? lastKnownLocation,  UserLatLng? currentLocation,  Object? error,  bool isListeningLocationChange,  StateStatus stateStatus)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _UserLocation() when $default != null:
+return $default(_that.lastKnownLocation,_that.currentLocation,_that.error,_that.isListeningLocationChange,_that.stateStatus);case _:
   return null;
 
 }
 }
 
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _UserLocation implements UserLocation {
+  const _UserLocation({this.lastKnownLocation, this.currentLocation, this.error, this.isListeningLocationChange = false, this.stateStatus = StateStatus.initial});
+  factory _UserLocation.fromJson(Map<String, dynamic> json) => _$UserLocationFromJson(json);
+
+@override final  UserLatLng? lastKnownLocation;
+@override final  UserLatLng? currentLocation;
+@override final  Object? error;
+@override@JsonKey() final  bool isListeningLocationChange;
+@override@JsonKey() final  StateStatus stateStatus;
+
+/// Create a copy of UserLocation
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserLocationCopyWith<_UserLocation> get copyWith => __$UserLocationCopyWithImpl<_UserLocation>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$UserLocationToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserLocation&&(identical(other.lastKnownLocation, lastKnownLocation) || other.lastKnownLocation == lastKnownLocation)&&(identical(other.currentLocation, currentLocation) || other.currentLocation == currentLocation)&&const DeepCollectionEquality().equals(other.error, error)&&(identical(other.isListeningLocationChange, isListeningLocationChange) || other.isListeningLocationChange == isListeningLocationChange)&&(identical(other.stateStatus, stateStatus) || other.stateStatus == stateStatus));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,lastKnownLocation,currentLocation,const DeepCollectionEquality().hash(error),isListeningLocationChange,stateStatus);
+}
+
+@override
+String toString() {
+    return 'UserLocation(lastKnownLocation: $lastKnownLocation, currentLocation: $currentLocation, error: $error, isListeningLocationChange: $isListeningLocationChange, stateStatus: $stateStatus)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UserLocationCopyWith<$Res> implements $UserLocationCopyWith<$Res> {
+  factory _$UserLocationCopyWith(_UserLocation value, $Res Function(_UserLocation) _then) = __$UserLocationCopyWithImpl;
+@override @useResult
+$Res call({
+ UserLatLng? lastKnownLocation, UserLatLng? currentLocation, Object? error, bool isListeningLocationChange, StateStatus stateStatus
+});
+
+
+@override $UserLatLngCopyWith<$Res>? get lastKnownLocation;@override $UserLatLngCopyWith<$Res>? get currentLocation;
+
+}
+/// @nodoc
+class __$UserLocationCopyWithImpl<$Res>
+    implements _$UserLocationCopyWith<$Res> {
+  __$UserLocationCopyWithImpl(this._self, this._then);
+
+  final _UserLocation _self;
+  final $Res Function(_UserLocation) _then;
+
+/// Create a copy of UserLocation
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? lastKnownLocation = freezed,Object? currentLocation = freezed,Object? error = freezed,Object? isListeningLocationChange = null,Object? stateStatus = null,}) {
+  return _then(_UserLocation(
+lastKnownLocation: freezed == lastKnownLocation ? _self.lastKnownLocation : lastKnownLocation // ignore: cast_nullable_to_non_nullable
+as UserLatLng?,currentLocation: freezed == currentLocation ? _self.currentLocation : currentLocation // ignore: cast_nullable_to_non_nullable
+as UserLatLng?,error: freezed == error ? _self.error : error ,isListeningLocationChange: null == isListeningLocationChange ? _self.isListeningLocationChange : isListeningLocationChange // ignore: cast_nullable_to_non_nullable
+as bool,stateStatus: null == stateStatus ? _self.stateStatus : stateStatus // ignore: cast_nullable_to_non_nullable
+as StateStatus,
+  ));
+}
+
+/// Create a copy of UserLocation
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserLatLngCopyWith<$Res>? get lastKnownLocation {
+    if (_self.lastKnownLocation == null) {
+    return null;
+  }
+
+  return $UserLatLngCopyWith<$Res>(_self.lastKnownLocation!, (value) {
+    return _then(_self.copyWith(lastKnownLocation: value));
+  });
+}/// Create a copy of UserLocation
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserLatLngCopyWith<$Res>? get currentLocation {
+    if (_self.currentLocation == null) {
+    return null;
+  }
+
+  return $UserLatLngCopyWith<$Res>(_self.currentLocation!, (value) {
+    return _then(_self.copyWith(currentLocation: value));
+  });
+}
 }
 
 // dart format on

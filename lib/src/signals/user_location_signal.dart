@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 import '../extensions/general_type_extension.dart';
+import '../models/user_lat_lng.dart';
 import '../models/user_location.dart';
 import '../support/result.dart';
 import '../support/state_status.dart';
