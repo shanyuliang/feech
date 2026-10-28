@@ -1,11 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'web_storage_item.freezed.dart';
+
 part 'web_storage_item.g.dart';
 
-@Freezed()
-abstract class WebStorageItem with _$WebStorageItem {
+@freezed
+@JsonSerializable()
+class const WebStorageItem({required final String key, final dynamic value}) with _$WebStorageItem {
   factory WebStorageItem.fromJson(Map<String, dynamic> json) => _$WebStorageItemFromJson(json);
 
-  const factory WebStorageItem({required String key, dynamic value}) = _WebStorageItem;
+  Map<String, dynamic> toJson() => _$WebStorageItemToJson(this);
 }

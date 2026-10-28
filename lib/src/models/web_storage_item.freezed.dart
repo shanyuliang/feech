@@ -16,15 +16,13 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WebStorageItem {
 
- String get key; dynamic get value;
+
 /// Create a copy of WebStorageItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $WebStorageItemCopyWith<WebStorageItem> get copyWith => _$WebStorageItemCopyWithImpl<WebStorageItem>(this as WebStorageItem, _$identity);
 
-  /// Serializes this WebStorageItem to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -96,11 +94,10 @@ extension WebStorageItemPatterns on WebStorageItem {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WebStorageItem value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _WebStorageItem() when $default != null:
-return $default(_that);case _:
+case _:
   return orElse();
 
 }
@@ -118,11 +115,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WebStorageItem value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(){
 final _that = this;
 switch (_that) {
-case _WebStorageItem():
-return $default(_that);case _:
+case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -139,11 +135,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WebStorageItem value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
 final _that = this;
 switch (_that) {
-case _WebStorageItem() when $default != null:
-return $default(_that);case _:
+case _:
   return null;
 
 }
@@ -160,10 +155,9 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String key,  dynamic value)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _WebStorageItem() when $default != null:
-return $default(_that.key,_that.value);case _:
+case _:
   return orElse();
 
 }
@@ -181,10 +175,9 @@ return $default(_that.key,_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String key,  dynamic value)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
 switch (_that) {
-case _WebStorageItem():
-return $default(_that.key,_that.value);case _:
+case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,87 +194,13 @@ return $default(_that.key,_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String key,  dynamic value)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
 switch (_that) {
-case _WebStorageItem() when $default != null:
-return $default(_that.key,_that.value);case _:
+case _:
   return null;
 
 }
 }
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _WebStorageItem implements WebStorageItem {
-  const _WebStorageItem({required this.key, this.value});
-  factory _WebStorageItem.fromJson(Map<String, dynamic> json) => _$WebStorageItemFromJson(json);
-
-@override final  String key;
-@override final  dynamic value;
-
-/// Create a copy of WebStorageItem
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$WebStorageItemCopyWith<_WebStorageItem> get copyWith => __$WebStorageItemCopyWithImpl<_WebStorageItem>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$WebStorageItemToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebStorageItem&&(identical(other.key, key) || other.key == key)&&const DeepCollectionEquality().equals(other.value, value));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode {
-    return Object.hash(runtimeType,key,const DeepCollectionEquality().hash(value));
-}
-
-@override
-String toString() {
-    return 'WebStorageItem(key: $key, value: $value)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$WebStorageItemCopyWith<$Res> implements $WebStorageItemCopyWith<$Res> {
-  factory _$WebStorageItemCopyWith(_WebStorageItem value, $Res Function(_WebStorageItem) _then) = __$WebStorageItemCopyWithImpl;
-@override @useResult
-$Res call({
- String key, dynamic value
-});
-
-
-
-
-}
-/// @nodoc
-class __$WebStorageItemCopyWithImpl<$Res>
-    implements _$WebStorageItemCopyWith<$Res> {
-  __$WebStorageItemCopyWithImpl(this._self, this._then);
-
-  final _WebStorageItem _self;
-  final $Res Function(_WebStorageItem) _then;
-
-/// Create a copy of WebStorageItem
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? key = null,Object? value = freezed,}) {
-  return _then(_WebStorageItem(
-key: null == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
-as String,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as dynamic,
-  ));
-}
-
 
 }
 

@@ -34,7 +34,7 @@ dependencies:
   flutter_cache_manager: '>=3.4.6 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.4.3 <4.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_soloud: '>=5.2.2 <6.0.0' # https://pub.dev/packages/flutter_soloud
-  flutter_svg: '>=2.3.0 <3.0.0' # https://pub.dev/packages/flutter_svg
+  flutter_svg: '>=2.3.2 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   geolocator: '>=14.1.2 <15.0.0' # https://pub.dev/packages/geolocator
