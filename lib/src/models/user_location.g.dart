@@ -6,9 +6,7 @@ part of 'user_location.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserLocation _$UserLocationFromJson(
-  Map<String, dynamic> json,
-) => _UserLocation(
+UserLocation _$UserLocationFromJson(Map<String, dynamic> json) => UserLocation(
   lastKnownLocation: json['lastKnownLocation'] == null
       ? null
       : UserLatLng.fromJson(json['lastKnownLocation'] as Map<String, dynamic>),
@@ -23,7 +21,7 @@ _UserLocation _$UserLocationFromJson(
       StateStatus.initial,
 );
 
-Map<String, dynamic> _$UserLocationToJson(_UserLocation instance) =>
+Map<String, dynamic> _$UserLocationToJson(UserLocation instance) =>
     <String, dynamic>{
       'lastKnownLocation': instance.lastKnownLocation,
       'currentLocation': instance.currentLocation,

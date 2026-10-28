@@ -16,15 +16,13 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserLatLng {
 
- double get latitude; double get longitude;
+
 /// Create a copy of UserLatLng
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $UserLatLngCopyWith<UserLatLng> get copyWith => _$UserLatLngCopyWithImpl<UserLatLng>(this as UserLatLng, _$identity);
 
-  /// Serializes this UserLatLng to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -96,11 +94,10 @@ extension UserLatLngPatterns on UserLatLng {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserLatLng value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _UserLatLng() when $default != null:
-return $default(_that);case _:
+case _:
   return orElse();
 
 }
@@ -118,11 +115,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserLatLng value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(){
 final _that = this;
 switch (_that) {
-case _UserLatLng():
-return $default(_that);case _:
+case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -139,11 +135,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserLatLng value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
 final _that = this;
 switch (_that) {
-case _UserLatLng() when $default != null:
-return $default(_that);case _:
+case _:
   return null;
 
 }
@@ -160,10 +155,9 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double latitude,  double longitude)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _UserLatLng() when $default != null:
-return $default(_that.latitude,_that.longitude);case _:
+case _:
   return orElse();
 
 }
@@ -181,10 +175,9 @@ return $default(_that.latitude,_that.longitude);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double latitude,  double longitude)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
 switch (_that) {
-case _UserLatLng():
-return $default(_that.latitude,_that.longitude);case _:
+case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,87 +194,13 @@ return $default(_that.latitude,_that.longitude);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double latitude,  double longitude)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
 switch (_that) {
-case _UserLatLng() when $default != null:
-return $default(_that.latitude,_that.longitude);case _:
+case _:
   return null;
 
 }
 }
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _UserLatLng implements UserLatLng {
-  const _UserLatLng({required this.latitude, required this.longitude});
-  factory _UserLatLng.fromJson(Map<String, dynamic> json) => _$UserLatLngFromJson(json);
-
-@override final  double latitude;
-@override final  double longitude;
-
-/// Create a copy of UserLatLng
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$UserLatLngCopyWith<_UserLatLng> get copyWith => __$UserLatLngCopyWithImpl<_UserLatLng>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$UserLatLngToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserLatLng&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode {
-    return Object.hash(runtimeType,latitude,longitude);
-}
-
-@override
-String toString() {
-    return 'UserLatLng(latitude: $latitude, longitude: $longitude)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$UserLatLngCopyWith<$Res> implements $UserLatLngCopyWith<$Res> {
-  factory _$UserLatLngCopyWith(_UserLatLng value, $Res Function(_UserLatLng) _then) = __$UserLatLngCopyWithImpl;
-@override @useResult
-$Res call({
- double latitude, double longitude
-});
-
-
-
-
-}
-/// @nodoc
-class __$UserLatLngCopyWithImpl<$Res>
-    implements _$UserLatLngCopyWith<$Res> {
-  __$UserLatLngCopyWithImpl(this._self, this._then);
-
-  final _UserLatLng _self;
-  final $Res Function(_UserLatLng) _then;
-
-/// Create a copy of UserLatLng
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? latitude = null,Object? longitude = null,}) {
-  return _then(_UserLatLng(
-latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
-as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double,
-  ));
-}
-
 
 }
 
