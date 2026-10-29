@@ -542,6 +542,22 @@ List<String> _extractTimeTokens(String? value) {
   return tokens.where(_looksLikeTimeToken).toList(growable: false);
 }
 
+Map<String, String> _parseStyleProperties(String block) {
+  final result = <String, String>{};
+  for (final part in block.split(';')) {
+    final pieces = part.split(':');
+    if (pieces.length < 2) {
+      continue;
+    }
+    final key = pieces.first.trim();
+    final value = pieces.sublist(1).join(':').trim();
+    if (key.isNotEmpty && value.isNotEmpty) {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
 bool _looksLikeTimeToken(String token) {
   return token.endsWith('ms') || token.endsWith('s') || token.endsWith('min') || token.endsWith('h');
 }
@@ -826,7 +842,6 @@ class _CssAnimBinding {
   final _CssDirection direction;
   final _CssKeyframes keyframes;
   final Map<String, String> staticProperties;
-  final _OffsetPathSampler? _offsetPathSampler;
 
   _CssAnimBinding({
     required this.targetId,
@@ -837,7 +852,7 @@ class _CssAnimBinding {
     required this.direction,
     required this.keyframes,
     required this.staticProperties,
-  }) : _offsetPathSampler = _OffsetPathSampler.fromCssOffsetPath(staticProperties['offset-path']);
+  });
 
   int get timelineEndMs {
     if (iterationCount == null) {
@@ -863,7 +878,7 @@ class _CssAnimBinding {
         final frozenPercent = lastDirection ? 0.0 : 100.0;
         final frozen = _frameAt(frozenPercent);
         if (frozen != null) {
-          _applyCssProperties(target, frozen.properties, staticProperties, _offsetPathSampler);
+          _applyCssProperties(target, frozen.properties, staticProperties);
         }
         return;
       }
@@ -880,7 +895,7 @@ class _CssAnimBinding {
     if (current == null) {
       return;
     }
-    _applyCssProperties(target, current.properties, staticProperties, _offsetPathSampler);
+    _applyCssProperties(target, current.properties, staticProperties);
   }
 
   bool _directionForIteration(int cycleIndex) {
@@ -1010,12 +1025,14 @@ class _CssAnimBinding {
     XmlElement target,
     Map<String, String> properties,
     Map<String, String> staticProperties,
-    _OffsetPathSampler? offsetPathSampler,
   ) {
+    final inlineStyle = _parseStyleProperties(target.getAttribute('style') ?? '');
+    final mergedStatic = <String, String>{...staticProperties, ...inlineStyle};
+    final offsetPathSampler = _OffsetPathSampler.fromCssOffsetPath(mergedStatic['offset-path']);
     final transform = properties['transform'];
     Offset motionOffset = Offset.zero;
     final offsetDistance = properties['offset-distance'];
-    if (offsetDistance != null && offsetPathSampler != null) {
+    if (offsetDistance != null) {
       final percentMatch = RegExp(r'([-+]?[0-9]*\.?[0-9]+)%').firstMatch(offsetDistance);
       final percent = double.tryParse(percentMatch?.group(1) ?? '');
       if (percent != null) {
