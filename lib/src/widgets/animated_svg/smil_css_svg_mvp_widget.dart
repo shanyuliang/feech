@@ -293,7 +293,9 @@ class _SmilSvgMvpEngine {
       final properties = _parseCssProperties(ruleBlock);
       final shorthand = properties['animation'];
       final animationName = properties['animation-name'] ?? _extractAnimationName(shorthand);
-      final duration = _extractDuration(properties['animation-duration'] ?? shorthand);
+      final duration = properties.containsKey('animation-duration')
+          ? _extractDuration(properties['animation-duration'])
+          : _extractDurationFromShorthand(shorthand);
       if (animationName == null || duration == null) {
         continue;
       }
@@ -301,7 +303,9 @@ class _SmilSvgMvpEngine {
       if (keyframes == null || keyframes.frames.isEmpty) {
         continue;
       }
-      final delay = _extractDuration(properties['animation-delay'] ?? shorthand) ?? Duration.zero;
+      final delay = properties.containsKey('animation-delay')
+          ? (_extractDuration(properties['animation-delay']) ?? Duration.zero)
+          : (_extractDelayFromShorthand(shorthand) ?? Duration.zero);
       final iterationCount = _extractIterationCount(properties['animation-iteration-count'] ?? shorthand);
       final direction = _extractAnimationDirection(properties['animation-direction'] ?? shorthand);
       bindings.add(
@@ -509,6 +513,30 @@ Duration? _extractDuration(String? value) {
     }
   }
   return null;
+}
+
+Duration? _extractDurationFromShorthand(String? shorthand) {
+  final times = _extractTimeTokens(shorthand);
+  if (times.isEmpty) {
+    return null;
+  }
+  return _parseClock(times.first);
+}
+
+Duration? _extractDelayFromShorthand(String? shorthand) {
+  final times = _extractTimeTokens(shorthand);
+  if (times.length < 2) {
+    return null;
+  }
+  return _parseClock(times[1]);
+}
+
+List<String> _extractTimeTokens(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return const [];
+  }
+  final tokens = value.split(RegExp(r'\s+|,')).map((e) => e.trim()).where((e) => e.isNotEmpty);
+  return tokens.where(_looksLikeTimeToken).toList(growable: false);
 }
 
 bool _looksLikeTimeToken(String token) {
