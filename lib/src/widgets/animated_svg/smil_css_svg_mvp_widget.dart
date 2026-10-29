@@ -13,6 +13,7 @@ class SmilCssSvgMvpWidget extends StatefulWidget {
   final _SmilSvgSourceType _sourceType;
   final Map<String, String>? headers;
   final bool loop;
+  final int targetFrameRate;
   final double? width;
   final double? height;
   final BoxFit fit;
@@ -24,6 +25,7 @@ class SmilCssSvgMvpWidget extends StatefulWidget {
     super.key,
     required String assetPath,
     this.loop = true,
+    this.targetFrameRate = 60,
     this.width,
     this.height,
     this.fit = BoxFit.contain,
@@ -39,6 +41,7 @@ class SmilCssSvgMvpWidget extends StatefulWidget {
     required String url,
     this.headers,
     this.loop = true,
+    this.targetFrameRate = 60,
     this.width,
     this.height,
     this.fit = BoxFit.contain,
@@ -52,6 +55,7 @@ class SmilCssSvgMvpWidget extends StatefulWidget {
     super.key,
     required String svgXml,
     this.loop = true,
+    this.targetFrameRate = 60,
     this.width,
     this.height,
     this.fit = BoxFit.contain,
@@ -67,9 +71,9 @@ class SmilCssSvgMvpWidget extends StatefulWidget {
 }
 
 class _SmilCssSvgMvpWidgetState extends State<SmilCssSvgMvpWidget> with SingleTickerProviderStateMixin {
-  _SmilSvgMvpEngine? _engine;
   AnimationController? _controller;
-  String? _currentSvg;
+  List<String>? _frames;
+  int _frameIndex = 0;
   Object? _error;
 
   @override
@@ -89,17 +93,18 @@ class _SmilCssSvgMvpWidgetState extends State<SmilCssSvgMvpWidget> with SingleTi
       final rawSvg = await _loadSvg();
       final engine = _SmilSvgMvpEngine(svgXml: rawSvg);
       if (mounted) {
-        _engine = engine;
+        final frames = engine.renderFrames(targetFrameRate: widget.targetFrameRate);
+        _frames = frames.isEmpty ? [engine.renderAt(Duration.zero)] : frames;
         final duration = engine.timelineDuration;
         _controller = AnimationController(vsync: this, duration: duration)
           ..addListener(() {
-            final active = _engine;
-            if (active == null) {
+            final cachedFrames = _frames;
+            if (cachedFrames == null || cachedFrames.isEmpty) {
               return;
             }
-            final timeMs = _controller!.value * active.timelineDuration.inMilliseconds;
+            final idx = ((_controller!.value * cachedFrames.length).floor()).clamp(0, cachedFrames.length - 1);
             setState(() {
-              _currentSvg = active.renderAt(Duration(milliseconds: timeMs.round()));
+              _frameIndex = idx;
             });
           });
         if (widget.loop) {
@@ -108,7 +113,7 @@ class _SmilCssSvgMvpWidgetState extends State<SmilCssSvgMvpWidget> with SingleTi
           _controller!.forward(from: 0);
         }
         setState(() {
-          _currentSvg = engine.renderAt(Duration.zero);
+          _frameIndex = 0;
         });
       }
     } catch (e) {
@@ -140,11 +145,13 @@ class _SmilCssSvgMvpWidgetState extends State<SmilCssSvgMvpWidget> with SingleTi
     if (_error != null) {
       return widget.errorBuilder?.call(context, _error!) ?? const SizedBox.shrink();
     }
-    if (_currentSvg == null) {
+    final frames = _frames;
+    if (frames == null || frames.isEmpty) {
       return widget.loadingBuilder?.call(context) ?? SizedBox(width: widget.width, height: widget.height);
     }
+    final currentSvg = frames[_frameIndex.clamp(0, frames.length - 1)];
     return SvgPicture.string(
-      _currentSvg!,
+      currentSvg,
       width: widget.width,
       height: widget.height,
       fit: widget.fit,
@@ -415,6 +422,18 @@ class _SmilSvgMvpEngine {
       styleNode.parent?.children.remove(styleNode);
     }
     return cloned.toXmlString(pretty: false);
+  }
+
+  List<String> renderFrames({required int targetFrameRate}) {
+    final frameRate = targetFrameRate <= 0 ? 60 : targetFrameRate;
+    final durationMs = math.max(1, timelineDuration.inMilliseconds);
+    final frameCount = math.max(1, ((durationMs / 1000) * frameRate).round());
+    final frames = <String>[];
+    for (var i = 0; i < frameCount; i += 1) {
+      final ms = ((i / frameCount) * durationMs).round();
+      frames.add(renderAt(Duration(milliseconds: ms)));
+    }
+    return frames;
   }
 }
 

@@ -42,6 +42,7 @@ final loading = AnimatedSvgAutoFrameSequence(
 /// Option 2: SMIL MVP engine in pure Flutter (supports animate/animateTransform/set).
 final smilMvp = SmilCssSvgMvpWidget.asset(
   assetPath: 'assets/images/nature.svg',
+  targetFrameRate: 60,
   width: 240,
   height: 240,
 );
