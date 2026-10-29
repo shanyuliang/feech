@@ -52,6 +52,7 @@ dependencies:
   newrelic_mobile: '>=1.3.4 <2.0.0' # https://pub.dev/packages/newrelic_mobile
   package_info_plus: '>=10.2.2 <11.0.0' # https://pub.dev/packages/package_info_plus
   path: '>=1.9.1 <2.0.0' # https://pub.dev/packages/path
+  path_drawing: '>=1.0.1 <2.0.0' # https://pub.dev/packages/path_drawing
   path_provider: '>=2.1.6 <3.0.0' # https://pub.dev/packages/path_provider
   permission_handler: '>=13.0.2 <14.0.0' # https://pub.dev/packages/permission_handler
   pointer_interceptor: '>=0.10.1+3 <1.0.0' # https://pub.dev/packages/pointer_interceptor

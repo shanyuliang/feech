@@ -1,9 +1,11 @@
 import 'dart:math' as math;
+import 'dart:ui' show PathMetric;
 
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:material_ui/material_ui.dart';
+import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
 
 class SmilCssSvgMvpWidget extends StatefulWidget {
@@ -317,6 +319,7 @@ class _SmilSvgMvpEngine {
           iterationCount: iterationCount,
           direction: direction,
           keyframes: keyframes,
+          staticProperties: properties,
         ),
       );
     }
@@ -822,6 +825,8 @@ class _CssAnimBinding {
   final double? iterationCount;
   final _CssDirection direction;
   final _CssKeyframes keyframes;
+  final Map<String, String> staticProperties;
+  final _OffsetPathSampler? _offsetPathSampler;
 
   _CssAnimBinding({
     required this.targetId,
@@ -831,7 +836,8 @@ class _CssAnimBinding {
     required this.iterationCount,
     required this.direction,
     required this.keyframes,
-  });
+    required this.staticProperties,
+  }) : _offsetPathSampler = _OffsetPathSampler.fromCssOffsetPath(staticProperties['offset-path']);
 
   int get timelineEndMs {
     if (iterationCount == null) {
@@ -857,7 +863,7 @@ class _CssAnimBinding {
         final frozenPercent = lastDirection ? 0.0 : 100.0;
         final frozen = _frameAt(frozenPercent);
         if (frozen != null) {
-          _applyCssProperties(target, frozen.properties);
+          _applyCssProperties(target, frozen.properties, staticProperties, _offsetPathSampler);
         }
         return;
       }
@@ -874,7 +880,7 @@ class _CssAnimBinding {
     if (current == null) {
       return;
     }
-    _applyCssProperties(target, current.properties);
+    _applyCssProperties(target, current.properties, staticProperties, _offsetPathSampler);
   }
 
   bool _directionForIteration(int cycleIndex) {
@@ -1000,12 +1006,26 @@ class _CssAnimBinding {
     return _TransformComponents(translate: translate, rotateDeg: rotateDeg, scale: scale);
   }
 
-  void _applyCssProperties(XmlElement target, Map<String, String> properties) {
+  void _applyCssProperties(
+    XmlElement target,
+    Map<String, String> properties,
+    Map<String, String> staticProperties,
+    _OffsetPathSampler? offsetPathSampler,
+  ) {
     final transform = properties['transform'];
+    Offset motionOffset = Offset.zero;
+    final offsetDistance = properties['offset-distance'];
+    if (offsetDistance != null && offsetPathSampler != null) {
+      final percentMatch = RegExp(r'([-+]?[0-9]*\.?[0-9]+)%').firstMatch(offsetDistance);
+      final percent = double.tryParse(percentMatch?.group(1) ?? '');
+      if (percent != null) {
+        motionOffset = offsetPathSampler.sampleAtPercent(percent.clamp(0, 100).toDouble());
+      }
+    }
     if (transform != null) {
       final parsed = _parseTransform(transform);
       if (parsed != null) {
-        final translate = parsed.translate;
+        final translate = parsed.translate + motionOffset;
         final rotate = parsed.rotateDeg;
         final scale = parsed.scale;
         final angle = rotate * math.pi / 180;
@@ -1020,6 +1040,8 @@ class _CssAnimBinding {
           'matrix(${_formatNumber(a)} ${_formatNumber(b)} ${_formatNumber(c)} ${_formatNumber(d)} ${_formatNumber(translate.dx)} ${_formatNumber(translate.dy)})',
         );
       }
+    } else if (motionOffset != Offset.zero) {
+      target.setAttribute('transform', 'translate(${_formatNumber(motionOffset.dx)} ${_formatNumber(motionOffset.dy)})');
     }
     final opacity = properties['opacity'];
     if (opacity != null) {
@@ -1055,4 +1077,51 @@ class _TransformComponents {
   final Offset scale;
 
   _TransformComponents({required this.translate, required this.rotateDeg, required this.scale});
+}
+
+class _OffsetPathSampler {
+  final List<PathMetric> _metrics;
+  final double _totalLength;
+
+  _OffsetPathSampler._(this._metrics, this._totalLength);
+
+  factory _OffsetPathSampler.fromCssOffsetPath(String? offsetPath) {
+    if (offsetPath == null) {
+      return _OffsetPathSampler._(const [], 0);
+    }
+    final pathMatch = RegExp(r'''path\(['"](.+)['"]\)''').firstMatch(offsetPath);
+    final pathData = pathMatch?.group(1);
+    if (pathData == null || pathData.trim().isEmpty) {
+      return _OffsetPathSampler._(const [], 0);
+    }
+    try {
+      final path = parseSvgPathData(pathData);
+      final metrics = path.computeMetrics(forceClosed: false).toList(growable: false);
+      final totalLength = metrics.fold<double>(0, (sum, metric) => sum + metric.length);
+      return _OffsetPathSampler._(metrics, totalLength);
+    } catch (_) {
+      return _OffsetPathSampler._(const [], 0);
+    }
+  }
+
+  Offset sampleAtPercent(double percent) {
+    if (_metrics.isEmpty || _totalLength <= 0) {
+      return Offset.zero;
+    }
+    final target = _totalLength * (percent / 100);
+    var traversed = 0.0;
+    for (final metric in _metrics) {
+      final end = traversed + metric.length;
+      if (target <= end) {
+        final tangent = metric.getTangentForOffset((target - traversed).clamp(0, metric.length));
+        if (tangent != null) {
+          return tangent.position;
+        }
+        return Offset.zero;
+      }
+      traversed = end;
+    }
+    final tangent = _metrics.last.getTangentForOffset(_metrics.last.length);
+    return tangent?.position ?? Offset.zero;
+  }
 }
