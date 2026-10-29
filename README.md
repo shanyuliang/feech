@@ -69,6 +69,14 @@ The MVP renderer interpolates percentage-based CSS `offset-distance` keyframes
 along `offset-path: path(...)`, including paths supplied in inline styles.
 CSS `d: path(...)` keyframes morph continuously when both paths have matching
 command sequences and argument counts; incompatible paths switch discretely.
+The renderer also imports readable SVGator `2022-05-04` timeline JSON, as used
+by `assets/images/coffee.svg`, without executing embedded JavaScript. Supported
+tracks are position, rotation, scale, translation, opacity, and compatible path
+morphs, with cubic-bezier and step easing. Unsupported SVGator channels or curved
+position tracks produce an error (customize with `errorBuilder`).
+SVGator playback spans the last keyframe and uses the widget's `loop` option;
+encoded player settings and arbitrary JavaScript animations are not interpreted.
+SVG rendering remains subject to `flutter_svg` limitations, including filters.
 `targetFrameRate` controls cached frame sampling, not guaranteed device rendering
 performance. SMIL/CSS support remains partial, not browser-equivalent.
 

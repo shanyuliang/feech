@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math' as math;
 import 'dart:ui' show PathMetric;
 
@@ -7,6 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:material_ui/material_ui.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
+
+part 'svgator_timeline.dart';
 
 class SmilCssSvgMvpWidget extends StatefulWidget {
   final String _svgSource;
@@ -102,7 +105,7 @@ class _SmilCssSvgMvpWidgetState extends State<SmilCssSvgMvpWidget> with SingleTi
             if (cachedFrames == null || cachedFrames.isEmpty) {
               return;
             }
-            final idx = ((_controller!.value * cachedFrames.length).floor()).clamp(0, cachedFrames.length - 1);
+            final idx = (_controller!.value * cachedFrames.length + 1e-9).floor().clamp(0, cachedFrames.length - 1);
             setState(() {
               _frameIndex = idx;
             });
@@ -143,7 +146,7 @@ class _SmilCssSvgMvpWidgetState extends State<SmilCssSvgMvpWidget> with SingleTi
   @override
   Widget build(BuildContext context) {
     if (_error != null) {
-      return widget.errorBuilder?.call(context, _error!) ?? const SizedBox.shrink();
+      return widget.errorBuilder?.call(context, _error!) ?? ErrorWidget(_error!);
     }
     final frames = _frames;
     if (frames == null || frames.isEmpty) {
@@ -164,16 +167,24 @@ class _SmilSvgMvpEngine {
   final XmlDocument _document;
   final List<_SmilAnim> _animations;
   final List<_CssAnimBinding> _cssAnimations;
+  final _SvgatorTimeline? _svgator;
   final Duration timelineDuration;
 
-  _SmilSvgMvpEngine._(this._document, this._animations, this._cssAnimations, this.timelineDuration);
+  _SmilSvgMvpEngine._(this._document, this._animations, this._cssAnimations, this._svgator, this.timelineDuration);
 
   factory _SmilSvgMvpEngine({required String svgXml}) {
     final document = XmlDocument.parse(svgXml);
     final animations = _parseSmilAnimations(document);
     final cssAnimations = _parseCssAnimations(document);
+    final svgator = _SvgatorTimeline.parse(document);
+    if (svgator != null) {
+      for (final script in document.findAllElements('script').toList(growable: false)) {
+        script.parent?.children.remove(script);
+      }
+    }
     final duration = _computeDuration(animations, cssAnimations);
-    return _SmilSvgMvpEngine._(document, animations, cssAnimations, duration);
+    final combinedDuration = svgator != null && svgator.duration > duration ? svgator.duration : duration;
+    return _SmilSvgMvpEngine._(document, animations, cssAnimations, svgator, combinedDuration);
   }
 
   static Duration _computeDuration(List<_SmilAnim> animations, List<_CssAnimBinding> cssAnimations) {
@@ -418,6 +429,7 @@ class _SmilSvgMvpEngine {
       }
       cssAnimation.apply(target, t, timelineDuration);
     }
+    _svgator?.apply(map, t);
     for (final styleNode in cloned.findAllElements('style').toList(growable: false)) {
       styleNode.parent?.children.remove(styleNode);
     }
@@ -1003,7 +1015,7 @@ class _CssAnimBinding {
     return out;
   }
 
-  String _interpolatePath(String left, String right, double ratio) {
+  static String _interpolatePath(String left, String right, double ratio) {
     final wrapper = RegExp(r'''^\s*path\(\s*(['"])(.*?)\1\s*\)\s*$''', dotAll: true);
     final leftPath = wrapper.firstMatch(left)?.group(2);
     final rightPath = wrapper.firstMatch(right)?.group(2);
