@@ -171,12 +171,8 @@ class _SmilSvgMvpEngine {
     if (animations.isEmpty && cssAnimations.isEmpty) {
       return const Duration(milliseconds: 500);
     }
-    final smilMaxMs = animations
-        .map((a) => a.begin.inMilliseconds + a.dur.inMilliseconds)
-        .fold<int>(1, (acc, e) => math.max(acc, e));
-    final cssMaxMs = cssAnimations
-        .map((a) => a.duration.inMilliseconds)
-        .fold<int>(1, (acc, e) => math.max(acc, e));
+    final smilMaxMs = animations.map((a) => a.timelineEnd.inMilliseconds).fold<int>(1, (acc, e) => math.max(acc, e));
+    final cssMaxMs = cssAnimations.map((a) => a.timelineEndMs).fold<int>(1, (acc, e) => math.max(acc, e));
     return Duration(milliseconds: math.max(smilMaxMs, cssMaxMs));
   }
 
@@ -209,9 +205,13 @@ class _SmilSvgMvpEngine {
                   attributeName: attributeName,
                   begin: begin,
                   dur: dur,
+                  repeatCount: _parseRepeatCount(child.getAttribute('repeatCount')),
+                  repeatDur: _parseRepeatDur(child.getAttribute('repeatDur')),
                   from: from,
                   to: to,
                   values: values,
+                  calcMode: child.getAttribute('calcMode') ?? 'linear',
+                  keyTimes: _parseKeyTimes(child.getAttribute('keyTimes')),
                   fillFreeze: (child.getAttribute('fill') ?? '') == 'freeze',
                 ),
               );
@@ -235,6 +235,8 @@ class _SmilSvgMvpEngine {
                   targetId: targetId,
                   begin: begin,
                   dur: dur,
+                  repeatCount: _parseRepeatCount(child.getAttribute('repeatCount')),
+                  repeatDur: _parseRepeatDur(child.getAttribute('repeatDur')),
                   transformType: transformType,
                   from: from,
                   to: to,
@@ -259,6 +261,8 @@ class _SmilSvgMvpEngine {
                   to: to,
                   begin: begin,
                   dur: dur,
+                  repeatCount: _parseRepeatCount(child.getAttribute('repeatCount')),
+                  repeatDur: _parseRepeatDur(child.getAttribute('repeatDur')),
                   fillFreeze: (child.getAttribute('fill') ?? '') == 'freeze',
                 ),
               );
@@ -279,30 +283,35 @@ class _SmilSvgMvpEngine {
     }
     final keyframesByName = _parseCssKeyframes(styleText);
     final bindings = <_CssAnimBinding>[];
-    final bindingRegExp = RegExp(
-      r'#([A-Za-z0-9\-_]+)\s*\{\s*animation:\s*([A-Za-z0-9\-_]+)\s+([0-9.]+)(ms|s)\s+[^;}]*?(infinite)?[^;}]*\}',
-      multiLine: true,
-    );
-    for (final match in bindingRegExp.allMatches(styleText)) {
-      final id = match.group(1);
-      final animationName = match.group(2);
-      final durationNum = double.tryParse(match.group(3) ?? '');
-      final durationUnit = match.group(4);
-      final infinite = (match.group(5) ?? '').contains('infinite');
-      if (id == null || animationName == null || durationNum == null || durationUnit == null) {
+    final selectorRegExp = RegExp(r'#([A-Za-z0-9\-_]+)\s*\{([^}]*)\}', multiLine: true);
+    for (final selectorMatch in selectorRegExp.allMatches(styleText)) {
+      final id = selectorMatch.group(1);
+      final ruleBlock = selectorMatch.group(2);
+      if (id == null || ruleBlock == null) {
+        continue;
+      }
+      final properties = _parseCssProperties(ruleBlock);
+      final shorthand = properties['animation'];
+      final animationName = properties['animation-name'] ?? _extractAnimationName(shorthand);
+      final duration = _extractDuration(properties['animation-duration'] ?? shorthand);
+      if (animationName == null || duration == null) {
         continue;
       }
       final keyframes = keyframesByName[animationName];
       if (keyframes == null || keyframes.frames.isEmpty) {
         continue;
       }
-      final durationMs = durationUnit == 's' ? (durationNum * 1000).round() : durationNum.round();
+      final delay = _extractDuration(properties['animation-delay'] ?? shorthand) ?? Duration.zero;
+      final iterationCount = _extractIterationCount(properties['animation-iteration-count'] ?? shorthand);
+      final direction = _extractAnimationDirection(properties['animation-direction'] ?? shorthand);
       bindings.add(
         _CssAnimBinding(
           targetId: id,
           animationName: animationName,
-          duration: Duration(milliseconds: math.max(1, durationMs)),
-          infinite: infinite,
+          duration: duration,
+          delay: delay,
+          iterationCount: iterationCount,
+          direction: direction,
           keyframes: keyframes,
         ),
       );
@@ -404,6 +413,14 @@ class _SmilSvgMvpEngine {
 
 Duration _parseClock(String value) {
   final trimmed = value.trim();
+  if (trimmed.endsWith('min')) {
+    final minutes = double.tryParse(trimmed.substring(0, trimmed.length - 3)) ?? 0;
+    return Duration(milliseconds: (minutes * 60 * 1000).round());
+  }
+  if (trimmed.endsWith('h')) {
+    final hours = double.tryParse(trimmed.substring(0, trimmed.length - 1)) ?? 0;
+    return Duration(milliseconds: (hours * 60 * 60 * 1000).round());
+  }
   if (trimmed.endsWith('ms')) {
     return Duration(milliseconds: int.tryParse(trimmed.substring(0, trimmed.length - 2)) ?? 0);
   }
@@ -415,15 +432,159 @@ Duration _parseClock(String value) {
   return Duration(milliseconds: (plain * 1000).round());
 }
 
+double? _parseRepeatCount(String? value) {
+  if (value == null) {
+    return 1;
+  }
+  final trimmed = value.trim();
+  if (trimmed.isEmpty) {
+    return 1;
+  }
+  if (trimmed == 'indefinite') {
+    return null;
+  }
+  return double.tryParse(trimmed) ?? 1;
+}
+
+Duration? _parseRepeatDur(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return null;
+  }
+  if (value.trim() == 'indefinite') {
+    return null;
+  }
+  return _parseClock(value);
+}
+
+List<double>? _parseKeyTimes(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return null;
+  }
+  final items = value
+      .split(RegExp(r'[;\s,]+'))
+      .map((e) => e.trim())
+      .where((e) => e.isNotEmpty)
+      .map((e) => double.tryParse(e))
+      .whereType<double>()
+      .toList(growable: false);
+  if (items.length < 2) {
+    return null;
+  }
+  return items;
+}
+
+String? _extractAnimationName(String? shorthand) {
+  if (shorthand == null || shorthand.trim().isEmpty) {
+    return null;
+  }
+  final tokens = shorthand.trim().split(RegExp(r'\s+'));
+  for (final token in tokens) {
+    if (!_looksLikeTimeToken(token) &&
+        token != 'linear' &&
+        token != 'ease' &&
+        token != 'ease-in' &&
+        token != 'ease-out' &&
+        token != 'ease-in-out' &&
+        token != 'infinite' &&
+        token != 'normal' &&
+        token != 'alternate' &&
+        token != 'alternate-reverse' &&
+        token != 'reverse' &&
+        double.tryParse(token) == null) {
+      return token;
+    }
+  }
+  return null;
+}
+
+Duration? _extractDuration(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return null;
+  }
+  final tokens = value.split(RegExp(r'\s+|,'));
+  for (final token in tokens) {
+    final t = token.trim();
+    if (_looksLikeTimeToken(t)) {
+      return _parseClock(t);
+    }
+  }
+  return null;
+}
+
+bool _looksLikeTimeToken(String token) {
+  return token.endsWith('ms') || token.endsWith('s') || token.endsWith('min') || token.endsWith('h');
+}
+
+double? _extractIterationCount(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return 1;
+  }
+  if (value.contains('infinite')) {
+    return null;
+  }
+  final tokens = value.split(RegExp(r'\s+|,'));
+  for (final token in tokens) {
+    final parsed = double.tryParse(token.trim());
+    if (parsed != null) {
+      return parsed;
+    }
+  }
+  return 1;
+}
+
+_CssDirection _extractAnimationDirection(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return _CssDirection.normal;
+  }
+  if (value.contains('alternate-reverse')) {
+    return _CssDirection.alternateReverse;
+  }
+  if (value.contains('alternate')) {
+    return _CssDirection.alternate;
+  }
+  if (value.contains('reverse')) {
+    return _CssDirection.reverse;
+  }
+  return _CssDirection.normal;
+}
+
 abstract class _SmilAnim {
   final String targetId;
   final Duration begin;
   final Duration dur;
+  final double? repeatCount;
+  final Duration? repeatDur;
   final bool fillFreeze;
 
-  _SmilAnim({required this.targetId, required this.begin, required this.dur, required this.fillFreeze});
+  _SmilAnim({
+    required this.targetId,
+    required this.begin,
+    required this.dur,
+    required this.repeatCount,
+    required this.repeatDur,
+    required this.fillFreeze,
+  });
 
   void apply(XmlElement target, Duration t);
+
+  Duration get activeDuration {
+    final byCount = repeatCount == null
+        ? null
+        : Duration(milliseconds: (dur.inMilliseconds * repeatCount!.clamp(0, double.infinity)).round());
+    final byRepeatDur = repeatDur;
+    if (byCount == null && byRepeatDur == null) {
+      return dur;
+    }
+    if (byCount == null) {
+      return byRepeatDur!;
+    }
+    if (byRepeatDur == null) {
+      return byCount;
+    }
+    return byCount.inMilliseconds < byRepeatDur.inMilliseconds ? byCount : byRepeatDur;
+  }
+
+  Duration get timelineEnd => begin + activeDuration;
 
   double? progress(Duration t) {
     if (t < begin) {
@@ -433,10 +594,24 @@ abstract class _SmilAnim {
       return null;
     }
     final elapsed = t - begin;
-    if (elapsed > dur) {
+    final active = activeDuration;
+    if (elapsed > active) {
       return fillFreeze ? 1 : null;
     }
-    return (elapsed.inMilliseconds / dur.inMilliseconds).clamp(0, 1);
+    if (repeatCount == null) {
+      final cycleMs = math.max(1, dur.inMilliseconds);
+      final cycleElapsedMs = elapsed.inMilliseconds % cycleMs;
+      return (cycleElapsedMs / cycleMs).clamp(0, 1);
+    }
+    if (dur.inMilliseconds <= 0) {
+      return null;
+    }
+    if (elapsed == active && fillFreeze) {
+      return 1;
+    }
+    final cycleMs = math.max(1, dur.inMilliseconds);
+    final cycleElapsedMs = elapsed.inMilliseconds % cycleMs;
+    return (cycleElapsedMs / cycleMs).clamp(0, 1);
   }
 }
 
@@ -445,16 +620,22 @@ class _SmilAnimate extends _SmilAnim {
   final String from;
   final String? to;
   final String? values;
+  final String calcMode;
+  final List<double>? keyTimes;
 
   _SmilAnimate({
     required super.targetId,
     required super.begin,
     required super.dur,
+    required super.repeatCount,
+    required super.repeatDur,
     required super.fillFreeze,
     required this.attributeName,
     required this.from,
     required this.to,
     required this.values,
+    required this.calcMode,
+    required this.keyTimes,
   });
 
   @override
@@ -466,17 +647,15 @@ class _SmilAnimate extends _SmilAnim {
     if (values != null && values!.contains(';')) {
       final keyValues = values!.split(';').map((e) => e.trim()).where((e) => e.isNotEmpty).toList(growable: false);
       if (keyValues.isNotEmpty) {
-        final position = (p * (keyValues.length - 1)).clamp(0, keyValues.length - 1);
-        final left = position.floor();
-        final right = math.min(keyValues.length - 1, left + 1);
-        final localP = position - left;
+        final (left, right, localP) = _segmentForProgress(p, keyValues.length, keyTimes);
+        final effectiveP = calcMode == 'discrete' ? 0.0 : localP;
         final leftNum = double.tryParse(keyValues[left]);
         final rightNum = double.tryParse(keyValues[right]);
         if (leftNum != null && rightNum != null) {
-          final v = leftNum + (rightNum - leftNum) * localP;
+          final v = leftNum + (rightNum - leftNum) * effectiveP;
           target.setAttribute(attributeName, _formatNumber(v));
         } else {
-          target.setAttribute(attributeName, keyValues[left]);
+          target.setAttribute(attributeName, calcMode == 'discrete' ? keyValues[left] : (effectiveP < 0.5 ? keyValues[left] : keyValues[right]));
         }
       }
       return;
@@ -502,6 +681,8 @@ class _SmilSet extends _SmilAnim {
     required super.targetId,
     required super.begin,
     required super.dur,
+    required super.repeatCount,
+    required super.repeatDur,
     required super.fillFreeze,
     required this.attributeName,
     required this.to,
@@ -526,6 +707,8 @@ class _SmilAnimateTransform extends _SmilAnim {
     required super.targetId,
     required super.begin,
     required super.dur,
+    required super.repeatCount,
+    required super.repeatDur,
     required super.fillFreeze,
     required this.transformType,
     required this.from,
@@ -548,16 +731,48 @@ class _SmilAnimateTransform extends _SmilAnim {
     for (var i = 0; i < maxLen; i += 1) {
       current.add(fromValues[i] + (toValues[i] - fromValues[i]) * p);
     }
+    if (transformType == 'translate' && current.length >= 2) {
+      target.setAttribute('transform', 'translate(${_formatNumber(current[0])} ${_formatNumber(current[1])})');
+      return;
+    }
+    if (transformType == 'rotate' && current.isNotEmpty) {
+      target.setAttribute('transform', 'rotate(${current.map(_formatNumber).join(' ')})');
+      return;
+    }
+    if (transformType == 'scale' && current.isNotEmpty) {
+      target.setAttribute('transform', 'scale(${current.map(_formatNumber).join(' ')})');
+      return;
+    }
     target.setAttribute('transform', '$transformType(${current.map(_formatNumber).join(' ')})');
   }
 }
 
+(int, int, double) _segmentForProgress(double progress, int valueCount, List<double>? keyTimes) {
+  if (valueCount <= 1) {
+    return (0, 0, 0);
+  }
+  if (keyTimes == null || keyTimes.length != valueCount) {
+    final position = (progress * (valueCount - 1)).clamp(0, valueCount - 1).toDouble();
+    final left = position.floor();
+    final right = math.min(valueCount - 1, left + 1);
+    return (left, right, position - left);
+  }
+  for (var i = 0; i < keyTimes.length - 1; i += 1) {
+    final leftT = keyTimes[i];
+    final rightT = keyTimes[i + 1];
+    if (progress >= leftT && progress <= rightT) {
+      final denom = (rightT - leftT).abs() < 1e-9 ? 1.0 : (rightT - leftT);
+      final local = ((progress - leftT) / denom).clamp(0, 1).toDouble();
+      return (i, i + 1, local);
+    }
+  }
+  return (valueCount - 2, valueCount - 1, 1);
+}
+
 List<double> _parseNumList(String value) {
-  return value
-      .split(RegExp(r'[,\s]+'))
-      .map((e) => e.trim())
-      .where((e) => e.isNotEmpty)
-      .map((e) => double.tryParse(e))
+  return RegExp(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?')
+      .allMatches(value)
+      .map((m) => double.tryParse(m.group(0)!))
       .whereType<double>()
       .toList(growable: false);
 }
@@ -575,30 +790,76 @@ class _CssAnimBinding {
   final String targetId;
   final String animationName;
   final Duration duration;
-  final bool infinite;
+  final Duration delay;
+  final double? iterationCount;
+  final _CssDirection direction;
   final _CssKeyframes keyframes;
 
   _CssAnimBinding({
     required this.targetId,
     required this.animationName,
     required this.duration,
-    required this.infinite,
+    required this.delay,
+    required this.iterationCount,
+    required this.direction,
     required this.keyframes,
   });
+
+  int get timelineEndMs {
+    if (iterationCount == null) {
+      return duration.inMilliseconds;
+    }
+    final total = delay.inMilliseconds + (duration.inMilliseconds * iterationCount!).round();
+    return math.max(duration.inMilliseconds, total);
+  }
 
   void apply(XmlElement target, Duration t, Duration timelineDuration) {
     if (keyframes.frames.isEmpty) {
       return;
     }
+    if (t < delay) {
+      return;
+    }
     final durationMs = math.max(1, duration.inMilliseconds);
-    final timelineMs = t.inMilliseconds;
-    final activeMs = infinite ? (timelineMs % durationMs) : math.min(timelineMs, durationMs);
-    final progressPercent = (activeMs / durationMs) * 100;
+    final elapsedMs = t.inMilliseconds - delay.inMilliseconds;
+    if (iterationCount != null) {
+      final maxMs = (durationMs * iterationCount!).round();
+      if (elapsedMs > maxMs) {
+        final lastDirection = _directionForIteration(iterationCount!.ceil() - 1);
+        final frozenPercent = lastDirection ? 0.0 : 100.0;
+        final frozen = _frameAt(frozenPercent);
+        if (frozen != null) {
+          _applyCssProperties(target, frozen.properties);
+        }
+        return;
+      }
+    }
+    final cycleIndex = elapsedMs ~/ durationMs;
+    final inCycleMs = elapsedMs % durationMs;
+    final reverseCycle = _directionForIteration(cycleIndex);
+    var cycleProgress = (inCycleMs / durationMs).clamp(0, 1).toDouble();
+    if (reverseCycle) {
+      cycleProgress = 1 - cycleProgress;
+    }
+    final progressPercent = cycleProgress * 100;
     final current = _frameAt(progressPercent);
     if (current == null) {
       return;
     }
     _applyCssProperties(target, current.properties);
+  }
+
+  bool _directionForIteration(int cycleIndex) {
+    switch (direction) {
+      case _CssDirection.normal:
+        return false;
+      case _CssDirection.reverse:
+        return true;
+      case _CssDirection.alternate:
+        return cycleIndex.isOdd;
+      case _CssDirection.alternateReverse:
+        return cycleIndex.isEven;
+    }
   }
 
   _CssFrame? _frameAt(double percent) {
@@ -669,29 +930,46 @@ class _CssAnimBinding {
     if (lParsed == null || rParsed == null) {
       return ratio < 0.5 ? left : right;
     }
-    final lTranslate = lParsed.$1;
-    final rTranslate = rParsed.$1;
-    final lRotate = lParsed.$2;
-    final rRotate = rParsed.$2;
+    final lTranslate = lParsed.translate;
+    final rTranslate = rParsed.translate;
+    final lRotate = lParsed.rotateDeg;
+    final rRotate = rParsed.rotateDeg;
+    final lScale = lParsed.scale;
+    final rScale = rParsed.scale;
     final tx = lTranslate.dx + (rTranslate.dx - lTranslate.dx) * ratio;
     final ty = lTranslate.dy + (rTranslate.dy - lTranslate.dy) * ratio;
     final rot = lRotate + (rRotate - lRotate) * ratio;
-    return 'translate(${_formatNumber(tx)}px,${_formatNumber(ty)}px) rotate(${_formatNumber(rot)}deg)';
+    final sx = lScale.dx + (rScale.dx - lScale.dx) * ratio;
+    final sy = lScale.dy + (rScale.dy - lScale.dy) * ratio;
+    return 'translate(${_formatNumber(tx)},${_formatNumber(ty)}) rotate(${_formatNumber(rot)}deg) scale(${_formatNumber(sx)},${_formatNumber(sy)})';
   }
 
-  (Offset, double)? _parseTransform(String value) {
-    final translateMatch = RegExp(r'translate\(\s*([-0-9.]+)px\s*,\s*([-0-9.]+)px\s*\)').firstMatch(value);
-    final rotateMatch = RegExp(r'rotate\(\s*([-0-9.]+)deg\s*\)').firstMatch(value);
-    if (translateMatch == null || rotateMatch == null) {
+  _TransformComponents? _parseTransform(String value) {
+    final transformRegExp = RegExp(r'([a-zA-Z]+)\(([^)]*)\)');
+    var translate = Offset.zero;
+    var rotateDeg = 0.0;
+    var scale = const Offset(1, 1);
+    var foundAny = false;
+    for (final match in transformRegExp.allMatches(value)) {
+      final name = (match.group(1) ?? '').trim();
+      final args = _parseNumList(match.group(2) ?? '');
+      if (name == 'translate' && args.isNotEmpty) {
+        translate = Offset(args[0], args.length > 1 ? args[1] : 0);
+        foundAny = true;
+      } else if (name == 'rotate' && args.isNotEmpty) {
+        rotateDeg = args[0];
+        foundAny = true;
+      } else if (name == 'scale' && args.isNotEmpty) {
+        final sx = args[0];
+        final sy = args.length > 1 ? args[1] : sx;
+        scale = Offset(sx, sy);
+        foundAny = true;
+      }
+    }
+    if (!foundAny) {
       return null;
     }
-    final tx = double.tryParse(translateMatch.group(1) ?? '');
-    final ty = double.tryParse(translateMatch.group(2) ?? '');
-    final rot = double.tryParse(rotateMatch.group(1) ?? '');
-    if (tx == null || ty == null || rot == null) {
-      return null;
-    }
-    return (Offset(tx, ty), rot);
+    return _TransformComponents(translate: translate, rotateDeg: rotateDeg, scale: scale);
   }
 
   void _applyCssProperties(XmlElement target, Map<String, String> properties) {
@@ -699,14 +977,19 @@ class _CssAnimBinding {
     if (transform != null) {
       final parsed = _parseTransform(transform);
       if (parsed != null) {
-        final translate = parsed.$1;
-        final rotate = parsed.$2;
+        final translate = parsed.translate;
+        final rotate = parsed.rotateDeg;
+        final scale = parsed.scale;
         final angle = rotate * math.pi / 180;
         final cosA = math.cos(angle);
         final sinA = math.sin(angle);
+        final a = cosA * scale.dx;
+        final b = sinA * scale.dx;
+        final c = -sinA * scale.dy;
+        final d = cosA * scale.dy;
         target.setAttribute(
           'transform',
-          'matrix(${_formatNumber(cosA)} ${_formatNumber(sinA)} ${_formatNumber(-sinA)} ${_formatNumber(cosA)} ${_formatNumber(translate.dx)} ${_formatNumber(translate.dy)})',
+          'matrix(${_formatNumber(a)} ${_formatNumber(b)} ${_formatNumber(c)} ${_formatNumber(d)} ${_formatNumber(translate.dx)} ${_formatNumber(translate.dy)})',
         );
       }
     }
@@ -734,4 +1017,14 @@ class _CssFrame {
   final Map<String, String> properties;
 
   _CssFrame({required this.percent, required this.properties});
+}
+
+enum _CssDirection { normal, reverse, alternate, alternateReverse }
+
+class _TransformComponents {
+  final Offset translate;
+  final double rotateDeg;
+  final Offset scale;
+
+  _TransformComponents({required this.translate, required this.rotateDeg, required this.scale});
 }
