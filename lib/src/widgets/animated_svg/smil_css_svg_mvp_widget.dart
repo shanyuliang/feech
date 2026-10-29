@@ -995,12 +995,50 @@ class _CssAnimBinding {
         continue;
       }
       if (key == 'd') {
-        out[key] = ratio < 0.5 ? lv : rv;
+        out[key] = _interpolatePath(lv, rv, ratio);
         continue;
       }
       out[key] = ratio < 0.5 ? lv : rv;
     }
     return out;
+  }
+
+  String _interpolatePath(String left, String right, double ratio) {
+    final wrapper = RegExp(r'''^\s*path\(\s*(['"])(.*?)\1\s*\)\s*$''', dotAll: true);
+    final leftPath = wrapper.firstMatch(left)?.group(2);
+    final rightPath = wrapper.firstMatch(right)?.group(2);
+    if (leftPath == null || rightPath == null) {
+      return ratio < 0.5 ? left : right;
+    }
+    final token = RegExp(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?|[MmLlHhVvCcSsQqTtAaZz]');
+    final leftTokens = token.allMatches(leftPath).map((match) => match.group(0)!).toList();
+    final rightTokens = token.allMatches(rightPath).map((match) => match.group(0)!).toList();
+    if (leftTokens.length != rightTokens.length ||
+        leftPath.replaceAll(token, '').replaceAll(RegExp(r'[\s,]'), '').isNotEmpty ||
+        rightPath.replaceAll(token, '').replaceAll(RegExp(r'[\s,]'), '').isNotEmpty) {
+      return ratio < 0.5 ? left : right;
+    }
+    final result = <String>[];
+    var command = '';
+    var argumentIndex = 0;
+    for (var i = 0; i < leftTokens.length; i++) {
+      final start = double.tryParse(leftTokens[i]);
+      final end = double.tryParse(rightTokens[i]);
+      if (start == null || end == null) {
+        // Different command sequences cannot be interpolated as SVG path data.
+        if (start != null || end != null || leftTokens[i] != rightTokens[i]) {
+          return ratio < 0.5 ? left : right;
+        }
+        command = leftTokens[i].toUpperCase();
+        argumentIndex = 0;
+        result.add(leftTokens[i]);
+      } else {
+        final isArcFlag = command == 'A' && (argumentIndex % 7 == 3 || argumentIndex % 7 == 4);
+        result.add(isArcFlag ? (ratio < 0.5 ? leftTokens[i] : rightTokens[i]) : _formatNumber(start + (end - start) * ratio));
+        argumentIndex++;
+      }
+    }
+    return "path('${result.join(' ')}')";
   }
 
   String _interpolateTransform(String left, String right, double ratio) {

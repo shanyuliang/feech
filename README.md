@@ -67,6 +67,8 @@ final pulse = AnimatedSvgTransform(
 
 The MVP renderer interpolates percentage-based CSS `offset-distance` keyframes
 along `offset-path: path(...)`, including paths supplied in inline styles.
+CSS `d: path(...)` keyframes morph continuously when both paths have matching
+command sequences and argument counts; incompatible paths switch discretely.
 `targetFrameRate` controls cached frame sampling, not guaranteed device rendering
 performance. SMIL/CSS support remains partial, not browser-equivalent.
 
