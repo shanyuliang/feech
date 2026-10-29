@@ -118,6 +118,7 @@ export 'src/utilities/handy_util.dart';
 export 'src/utilities/spki_pin_checker.dart';
 export 'src/utilities/string_util.dart';
 export 'src/widgets/app_initialise_widget.dart';
+export 'src/widgets/animated_svg/animated_svg.dart';
 export 'src/widgets/app_web_view/app_web_view_state.dart';
 export 'src/widgets/app_web_view/app_web_view_state_provider.dart';
 export 'src/widgets/app_web_view/app_web_view_widget.dart';

@@ -27,8 +27,41 @@ dart run build_runner build
 ## Usage
 
 ```dart
+import 'package:feech/feech.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-const like = 'sample';
+/// Option 1: auto-extract frames from one SVG file.
+/// The SVG should contain groups like <g id="frame_1"> ... </g>, <g id="frame_2"> ... </g>.
+final loading = AnimatedSvgAutoFrameSequence(
+  svgAssetPath: 'assets/loader/loader.svg',
+  frameDuration: const Duration(milliseconds: 80),
+  width: 120,
+  height: 120,
+);
+
+/// Option 2: SMIL MVP engine in pure Flutter (supports animate/animateTransform/set).
+final smilMvp = SmilCssSvgMvpWidget.asset(
+  assetPath: 'assets/images/nature.svg',
+  width: 240,
+  height: 240,
+);
+
+/// Option 3: unknown SVG animation model (SMIL/CSS) -> run it in browser engine directly.
+final runtimeAnimated = AnimatedRuntimeSvgWidget.asset(
+  assetPath: 'assets/images/nature.svg',
+  width: 240,
+  height: 240,
+);
+
+/// Option 4: animate a static SVG with Flutter transforms.
+final pulse = AnimatedSvgTransform(
+  beginScale: 0.9,
+  endScale: 1.1,
+  beginOpacity: 0.6,
+  endOpacity: 1,
+  duration: const Duration(milliseconds: 900),
+  child: SvgPicture.asset('assets/logo.svg', width: 96, height: 96),
+);
 ```
 
 ## Additional information
