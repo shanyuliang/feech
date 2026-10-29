@@ -971,6 +971,17 @@ class _CssAnimBinding {
       if (lv == null || rv == null) {
         continue;
       }
+      if (key == 'offset-distance') {
+        final percentage = RegExp(r'^([-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?)%$');
+        final leftMatch = percentage.firstMatch(lv.trim());
+        final rightMatch = percentage.firstMatch(rv.trim());
+        if (leftMatch != null && rightMatch != null) {
+          final start = double.parse(leftMatch.group(1)!);
+          final end = double.parse(rightMatch.group(1)!);
+          out[key] = '${_formatNumber(start + (end - start) * ratio)}%';
+          continue;
+        }
+      }
       if (key == 'opacity') {
         final lNum = double.tryParse(lv);
         final rNum = double.tryParse(rv);

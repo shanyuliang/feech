@@ -65,6 +65,11 @@ final pulse = AnimatedSvgTransform(
 );
 ```
 
+The MVP renderer interpolates percentage-based CSS `offset-distance` keyframes
+along `offset-path: path(...)`, including paths supplied in inline styles.
+`targetFrameRate` controls cached frame sampling, not guaranteed device rendering
+performance. SMIL/CSS support remains partial, not browser-equivalent.
+
 ## Additional information
 
 Contact me via shanyuliang@gmail.com
