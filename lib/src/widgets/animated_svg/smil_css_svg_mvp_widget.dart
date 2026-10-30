@@ -198,11 +198,19 @@ class _SmilSvgMvpEngine {
 
   static List<_SmilAnim> _parseSmilAnimations(XmlDocument document) {
     final all = <_SmilAnim>[];
-    for (final element in document.descendants.whereType<XmlElement>()) {
-      final targetId = element.getAttribute('id');
-      if (targetId == null) {
-        continue;
+    var autoIdCounter = 0;
+
+    String ensureTargetId(XmlElement element) {
+      final existing = element.getAttribute('id');
+      if (existing != null && existing.isNotEmpty) {
+        return existing;
       }
+      final generated = '__smil_auto_${autoIdCounter++}';
+      element.setAttribute('id', generated);
+      return generated;
+    }
+
+    for (final element in document.descendants.whereType<XmlElement>()) {
       for (final child in element.children.whereType<XmlElement>()) {
         switch (child.name.local) {
           case 'animate':
@@ -216,6 +224,7 @@ class _SmilSvgMvpEngine {
               if (dur.inMilliseconds <= 0) {
                 continue;
               }
+              final targetId = ensureTargetId(element);
               final from = child.getAttribute('from') ?? element.getAttribute(attributeName) ?? '0';
               final to = child.getAttribute('to');
               final values = child.getAttribute('values');
@@ -248,8 +257,10 @@ class _SmilSvgMvpEngine {
               if (dur.inMilliseconds <= 0) {
                 continue;
               }
+              final targetId = ensureTargetId(element);
               final from = child.getAttribute('from') ?? '';
               final to = child.getAttribute('to') ?? '';
+              final values = child.getAttribute('values');
               all.add(
                 _SmilAnimateTransform(
                   targetId: targetId,
@@ -260,6 +271,9 @@ class _SmilSvgMvpEngine {
                   transformType: transformType,
                   from: from,
                   to: to,
+                  values: values,
+                  calcMode: child.getAttribute('calcMode') ?? 'linear',
+                  keyTimes: _parseKeyTimes(child.getAttribute('keyTimes')),
                   fillFreeze: (child.getAttribute('fill') ?? '') == 'freeze',
                 ),
               );
@@ -272,6 +286,7 @@ class _SmilSvgMvpEngine {
               if (attributeName == null || to == null) {
                 continue;
               }
+              final targetId = ensureTargetId(element);
               final begin = _parseClock(child.getAttribute('begin') ?? '0s');
               final dur = _parseClock(child.getAttribute('dur') ?? '0s');
               all.add(
@@ -780,6 +795,9 @@ class _SmilAnimateTransform extends _SmilAnim {
   final String transformType;
   final String from;
   final String to;
+  final String? values;
+  final String calcMode;
+  final List<double>? keyTimes;
 
   _SmilAnimateTransform({
     required super.targetId,
@@ -791,6 +809,9 @@ class _SmilAnimateTransform extends _SmilAnim {
     required this.transformType,
     required this.from,
     required this.to,
+    required this.values,
+    required this.calcMode,
+    required this.keyTimes,
   });
 
   @override
@@ -799,16 +820,44 @@ class _SmilAnimateTransform extends _SmilAnim {
     if (p == null) {
       return;
     }
+
+    if (values != null && values!.contains(';')) {
+      final keyValues = values!.split(';').map((e) => e.trim()).where((e) => e.isNotEmpty).toList(growable: false);
+      if (keyValues.length >= 2) {
+        final (left, right, localP) = _segmentForProgress(p, keyValues.length, keyTimes);
+        final leftValues = _parseNumList(keyValues[left]);
+        final rightValues = _parseNumList(keyValues[right]);
+        final interpolated = _interpolateTransform(leftValues, rightValues, calcMode == 'discrete' ? 0.0 : localP);
+        if (interpolated.isNotEmpty) {
+          _setTransform(target, interpolated);
+        }
+      }
+      return;
+    }
+
     final fromValues = _parseNumList(from);
     final toValues = _parseNumList(to);
-    if (fromValues.isEmpty || toValues.isEmpty) {
+    final interpolated = _interpolateTransform(fromValues, toValues, p);
+    if (interpolated.isEmpty) {
       return;
+    }
+
+    _setTransform(target, interpolated);
+  }
+
+  List<double> _interpolateTransform(List<double> fromValues, List<double> toValues, double progress) {
+    if (fromValues.isEmpty || toValues.isEmpty) {
+      return const [];
     }
     final maxLen = math.min(fromValues.length, toValues.length);
     final current = <double>[];
     for (var i = 0; i < maxLen; i += 1) {
-      current.add(fromValues[i] + (toValues[i] - fromValues[i]) * p);
+      current.add(fromValues[i] + (toValues[i] - fromValues[i]) * progress);
     }
+    return current;
+  }
+
+  void _setTransform(XmlElement target, List<double> current) {
     if (transformType == 'translate' && current.length >= 2) {
       target.setAttribute('transform', 'translate(${_formatNumber(current[0])} ${_formatNumber(current[1])})');
       return;
