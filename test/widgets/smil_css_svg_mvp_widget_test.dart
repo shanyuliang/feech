@@ -8,6 +8,79 @@ import 'package:material_ui/material_ui.dart';
 import 'package:xml/xml.dart';
 
 void main() {
+  testWidgets('ghost meerkat cloak stays visible and animated across repeated cycles', (tester) async {
+    final svg = File('assets/images/ghost_meerkat.svg').readAsStringSync();
+    await tester.pumpWidget(MaterialApp(home: SmilCssSvgMvpWidget.string(svgXml: svg, targetFrameRate: 20, width: 200, height: 300)));
+    await tester.pump();
+
+    XmlDocument currentFrame() {
+      final picture = tester.widget<SvgPicture>(find.byType(SvgPicture));
+      final loader = picture.bytesLoader as SvgStringLoader;
+      return XmlDocument.parse(loader.provideSvg(null));
+    }
+
+    XmlElement cloak(XmlDocument frame) => frame.findAllElements('path').singleWhere((element) => element.getAttribute('fill') == 'url(#sheet)');
+
+    final initial = cloak(currentFrame()).getAttribute('d');
+    expect(initial, isNotNull);
+    final pathsAfterFirstCycle = <String>{};
+    final transformsAfterFirstCycle = <String>{};
+    for (var i = 1; i <= 320; i++) {
+      await tester.pump(const Duration(milliseconds: 50));
+      final frame = currentFrame();
+      final path = cloak(frame).getAttribute('d');
+      expect(path, isNotNull, reason: 'The cloak must remain visible at ${i * 50} ms.');
+      expect(path, isNotEmpty);
+      if (i >= 74 && i <= 100) {
+        pathsAfterFirstCycle.add(path!);
+        final floatingCharacter = frame.findAllElements('g').firstWhere((element) => element.parent == frame.rootElement);
+        transformsAfterFirstCycle.add(floatingCharacter.getAttribute('transform')!);
+      }
+    }
+    expect(pathsAfterFirstCycle.length, greaterThan(1));
+    expect(transformsAfterFirstCycle.length, greaterThan(1));
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('finite SMIL repeat counts and repeat durations still expire or freeze', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: SmilCssSvgMvpWidget.string(
+          targetFrameRate: 20,
+          svgXml: '''
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle id="count" cx="5" cy="10" r="2">
+    <animate attributeName="cx" values="10;20" dur="1s" repeatCount="2"/>
+  </circle>
+  <circle id="limited" cx="5" cy="20" r="2">
+    <animate attributeName="cx" values="10;20" dur="1s" repeatCount="indefinite" repeatDur="2s"/>
+  </circle>
+  <circle id="frozen" cx="5" cy="30" r="2">
+    <animate attributeName="cx" values="10;20" dur="1s" repeatCount="indefinite" repeatDur="2s" fill="freeze"/>
+  </circle>
+  <circle cx="5" cy="40" r="2">
+    <animate attributeName="cx" values="10;20" dur="5s" repeatCount="indefinite"/>
+  </circle>
+</svg>''',
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 2500));
+
+    final picture = tester.widget<SvgPicture>(find.byType(SvgPicture));
+    final loader = picture.bytesLoader as SvgStringLoader;
+    final frame = XmlDocument.parse(loader.provideSvg(null));
+    String? cx(String id) => frame.findAllElements('circle').singleWhere((element) => element.getAttribute('id') == id).getAttribute('cx');
+
+    expect(cx('count'), '5');
+    expect(cx('limited'), '5');
+    expect(cx('frozen'), '20');
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets('unsupported SVGator channels surface an import error', (tester) async {
     Object? importError;
     await tester.pumpWidget(

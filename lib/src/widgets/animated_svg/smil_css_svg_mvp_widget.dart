@@ -688,7 +688,7 @@ abstract class _SmilAnim {
     }
     final elapsed = t - begin;
     final active = activeDuration;
-    if (elapsed > active) {
+    if ((repeatCount != null || repeatDur != null) && elapsed > active) {
       return fillFreeze ? 1 : null;
     }
     if (repeatCount == null) {
