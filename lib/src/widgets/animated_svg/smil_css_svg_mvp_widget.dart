@@ -208,31 +208,15 @@ class _SmilSvgMvpEngine {
     List<_CssAnimBinding> cssAnimations,
     List<_SmilAnim> smilAnimations,
   ) {
-    final openingFlapTargetIds = <String>{};
-    for (final binding in cssAnimations) {
-      final animatesTransformOrPath = binding.keyframes.frames.any(
-        (f) => f.properties.containsKey('transform') || f.properties.containsKey('d'),
-      );
-      if (animatesTransformOrPath) {
-        openingFlapTargetIds.add(binding.targetId);
-      }
-    }
-    for (final anim in smilAnimations) {
-      if (anim is _SmilAnimateTransform) {
-        openingFlapTargetIds.add(anim.targetId);
-      } else if (anim is _SmilAnimate && anim.attributeName == 'd') {
-        openingFlapTargetIds.add(anim.targetId);
-      }
-    }
-    print('DEBUG openingFlapTargetIds: $openingFlapTargetIds');
-
     for (final group in document.descendants.whereType<XmlElement>()) {
       if (group.name.local != 'g' && group.name.local != 'svg') continue;
 
-      final hasAnimatedChild = group.descendants.whereType<XmlElement>().any(
-            (child) => openingFlapTargetIds.contains(child.getAttribute('id')),
-          );
-      if (!hasAnimatedChild) continue;
+      final openingFlaps = group.descendants.whereType<XmlElement>().where((child) {
+        final id = child.getAttribute('id') ?? '';
+        return id.endsWith('_tr') || id.endsWith('_tk') || id.endsWith('_ts');
+      }).toList();
+
+      if (openingFlaps.isEmpty) continue;
 
       String? darkFill;
       for (final child in group.descendants.whereType<XmlElement>()) {
@@ -242,17 +226,19 @@ class _SmilSvgMvpEngine {
           break;
         }
       }
-      print('DEBUG group id="${group.getAttribute('id')}" darkFill="$darkFill"');
       if (darkFill == null) continue;
 
       for (final child in group.descendants.whereType<XmlElement>()) {
-        final isOpeningFlap = openingFlapTargetIds.contains(child.getAttribute('id')) ||
-            child.ancestors.whereType<XmlElement>().any((a) => openingFlapTargetIds.contains(a.getAttribute('id')));
-        if (isOpeningFlap) continue;
+        final childId = child.getAttribute('id') ?? '';
+        final isFlap = childId.endsWith('_tr') || childId.endsWith('_tk') || childId.endsWith('_ts') ||
+            child.ancestors.whereType<XmlElement>().any((a) {
+              final aid = a.getAttribute('id') ?? '';
+              return aid.endsWith('_tr') || aid.endsWith('_tk') || aid.endsWith('_ts');
+            });
+        if (isFlap) continue;
 
         final fill = child.getAttribute('fill')?.toLowerCase().trim();
         if (fill == '#fff' || fill == '#ffffff' || fill == 'white' || fill == '#e9e9f0' || fill == 'rgb(255,255,255)' || fill == 'rgb(255, 255, 255)') {
-          print('DEBUG modifying child id="${child.getAttribute('id')}" from "$fill" to "$darkFill"');
           child.setAttribute('fill', darkFill);
         }
       }
