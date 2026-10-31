@@ -290,7 +290,7 @@ void main() {
     expect(find.byType(SvgPicture), findsOneWidget);
   });
 
-  testWidgets('SmilCssSvgMvpWidget renders mail.svg and masks letter inside opening when lid is open', (tester) async {
+  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg with dark interior background when lid opens', (tester) async {
     final svg = File('assets/images/mail.svg').readAsStringSync();
     await tester.pumpWidget(
       MaterialApp(
@@ -312,13 +312,19 @@ void main() {
       return XmlDocument.parse(loader.provideSvg(null));
     }
 
-    // At 2200ms (55%): mailbox lid is open and mask path has opacity 1 and default black fill
+    // At 2200ms when lid is open
     await tester.pump(const Duration(milliseconds: 2200));
     final frame2200 = currentFrame();
+    final group = frame2200.descendants.whereType<XmlElement>().firstWhere((e) => e.getAttribute('id') == 'e9Yjp3XycKs25_to');
 
-    final maskPath = frame2200.descendants.whereType<XmlElement>().firstWhere((e) => e.getAttribute('id') == 'e9Yjp3XycKs101');
-    expect(maskPath.getAttribute('fill'), '#000000', reason: 'Shape elements without fill must default to black per SVG spec.');
-    expect(maskPath.getAttribute('opacity'), '1');
+    // Check interior paths and rects in the opening
+    final rect33 = group.descendants.whereType<XmlElement>().firstWhere((e) => e.getAttribute('id') == 'e9Yjp3XycKs33');
+    expect(rect33.getAttribute('fill'), '#212129');
+
+    final whitePaths = group.children
+        .whereType<XmlElement>()
+        .where((e) => e.name.local == 'path' && (e.getAttribute('fill') == '#fff' || e.getAttribute('fill') == '#ffffff'));
+    expect(whitePaths, isEmpty, reason: 'Static background paths inside opening container must adapt to dark interior background fill.');
 
     expect(tester.takeException(), isNull);
     expect(find.byType(SvgPicture), findsOneWidget);

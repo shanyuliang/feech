@@ -177,6 +177,7 @@ class _SmilSvgMvpEngine {
     _ensureDefaultPresentationAttributes(document);
     final animations = _parseSmilAnimations(document);
     final cssAnimations = _parseCssAnimations(document);
+    _adjustContainerInteriorFills(document, cssAnimations, animations);
     final svgator = _SvgatorTimeline.parse(document);
     if (svgator != null) {
       for (final script in document.findAllElements('script').toList(growable: false)) {
@@ -200,6 +201,74 @@ class _SmilSvgMvpEngine {
         }
       }
     }
+  }
+
+  static void _adjustContainerInteriorFills(
+    XmlDocument document,
+    List<_CssAnimBinding> cssAnimations,
+    List<_SmilAnim> smilAnimations,
+  ) {
+    final openingFlapTargetIds = <String>{};
+    for (final binding in cssAnimations) {
+      final animatesTransformOrPath = binding.keyframes.frames.any(
+        (f) => f.properties.containsKey('transform') || f.properties.containsKey('d'),
+      );
+      if (animatesTransformOrPath) {
+        openingFlapTargetIds.add(binding.targetId);
+      }
+    }
+    for (final anim in smilAnimations) {
+      if (anim is _SmilAnimateTransform) {
+        openingFlapTargetIds.add(anim.targetId);
+      } else if (anim is _SmilAnimate && anim.attributeName == 'd') {
+        openingFlapTargetIds.add(anim.targetId);
+      }
+    }
+    print('DEBUG openingFlapTargetIds: $openingFlapTargetIds');
+
+    for (final group in document.descendants.whereType<XmlElement>()) {
+      if (group.name.local != 'g' && group.name.local != 'svg') continue;
+
+      final hasAnimatedChild = group.descendants.whereType<XmlElement>().any(
+            (child) => openingFlapTargetIds.contains(child.getAttribute('id')),
+          );
+      if (!hasAnimatedChild) continue;
+
+      String? darkFill;
+      for (final child in group.descendants.whereType<XmlElement>()) {
+        final fill = child.getAttribute('fill')?.toLowerCase().trim();
+        if (fill != null && _isDarkColor(fill)) {
+          darkFill = fill;
+          break;
+        }
+      }
+      print('DEBUG group id="${group.getAttribute('id')}" darkFill="$darkFill"');
+      if (darkFill == null) continue;
+
+      for (final child in group.descendants.whereType<XmlElement>()) {
+        final isOpeningFlap = openingFlapTargetIds.contains(child.getAttribute('id')) ||
+            child.ancestors.whereType<XmlElement>().any((a) => openingFlapTargetIds.contains(a.getAttribute('id')));
+        if (isOpeningFlap) continue;
+
+        final fill = child.getAttribute('fill')?.toLowerCase().trim();
+        if (fill == '#fff' || fill == '#ffffff' || fill == 'white' || fill == '#e9e9f0' || fill == 'rgb(255,255,255)' || fill == 'rgb(255, 255, 255)') {
+          print('DEBUG modifying child id="${child.getAttribute('id')}" from "$fill" to "$darkFill"');
+          child.setAttribute('fill', darkFill);
+        }
+      }
+    }
+  }
+
+  static bool _isDarkColor(String fill) {
+    if (fill == '#000' || fill == '#000000' || fill == 'black' || fill == '#212129' || fill == '#1c2747') {
+      return true;
+    }
+    final c = _RgbaColor.tryParse(fill);
+    if (c != null) {
+      final lum = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b;
+      return lum < 50;
+    }
+    return false;
   }
 
   static Duration _computeDuration(List<_SmilAnim> animations, List<_CssAnimBinding> cssAnimations) {
