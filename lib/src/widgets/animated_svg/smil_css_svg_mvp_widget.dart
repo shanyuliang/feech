@@ -326,37 +326,112 @@ class _SmilSvgMvpEngine {
         continue;
       }
       final properties = _parseCssProperties(ruleBlock);
-      final shorthand = properties['animation'];
-      final animationName = properties['animation-name'] ?? _extractAnimationName(shorthand);
-      final duration = properties.containsKey('animation-duration')
-          ? _extractDuration(properties['animation-duration'])
-          : _extractDurationFromShorthand(shorthand);
-      if (animationName == null || duration == null) {
+      final rawAnimName = properties['animation-name'];
+      final rawShorthand = properties['animation'];
+
+      final List<String> animNames;
+      if (rawAnimName != null && rawAnimName.trim().isNotEmpty) {
+        animNames = _splitByComma(rawAnimName);
+      } else if (rawShorthand != null && rawShorthand.trim().isNotEmpty) {
+        animNames = _splitByComma(rawShorthand)
+            .map(_extractAnimationName)
+            .whereType<String>()
+            .toList(growable: false);
+      } else {
         continue;
       }
-      final keyframes = keyframesByName[animationName];
-      if (keyframes == null || keyframes.frames.isEmpty) {
-        continue;
+
+      final rawDuration = properties['animation-duration'];
+      final durTokens = rawDuration != null ? _splitByComma(rawDuration) : const <String>[];
+      final rawDelay = properties['animation-delay'];
+      final delayTokens = rawDelay != null ? _splitByComma(rawDelay) : const <String>[];
+      final rawIter = properties['animation-iteration-count'];
+      final iterTokens = rawIter != null ? _splitByComma(rawIter) : const <String>[];
+      final rawDir = properties['animation-direction'];
+      final dirTokens = rawDir != null ? _splitByComma(rawDir) : const <String>[];
+
+      for (var i = 0; i < animNames.length; i++) {
+        final name = animNames[i];
+        final keyframes = keyframesByName[name];
+        if (keyframes == null || keyframes.frames.isEmpty) {
+          continue;
+        }
+
+        final Duration? duration;
+        if (durTokens.isNotEmpty) {
+          duration = _extractDuration(durTokens[i % durTokens.length]);
+        } else {
+          duration = _extractDurationFromShorthand(rawShorthand);
+        }
+        if (duration == null) {
+          continue;
+        }
+
+        final Duration delay;
+        if (delayTokens.isNotEmpty) {
+          delay = _extractDuration(delayTokens[i % delayTokens.length]) ?? Duration.zero;
+        } else {
+          delay = _extractDelayFromShorthand(rawShorthand) ?? Duration.zero;
+        }
+
+        final double? iterationCount;
+        if (iterTokens.isNotEmpty) {
+          iterationCount = _extractIterationCount(iterTokens[i % iterTokens.length]);
+        } else {
+          iterationCount = _extractIterationCount(rawShorthand);
+        }
+
+        final _CssDirection direction;
+        if (dirTokens.isNotEmpty) {
+          direction = _extractAnimationDirection(dirTokens[i % dirTokens.length]);
+        } else {
+          direction = _extractAnimationDirection(rawShorthand);
+        }
+
+        bindings.add(
+          _CssAnimBinding(
+            targetId: id,
+            animationName: name,
+            duration: duration,
+            delay: delay,
+            iterationCount: iterationCount,
+            direction: direction,
+            keyframes: keyframes,
+            staticProperties: properties,
+          ),
+        );
       }
-      final delay = properties.containsKey('animation-delay')
-          ? (_extractDuration(properties['animation-delay']) ?? Duration.zero)
-          : (_extractDelayFromShorthand(shorthand) ?? Duration.zero);
-      final iterationCount = _extractIterationCount(properties['animation-iteration-count'] ?? shorthand);
-      final direction = _extractAnimationDirection(properties['animation-direction'] ?? shorthand);
-      bindings.add(
-        _CssAnimBinding(
-          targetId: id,
-          animationName: animationName,
-          duration: duration,
-          delay: delay,
-          iterationCount: iterationCount,
-          direction: direction,
-          keyframes: keyframes,
-          staticProperties: properties,
-        ),
-      );
     }
     return bindings;
+  }
+
+  static List<String> _splitByComma(String text) {
+    final result = <String>[];
+    var depth = 0;
+    var current = StringBuffer();
+    for (var i = 0; i < text.length; i++) {
+      final char = text[i];
+      if (char == '(') {
+        depth++;
+        current.write(char);
+      } else if (char == ')') {
+        depth--;
+        current.write(char);
+      } else if (char == ',' && depth == 0) {
+        final item = current.toString().trim();
+        if (item.isNotEmpty) {
+          result.add(item);
+        }
+        current = StringBuffer();
+      } else {
+        current.write(char);
+      }
+    }
+    final item = current.toString().trim();
+    if (item.isNotEmpty) {
+      result.add(item);
+    }
+    return result;
   }
 
   static Map<String, _CssKeyframes> _parseCssKeyframes(String css) {
@@ -1250,10 +1325,28 @@ double _applyEasing(double t, String? timingFunction) {
   }
   final tf = timingFunction.trim();
   if (tf == 'linear') return t;
+  if (tf == 'step-start') return t >= 1.0 ? 1.0 : (t > 0.0 ? 1.0 : 0.0);
+  if (tf == 'step-end') return t >= 1.0 ? 1.0 : 0.0;
   if (tf == 'ease') return _cubicBezier(0.25, 0.1, 0.25, 1.0, t);
   if (tf == 'ease-in') return _cubicBezier(0.42, 0.0, 1.0, 1.0, t);
   if (tf == 'ease-out') return _cubicBezier(0.0, 0.0, 0.58, 1.0, t);
   if (tf == 'ease-in-out') return _cubicBezier(0.42, 0.0, 0.58, 1.0, t);
+  final stepsMatch = RegExp(
+    r'^steps\(\s*(\d+)\s*(?:,\s*(start|end|jump-start|jump-end|jump-both|jump-none)\s*)?\)$',
+  ).firstMatch(tf);
+  if (stepsMatch != null) {
+    final stepsCount = int.parse(stepsMatch.group(1)!);
+    final pos = stepsMatch.group(2) ?? 'end';
+    if (stepsCount > 0) {
+      if (pos == 'start' || pos == 'jump-start') {
+        final step = (t * stepsCount).floor() + 1;
+        return (step / stepsCount).clamp(0.0, 1.0);
+      } else {
+        final step = (t * stepsCount).floor();
+        return (step / stepsCount).clamp(0.0, 1.0);
+      }
+    }
+  }
   final match = RegExp(
     r'^cubic-bezier\(\s*([-+]?[0-9]*\.?[0-9]+)\s*,\s*([-+]?[0-9]*\.?[0-9]+)\s*,\s*([-+]?[0-9]*\.?[0-9]+)\s*,\s*([-+]?[0-9]*\.?[0-9]+)\s*\)$',
   ).firstMatch(tf);
