@@ -543,6 +543,10 @@ String? _extractAnimationName(String? shorthand) {
         token != 'alternate' &&
         token != 'alternate-reverse' &&
         token != 'reverse' &&
+        token != 'forwards' &&
+        token != 'backwards' &&
+        token != 'both' &&
+        token != 'none' &&
         double.tryParse(token) == null) {
       return token;
     }
@@ -1005,7 +1009,9 @@ class _CssAnimBinding {
       final left = keyframes.frames[i];
       final right = keyframes.frames[i + 1];
       if (percent >= left.percent && percent <= right.percent) {
-        final ratio = ((percent - left.percent) / (right.percent - left.percent)).clamp(0, 1).toDouble();
+        final linearRatio = ((percent - left.percent) / (right.percent - left.percent)).clamp(0, 1).toDouble();
+        final tf = left.properties['animation-timing-function'];
+        final ratio = _applyEasing(linearRatio, tf);
         return _CssFrame(
           percent: percent,
           properties: _interpolateCssProperties(left.properties, right.properties, ratio),
@@ -1051,6 +1057,13 @@ class _CssAnimBinding {
           continue;
         }
       }
+      if (key == 'fill' || key == 'stroke' || key == 'stop-color' || key == 'color') {
+        final colorStr = _RgbaColor.interpolate(lv, rv, ratio);
+        if (colorStr != null) {
+          out[key] = colorStr;
+          continue;
+        }
+      }
       if (key == 'transform') {
         out[key] = _interpolateTransform(lv, rv, ratio);
         continue;
@@ -1065,19 +1078,15 @@ class _CssAnimBinding {
   }
 
   static String _interpolatePath(String left, String right, double ratio) {
-    final wrapper = RegExp(r'''^\s*path\(\s*(['"])(.*?)\1\s*\)\s*$''', dotAll: true);
-    final leftPath = wrapper.firstMatch(left)?.group(2);
-    final rightPath = wrapper.firstMatch(right)?.group(2);
-    if (leftPath == null || rightPath == null) {
-      return ratio < 0.5 ? left : right;
-    }
+    final cleanLeft = left.replaceAll(RegExp(r'''^\s*path\(\s*['"]?|['"]?\s*\)\s*$'''), '').replaceAll(RegExp(r'''^['"]|['"]$'''), '');
+    final cleanRight = right.replaceAll(RegExp(r'''^\s*path\(\s*['"]?|['"]?\s*\)\s*$'''), '').replaceAll(RegExp(r'''^['"]|['"]$'''), '');
     final token = RegExp(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?|[MmLlHhVvCcSsQqTtAaZz]');
-    final leftTokens = token.allMatches(leftPath).map((match) => match.group(0)!).toList();
-    final rightTokens = token.allMatches(rightPath).map((match) => match.group(0)!).toList();
+    final leftTokens = token.allMatches(cleanLeft).map((match) => match.group(0)!).toList();
+    final rightTokens = token.allMatches(cleanRight).map((match) => match.group(0)!).toList();
     if (leftTokens.length != rightTokens.length ||
-        leftPath.replaceAll(token, '').replaceAll(RegExp(r'[\s,]'), '').isNotEmpty ||
-        rightPath.replaceAll(token, '').replaceAll(RegExp(r'[\s,]'), '').isNotEmpty) {
-      return ratio < 0.5 ? left : right;
+        cleanLeft.replaceAll(token, '').replaceAll(RegExp(r'[\s,]'), '').isNotEmpty ||
+        cleanRight.replaceAll(token, '').replaceAll(RegExp(r'[\s,]'), '').isNotEmpty) {
+      return ratio < 0.5 ? "path('$cleanLeft')" : "path('$cleanRight')";
     }
     final result = <String>[];
     var command = '';
@@ -1086,9 +1095,8 @@ class _CssAnimBinding {
       final start = double.tryParse(leftTokens[i]);
       final end = double.tryParse(rightTokens[i]);
       if (start == null || end == null) {
-        // Different command sequences cannot be interpolated as SVG path data.
         if (start != null || end != null || leftTokens[i] != rightTokens[i]) {
-          return ratio < 0.5 ? left : right;
+          return ratio < 0.5 ? "path('$cleanLeft')" : "path('$cleanRight')";
         }
         command = leftTokens[i].toUpperCase();
         argumentIndex = 0;
@@ -1108,18 +1116,23 @@ class _CssAnimBinding {
     if (lParsed == null || rParsed == null) {
       return ratio < 0.5 ? left : right;
     }
-    final lTranslate = lParsed.translate;
-    final rTranslate = rParsed.translate;
-    final lRotate = lParsed.rotateDeg;
-    final rRotate = rParsed.rotateDeg;
-    final lScale = lParsed.scale;
-    final rScale = rParsed.scale;
-    final tx = lTranslate.dx + (rTranslate.dx - lTranslate.dx) * ratio;
-    final ty = lTranslate.dy + (rTranslate.dy - lTranslate.dy) * ratio;
-    final rot = lRotate + (rRotate - lRotate) * ratio;
-    final sx = lScale.dx + (rScale.dx - lScale.dx) * ratio;
-    final sy = lScale.dy + (rScale.dy - lScale.dy) * ratio;
-    return 'translate(${_formatNumber(tx)},${_formatNumber(ty)}) rotate(${_formatNumber(rot)}deg) scale(${_formatNumber(sx)},${_formatNumber(sy)})';
+    final tx = lParsed.translate.dx + (rParsed.translate.dx - lParsed.translate.dx) * ratio;
+    final ty = lParsed.translate.dy + (rParsed.translate.dy - lParsed.translate.dy) * ratio;
+    final rot = lParsed.rotateDeg + (rParsed.rotateDeg - lParsed.rotateDeg) * ratio;
+    final sx = lParsed.scale.dx + (rParsed.scale.dx - lParsed.scale.dx) * ratio;
+    final sy = lParsed.scale.dy + (rParsed.scale.dy - lParsed.scale.dy) * ratio;
+    final skx = lParsed.skewXDeg + (rParsed.skewXDeg - lParsed.skewXDeg) * ratio;
+    final sky = lParsed.skewYDeg + (rParsed.skewYDeg - lParsed.skewYDeg) * ratio;
+
+    final interp = _TransformComponents(
+      translate: Offset(tx, ty),
+      rotateDeg: rot,
+      scale: Offset(sx, sy),
+      skewXDeg: skx,
+      skewYDeg: sky,
+    );
+    final m = interp.toMatrix();
+    return 'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})';
   }
 
   _TransformComponents? _parseTransform(String value) {
@@ -1127,6 +1140,8 @@ class _CssAnimBinding {
     var translate = Offset.zero;
     var rotateDeg = 0.0;
     var scale = const Offset(1, 1);
+    var skewXDeg = 0.0;
+    var skewYDeg = 0.0;
     var foundAny = false;
     for (final match in transformRegExp.allMatches(value)) {
       final name = (match.group(1) ?? '').trim();
@@ -1142,12 +1157,35 @@ class _CssAnimBinding {
         final sy = args.length > 1 ? args[1] : sx;
         scale = Offset(sx, sy);
         foundAny = true;
+      } else if (name == 'skewX' && args.isNotEmpty) {
+        skewXDeg = args[0];
+        foundAny = true;
+      } else if (name == 'skewY' && args.isNotEmpty) {
+        skewYDeg = args[0];
+        foundAny = true;
+      } else if (name == 'skew' && args.isNotEmpty) {
+        skewXDeg = args[0];
+        skewYDeg = args.length > 1 ? args[1] : 0;
+        foundAny = true;
+      } else if (name == 'matrix' && args.length >= 6) {
+        // matrix(a, b, c, d, e, f)
+        final a = args[0], b = args[1], c = args[2], d = args[3], e = args[4], f = args[5];
+        translate = Offset(e, f);
+        rotateDeg = math.atan2(b, a) * 180 / math.pi;
+        scale = Offset(math.sqrt(a * a + b * b), math.sqrt(c * c + d * d));
+        foundAny = true;
       }
     }
     if (!foundAny) {
       return null;
     }
-    return _TransformComponents(translate: translate, rotateDeg: rotateDeg, scale: scale);
+    return _TransformComponents(
+      translate: translate,
+      rotateDeg: rotateDeg,
+      scale: scale,
+      skewXDeg: skewXDeg,
+      skewYDeg: skewYDeg,
+    );
   }
 
   void _applyCssProperties(
@@ -1171,34 +1209,188 @@ class _CssAnimBinding {
     if (transform != null) {
       final parsed = _parseTransform(transform);
       if (parsed != null) {
-        final translate = parsed.translate + motionOffset;
-        final rotate = parsed.rotateDeg;
-        final scale = parsed.scale;
-        final angle = rotate * math.pi / 180;
-        final cosA = math.cos(angle);
-        final sinA = math.sin(angle);
-        final a = cosA * scale.dx;
-        final b = sinA * scale.dx;
-        final c = -sinA * scale.dy;
-        final d = cosA * scale.dy;
+        final withMotion = _TransformComponents(
+          translate: parsed.translate + motionOffset,
+          rotateDeg: parsed.rotateDeg,
+          scale: parsed.scale,
+          skewXDeg: parsed.skewXDeg,
+          skewYDeg: parsed.skewYDeg,
+        );
+        final m = withMotion.toMatrix();
         target.setAttribute(
           'transform',
-          'matrix(${_formatNumber(a)} ${_formatNumber(b)} ${_formatNumber(c)} ${_formatNumber(d)} ${_formatNumber(translate.dx)} ${_formatNumber(translate.dy)})',
+          'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})',
         );
+      } else {
+        target.setAttribute('transform', transform);
       }
     } else if (motionOffset != Offset.zero) {
       target.setAttribute('transform', 'translate(${_formatNumber(motionOffset.dx)} ${_formatNumber(motionOffset.dy)})');
     }
-    final opacity = properties['opacity'];
-    if (opacity != null) {
-      target.setAttribute('opacity', opacity);
-    }
-    final d = properties['d'];
-    if (d != null) {
-      final pathMatch = RegExp(r'''path\(['"](.+)['"]\)''').firstMatch(d);
-      target.setAttribute('d', pathMatch?.group(1) ?? d);
+
+    properties.forEach((key, value) {
+      if (key == 'transform' || key == 'offset-distance' || key == 'animation-timing-function') {
+        return;
+      }
+      if (key == 'opacity') {
+        target.setAttribute('opacity', value);
+      } else if (key == 'd') {
+        final cleanPath = value.replaceAll(RegExp(r'''^\s*path\(\s*['"]?|['"]?\s*\)\s*$'''), '').replaceAll(RegExp(r'''^['"]|['"]$'''), '');
+        target.setAttribute('d', cleanPath);
+      } else {
+        target.setAttribute(key, value);
+      }
+    });
+  }
+}
+
+double _applyEasing(double t, String? timingFunction) {
+  if (timingFunction == null || timingFunction.trim().isEmpty) {
+    return t;
+  }
+  final tf = timingFunction.trim();
+  if (tf == 'linear') return t;
+  if (tf == 'ease') return _cubicBezier(0.25, 0.1, 0.25, 1.0, t);
+  if (tf == 'ease-in') return _cubicBezier(0.42, 0.0, 1.0, 1.0, t);
+  if (tf == 'ease-out') return _cubicBezier(0.0, 0.0, 0.58, 1.0, t);
+  if (tf == 'ease-in-out') return _cubicBezier(0.42, 0.0, 0.58, 1.0, t);
+  final match = RegExp(
+    r'^cubic-bezier\(\s*([-+]?[0-9]*\.?[0-9]+)\s*,\s*([-+]?[0-9]*\.?[0-9]+)\s*,\s*([-+]?[0-9]*\.?[0-9]+)\s*,\s*([-+]?[0-9]*\.?[0-9]+)\s*\)$',
+  ).firstMatch(tf);
+  if (match != null) {
+    final x1 = double.tryParse(match.group(1)!);
+    final y1 = double.tryParse(match.group(2)!);
+    final x2 = double.tryParse(match.group(3)!);
+    final y2 = double.tryParse(match.group(4)!);
+    if (x1 != null && y1 != null && x2 != null && y2 != null) {
+      return _cubicBezier(x1, y1, x2, y2, t);
     }
   }
+  return t;
+}
+
+double _cubicBezier(double x1, double y1, double x2, double y2, double t) {
+  if (t <= 0) return 0;
+  if (t >= 1) return 1;
+  if (x1 == y1 && x2 == y2) return t;
+
+  double sampleX(double s) {
+    final invS = 1.0 - s;
+    return 3.0 * invS * invS * s * x1 + 3.0 * invS * s * s * x2 + s * s * s;
+  }
+
+  double sampleY(double s) {
+    final invS = 1.0 - s;
+    return 3.0 * invS * invS * s * y1 + 3.0 * invS * s * s * y2 + s * s * s;
+  }
+
+  double s = t;
+  for (var i = 0; i < 8; i++) {
+    final currentX = sampleX(s) - t;
+    if (currentX.abs() < 1e-6) break;
+    final invS = 1.0 - s;
+    final dX = 3.0 * invS * invS * x1 + 6.0 * invS * s * (x2 - x1) + 3.0 * s * s * (1.0 - x2);
+    if (dX.abs() < 1e-6) break;
+    s -= currentX / dX;
+    s = s.clamp(0.0, 1.0);
+  }
+
+  if ((sampleX(s) - t).abs() > 1e-3) {
+    double low = 0.0, high = 1.0;
+    s = t;
+    while (high - low > 1e-5) {
+      final mid = (low + high) / 2;
+      if (sampleX(mid) < t) {
+        low = mid;
+      } else {
+        high = mid;
+      }
+      s = mid;
+    }
+  }
+
+  return sampleY(s).clamp(0.0, 1.0);
+}
+
+class _RgbaColor {
+  final int r, g, b;
+  final double a;
+  const _RgbaColor(this.r, this.g, this.b, [this.a = 1.0]);
+
+  static _RgbaColor? tryParse(String val) {
+    val = val.trim();
+    if (val.startsWith('#')) {
+      final hex = val.substring(1);
+      if (hex.length == 3) {
+        final r = int.parse(hex[0] * 2, radix: 16);
+        final g = int.parse(hex[1] * 2, radix: 16);
+        final b = int.parse(hex[2] * 2, radix: 16);
+        return _RgbaColor(r, g, b);
+      } else if (hex.length == 6) {
+        final r = int.parse(hex.substring(0, 2), radix: 16);
+        final g = int.parse(hex.substring(2, 4), radix: 16);
+        final b = int.parse(hex.substring(4, 6), radix: 16);
+        return _RgbaColor(r, g, b);
+      } else if (hex.length == 8) {
+        final r = int.parse(hex.substring(0, 2), radix: 16);
+        final g = int.parse(hex.substring(2, 4), radix: 16);
+        final b = int.parse(hex.substring(4, 6), radix: 16);
+        final a = int.parse(hex.substring(6, 8), radix: 16) / 255.0;
+        return _RgbaColor(r, g, b, a);
+      }
+    }
+    final rgbMatch = RegExp(r'^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([0-9.]+)\s*)?\)$').firstMatch(val);
+    if (rgbMatch != null) {
+      final r = int.parse(rgbMatch.group(1)!);
+      final g = int.parse(rgbMatch.group(2)!);
+      final b = int.parse(rgbMatch.group(3)!);
+      final aStr = rgbMatch.group(4);
+      final a = aStr != null ? double.parse(aStr) : 1.0;
+      return _RgbaColor(r, g, b, a);
+    }
+    return null;
+  }
+
+  static String? interpolate(String leftStr, String rightStr, double ratio) {
+    final c1 = tryParse(leftStr);
+    final c2 = tryParse(rightStr);
+    if (c1 == null || c2 == null) return null;
+    final r = (c1.r + (c2.r - c1.r) * ratio).round().clamp(0, 255);
+    final g = (c1.g + (c2.g - c1.g) * ratio).round().clamp(0, 255);
+    final b = (c1.b + (c2.b - c1.b) * ratio).round().clamp(0, 255);
+    final a = c1.a + (c2.a - c1.a) * ratio;
+    if (a >= 0.999) {
+      return 'rgb($r,$g,$b)';
+    }
+    return 'rgba($r,$g,$b,${_formatNumber(a.clamp(0.0, 1.0))})';
+  }
+}
+
+class _Matrix2D {
+  final double a, b, c, d, e, f;
+  const _Matrix2D(this.a, this.b, this.c, this.d, this.e, this.f);
+
+  _Matrix2D multiply(_Matrix2D o) {
+    return _Matrix2D(
+      a * o.a + c * o.b,
+      b * o.a + d * o.b,
+      a * o.c + c * o.d,
+      b * o.c + d * o.d,
+      a * o.e + c * o.f + e,
+      b * o.e + d * o.f + f,
+    );
+  }
+
+  static _Matrix2D translate(double tx, double ty) => _Matrix2D(1, 0, 0, 1, tx, ty);
+  static _Matrix2D rotate(double deg) {
+    final rad = deg * math.pi / 180;
+    final cosA = math.cos(rad);
+    final sinA = math.sin(rad);
+    return _Matrix2D(cosA, sinA, -sinA, cosA, 0, 0);
+  }
+  static _Matrix2D scale(double sx, double sy) => _Matrix2D(sx, 0, 0, sy, 0, 0);
+  static _Matrix2D skewX(double deg) => _Matrix2D(1, 0, math.tan(deg * math.pi / 180), 1, 0, 0);
+  static _Matrix2D skewY(double deg) => _Matrix2D(1, math.tan(deg * math.pi / 180), 0, 1, 0, 0);
 }
 
 class _CssKeyframes {
@@ -1221,8 +1413,24 @@ class _TransformComponents {
   final Offset translate;
   final double rotateDeg;
   final Offset scale;
+  final double skewXDeg;
+  final double skewYDeg;
 
-  _TransformComponents({required this.translate, required this.rotateDeg, required this.scale});
+  _TransformComponents({
+    required this.translate,
+    required this.rotateDeg,
+    required this.scale,
+    this.skewXDeg = 0.0,
+    this.skewYDeg = 0.0,
+  });
+
+  _Matrix2D toMatrix() {
+    return _Matrix2D.translate(translate.dx, translate.dy)
+        .multiply(_Matrix2D.rotate(rotateDeg))
+        .multiply(_Matrix2D.skewX(skewXDeg))
+        .multiply(_Matrix2D.skewY(skewYDeg))
+        .multiply(_Matrix2D.scale(scale.dx, scale.dy));
+  }
 }
 
 class _OffsetPathSampler {

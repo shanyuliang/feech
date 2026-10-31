@@ -233,4 +233,60 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.byType(SmilCssSvgMvpWidget), findsOneWidget);
   });
+
+  testWidgets('SmilCssSvgMvpWidget renders animated ia.svg with transforms, skew, color, and paths', (tester) async {
+    final svg = File('assets/images/ia.svg').readAsStringSync();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SmilCssSvgMvpWidget.string(
+            svgXml: svg,
+            width: 700,
+            height: 400,
+            targetFrameRate: 60,
+          ),
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    XmlDocument currentFrame() {
+      final picture = tester.widget<SvgPicture>(find.byType(SvgPicture));
+      final loader = picture.bytesLoader as SvgStringLoader;
+      return XmlDocument.parse(loader.provideSvg(null));
+    }
+
+    String attribute(XmlDocument document, String id, String name) {
+      return document.descendants
+          .whereType<XmlElement>()
+          .singleWhere((element) => element.getAttribute('id') == id)
+          .getAttribute(name)!;
+    }
+
+    // Initial frame at 0ms
+    final frame0 = currentFrame();
+    final initialFill = attribute(frame0, 'eUB7Kn6jhmc9', 'fill');
+    expect(initialFill, 'rgb(238,93,97)');
+
+    // Pump to 1350ms (~75% through 1800ms timeline)
+    await tester.pump(const Duration(milliseconds: 1350));
+    final frame1350 = currentFrame();
+
+    // Verify color transition
+    final fill1350 = attribute(frame1350, 'eUB7Kn6jhmc9', 'fill');
+    expect(fill1350, 'rgb(44,114,174)');
+
+    // Verify skewX transform was converted to matrix
+    final skewTransform = attribute(frame1350, 'eUB7Kn6jhmc122_tk', 'transform');
+    expect(skewTransform, startsWith('matrix('));
+    expect(skewTransform, contains('1.4395'));
+
+    // Verify rotation transform
+    final rotTransform = attribute(frame1350, 'eUB7Kn6jhmc7_tr', 'transform');
+    expect(rotTransform, startsWith('matrix('));
+
+    expect(tester.takeException(), isNull);
+    expect(find.byType(SvgPicture), findsOneWidget);
+  });
 }
