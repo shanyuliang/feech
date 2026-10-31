@@ -290,7 +290,7 @@ void main() {
     expect(find.byType(SvgPicture), findsOneWidget);
   });
 
-  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg without residual top lid artifacts and with dark interior', (tester) async {
+  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg without top lid artifact and with dark interior', (tester) async {
     final svg = File('assets/images/mail.svg').readAsStringSync();
     await tester.pumpWidget(
       MaterialApp(
@@ -299,14 +299,12 @@ void main() {
             svgXml: svg,
             width: 700,
             height: 400,
-            targetFrameRate: 10,
+            targetFrameRate: 60,
           ),
         ),
       ),
     );
     await tester.pump();
-
-    // At 2200ms when lid is open
     await tester.pump(const Duration(milliseconds: 2200));
 
     expect(tester.takeException(), isNull);

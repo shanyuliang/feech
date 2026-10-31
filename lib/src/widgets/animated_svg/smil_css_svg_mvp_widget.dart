@@ -1366,8 +1366,14 @@ class _CssAnimBinding {
           'transform',
           'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})',
         );
-        if (parsed.scale.dx.abs() < 0.1 || parsed.scale.dy.abs() < 0.1) {
+        if (parsed.scale.dx.abs() < 0.5 || parsed.scale.dy.abs() < 0.5) {
           target.setAttribute('opacity', '0');
+          for (final child in target.descendants.whereType<XmlElement>()) {
+            final fill = child.getAttribute('fill');
+            if (fill == '#fff' || fill == '#ffffff' || fill == 'white') {
+              child.setAttribute('fill', '#212129');
+            }
+          }
         }
       } else {
         target.setAttribute('transform', transform);
