@@ -174,6 +174,7 @@ class _SmilSvgMvpEngine {
 
   factory _SmilSvgMvpEngine({required String svgXml}) {
     final document = XmlDocument.parse(svgXml);
+    _ensureDefaultPresentationAttributes(document);
     final animations = _parseSmilAnimations(document);
     final cssAnimations = _parseCssAnimations(document);
     final svgator = _SvgatorTimeline.parse(document);
@@ -185,6 +186,20 @@ class _SmilSvgMvpEngine {
     final duration = _computeDuration(animations, cssAnimations);
     final combinedDuration = svgator != null && svgator.duration > duration ? svgator.duration : duration;
     return _SmilSvgMvpEngine._(document, animations, cssAnimations, svgator, combinedDuration);
+  }
+
+  static void _ensureDefaultPresentationAttributes(XmlDocument document) {
+    const shapeTags = {'path', 'rect', 'circle', 'ellipse', 'polygon', 'polyline'};
+    for (final element in document.descendants.whereType<XmlElement>()) {
+      if (shapeTags.contains(element.name.local)) {
+        final fill = element.getAttribute('fill');
+        final style = element.getAttribute('style') ?? '';
+        final hasFillInStyle = style.contains('fill:');
+        if (fill == null && !hasFillInStyle) {
+          element.setAttribute('fill', '#000000');
+        }
+      }
+    }
   }
 
   static Duration _computeDuration(List<_SmilAnim> animations, List<_CssAnimBinding> cssAnimations) {

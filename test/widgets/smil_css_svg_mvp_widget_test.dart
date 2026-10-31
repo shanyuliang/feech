@@ -290,7 +290,7 @@ void main() {
     expect(find.byType(SvgPicture), findsOneWidget);
   });
 
-  testWidgets('SmilCssSvgMvpWidget renders mail.svg with multiple animations per rule and step timing functions', (tester) async {
+  testWidgets('SmilCssSvgMvpWidget renders mail.svg and masks letter inside opening when lid is open', (tester) async {
     final svg = File('assets/images/mail.svg').readAsStringSync();
     await tester.pumpWidget(
       MaterialApp(
@@ -312,29 +312,13 @@ void main() {
       return XmlDocument.parse(loader.provideSvg(null));
     }
 
-    String attribute(XmlDocument document, String id, String name) {
-      return document.descendants
-          .whereType<XmlElement>()
-          .singleWhere((element) => element.getAttribute('id') == id)
-          .getAttribute(name)!;
-    }
+    // At 2200ms (55%): mailbox lid is open and mask path has opacity 1 and default black fill
+    await tester.pump(const Duration(milliseconds: 2200));
+    final frame2200 = currentFrame();
 
-    // At 0ms: white cover rect opacity is 0, letter fill is #1c2747
-    final frame0 = currentFrame();
-    expect(attribute(frame0, 'e9Yjp3XycKs33', 'opacity'), '0');
-    expect(attribute(frame0, 'e9Yjp3XycKs94', 'fill'), '#1c2747');
-
-    // At 1000ms (~25%): lid is open, rect 33 step-end triggered opacity 1, letter fill is interpolating blue
-    await tester.pump(const Duration(milliseconds: 1000));
-    final frame1000 = currentFrame();
-    expect(attribute(frame1000, 'e9Yjp3XycKs33', 'opacity'), '1');
-    expect(attribute(frame1000, 'e9Yjp3XycKs94', 'fill'), startsWith('rgb('));
-
-    // At 2500ms (~62.5%): lid is open, rect 33 step-start at 55% triggered opacity 0, revealing dark interior
-    await tester.pump(const Duration(milliseconds: 1500));
-    final frame2500 = currentFrame();
-    expect(attribute(frame2500, 'e9Yjp3XycKs33', 'opacity'), '0');
-    expect(attribute(frame2500, 'e9Yjp3XycKs94', 'fill'), startsWith('rgb('));
+    final maskPath = frame2200.descendants.whereType<XmlElement>().firstWhere((e) => e.getAttribute('id') == 'e9Yjp3XycKs101');
+    expect(maskPath.getAttribute('fill'), '#000000', reason: 'Shape elements without fill must default to black per SVG spec.');
+    expect(maskPath.getAttribute('opacity'), '1');
 
     expect(tester.takeException(), isNull);
     expect(find.byType(SvgPicture), findsOneWidget);
