@@ -1366,6 +1366,9 @@ class _CssAnimBinding {
           'transform',
           'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})',
         );
+        if (parsed.scale.dx.abs() < 0.1 || parsed.scale.dy.abs() < 0.1) {
+          target.setAttribute('opacity', '0');
+        }
       } else {
         target.setAttribute('transform', transform);
       }

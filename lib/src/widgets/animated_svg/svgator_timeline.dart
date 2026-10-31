@@ -175,6 +175,9 @@ class _SvgatorElement {
       'transform',
       'matrix(${[a, b, c, d, o.dx + a * t.dx + c * t.dy, o.dy + b * t.dx + d * t.dy].map((value) => value.toStringAsFixed(9)).join(' ')})',
     );
+    if (s.dx.abs() < 0.1 || s.dy.abs() < 0.1) {
+      target.setAttribute('opacity', '0');
+    }
   }
 }
 
