@@ -463,16 +463,35 @@ class _SmilSvgMvpEngine {
         continue;
       }
       final body = css.substring(openIndex + 1, closeIndex);
-      final frameRegExp = RegExp(r'([0-9.]+)%\s*\{([^}]*)\}', multiLine: true);
       final frames = <_CssFrame>[];
-      for (final frameMatch in frameRegExp.allMatches(body)) {
-        final percent = double.tryParse(frameMatch.group(1) ?? '');
-        final propsBlock = frameMatch.group(2);
-        if (percent == null || propsBlock == null) {
-          continue;
+      var pos = 0;
+      while (pos < body.length) {
+        final openBrace = body.indexOf('{', pos);
+        if (openBrace < 0) break;
+        final closeBrace = _findMatchingBrace(body, openBrace);
+        if (closeBrace < 0) break;
+
+        final selectorText = body.substring(pos, openBrace).trim();
+        final propsBlock = body.substring(openBrace + 1, closeBrace).trim();
+        final parsedProps = _parseCssProperties(propsBlock);
+
+        for (final sel in selectorText.split(',')) {
+          final s = sel.trim().toLowerCase();
+          double? percent;
+          if (s == 'from') {
+            percent = 0.0;
+          } else if (s == 'to') {
+            percent = 100.0;
+          } else if (s.endsWith('%')) {
+            percent = double.tryParse(s.substring(0, s.length - 1).trim());
+          }
+          if (percent != null) {
+            frames.add(_CssFrame(percent: percent, properties: parsedProps));
+          }
         }
-        frames.add(_CssFrame(percent: percent, properties: _parseCssProperties(propsBlock)));
+        pos = closeBrace + 1;
       }
+
       frames.sort((a, b) => a.percent.compareTo(b.percent));
       result[name] = _CssKeyframes(name: name, frames: frames);
     }
@@ -497,16 +516,69 @@ class _SmilSvgMvpEngine {
 
   static Map<String, String> _parseCssProperties(String block) {
     final result = <String, String>{};
-    for (final part in block.split(';')) {
-      final pieces = part.split(':');
-      if (pieces.length < 2) {
-        continue;
+    var depth = 0;
+    var inQuote = false;
+    String? quoteChar;
+    final currentKey = StringBuffer();
+    final currentValue = StringBuffer();
+    var parsingValue = false;
+
+    for (var i = 0; i < block.length; i++) {
+      final char = block[i];
+      if (inQuote) {
+        if (char == quoteChar) {
+          inQuote = false;
+        }
+        if (parsingValue) {
+          currentValue.write(char);
+        } else {
+          currentKey.write(char);
+        }
+      } else if (char == "'" || char == '"') {
+        inQuote = true;
+        quoteChar = char;
+        if (parsingValue) {
+          currentValue.write(char);
+        } else {
+          currentKey.write(char);
+        }
+      } else if (char == '(') {
+        depth++;
+        if (parsingValue) {
+          currentValue.write(char);
+        } else {
+          currentKey.write(char);
+        }
+      } else if (char == ')') {
+        depth--;
+        if (parsingValue) {
+          currentValue.write(char);
+        } else {
+          currentKey.write(char);
+        }
+      } else if (char == ':' && depth == 0 && !parsingValue) {
+        parsingValue = true;
+      } else if (char == ';' && depth == 0) {
+        final k = currentKey.toString().trim();
+        final v = currentValue.toString().trim();
+        if (k.isNotEmpty && v.isNotEmpty) {
+          result[k] = v;
+        }
+        currentKey.clear();
+        currentValue.clear();
+        parsingValue = false;
+      } else {
+        if (parsingValue) {
+          currentValue.write(char);
+        } else {
+          currentKey.write(char);
+        }
       }
-      final key = pieces.first.trim();
-      final value = pieces.sublist(1).join(':').trim();
-      if (key.isNotEmpty && value.isNotEmpty) {
-        result[key] = value;
-      }
+    }
+    final k = currentKey.toString().trim();
+    final v = currentValue.toString().trim();
+    if (k.isNotEmpty && v.isNotEmpty) {
+      result[k] = v;
     }
     return result;
   }

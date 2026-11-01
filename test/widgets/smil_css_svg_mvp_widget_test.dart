@@ -289,7 +289,7 @@ void main() {
     expect(find.byType(SvgPicture), findsOneWidget);
   });
 
-  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg correctly', (tester) async {
+  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg correctly across timeline', (tester) async {
     final svg = File('assets/images/mail.svg').readAsStringSync();
     await tester.pumpWidget(
       MaterialApp(
