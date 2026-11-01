@@ -35,7 +35,7 @@ class FeechSvgWidget extends StatelessWidget {
       alignment: alignment,
       backgroundColor: backgroundColor,
       fillContainer: false,
-      fit: BoxFit.contain,
+      fit: fit,
       svgStringSignal: SvgStringSignal(svgLink: svgLink, headers: headers, debugLogDiagnostics: debugLogDiagnostics),
       debugLogDiagnostics: debugLogDiagnostics,
     );
@@ -43,43 +43,45 @@ class FeechSvgWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Watch((ctx) {
-      final htmlStringAndSize = svgAsHtmlStringSignal.value;
-      switch (htmlStringAndSize) {
-        case AsyncData(:final value):
-          {
-            final svgHtml = value.$1;
-            final svgSize = value.$2;
-            if (svgHtml != null && svgSize != null) {
-              final webViewController = WebViewController()
-                ..setBackgroundColor(Colors.transparent)
-                ..setJavaScriptMode(JavaScriptMode.unrestricted);
-              webViewController.loadHtmlString(svgHtml);
-              final containerSize = _decideSize(svgSize: svgSize);
-              return Container(
-                width: containerSize.width,
-                height: containerSize.height,
-                color: backgroundColor,
-                child: FittedBox(
-                  fit: fit,
-                  alignment: alignment,
-                  clipBehavior: clipBehavior,
-                  child: SizedBox.fromSize(
-                    size: svgSize,
-                    child: WebViewWidget(controller: webViewController),
+    return SignalBuilder(
+      builder: (ctx) {
+        final htmlStringAndSize = svgAsHtmlStringSignal.value;
+        switch (htmlStringAndSize) {
+          case AsyncData(:final value):
+            {
+              final svgHtml = value.$1;
+              final svgSize = value.$2;
+              if (svgHtml != null && svgSize != null) {
+                final webViewController = WebViewController()
+                  ..setBackgroundColor(Colors.transparent)
+                  ..setJavaScriptMode(JavaScriptMode.unrestricted);
+                webViewController.loadHtmlString(svgHtml);
+                final containerSize = _decideSize(svgSize: svgSize);
+                return Container(
+                  width: containerSize.width,
+                  height: containerSize.height,
+                  color: backgroundColor,
+                  child: FittedBox(
+                    fit: fit,
+                    alignment: alignment,
+                    clipBehavior: clipBehavior,
+                    child: SizedBox.fromSize(
+                      size: svgSize,
+                      child: WebViewWidget(controller: webViewController),
+                    ),
                   ),
-                ),
-              );
-            } else {
+                );
+              } else {
+                return _placeholder();
+              }
+            }
+          default:
+            {
               return _placeholder();
             }
-          }
-        default:
-          {
-            return _placeholder();
-          }
-      }
-    });
+        }
+      },
+    );
   }
 
   Size _decideSize({required Size svgSize}) {
