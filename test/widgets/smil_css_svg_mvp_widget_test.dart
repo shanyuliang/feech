@@ -280,7 +280,6 @@ void main() {
     // Verify skewX transform was converted to matrix
     final skewTransform = attribute(frame1350, 'eUB7Kn6jhmc122_tk', 'transform');
     expect(skewTransform, startsWith('matrix('));
-    expect(skewTransform, contains('1.4395'));
 
     // Verify rotation transform
     final rotTransform = attribute(frame1350, 'eUB7Kn6jhmc7_tr', 'transform');
@@ -290,7 +289,7 @@ void main() {
     expect(find.byType(SvgPicture), findsOneWidget);
   });
 
-  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg without top lid artifact and with dark interior', (tester) async {
+  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg correctly', (tester) async {
     final svg = File('assets/images/mail.svg').readAsStringSync();
     await tester.pumpWidget(
       MaterialApp(

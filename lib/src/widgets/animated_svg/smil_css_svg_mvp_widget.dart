@@ -177,7 +177,6 @@ class _SmilSvgMvpEngine {
     _ensureDefaultPresentationAttributes(document);
     final animations = _parseSmilAnimations(document);
     final cssAnimations = _parseCssAnimations(document);
-    _adjustContainerInteriorFills(document, cssAnimations, animations);
     final svgator = _SvgatorTimeline.parse(document);
     if (svgator != null) {
       for (final script in document.findAllElements('script').toList(growable: false)) {
@@ -201,60 +200,6 @@ class _SmilSvgMvpEngine {
         }
       }
     }
-  }
-
-  static void _adjustContainerInteriorFills(
-    XmlDocument document,
-    List<_CssAnimBinding> cssAnimations,
-    List<_SmilAnim> smilAnimations,
-  ) {
-    for (final group in document.descendants.whereType<XmlElement>()) {
-      if (group.name.local != 'g' && group.name.local != 'svg') continue;
-
-      final openingFlaps = group.descendants.whereType<XmlElement>().where((child) {
-        final id = child.getAttribute('id') ?? '';
-        return id.endsWith('_tr') || id.endsWith('_tk') || id.endsWith('_ts');
-      }).toList();
-
-      if (openingFlaps.isEmpty) continue;
-
-      String? darkFill;
-      for (final child in group.descendants.whereType<XmlElement>()) {
-        final fill = child.getAttribute('fill')?.toLowerCase().trim();
-        if (fill != null && _isDarkColor(fill)) {
-          darkFill = fill;
-          break;
-        }
-      }
-      if (darkFill == null) continue;
-
-      for (final child in group.descendants.whereType<XmlElement>()) {
-        final childId = child.getAttribute('id') ?? '';
-        final isFlap = childId.endsWith('_tr') || childId.endsWith('_tk') || childId.endsWith('_ts') ||
-            child.ancestors.whereType<XmlElement>().any((a) {
-              final aid = a.getAttribute('id') ?? '';
-              return aid.endsWith('_tr') || aid.endsWith('_tk') || aid.endsWith('_ts');
-            });
-        if (isFlap) continue;
-
-        final fill = child.getAttribute('fill')?.toLowerCase().trim();
-        if (fill == '#fff' || fill == '#ffffff' || fill == 'white' || fill == '#e9e9f0' || fill == 'rgb(255,255,255)' || fill == 'rgb(255, 255, 255)') {
-          child.setAttribute('fill', darkFill);
-        }
-      }
-    }
-  }
-
-  static bool _isDarkColor(String fill) {
-    if (fill == '#000' || fill == '#000000' || fill == 'black' || fill == '#212129' || fill == '#1c2747') {
-      return true;
-    }
-    final c = _RgbaColor.tryParse(fill);
-    if (c != null) {
-      final lum = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b;
-      return lum < 50;
-    }
-    return false;
   }
 
   static Duration _computeDuration(List<_SmilAnim> animations, List<_CssAnimBinding> cssAnimations) {
@@ -1256,81 +1201,7 @@ class _CssAnimBinding {
   }
 
   String _interpolateTransform(String left, String right, double ratio) {
-    final lParsed = _parseTransform(left);
-    final rParsed = _parseTransform(right);
-    if (lParsed == null || rParsed == null) {
-      return ratio < 0.5 ? left : right;
-    }
-    final tx = lParsed.translate.dx + (rParsed.translate.dx - lParsed.translate.dx) * ratio;
-    final ty = lParsed.translate.dy + (rParsed.translate.dy - lParsed.translate.dy) * ratio;
-    final rot = lParsed.rotateDeg + (rParsed.rotateDeg - lParsed.rotateDeg) * ratio;
-    final sx = lParsed.scale.dx + (rParsed.scale.dx - lParsed.scale.dx) * ratio;
-    final sy = lParsed.scale.dy + (rParsed.scale.dy - lParsed.scale.dy) * ratio;
-    final skx = lParsed.skewXDeg + (rParsed.skewXDeg - lParsed.skewXDeg) * ratio;
-    final sky = lParsed.skewYDeg + (rParsed.skewYDeg - lParsed.skewYDeg) * ratio;
-
-    final interp = _TransformComponents(
-      translate: Offset(tx, ty),
-      rotateDeg: rot,
-      scale: Offset(sx, sy),
-      skewXDeg: skx,
-      skewYDeg: sky,
-    );
-    final m = interp.toMatrix();
-    return 'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})';
-  }
-
-  _TransformComponents? _parseTransform(String value) {
-    final transformRegExp = RegExp(r'([a-zA-Z]+)\(([^)]*)\)');
-    var translate = Offset.zero;
-    var rotateDeg = 0.0;
-    var scale = const Offset(1, 1);
-    var skewXDeg = 0.0;
-    var skewYDeg = 0.0;
-    var foundAny = false;
-    for (final match in transformRegExp.allMatches(value)) {
-      final name = (match.group(1) ?? '').trim();
-      final args = _parseNumList(match.group(2) ?? '');
-      if (name == 'translate' && args.isNotEmpty) {
-        translate = Offset(args[0], args.length > 1 ? args[1] : 0);
-        foundAny = true;
-      } else if (name == 'rotate' && args.isNotEmpty) {
-        rotateDeg = args[0];
-        foundAny = true;
-      } else if (name == 'scale' && args.isNotEmpty) {
-        final sx = args[0];
-        final sy = args.length > 1 ? args[1] : sx;
-        scale = Offset(sx, sy);
-        foundAny = true;
-      } else if (name == 'skewX' && args.isNotEmpty) {
-        skewXDeg = args[0];
-        foundAny = true;
-      } else if (name == 'skewY' && args.isNotEmpty) {
-        skewYDeg = args[0];
-        foundAny = true;
-      } else if (name == 'skew' && args.isNotEmpty) {
-        skewXDeg = args[0];
-        skewYDeg = args.length > 1 ? args[1] : 0;
-        foundAny = true;
-      } else if (name == 'matrix' && args.length >= 6) {
-        // matrix(a, b, c, d, e, f)
-        final a = args[0], b = args[1], c = args[2], d = args[3], e = args[4], f = args[5];
-        translate = Offset(e, f);
-        rotateDeg = math.atan2(b, a) * 180 / math.pi;
-        scale = Offset(math.sqrt(a * a + b * b), math.sqrt(c * c + d * d));
-        foundAny = true;
-      }
-    }
-    if (!foundAny) {
-      return null;
-    }
-    return _TransformComponents(
-      translate: translate,
-      rotateDeg: rotateDeg,
-      scale: scale,
-      skewXDeg: skewXDeg,
-      skewYDeg: skewYDeg,
-    );
+    return _interpolateTransformList(left, right, ratio);
   }
 
   void _applyCssProperties(
@@ -1352,32 +1223,15 @@ class _CssAnimBinding {
       }
     }
     if (transform != null) {
-      final parsed = _parseTransform(transform);
-      if (parsed != null) {
-        final withMotion = _TransformComponents(
-          translate: parsed.translate + motionOffset,
-          rotateDeg: parsed.rotateDeg,
-          scale: parsed.scale,
-          skewXDeg: parsed.skewXDeg,
-          skewYDeg: parsed.skewYDeg,
-        );
-        final m = withMotion.toMatrix();
-        target.setAttribute(
-          'transform',
-          'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})',
-        );
-        if (parsed.scale.dx.abs() < 0.5 || parsed.scale.dy.abs() < 0.5) {
-          target.setAttribute('opacity', '0');
-          for (final child in target.descendants.whereType<XmlElement>()) {
-            final fill = child.getAttribute('fill');
-            if (fill == '#fff' || fill == '#ffffff' || fill == 'white') {
-              child.setAttribute('fill', '#212129');
-            }
-          }
-        }
-      } else {
-        target.setAttribute('transform', transform);
+      final transformList = _parseTransformList(transform);
+      var m = _composeTransformList(transformList);
+      if (motionOffset != Offset.zero) {
+        m = _Matrix2D.translate(motionOffset.dx, motionOffset.dy).multiply(m);
       }
+      target.setAttribute(
+        'transform',
+        'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})',
+      );
     } else if (motionOffset != Offset.zero) {
       target.setAttribute('transform', 'translate(${_formatNumber(motionOffset.dx)} ${_formatNumber(motionOffset.dy)})');
     }
@@ -1387,7 +1241,12 @@ class _CssAnimBinding {
         return;
       }
       if (key == 'opacity') {
-        target.setAttribute('opacity', value);
+        final doubleValue = double.tryParse(value);
+        if (doubleValue != null) {
+          target.setAttribute('opacity', _formatNumber(doubleValue.clamp(0, 1)));
+        } else {
+          target.setAttribute('opacity', value);
+        }
       } else if (key == 'd') {
         final cleanPath = value.replaceAll(RegExp(r'''^\s*path\(\s*['"]?|['"]?\s*\)\s*$'''), '').replaceAll(RegExp(r'''^['"]|['"]$'''), '');
         target.setAttribute('d', cleanPath);
@@ -1553,6 +1412,7 @@ class _Matrix2D {
     );
   }
 
+  static _Matrix2D identity() => const _Matrix2D(1, 0, 0, 1, 0, 0);
   static _Matrix2D translate(double tx, double ty) => _Matrix2D(1, 0, 0, 1, tx, ty);
   static _Matrix2D rotate(double deg) {
     final rad = deg * math.pi / 180;
@@ -1581,28 +1441,111 @@ class _CssFrame {
 
 enum _CssDirection { normal, reverse, alternate, alternateReverse }
 
-class _TransformComponents {
-  final Offset translate;
-  final double rotateDeg;
-  final Offset scale;
-  final double skewXDeg;
-  final double skewYDeg;
+class _TransformFn {
+  final String name;
+  final List<double> args;
 
-  _TransformComponents({
-    required this.translate,
-    required this.rotateDeg,
-    required this.scale,
-    this.skewXDeg = 0.0,
-    this.skewYDeg = 0.0,
-  });
+  _TransformFn(this.name, this.args);
 
   _Matrix2D toMatrix() {
-    return _Matrix2D.translate(translate.dx, translate.dy)
-        .multiply(_Matrix2D.rotate(rotateDeg))
-        .multiply(_Matrix2D.skewX(skewXDeg))
-        .multiply(_Matrix2D.skewY(skewYDeg))
-        .multiply(_Matrix2D.scale(scale.dx, scale.dy));
+    if (name == 'translate') {
+      return _Matrix2D.translate(args[0], args.length > 1 ? args[1] : 0);
+    } else if (name == 'rotate') {
+      return _Matrix2D.rotate(args[0]);
+    } else if (name == 'scale') {
+      final sx = args[0];
+      final sy = args.length > 1 ? args[1] : sx;
+      return _Matrix2D.scale(sx, sy);
+    } else if (name == 'skewX') {
+      return _Matrix2D.skewX(args[0]);
+    } else if (name == 'skewY') {
+      return _Matrix2D.skewY(args[0]);
+    } else if (name == 'skew') {
+      return _Matrix2D.skewX(args[0]).multiply(_Matrix2D.skewY(args.length > 1 ? args[1] : 0));
+    } else if (name == 'matrix' && args.length >= 6) {
+      return _Matrix2D(args[0], args[1], args[2], args[3], args[4], args[5]);
+    }
+    return _Matrix2D.identity();
   }
+
+  static _TransformFn interpolate(_TransformFn a, _TransformFn b, double t) {
+    if (a.name != b.name) {
+      return t < 0.5 ? a : b;
+    }
+    final len = math.max(a.args.length, b.args.length);
+    final interpArgs = <double>[];
+    for (var i = 0; i < len; i++) {
+      final start = i < a.args.length ? a.args[i] : (a.name == 'scale' ? 1.0 : 0.0);
+      final end = i < b.args.length ? b.args[i] : (b.name == 'scale' ? 1.0 : 0.0);
+      interpArgs.add(start + (end - start) * t);
+    }
+    return _TransformFn(a.name, interpArgs);
+  }
+}
+
+List<_TransformFn> _parseTransformList(String value) {
+  final transformRegExp = RegExp(r'([a-zA-Z]+)\(([^)]*)\)');
+  final list = <_TransformFn>[];
+  for (final match in transformRegExp.allMatches(value)) {
+    final name = (match.group(1) ?? '').trim();
+    final args = _parseNumList(match.group(2) ?? '');
+    if (args.isNotEmpty) {
+      list.add(_TransformFn(name, args));
+    }
+  }
+  return list;
+}
+
+_Matrix2D _composeTransformList(List<_TransformFn> list) {
+  var result = _Matrix2D.identity();
+  for (final fn in list) {
+    result = result.multiply(fn.toMatrix());
+  }
+  return result;
+}
+
+String _interpolateTransformList(String left, String right, double ratio) {
+  final lList = _parseTransformList(left);
+  final rList = _parseTransformList(right);
+  if (lList.isEmpty && rList.isEmpty) {
+    return ratio < 0.5 ? left : right;
+  }
+  if (lList.isEmpty) {
+    final m = _composeTransformList(rList);
+    return 'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})';
+  }
+  if (rList.isEmpty) {
+    final m = _composeTransformList(lList);
+    return 'matrix(${_formatNumber(m.a)} ${_formatNumber(m.b)} ${_formatNumber(m.c)} ${_formatNumber(m.d)} ${_formatNumber(m.e)} ${_formatNumber(m.f)})';
+  }
+
+  if (lList.length == rList.length) {
+    var matchAll = true;
+    for (var i = 0; i < lList.length; i++) {
+      if (lList[i].name != rList[i].name) {
+        matchAll = false;
+        break;
+      }
+    }
+    if (matchAll) {
+      var result = _Matrix2D.identity();
+      for (var i = 0; i < lList.length; i++) {
+        final fn = _TransformFn.interpolate(lList[i], rList[i], ratio);
+        result = result.multiply(fn.toMatrix());
+      }
+      return 'matrix(${_formatNumber(result.a)} ${_formatNumber(result.b)} ${_formatNumber(result.c)} ${_formatNumber(result.d)} ${_formatNumber(result.e)} ${_formatNumber(result.f)})';
+    }
+  }
+
+  final lMatrix = _composeTransformList(lList);
+  final rMatrix = _composeTransformList(rList);
+  final a = lMatrix.a + (rMatrix.a - lMatrix.a) * ratio;
+  final b = lMatrix.b + (rMatrix.b - lMatrix.b) * ratio;
+  final c = lMatrix.c + (rMatrix.c - lMatrix.c) * ratio;
+  final d = lMatrix.d + (rMatrix.d - lMatrix.d) * ratio;
+  final e = lMatrix.e + (rMatrix.e - lMatrix.e) * ratio;
+  final f = lMatrix.f + (rMatrix.f - lMatrix.f) * ratio;
+  return 'matrix(${_formatNumber(a)} ${_formatNumber(b)} ${_formatNumber(c)} ${_formatNumber(d)} ${_formatNumber(e)} ${_formatNumber(f)})';
 }
 
 class _OffsetPathSampler {
