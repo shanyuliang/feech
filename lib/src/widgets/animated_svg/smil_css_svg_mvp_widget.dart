@@ -175,6 +175,8 @@ class _SmilSvgMvpEngine {
   factory _SmilSvgMvpEngine({required String svgXml}) {
     final document = XmlDocument.parse(svgXml);
     _ensureDefaultPresentationAttributes(document);
+    _hoistDefinitionsToTop(document);
+    _unwrapMaskAndClipPathGroups(document);
     final animations = _parseSmilAnimations(document);
     final cssAnimations = _parseCssAnimations(document);
     final svgator = _SvgatorTimeline.parse(document);
@@ -186,6 +188,63 @@ class _SmilSvgMvpEngine {
     final duration = _computeDuration(animations, cssAnimations);
     final combinedDuration = svgator != null && svgator.duration > duration ? svgator.duration : duration;
     return _SmilSvgMvpEngine._(document, animations, cssAnimations, svgator, combinedDuration);
+  }
+
+  static void _hoistDefinitionsToTop(XmlDocument document) {
+    final root = document.rootElement;
+    var defs = root.findElements('defs').firstOrNull;
+    if (defs == null) {
+      defs = XmlElement.tag('defs');
+      root.children.insert(0, defs);
+    }
+    const defTags = {'mask', 'clipPath', 'linearGradient', 'radialGradient', 'pattern', 'filter'};
+    final toMove = <XmlElement>[];
+    for (final element in root.descendants.whereType<XmlElement>()) {
+      if (defTags.contains(element.name.local) && element.parent != defs) {
+        toMove.add(element);
+      }
+    }
+    for (final element in toMove) {
+      element.parent?.children.remove(element);
+      defs.children.add(element);
+    }
+  }
+
+  static void _unwrapMaskAndClipPathGroups(XmlDocument document) {
+    for (final container in document.descendants.whereType<XmlElement>()) {
+      if (container.name.local != 'mask' && container.name.local != 'clipPath') {
+        continue;
+      }
+      var hasGChild = true;
+      while (hasGChild) {
+        hasGChild = false;
+        final gChildren = container.children.whereType<XmlElement>().where((e) => e.name.local == 'g').toList();
+        for (final g in gChildren) {
+          hasGChild = true;
+          final gTransform = g.getAttribute('transform');
+          final gOpacity = g.getAttribute('opacity');
+          final gChildrenList = g.children.toList();
+          final index = container.children.indexOf(g);
+          container.children.remove(g);
+          for (var i = 0; i < gChildrenList.length; i++) {
+            final child = gChildrenList[i];
+            if (child is XmlElement) {
+              if (gTransform != null && gTransform.isNotEmpty) {
+                final childTransform = child.getAttribute('transform');
+                final combined = childTransform != null && childTransform.isNotEmpty
+                    ? '$gTransform $childTransform'
+                    : gTransform;
+                child.setAttribute('transform', combined);
+              }
+              if (gOpacity != null && gOpacity.isNotEmpty) {
+                child.setAttribute('opacity', gOpacity);
+              }
+            }
+            container.children.insert(index + i, child);
+          }
+        }
+      }
+    }
   }
 
   static void _ensureDefaultPresentationAttributes(XmlDocument document) {

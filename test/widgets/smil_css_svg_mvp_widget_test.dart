@@ -289,7 +289,7 @@ void main() {
     expect(find.byType(SvgPicture), findsOneWidget);
   });
 
-  testWidgets('SmilCssSvgMvpWidget renders animated mail.svg correctly across timeline', (tester) async {
+  testWidgets('verify mail.svg at 1200ms matches Chrome opening state with dark cavity', (tester) async {
     final svg = File('assets/images/mail.svg').readAsStringSync();
     await tester.pumpWidget(
       MaterialApp(
@@ -304,7 +304,15 @@ void main() {
       ),
     );
     await tester.pump();
-    await tester.pump(const Duration(milliseconds: 2200));
+    await tester.pump(const Duration(milliseconds: 1200));
+
+    final picture = tester.widget<SvgPicture>(find.byType(SvgPicture));
+    final loader = picture.bytesLoader as SvgStringLoader;
+    final frameDoc = XmlDocument.parse(loader.provideSvg(null));
+
+    // Verify dark blue cavity is exposed at 1200ms
+    final cavity = frameDoc.descendants.whereType<XmlElement>().firstWhere((e) => e.getAttribute('fill') == '#1c2747');
+    expect(cavity, isNotNull);
 
     expect(tester.takeException(), isNull);
     expect(find.byType(SvgPicture), findsOneWidget);
