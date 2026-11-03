@@ -17,10 +17,10 @@ class const VersionRange({@VersionConverterNullable() final Version? from, @Vers
 
   Map<String, dynamic> toJson() => _$VersionRangeToJson(this);
 
-  bool evaluate({required Version appVersion}) {
+  bool evaluate({required Version targetVersion}) {
     final compareFrom = from ?? distantPastVersion;
     final compareTo = to ?? distantFutureVersion;
-    return appVersion >= compareFrom && appVersion <= compareTo;
+    return targetVersion >= compareFrom && targetVersion <= compareTo;
   }
 
   @override

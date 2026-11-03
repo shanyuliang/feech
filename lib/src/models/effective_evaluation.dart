@@ -15,8 +15,8 @@ class const EffectiveEvaluation({final VersionRange? versionRange, final TimeRan
 
   Map<String, dynamic> toJson() => _$EffectiveEvaluationToJson(this);
 
-  bool evaluate({required Version appVersion, DateTime? targetTime}) {
-    return (versionRange?.evaluate(appVersion: appVersion) ?? true) && (timeRange?.evaluate(targetDateTime: targetTime) ?? true);
+  bool evaluate({required Version targetVersion, DateTime? targetTime}) {
+    return (versionRange?.evaluate(targetVersion: targetVersion) ?? true) && (timeRange?.evaluate(targetDateTime: targetTime) ?? true);
   }
 
   @override
