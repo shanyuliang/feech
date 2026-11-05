@@ -1,4 +1,4 @@
-// https://m3.material.io/foundations/layout/applying-layout/window-size-classes
+// https://m3.material.io/foundations/layout/breakpoints/overview
 enum DisplayWidthMode {
   // Phone in portrait
   compact(
@@ -21,7 +21,7 @@ enum DisplayWidthMode {
     1200.0,
   ),
   // Desktop
-  // Ultra-wide
+  // Ultra-wide monitors
   extraLarge(
     1600.0,
   );
