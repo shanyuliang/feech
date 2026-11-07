@@ -5,6 +5,7 @@ import 'package:version/version.dart';
 
 import '../extensions/alignment_extension.dart';
 import '../extensions/box_fit_extension.dart';
+import '../extensions/brightness_extension.dart';
 import '../extensions/color_extension.dart';
 import '../extensions/date_time_extension.dart';
 import '../extensions/num_extension.dart';
@@ -233,6 +234,16 @@ class BoxFitStringConverter extends JsonConverterEx<BoxFit, String> {
 
   @override
   String toJson(BoxFit object) => object.toShortString();
+}
+
+class BrightnessStringConverter extends JsonConverterEx<Brightness, String> {
+  const BrightnessStringConverter();
+
+  @override
+  Brightness fromJson(String json) => json.parseAsBrightness();
+
+  @override
+  String toJson(Brightness object) => object.toShortString();
 }
 
 class VersionConverter extends JsonConverterEx<Version, String> {

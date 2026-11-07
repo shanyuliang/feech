@@ -182,6 +182,14 @@ extension StringExtension on String {
 
   String encodeAsUrl() => Uri.encodeFull(this);
 
+  Brightness parseAsBrightness() {
+    return switch (toUpperCase()) {
+      "LIGHT" => Brightness.light,
+      "DARK" => Brightness.dark,
+      _ => Brightness.light,
+    };
+  }
+
   BoxFit parseAsBoxFit() {
     return switch (toUpperCase()) {
       "CONTAIN" => BoxFit.contain,
