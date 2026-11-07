@@ -9,7 +9,7 @@ part 'remote_app_theme.g.dart';
 
 @freezed
 @JsonSerializable()
-abstract class RemoteAppTheme({
+class const RemoteAppTheme({
   required final String name,
   final EffectiveEvaluation? effectiveEvaluation,
   final RemoteColorScheme? lightColorScheme,

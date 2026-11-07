@@ -11,7 +11,7 @@ part 'remote_color_scheme.g.dart';
 
 @freezed
 @JsonSerializable()
-abstract class RemoteColorScheme({
+class const RemoteColorScheme({
   @BrightnessStringConverter() final Brightness brightness = Brightness.light,
   @ColorStringConverter() required final Color primary,
   @ColorStringConverter() required final Color onPrimary,

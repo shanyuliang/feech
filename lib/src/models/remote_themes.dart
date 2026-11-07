@@ -8,7 +8,7 @@ part 'remote_themes.g.dart';
 
 @freezed
 @JsonSerializable()
-abstract class RemoteThemes({final int schemeVersion = 0, final int dataVersion = 0, final List<RemoteAppTheme>? appThemes})
+class const RemoteThemes({final int schemeVersion = 0, final int dataVersion = 0, final List<RemoteAppTheme> appThemes = const []})
     with _$RemoteThemes {
   factory RemoteThemes.fromJson(Map<String, dynamic> json) => _$RemoteThemesFromJson(json);
 

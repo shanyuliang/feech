@@ -28,20 +28,20 @@ $RemoteAppThemeCopyWith<RemoteAppTheme> get copyWith => _$RemoteAppThemeCopyWith
 @override
 bool operator ==(Object other) {
   final _this = this as RemoteAppTheme;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RemoteAppTheme&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.effectiveEvaluation, _this.effectiveEvaluation) || other.effectiveEvaluation == _this.effectiveEvaluation)&&(identical(other.fontFamily, _this.fontFamily) || other.fontFamily == _this.fontFamily));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RemoteAppTheme&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.effectiveEvaluation, _this.effectiveEvaluation) || other.effectiveEvaluation == _this.effectiveEvaluation)&&(identical(other.lightColorScheme, _this.lightColorScheme) || other.lightColorScheme == _this.lightColorScheme)&&(identical(other.darkColorScheme, _this.darkColorScheme) || other.darkColorScheme == _this.darkColorScheme)&&(identical(other.fontFamily, _this.fontFamily) || other.fontFamily == _this.fontFamily));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as RemoteAppTheme;
-  return Object.hash(runtimeType,_this.name,_this.effectiveEvaluation,_this.fontFamily);
+  return Object.hash(runtimeType,_this.name,_this.effectiveEvaluation,_this.lightColorScheme,_this.darkColorScheme,_this.fontFamily);
 }
 
 @override
 String toString() {
   final _this = this as RemoteAppTheme;
-  return 'RemoteAppTheme(name: ${_this.name}, effectiveEvaluation: ${_this.effectiveEvaluation}, fontFamily: ${_this.fontFamily})';
+  return 'RemoteAppTheme(name: ${_this.name}, effectiveEvaluation: ${_this.effectiveEvaluation}, lightColorScheme: ${_this.lightColorScheme}, darkColorScheme: ${_this.darkColorScheme}, fontFamily: ${_this.fontFamily})';
 }
 
 
@@ -52,11 +52,11 @@ abstract mixin class $RemoteAppThemeCopyWith<$Res>  {
   factory $RemoteAppThemeCopyWith(RemoteAppTheme value, $Res Function(RemoteAppTheme) _then) = _$RemoteAppThemeCopyWithImpl;
 @useResult
 $Res call({
- String name, EffectiveEvaluation? effectiveEvaluation, String? fontFamily
+ String name, EffectiveEvaluation? effectiveEvaluation, RemoteColorScheme? lightColorScheme, RemoteColorScheme? darkColorScheme, String? fontFamily
 });
 
 
-$EffectiveEvaluationCopyWith<$Res>? get effectiveEvaluation;
+$EffectiveEvaluationCopyWith<$Res>? get effectiveEvaluation;$RemoteColorSchemeCopyWith<$Res>? get lightColorScheme;$RemoteColorSchemeCopyWith<$Res>? get darkColorScheme;
 
 }
 /// @nodoc
@@ -69,11 +69,13 @@ class _$RemoteAppThemeCopyWithImpl<$Res>
 
 /// Create a copy of RemoteAppTheme
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? effectiveEvaluation = freezed,Object? fontFamily = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? effectiveEvaluation = freezed,Object? lightColorScheme = freezed,Object? darkColorScheme = freezed,Object? fontFamily = freezed,}) {
   return _then(RemoteAppTheme(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,effectiveEvaluation: freezed == effectiveEvaluation ? _self.effectiveEvaluation : effectiveEvaluation // ignore: cast_nullable_to_non_nullable
-as EffectiveEvaluation?,fontFamily: freezed == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
+as EffectiveEvaluation?,lightColorScheme: freezed == lightColorScheme ? _self.lightColorScheme : lightColorScheme // ignore: cast_nullable_to_non_nullable
+as RemoteColorScheme?,darkColorScheme: freezed == darkColorScheme ? _self.darkColorScheme : darkColorScheme // ignore: cast_nullable_to_non_nullable
+as RemoteColorScheme?,fontFamily: freezed == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -88,6 +90,30 @@ $EffectiveEvaluationCopyWith<$Res>? get effectiveEvaluation {
 
   return $EffectiveEvaluationCopyWith<$Res>(_self.effectiveEvaluation!, (value) {
     return _then(_self.copyWith(effectiveEvaluation: value));
+  });
+}/// Create a copy of RemoteAppTheme
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RemoteColorSchemeCopyWith<$Res>? get lightColorScheme {
+    if (_self.lightColorScheme == null) {
+    return null;
+  }
+
+  return $RemoteColorSchemeCopyWith<$Res>(_self.lightColorScheme!, (value) {
+    return _then(_self.copyWith(lightColorScheme: value));
+  });
+}/// Create a copy of RemoteAppTheme
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RemoteColorSchemeCopyWith<$Res>? get darkColorScheme {
+    if (_self.darkColorScheme == null) {
+    return null;
+  }
+
+  return $RemoteColorSchemeCopyWith<$Res>(_self.darkColorScheme!, (value) {
+    return _then(_self.copyWith(darkColorScheme: value));
   });
 }
 }
