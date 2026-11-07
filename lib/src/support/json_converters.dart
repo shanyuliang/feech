@@ -216,6 +216,16 @@ class ColorStringConverter extends JsonConverterEx<Color, String> {
   String toJson(Color object) => object.toHexARGBString();
 }
 
+class ColorStringConverterNullable extends JsonConverterEx<Color?, String?> {
+  const ColorStringConverterNullable();
+
+  @override
+  Color? fromJson(String? json) => json?.parseAsHexARGBColor();
+
+  @override
+  String? toJson(Color? object) => object?.toHexARGBString();
+}
+
 class AlignmentStringConverter extends JsonConverterEx<Alignment, String> {
   const AlignmentStringConverter();
 

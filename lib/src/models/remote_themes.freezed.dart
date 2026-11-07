@@ -52,7 +52,7 @@ abstract mixin class $RemoteThemesCopyWith<$Res>  {
   factory $RemoteThemesCopyWith(RemoteThemes value, $Res Function(RemoteThemes) _then) = _$RemoteThemesCopyWithImpl;
 @useResult
 $Res call({
- int schemeVersion, int dataVersion, List<RemoteAppTheme> appThemes
+ int schemeVersion, int dataVersion, List<RemoteAppTheme>? appThemes
 });
 
 
@@ -69,12 +69,12 @@ class _$RemoteThemesCopyWithImpl<$Res>
 
 /// Create a copy of RemoteThemes
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? schemeVersion = null,Object? dataVersion = null,Object? appThemes = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? schemeVersion = null,Object? dataVersion = null,Object? appThemes = freezed,}) {
   return _then(RemoteThemes(
 schemeVersion: null == schemeVersion ? _self.schemeVersion : schemeVersion // ignore: cast_nullable_to_non_nullable
 as int,dataVersion: null == dataVersion ? _self.dataVersion : dataVersion // ignore: cast_nullable_to_non_nullable
-as int,appThemes: null == appThemes ? _self.appThemes : appThemes // ignore: cast_nullable_to_non_nullable
-as List<RemoteAppTheme>,
+as int,appThemes: freezed == appThemes ? _self.appThemes : appThemes // ignore: cast_nullable_to_non_nullable
+as List<RemoteAppTheme>?,
   ));
 }
 
