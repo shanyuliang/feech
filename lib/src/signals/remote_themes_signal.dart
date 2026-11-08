@@ -6,7 +6,6 @@ import 'package:signals_flutter/signals_flutter.dart';
 
 import '../helpers/network_helper.dart';
 import '../models/remote_themes.dart';
-import '../support/network/app_client.dart';
 import '../support/network/network_result.dart';
 import '../support/result.dart';
 
@@ -44,8 +43,7 @@ class AwsRemoteThemesRepository implements AbstractRemoteThemesRepository {
     this._dummy = false,
     this._debugLogDiagnostics = false,
   }) {
-    final appClient = AppClient(setUserAgent: true, timeoutOfRequest: (r) => const Duration(seconds: 10));
-    _networkHelper = NetworkHelper(appClient);
+    _networkHelper = NetworkHelper(client);
   }
 
   @override
