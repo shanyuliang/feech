@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../support/json_converters.dart';
-import 'effective_evaluation.dart';
 
 part 'remote_color_scheme.freezed.dart';
 
