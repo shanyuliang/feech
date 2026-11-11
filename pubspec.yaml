@@ -34,7 +34,7 @@ dependencies:
   flutter_cache_manager: '>=3.5.0 <4.0.0' # https://pub.dev/packages/flutter_cache_manager
   flutter_riverpod: '>=3.5.0 <4.0.0' # https://pub.dev/packages/flutter_riverpod
   flutter_soloud: '>=5.2.3 <6.0.0' # https://pub.dev/packages/flutter_soloud
-  flutter_svg: '>=2.3.2 <3.0.0' # https://pub.dev/packages/flutter_svg
+  flutter_svg: '>=2.3.3 <3.0.0' # https://pub.dev/packages/flutter_svg
   flutter_tts: '>=4.2.5 <5.0.0' # https://pub.dev/packages/flutter_tts
   freezed_annotation: '>=3.1.0 <4.0.0' # https://pub.dev/packages/freezed_annotation
   full_svg_flutter: '>=1.5.4 <2.0.0' # https://pub.dev/packages/full_svg_flutter
