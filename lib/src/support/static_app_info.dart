@@ -142,9 +142,9 @@ class StaticAppInfo {
       final firstLaunchTimeString = await flutterSecureStorage.read(key: firstLaunchTimeKey);
       if (firstLaunchTimeString != null) {
         firstLaunchTime = firstLaunchTimeString.parseAsDTODateTime();
-        lastLaunchTime = DateTime.now();
+        lastLaunchTime = DateTime.now().toUtc();
       } else {
-        firstLaunchTime = DateTime.now();
+        firstLaunchTime = DateTime.now().toUtc();
         lastLaunchTime = firstLaunchTime;
         await flutterSecureStorage.write(key: firstLaunchTimeKey, value: firstLaunchTime.formatToDTOString());
       }
