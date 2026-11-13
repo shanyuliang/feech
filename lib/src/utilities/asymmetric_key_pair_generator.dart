@@ -19,3 +19,7 @@ Future<AsymmetricKeyPair<RSAPublicKey, RSAPrivateKey>> generateRsaKeyPairAsync(i
 Future<SimpleKeyPair> generateEd25519KeyPairAsync() async {
   return Ed25519().newKeyPair();
 }
+
+Future<SimpleKeyPair> generateEd25519KeyPairFromSeedAsync(String seed) async {
+  return Ed25519().newKeyPairFromSeed(seed.codeUnits);
+}
