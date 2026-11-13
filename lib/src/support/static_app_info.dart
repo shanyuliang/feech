@@ -2,8 +2,9 @@ import 'dart:developer' as developer;
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 import 'package:version/version.dart';
 
 import '../constants.dart';
@@ -15,6 +16,7 @@ class StaticAppInfo {
   static const String firstLaunchTimeKey = "StaticAppInfo.firstLaunchTime";
   static const String lastLaunchTimeKey = "StaticAppInfo.lastLaunchTime";
   static const String sessionIdKey = "StaticAppInfo.sessionId";
+  static const String installationIdKey = "StaticAppInfo.installationId";
   static bool isInitialized = false;
   static late final String name;
   static late final String package;
@@ -27,6 +29,7 @@ class StaticAppInfo {
   static late DateTime firstLaunchTime;
   static late DateTime lastLaunchTime;
   static late int sessionId;
+  static late final String installationId;
 
   static Future<void> init({DeviceInfoPlugin? useDeviceInfoPlugin, bool debugLogDiagnostics = false}) async {
     if (!isInitialized) {
@@ -135,19 +138,26 @@ class StaticAppInfo {
             break;
         }
       }
-      final sharedPreferences = await SharedPreferences.getInstance();
-      final firstLaunchTimeString = sharedPreferences.getString(firstLaunchTimeKey);
+      final flutterSecureStorage = FlutterSecureStorage();
+      final firstLaunchTimeString = await flutterSecureStorage.read(key: firstLaunchTimeKey);
       if (firstLaunchTimeString != null) {
         firstLaunchTime = firstLaunchTimeString.parseAsDTODateTime();
         lastLaunchTime = DateTime.now();
       } else {
         firstLaunchTime = DateTime.now();
         lastLaunchTime = firstLaunchTime;
-        await sharedPreferences.setString(firstLaunchTimeKey, firstLaunchTime.formatToDTOString());
+        await flutterSecureStorage.write(key: firstLaunchTimeKey, value: firstLaunchTime.formatToDTOString());
       }
-      await sharedPreferences.setString(lastLaunchTimeKey, lastLaunchTime.formatToDTOString());
-      sessionId = (sharedPreferences.getInt(sessionIdKey) ?? -1) + 1;
-      await sharedPreferences.setInt(sessionIdKey, sessionId);
+      await flutterSecureStorage.write(key: lastLaunchTimeKey, value: lastLaunchTime.formatToDTOString());
+      sessionId = (int.tryParse((await flutterSecureStorage.read(key: sessionIdKey)) ?? '-1') ?? -1) + 1;
+      await flutterSecureStorage.write(key: sessionIdKey, value: sessionId.toString());
+      final tempInstallationId = await flutterSecureStorage.read(key: installationIdKey);
+      if (tempInstallationId != null) {
+        installationId = tempInstallationId;
+      } else {
+        installationId = Uuid().v7();
+        await flutterSecureStorage.write(key: installationIdKey, value: installationId);
+      }
       isInitialized = true;
     }
 
@@ -157,6 +167,6 @@ class StaticAppInfo {
   }
 
   static String staticToString() {
-    return 'StaticAppInfo{name: $name, package: $package, signature: $signature, versionString: $versionString, versionWithBuildNumberString: $versionWithBuildNumberString, version: $version, deviceModel: $deviceModel, deviceOsVersion: $deviceOsVersion}, firstLaunchTime: $firstLaunchTime, lastLaunchTime: $lastLaunchTime, sessionId: $sessionId}';
+    return 'StaticAppInfo{name: $name, package: $package, signature: $signature, versionString: $versionString, versionWithBuildNumberString: $versionWithBuildNumberString, version: $version, deviceModel: $deviceModel, deviceOsVersion: $deviceOsVersion}, firstLaunchTime: $firstLaunchTime, lastLaunchTime: $lastLaunchTime, sessionId: $sessionId, installationId: $installationId}';
   }
 }
