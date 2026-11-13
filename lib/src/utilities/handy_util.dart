@@ -70,7 +70,7 @@ String getVariant() {
   }
 }
 
-T? timeIt<T>({required T? Function() target}) {
+T timeIt<T>(T Function() target) {
   final stopWatch = Stopwatch()..start();
   try {
     final result = target.call();
