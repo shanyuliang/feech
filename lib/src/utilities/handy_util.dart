@@ -69,3 +69,14 @@ String getVariant() {
     return getBuildType();
   }
 }
+
+T? timeIt<T>({required T? Function() target}) {
+  final stopWatch = Stopwatch()..start();
+  try {
+    final result = target.call();
+    debugPrint("timeIt: ${stopWatch.elapsedMilliseconds} ms");
+    return result;
+  } finally {
+    stopWatch.stop();
+  }
+}
