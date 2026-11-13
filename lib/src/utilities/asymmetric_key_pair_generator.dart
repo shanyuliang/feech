@@ -4,6 +4,8 @@ import 'package:cryptography/cryptography.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pointycastle/export.dart';
 
+import '../extensions/string_extension.dart';
+
 AsymmetricKeyPair<RSAPublicKey, RSAPrivateKey> generateRsaKeyPairSync(int bitLength) {
   final random = Random.secure();
   final seed = Uint8List.fromList(List<int>.generate(32, (_) => random.nextInt(256)));
@@ -21,5 +23,5 @@ Future<SimpleKeyPair> generateEd25519KeyPairAsync() async {
 }
 
 Future<SimpleKeyPair> generateEd25519KeyPairFromSeedAsync(String seed) async {
-  return Ed25519().newKeyPairFromSeed(seed.codeUnits);
+  return Ed25519().newKeyPairFromSeed(seed.sha256Bytes());
 }

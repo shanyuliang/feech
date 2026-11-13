@@ -1,3 +1,4 @@
+import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
@@ -13,6 +14,10 @@ extension StringExtension on String {
   static final countryInDName = RegExp(r"/C=([^/]+)");
   static final organizationInDName = RegExp(r"/O=([^/]+)");
   static final commonNameInDName = RegExp(r"/CN=([^/]+)");
+
+  List<int> sha256Bytes() {
+    return sha256.convert(codeUnits).bytes;
+  }
 
   String? get asX509DNameGetCountry {
     final match = countryInDName.firstMatch(this);
