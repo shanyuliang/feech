@@ -70,11 +70,22 @@ String getVariant() {
   }
 }
 
-T timeIt<T>(T Function() target) {
+T timeSync<T>(T Function() target) {
   final stopWatch = Stopwatch()..start();
   try {
     final result = target.call();
-    debugPrint("timeIt: ${stopWatch.elapsedMilliseconds} ms");
+    debugPrint("timeSync: ${stopWatch.elapsedMilliseconds} ms");
+    return result;
+  } finally {
+    stopWatch.stop();
+  }
+}
+
+Future<T> timeAsync<T>(Future<T> Function() target) async {
+  final stopWatch = Stopwatch()..start();
+  try {
+    final result = await target.call();
+    debugPrint("timeAsync: ${stopWatch.elapsedMilliseconds} ms");
     return result;
   } finally {
     stopWatch.stop();
