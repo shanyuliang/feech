@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +18,7 @@ extension StringExtension on String {
   static final commonNameInDName = RegExp(r"/CN=([^/]+)");
 
   List<int> sha256Bytes() {
-    return sha256.convert(codeUnits).bytes;
+    return sha256.convert(utf8.encode(this)).bytes;
   }
 
   String? get asX509DNameGetCountry {
