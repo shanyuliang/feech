@@ -120,6 +120,8 @@ export 'src/support/static_app_info.dart';
 export 'src/utilities/asymmetric_key_pair_generator.dart';
 export 'src/utilities/geo_util.dart';
 export 'src/utilities/handy_util.dart';
+export 'src/utilities/in_flight_call_serializer.dart';
+export 'src/utilities/only_once_executor.dart';
 export 'src/utilities/spki_pin_checker.dart';
 export 'src/utilities/string_util.dart';
 export 'src/widgets/app_initialise_widget.dart';

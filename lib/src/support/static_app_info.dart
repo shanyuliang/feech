@@ -11,9 +11,10 @@ import '../constants.dart';
 import '../extensions/date_time_extension.dart';
 import '../extensions/string_extension.dart';
 import '../utilities/handy_util.dart';
+import '../utilities/only_once_executor.dart';
 
 class StaticAppInfo {
-  static Future<void>? _initDone;
+  static final _onlyOnceExecutor = OnlyOnceExecutor();
   static const firstLaunchTimeKey = "StaticAppInfo.firstLaunchTime";
   static const lastLaunchTimeKey = "StaticAppInfo.lastLaunchTime";
   static const sessionIdKey = "StaticAppInfo.sessionId";
@@ -32,12 +33,9 @@ class StaticAppInfo {
   static late final String installationId;
 
   static Future<void> init({DeviceInfoPlugin? useDeviceInfoPlugin, bool debugLogDiagnostics = false}) async {
-    if (_initDone != null) {
-      return _initDone;
-    } else {
-      _initDone = _init(useDeviceInfoPlugin: useDeviceInfoPlugin, debugLogDiagnostics: debugLogDiagnostics);
-      return _initDone;
-    }
+    return _onlyOnceExecutor.run<void>(() {
+      return _init(useDeviceInfoPlugin: useDeviceInfoPlugin, debugLogDiagnostics: debugLogDiagnostics);
+    });
   }
 
   static Future<void> _init({DeviceInfoPlugin? useDeviceInfoPlugin, bool debugLogDiagnostics = false}) async {
