@@ -37,6 +37,7 @@ export 'src/models/app_permission_status.dart';
 export 'src/models/audio_playback_state.dart';
 export 'src/models/audio_player_state.dart';
 export 'src/models/display_width_mode.dart';
+export 'src/models/execution_state.dart';
 export 'src/models/page_lifecycle_state.dart';
 export 'src/models/page_parameter.dart';
 export 'src/models/remote_app_theme.dart';
